@@ -1,0 +1,332 @@
+@media (min-width: 320px) and (max-width: 992px) {}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .main-content-without-nav {
+        padding-bottom: 20px;
+    }
+
+    .header_main_block {
+        width: 100%;
+        position: fixed;
+        top: 0px;
+        background: #ffffff;
+        box-shadow: 0px 2px 3px 0px rgb(0 0 0 / 10%);
+        z-index: 10;
+
+        .navleft-siderbar {
+            max-width: 100%;
+            padding: 5px;
+            border: none !important;
+            width: 180px;
+            float: left;
+            display: flex;
+
+            .container-fluid {
+                display: flex;
+                justify-content: left;
+
+                button {
+                    outline: none;
+                }
+
+                .navbar-brand {
+                    .navbar-brand-img {
+                        max-height: 35px;
+                        margin: 0px;
+                    }
+                }
+
+                .navbar-collapse {
+                    margin: 0px;
+                    position: fixed;
+                    top: 56px;
+                    width: 180px;
+                    border-radius: 0px;
+                    box-shadow: none;
+                    height: calc(100vh - 51px) !important;
+                    border-right: solid thin #ededed;
+                    padding: 0px;
+                    transition: none;
+
+                    .left-menu {
+                        margin: 0px;
+                    }
+                }
+            }
+
+            .navbar-brand-img {
+                max-height: 35px;
+                margin: 0px;
+            }
+        }
+
+        .top-navigation {
+            float: left;
+            right: 0px;
+            box-shadow: none;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            padding: 0px;
+            min-height: 50px;
+
+            .search-topblock {
+                width: 100%;
+            }
+
+            .navbar-nav {
+                flex-flow: row;
+                width: 100%;
+                justify-content: right;
+
+                .notification-liblock {
+                    display: none;
+                }
+
+                .nav-item {
+                    .nav-link {
+                        max-width: 75px;
+                        float: right;
+                        margin: 0px 5px 0px 0px;
+                        padding: 10px 5px 0px 5px;
+                    }
+
+                    .dropdown-menu {
+                        box-shadow: 0px 2px 3px 0px rgb(0 0 0 / 10%);
+                        min-width: auto;
+                        position: absolute;
+                        right: 0px;
+                        top: 55px;
+                        border-radius: 0px 0px 5px 5px;
+                    }
+                }
+            }
+        }
+
+        .menu_outerblock {
+            position: fixed;
+            width: calc(100vw - 180px);
+            right: 0;
+            top: 56px;
+            height: 100vh;
+            z-index: 1052;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .subscription_block {
+            display: none !important;
+        }
+    }
+
+    .main-content {
+        .overall-containblock {
+            padding: 65px 10px 15px 10px;
+
+            .brics_row {
+                .tile_stats_count {
+                    width: 48% !important;
+                    margin-bottom: 4% !important;
+                    padding: 5px !important;
+
+                    .count_top {
+                        font-size: 13px !important;
+
+                        i {
+                            right: 3px !important;
+                            font-size: 30px !important;
+                            top: initial !important;
+                            bottom: 0px !important;
+                        }
+                    }
+
+                    .count {
+                        font-size: 16px !important;
+                    }
+
+                    .res_txtsmall {
+                        font-size: 14px !important;
+                    }
+                }
+            }
+
+            .assign_customer_block {
+                max-width: 100% !important;
+                flex: 100% !important;
+                margin-bottom: 15px !important;
+            }
+
+            .list-containner {
+                .card {
+                    .card-header {
+                        h3 {
+                            font-size: 14px;
+                            margin-bottom: 5px !important;
+                            font-weight: 550;
+                        }
+
+                        .datewith_search_block {
+                            flex: inherit;
+                            padding: 0px;
+
+                            .listsearch-topblock {
+                                width: 100%;
+
+                                .search-box {
+                                    width: 100%;
+                                }
+                            }
+                        }
+
+                        .calender_withsearch {
+                            display: block;
+
+                            .list_calender_filter {
+                                width: 100%;
+                                margin: 5px 0px 10px 0px !important;
+                                max-width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .modal-body {
+                .apic-lb-form-box {
+                    padding: 10px 15px;
+                }
+            }
+        }
+    }
+
+    .mydata-table,
+    .popup_table {
+        padding: 10px;
+        display: block;
+
+        tbody,
+        th,
+        td,
+        tr {
+            display: block;
+        }
+
+        thead {
+            display: none;
+        }
+
+        tbody {
+            tr {
+                border: solid thin #e1e1e1;
+                margin-bottom: 15px;
+                border-radius: 3px;
+
+                td {
+                    width: 100% !important;
+                    position: relative;
+                    border: none;
+                    border-bottom: solid thin #e1e1e15c;
+                    padding: 8px 0px 8px 35% !important;
+                    text-align: left !important;
+                    min-height: 33px;
+
+                    &:before {
+                        content: attr(data-name);
+                        position: absolute;
+                        left: 10px;
+                        width: 40%;
+                        font-weight: 500;
+                        top: 0px;
+                        line-height: 33px;
+                    }
+
+                    .list_image_block {
+                        margin: 0px;
+                    }
+
+                    .offer_details,
+                    .remove_whitespace {
+                        white-space: inherit !important;
+                    }
+                }
+
+                .norecord_col {
+                    padding: 8px !important;
+                }
+            }
+        }
+    }
+
+    .popup_tablescroll {
+        width: 100%;
+        overflow: auto;
+        display: inline-block;
+        width: 100%;
+    }
+
+    /* .small_texttable {
+        tbody, th, td, tr {
+            font-size: 10px;
+        }
+    } */
+    .more_table tr td {
+        white-space: break-spaces;
+    }
+
+    .total_block {
+        margin-bottom: 10px;
+    }
+
+    .modal_insert {
+        padding: 10px 1.5rem 20px 1.5rem !important;
+
+        .fileupload {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 576px) {}
+
+@media (min-width: 577px) and (max-width: 767px) {}
+
+@media (min-width: 320px) and (max-width: 360px) {}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .main-content {
+        .overall-containblock {
+            .brics_row {
+                .tile_stats_count {
+                    width: 48% !important;
+
+                    .count_top {
+                        i {
+                            top: 23px !important;
+                        }
+                    }
+                }
+            }
+
+            .assign_customer_block {
+                max-width: 48.5% !important;
+            }
+        }
+    }
+
+    .modal-lg {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1199px) {
+    .main-content {
+        .overall-containblock {
+            .brics_row {
+                .count_top {
+                    i {
+                        top: 23px !important;
+                    }
+                }
+            }
+        }
+    }
+}
