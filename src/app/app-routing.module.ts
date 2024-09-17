@@ -7,6 +7,9 @@ import { MemberDashboardComponent } from './components/member-dashboard/member-d
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { SuperadminDashboardComponent } from './components/superadmin-dashboard/superadmin-dashboard.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { LoanListComponent } from './components/loan-list/loan-list.component';
+import { CollectionListComponent } from './components/collection-list/collection-list.component';
+import { CollectMoneyComponent } from './components/collect-money/collect-money.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, //default route
@@ -17,6 +20,9 @@ const routes: Routes = [
   { path: 'user_dashboard', component: UserDashboardComponent },
   { path: 'superadmin_dashboard', component: SuperadminDashboardComponent },
   { path: 'admin_dashboard', component: AdminDashboardComponent },
+  { path: 'loan_list', component: LoanListComponent },
+  { path: 'collection_list', component: CollectionListComponent },
+  { path: 'collect_money', component: CollectMoneyComponent },
   { path: '**', component: LoginComponent }
 ]
 
