@@ -19,6 +19,8 @@ export class LoginComponent {
   subscription_detail_all: any;
   subscription_popup = 0;
   subscriptionClass = 'subscription_section';
+  hide = true;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -41,6 +43,7 @@ export class LoginComponent {
   }
 
   check_authorizartion() {
-
+    this.router.navigate(['/user_dashboard']);
+    // this.router.navigate('/user_dashboard');
   }
 }

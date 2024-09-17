@@ -24,6 +24,7 @@ import { LoginComponent } from './authentication/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NumberToWordsPipe } from './pipes/number-to-words.pipe';
 import { SearchPipe } from './pipes/search.pipe';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SearchPipe } from './pipes/search.pipe';
     SearchPipe
   ],
   imports: [
+    MatIconModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

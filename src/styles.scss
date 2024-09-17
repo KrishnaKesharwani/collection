@@ -3649,6 +3649,34 @@ mark {
         transform: scale(1);
     }
 }
+// Latest css added
+.form_control_row {
+    .global_input_block {
+        width: 100%;
+        position: relative;
+        padding: 10px 0px;
+        .mat-mdc-form-field-flex {
+            font-size: 14px;
+        }
+        .input_right_icons {
+            position: absolute;
+            right: 0px;
+            color: var(--theme-bgcolor);
+        }
+        .login-btnblock {
+            display: flex;
+            width: 100%;
+        }
+    }
+}
 
+.btn_theme {
+    min-height: 45px;
+    width: 100%;
+}
+.bg-primary {
+    background: var(--theme-bgcolor) !important;
+    color: #ffffff !important;
+}
 /* Media Css Below Call */
 @import "assets/css/media.scss";
