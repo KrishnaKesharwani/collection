@@ -24,14 +24,11 @@ import { LoginComponent } from './authentication/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NumberToWordsPipe } from './pipes/number-to-words.pipe';
 import { SearchPipe } from './pipes/search.pipe';
-<<<<<<< Updated upstream
 import { MatIconModule } from '@angular/material/icon';
-=======
 import { UserComponent } from './components/user/user.component';
 import { CollectMoneyComponent } from './components/collect-money/collect-money.component';
 import { CollectionListComponent } from './components/collection-list/collection-list.component';
 import { LoanListComponent } from './components/loan-list/loan-list.component';
->>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
