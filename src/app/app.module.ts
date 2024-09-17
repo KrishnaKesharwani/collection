@@ -29,6 +29,7 @@ import { UserComponent } from './components/user/user.component';
 import { CollectMoneyComponent } from './components/collect-money/collect-money.component';
 import { CollectionListComponent } from './components/collection-list/collection-list.component';
 import { LoanListComponent } from './components/loan-list/loan-list.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,12 @@ import { LoanListComponent } from './components/loan-list/loan-list.component';
     MatGridListModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }), // ToastrModule added
   ],
   providers: [
 

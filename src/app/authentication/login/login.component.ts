@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +23,7 @@ export class LoginComponent {
   subscriptionClass = 'subscription_section';
   hide = true;
 
-  constructor(
+  constructor(private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     // public api: ApiService,
@@ -43,6 +45,7 @@ export class LoginComponent {
   }
 
   check_authorizartion() {
+    this.toastr.success('Success');
     this.router.navigate(['/user_dashboard']);
     // this.router.navigate('/user_dashboard');
   }
