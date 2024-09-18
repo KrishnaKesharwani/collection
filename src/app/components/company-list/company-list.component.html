@@ -1,0 +1,477 @@
+<div class="list-containner">
+    <div class="row">
+        <div class="col-xl-12 mb-xl-0">
+            <div class="card shadow dash-cardbox">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col pl-1">
+                            <h3 class="mb-0">Company List</h3>
+                        </div>
+                        <div class="col text-right pr-1 datewith_search_block">
+                            <div class="listsearch-topblock">
+                                <div class="search-box">
+                                    <input type="search" placeholder="Search" class="searchtxt" />
+                                    <i class="mdi mdi-magnify"></i>
+                                </div>
+                                <div class="right_addbtn">
+                                    <button data-toggle="modal" (click)="addMember(1)"
+                                        data-target="#actionCompany_modal"
+                                        class="btn btn-success btn-sm create_header_btn">
+                                        <i class="mdi mdi-account"></i>
+                                        <span class="btn-txt button-text">Add Company</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table align-items-center table-flush mydata-table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="col">Name</th>
+                            <th class="col text-center">Logo</th>
+                            <th class="col">Owner Name</th>
+                            <th class="col">Mobile</th>
+                            <th class="col">Start Date</th>
+                            <th class="col">End Date</th>
+                            <th class="col">Plan</th>
+                            <th class="col">Amount</th>
+                            <th class="col">Pending</th>
+                            <th class="col text-center">Status</th>
+                            <th class="col action_col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col" data-name="Name">RK Group</td>
+                            <td class="col" data-name="Logo">
+                                <div class="list_image_block">
+                                    <img src="assets/imgs/rk-group-logo.png" />
+                                </div>
+                            </td>
+                            <td class="col" data-name="Owner Name">Roshan Kanojiya</td>
+                            <td class="col" data-name="Mobile">6263626505</td>
+                            <td class="col" data-name="Start Date">12-02-2022</td>
+                            <td class="col" data-name="End Date">11-02-2023</td>
+                            <td class="col" data-name="Plan">Monthly</td>
+                            <td class="col text-right" data-name="Amount">1999.00</td>
+                            <td class="col text-right" data-name="Pending">1999.00</td>
+                            <td class="col text-center" data-name="Status"><span
+                                    class="badge bg-success text-white">Active</span></td>
+                            <td class="action_col" data-name="Action">
+                                <div ngbDropdown placement="bottom-right">
+                                    <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
+                                        <i class="mdi mdi-dots-vertical"></i>
+                                    </a>
+                                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                        <a class="dropdown-item" data-target="#history_modal" data-toggle="modal">
+                                            <i class="mdi mdi-history mr-2"></i>Company History</a>
+                                        <a class="dropdown-item" data-target="#view_modal" data-toggle="modal">
+                                            <i class="mdi mdi-eye mr-2"></i>View Details</a>
+                                        <a class="dropdown-item" data-toggle="modal" (click)="addMember(0)"
+                                            data-target="#actionCompany_modal">
+                                            <i class="mdi mdi-pencil mr-2"></i>Edit Company</a>
+                                        <a class="dropdown-item" data-toggle="modal"
+                                            data-target="#planreceived_amount_modal">
+                                            <i class="mdi mdi-cash-100 mr-2"></i>Received Amount</a>
+                                        <a class="dropdown-item" (click)="statusInactive()">
+                                            <i class="mdi mdi-account-off-outline mr-2"></i>Inactive</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col">Sudarshan Group</td>
+                            <td class="col">
+                                <div class="list_image_block">
+                                    <img src="assets/imgs/rk-group-logo2.png" />
+                                </div>
+                            </td>
+                            <td class="col">Sudharshan Yadav</td>
+                            <td class="col">6263626505</td>
+                            <td class="col">12-02-2022</td>
+                            <td class="col">11-02-2023</td>
+                            <td class="col">Yearly</td>
+                            <td class="col text-right">15000.00</td>
+                            <td class="col text-right">0.00</td>
+                            <td class="col text-center"><span class="badge bg-warning text-white">Inactive</span></td>
+                            <td class="action_col">
+                                <div ngbDropdown placement="bottom-right">
+                                    <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
+                                        <i class="mdi mdi-dots-vertical"></i>
+                                    </a>
+                                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                        <a class="dropdown-item" data-target="#history_modal" data-toggle="modal">
+                                            <i class="mdi mdi-history mr-2"></i>Company History</a>
+
+                                        <a class="dropdown-item" data-target="#view_modal" data-toggle="modal">
+                                            <i class="mdi mdi-eye mr-2"></i>View Details</a>
+                                        <a class="dropdown-item" data-toggle="modal" (click)="addMember(0)"
+                                            data-target="#actionCompany_modal">
+                                            <i class="mdi mdi-pencil mr-2"></i>Edit Company</a>
+                                        <a class="dropdown-item" data-toggle="modal"
+                                            data-target="#planreceived_amount_modal">
+                                            <i class="mdi mdi-cash-100 mr-2"></i>Received Amount</a>
+                                        <a class="dropdown-item" (click)="statusActive()">
+                                            <i class="mdi mdi-account-off-outline mr-2"></i>Active</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="11" class="norecord_col">
+                                <div class="no_found">
+                                    <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- View Company Details Popup -->
+    <div class="modal upload-filemodel fade" id="view_modal" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+        aria-hidden="true">
+        <div class="modal-dialog modal- modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Company Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body p-0 bg-secondary">
+                    <div class="card-body apic-lb-form-box">
+                        <table class="table table-bordered table-responsive bg-white more_icontable more_table">
+                            <tbody>
+                                <tr>
+                                    <td><b>Company Name :</b></td>
+                                    <td>Rk Group</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Owner Name :</b></td>
+                                    <td>Roshan Kanojiya</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Mobile :</b></td>
+                                    <td>Rk Group</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Start Date :</b></td>
+                                    <td>12-Mar-2022</td>
+                                </tr>
+                                <tr>
+                                    <td><b>End Date :</b></td>
+                                    <td>11-Mar-2023</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Aadhar No. :</b></td>
+                                    <td>626362650548</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Current Plan :</b></td>
+                                    <td>Monthly</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Total Amount :</b></td>
+                                    <td>1499.00</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Pending Amount :</b></td>
+                                    <td>1499.00</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Status :</b></td>
+                                    <td><span class="badge bg-success text-white">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Login Id :</b></td>
+                                    <td>rkgroup_12march2021</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Password :</b></td>
+                                    <td>rkgroup2022</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Address :</b></td>
+                                    <td>Home no. 72, bajrang nagar jabalpur </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Details :</b></td>
+                                    <td>Management for VC and Daily Collection </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered table-responsive more_table bg-white ">
+                            <tbody>
+                                <tr>
+                                    <td><b>Company Logo :</b></td>
+                                    <td>
+                                        <div class="list_image_block float-left">
+                                            <img src="assets/imgs/rk-group-logo.png">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Company Sidebar Logo :</b></td>
+                                    <td>
+                                        <div class="list_image_block float-left">
+                                            <img src="assets/imgs/rk-group-logo.png">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Company Fevicon Icon :</b></td>
+                                    <td>
+                                        <div class="list_image_block float-left">
+                                            <img src="assets/imgs/rk-group-logo.png">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Company Owner Profile :</b></td>
+                                    <td>
+                                        <div class="list_image_block float-left">
+                                            <img src="assets/imgs/rk-group-logo.png">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- History Details Popup -->
+    <div class="modal upload-filemodel fade" id="history_modal" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+        aria-hidden="true">
+        <div class="modal-dialog modal- modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Company Plan History Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body p-0 bg-secondary">
+                    <div class="card-body apic-lb-form-box">
+                        <table class="table table-bordered table-responsive popup_table bg-white more_table">
+                            <thead>
+                                <tr>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Plan</th>
+                                    <th>Amount</th>
+                                    <th>Pending</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>11-Jun-2021</td>
+                                    <td>10-Mar-2021</td>
+                                    <td>Monthly</td>
+                                    <td class="text-right">1499.00</td>
+                                    <td class="text-right">0.00</td>
+                                    <td class="text-center"><span class="badge bg-success text-white">Completed</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>12-Mar-2021</td>
+                                    <td>21-May-2021</td>
+                                    <td>Yearly</td>
+                                    <td class="text-right">15000.00</td>
+                                    <td class="text-right">5000.00</td>
+                                    <td class="text-center"><span class="badge bg-warning text-white">Running</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add / Edit Members Popup -->
+    <div class="modal fade" id="actionCompany_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mb-0" *ngIf="customer_action == 1">Add New Company</h5>
+                    <h5 class="modal-title mb-0" *ngIf="customer_action != 1">Update Company Details</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form class="create_collection">
+                    <div class="modal-body modal_insert bg-secondary pb-0">
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Company Name</mat-label>
+                                    <input matInput required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Owner Name</mat-label>
+                                    <input matInput required />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Mobile</mat-label>
+                                    <input matInput required />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Start Date</mat-label>
+                                    <input type="date" matInput required />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>End Date</mat-label>
+                                    <input type="date" matInput required />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Aadhar No.</mat-label>
+                                    <input matInput required />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Plan</mat-label>
+                                    <mat-select>
+                                        <mat-option value="Monthly">Monthly</mat-option>
+                                        <mat-option value="Yearly">Yearly</mat-option>
+                                        <mat-option value="Demo">Demo</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Total Amount</mat-label>
+                                    <input matInput required />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Advance Amount</mat-label>
+                                    <input matInput required />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Status</mat-label>
+                                    <mat-select>
+                                        <mat-option value="Active">Active</mat-option>
+                                        <mat-option value="Inactive">Inactive</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Company Login Id</mat-label>
+                                    <input matInput required />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Password</mat-label>
+                                    <input type="password" matInput required />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 col-xs-12">
+                                <label class="m-0">Company Main Logo</label>
+                                <input type="file" class="file" class="fileupload" />
+                            </div>
+                            <div class="col-sm-6 col-lg-6 col-xs-12">
+                                <label class="m-0">Company sidebar Logo</label>
+                                <input type="file" class="file" class="fileupload" />
+                            </div>
+                            <div class="col-sm-6 col-lg-6 col-xs-12">
+                                <label class="m-0">Company Favicon Icon</label>
+                                <input type="file" class="file" class="fileupload" />
+                            </div>
+                            <div class="col-sm-6 col-lg-6 col-xs-12">
+                                <label class="m-0">Company Owner Image</label>
+                                <input type="file" class="file" class="fileupload" />
+                            </div>
+                            <div class="col-sm-6 col-lg-6 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Address</mat-label>
+                                    <textarea matInput required formControlName="address"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 col-xs-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Details</mat-label>
+                                    <textarea matInput required formControlName="address"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer text-right">
+                    <button type="button" mat-button mat-stroked-button data-dismiss="modal"><i
+                            class="mdi mdi-close mr-1"></i>Cancel</button>
+                    <button class="submit_btn" *ngIf="customer_action == 1" data-dismiss="modal" color="primary"
+                        mat-raised-button>
+                        <i class="mdi mdi-send mr-1"></i>Submit
+                    </button>
+                    <button class="submit_btn" *ngIf="customer_action != 1" data-dismiss="modal" color="primary"
+                        mat-raised-button>
+                        <i class="mdi mdi-send mr-1"></i>Update
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Plan Received Amount Popup -->
+    <div class="modal upload-filemodel fade" id="planreceived_amount_modal" tabindex="-1" role="dialog"
+        aria-labelledby="modal-form" aria-hidden="true">
+        <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Received Plan Amount</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body p-0 bg-secondary">
+                    <div class="card-body apic-lb-form-box">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Company Name</mat-label>
+                                    <input matInput disabled="disabled" value="RK Group" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Received Amount</mat-label>
+                                    <input matInput required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Received Date</mat-label>
+                                    <input type="date" matInput required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Amount Details</mat-label>
+                            <textarea matInput required formControlName="address"></textarea>
+                        </mat-form-field>
+                        <div class="text-center mt-1">
+                            <button type="button" class="mr-3 bg-white" mat-button mat-stroked-button
+                                data-dismiss="modal"><i class="mdi mdi-close mr-1 bg-white"></i>Cancel</button>
+                            <button class="submit_btn" data-dismiss="modal" color="primary" mat-raised-button>
+                                <i class="mdi mdi-send mr-1"></i>Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

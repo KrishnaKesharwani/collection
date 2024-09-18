@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { SharedataService } from '../services/sharedata.service';
-// import { MessagingService } from '../services/messaging.service';
-// import { ApiService } from '../services/api.service';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css']
 })
-
-export class LayoutComponent {
+export class SidebarComponent {
   apic_sync_success = false;
   loading = false;
   staff_detail: any
@@ -37,4 +33,3 @@ export class LayoutComponent {
     this.router.navigate(['/']);
   }
 }
-

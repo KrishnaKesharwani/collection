@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'moneyproject';
+
+  showSidebar = true;
+
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        const navigationEndEvent = event as NavigationEnd; // Type assertion
+        this.showSidebar = !navigationEndEvent.url.includes('/login');
+      });
+  }
 }

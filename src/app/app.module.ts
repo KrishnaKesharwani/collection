@@ -25,11 +25,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NumberToWordsPipe } from './pipes/number-to-words.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { MatIconModule } from '@angular/material/icon';
-import { UserComponent } from './components/user/user.component';
 import { CollectMoneyComponent } from './components/collect-money/collect-money.component';
 import { CollectionListComponent } from './components/collection-list/collection-list.component';
 import { LoanListComponent } from './components/loan-list/loan-list.component';
 import { ToastrModule } from 'ngx-toastr';
+import { HeaderComponent } from './common/header/header.component';
+import { SidebarComponent } from './common/sidebar/sidebar.component';
+import { FixedDepositComponent } from './components/fixed-deposit/fixed-deposit.component';
+import { DeleteComponent } from './common/delete/delete.component';
+import { ErrorComponent } from './common/error/error.component';
+import { InputComponent } from './common/input/input.component';
+import { FileuploadComponent } from './common/fileupload/fileupload.component';
+import { DropdwonComponent } from './common/dropdwon/dropdwon.component';
+import { CompanyListComponent } from './components/company-list/company-list.component';
+import { MasterLoadListComponent } from './components/master-load-list/master-load-list.component';
+import { MemberListComponent } from './components/member-list/member-list.component';
+import { MenoyReceivedComponent } from './components/menoy-received/menoy-received.component';
+import { PaidDataEntryComponent } from './components/paid-data-entry/paid-data-entry.component';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
@@ -45,10 +57,23 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     NumberToWordsPipe,
     SearchPipe,
-    UserComponent,
+
     CollectMoneyComponent,
     CollectionListComponent,
     LoanListComponent,
+    HeaderComponent,
+    SidebarComponent,
+    FixedDepositComponent,
+    DeleteComponent,
+    ErrorComponent,
+    InputComponent,
+    FileuploadComponent,
+    DropdwonComponent,
+    CompanyListComponent,
+    MasterLoadListComponent,
+    MemberListComponent,
+    MenoyReceivedComponent,
+    PaidDataEntryComponent,
   ],
   imports: [
     MatIconModule,
@@ -67,7 +92,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatSelectModule,
     ToastrModule.forRoot({
       timeOut: 1000,
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-top-right',
       preventDuplicates: true,
     }), // ToastrModule added
   ],

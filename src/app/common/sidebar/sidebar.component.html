@@ -1,8 +1,10 @@
-<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white navleft-siderbar no-print" id="sidenav-main">
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white navleft-siderbar no-print"
+    id="sidenav-main">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
+            aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <a class="navbar-brand p-0 text-left">
             <img src="./assets/imgs/rk-group-logo-inner.png" class="navbar-brand-img" />
         </a>
@@ -10,58 +12,64 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                     
+
                     </div>
                     <div class="col-6 collapse-close">
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                          <span></span>
-                          <span></span>
-                      </button>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse"
+                            data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false"
+                            aria-label="Toggle sidenav">
+                            <span></span>
+                            <span></span>
+                        </button>
                     </div>
                 </div>
             </div>
             <ul class="navbar-nav left-menu" (click)="onLetfMenuClick($event)">
                 <li class="nav-item">
-                    <a routerLink="/root/" class="nav-link active"> <i class="mdi mdi-home-outline"></i> Dashboard
+                    <a routerLink="/user_dashboard" class="nav-link active"> <i class="mdi mdi-home-outline"></i>
+                        Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/root/members" class="nav-link"> <i class="mdi mdi-account-tie"></i> Members List
+                    <a routerLink="/member_dashboard" class="nav-link"> <i class="mdi mdi-account-tie"></i> Members List
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/root/customer" class="nav-link"> <i class="mdi mdi-account-group-outline"></i> Customer List
+                    <a routerLink="/customer_list" class="nav-link"> <i class="mdi mdi-account-group-outline"></i>
+                        Customer List
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/root/loanlist" class="nav-link"> <i class="mdi mdi-account-switch-outline"></i> Loan List
+                    <a routerLink="/loan_list" class="nav-link"> <i class="mdi mdi-account-switch-outline"></i> Loan
+                        List
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/root/dailycollection" class="nav-link"> <i class="mdi mdi-account-alert-outline"></i> Daily Collection
+                    <a routerLink="/daily_collection" class="nav-link"> <i class="mdi mdi-account-alert-outline"></i>
+                        Daily Collection
                     </a>
                 </li>
-                
+
                 <li class="nav-item">
-                    <a routerLink="/root/offers" class="nav-link"> <i class="mdi mdi-tag-multiple-outline"></i>Offers List</a>
+                    <a routerLink="/offers" class="nav-link"> <i class="mdi mdi-tag-multiple-outline"></i>Offers
+                        List</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/root/collectmoney" class="nav-link"> <i class="mdi mdi-account-cash-outline"></i> Collect Money
+                    <a routerLink="/collect_money" class="nav-link"> <i class="mdi mdi-account-cash-outline"></i>
+                        Collect Money
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/root/fixeddeposit" class="nav-link"> <i class="mdi mdi-card-account-details-star-outline"></i> Fixed Deposit
+                    <a routerLink="/fixed_deposit" class="nav-link"> <i
+                            class="mdi mdi-card-account-details-star-outline"></i> Fixed Deposit
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a routerLink="/root/reports" class="nav-link"> <i class="mdi mdi-chart-bar-stacked"></i> Reports
-                    </a>
-                </li>               
+
             </ul>
         </div>
     </div>
 </nav>
-<nav  class="navbar navbar-expand-md fixed-top top-navigation no-print" id="navbar-main">
+<nav class="navbar navbar-expand-md fixed-top top-navigation no-print" id="navbar-main">
     <div class="container-fluid search-topblock">
         <form class="navbar-search navbar-search-light form-inline mr-sm-3">
             <div class="search-box" style="display: none;">
@@ -71,7 +79,8 @@
         </form>
         <ul class="navbar-nav align-items-center d-none d-md-flex">
             <li class="nav-item dropdown notification-liblock">
-                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
                     <div class="notiblock">
                         <i class="mdi mdi-bell"></i>
                         <div class="noticounter">5</div>
@@ -79,12 +88,13 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                     <!-- <img alt="User" src="./assets/imgs/boss.png" /> -->
-                      <!-- <img alt="User" src="{{staff_img}}" /> -->
-                      </span>
+                            <!-- <img alt="User" src="./assets/imgs/boss.png" /> -->
+                            <!-- <img alt="User" src="{{staff_img}}" /> -->
+                        </span>
                         <div class="media-body ml-2  d-lg-block">
                             <!-- <span class="mb-0 text-sm  font-weight-bold " style="text-transform: uppercase;" >{{staff_name}}</span> -->
                         </div>
@@ -115,8 +125,3 @@
         </ul>
     </div>
 </nav>
-<div class="main-content">
-    <div class="overall-containblock">
-        <router-outlet></router-outlet>
-    </div>
-</div>

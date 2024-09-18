@@ -10,23 +10,20 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { LoanListComponent } from './components/loan-list/loan-list.component';
 import { CollectionListComponent } from './components/collection-list/collection-list.component';
 import { CollectMoneyComponent } from './components/collect-money/collect-money.component';
+import { OffersComponent } from './components/offers/offers.component';
+import { FixedDepositComponent } from './components/fixed-deposit/fixed-deposit.component';
+import { CompanyListComponent } from './components/company-list/company-list.component';
+import { MasterLoadListComponent } from './components/master-load-list/master-load-list.component';
+import { MemberListComponent } from './components/member-list/member-list.component';
+import { MenoyReceivedComponent } from './components/menoy-received/menoy-received.component';
+import { PaidDataEntryComponent } from './components/paid-data-entry/paid-data-entry.component';
 // import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, //default route
-  {
-    path: 'layout',
-    loadChildren: () =>
-      import(
-        './layout/layout.module'
-        ).then((mod) => mod.LayoutModule),
-  },
-  // {
-  //   path: 'layout',
-  //   loadChildren: () => import('./root/root.module').then(m => m.RootModule)
-  // },
+
   { path: 'login', component: LoginComponent },
-  { path: 'customer', component: CustomeComponent },
+  { path: 'customer_list', component: CustomeComponent },
   { path: 'daily_collection', component: DailyCollectionComponent },
   { path: 'member_dashboard', component: MemberDashboardComponent },
   { path: 'user_dashboard', component: UserDashboardComponent },
@@ -35,6 +32,13 @@ const routes: Routes = [
   { path: 'loan_list', component: LoanListComponent },
   { path: 'collection_list', component: CollectionListComponent },
   { path: 'collect_money', component: CollectMoneyComponent },
+  { path: 'fixed_deposit', component: FixedDepositComponent },
+  { path: 'offers', component: OffersComponent },
+  { path: 'company_list', component: CompanyListComponent },
+  { path: 'master_loan_list', component: MasterLoadListComponent },
+  { path: 'member_list', component: MemberListComponent },
+  { path: 'money_received', component: MenoyReceivedComponent },
+  { path: 'paid_data', component: PaidDataEntryComponent },
   { path: '**', component: LoginComponent }
 ]
 
