@@ -46,7 +46,7 @@ export class LoginComponent {
 
   check_authorizartion() {
     this.toastr.success('Success');
-    this.router.navigate(['/user_dashboard']);
-    // this.router.navigate('/user_dashboard');
+    this.router.navigate(['/layout']);
   }
+
 }

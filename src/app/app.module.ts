@@ -30,6 +30,7 @@ import { CollectMoneyComponent } from './components/collect-money/collect-money.
 import { CollectionListComponent } from './components/collection-list/collection-list.component';
 import { LoanListComponent } from './components/loan-list/loan-list.component';
 import { ToastrModule } from 'ngx-toastr';
+// import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { ToastrModule } from 'ngx-toastr';
     UserComponent,
     CollectMoneyComponent,
     CollectionListComponent,
-    LoanListComponent
+    LoanListComponent,
   ],
   imports: [
     MatIconModule,

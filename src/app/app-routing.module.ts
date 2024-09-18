@@ -10,9 +10,21 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { LoanListComponent } from './components/loan-list/loan-list.component';
 import { CollectionListComponent } from './components/collection-list/collection-list.component';
 import { CollectMoneyComponent } from './components/collect-money/collect-money.component';
+// import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, //default route
+  {
+    path: 'layout',
+    loadChildren: () =>
+      import(
+        './layout/layout.module'
+        ).then((mod) => mod.LayoutModule),
+  },
+  // {
+  //   path: 'layout',
+  //   loadChildren: () => import('./root/root.module').then(m => m.RootModule)
+  // },
   { path: 'login', component: LoginComponent },
   { path: 'customer', component: CustomeComponent },
   { path: 'daily_collection', component: DailyCollectionComponent },
