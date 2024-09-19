@@ -53,6 +53,7 @@ import { MoneyReceivedModule } from './components/menoy-received/money-received.
 import { OffersModule } from './components/offers/offers.module';
 import { PaidDataEntryModule } from './components/paid-data-entry/paid-data-entry.module';
 import { LoginModule } from './authentication/login/login.module';
+import { CommonComponentsModule } from './common/common-components.module';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
@@ -60,14 +61,8 @@ import { LoginModule } from './authentication/login/login.module';
     AppComponent,
 
     NumberToWordsPipe,
-    SearchPipe,
-    HeaderComponent,
-    SidebarComponent,
-    DeleteComponent,
-    ErrorComponent,
-    InputComponent,
-    FileuploadComponent,
-    DropdwonComponent
+    SearchPipe
+
   ],
   imports: [
 
@@ -90,7 +85,8 @@ import { LoginModule } from './authentication/login/login.module';
     MoneyReceivedModule,
     OffersModule,
     PaidDataEntryModule,
-    LoginModule
+    LoginModule,
+    CommonComponentsModule
     // MaterialModule,
     // AdminDashboardModule,
     // FixedDepositModule

@@ -43,9 +43,33 @@
 
                             </td>
                             <td class="col text-center" data-name="Action">
-                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#view_modal">
-                                    <i class="mdi mdi-more"></i>
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
                                 </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item>
+                                        <mat-icon>dialpad</mat-icon>
+                                        <span>Installment History</span>
+                                    </button>
+                                    <button mat-menu-item disabled>
+                                        <mat-icon>voicemail</mat-icon>
+                                        <span>Assign Member</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <mat-icon>notifications_off</mat-icon>
+                                        <span>Change Member</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <mat-icon>notifications_off</mat-icon>
+                                        <span>View Details</span>
+                                    </button>
+                                    <button mat-menu-item>
+                                        <mat-icon>notifications_off</mat-icon>
+                                        <span>Change Status</span>
+                                    </button>
+
+                                </mat-menu>
                             </td>
                         </tr>
                         <tr>

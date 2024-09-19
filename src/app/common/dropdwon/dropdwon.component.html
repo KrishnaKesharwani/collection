@@ -1,1 +1,14 @@
-<p>dropdwon works!</p>
+<div [formGroup]="form" class="ddl_txtblock_global global_dropdown_arrrow">
+    <span *ngIf="needToShowHeader" class="heading_top">Select {{field.displayName}}</span>
+    <mat-form-field
+        *ngIf="field.dependency?form.value[field.dependency.dependencyName]===field.dependency.dependencyValue?true:false:true"
+        appearance="outline">
+        <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+        <mat-select formControlName="{{name}}" class="globaltopfilter_ddl">
+            <mat-option *ngFor="let opt of field.dropdownValues" [value]="opt">
+                {{opt}}
+            </mat-option>
+        </mat-select>
+
+    </mat-form-field>
+</div>

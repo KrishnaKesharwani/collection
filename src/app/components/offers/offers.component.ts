@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./offers.component.scss']
 })
 export class OffersComponent {
+  offer_modalaction: any;
+  usertype: any;
 
+  offerModal(index: any) {
+
+  }
+
+  statusActive() {
+
+  }
+
+  setDefault() {
+
+  }
 }

@@ -57,22 +57,30 @@
                             <td class="col text-center" data-name="Status"><span
                                     class="badge bg-success text-white">Active</span></td>
                             <td class="action_col" data-name="Action">
-                                <div ngbDropdown placement="bottom-right">
-                                    <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" data-target="#actionMembers_modal" data-toggle="modal"
-                                            (click)="editDetails(0)">
-                                            <i class="mdi mdi-pencil mr-2"></i>Edit Details</a>
-                                        <a class="dropdown-item" (click)="viewDetails()" data-target="#view_modal"
-                                            data-toggle="modal">
-                                            <i class="mdi mdi-eye mr-2"></i>View Details</a>
-                                        <a class="dropdown-item" data-target="#assign_loan_modal" data-toggle="modal">
-                                            <i class="mdi mdi-account-check-outline mr-2"></i>Assign Loan</a>
-                                        <a class="dropdown-item" (click)="statusActive()">
-                                            <i class="mdi mdi-account-off-outline mr-2"></i>Inactive</a>
-                                    </div>
+                                <div placement="bottom-right">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>
+                                            <mat-icon>dialpad</mat-icon>
+                                            <span>Edit Details</span>
+                                        </button>
+                                        <button mat-menu-item disabled>
+                                            <mat-icon>voicemail</mat-icon>
+                                            <span>View Details</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon>notifications_off</mat-icon>
+                                            <span>Assign Loan</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon>notifications_off</mat-icon>
+                                            <span>Inactive</span>
+                                        </button>
+                                    </mat-menu>
+
                                 </div>
                             </td>
                         </tr>
@@ -189,12 +197,12 @@
                                 </tr>
                                 <tr>
                                     <td><b>Member Name :</b></td>
-                                    <td>{{member_details.member_fname}}</td>
+                                    <td>{{member_details?.member_fname}}</td>
                                 </tr>
 
                                 <tr>
                                     <td><b>Mobile :</b></td>
-                                    <td>{{member_details.member_mobile}}</td>
+                                    <td>{{member_details?.member_mobile}}</td>
                                 </tr>
                                 <tr>
                                     <td><b>Email Id :</b></td>

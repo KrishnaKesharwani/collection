@@ -49,27 +49,37 @@
                             <td class="col text-right">12,000.00</td>
                             <td class="col text-center"><span class="badge bg-success text-white">Active</span></td>
                             <td class="action_col">
-                                <div ngbDropdown placement="bottom-right">
-                                    <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" data-target="#collectionhistory_modal"
-                                            data-toggle="modal">
-                                            <i class="mdi mdi-history mr-2"></i>Collection History</a>
-                                        <a class="dropdown-item" (click)="loanAssignMember(0)"
-                                            data-target="#change_member_modal" data-toggle="modal">
-                                            <i class="mdi mdi-account-check-outline mr-2"></i>Assign Member</a>
-                                        <a class="dropdown-item" (click)="loanAssignMember(1)"
-                                            data-target="#change_member_modal" data-toggle="modal">
-                                            <i class="mdi mdi-account-switch-outline mr-2"></i>Change Member</a>
-                                        <a class="dropdown-item" data-target="#member_view_modal" data-toggle="modal">
-                                            <i class="mdi mdi-eye mr-2"></i>View Details</a>
-                                        <a class="dropdown-item" data-toggle="modal"
-                                            data-target="#changeloan_status_modal">
-                                            <i class="mdi mdi-account-question-outline mr-2"></i>Change Status</a>
-                                    </div>
+                                <div placement="bottom-right">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>
+                                            <mat-icon>dialpad</mat-icon>
+                                            <span>Collection History</span>
+                                        </button>
+                                        <button mat-menu-item disabled>
+                                            <mat-icon>voicemail</mat-icon>
+                                            <span>Assign Member</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon>notifications_off</mat-icon>
+                                            <span>Change Member</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon>notifications_off</mat-icon>
+                                            <span>View Details</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon>notifications_off</mat-icon>
+                                            <span>Change Status</span>
+                                        </button>
+
+                                    </mat-menu>
                                 </div>
+
+
                             </td>
                         </tr>
                         <tr>

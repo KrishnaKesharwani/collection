@@ -22,7 +22,7 @@ import { PaidDataEntryComponent } from './components/paid-data-entry/paid-data-e
 import { MasterLoadListComponent } from './components/master-load-list/master-load-list.component';
 import { LoanListComponent } from './components/loan-list/loan-list.component';
 import { CompanyListComponent } from './components/company-list/company-list.component';
-
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     // UserDashboardComponent
@@ -34,7 +34,7 @@ import { CompanyListComponent } from './components/company-list/company-list.com
   imports: [
     CommonModule,
     MatIconModule,
-    MatInputModule,
+
     MatTableModule,
     MatCardModule,
     MatFormFieldModule,
@@ -43,6 +43,7 @@ import { CompanyListComponent } from './components/company-list/company-list.com
     MatButtonModule,
     MatSnackBarModule,
     MatSelectModule,
+    MatMenuModule,
     ToastrModule.forRoot({
       timeOut: 1000,
       positionClass: 'toast-top-right',
@@ -52,7 +53,7 @@ import { CompanyListComponent } from './components/company-list/company-list.com
   exports: [
     CommonModule,
     MatIconModule,
-    MatInputModule,
+
     MatTableModule,
     MatCardModule,
     MatFormFieldModule,
@@ -60,6 +61,7 @@ import { CompanyListComponent } from './components/company-list/company-list.com
     MatGridListModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatMenuModule,
     MatSelectModule,
   ],
 })

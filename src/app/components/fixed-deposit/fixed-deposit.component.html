@@ -51,7 +51,28 @@
                             <td class="col text-center" data-name="Status "><span
                                     class="badge bg-success text-white">Active</span></td>
                             <td class="action_col" data-name="Action ">
-                                <div ngbDropdown placement="bottom-right">
+                                <div placement="bottom-right">
+
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+
+                                        <button mat-menu-item>
+                                            <mat-icon>assignment</mat-icon>
+                                            <span>Edit Details</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon>visibility</mat-icon>
+                                            <span>View Details</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon>verified_user</mat-icon>
+                                            <span>Change Status</span>
+                                        </button>
+
+                                    </mat-menu>
                                     <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </a>

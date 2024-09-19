@@ -1,4 +1,3 @@
-<h1>Customer</h1>
 <div class="list-containner">
     <div class="row">
         <div class="col-xl-12 mb-xl-0">
@@ -56,27 +55,37 @@
                             <td class="col text-center" data-name="Status "><span
                                     class="badge bg-success text-white">Active</span></td>
                             <td class="action_col" data-name="Action ">
-                                <div ngbDropdown placement="bottom-right">
-                                    <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" data-target="#history_modal" data-toggle="modal">
-                                            <i class="mdi mdi-history mr-2"></i>Loan History</a>
-                                        <a class="dropdown-item" *ngIf='usertype == 1' data-target="#loan_provide_modal"
-                                            data-toggle="modal">
-                                            <i class="mdi mdi-cash-100 mr-2"></i>Provide Loan</a>
-                                        <a class="dropdown-item" *ngIf='usertype == 2' data-target="#apply_loan_modal"
-                                            data-toggle="modal">
-                                            <i class="mdi mdi-cash-100 mr-2"></i>Apply Loan</a>
-                                        <a class="dropdown-item" data-target="#view_modal" data-toggle="modal">
-                                            <i class="mdi mdi-eye mr-2"></i>View Details</a>
-                                        <a class="dropdown-item" data-toggle="modal" (click)="addMember(0)"
-                                            data-target="#actionCustomer_modal">
-                                            <i class="mdi mdi-pencil mr-2"></i>Edit Customer</a>
-                                        <a class="dropdown-item" *ngIf='usertype == 1' (click)="statusActive()">
-                                            <i class="mdi mdi-account-off-outline mr-2"></i>Inactive</a>
-                                    </div>
+
+                                <div placement="bottom-right">
+
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>
+                                            <mat-icon>dialpad</mat-icon>
+                                            <span>Loan History</span>
+                                        </button>
+                                        <button mat-menu-item disabled>
+                                            <mat-icon>voicemail</mat-icon>
+                                            <span>Provide Loan</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon>notifications_off</mat-icon>
+                                            <span>Apply Loan</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon>notifications_off</mat-icon>
+                                            <span>View Details</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon>notifications_off</mat-icon>
+                                            <span>Edit Customer</span>
+                                        </button>
+
+                                    </mat-menu>
+
                                 </div>
                             </td>
                         </tr>
