@@ -7,7 +7,7 @@ import { SuperadminDashboardComponent } from './superadmin-dashboard.component';
 
 const routes: Routes = [
 
-  { path: 'superadmin_dashboard', component: SuperadminDashboardComponent },
+  { path: '', component: SuperadminDashboardComponent },
 ];
 
 @NgModule({

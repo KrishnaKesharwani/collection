@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: 'master_loan_list', component: MasterLoadListComponent },
+  { path: '', component: MasterLoadListComponent },
 ];
 
 @NgModule({

@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: 'fixed_deposit', component: FixedDepositComponent },
+  { path: '', component: FixedDepositComponent },
 ];
 
 @NgModule({

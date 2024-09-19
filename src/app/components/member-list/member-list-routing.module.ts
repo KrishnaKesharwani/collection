@@ -8,7 +8,7 @@ import { MemberListComponent } from './member-list.component';
 
 const routes: Routes = [
 
-  { path: 'member_list', component: MemberListComponent },
+  { path: '', component: MemberListComponent },
 ];
 
 @NgModule({

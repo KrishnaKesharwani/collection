@@ -20,11 +20,7 @@ import { PaidDataEntryComponent } from './components/paid-data-entry/paid-data-e
 // import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full'
-  },
+
   {
     path: '',
     loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule)

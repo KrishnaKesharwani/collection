@@ -7,7 +7,7 @@ import { DailyCollectionComponent } from './daily-collection.component';
 
 const routes: Routes = [
 
-  { path: 'daily_collection', component: DailyCollectionComponent },
+  { path: '', component: DailyCollectionComponent },
 ];
 
 @NgModule({

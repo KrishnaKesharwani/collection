@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: 'collection_list', component: CollectionListComponent },
+  { path: '', component: CollectionListComponent },
 ];
 
 @NgModule({

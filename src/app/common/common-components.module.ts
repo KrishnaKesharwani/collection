@@ -9,6 +9,7 @@ import { FileuploadComponent } from './fileupload/fileupload.component';
 import { DropdwonComponent } from './dropdwon/dropdwon.component';
 import { MaterialModule } from '../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LayoutComponent } from './layout/layout.component';
 
 
 
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ErrorComponent,
     InputComponent,
     FileuploadComponent,
-    DropdwonComponent],
+    DropdwonComponent,
+    LayoutComponent],
   imports: [
     CommonModule,
     MaterialModule,

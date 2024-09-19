@@ -7,7 +7,7 @@ import { CustomeComponent } from './custome.component';
 
 const routes: Routes = [
 
-  { path: 'customer_list', component: CustomeComponent },
+  { path: '', component: CustomeComponent },
 ];
 
 @NgModule({

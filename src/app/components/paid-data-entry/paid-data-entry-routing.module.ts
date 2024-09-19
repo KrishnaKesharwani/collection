@@ -7,7 +7,7 @@ import { PaidDataEntryComponent } from './paid-data-entry.component';
 
 const routes: Routes = [
 
-  { path: 'paid_data', component: PaidDataEntryComponent },
+  { path: '', component: PaidDataEntryComponent },
 ];
 
 @NgModule({

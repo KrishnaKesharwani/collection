@@ -7,7 +7,7 @@ import { CollectMoneyComponent } from './collect-money.component';
 
 const routes: Routes = [
 
-  { path: 'collect_money', component: CollectMoneyComponent },
+  { path: '', component: CollectMoneyComponent },
 ];
 
 @NgModule({

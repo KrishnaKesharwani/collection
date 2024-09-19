@@ -7,7 +7,7 @@ import { CompanyListComponent } from './company-list.component';
 
 const routes: Routes = [
 
-  { path: 'company_list', component: CompanyListComponent },
+  { path: '', component: CompanyListComponent },
 ];
 
 @NgModule({

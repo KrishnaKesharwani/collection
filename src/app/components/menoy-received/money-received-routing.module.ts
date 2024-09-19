@@ -7,7 +7,7 @@ import { MenoyReceivedComponent } from './menoy-received.component';
 
 const routes: Routes = [
 
-  { path: 'money_received', component: MenoyReceivedComponent },
+  { path: '', component: MenoyReceivedComponent },
 ];
 
 @NgModule({
