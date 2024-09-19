@@ -30,71 +30,68 @@ const routes: Routes = [
     loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule)
   },
   {
-    path: '',
+    path: 'superadmin_dashboard',
     loadChildren: () => import('./components/superadmin-dashboard/super-admin-dashboard.module').then(m => m.SuperAdminDashboardModule)
   },
   {
-    path: '',
+    path: 'admin_dashboard',
     loadChildren: () => import('./components/admin-dashboard/admin-dashboard-routing.module').then(m => m.AdminDashboardRoutingModule)
   },
   {
-    path: '',
+    path: 'member_dashboard',
     loadChildren: () => import('./components/member-dashboard/member-dashboard.module').then(m => m.MemberDashboardModule)
   },
   {
-    path: '',
+    path: 'user_dashboard',
     loadChildren: () => import('./components/user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule)
   },
   {
-    path: '',
+    path: 'fixed_deposit',
     loadChildren: () => import('./components/fixed-deposit/fixed-deposit.module').then(m => m.FixedDepositModule)
   },
+
   {
-    path: '',
-    loadChildren: () => import('./components/user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule)
-  },
-  {
-    path: '',
+    path: 'member_list',
     loadChildren: () => import('./components/member-list/member-list.module').then(m => m.MemberListModule)
   },
   {
-    path: '',
+    path: 'customer_list',
     loadChildren: () => import('./components/custome/customer.module').then(m => m.CustomerModule)
   },
   {
-    path: '',
+    path: 'daily_collection',
     loadChildren: () => import('./components/daily-collection/daily-collection.module').then(m => m.DailyCollectionModule)
   },
   {
-    path: '',
+    path: 'loan_list',
     loadChildren: () => import('./components/loan-list/loan-list.module').then(m => m.LoanListModule)
   },
   {
-    path: '',
+    path: 'collection_list',
     loadChildren: () => import('./components/collection-list/collection-list.module').then(m => m.CollectionListModule)
   },
   {
-    path: '',
+    path: 'collect_money',
     loadChildren: () => import('./components/collect-money/collect-money.module').then(m => m.CollectMoneyModule)
   },
   {
-    path: '',
+    path: 'offers',
     loadChildren: () => import('./components/offers/offers.module').then(m => m.OffersModule)
   },
   {
-    path: '',
+    path: 'company_list',
     loadChildren: () => import('./components/company-list/company-list.module').then(m => m.CompanyListModule)
   },
   {
-    path: '',
+    path: 'master_loan_list',
     loadChildren: () => import('./components/master-load-list/master-loan-list.module').then(m => m.MasterLoanListModule)
   },
   {
-    path: '',
+    path: 'money_received',
     loadChildren: () => import('./components/menoy-received/money-received.module').then(m => m.MoneyReceivedModule)
   },
   {
-    path: '',
+    path: 'paid_data_entry',
     loadChildren: () => import('./components/paid-data-entry/paid-data-entry.module').then(m => m.PaidDataEntryModule)
   },
   { path: '**', component: LoginComponent }
