@@ -20,25 +20,83 @@ import { PaidDataEntryComponent } from './components/paid-data-entry/paid-data-e
 // import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' }, //default route
-
-  { path: 'login', component: LoginComponent },
-  { path: 'customer_list', component: CustomeComponent },
-  { path: 'daily_collection', component: DailyCollectionComponent },
-  { path: 'member_dashboard', component: MemberDashboardComponent },
-  { path: 'user_dashboard', component: UserDashboardComponent },
-  { path: 'superadmin_dashboard', component: SuperadminDashboardComponent },
-  { path: 'admin_dashboard', component: AdminDashboardComponent },
-  { path: 'loan_list', component: LoanListComponent },
-  { path: 'collection_list', component: CollectionListComponent },
-  { path: 'collect_money', component: CollectMoneyComponent },
-  { path: 'fixed_deposit', component: FixedDepositComponent },
-  { path: 'offers', component: OffersComponent },
-  { path: 'company_list', component: CompanyListComponent },
-  { path: 'master_loan_list', component: MasterLoadListComponent },
-  { path: 'member_list', component: MemberListComponent },
-  { path: 'money_received', component: MenoyReceivedComponent },
-  { path: 'paid_data', component: PaidDataEntryComponent },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'superadmin_dashboard',
+    loadChildren: () => import('./components/superadmin-dashboard/super-admin-dashboard.module').then(m => m.SuperAdminDashboardModule)
+  },
+  {
+    path: 'admin_dashboard',
+    loadChildren: () => import('./components/admin-dashboard/admin-dashboard-routing.module').then(m => m.AdminDashboardRoutingModule)
+  },
+  {
+    path: 'member_dashboard',
+    loadChildren: () => import('./components/member-dashboard/member-dashboard.module').then(m => m.MemberDashboardModule)
+  },
+  {
+    path: 'user_dashboard',
+    loadChildren: () => import('./components/user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule)
+  },
+  {
+    path: 'fixed_deposit',
+    loadChildren: () => import('./components/fixed-deposit/fixed-deposit.module').then(m => m.FixedDepositModule)
+  },
+  {
+    path: 'user_dashboard',
+    loadChildren: () => import('./components/user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule)
+  },
+  {
+    path: 'member_list',
+    loadChildren: () => import('./components/member-list/member-list.module').then(m => m.MemberListModule)
+  },
+  {
+    path: 'customer_list',
+    loadChildren: () => import('./components/custome/customer.module').then(m => m.CustomerModule)
+  },
+  {
+    path: 'daily_collection',
+    loadChildren: () => import('./components/daily-collection/daily-collection.module').then(m => m.DailyCollectionModule)
+  },
+  {
+    path: 'loan_list',
+    loadChildren: () => import('./components/loan-list/loan-list.module').then(m => m.LoanListModule)
+  },
+  {
+    path: 'collection_list',
+    loadChildren: () => import('./components/collection-list/collection-list.module').then(m => m.CollectionListModule)
+  },
+  {
+    path: 'collect_money',
+    loadChildren: () => import('./components/collect-money/collect-money.module').then(m => m.CollectMoneyModule)
+  },
+  {
+    path: 'offers',
+    loadChildren: () => import('./components/offers/offers.module').then(m => m.OffersModule)
+  },
+  {
+    path: 'company_list',
+    loadChildren: () => import('./components/company-list/company-list.module').then(m => m.CompanyListModule)
+  },
+  {
+    path: 'master_loan_list',
+    loadChildren: () => import('./components/master-load-list/master-loan-list.module').then(m => m.MasterLoanListModule)
+  },
+  {
+    path: 'money_received',
+    loadChildren: () => import('./components/menoy-received/money-received.module').then(m => m.MoneyReceivedModule)
+  },
+  {
+    path: 'paid_data',
+    loadChildren: () => import('./components/paid-data-entry/paid-data-entry.module').then(m => m.PaidDataEntryModule)
+  },
   { path: '**', component: LoginComponent }
 ]
 

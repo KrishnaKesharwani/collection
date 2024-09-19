@@ -1972,7 +1972,7 @@ mark {
 
 .main-content {
     .overall-containblock {
-        padding: 75px 15px 15px 195px;
+        padding: 30px 15px 15px 195px;
         width: 100%;
         background-color: #f5f5ff;
         min-height: 100vh;
@@ -3649,20 +3649,24 @@ mark {
         transform: scale(1);
     }
 }
+
 // Latest css added
 .form_control_row {
     .global_input_block {
         width: 100%;
         position: relative;
         padding: 10px 0px;
+
         .mat-mdc-form-field-flex {
             font-size: 13px;
         }
+
         .input_right_icons {
             position: absolute;
             right: 0px;
             color: var(--theme-bgcolor);
         }
+
         .login-btnblock {
             display: flex;
             width: 100%;
@@ -3674,9 +3678,11 @@ mark {
     min-height: 45px;
     width: 100%;
 }
+
 .bg-primary {
     background: var(--theme-bgcolor) !important;
     color: #ffffff !important;
 }
+
 /* Media Css Below Call */
 @import "assets/css/media.scss";

@@ -4,15 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomeComponent } from './components/custome/custome.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatInputModule } from '@angular/material/input';
-import { MatTableModule } from '@angular/material/table';
+
 // import { MatTooltipModule } from '@angular/material';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatSelectModule } from '@angular/material/select';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OffersComponent } from './components/offers/offers.component';
 import { DailyCollectionComponent } from './components/daily-collection/daily-collection.component';
@@ -42,59 +36,64 @@ import { MasterLoadListComponent } from './components/master-load-list/master-lo
 import { MemberListComponent } from './components/member-list/member-list.component';
 import { MenoyReceivedComponent } from './components/menoy-received/menoy-received.component';
 import { PaidDataEntryComponent } from './components/paid-data-entry/paid-data-entry.component';
+import { AdminDashboardModule } from './components/admin-dashboard/admin-dashboard.module';
+import { MaterialModule } from './material.module';
+import { FixedDepositModule } from './components/fixed-deposit/fixed-deposit.module';
+import { UserDashboardModule } from './components/user-dashboard/user-dashboard.module';
+import { MemberListModule } from './components/member-list/member-list.module';
+import { CollectionListModule } from './components/collection-list/collection-list.module';
+import { CollectMoneyModule } from './components/collect-money/collect-money.module';
+import { CompanyListModule } from './components/company-list/company-list.module';
+import { CustomerModule } from './components/custome/customer.module';
+import { DailyCollectionModule } from './components/daily-collection/daily-collection.module';
+import { LoanListModule } from './components/loan-list/loan-list.module';
+import { MasterLoanListModule } from './components/master-load-list/master-loan-list.module';
+import { MemberDashboardModule } from './components/member-dashboard/member-dashboard.module';
+import { MoneyReceivedModule } from './components/menoy-received/money-received.module';
+import { OffersModule } from './components/offers/offers.module';
+import { PaidDataEntryModule } from './components/paid-data-entry/paid-data-entry.module';
+import { LoginModule } from './authentication/login/login.module';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomeComponent,
-    OffersComponent,
-    DailyCollectionComponent,
-    AdminDashboardComponent,
-    UserDashboardComponent,
-    MemberDashboardComponent,
-    SuperadminDashboardComponent,
-    LoginComponent,
+
     NumberToWordsPipe,
     SearchPipe,
-
-    CollectMoneyComponent,
-    CollectionListComponent,
-    LoanListComponent,
     HeaderComponent,
     SidebarComponent,
-    FixedDepositComponent,
     DeleteComponent,
     ErrorComponent,
     InputComponent,
     FileuploadComponent,
-    DropdwonComponent,
-    CompanyListComponent,
-    MasterLoadListComponent,
-    MemberListComponent,
-    MenoyReceivedComponent,
-    PaidDataEntryComponent,
+    DropdwonComponent
   ],
   imports: [
-    MatIconModule,
+
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatInputModule,
-    MatTableModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatGridListModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatSelectModule,
-    ToastrModule.forRoot({
-      timeOut: 1000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true,
-    }), // ToastrModule added
+
+    UserDashboardModule,
+    MemberListModule,
+    AdminDashboardModule,
+    CollectionListModule,
+    CollectMoneyModule,
+    CompanyListModule,
+    CustomerModule,
+    DailyCollectionModule,
+    LoanListModule,
+    MasterLoanListModule,
+    MemberDashboardModule,
+    MoneyReceivedModule,
+    OffersModule,
+    PaidDataEntryModule,
+    LoginModule
+    // MaterialModule,
+    // AdminDashboardModule,
+    // FixedDepositModule
   ],
   providers: [
 
