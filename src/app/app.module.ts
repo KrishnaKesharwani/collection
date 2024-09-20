@@ -61,7 +61,9 @@ import { CommonComponentsModule } from './common/common-components.module';
     AppComponent,
 
     NumberToWordsPipe,
-    SearchPipe
+    SearchPipe,
+    SidebarComponent,
+    HeaderComponent
 
   ],
   imports: [

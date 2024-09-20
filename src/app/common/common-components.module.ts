@@ -9,19 +9,17 @@ import { FileuploadComponent } from './fileupload/fileupload.component';
 import { DropdwonComponent } from './dropdwon/dropdwon.component';
 import { MaterialModule } from '../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LayoutComponent } from './layout/layout.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent,
-    SidebarComponent,
+  declarations: [
+
     DeleteComponent,
     ErrorComponent,
     InputComponent,
     FileuploadComponent,
-    DropdwonComponent,
-    LayoutComponent],
+    DropdwonComponent],
   imports: [
     CommonModule,
     MaterialModule,
