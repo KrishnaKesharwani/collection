@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteComponent } from 'src/app/common/delete/delete.component';
 
 @Component({
   selector: 'app-offers',
@@ -8,7 +10,11 @@ import { Component } from '@angular/core';
 export class OffersComponent {
   offer_modalaction: any;
   usertype: any;
+  constructor(public dialog: MatDialog) { }
 
+  ngOnInit() {
+
+  }
   offerModal(index: any) {
 
   }
@@ -19,5 +25,23 @@ export class OffersComponent {
 
   setDefault() {
 
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    // this.dataForDelete = enterAnimationDuration
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      width: '450px',
+      data: {
+        title: 'Delete This Record?',
+        subTitle: 'You wont be inactive Offers/Scheme!',
+      },
+    });
+    dialogRef.componentInstance.deleteAction.subscribe(() => {
+      this.delete();
+    });
+  }
+
+  delete(e?: any) {
+    alert('delete api');
   }
 }

@@ -74,12 +74,12 @@ import { CommonComponentsModule } from './common/common-components.module';
     ReactiveFormsModule,
 
     UserDashboardModule,
-    MemberListModule,
+
     AdminDashboardModule,
     CollectionListModule,
     CollectMoneyModule,
     CompanyListModule,
-    CustomerModule,
+
     DailyCollectionModule,
     LoanListModule,
     MasterLoanListModule,

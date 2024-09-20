@@ -71,10 +71,7 @@
                                             <mat-icon>voicemail</mat-icon>
                                             <span>Provide Loan</span>
                                         </button>
-                                        <button mat-menu-item>
-                                            <mat-icon>notifications_off</mat-icon>
-                                            <span>Apply Loan</span>
-                                        </button>
+
                                         <button mat-menu-item>
                                             <mat-icon>notifications_off</mat-icon>
                                             <span>View Details</span>
@@ -83,10 +80,14 @@
                                             <mat-icon>notifications_off</mat-icon>
                                             <span>Edit Customer</span>
                                         </button>
-
+                                        <button mat-menu-item (click)="openDialog('0ms', '0ms')">
+                                            <mat-icon>notifications_off</mat-icon>
+                                            <span>Inactive</span>
+                                        </button>
                                     </mat-menu>
 
                                 </div>
+
                             </td>
                         </tr>
                         <tr>
