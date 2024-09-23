@@ -5,7 +5,7 @@ import { MaterialModule } from 'src/app/material.module';
 @Component({
   selector: 'app-dropdwon',
   templateUrl: './dropdwon.component.html',
-  styleUrls: ['./dropdwon.component.css']
+  styleUrls: ['./dropdwon.component.scss']
 })
 
 

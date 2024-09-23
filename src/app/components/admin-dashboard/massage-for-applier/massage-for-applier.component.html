@@ -1,0 +1,50 @@
+<div class="modal upload-filemodel fade" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+    aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Massage For Applier</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body p-0 bg-secondary">
+                <div class="card-body apic-lb-form-box">
+                    <form>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Loan Status</mat-label>
+                            <mat-select matNativeControl appearance="outline">
+                                <mat-option value="pending">Pending</mat-option>
+                                <mat-option value="approved">Approved</mat-option>
+                                <mat-option value="cancelled">Cancelled</mat-option>
+                                <mat-option value="Others Reasons">Others Reasons</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="form-group">
+                            <!-- <label  class="mb-0"><small>Loan Status </small></label>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Branch Name </mat-label>
+                                <input matInput required />
+                            </mat-form-field> -->
+
+                            <!-- <select class="form-control">
+                              <option value="pending">Pending</option>
+                              <option value="approved">Approved</option>
+                              <option value="approved">Cancelled</option>
+                              <option value="approved">Others Reasons</option>
+                            </select> -->
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-0"><small>Message For Loan</small></label>
+                            <div class="input-group login-txtbox">
+                                <textarea rows="3" class="form-control" placeholder="Enter Massage"></textarea>
+                            </div>
+                        </div>
+                        <div class="login-btnblock text-center">
+                            <button data-dismiss="modal" class="btn btn-primary">Send
+                                Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

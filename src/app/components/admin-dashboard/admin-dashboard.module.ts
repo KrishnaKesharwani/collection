@@ -14,8 +14,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from 'src/app/material.module';
+import { MassageForApplierComponent } from './massage-for-applier/massage-for-applier.component';
 @NgModule({
-  declarations: [AdminDashboardComponent],
+  declarations: [AdminDashboardComponent, MassageForApplierComponent],
   imports: [
     CommonModule,
 
