@@ -63,20 +63,20 @@
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openDialog2()">
                                             <mat-icon>dialpad</mat-icon>
                                             <span>Loan History</span>
                                         </button>
-                                        <button mat-menu-item disabled>
+                                        <button mat-menu-item (click)="openDialog3('0ms', '0ms')">
                                             <mat-icon>voicemail</mat-icon>
                                             <span>Provide Loan</span>
                                         </button>
 
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openDialog4()">
                                             <mat-icon>notifications_off</mat-icon>
                                             <span>View Details</span>
                                         </button>
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openDialog5()">
                                             <mat-icon>notifications_off</mat-icon>
                                             <span>Edit Customer</span>
                                         </button>

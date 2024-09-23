@@ -54,6 +54,8 @@ import { OffersModule } from './components/offers/offers.module';
 import { PaidDataEntryModule } from './components/paid-data-entry/paid-data-entry.module';
 import { LoginModule } from './authentication/login/login.module';
 import { CommonComponentsModule } from './common/common-components.module';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './authentication/token.interceptor';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
@@ -72,7 +74,7 @@ import { CommonComponentsModule } from './common/common-components.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-
+    HttpClientModule,
     UserDashboardModule,
 
     AdminDashboardModule,
@@ -94,7 +96,7 @@ import { CommonComponentsModule } from './common/common-components.module';
     // FixedDepositModule
   ],
   providers: [
-
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

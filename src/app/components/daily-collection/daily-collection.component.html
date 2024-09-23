@@ -55,23 +55,23 @@
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openDialog()">
                                             <mat-icon>dialpad</mat-icon>
                                             <span>Collection History</span>
                                         </button>
-                                        <button mat-menu-item disabled>
+                                        <button mat-menu-item (click)="openDialog2()">
                                             <mat-icon>voicemail</mat-icon>
                                             <span>Assign Member</span>
                                         </button>
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openDialog3()">
                                             <mat-icon>notifications_off</mat-icon>
                                             <span>Change Member</span>
                                         </button>
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openDialog4()">
                                             <mat-icon>notifications_off</mat-icon>
                                             <span>View Details</span>
                                         </button>
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openDialog5()">
                                             <mat-icon>notifications_off</mat-icon>
                                             <span>Change Status</span>
                                         </button>

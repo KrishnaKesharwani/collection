@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonComponentsModule } from '../common-components.module';
 
@@ -20,7 +20,8 @@ export class DeleteComponent {
 
   @Output() deleteAction = new EventEmitter();
 
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }) { }
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  ) { }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(DeleteComponent, {
@@ -34,5 +35,9 @@ export class DeleteComponent {
   delete() {
     this.deleteAction.emit(this.data);
 
+  }
+
+  onNoClick() {
+    this.dialog.closeAll();
   }
 }

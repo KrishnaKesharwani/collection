@@ -7,7 +7,7 @@ import { InputComponent } from './input/input.component';
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import { DropdwonComponent } from './dropdwon/dropdwon.component';
 import { MaterialModule } from '../material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,14 +17,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 
     ErrorComponent,
     InputComponent,
-    FileuploadComponent,
-    DropdwonComponent,
-    // DialogAnimationsExampleDialogComponent
+    FileuploadComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    FormsModule]
 })
 export class CommonComponentsModule { }

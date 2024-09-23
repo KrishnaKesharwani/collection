@@ -73,6 +73,10 @@ const routes: Routes = [
     path: 'paid_data_entry',
     loadChildren: () => import('./components/paid-data-entry/paid-data-entry.module').then(m => m.PaidDataEntryModule)
   },
+  {
+    path: 'reports',
+    loadChildren: () => import('./components/reports/reports.module').then(m => m.ReportsModule)
+  },
   { path: '**', component: LoginComponent }
 ]
 

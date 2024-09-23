@@ -1,11 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { MaterialModule } from 'src/app/material.module';
 @Component({
   selector: 'app-dropdwon',
   templateUrl: './dropdwon.component.html',
   styleUrls: ['./dropdwon.component.css']
 })
+
+
+
 export class DropdwonComponent {
   @Input() field: any = {};
   @Input() name: any = {};
@@ -17,12 +21,14 @@ export class DropdwonComponent {
 
   constructor() {
   }
+  selected = new FormControl('valid', [Validators.required, Validators.pattern('valid')]);
 
-  get isValid() {
-    return this.form.controls[this.field.name].valid;
-  }
+  selectFormControl = new FormControl('valid', [Validators.required, Validators.pattern('valid')]);
 
-  get isDirty() {
-    return this.form.controls[this.field.name].dirty;
-  }
+  nativeSelectFormControl = new FormControl('valid', [
+    Validators.required,
+    Validators.pattern('valid'),
+  ]);
+
+  // matcher = new MyErrorStateMatcher();
 }

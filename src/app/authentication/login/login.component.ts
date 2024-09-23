@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,7 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     // public api: ApiService,
-    private router: Router,
+    private router: Router, private authService: AuthService,
     // private share: SharedataService,
     private snackBar: MatSnackBar
   ) {
@@ -44,9 +45,27 @@ export class LoginComponent {
     });
   }
 
-  check_authorizartion() {
-    this.toastr.success('Success');
-    this.router.navigate(['/customer_list']);
+  // check_authorizartion() {
+  //   this.toastr.success('Success');
+  //   this.router.navigate(['/customer_list']);
+  // }
+
+  credentials = { username: '', password: '' };
+  errorMessage: string | null = null;
+
+  // constructor(private authService: AuthService) { }
+
+  check_authorizartion(): void {
+
+    this.authService.login(this.credentials).subscribe(
+      () => {
+        // Navigate to the dashboard or wherever
+        this.errorMessage = null;
+      },
+      error => {
+        this.errorMessage = 'Login failed. Please check your credentials.';
+      }
+    );
   }
 
 

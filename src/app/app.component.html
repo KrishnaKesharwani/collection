@@ -1,7 +1,7 @@
 <app-header *ngIf="showSidebar"></app-header>
 <app-sidebar *ngIf="showSidebar"></app-sidebar>
-<div class="main-content">
-    <div class="overall-containblock">
+<div [ngClass]="{'main-content': showSidebar}">
+    <div [ngClass]="{'overall-containblock': showSidebar}">
         <router-outlet></router-outlet>
     </div>
 </div>

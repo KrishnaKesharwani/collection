@@ -59,15 +59,15 @@
                                     </button>
                                     <mat-menu #menu="matMenu">
 
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openDialog()">
                                             <mat-icon>assignment</mat-icon>
                                             <span>Edit Details</span>
                                         </button>
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openDialog2()">
                                             <mat-icon>visibility</mat-icon>
                                             <span>View Details</span>
                                         </button>
-                                        <button mat-menu-item>
+                                        <button mat-menu-item (click)="openDialog3()">
                                             <mat-icon>verified_user</mat-icon>
                                             <span>Change Status</span>
                                         </button>

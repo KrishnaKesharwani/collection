@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
 export class AppComponent {
   title = 'moneyproject';
 
-  showSidebar: boolean = true;
+  showSidebar!: boolean;
 
   constructor(private router: Router) {
     this.router.events
