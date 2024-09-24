@@ -16,12 +16,33 @@ table {
     padding-top: 10px;
     z-index: 2;
     max-width: 180px !important;
+    left: 0;
+    border-width: 0 1px 0 0;
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 0px;
+    overflow-y: auto;
+    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+    background-color: #ffffff;
     .navbar-brand-img {
       max-height: 65px !important;
       max-width: initial;
       margin: -5px 0px 0px -18px;
     }
-  
+    .mainmenu_collapse {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 30px 0px;
+      margin: 0px;
+      .navbar-collapse-header {
+        display: none;
+      }
+    }
     .left-menu {
       .nav-link:hover {
         color: var(--theme-bgcolor) !important;

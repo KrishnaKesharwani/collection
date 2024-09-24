@@ -1886,12 +1886,21 @@ mark {
     max-width: calc(100vw - 180px);
     padding: 5px 10px 5px 10px;
     min-height: 55px;
+    position: fixed;
+    top: 0;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
 
     .search-topblock {
         padding: 0px 10px !important;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
 
         .navbar-search {
-            width: 40%;
+            width: 30%;
 
             .search-box {
                 position: relative;
@@ -1918,7 +1927,11 @@ mark {
                 }
             }
         }
-
+        .navbar-nav {
+            flex-direction: row;
+            align-items: center !important;
+            display: flex !important;
+        }
         .notification-liblock {
             padding: 0px 5px;
             border-left: solid thin #e1e1e1;
@@ -1972,7 +1985,7 @@ mark {
 
 .main-content {
     .overall-containblock {
-        padding: 30px 15px 15px 195px;
+        padding: 70px 15px 15px 195px;
         width: 100%;
         background-color: #f5f5ff;
         min-height: 100vh;
