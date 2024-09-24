@@ -6,6 +6,7 @@ import { FixedDepositRoutingModule } from './fixed-deposit-routing.module';
 import { EditFixedDepositComponent } from './edit-fixed-deposit/edit-fixed-deposit.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
+import { DropdwonComponent } from 'src/app/common/dropdwon/dropdwon.component';
 
 
 

@@ -8,6 +8,7 @@ import { FileuploadComponent } from './fileupload/fileupload.component';
 import { DropdwonComponent } from './dropdwon/dropdwon.component';
 import { MaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputFieldValidationComponent } from './input-field-validation/input-field-validation.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
     ErrorComponent,
     InputComponent,
-    FileuploadComponent
+    FileuploadComponent,
+    DropdwonComponent
   ],
   imports: [
     CommonModule,

@@ -99,7 +99,7 @@ export class MemberListComponent {
 
   openDialog4() {
     const dialogRef = this.dialog4.open(AssignLoanComponent, {
-      width: '80%',
+      width: '650px',
 
       data: {
         title: 'Assign Loan History Details',

@@ -1,0 +1,36 @@
+<ng-container *ngIf="formType">
+    <div *ngIf="form?.controls[key]?.invalid   && form?.controls[key]?.touched " class="{{ className }}">
+        <span class="error_msg" *ngIf="form?.controls[key]?.errors?.required">
+            {{ displayMsg }}<br>
+        </span>
+        <span class="error_msg" *ngIf="form?.controls[key]?.errors?.pattern">
+            {{ patternMsg }}<br>
+        </span>
+        <span class="error_msg" *ngIf="form?.controls[key]?.errors?.minlength">
+            {{ maxLength }}<br>
+        </span>
+        <span class="error_msg" *ngIf="form?.controls[key]?.errors?.maxLength">
+            {{ minLength }}<br>
+        </span>
+        <span *ngIf="form.controls[key]?.errors[customType]">
+            {{ customErrorDisplayMsg }}
+        </span>
+    </div>
+</ng-container>
+<ng-container *ngIf="!formType">
+    <span *ngIf="control?.invalid && control?.touched" class="{{ className }}">
+        <span class="error_msg" *ngIf="control?.errors?.required">
+            {{ displayMsg }}<br>
+        </span>
+        <span class="error_msg" *ngIf="control?.errors?.pattern">
+            {{ patternMsg }}<br>
+        </span>
+        <span class="error_msg" *ngIf="control?.errors?.minlength">
+            {{ maxLength }}<br>
+        </span>
+
+        <span *ngIf="control?.errors[customType]">
+            {{ customErrorDisplayMsg }}
+        </span>
+    </span>
+</ng-container>

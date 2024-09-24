@@ -12,6 +12,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dial
     MatSelectModule,
     MatMenuModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ToastrModule.forRoot({
       timeOut: 1000,
       positionClass: 'toast-top-right',
@@ -49,7 +53,10 @@ import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dial
     MatSnackBarModule,
     MatMenuModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+
+    MatNativeDateModule
   ],
 })
 export class MaterialModule { }

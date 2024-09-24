@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-fixed-deposit',
   templateUrl: './edit-fixed-deposit.component.html',
-  styleUrls: ['./edit-fixed-deposit.component.css']
+  styleUrls: ['./edit-fixed-deposit.component.scss'],
+
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditFixedDepositComponent {
 
@@ -18,3 +20,5 @@ export class EditFixedDepositComponent {
     this.dialog.closeAll();
   }
 }
+
+

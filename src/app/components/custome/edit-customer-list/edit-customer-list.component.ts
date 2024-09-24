@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -11,11 +12,23 @@ export class EditCustomerListComponent {
   @Input() subTitle: any;
 
   @Output() deleteAction = new EventEmitter();
-
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
-  ) { }
+  customerForm!: FormGroup;
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
+    , public fb: FormBuilder) { }
 
   onNoClick() {
     this.dialog.closeAll();
+  }
+
+  ngOnInit() {
+    this.customerForm = this.fb.group({
+      customerNo: [''],
+      customerName: ['', Validators.required]
+    });
+  }
+
+  update() {
+    this.customerForm.markAllAsTouched()
+
   }
 }

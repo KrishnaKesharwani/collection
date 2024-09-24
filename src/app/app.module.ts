@@ -56,6 +56,7 @@ import { LoginModule } from './authentication/login/login.module';
 import { CommonComponentsModule } from './common/common-components.module';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './authentication/token.interceptor';
+import { MatNativeDateModule } from '@angular/material/core';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
@@ -81,8 +82,6 @@ import { TokenInterceptor } from './authentication/token.interceptor';
     CollectionListModule,
     CollectMoneyModule,
     CompanyListModule,
-
-    DailyCollectionModule,
     LoanListModule,
     MasterLoanListModule,
     MemberDashboardModule,
@@ -90,7 +89,7 @@ import { TokenInterceptor } from './authentication/token.interceptor';
     OffersModule,
     PaidDataEntryModule,
     LoginModule,
-    CommonComponentsModule
+    // CommonComponentsModule
     // MaterialModule,
     // AdminDashboardModule,
     // FixedDepositModule

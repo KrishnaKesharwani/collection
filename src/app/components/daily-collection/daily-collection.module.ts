@@ -13,7 +13,7 @@ import { DropdwonComponent } from 'src/app/common/dropdwon/dropdwon.component';
 
 
 @NgModule({
-  declarations: [DropdwonComponent, DailyCollectionComponent, CollectionHistoryComponent, AssignMemberComponent, ChangeMemberComponent, ViewDetailsComponent, ChangeStatusComponent],
+  declarations: [DailyCollectionComponent, CollectionHistoryComponent, AssignMemberComponent, ChangeMemberComponent, ViewDetailsComponent, ChangeStatusComponent],
   imports: [
     CommonModule,
     MaterialModule,

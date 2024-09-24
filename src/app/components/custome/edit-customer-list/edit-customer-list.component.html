@@ -1,83 +1,91 @@
 <h2 mat-dialog-title>{{dataa.title}}</h2>
 <mat-dialog-content class="mat-typography">
     <mat-dialog-content>
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Customer No.</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Name</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Mobile</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Email</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Adhar No.</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Join Date</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Member Loing Id</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Password</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Status</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Address</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Member Image</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </td>
 
-            </tr>
-        </table>
+        <form focusInvalidInput [formGroup]="customerForm" (ngSubmit)="update()">
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Customer No.</mat-label>
+                            <input matInput formControlName="customerNo" name="customerNo">
+
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="customerName" name="customerName">
+                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="customerForm"
+                                [key]="'name'" [displayMsg]="'Name is required'">
+                            </app-input-field-validation>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Mobile</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Adhar No.</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Join Date</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Member Loing Id</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Status</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Address</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Member Image</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+
+                </tr>
+            </table>
+        </form>
+
     </mat-dialog-content>
 
 

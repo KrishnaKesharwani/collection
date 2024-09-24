@@ -2,25 +2,7 @@
 <button mat-icon-button class="close-button" [mat-dialog-close]="true">
     <mat-icon class="close-icon" color="warn">close</mat-icon>
 </button>
-<table mat-table>
-    <tr>
-        <td mat-cell>
-            <h4>mat-select</h4>
-            <mat-form-field>
-                <mat-label>Favorite food</mat-label>
-                <mat-select name="food">
-                    <mat-option *ngFor="let food of foods" [value]="food.value">{{food.viewValue}}</mat-option>
 
-                </mat-select>
-            </mat-form-field>
-            <p> Selected food: {{selectedValue}} </p>
-        </td>
-
-        <td>
-            <h1 mat-dialog-title>Total Assign : 02</h1>
-        </td>
-    </tr>
-</table>
 <table mat-table [dataSource]="data" class="mat-elevation-z8">
     <!-- Implicit Column -->
     <ng-container matColumnDef="cno">
