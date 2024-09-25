@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -8,6 +9,28 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 })
 export class ProviderLoanComponent {
   deleteAction: any;
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  providerLoanForm!: FormGroup;
+
+  constructor(public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
+
+  ngOnInit() {
+    this.providerLoanForm = this.fb.group({
+      name: ['', Validators.required],
+      start_date: [''],
+      num_of_days: [''],
+      installment_amount: [''],
+      loan_amount: [''],
+      end_date: [''],
+      assign_member: [''],
+      loan_details: ['']
+    });
+  }
+
+  update() {
+    this.providerLoanForm.markAllAsTouched()
+    if (this.providerLoanForm.valid) {
+      // this.dialog.closeAll();
+    }
+  }
 }
