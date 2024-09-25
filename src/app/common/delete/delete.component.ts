@@ -2,13 +2,13 @@ import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonComponentsModule } from '../common-components.module';
-
+import { MaterialModule } from 'src/app/material.module';
 @Component({
   selector: 'app-delete',
   standalone: true,
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss'],
-  imports: [CommonComponentsModule, DeleteComponent]
+  imports: [CommonComponentsModule, DeleteComponent, MaterialModule]
 })
 
 export class DeleteComponent {
