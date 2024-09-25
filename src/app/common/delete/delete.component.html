@@ -1,9 +1,11 @@
-<h1 mat-dialog-title>{{dataa.title}}</h1>
-
-<div mat-dialog-content>
-    {{dataa.subTitle}}
-</div>
-<div mat-dialog-actions>
-    <button mat-button mat-dialog-close (click)="onNoClick()">No</button>
-    <button mat-button mat-dialog-close cdkFocusInitial (click)="delete()">Ok</button>
+<div class="delete_main_container">
+    <mat-icon class="delete_icon">delete</mat-icon>
+    <div class="delete_inner_container">
+        <div class="confirm_title" mat-dialog-title>{{dataa.title}}</div>
+        <div class="confirm_subtitle">{{dataa.subTitle}}</div>
+        <div class="action_block">
+            <button mat-button mat-dialog-close (click)="onNoClick()" class="delete_close">Cancel</button>
+            <button mat-button mat-dialog-close cdkFocusInitial (click)="delete()" class="confirm_btn">Confirm</button>
+        </div>
+    </div>
 </div>

@@ -20,11 +20,19 @@ export class HeaderComponent {
   expiredDate: any;
   planType: any = 'Demo';
   staff_name: any;
-  isExpanded: any=[];
+  isExpanded: any = [];
 
   logout() {
     // this.api.clearStorage();
     // this.api.removesession("Staff_rfid");
     this.router.navigate(['/authentication']);
+  }
+  showMenuAction = false;
+  showhideMenu() {
+    if (!this.showMenuAction) {
+      this.showMenuAction = true;
+    } else {
+      this.showMenuAction = false;
+    }
   }
 }

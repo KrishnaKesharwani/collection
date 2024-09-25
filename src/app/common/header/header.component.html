@@ -21,41 +21,37 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"  onclick="hideMenu()" (click)="isExpanded[1] = false">
-                    <div class="media align-items-center">
+                <a class="nav-link pr-0" (click)="showhideMenu()">
+                    <div class="media align-items-center profile_navblock">
                         <span class="avatar avatar-sm rounded-circle">
-                            <!-- <img alt="User" src="./assets/imgs/boss.png" /> -->
                             <img alt="User" src="{{userImage}}" />
                         </span>
-                        <div class="media-body ml-2  d-lg-block">
+                        <!-- <div class="media-body ml-2  d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold "
                                 style="text-transform: uppercase;">{{staff_name}}</span>
-                        </div>
+                        </div> -->
                         <div class="arrowblock">
                             <i class="mdi mdi-chevron-down"></i>
                         </div>
                     </div>
                 </a>
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                    <div class="dropdown-header noti-title pt-0 pb-0" style="text-align: center;">
-                        <h5 class="text-overflow m-0"></h5>
-                    </div>
-                    <a routerLink="/root/profiledetails" class="dropdown-item">
-                        <i class="mdi mdi-account-outline mdi-18px"></i>
-                        <span>My Profile</span>
-                    </a>
-                    <a routerLink="/root/changepassword" class="dropdown-item">
-                        <i class="mdi mdi-lock-alert mdi-18px"></i>
-                        <span>Change Password</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a (click)="logout()" class="dropdown-item">
-                        <i class="mdi mdi-logout mdi-18px"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
+                
             </li>
         </ul>
+        <div class="dropdown-menu" [ngClass]="{'showMenu': showMenuAction }">
+            <a routerLink="/root/profiledetails" class="dropdown-item">
+                <i class="mdi mdi-account-outline mdi-18px"></i>
+                <span>My Profile</span>
+            </a>
+            <a routerLink="/root/changepassword" class="dropdown-item">
+                <i class="mdi mdi-lock-alert mdi-18px"></i>
+                <span>Change Password</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a (click)="logout()" class="dropdown-item">
+                <i class="mdi mdi-logout mdi-18px"></i>
+                <span>Logout</span>
+            </a>
+        </div>
     </div>
 </nav>
