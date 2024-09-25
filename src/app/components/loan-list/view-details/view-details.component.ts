@@ -7,7 +7,7 @@ interface Transaction {
 @Component({
   selector: 'app-view-details',
   templateUrl: './view-details.component.html',
-  styleUrls: ['./view-details.component.css']
+  styleUrls: ['./view-details.component.scss']
 })
 export class ViewDetailsComponent {
   displayedColumns: string[] = ['item', 'cost'];
@@ -29,8 +29,5 @@ export class ViewDetailsComponent {
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
-  }
+
 }

@@ -8,6 +8,7 @@ import { AssignMemberComponent } from './assign-member/assign-member.component';
 import { ChangeMemberComponent } from './change-member/change-member.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
+import { CommonComponentsModule } from "../../common/common-components.module";
 
 
 
@@ -16,7 +17,8 @@ import { ChangeStatusComponent } from './change-status/change-status.component';
   imports: [
     CommonModule,
     MaterialModule,
-    LoanListRoutingModule
+    LoanListRoutingModule,
+    CommonComponentsModule
   ]
 })
 export class LoanListModule { }
