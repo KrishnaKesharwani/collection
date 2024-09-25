@@ -10,18 +10,19 @@ import { ViewCustomerListComponent } from './view-customer-list/view-customer-li
 import { EditCustomerListComponent } from './edit-customer-list/edit-customer-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputFieldValidationComponent } from 'src/app/common/input-field-validation/input-field-validation.component';
+import { CommonComponentsModule } from 'src/app/common/common-components.module';
 
 
 
 @NgModule({
   declarations: [
-    InputFieldValidationComponent,
     CustomeComponent, LoanHistoryComponent, ProviderLoanComponent, ViewCustomerListComponent, EditCustomerListComponent],
   imports: [
     CommonModule,
     MaterialModule,
     CustomerRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonComponentsModule
   ]
 })
 export class CustomerModule { }

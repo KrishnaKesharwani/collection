@@ -7,6 +7,8 @@ import { EditFixedDepositComponent } from './edit-fixed-deposit/edit-fixed-depos
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
 import { DropdwonComponent } from 'src/app/common/dropdwon/dropdwon.component';
+import { CommonComponentsModule } from 'src/app/common/common-components.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +17,9 @@ import { DropdwonComponent } from 'src/app/common/dropdwon/dropdwon.component';
   imports: [
     CommonModule,
     MaterialModule,
-    FixedDepositRoutingModule
+    FixedDepositRoutingModule,
+    CommonComponentsModule,
+    ReactiveFormsModule
   ]
 })
 export class FixedDepositModule { }

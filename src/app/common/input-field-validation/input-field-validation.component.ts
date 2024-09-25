@@ -1,11 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { CommonComponentsModule } from '../common-components.module';
 
 @Component({
   selector: 'app-input-field-validation',
   templateUrl: './input-field-validation.component.html',
   styleUrls: ['./input-field-validation.component.css']
 })
+
+
 export class InputFieldValidationComponent {
   @Input() form: any;
   @Input() formType: any = true;

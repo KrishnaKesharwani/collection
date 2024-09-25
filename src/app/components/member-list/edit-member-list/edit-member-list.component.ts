@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -13,22 +14,23 @@ export class EditMemberListComponent {
   @Input() modal: any;
 
   @Output() deleteAction = new EventEmitter();
-
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  memberForm!: FormGroup;
+  constructor(public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
-  // openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-  //   this.dialog.open(EditMemberListComponent, {
-  //     // width: '250px',
-  //     enterAnimationDuration,
-  //     exitAnimationDuration,
-  //   });
-  // }
-  // delete() {
-  //   this.deleteAction.emit(this.data);
+  ngOnInit() {
+    this.memberForm = this.fb.group({
+      customerNo: [''],
+      customerName: ['', Validators.required],
+      mobile: ['', Validators.required],
+      adharNumber: ['', Validators.required]
+    });
+  }
 
-  // }
-  onNoClick() {
-    this.dialog.closeAll();
+  update() {
+    this.memberForm.markAllAsTouched()
+    if (this.memberForm.valid) {
+      // this.dialog.closeAll();
+    }
   }
 }

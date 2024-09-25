@@ -1,8 +1,9 @@
 <h2 mat-dialog-title>{{dataa.title}}</h2>
-<mat-dialog-content class="mat-typography">
-    <mat-dialog-content>
+<form focusInvalidInput [formGroup]="customerForm">
+    <mat-dialog-content class="mat-typography">
+        <mat-dialog-content>
 
-        <form focusInvalidInput [formGroup]="customerForm" (ngSubmit)="update()">
+
             <table class="example-full-width" cellspacing="0">
                 <tr>
                     <td>
@@ -17,14 +18,17 @@
                             <mat-label>Name</mat-label>
                             <input matInput formControlName="customerName" name="customerName">
                             <app-input-field-validation [className]="'bottom_error_msg'" [form]="customerForm"
-                                [key]="'name'" [displayMsg]="'Name is required'">
+                                [key]="'customerName'" [displayMsg]="'Name is required'">
                             </app-input-field-validation>
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Mobile</mat-label>
-                            <input matInput>
+                            <input matInput formControlName="mobile" name="mobile">
+                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="customerForm"
+                                [key]="'customerName'" [displayMsg]="'Mobile is required'">
+                            </app-input-field-validation>
                         </mat-form-field>
                     </td>
                 </tr>
@@ -32,19 +36,22 @@
                     <td>
                         <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Email</mat-label>
-                            <input matInput>
+                            <input matInput formControlName="email" name="email">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Adhar No.</mat-label>
-                            <input matInput>
+                            <input matInput formControlName="adharNumber" name="adharNumber">
+                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="customerForm"
+                                [key]="'adharNumber'" [displayMsg]="'Adhar number is required'">
+                            </app-input-field-validation>
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Join Date</mat-label>
-                            <input matInput>
+                            <input matInput formControlName="join_date" name="join_date">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -52,19 +59,19 @@
                     <td>
                         <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Member Loing Id</mat-label>
-                            <input matInput>
+                            <input matInput formControlName="memberId" name="memberId">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Password</mat-label>
-                            <input matInput>
+                            <input matInput formControlName="password" name="password">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Status</mat-label>
-                            <input matInput>
+                            <input matInput formControlName="status" name="status">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -72,26 +79,27 @@
                     <td>
                         <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Address</mat-label>
-                            <input matInput>
+                            <input matInput formControlName="address" name="address">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label>Member Image</mat-label>
-                            <input matInput>
+                            <input matInput formControlName="memberImage" name="memberImage">
                         </mat-form-field>
                     </td>
 
                 </tr>
             </table>
-        </form>
+
+
+        </mat-dialog-content>
+
+
 
     </mat-dialog-content>
-
-
-
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Update</button>
-</mat-dialog-actions>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button (click)="update()">Update</button>
+    </mat-dialog-actions>
+</form>

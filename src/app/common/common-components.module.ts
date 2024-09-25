@@ -17,12 +17,15 @@ import { InputFieldValidationComponent } from './input-field-validation/input-fi
     ErrorComponent,
     InputComponent,
     FileuploadComponent,
-    DropdwonComponent
+    DropdwonComponent,
+    InputFieldValidationComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule]
+    FormsModule,
+  ],
+  exports: [InputFieldValidationComponent]
 })
 export class CommonComponentsModule { }

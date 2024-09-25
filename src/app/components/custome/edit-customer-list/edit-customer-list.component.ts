@@ -16,19 +16,20 @@ export class EditCustomerListComponent {
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 
-  onNoClick() {
-    this.dialog.closeAll();
-  }
 
   ngOnInit() {
     this.customerForm = this.fb.group({
       customerNo: [''],
-      customerName: ['', Validators.required]
+      customerName: ['', Validators.required],
+      mobile: ['', Validators.required],
+      adharNumber: ['', Validators.required]
     });
   }
 
   update() {
     this.customerForm.markAllAsTouched()
-
+    if (this.customerForm.valid) {
+      // this.dialog.closeAll();
+    }
   }
 }

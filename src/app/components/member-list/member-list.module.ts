@@ -7,6 +7,9 @@ import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { EditMemberListComponent } from './edit-member-list/edit-member-list.component';
 import { ViewMemberListComponent } from './view-member-list/view-member-list.component';
 import { AssignLoanComponent } from './assign-loan/assign-loan.component';
+import { InputFieldValidationComponent } from 'src/app/common/input-field-validation/input-field-validation.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonComponentsModule } from 'src/app/common/common-components.module';
 
 
 
@@ -15,7 +18,9 @@ import { AssignLoanComponent } from './assign-loan/assign-loan.component';
   imports: [
     CommonModule,
     MemberListRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    CommonComponentsModule
   ]
 })
 export class MemberListModule { }
