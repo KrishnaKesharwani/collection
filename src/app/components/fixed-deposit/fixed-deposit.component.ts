@@ -39,7 +39,7 @@ export class FixedDepositComponent {
   openDialog2() {
     const dialogRef = this.dialog2.open(ViewDetailsComponent, {
       width: '450px',
-      height: '650px',
+
       data: {
         title: 'Update Fixed Deposit Details',
 
@@ -57,9 +57,10 @@ export class FixedDepositComponent {
   openDialog3() {
     const dialogRef = this.dialog3.open(ChangeStatusComponent, {
       width: '450px',
-      height: '650px',
+      height: 'auto',
       data: {
         title: 'Update Status',
+        field_value: 'Status'
       },
     });
 

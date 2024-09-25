@@ -26,6 +26,6 @@ import { InputFieldValidationComponent } from './input-field-validation/input-fi
     ReactiveFormsModule,
     FormsModule,
   ],
-  exports: [InputFieldValidationComponent]
+  exports: [InputFieldValidationComponent, DropdwonComponent]
 })
 export class CommonComponentsModule { }

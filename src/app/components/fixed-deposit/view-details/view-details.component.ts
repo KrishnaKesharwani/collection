@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { CommonComponentService } from 'src/app/common/common-component.service';
 
 
 interface Transaction {
@@ -35,9 +36,6 @@ export class ViewDetailsComponent {
 
 
 
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
-  }
+
 
 }

@@ -1,14 +1,10 @@
-<!-- <div mat-dialog-content>
-
-
-    {{dataa.subTitle}}
-</div> -->
-<mat-form-field>
-    <mat-label>Choose one</mat-label>
-    <mat-select>
-        <mat-option>Clear</mat-option>
-        <mat-option value="valid">Valid option</mat-option>
-        <mat-option value="invalid">Invalid option</mat-option>
+<mat-label>{{data.field_value}}</mat-label>
+<br>
+<mat-form-field appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selectedValue">
+        <mat-option *ngFor="let option of options" [value]="option">
+            {{ option }}
+        </mat-option>
     </mat-select>
-
 </mat-form-field>

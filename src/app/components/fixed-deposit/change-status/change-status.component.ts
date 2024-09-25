@@ -1,5 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { CommonComponentService } from 'src/app/common/common-component.service';
 interface Transaction {
   item: string;
   cost: number;
@@ -26,13 +27,19 @@ export class ChangeStatusComponent {
     { item: 'Start Amount', cost: 15 },
     { item: 'End  Amount', cost: 15 }
   ];
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  constructor(private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
 
+
+  ngOnInit() {
+    this.dropdownService.setOptions(['Option A1', 'Option A2', 'Option A3']);
+  }
 
   /** Gets the total cost of all transactions. */
   getTotalCost() {
     return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
   }
+
+
 }

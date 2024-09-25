@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FixedDepositComponent } from './fixed-deposit.component';
 import { RouterModule, Routes } from '@angular/router';
 
