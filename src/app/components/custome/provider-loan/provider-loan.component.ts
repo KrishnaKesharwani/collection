@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { CommonComponentService } from 'src/app/common/common-component.service';
 
 @Component({
   selector: 'app-provider-loan',
@@ -11,7 +12,7 @@ export class ProviderLoanComponent {
   deleteAction: any;
   providerLoanForm!: FormGroup;
 
-  constructor(public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  constructor(private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
   ngOnInit() {
@@ -25,6 +26,8 @@ export class ProviderLoanComponent {
       assign_member: [''],
       loan_details: ['']
     });
+
+    this.dropdownService.setOptions(['Option A1', 'Option A2', 'Option A3']);
   }
 
   update() {
@@ -33,4 +36,6 @@ export class ProviderLoanComponent {
       // this.dialog.closeAll();
     }
   }
+
+
 }

@@ -8,7 +8,7 @@ interface Transaction {
 @Component({
   selector: 'app-view-customer-list',
   templateUrl: './view-customer-list.component.html',
-  styleUrls: ['./view-customer-list.component.css']
+  styleUrls: ['./view-customer-list.component.scss']
 })
 
 
@@ -32,8 +32,5 @@ export class ViewCustomerListComponent {
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
-  }
+
 }
