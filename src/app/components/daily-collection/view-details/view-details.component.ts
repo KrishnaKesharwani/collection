@@ -10,6 +10,7 @@ interface Transaction {
   styleUrls: ['./view-details.component.css']
 })
 export class ViewDetailsComponent {
+  dailCollectionDetails: any = [];
   displayedColumns: string[] = ['item', 'cost'];
   transactions: Transaction[] = [
 

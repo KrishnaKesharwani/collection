@@ -10,6 +10,8 @@ interface Transaction {
   styleUrls: ['./view-details.component.scss']
 })
 export class ViewDetailsComponent {
+
+  loanDetails: any = [];
   displayedColumns: string[] = ['item', 'cost'];
   transactions: Transaction[] = [
     { item: 'Loan No.', cost: 4 },

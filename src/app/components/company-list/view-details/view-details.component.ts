@@ -19,6 +19,8 @@ interface Transaction2 {
   styleUrls: ['./view-details.component.css']
 })
 export class ViewDetailsComponent {
+
+  companyDetails: any = [];
   displayedColumns: string[] = ['item', 'cost', 'item2', 'cost2'];
   displayedColumns2: string[] = ['item', 'cost'];
   transactions: Transaction[] = [

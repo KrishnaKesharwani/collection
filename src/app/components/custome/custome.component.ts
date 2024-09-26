@@ -34,10 +34,13 @@ export class CustomeComponent {
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
-      width: '450px',
+      panelClass: 'delete_popup',
+      enterAnimationDuration,
+      exitAnimationDuration,
       data: {
-        title: 'Delete This Record?',
+        title: 'Are you sure?',
         subTitle: 'You wont be inactive customer status!',
+
       },
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
@@ -55,7 +58,7 @@ export class CustomeComponent {
       width: '100%',
 
       data: {
-        title: 'Update Members Details',
+        title: 'Customer Loan History Details',
 
       },
     });

@@ -15,6 +15,8 @@ interface Transaction {
 
 
 export class ViewCustomerListComponent {
+
+  customerDetails: any = [];
   displayedColumns: string[] = ['item', 'cost'];
   transactions: Transaction[] = [
     { item: 'Customer No.', cost: 4 },
