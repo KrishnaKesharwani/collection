@@ -13,7 +13,7 @@ interface Transaction {
   styleUrls: ['./installment-history.component.css']
 })
 export class InstallmentHistoryComponent {
-
+  loanDetails: any = [];
   displayedColumns: string[] = ['date', 'receiver', 'amount'];
   transactions: Transaction[] = [
     { date: 'Member No.', receiver: 4, amount: 4 },

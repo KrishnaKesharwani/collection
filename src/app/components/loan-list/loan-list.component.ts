@@ -45,7 +45,7 @@ export class LoanListComponent {
 
   openDialog2() {
     const dialogRef = this.dialog2.open(AssignMemberComponent, {
-      width: '50%',
+
 
       data: {
         title: 'Assign Loan Member',

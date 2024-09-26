@@ -26,7 +26,7 @@ export class DailyCollectionComponent {
 
   openDialog() {
     const dialogRef = this.dialog.open(CollectionHistoryComponent, {
-      width: '80%',
+
 
       data: {
         title: 'Collection History',
@@ -43,8 +43,6 @@ export class DailyCollectionComponent {
 
   openDialog2() {
     const dialogRef = this.dialog2.open(AssignMemberComponent, {
-      width: '80%',
-
       data: {
         title: 'Assign Collection Member',
 
@@ -60,8 +58,6 @@ export class DailyCollectionComponent {
 
   openDialog3() {
     const dialogRef = this.dialog3.open(ChangeMemberComponent, {
-      width: '80%',
-
       data: {
         title: 'Update Collection Member',
 
@@ -77,7 +73,6 @@ export class DailyCollectionComponent {
 
   openDialog4() {
     const dialogRef = this.dialog4.open(ViewDetailsComponent, {
-      width: '80%',
 
       data: {
         title: 'Member Details',
@@ -94,7 +89,6 @@ export class DailyCollectionComponent {
 
   openDialog5() {
     const dialogRef = this.dialog5.open(ChangeStatusComponent, {
-      width: '80%',
 
       data: {
         title: 'Change Member Status',
