@@ -1,1 +1,11 @@
-<p>change-status works!</p>
+<h2 mat-dialog-title>{{dataa.title}}</h2>
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<mat-dialog-content class="mat-typography">
+    <app-dropdwon></app-dropdwon>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Reason</mat-label>
+        <textarea matInput rows="5"></textarea>
+    </mat-form-field>
+</mat-dialog-content>

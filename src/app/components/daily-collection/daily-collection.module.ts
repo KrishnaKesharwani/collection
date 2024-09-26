@@ -9,6 +9,8 @@ import { ChangeMemberComponent } from './change-member/change-member.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
 import { DropdwonComponent } from 'src/app/common/dropdwon/dropdwon.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonComponentsModule } from 'src/app/common/common-components.module';
 
 
 
@@ -17,7 +19,9 @@ import { DropdwonComponent } from 'src/app/common/dropdwon/dropdwon.component';
   imports: [
     CommonModule,
     MaterialModule,
-    DailyCollectionRoutingModule
+    DailyCollectionRoutingModule,
+    ReactiveFormsModule,
+    CommonComponentsModule
   ]
 })
 export class DailyCollectionModule { }
