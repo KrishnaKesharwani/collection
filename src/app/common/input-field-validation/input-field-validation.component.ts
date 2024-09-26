@@ -5,7 +5,7 @@ import { CommonComponentsModule } from '../common-components.module';
 @Component({
   selector: 'app-input-field-validation',
   templateUrl: './input-field-validation.component.html',
-  styleUrls: ['./input-field-validation.component.css']
+  styleUrls: ['./input-field-validation.component.scss']
 })
 
 

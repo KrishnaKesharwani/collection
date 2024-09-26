@@ -61,13 +61,11 @@ export class MemberListComponent {
 
   readonly dialog2 = inject(MatDialog);
 
-  openDialog2() {
+  openDialogUpdateDetails() {
     const dialogRef = this.dialog2.open(EditMemberListComponent, {
-      width: '80%',
-
+      panelClass: 'update_dialoge',
       data: {
         title: 'Update Members Details',
-
       },
     });
 

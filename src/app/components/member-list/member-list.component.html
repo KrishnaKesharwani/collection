@@ -14,7 +14,7 @@
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                                 <div class="right_addbtn">
-                                    <button data-toggle="modal" (click)="addMember(1)"
+                                    <button data-toggle="modal" (click)="openDialogUpdateDetails()"
                                         data-target="#actionMembers_modal" type="button"
                                         class="btn btn-success btn-sm create_header_btn" mat-raised-button>
                                         <i class="mdi mdi-account">
@@ -41,7 +41,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         <tr>
                             <td class="col" data-name="Member No.">RK-101</td>
                             <td class="col" data-name="Image">
@@ -58,27 +57,29 @@
                                     class="badge bg-success text-white">Active</span></td>
                             <td class="action_col" data-name="Action">
                                 <div placement="bottom-right">
-                                    <button mat-icon-button [matMenuTriggerFor]="menu"
-                                        aria-label="Example icon-button with a menu">
+                                    <button mat-icon-button class="matmenu_tablebtn" [matMenuTriggerFor]="menu"
+                                       >
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
-                                        <button mat-menu-item (click)="openDialog2()">
-                                            <mat-icon>dialpad</mat-icon>
-                                            <span>Edit Details</span>
-                                        </button>
-                                        <button mat-menu-item (click)="openDialogMemberDetails()">
-                                            <mat-icon>voicemail</mat-icon>
-                                            <span>View Details</span>
-                                        </button>
-                                        <button mat-menu-item (click)="openDialogAssignLoan()">
-                                            <mat-icon>notifications_off</mat-icon>
-                                            <span>Assign Loan</span>
-                                        </button>
-                                        <button mat-menu-item (click)="openDialogStatus('1ms', '5ms')">
-                                            <mat-icon>notifications_off</mat-icon>
-                                            <span>Inactive</span>
-                                        </button>
+                                        <div class="table_actionmenu">
+                                            <button mat-menu-item (click)="openDialogUpdateDetails()">
+                                               <i class="mdi mdi-pencil mr-2"></i>
+                                                <span>Edit Details</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialogMemberDetails()">
+                                                <i class="mdi mdi-eye mr-2"></i>
+                                                <span>View Details</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialogAssignLoan()">
+                                               <i class="mdi mdi-account-check-outline mr-2"></i>
+                                                <span>Assign Loan</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialogStatus('1ms', '5ms')">
+                                                <i class="mdi mdi-account-off-outline mr-2"></i>
+                                                <span>Inactive</span>
+                                            </button>
+                                        </div>
                                     </mat-menu>
 
                                 </div>

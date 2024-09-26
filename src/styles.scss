@@ -70,11 +70,14 @@ h5,
         cursor: pointer;
     }
 }
+
 .full_height_cover {
     height: calc(100vh - 140px);
-    display: inline-block;
+    display: flex;
     overflow: auto;
+    flex-flow: column;
 }
+
 .dialoge_middle_container {
     padding: 15px;
     background: #f5f5ff;
@@ -89,83 +92,104 @@ h5,
 .more_table {
     display: inline-table;
     margin: 0px;
-    b{
+
+    b {
         font-weight: 500;
     }
 }
+
+.global_close_btn {
+    outline: none !important;
+}
+
+mat-option {
+    min-height: 40px !important;
+
+    .mdc-list-item__primary-text {
+        font-size: 12px !important;
+    }
+}
+
 .global_dropdown {
-    display: inline-block;
     width: 100%;
-    font-size: 12px;
+    font-size: 12px !important;
+    margin-bottom: 15px;
+
     .mat-mdc-form-field-infix {
         padding: 5px 0px !important;
         min-height: 40px;
     }
+
     .mat-mdc-text-field-wrapper {
         width: 100%;
         background: #ffffff;
+        padding: 0px 10px;
     }
+
     .mdc-floating-label {
+        top: 50% !important;
+
         mat-label {
-            font-size: 14px;
+            font-size: 12px;
         }
     }
-    .mat-mdc-select-value-text, .mdc-list-item__primary-text {
+
+    .mat-mdc-select-value-text,
+    .mdc-list-item__primary-text {
         font-size: 12px;
     }
 
-
-    .mat-mdc-form-field {
-        margin: 0px;
-        width: 100%;
-        font-size: 13px;
-    }
-    .mat-mdc-form-field-wrapper {
-        margin: 0px !important;
-        padding: 0px;
-    }
-
-    .mat-mdc-form-field-infix {
-        border-top: 3px solid transparent;
-        margin: 0px;
-    }
-
-    .mat-mdc-form-field-appearance-outline .mat-form-field-flex {
-        margin: 0px;
-    }
-
-    .mat-mdc-form-field-subscript-wrapper {
-        padding: 0px;
-    }
-
-    .mat-mdc-form-field-flex>.mat-form-field-infix {
-        .mat-error {
-            margin-top: 15px;
-        }
-    }
-
+    .mat-mdc-form-field-subscript-wrapper,
     .mat-mdc-select-arrow-wrapper {
-        display: none !important;
-    }
-
-    .mat-mdc-select-trigger {
-        width: 100%;
-        z-index: 15;
+        display: none;
     }
 
     .arrow_icon {
         position: absolute;
         right: -5px;
         font-size: 24px;
-        top: 5px;
+        top: 7px;
         color: #a1a1a1;
+        background: #ffffff;
     }
 }
+
 .global_textbox_block {
     display: inline-block;
     width: 100%;
     font-size: 12px;
     margin-bottom: 15px;
+    padding-bottom: 15px;
+
+    .mat-mdc-text-field-wrapper {
+        padding: 0px 10px;
+        height: 40px;
+        background: #ffffff;
+
+        .mat-mdc-form-field-infix {
+            min-height: 40px;
+            padding: 8px 0px 0px 5px !important;
+            font-size: 12px;
+        }
+    }
+
+    .mdc-floating-label {
+        top: 50% !important;
+
+        mat-label {
+            font-size: 12px;
+        }
+    }
+
+    .mat-mdc-form-field-subscript-wrapper,
+    .mat-mdc-select-arrow-wrapper {
+        display: none;
+    }
+
+    .mat-mdc-select-value-text,
+    .mdc-list-item__primary-text {
+        font-size: 12px;
+    }
 
     .form_label {
         width: 100%;
@@ -184,6 +208,15 @@ h5,
         font-size: 13px;
     }
 }
+
+.global_submit_btn {
+    background: var(--theme-primary-color) !important;
+    color: #ffffff !important;
+    margin-left: 20px;
+    outline: none !important;
+    appearance: none !important;
+}
+
 /* // Used Css For above */
 .list_image_block {
     width: 40px;
@@ -1196,21 +1229,40 @@ mark {
 }
 
 .search_withaddbtn {
-    padding-right: 125px;
+    // padding-right: 125px;
     position: relative;
     margin: 0px;
+    display: flex;
 
     .right_addbtn {
-        position: absolute;
-        right: 0px;
-        top: 0px;
+        margin-left: 10px;
 
         .create_header_btn {
-            min-height: 31px;
+            margin: 0px;
+            background: var(--theme-primary-color);
+            color: #ffffff !important;
         }
     }
 }
-
+.matmenu_tablebtn {
+    padding: 0px !important;
+    margin: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px !important;
+    width: 30px !important;
+    outline: none !important;
+}
+.table_actionmenu {
+    button {
+        min-height: 34px !important;
+        margin: 0px !important;
+        .mat-mdc-menu-item-text {
+            font-size: 14px !important;
+        }
+    }
+}
 .popup_table {
     display: inline-block;
     position: relative;
