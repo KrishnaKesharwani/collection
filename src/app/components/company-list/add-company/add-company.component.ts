@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-edit-customer',
-  templateUrl: './edit-customer.component.html',
-  styleUrls: ['./edit-customer.component.css']
+  selector: 'app-add-company',
+  templateUrl: './add-company.component.html',
+  styleUrls: ['./add-company.component.css']
 })
-export class EditCustomerComponent {
+export class AddCompanyComponent {
+
   companyForm!: FormGroup;
 
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
@@ -44,4 +45,5 @@ export class EditCustomerComponent {
       // this.dialog.closeAll();
     }
   }
+
 }

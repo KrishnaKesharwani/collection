@@ -5,6 +5,7 @@ import { ViewDetailsComponent } from './view-details/view-details.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { ReceivedAmountComponent } from './received-amount/received-amount.component';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
+import { AddCompanyComponent } from './add-company/add-company.component';
 
 @Component({
   selector: 'app-company-list',
@@ -22,9 +23,6 @@ export class CompanyListComponent {
 
   }
 
-  addMember(index: number) {
-
-  }
 
   statusInactive() {
 
@@ -112,5 +110,36 @@ export class CompanyListComponent {
   delete(e?: any) {
     alert('delete api');
   }
+
+  readonly dialog7 = inject(MatDialog);
+  openDialog7(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    // this.dataForDelete = enterAnimationDuration
+    const dialogRef = this.dialog7.open(DeleteComponent, {
+      panelClass: 'delete_popup',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+        title: 'Are You Sure?',
+        subTitle: 'You wont to be inactive company!',
+      },
+    });
+    dialogRef.componentInstance.deleteAction.subscribe(() => {
+      this.delete();
+    });
+  }
+
+  readonly dialog6 = inject(MatDialog);
+  openDialog6() {
+    const dialogRef = this.dialog6.open(AddCompanyComponent, {
+      width: 'auto',
+      data: {
+        title: 'Add New Customer'
+      },
+    });
+
+  }
+
+
+
 
 }

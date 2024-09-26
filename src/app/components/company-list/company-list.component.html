@@ -14,7 +14,7 @@
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                                 <div class="right_addbtn">
-                                    <button data-toggle="modal" (click)="addMember(1)"
+                                    <button data-toggle="modal" (click)="openDialog6()"
                                         data-target="#actionCompany_modal"
                                         class="btn btn-success btn-sm create_header_btn" mat-raised-button>
                                         <i class="mdi mdi-account"></i>
@@ -85,7 +85,7 @@
                                             <mat-icon>notifications_off</mat-icon>
                                             <span>Received Amount</span>
                                         </button>
-                                        <button mat-menu-item (click)="openDialog5('0ms', '0ms')">
+                                        <button mat-menu-item (click)="openDialog7('1ms', '5ms')">
                                             <mat-icon>notifications_off</mat-icon>
                                             <span>Status</span>
                                         </button>
@@ -97,44 +97,7 @@
 
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col">Sudarshan Group</td>
-                            <td class="col">
-                                <div class="list_image_block">
-                                    <img src="assets/imgs/rk-group-logo2.png" />
-                                </div>
-                            </td>
-                            <td class="col">Sudharshan Yadav</td>
-                            <td class="col">6263626505</td>
-                            <td class="col">12-02-2022</td>
-                            <td class="col">11-02-2023</td>
-                            <td class="col">Yearly</td>
-                            <td class="col text-right">15000.00</td>
-                            <td class="col text-right">0.00</td>
-                            <td class="col text-center"><span class="badge bg-warning text-white">Inactive</span></td>
-                            <td class="action_col">
-                                <div ngbDropdown placement="bottom-right">
-                                    <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" data-target="#history_modal" data-toggle="modal">
-                                            <i class="mdi mdi-history mr-2"></i>Company History</a>
 
-                                        <a class="dropdown-item" data-target="#view_modal" data-toggle="modal">
-                                            <i class="mdi mdi-eye mr-2"></i>View Details</a>
-                                        <a class="dropdown-item" data-toggle="modal" (click)="addMember(0)"
-                                            data-target="#actionCompany_modal">
-                                            <i class="mdi mdi-pencil mr-2"></i>Edit Company</a>
-                                        <a class="dropdown-item" data-toggle="modal"
-                                            data-target="#planreceived_amount_modal">
-                                            <i class="mdi mdi-cash-100 mr-2"></i>Received Amount</a>
-                                        <a class="dropdown-item" (click)="statusActive()">
-                                            <i class="mdi mdi-account-off-outline mr-2"></i>Active</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
                         <tr>
                             <td colspan="11" class="norecord_col">
                                 <div class="no_found">

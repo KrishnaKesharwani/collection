@@ -7,15 +7,20 @@ import { CompanyHistoryComponent } from './company-history/company-history.compo
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { ReceivedAmountComponent } from './received-amount/received-amount.component';
+import { AddCompanyComponent } from './add-company/add-company.component';
+import { CommonComponentsModule } from 'src/app/common/common-components.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [CompanyListComponent, CompanyHistoryComponent, ViewDetailsComponent, EditCustomerComponent, ReceivedAmountComponent],
+  declarations: [CompanyListComponent, CompanyHistoryComponent, ViewDetailsComponent, EditCustomerComponent, ReceivedAmountComponent, AddCompanyComponent],
   imports: [
     CommonModule,
     MaterialModule,
-    CompanyListRoutingModule
+    CompanyListRoutingModule,
+    CommonComponentsModule,
+    ReactiveFormsModule
   ]
 })
 export class CompanyListModule { }

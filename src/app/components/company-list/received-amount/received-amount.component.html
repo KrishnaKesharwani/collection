@@ -1,1 +1,43 @@
-<p>received-amount works!</p>
+<h2 mat-dialog-title>{{dataa.title}}</h2>
+<form focusInvalidInput [formGroup]="receivedAmountForm">
+    <mat-dialog-content class="mat-typography">
+        <mat-dialog-content>
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Company Name</mat-label>
+                        <input matInput formControlName="companyName" name="companyName">
+                    </mat-form-field>
+                </tr>
+                <tr>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Received Amount</mat-label>
+                        <input matInput formControlName="receivedAmount" name="receivedAmount">
+                    </mat-form-field>
+                </tr>
+                <tr>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Received Date</mat-label>
+                        <input matInput formControlName="receivedDate" name="receivedDate">
+                    </mat-form-field>
+                </tr>
+                <tr>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Amount Details</mat-label>
+                        <input matInput formControlName="amountDetails" name="amountDetails">
+                    </mat-form-field>
+                </tr>
+
+            </table>
+
+        </mat-dialog-content>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button (click)="submit()">Submit</button>
+    </mat-dialog-actions>
+</form>
