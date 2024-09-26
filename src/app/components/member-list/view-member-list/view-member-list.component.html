@@ -1,16 +1,67 @@
-<h2 mat-dialog-title>{{dataa.title}}</h2>
-<button mat-icon-button class="close-button" [mat-dialog-close]="true">
-    <mat-icon class="close-icon" color="warn">close</mat-icon>
-</button>
-<table mat-table [dataSource]="transactions" class="mat-elevation-z8">
-    <!-- Item Column -->
+<div class="dialoge_header">
+    <div class="left_text">{{dataa.title}}</div>
+    <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container">
+    <table class="table table-bordered table-responsive bg-white more_table">
+        <tbody>
+            <tr>
+                <td><b>Member No. :</b></td>
+                <td>RK-101</td>
+            </tr>
+            <tr>
+                <td><b>Profile Image :</b></td>
+                <td>
+                    <div class="list_image_block float-left">
+                        <img src="assets/imgs/default-pic.png">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Member Name :</b></td>
+                <td>{{member_details.member_fname}}</td>
+            </tr>
+
+            <tr>
+                <td><b>Mobile :</b></td>
+                <td>{{member_details.member_mobile}}</td>
+            </tr>
+            <tr>
+                <td><b>Email Id :</b></td>
+                <td>sumit&#64;gmail.com</td>
+            </tr>
+            <tr>
+                <td><b>Aadhar No. :</b></td>
+                <td>626362650548</td>
+            </tr>
+            <tr>
+                <td><b>Join Date :</b></td>
+                <td>12-Mar-2021</td>
+            </tr>
+            <tr>
+                <td><b>Status :</b></td>
+                <td><span class="badge bg-success text-white">Active</span></td>
+            </tr>
+            <tr>
+                <td><b>Address :</b></td>
+                <td>Home no. 72, bajrang nagar jabalpur </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+</div>
+
+
+
+<!--<h2 mat-dialog-title>{{dataa.title}}</h2>
+ <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
     <ng-container matColumnDef="item">
         <th mat-header-cell *matHeaderCellDef> Item </th>
         <td mat-cell *matCellDef="let transaction"> {{transaction.item}} </td>
         <td mat-footer-cell *matFooterCellDef> Total </td>
     </ng-container>
-
-    <!-- Cost Column -->
     <ng-container matColumnDef="cost">
         <th mat-header-cell *matHeaderCellDef> Cost </th>
         <td mat-cell *matCellDef="let transaction"> {{transaction.cost | currency}} </td>
@@ -20,4 +71,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-</table>
+</table> -->

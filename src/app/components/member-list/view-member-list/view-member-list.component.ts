@@ -14,6 +14,7 @@ interface Transaction {
 
 
 export class ViewMemberListComponent {
+  member_details: any = [];
 
   displayedColumns: string[] = ['item', 'cost'];
   transactions: Transaction[] = [

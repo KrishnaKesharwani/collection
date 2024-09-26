@@ -39,7 +39,7 @@ export class MemberListComponent {
 
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
       panelClass: 'delete_popup',
@@ -78,16 +78,13 @@ export class MemberListComponent {
 
   readonly dialog3 = inject(MatDialog);
 
-  openDialog3() {
+  openDialogMemberDetails() {
     const dialogRef = this.dialog3.open(ViewMemberListComponent, {
-      width: '50%',
-
+      panelClass: 'view_details_small_popup', 
       data: {
         title: 'Member Details',
-
       },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
@@ -95,10 +92,9 @@ export class MemberListComponent {
 
   readonly dialog4 = inject(MatDialog);
 
-  openDialog4() {
+  openDialogAssignLoan() {
     const dialogRef = this.dialog4.open(AssignLoanComponent, {
-      width: '650px',
-
+      panelClass: 'view_details_popup', 
       data: {
         title: 'Assign Loan History Details',
 

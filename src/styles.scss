@@ -13,9 +13,10 @@
 // } */
 
 /* You can add global styles to this file, and also import other style files */
-*{
+* {
     box-sizing: border-box;
 }
+
 body {
     font-family: "Poppins", sans-serif !important;
     overflow-x: hidden;
@@ -34,8 +35,10 @@ h5,
 
 :root {
     --theme-bgcolor: #e20813;
+    --theme-primary-color: #e20813;
+    --theme-secondary-color: #000000;
     --app-brand-font: Montserrat, sans-serif;
-    --app-brand-shadow: 0px 11px 19px rgba(0, 0, 0, 0.2); 
+    --app-brand-shadow: 0px 11px 19px rgba(0, 0, 0, 0.2);
 }
 
 .btn-theme-color {
@@ -44,10 +47,50 @@ h5,
     font-size: 16px;
     letter-spacing: 0.5px;
 }
+
 .delete_popup {
     width: 400px;
+
     .mat-mdc-dialog-surface {
         overflow: visible !important;
+    }
+}
+
+.dialoge_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid thin #e1e1e1;
+    background: var(--theme-primary-color);
+    color: #ffffff;
+    padding: 10px 15px;
+
+    .close-icon {
+        color: #ffffff;
+        cursor: pointer;
+    }
+}
+.full_height_cover {
+    height: calc(100vh - 140px);
+    display: inline-block;
+    overflow: auto;
+}
+.dialoge_middle_container {
+    padding: 15px;
+    background: #f5f5ff;
+}
+
+.dialoge_button_container {
+    padding: 15px;
+    display: flex;
+    justify-content: right;
+}
+
+.more_table {
+    display: inline-table;
+    margin: 0px;
+    b{
+        font-weight: 500;
     }
 }
 
@@ -1936,6 +1979,7 @@ mark {
                 }
             }
         }
+
         .navbar-nav {
             flex-direction: row;
             align-items: center;
@@ -1944,6 +1988,7 @@ mark {
             margin: 0px;
             list-style: none;
         }
+
         .notification-liblock {
             padding: 0px 5px;
             border-left: solid thin #e1e1e1;
