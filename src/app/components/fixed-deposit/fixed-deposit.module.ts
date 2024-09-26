@@ -8,9 +8,10 @@ import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddFixedDepositComponent } from './add-fixed-deposit/add-fixed-deposit.component';
 
 @NgModule({
-  declarations: [FixedDepositComponent, EditFixedDepositComponent, ViewDetailsComponent, ChangeStatusComponent],
+  declarations: [FixedDepositComponent, EditFixedDepositComponent, ViewDetailsComponent, ChangeStatusComponent, AddFixedDepositComponent],
   imports: [
     CommonModule,
     MaterialModule,

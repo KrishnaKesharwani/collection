@@ -14,7 +14,7 @@
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                                 <div class="right_addbtn">
-                                    <button data-toggle="modal" (click)="openDialogUpdateDetails()"
+                                    <button data-toggle="modal" (click)="openDialogAdd()"
                                         data-target="#actionMembers_modal" type="button"
                                         class="btn btn-success btn-sm create_header_btn" mat-raised-button>
                                         <i class="mdi mdi-account">
@@ -57,14 +57,13 @@
                                     class="badge bg-success text-white">Active</span></td>
                             <td class="action_col" data-name="Action">
                                 <div placement="bottom-right">
-                                    <button mat-icon-button class="matmenu_tablebtn" [matMenuTriggerFor]="menu"
-                                       >
+                                    <button mat-icon-button class="matmenu_tablebtn" [matMenuTriggerFor]="menu">
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
                                         <div class="table_actionmenu">
                                             <button mat-menu-item (click)="openDialogUpdateDetails()">
-                                               <i class="mdi mdi-pencil mr-2"></i>
+                                                <i class="mdi mdi-pencil mr-2"></i>
                                                 <span>Edit Details</span>
                                             </button>
                                             <button mat-menu-item (click)="openDialogMemberDetails()">
@@ -72,7 +71,7 @@
                                                 <span>View Details</span>
                                             </button>
                                             <button mat-menu-item (click)="openDialogAssignLoan()">
-                                               <i class="mdi mdi-account-check-outline mr-2"></i>
+                                                <i class="mdi mdi-account-check-outline mr-2"></i>
                                                 <span>Assign Loan</span>
                                             </button>
                                             <button mat-menu-item (click)="openDialogStatus('1ms', '5ms')">

@@ -4,6 +4,7 @@ import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { EditMemberListComponent } from './edit-member-list/edit-member-list.component';
 import { ViewMemberListComponent } from './view-member-list/view-member-list.component';
 import { AssignLoanComponent } from './assign-loan/assign-loan.component';
+import { AddMemberComponent } from './add-member/add-member.component';
 
 @Component({
 
@@ -58,6 +59,20 @@ export class MemberListComponent {
   delete(e?: any) {
     alert('delete api');
   }
+  readonly dialog5 = inject(MatDialog);
+
+  openDialogAdd() {
+    const dialogRef = this.dialog5.open(AddMemberComponent, {
+      panelClass: 'update_dialoge',
+      data: {
+        title: 'Add New Member',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   readonly dialog2 = inject(MatDialog);
 
@@ -65,7 +80,7 @@ export class MemberListComponent {
     const dialogRef = this.dialog2.open(EditMemberListComponent, {
       panelClass: 'update_dialoge',
       data: {
-        title: 'Update Members Details',
+        title: 'Update Member',
       },
     });
 
@@ -78,7 +93,7 @@ export class MemberListComponent {
 
   openDialogMemberDetails() {
     const dialogRef = this.dialog3.open(ViewMemberListComponent, {
-      panelClass: 'view_details_small_popup', 
+      panelClass: 'view_details_small_popup',
       data: {
         title: 'Member Details',
       },
@@ -92,7 +107,7 @@ export class MemberListComponent {
 
   openDialogAssignLoan() {
     const dialogRef = this.dialog4.open(AssignLoanComponent, {
-      panelClass: 'view_details_popup', 
+      panelClass: 'view_details_popup',
       data: {
         title: 'Assign Loan History Details',
 

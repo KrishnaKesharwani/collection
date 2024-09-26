@@ -3,6 +3,7 @@ import { EditFixedDepositComponent } from './edit-fixed-deposit/edit-fixed-depos
 import { MatDialog } from '@angular/material/dialog';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
+import { AddFixedDepositComponent } from './add-fixed-deposit/add-fixed-deposit.component';
 
 @Component({
   selector: 'app-fixed-deposit',
@@ -13,14 +14,26 @@ export class FixedDepositComponent {
 
   deposit_action: any;
 
-  actionDeposit(number: any) {
+  readonly dialog4 = inject(MatDialog);
+  actionDeposit() {
+    const dialogRef = this.dialog4.open(AddFixedDepositComponent, {
+
+      data: {
+        title: 'Update Fixed Deposit Details',
+
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   // start edit fixed deposit 
   readonly dialog = inject(MatDialog);
   openDialog() {
     const dialogRef = this.dialog.open(EditFixedDepositComponent, {
-      width: '50%',
+
 
       data: {
         title: 'Update Fixed Deposit Details',
@@ -38,7 +51,7 @@ export class FixedDepositComponent {
   readonly dialog2 = inject(MatDialog);
   openDialog2() {
     const dialogRef = this.dialog2.open(ViewDetailsComponent, {
-      width: '450px',
+
 
       data: {
         title: 'Update Fixed Deposit Details',
@@ -56,8 +69,7 @@ export class FixedDepositComponent {
   readonly dialog3 = inject(MatDialog);
   openDialog3() {
     const dialogRef = this.dialog3.open(ChangeStatusComponent, {
-      width: '450px',
-      height: 'auto',
+
       data: {
         title: 'Update Status',
         field_value: 'Status'

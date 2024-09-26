@@ -1,144 +1,105 @@
-<h2 mat-dialog-title>{{dataa.title}}</h2>
-<button mat-icon-button class="close-button" [mat-dialog-close]="true">
-    <mat-icon class="close-icon" color="warn">close</mat-icon>
-</button>
-<form focusInvalidInput [formGroup]="fixedDepositForm">
-    <mat-dialog-content class="mat-typography">
-
-        <table class="example-full-width" cellspacing="0">
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
+<div class="dialoge_header">
+    <div class="left_text">{{dataa.title}}</div>
+    <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container full_height_cover">
+    <form focusInvalidInput [formGroup]="fixedDepositForm">
+        <div class="modal_insert">
+            <div class="row">
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Fixed Deposite Name</mat-label>
-                        <input matInput formControlName="fixed_deposit_name" name="fixed_deposit_name">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'fixed_deposit_name'" [displayMsg]="'Name is required'">
-                        </app-input-field-validation>
+                        <input matInput required>
                     </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
-                        <mat-label>Start Date
-                            <mat-hint>MM/DD/YYYY</mat-hint>
-                        </mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="start_date" name="start_date">
-
-                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-
-
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Start Date</mat-label>
+                        <input type="date" matInput required />
                     </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
-                        <mat-label>End Date
-                            <mat-hint>MM/DD/YYYY</mat-hint>
-                        </mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="end_date" name="end_date">
-
-                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-
-
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>End Date</mat-label>
+                        <input type="date" matInput required />
                     </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Customer Name</mat-label>
-                        <input matInput formControlName="customer_name" name="customer_name">
+                        <input matInput required formControlName="customerName" name="customerName" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'customer_name'" [displayMsg]="'Customer name is required'">
+                            [key]="'customerName'" [displayMsg]="'Name is required'">
                         </app-input-field-validation>
                     </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Customer Mobile</mat-label>
-                        <input matInput formControlName="moblie" name="moblie">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'moblie'" [displayMsg]="'Mobile is required'">
-                        </app-input-field-validation>
+                        <input matInput required />
                     </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Customer Email</mat-label>
-                        <input matInput formControlName="email" name="email">
+                        <input matInput required />
                     </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Start Amount</mat-label>
-                        <input matInput formControlName="start_amount" name="start_amount">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'start_amount'" [displayMsg]="'Start amount is required'">
-                        </app-input-field-validation>
+                        <input matInput required />
                     </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>End Amount</mat-label>
-                        <input matInput formControlName="end_amount" name="end_amount">
+                        <input matInput required />
                     </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_dropdown" appearance="outline">
                         <mat-label>Status</mat-label>
-                        <input matInput formControlName="status" name="status">
+                        <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+                        <mat-select>
+                            <mat-option value="Active">Active</mat-option>
+                            <mat-option value="Inactive">Inactive</mat-option>
+                        </mat-select>
                     </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
-                        <mat-label>Adhar No.</mat-label>
-                        <input matInput formControlName="adhar_number" name="adhar_number">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'adhar_number'" [displayMsg]="'Adhar number is required'">
-                        </app-input-field-validation>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Aadhar No.</mat-label>
+                        <input matInput required />
                     </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
-                        <mat-label>Adhar Front</mat-label>
-                        <input matInput formControlName="adhar_front" name="adhar_front">
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
-                        <mat-label>Adhar Back</mat-label>
-                        <input matInput formControlName="adhar_back" name="adhar_back">
-                    </mat-form-field>
-                </td>
+                </div>
 
-            </tr>
-            <tr>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
+                <div class="col-sm-6 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Address</mat-label>
-                        <input matInput formControlName="address" name="address">
+                        <textarea matInput required></textarea>
                     </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="example-full-width" appearance="outline">
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Details</mat-label>
-                        <input matInput formControlName="details" name="details">
+                        <textarea matInput required></textarea>
                     </mat-form-field>
-                </td>
-            </tr>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <label class="m-0">Adhar Front</label>
+                    <input type="file" class="file" class="fileupload" />
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <label class="m-0">Adhar Back</label>
+                    <input type="file" class="file" class="fileupload" />
+                </div>
+            </div>
+        </div>
 
-        </table>
-
-
-
-
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button>Update</button>
-    </mat-dialog-actions>
-</form>
+    </form>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+    <button class="global_submit_btn" mat-flat-button (click)="update()">Submit</button>
+</div>

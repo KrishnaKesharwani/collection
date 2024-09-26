@@ -10,11 +10,12 @@ import { AssignLoanComponent } from './assign-loan/assign-loan.component';
 import { InputFieldValidationComponent } from 'src/app/common/input-field-validation/input-field-validation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
+import { AddMemberComponent } from './add-member/add-member.component';
 
 
 
 @NgModule({
-  declarations: [MemberListComponent, EditMemberListComponent, ViewMemberListComponent, AssignLoanComponent],
+  declarations: [MemberListComponent, EditMemberListComponent, ViewMemberListComponent, AssignLoanComponent, AddMemberComponent],
   imports: [
     CommonModule,
     MemberListRoutingModule,

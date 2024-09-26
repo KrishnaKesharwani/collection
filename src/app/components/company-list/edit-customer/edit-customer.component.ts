@@ -37,7 +37,7 @@ export class EditCustomerComponent {
   }
 
 
-  save() {
+  update() {
     // Add New Company
     this.companyForm.markAllAsTouched()
     if (this.companyForm.valid) {

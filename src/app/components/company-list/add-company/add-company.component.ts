@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-add-company',
   templateUrl: './add-company.component.html',
-  styleUrls: ['./add-company.component.css']
+  styleUrls: ['./add-company.component.scss']
 })
 export class AddCompanyComponent {
 

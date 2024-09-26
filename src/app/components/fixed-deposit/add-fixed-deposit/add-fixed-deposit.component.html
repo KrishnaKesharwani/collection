@@ -3,61 +3,61 @@
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container full_height_cover">
-    <form focusInvalidInput [formGroup]="memberForm">
+    <form focusInvalidInput [formGroup]="fixedDepositForm">
         <div class="modal_insert">
             <div class="row">
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Member No.</mat-label>
+                        <mat-label>Fixed Deposite Name</mat-label>
                         <input matInput required>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Start Date</mat-label>
+                        <input type="date" matInput required />
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>End Date</mat-label>
+                        <input type="date" matInput required />
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Name</mat-label>
+                        <mat-label>Customer Name</mat-label>
                         <input matInput required formControlName="customerName" name="customerName" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="memberForm"
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
                             [key]="'customerName'" [displayMsg]="'Name is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Mobile</mat-label>
+                        <mat-label>Customer Mobile</mat-label>
                         <input matInput required />
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Email</mat-label>
+                        <mat-label>Customer Email</mat-label>
                         <input matInput required />
                     </mat-form-field>
                 </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
+                <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Aadhar No.</mat-label>
+                        <mat-label>Start Amount</mat-label>
                         <input matInput required />
                     </mat-form-field>
                 </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
+                <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Join Date</mat-label>
-                        <input type="date" matInput required />
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Member Login Id</mat-label>
+                        <mat-label>End Amount</mat-label>
                         <input matInput required />
                     </mat-form-field>
                 </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Password</mat-label>
-                        <input type="password" matInput required />
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
+                <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_dropdown" appearance="outline">
                         <mat-label>Status</mat-label>
                         <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
@@ -67,14 +67,31 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Aadhar No.</mat-label>
+                        <input matInput required />
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-6 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Address</mat-label>
-                        <input matInput formControlName="address" />
+                        <textarea matInput required></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Details</mat-label>
+                        <textarea matInput required></textarea>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <label class="m-0">Member Image</label>
+                    <label class="m-0">Adhar Front</label>
+                    <input type="file" class="file" class="fileupload" />
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <label class="m-0">Adhar Back</label>
                     <input type="file" class="file" class="fileupload" />
                 </div>
             </div>
@@ -84,5 +101,5 @@
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button (click)="update()">Submit</button>
+    <button class="global_submit_btn" mat-flat-button (click)="save()">Submit</button>
 </div>

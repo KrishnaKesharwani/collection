@@ -1,152 +1,133 @@
-<h2 mat-dialog-title>{{dataa.title}}</h2>
-<form focusInvalidInput [formGroup]="companyForm">
-    <mat-dialog-content class="mat-typography">
-        <mat-dialog-content>
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Company Name</mat-label>
-                            <input matInput formControlName="companyName" name="companyName">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Owner Name</mat-label>
-                            <input matInput formControlName="ownerName" name="ownerName">
-                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                                [key]="'customerName'" [displayMsg]="'Name is required'">
-                            </app-input-field-validation>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Mobile</mat-label>
-                            <input matInput formControlName="mobile" name="mobile">
-                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                                [key]="'customerName'" [displayMsg]="'Mobile is required'">
-                            </app-input-field-validation>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Start Date</mat-label>
-                            <input matInput formControlName="startDate" name="startDate">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>End Date</mat-label>
-                            <input matInput formControlName="endDate " name="endDate ">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Adhar No.</mat-label>
-                            <input matInput formControlName="adharNumber" name="adharNumber">
-                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                                [key]="'adharNumber'" [displayMsg]="'Adhar number is required'">
-                            </app-input-field-validation>
-                        </mat-form-field>
-                    </td>
+<div class="dialoge_header">
+    <div class="left_text">{{dataa.title}}</div>
+    <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container full_height_cover">
+    <form focusInvalidInput [formGroup]="companyForm">
+        <div class="modal_insert">
+            <div class="row">
 
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Plan</mat-label>
-                            <input matInput formControlName="plan" name="plan">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Total Amount</mat-label>
-                            <input matInput formControlName="totalAmount" name="totalAmount">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Advance Amount</mat-label>
-                            <input matInput formControlName="advaceAmount" name="advaceAmount">
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Status</mat-label>
-                            <input matInput formControlName="status" name="status">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Customer Loing Id</mat-label>
-                            <input matInput formControlName="memberId" name="memberId">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Password</mat-label>
-                            <input matInput formControlName="password" name="password">
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Company Name</mat-label>
+                        <input matInput required formControlName="customerName" name="customerName" />
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'customerName'" [displayMsg]="'Name is required'">
+                        </app-input-field-validation>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Owner Name</mat-label>
+                        <input matInput required formControlName="ownerName" name="ownerName" />
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'ownerName'" [displayMsg]="'Name is required'">
+                        </app-input-field-validation>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Mobile</mat-label>
+                        <input matInput required />
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Start Date</mat-label>
+                        <input type="date" matInput required />
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>End Date</mat-label>
+                        <input type="date" matInput required />
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Aadhar No.</mat-label>
+                        <input matInput required />
+                    </mat-form-field>
+                </div>
 
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Company Main Logo</mat-label>
-                            <input matInput formControlName="companyLogo" name="companyLogo">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Company Sidebar Logo</mat-label>
-                            <input matInput formControlName="sidebarLogo" name="sidebarLogo">
-                        </mat-form-field>
-                    </td>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Plan</mat-label>
+                        <input matInput required />
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Total Amount</mat-label>
+                        <input type="password" matInput required />
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Advance Amount</mat-label>
+                        <input type="password" matInput required />
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_dropdown" appearance="outline">
+                        <mat-label>Status</mat-label>
+                        <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+                        <mat-select>
+                            <mat-option value="Active">Active</mat-option>
+                            <mat-option value="Inactive">Inactive</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Customer Loing Id</mat-label>
+                        <input matInput formControlName="address" />
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="address" />
+                    </mat-form-field>
+                </div>
 
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Company Favicon Icon</mat-label>
-                            <input matInput formControlName="faviconIcon" name="faviconIcon">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Company Owner Image</mat-label>
-                            <input matInput formControlName="ownerImgae" name="ownerImgae">
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Address</mat-label>
-                            <input matInput formControlName="address" name="address">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Details</mat-label>
-                            <input matInput formControlName="details" name="details">
-                        </mat-form-field>
-                    </td>
-                </tr>
-            </table>
-
-
-        </mat-dialog-content>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Address</mat-label>
+                        <textarea row="5" matInput formControlName="address" name="address"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Details</mat-label>
+                        <textarea row="5" matInput formControlName="details" name="details"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <label class="m-0">Company Main Logo</label>
+                    <input type="file" class="file" class="fileupload" />
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <label class="m-0">Company Sidebar Logo</label>
+                    <input type="file" class="file" class="fileupload" />
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <label class="m-0">Company Favicon Icon</label>
+                    <input type="file" class="file" class="fileupload" />
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <label class="m-0">Company Owner Image</label>
+                    <input type="file" class="file" class="fileupload" />
+                </div>
+            </div>
 
 
 
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button (click)="save()">Submit</button>
-    </mat-dialog-actions>
-</form>
+        </div>
+
+    </form>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+    <button class="global_submit_btn" mat-flat-button (click)="save()">Submit</button>
+</div>

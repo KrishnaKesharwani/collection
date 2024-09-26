@@ -31,7 +31,7 @@ export class CompanyListComponent {
   readonly dialog = inject(MatDialog);
   openDialog() {
     const dialogRef = this.dialog.open(CompanyHistoryComponent, {
-      width: '100%',
+
 
       data: {
         title: 'Company Plan History Details',
@@ -47,7 +47,7 @@ export class CompanyListComponent {
   readonly dialog2 = inject(MatDialog);
   openDialog2() {
     const dialogRef = this.dialog2.open(ViewDetailsComponent, {
-      width: '100%',
+
 
       data: {
         title: 'Company Details',
@@ -63,7 +63,7 @@ export class CompanyListComponent {
   readonly dialog3 = inject(MatDialog);
   openDialog3() {
     const dialogRef = this.dialog3.open(EditCustomerComponent, {
-      width: '100%',
+
 
       data: {
         title: 'Update Members Details',
@@ -79,7 +79,6 @@ export class CompanyListComponent {
   readonly dialog4 = inject(MatDialog);
   openDialog4() {
     const dialogRef = this.dialog4.open(ReceivedAmountComponent, {
-      width: '100%',
 
       data: {
         title: 'Received Plan Amount',
@@ -95,7 +94,7 @@ export class CompanyListComponent {
   openDialog5(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
-      width: '450px',
+
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
