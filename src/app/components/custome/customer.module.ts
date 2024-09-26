@@ -11,12 +11,13 @@ import { EditCustomerListComponent } from './edit-customer-list/edit-customer-li
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputFieldValidationComponent } from 'src/app/common/input-field-validation/input-field-validation.component';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
 
 
 
 @NgModule({
   declarations: [
-    CustomeComponent, LoanHistoryComponent, ProviderLoanComponent, ViewCustomerListComponent, EditCustomerListComponent],
+    CustomeComponent, LoanHistoryComponent, ProviderLoanComponent, ViewCustomerListComponent, EditCustomerListComponent, AddCustomerComponent],
   imports: [
     CommonModule,
     MaterialModule,

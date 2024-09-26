@@ -6,6 +6,7 @@ import { LoanHistoryComponent } from './loan-history/loan-history.component';
 import { ProviderLoanComponent } from './provider-loan/provider-loan.component';
 import { ViewCustomerListComponent } from './view-customer-list/view-customer-list.component';
 import { EditCustomerListComponent } from './edit-customer-list/edit-customer-list.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
 
 @Component({
   selector: 'app-custome',
@@ -110,6 +111,17 @@ export class CustomeComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  readonly dialog6 = inject(MatDialog);
+  openDialog6() {
+    const dialogRef = this.dialog6.open(AddCustomerComponent, {
+      width: 'auto',
+      data: {
+        title: 'Add New Customer'
+      },
+    });
+
   }
 
 }

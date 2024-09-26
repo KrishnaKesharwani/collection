@@ -1,0 +1,102 @@
+<h2 mat-dialog-title>{{dataa.title}}</h2>
+<form focusInvalidInput [formGroup]="customerForm">
+    <mat-dialog-content class="mat-typography">
+        <mat-dialog-content>
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Customer No.</mat-label>
+                            <input matInput formControlName="customerNo" name="customerNo">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="customerName" name="customerName">
+                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="customerForm"
+                                [key]="'customerName'" [displayMsg]="'Name is required'">
+                            </app-input-field-validation>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Mobile</mat-label>
+                            <input matInput formControlName="mobile" name="mobile">
+                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="customerForm"
+                                [key]="'customerName'" [displayMsg]="'Mobile is required'">
+                            </app-input-field-validation>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" name="email">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Adhar No.</mat-label>
+                            <input matInput formControlName="adharNumber" name="adharNumber">
+                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="customerForm"
+                                [key]="'adharNumber'" [displayMsg]="'Adhar number is required'">
+                            </app-input-field-validation>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Join Date</mat-label>
+                            <input matInput formControlName="join_date" name="join_date">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Member Loing Id</mat-label>
+                            <input matInput formControlName="memberId" name="memberId">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput formControlName="password" name="password">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Status</mat-label>
+                            <input matInput formControlName="status" name="status">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="address" name="address">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Member Image</mat-label>
+                            <input matInput formControlName="memberImage" name="memberImage">
+                        </mat-form-field>
+                    </td>
+
+                </tr>
+            </table>
+
+
+        </mat-dialog-content>
+
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button (click)="submit()">Submit</button>
+    </mat-dialog-actions>
+</form>
