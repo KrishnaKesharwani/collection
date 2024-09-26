@@ -39,17 +39,15 @@ export class MemberListComponent {
 
   }
 
-
-
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
-      width: '450px',
+      panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
-        title: 'Delete This Record?',
-        subTitle: 'You wont be inactive member status!',
+        title: 'Update Member Status?',
+        subTitle: 'You wont to be update member status!',
       },
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {

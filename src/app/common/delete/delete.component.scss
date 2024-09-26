@@ -1,3 +1,55 @@
-button {
-    margin-right: 8px;
+.delete_main_container {
+    padding: 0px 15px 15px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    .delete_icon {
+        font-size: 30px;
+        height: 60px;
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ff0000;
+        border-radius: 50%;
+        color: #ffffff;
+        margin-top: -30px;
+    }
+    .delete_inner_container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+        margin-top: 20px;
+        .confirm_title {
+            font-size: 16px;
+            color: #ff0000;
+        }
+        .confirm_subtitle {
+            font-size: 12px;
+            color: #ababab;
+            margin: 10px 0px 20px 0px;
+        }
+        .action_block {
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            padding-top: 15px;
+            border-top: solid thin #e1e1e161;
+            button {
+                padding: 5px 20px;
+                background: #f5f5ff;
+                margin: 0px 10px;
+                border: solid 1px #dfdfdf;
+                outline: none;
+            }
+            .confirm_btn {
+                background: #ff0000 !important;
+                color: #ffffff !important;
+                border-color: #ff0000 !important;
+            }
+        }
+    }
+    
 }

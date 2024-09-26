@@ -44,6 +44,12 @@ h5,
     font-size: 16px;
     letter-spacing: 0.5px;
 }
+.delete_popup {
+    width: 400px;
+    .mat-mdc-dialog-surface {
+        overflow: visible !important;
+    }
+}
 
 /* // Used Css For above */
 .list_image_block {
