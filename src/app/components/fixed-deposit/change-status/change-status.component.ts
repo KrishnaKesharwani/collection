@@ -36,10 +36,7 @@ export class ChangeStatusComponent {
     this.dropdownService.setOptions(['Working', 'Received', 'Cancelled']);
   }
 
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
-  }
+  save() { }
 
 
 }

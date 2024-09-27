@@ -14,15 +14,7 @@
                                     <input type="search" placeholder="Search" class="searchtxt" />
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
-                                <div class="right_addbtn">
-                                    <button data-toggle="modal" (click)="openDialogAdd()"
-                                        data-target="#actionMembers_modal" type="button"
-                                        class="btn btn-success btn-sm create_header_btn" mat-raised-button>
-                                        <i class="mdi mdi-account">
-                                        </i>
-                                        <span class="btn-txt button-text">Apply Loan</span>
-                                    </button>
-                                </div>
+
                             </div>
                         </div>
 
@@ -100,93 +92,4 @@
         </div>
     </div>
 
-    <!-- View loan apply coustomer Details Popup -->
-    <div class="modal upload-filemodel fade" id="view_modal" tabindex="-1" role="dialog" aria-labelledby="modal-form"
-        aria-hidden="true">
-        <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Loan Details</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body p-0 bg-secondary">
-                    <div class="card-body apic-lb-form-box">
-                        <table class="table table-bordered table-responsive bg-white more_table">
-                            <tbody>
-                                <tr>
-                                    <td><b>Loan No. :</b></td>
-                                    <td>Start#10000</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Start/Apply Date :</b></td>
-                                    <td>12-Mar-2022 To 11-Jun-2022</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Apply Amount :</b></td>
-                                    <td><i class="mdi mdi-currency-inr mr-1"></i>10,000.00</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Balance :</b></td>
-                                    <td><i class="mdi mdi-currency-inr mr-1"></i>0.00</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Receiver :</b></td>
-                                    <td>Not Assigned</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Status :</b></td>
-                                    <td>
-                                        <div class="badge bg-warning text-white">Pending</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><b>Loan Details :</b></td>
-                                    <td>Want to loan 10000 for the bussiness purpose</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Reply For Loan :</b></td>
-                                    <td>Your loan approved.... will creadit amount in your bank account or casn in
-                                        12-Mar-2022</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Action for loan apply -->
-    <div class="modal upload-filemodel fade" id="applyloan_modal" tabindex="-1" role="dialog"
-        aria-labelledby="modal-form" aria-hidden="true">
-        <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Apply New Loan</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body p-0 bg-secondary">
-                    <div class="card-body apic-lb-form-box">
-                        <form>
-                            <div class="form-group">
-                                <label class="mb-0"><small>Loan Amount</small></label>
-                                <mat-form-field class="example-full-width" appearance="outline">
-                                    <input matInput required />
-                                </mat-form-field>
-                            </div>
-                            <div class="form-group">
-                                <label class="mb-0"><small>Message For Loan</small></label>
-                                <div class="input-group login-txtbox">
-                                    <textarea rows="3" class="form-control" placeholder="Enter Massage"></textarea>
-                                </div>
-                            </div>
-                            <div class="login-btnblock text-center">
-                                <button data-dismiss="modal" class="btn btn-primary" (click)="submitMessage()">
-                                    Apply Loan</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>

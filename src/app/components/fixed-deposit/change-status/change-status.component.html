@@ -44,8 +44,9 @@
             </mat-form-field>
         </div>
     </div>
-    <mat-dialog-actions align="end">
 
-        <button mat-button>Update</button>
-    </mat-dialog-actions>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+    <button class="global_submit_btn" mat-flat-button (click)="save()">Update</button>
 </div>

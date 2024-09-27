@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-add-fixed-deposit',
   templateUrl: './add-fixed-deposit.component.html',
-  styleUrls: ['./add-fixed-deposit.component.css']
+  styleUrls: ['./add-fixed-deposit.component.scss']
 })
 export class AddFixedDepositComponent {
 
@@ -21,14 +21,14 @@ export class AddFixedDepositComponent {
       customer_name: ['', Validators.required],
       fixed_deposit_name: ['', Validators.required],
       moblie: ['', Validators.required],
-      details: [''],
-      email: [''],
+      details: ['', Validators.required],
+      email: ['', Validators.required],
       status: [''],
-      password: [''],
+
       address: [''],
       adhar_front: [''],
       adhar_back: [''],
-      adhar_number: ['', Validators.required],
+      adhar_number: [''],
       start_amount: ['', Validators.required],
       end_amount: [''],
       start_date: [''],

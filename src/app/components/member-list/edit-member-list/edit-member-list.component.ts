@@ -20,10 +20,15 @@ export class EditMemberListComponent {
 
   ngOnInit() {
     this.memberForm = this.fb.group({
-      customerNo: [''],
-      customerName: ['', Validators.required],
+      memberNo: [''],
+      memberName: ['', Validators.required],
       mobile: ['', Validators.required],
-      adharNumber: ['', Validators.required]
+      email: ['', Validators.required],
+      adharNumber: ['', Validators.required],
+      joinDate: ['', Validators.required],
+      memberLoginId: ['', Validators.required],
+      password: ['', Validators.required],
+      status: ['', Validators.required]
     });
   }
 
