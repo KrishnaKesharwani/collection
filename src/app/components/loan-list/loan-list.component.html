@@ -7,13 +7,25 @@
                         <div class="col col-sm-4 pl-1">
                             <h3 class="mb-0">Loan List</h3>
                         </div>
-                        <div class="col text-right pr-1">
-                            <button data-toggle="modal" data-target="#applyloan_modal"
-                                class="btn btn-success btn-sm create_header_btn" mat-raised-button>
-                                <i class="mdi mdi-account"></i>
-                                <span class="btn-txt button-text">Apply Loan</span>
-                            </button>
+
+                        <div class="col text-right pr-1 datewith_search_block">
+                            <div class="listsearch-topblock search_withaddbtn">
+                                <div class="search-box">
+                                    <input type="search" placeholder="Search" class="searchtxt" />
+                                    <i class="mdi mdi-magnify"></i>
+                                </div>
+                                <div class="right_addbtn">
+                                    <button data-toggle="modal" (click)="openDialogAdd()"
+                                        data-target="#actionMembers_modal" type="button"
+                                        class="btn btn-success btn-sm create_header_btn" mat-raised-button>
+                                        <i class="mdi mdi-account">
+                                        </i>
+                                        <span class="btn-txt button-text">Apply Loan</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <table class="table align-items-center table-flush mydata-table">
@@ -43,73 +55,38 @@
 
                             </td>
                             <td class="col text-center" data-name="Action">
+
                                 <button mat-icon-button [matMenuTriggerFor]="menu"
                                     aria-label="Example icon-button with a menu">
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">
-                                    <button mat-menu-item (click)="openDialog()">
-                                        <mat-icon>dialpad</mat-icon>
-                                        <span>Installment History</span>
-                                    </button>
-                                    <button mat-menu-item (click)="openDialog2()">
-                                        <mat-icon>voicemail</mat-icon>
-                                        <span>Assign Member</span>
-                                    </button>
-                                    <button mat-menu-item (click)="openDialog3()">
-                                        <mat-icon>notifications_off</mat-icon>
-                                        <span>Change Member</span>
-                                    </button>
-                                    <button mat-menu-item (click)="openDialog4()">
-                                        <mat-icon>notifications_off</mat-icon>
-                                        <span>View Details</span>
-                                    </button>
-                                    <button mat-menu-item (click)="openDialog5()">
-                                        <mat-icon>notifications_off</mat-icon>
-                                        <span>Change Status</span>
-                                    </button>
-
+                                    <div class="table_actionmenu">
+                                        <button mat-menu-item (click)="openDialog()">
+                                            <i class="mdi mdi-history mr-2"></i>
+                                            <span>Installment History</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialog2()">
+                                            <i class="mdi mdi-account-check-outline mr-2"></i>
+                                            <span>Assign Member</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialog3()">
+                                            <i class="mdi mdi-account-switch-outline mr-2"></i>
+                                            <span>Change Member</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialog4()">
+                                            <i class="mdi mdi-eye mr-2"></i>
+                                            <span>View Details</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialog5()">
+                                            <i class="mdi mdi-account-off-outline mr-2"></i>
+                                            <span>Change Status</span>
+                                        </button>
+                                    </div>
                                 </mat-menu>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col">Start#10000</td>
-                            <td class="col"><small>12-Mar-2022 To 11-Jun-2022</small></td>
-                            <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>12000.00</td>
-                            <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
-                            <td class="col">Roshan Kanojiya</td>
-                            <td class="col text-center">
-                                <div class="badge bg-danger text-white">Running</div>
-                            </td>
-                            <td class="col text-center">
-                                <span class="btn btn-sm btn-primary btn_download"><i
-                                        class="mdi mdi-download"></i></span>
-                            </td>
-                            <td class="col text-center">
-                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#view_modal">
-                                    <i class="mdi mdi-more"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col" data-name="Action">Start#10003</td>
-                            <td class="col" data-name="Action"><small>12-Jan-2022 To 11-Mar-2022</small></td>
-                            <td class="col" data-name="Action"><i class="mdi mdi-currency-inr mr-1"></i>12000.00</td>
-                            <td class="col" data-name="Action"><i class="mdi mdi-currency-inr mr-1"></i>0.00</td>
-                            <td class="col" data-name="Action">Roshan Kanojiya</td>
-                            <td class="col text-center" data-name="Action">
-                                <div class="badge bg-success text-white">Completed</div>
-                            </td>
-                            <td class="col text-center" data-name="Action">
-                                <span class="btn btn-sm btn-primary btn_download"><i
-                                        class="mdi mdi-download"></i></span>
-                            </td>
-                            <td class="col text-center" data-name="Action">
-                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#view_modal">
-                                    <i class="mdi mdi-more"></i>
-                                </button>
-                            </td>
-                        </tr>
+
                         <tr>
                             <td colspan="6" class="norecord_col">
                                 <div class="no_found">

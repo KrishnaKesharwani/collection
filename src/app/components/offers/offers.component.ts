@@ -27,6 +27,7 @@ export class OffersComponent {
 
   }
 
+  openDialogAdd() { }
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {

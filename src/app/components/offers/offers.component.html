@@ -7,21 +7,27 @@
                         <div class="col col-sm-4 pl-1">
                             <h3 class="mb-0">Offers / Schems List</h3>
                         </div>
+
                         <div class="col text-right pr-1 datewith_search_block">
-                            <div class="listsearch-topblock mr-0">
+                            <div class="listsearch-topblock search_withaddbtn">
                                 <div class="search-box">
                                     <input type="search" placeholder="Search" class="searchtxt" />
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
-                                <!-- <div class="right_addbtn">
-                                    <button data-toggle="modal" (click)="offerModal(0)" data-target="#actionOffer_modal"
-                                        type="button" class="btn btn-success btn-sm create_header_btn" mat-raised-button>
-                                        <i class="mdi mdi-account"></i>
-                                        <span class="btn-txt button-text">Add Offer / Scheme</span>
+                                <div class="right_addbtn">
+                                    <button data-toggle="modal" (click)="openDialogAdd()"
+                                        data-target="#actionMembers_modal" type="button"
+                                        class="btn btn-success btn-sm create_header_btn" mat-raised-button>
+                                        <i class="mdi mdi-account">
+                                        </i>
+                                        <span class="btn-txt button-text">Add Offer</span>
                                     </button>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
+
+
+
                     </div>
                 </div>
                 <table class="table align-items-center table-flush mydata-table">

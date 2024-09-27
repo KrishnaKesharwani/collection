@@ -24,6 +24,8 @@ export class LoanListComponent {
 
   }
 
+  openDialogAdd() { }
+
   readonly dialog = inject(MatDialog);
 
   openDialog() {

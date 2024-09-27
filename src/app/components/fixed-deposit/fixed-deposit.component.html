@@ -58,20 +58,20 @@
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
-
-                                        <button mat-menu-item (click)="openDialog()">
-                                            <mat-icon>assignment</mat-icon>
-                                            <span>Edit Details</span>
-                                        </button>
-                                        <button mat-menu-item (click)="openDialog2()">
-                                            <mat-icon>visibility</mat-icon>
-                                            <span>View Details</span>
-                                        </button>
-                                        <button mat-menu-item (click)="openDialog3()">
-                                            <mat-icon>verified_user</mat-icon>
-                                            <span>Change Status</span>
-                                        </button>
-
+                                        <div class="table_actionmenu">
+                                            <button mat-menu-item (click)="openDialog()">
+                                                <i class="mdi mdi-pencil mr-2"></i>
+                                                <span>Edit Details</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialog2()">
+                                                <i class="mdi mdi-eye mr-2"></i>
+                                                <span>View Details</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialog3()">
+                                                <i class="mdi mdi-account-off-outline mr-2"></i>
+                                                <span>Change Status</span>
+                                            </button>
+                                        </div>
                                     </mat-menu>
 
                                 </div>
