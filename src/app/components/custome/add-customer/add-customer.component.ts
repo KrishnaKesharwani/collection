@@ -32,4 +32,12 @@ export class AddCustomerComponent {
       // this.dialog.closeAll();
     }
   }
+
+  selectedFile: File | null = null;
+
+  onFileChange(file: File | null): void {
+    this.selectedFile = file;
+    // Handle the file as needed
+    console.log(file);
+  }
 }

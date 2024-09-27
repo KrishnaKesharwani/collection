@@ -75,7 +75,8 @@
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <label class="m-0">Member Image</label>
-                    <input type="file" class="file" class="fileupload" />
+                    <app-fileupload class="fileupload" (fileChange)="onFileChange($event)"></app-fileupload>
+                    <!-- <input type="file" class="file" class="fileupload" /> -->
                 </div>
             </div>
         </div>

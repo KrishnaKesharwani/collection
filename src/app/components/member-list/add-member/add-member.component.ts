@@ -28,6 +28,14 @@ export class AddMemberComponent {
     });
   }
 
+  selectedFile: File | null = null;
+
+  onFileChange(file: File | null): void {
+    this.selectedFile = file;
+    // Handle the file as needed
+    console.log(file);
+  }
+
   save() {
     this.memberForm.markAllAsTouched()
     if (this.memberForm.valid) {

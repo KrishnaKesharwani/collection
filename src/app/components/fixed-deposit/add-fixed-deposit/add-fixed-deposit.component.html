@@ -88,11 +88,13 @@
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <label class="m-0">Adhar Front</label>
-                    <input type="file" class="file" class="fileupload" />
+                    <app-fileupload class="fileupload" (fileChange)="onFileChange($event)"></app-fileupload>
+
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <label class="m-0">Adhar Back</label>
-                    <input type="file" class="file" class="fileupload" />
+                    <app-fileupload class="fileupload" (fileChange)="onFileChange2($event)"></app-fileupload>
+
                 </div>
             </div>
         </div>

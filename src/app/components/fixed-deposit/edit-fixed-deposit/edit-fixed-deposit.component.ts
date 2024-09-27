@@ -44,6 +44,22 @@ export class EditFixedDepositComponent {
       // this.dialog.closeAll();
     }
   }
+
+  selectedFile: File | null = null;
+
+  onFileChange(file: File | null): void {
+    this.selectedFile = file;
+    // Handle the file as needed
+    console.log(file);
+  }
+
+  selectedFile2: File | null = null;
+
+  onFileChange2(file: File | null): void {
+    this.selectedFile2 = file;
+    // Handle the file as needed
+    console.log(file);
+  }
 }
 
 

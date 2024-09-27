@@ -50,4 +50,34 @@ export class AddCompanyComponent {
     }
   }
 
+  selectedFile: File | null = null;
+
+  onFileChange(file: File | null): void {
+    this.selectedFile = file;
+    // Handle the file as needed
+    console.log(file);
+  }
+  selectedFile2: File | null = null;
+
+  onFileChange2(file: File | null): void {
+    this.selectedFile2 = file;
+    // Handle the file as needed
+    console.log(file);
+  }
+
+  selectedFile3: File | null = null;
+
+  onFileChange3(file: File | null): void {
+    this.selectedFile3 = file;
+    // Handle the file as needed
+    console.log(file);
+  }
+  selectedFile4: File | null = null;
+
+  onFileChange4(file: File | null): void {
+    this.selectedFile4 = file;
+    // Handle the file as needed
+    console.log(file);
+  }
+
 }
