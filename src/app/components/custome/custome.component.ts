@@ -7,6 +7,7 @@ import { ProviderLoanComponent } from './provider-loan/provider-loan.component';
 import { ViewCustomerListComponent } from './view-customer-list/view-customer-list.component';
 import { EditCustomerListComponent } from './edit-customer-list/edit-customer-list.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-custome',
@@ -49,7 +50,13 @@ export class CustomeComponent {
   }
 
   delete(e?: any) {
-    alert('delete api');
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Your work has been saved",
+      showConfirmButton: false,
+      timer: 1500
+    });
   }
 
   readonly dialog2 = inject(MatDialog);

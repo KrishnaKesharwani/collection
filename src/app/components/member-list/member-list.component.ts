@@ -5,6 +5,7 @@ import { EditMemberListComponent } from './edit-member-list/edit-member-list.com
 import { ViewMemberListComponent } from './view-member-list/view-member-list.component';
 import { AssignLoanComponent } from './assign-loan/assign-loan.component';
 import { AddMemberComponent } from './add-member/add-member.component';
+import Swal from 'sweetalert2';
 
 @Component({
 
@@ -57,7 +58,13 @@ export class MemberListComponent {
   }
 
   delete(e?: any) {
-    alert('delete api');
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Your work has been saved",
+      showConfirmButton: false,
+      timer: 1500
+    });
   }
   readonly dialog5 = inject(MatDialog);
 

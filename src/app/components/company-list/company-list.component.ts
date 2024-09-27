@@ -6,6 +6,7 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { ReceivedAmountComponent } from './received-amount/received-amount.component';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-company-list',
@@ -107,7 +108,13 @@ export class CompanyListComponent {
     });
   }
   delete(e?: any) {
-    alert('delete api');
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Your work has been saved",
+      showConfirmButton: false,
+      timer: 1500
+    });
   }
 
   readonly dialog7 = inject(MatDialog);
