@@ -20,4 +20,6 @@ export class ChangeMemberComponent {
     this.dropdownService.setOptions(['Option A1', 'Option A2', 'Option A3']);
   }
 
+  save() { }
+
 }

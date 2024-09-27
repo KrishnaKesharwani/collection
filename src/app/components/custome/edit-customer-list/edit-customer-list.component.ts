@@ -19,10 +19,14 @@ export class EditCustomerListComponent {
 
   ngOnInit() {
     this.customerForm = this.fb.group({
-      customerNo: [''],
+      customerNo: ['', Validators.required],
       customerName: ['', Validators.required],
       mobile: ['', Validators.required],
-      adharNumber: ['', Validators.required]
+      adharNumber: ['', Validators.required],
+      memberLoingId: ['', Validators.required],
+      joinDate: ['', Validators.required],
+      email: ['', Validators.required],
+      address: ['', Validators.required]
     });
   }
 

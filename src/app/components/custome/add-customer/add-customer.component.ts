@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.component.html',
-  styleUrls: ['./add-customer.component.css']
+  styleUrls: ['./add-customer.component.scss']
 })
 export class AddCustomerComponent {
   @Input() title: any;
@@ -19,10 +19,14 @@ export class AddCustomerComponent {
 
   ngOnInit() {
     this.customerForm = this.fb.group({
-      customerNo: [''],
+      customerNo: ['', Validators.required],
       customerName: ['', Validators.required],
       mobile: ['', Validators.required],
-      adharNumber: ['', Validators.required]
+      adharNumber: ['', Validators.required],
+      memberLoingId: ['', Validators.required],
+      joinDate: ['', Validators.required],
+      email: ['', Validators.required],
+      address: ['', Validators.required]
     });
   }
 
