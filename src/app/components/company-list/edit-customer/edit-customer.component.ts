@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { CommonComponentService } from 'src/app/common/common-component.service';
 
 @Component({
   selector: 'app-edit-customer',
@@ -10,7 +11,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 export class EditCustomerComponent {
   companyForm!: FormGroup;
 
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
+  constructor(private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 
   ngOnInit() {
@@ -34,6 +35,8 @@ export class EditCustomerComponent {
       address: [''],
       details: ['']
     });
+
+    this.dropdownService.setOptions(['Plan']);
   }
 
 

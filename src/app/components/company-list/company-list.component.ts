@@ -132,7 +132,7 @@ export class CompanyListComponent {
     const dialogRef = this.dialog6.open(AddCompanyComponent, {
       width: 'auto',
       data: {
-        title: 'Add New Customer'
+        title: 'Add New Company'
       },
     });
 
