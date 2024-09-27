@@ -18,6 +18,7 @@ interface Transaction {
 export class CompanyHistoryComponent {
 
 
+  loanDetails: any = [];
   displayedColumns: string[] = ['start_date', 'end_date', 'plan', 'amount', 'pending', 'status'];
   transactions: Transaction[] = [
     { start_date: 'Member No.', end_date: '4', plan: 5, amount: 4, pending: 4, status: 1 }

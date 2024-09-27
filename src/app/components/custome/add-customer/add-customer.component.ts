@@ -26,7 +26,7 @@ export class AddCustomerComponent {
     });
   }
 
-  submit() {
+  save() {
     this.customerForm.markAllAsTouched()
     if (this.customerForm.valid) {
       // this.dialog.closeAll();

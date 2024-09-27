@@ -1,86 +1,69 @@
-<h2 mat-dialog-title>{{dataa.title}}</h2>
-<button mat-icon-button class="close-button" [mat-dialog-close]="true">
-    <mat-icon class="close-icon" color="warn">close</mat-icon>
-</button>
-<form focusInvalidInput [formGroup]="providerLoanForm">
-    <mat-dialog-content class="mat-typography">
-        <mat-dialog-content>
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Customer Name</mat-label>
-                            <input matInput formControlName="name" name="name">
-                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="providerLoanForm"
-                                [key]="'name'" [displayMsg]="'Name is required'">
-                            </app-input-field-validation>
-                        </mat-form-field>
-
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Loan Amount</mat-label>
-                            <input matInput formControlName="loan_amount" name="loan_amount">
-                        </mat-form-field>
-                    </td>
-
-                </tr>
-                <tr>
-
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Installment Amount</mat-label>
-                            <input matInput formControlName="installment_amount" name="installment_amount">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>No. Of Days</mat-label>
-                            <input matInput formControlName="num_of_days" name="num_of_days">
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Start Date</mat-label>
-                            <input matInput formControlName="start_date" name="start_date">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>End date</mat-label>
-                            <input matInput formControlName="end_date" name="end_date">
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td>
+<div class="dialoge_header">
+    <div class="left_text">{{dataa.title}}</div>
+    <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container full_height_cover">
+    <form focusInvalidInput [formGroup]="providerLoanForm">
+        <div class="modal_insert">
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Customer Name</mat-label>
+                        <input matInput formControlName="name" name="name">
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                            [key]="'name'" [displayMsg]="'Name is required'">
+                        </app-input-field-validation>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Loan Amount</mat-label>
+                        <input matInput formControlName="loan_amount" name="loan_amount">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Installment Amount</mat-label>
+                        <input matInput formControlName="installment_amount" name="installment_amount">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>No. Of Days</mat-label>
+                        <input matInput formControlName="num_of_days" name="num_of_days">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Start Date</mat-label>
+                        <input type="date" matInput formControlName="start_date" name="start_date">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>End date</mat-label>
+                        <input type="date" matInput formControlName="end_date" name="end_date">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Assign Member</mat-label>
-                        <app-dropdwon></app-dropdwon>
-                    </td>
+                        <input matInput formControlName="assign_member" name="assign_member">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Loan Details</mat-label>
+                        <input matInput formControlName="loan_details" name="loan_details">
+                    </mat-form-field>
 
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width" appearance="outline">
-                            <mat-label>Loan Details</mat-label>
-                            <input matInput formControlName="loan_details" name="loan_details">
-                        </mat-form-field>
-                    </td>
-                </tr>
+                </div>
 
-
-            </table>
-        </mat-dialog-content>
-
-
-
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button (click)="update()">Submit</button>
-    </mat-dialog-actions>
-</form>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+    <button class="global_submit_btn" mat-flat-button (click)="update()">Submit</button>
+</div>
