@@ -27,7 +27,7 @@ export class AddCompanyComponent {
       totalAmount: [''],
       advaceAmount: [''],
       status: [''],
-      memberId: [''],
+      customerLoginId: [''],
       password: [''],
       companyLogo: [''],
       sidebarLogo: [''],

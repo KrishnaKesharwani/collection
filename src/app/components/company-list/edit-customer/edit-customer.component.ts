@@ -6,7 +6,7 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
 @Component({
   selector: 'app-edit-customer',
   templateUrl: './edit-customer.component.html',
-  styleUrls: ['./edit-customer.component.css']
+  styleUrls: ['./edit-customer.component.scss']
 })
 export class EditCustomerComponent {
   companyForm!: FormGroup;
@@ -26,7 +26,7 @@ export class EditCustomerComponent {
       totalAmount: [''],
       advaceAmount: [''],
       status: [''],
-      memberId: [''],
+      customerLoginId: [''],
       password: [''],
       companyLogo: [''],
       sidebarLogo: [''],

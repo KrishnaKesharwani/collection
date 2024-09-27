@@ -10,9 +10,9 @@
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Company Name</mat-label>
-                        <input matInput required formControlName="customerName" name="customerName" />
+                        <input matInput required formControlName="companyName" name="companyName" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'customerName'" [displayMsg]="'Name is required'">
+                            [key]="'companyName'" [displayMsg]="'Company name is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
@@ -21,55 +21,72 @@
                         <mat-label>Owner Name</mat-label>
                         <input matInput required formControlName="ownerName" name="ownerName" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'ownerName'" [displayMsg]="'Name is required'">
+                            [key]="'ownerName'" [displayMsg]="'Owner name is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Mobile</mat-label>
-                        <input matInput required />
+                        <input matInput required formControlName="mobile" name="mobile" />
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'mobile'" [displayMsg]="'Mobile is required'">
+                        </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Start Date</mat-label>
-                        <input type="date" matInput required />
+                        <input type="date" matInput required formControlName="startDate" name="startDate" />
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'startDate'" [displayMsg]="'Start date is required'">
+                        </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>End Date</mat-label>
-                        <input type="date" matInput required />
+                        <input type="date" matInput required formControlName="endDate" name="endDate" />
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'endDate'" [displayMsg]="'End date is required'">
+                        </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Aadhar No.</mat-label>
-                        <input matInput required />
+                        <input matInput required formControlName="adharNumber" name="adharNumber" />
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'adharNumber'" [displayMsg]="'Adhar number is required'">
+                        </app-input-field-validation>
                     </mat-form-field>
                 </div>
-
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <app-dropdwon></app-dropdwon>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Total Amount</mat-label>
-                        <input type="password" matInput required />
+                        <input matInput required formControlName="totalAmount" name="totalAmount" />
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'totalAmount'" [displayMsg]="'Total amount is required'">
+                        </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Advance Amount</mat-label>
-                        <input type="password" matInput required />
+                        <input type="password" matInput required formControlName="advaceAmount" name="advaceAmount" />
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'advaceAmount'" [displayMsg]="'Advance amount is required'">
+                        </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_dropdown" appearance="outline">
                         <mat-label>Status</mat-label>
                         <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
-                        <mat-select>
+                        <mat-select formControlName="status" name="status">
                             <mat-option value="Active">Active</mat-option>
                             <mat-option value="Inactive">Inactive</mat-option>
                         </mat-select>
@@ -78,50 +95,51 @@
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Customer Loing Id</mat-label>
-                        <input matInput formControlName="address" />
+                        <input matInput formControlName="customerLoginId" name="customerLoginId" />
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
+                    <mat-form-field class="global_textbox_block" f appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input matInput formControlName="address" />
+                        <input type="password" matInput ormControlName="passwrod" name="passwrod" />
                     </mat-form-field>
                 </div>
 
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Address</mat-label>
-                        <textarea row="5" matInput formControlName="address" name="address"></textarea>
+                        <textarea row="5" matInput formControlName="address" name="address" required></textarea>
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'address'" [displayMsg]="'Address is required'">
+                        </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Details</mat-label>
-                        <textarea row="5" matInput formControlName="details" name="details"></textarea>
+                        <textarea row="5" matInput formControlName="details" name="details" required></textarea>
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'details'" [displayMsg]="'Details is required'">
+                        </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <label class="m-0">Company Main Logo</label>
                     <app-fileupload class="fileupload" (fileChange)="onFileChange($event)"></app-fileupload>
-
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <label class="m-0">Company Sidebar Logo</label>
                     <app-fileupload class="fileupload" (fileChange)="onFileChange2($event)"></app-fileupload>
-
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <label class="m-0">Company Favicon Icon</label>
                     <app-fileupload class="fileupload" (fileChange)="onFileChange3($event)"></app-fileupload>
-
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <label class="m-0">Company Owner Image</label>
                     <app-fileupload class="fileupload" (fileChange)="onFileChange4($event)"></app-fileupload>
-
                 </div>
             </div>
-
 
 
         </div>

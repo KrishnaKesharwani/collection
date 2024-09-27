@@ -61,8 +61,9 @@ export class MemberListComponent {
     Swal.fire({
       position: "center",
       icon: "success",
-      title: "Your work has been saved",
-      showConfirmButton: false,
+      title: 'Success',
+      text: "Member status updated successfully...",
+      showConfirmButton: true,
       timer: 1500
     });
   }
