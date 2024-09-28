@@ -29,6 +29,6 @@ export class ChangeStatusComponent {
 
 
   ngOnInit() {
-    this.dropdownService.setOptions(['Active', 'Inactive']);
+    this.dropdownService.setOptions('', ['Active', 'Inactive']);
   }
 }

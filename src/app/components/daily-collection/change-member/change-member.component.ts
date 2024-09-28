@@ -16,6 +16,6 @@ export class ChangeMemberComponent {
   ) { }
 
   ngOnInit() {
-    this.dropdownService.setOptions(['Allot Members', 'Roshan Kanojiya', 'Bhaijan']);
+    this.dropdownService.setOptions('', ['Allot Members', 'Roshan Kanojiya', 'Bhaijan']);
   }
 }

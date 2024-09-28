@@ -27,7 +27,7 @@ export class ProviderLoanComponent {
       loan_details: ['']
     });
 
-    this.dropdownService.setOptions(['Bhaijan', 'Roshan Kanojiya']);
+    this.dropdownService.setOptions('', ['Bhaijan', 'Roshan Kanojiya']);
   }
 
   update() {

@@ -1,7 +1,7 @@
 <mat-form-field class="global_dropdown" appearance="outline">
-    <mat-label>Select an option</mat-label>
+    <mat-label>{{data.field_value}}</mat-label>
     <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
-    <mat-select [(value)]="selectedValue">
+    <mat-select>
         <mat-option *ngFor="let option of options" [value]="option">
             {{ option }}
         </mat-option>

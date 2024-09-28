@@ -17,7 +17,7 @@ export class AssignMemberComponent {
   ) { }
 
   ngOnInit() {
-    this.dropdownService.setOptions(['Allot Members', 'Roshan Kanojiya', 'Bhaijan']);
+    this.dropdownService.setOptions('', ['Allot Members', 'Roshan Kanojiya', 'Bhaijan']);
   }
 
   save() { }

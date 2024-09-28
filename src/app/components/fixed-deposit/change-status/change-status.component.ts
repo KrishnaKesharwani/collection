@@ -33,7 +33,7 @@ export class ChangeStatusComponent {
 
 
   ngOnInit() {
-    this.dropdownService.setOptions(['Working', 'Received', 'Cancelled']);
+    this.dropdownService.setOptions('', ['Working', 'Received', 'Cancelled']);
   }
 
   save() { }
