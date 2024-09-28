@@ -54,10 +54,8 @@
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Customer Email</mat-label>
-                        <input matInput required formControlName="email" name="email" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'email'" [displayMsg]="'Email is required'">
-                        </app-input-field-validation>
+                        <input matInput formControlName="email" name="email" />
+
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
@@ -98,13 +96,13 @@
                 <div class="col-sm-6 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Address</mat-label>
-                        <textarea matInput formControlName="address" name="address"></textarea>
+                        <textarea row="5" matInput formControlName="address" name="address"></textarea>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-6 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Details</mat-label>
-                        <textarea matInput formControlName="details" name="details"></textarea>
+                        <textarea row="5" matInput formControlName="details" name="details"></textarea>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
@@ -124,5 +122,5 @@
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button (click)="update()">Submit</button>
+    <button class="global_submit_btn" mat-flat-button (click)="update()">Update</button>
 </div>

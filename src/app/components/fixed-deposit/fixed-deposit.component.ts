@@ -54,7 +54,7 @@ export class FixedDepositComponent {
 
 
       data: {
-        title: 'Update Fixed Deposit Details',
+        title: 'Fixed Deposit Details',
 
       },
     });

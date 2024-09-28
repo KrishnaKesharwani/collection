@@ -23,8 +23,8 @@ export class EditFixedDepositComponent {
       customer_name: ['', Validators.required],
       fixed_deposit_name: ['', Validators.required],
       moblie: ['', Validators.required],
-      details: ['', Validators.required],
-      email: ['', Validators.required],
+      details: [''],
+      email: [''],
       status: [''],
 
       address: [''],
