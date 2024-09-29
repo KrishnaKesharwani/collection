@@ -15,7 +15,7 @@
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                                 <div class="right_addbtn">
-                                    <button data-toggle="modal" (click)="openDialogAdd()"
+                                    <button data-toggle="modal" (click)="openDialog2()"
                                         data-target="#actionMembers_modal" type="button"
                                         class="btn btn-success btn-sm create_header_btn" mat-raised-button>
                                         <i class="mdi mdi-account">
@@ -37,9 +37,9 @@
                             <th class="col image_block text-center">Image</th>
                             <th class="col type_block">Type</th>
                             <th class="col">Details</th>
-                            <th *ngIf='usertype == 1' class="col text-center action_colbtn">Status</th>
-                            <th *ngIf='usertype == 1' class="col action_col">Action</th>
-                            <th *ngIf='usertype != 1' class="col action_colbtn">Action</th>
+                            <th class="col text-center action_colbtn">Status</th>
+                            <th class="col action_col">Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -57,13 +57,10 @@
                                     Want. 100+ Unique Results. Find in Seconds. Useful & Relevant. Services: Secure
                                     Search, No.1 Answers, Trusted Results.</div>
                             </td>
-                            <td *ngIf='usertype != 1' class="col action_colbtn" data-name="Action">
-                                <button class="btn btn-sm btn-primary" data-target="#view_modal" data-toggle="modal">
-                                    <i class="mdi mdi-eye mr-2"></i>View</button>
-                            </td>
-                            <td *ngIf='usertype == 1' class="col text-center" data-name="Status"><span
+
+                            <td class="col text-center" data-name="Status"><span
                                     class="badge bg-success text-white">Active</span></td>
-                            <td *ngIf='usertype == 1' class="action_col" data-name="Action">
+                            <td class="action_col" data-name="Action">
                                 <div placement="bottom-right">
 
                                     <button mat-icon-button [matMenuTriggerFor]="menu"
@@ -71,107 +68,31 @@
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
-                                        <button mat-menu-item>
-                                            <mat-icon>dialpad</mat-icon>
-                                            <span>Edit Details</span>
-                                        </button>
-                                        <button mat-menu-item disabled>
-                                            <mat-icon>voicemail</mat-icon>
-                                            <span>View Details</span>
-                                        </button>
-                                        <button mat-menu-item (click)="openDialog('0ms', '0ms')">
-                                            <mat-icon>notifications_off</mat-icon>
-                                            <span>Inactive</span>
-                                        </button>
-                                        <button mat-menu-item>
-                                            <mat-icon>notifications_off</mat-icon>
-                                            <span>Set Default</span>
-                                        </button>
-
+                                        <div class="table_actionmenu">
+                                            <button mat-menu-item (click)="openDialog3()">
+                                                <i class="mdi mdi-pencil mr-2"></i>
+                                                <span>Edit Details</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialog4()">
+                                                <i class="mdi mdi-eye mr-2"></i>
+                                                <span>View Details</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialog('1ms', '5ms')">
+                                                <i class="mdi mdi-account-off-outline mr-2"></i>
+                                                <span>Inactive</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialog5('1ms', '5ms')">
+                                                <i class="mdi mdi-checkbox-marked-circle-outline mr-2"></i>
+                                                <span>Set Default</span>
+                                            </button>
+                                        </div>
                                     </mat-menu>
 
                                 </div>
 
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col" data-name="Offer Name">Lottery Scheme</td>
-                            <td class="col" data-name="Image">
-                                <div class="list_image_block">
-                                    <img src="assets/imgs/offer-img.jpeg" />
-                                </div>
-                            </td>
-                            <td class="col text-center" data-name="Type"><span
-                                    class="badge bg-primary text-white">Scheme</span></td>
-                            <td class="col" data-name="Details">
-                                <div class="offer_details">Explore the Best Info Now. Quick Answers. Find All Info You
-                                    Want. 100+ Unique Results. Find in Seconds. Useful & Relevant. Services: Secure
-                                    Search, No.1 Answers, Trusted Results.</div>
-                            </td>
-                            <td *ngIf='usertype != 1' class="col action_colbtn">
-                                <button class="btn btn-sm btn-primary" data-target="#view_modal" data-toggle="modal">
-                                    <i class="mdi mdi-eye mr-2"></i>View</button>
-                            </td>
-                            <td *ngIf='usertype == 1' class="col text-center"><span
-                                    class="badge bg-success text-white">Active</span></td>
-                            <td *ngIf='usertype == 1' class="action_col">
-                                <div ngbDropdown placement="bottom-right">
-                                    <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" (click)="offerModal(1)"
-                                            data-target="#actionOffer_modal" data-toggle="modal">
-                                            <i class="mdi mdi-pencil mr-2"></i>Edit Details</a>
-                                        <a class="dropdown-item" data-target="#view_modal" data-toggle="modal">
-                                            <i class="mdi mdi-eye mr-2"></i>View Details</a>
-                                        <a class="dropdown-item" (click)="statusActive()">
-                                            <i class="mdi mdi-account-off-outline mr-2"></i>Inactive</a>
-                                        <a class="dropdown-item" (click)="setDefault()">
-                                            <i class="mdi mdi-checkbox-marked-circle-outline mr-2"></i>Set Default</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col" data-name="Offer Name">Fixed Deposit</td>
-                            <td class="col" data-name="Image">
-                                <div class="list_image_block">
-                                    <img src="assets/imgs/offer-img.jpeg" />
-                                </div>
-                            </td>
-                            <td class="col text-center" data-name="Type"><span
-                                    class="badge bg-warning text-white">Offers</span></td>
-                            <td class="col" data-name="Details">
-                                <div class="offer_details">Explore the Best Info Now. Quick Answers. Find All Info You
-                                    Want. 100+ Unique Results. Find in Seconds. Useful & Relevant. Services: Secure
-                                    Search, No.1 Answers, Trusted Results.</div>
-                            </td>
-                            <td *ngIf='usertype != 1' class="col action_colbtn" data-name="Action">
-                                <button class="btn btn-sm btn-primary" data-target="#view_modal" data-toggle="modal">
-                                    <i class="mdi mdi-eye mr-2"></i>View</button>
-                            </td>
-                            <td *ngIf='usertype == 1' class="col text-center" data-name="Action"><span
-                                    class="badge bg-success text-white">Active</span></td>
-                            <td *ngIf='usertype == 1' class="action_col" data-name="Action">
-                                <div ngbDropdown placement="bottom-right">
-                                    <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" (click)="offerModal(1)"
-                                            data-target="#actionOffer_modal" data-toggle="modal">
-                                            <i class="mdi mdi-pencil mr-2"></i>Edit Details</a>
-                                        <a class="dropdown-item" data-target="#view_modal" data-toggle="modal">
-                                            <i class="mdi mdi-eye mr-2"></i>View Details</a>
-                                        <a class="dropdown-item" (click)="statusActive()">
-                                            <i class="mdi mdi-account-off-outline mr-2"></i>Inactive</a>
-                                        <a class="dropdown-item" (click)="setDefault()">
-                                            <i class="mdi mdi-checkbox-marked-circle-outline mr-2"></i>Set Default</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+
                         <tr>
                             <td colspan="5" *ngIf='usertype != 1' class="norecord_col">
                             <td colspan="6" *ngIf='usertype == 1' class="norecord_col">
@@ -185,123 +106,5 @@
             </div>
         </div>
     </div>
-    <!-- View Offers / Schems Details Popup -->
-    <div class="modal upload-filemodel fade" id="view_modal" tabindex="-1" role="dialog" aria-labelledby="modal-form"
-        aria-hidden="true">
-        <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Offers / Schems Details</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body p-0 bg-secondary">
-                    <div class="card-body apic-lb-form-box">
-                        <table class="table table-bordered table-responsive bg-white more_table">
-                            <tbody>
-                                <tr>
-                                    <td><b>Offer Name :</b></td>
-                                    <td>Startup loan</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Type :</b></td>
-                                    <td><span class="badge bg-warning text-white">Offers</span></td>
-                                </tr>
-                                <tr>
-                                    <td><b>Status :</b></td>
-                                    <td><span class="badge bg-success text-white">Active</span></td>
-                                </tr>
-                                <tr>
-                                    <td><b>Offer Image :</b></td>
-                                    <td>
-                                        <div class="offer_image_popup">
-                                            <img src="assets/imgs/offer-img.jpeg">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><b>Details :</b></td>
-                                    <td><span class="offer_details_popup">Explore the Best Info Now. Quick Answers. Find
-                                            All Info You
-                                            Want. 100+ Unique Results. Find in Seconds. Useful & Relevant. Services:
-                                            Secure
-                                            Search, No.1 Answers, Trusted Results.</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Add / Edit Offers Popup -->
-    <div *ngIf='usertype == 1' class="modal fade" id="actionOffer_modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title mb-0" *ngIf="offer_modalaction == 0">Add New Offers / Schems</h5>
-                    <h5 class="modal-title mb-0" *ngIf="offer_modalaction == 1">Update Offers / Schems Details</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <form class="create_collection">
-                    <div class="modal-body modal_insert bg-secondary pb-0">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <mat-form-field class="example-full-width" appearance="outline">
-                                    <mat-label>Offer Name</mat-label>
-                                    <input matInput required>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-sm-12">
-                                <mat-form-field class="example-full-width" appearance="outline">
-                                    <mat-label>Type</mat-label>
-                                    <mat-select>
-                                        <mat-option value="Offers">Offers</mat-option>
-                                        <mat-option value="Schems">Schems</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-sm-12">
-                                <mat-form-field class="example-full-width" appearance="outline">
-                                    <mat-label>Status</mat-label>
-                                    <mat-select>
-                                        <mat-option value="Active">Active</mat-option>
-                                        <mat-option value="Inactive">Inactive</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-sm-12">
-                                <mat-form-field class="example-full-width" appearance="outline">
-                                    <mat-label>Details</mat-label>
-                                    <textarea matInput required
-                                        formControlName="Describe for your offers / scheme"></textarea>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-sm-12">
-                                <label class="m-0">Image</label>
-                                <input type="file" class="file" class="fileupload" />
-                            </div>
-                            <div class="col-sm-12 mb-3 mt-3">
-                                <div class="custom-control custom-control-alternative custom-checkbox">
-                                    <input class="custom-control-input" id="set_default" type="checkbox">
-                                    <label class="custom-control-label" for="set_default"><b>Set Default</b></label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <div class="modal-footer text-right">
-                    <button type="button" mat-button mat-stroked-button data-dismiss="modal"><i
-                            class="mdi mdi-close mr-1"></i>Cancel</button>
-                    <button class="submit_btn" *ngIf="offer_modalaction == 0" data-dismiss="modal" color="primary"
-                        mat-raised-button>
-                        <i class="mdi mdi-send mr-1"></i>Submit
-                    </button>
-                    <button class="submit_btn" *ngIf="offer_modalaction == 1" data-dismiss="modal" color="primary"
-                        mat-raised-button>
-                        <i class="mdi mdi-send mr-1"></i>Update
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>

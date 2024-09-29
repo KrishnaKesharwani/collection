@@ -37,7 +37,7 @@ export class AddCompanyComponent {
       details: ['']
     });
 
-    this.dropdownService.setOptions(['Plan']);
+    this.dropdownService.setOptions('', ['Plan']);
 
   }
 

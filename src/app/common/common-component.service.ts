@@ -6,14 +6,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CommonComponentService {
 
-  constructor() { }
-
-  // start common dropdown service method/logic
-  private dropdownOptionsSubject = new BehaviorSubject<string[]>([]);
+  private dropdownOptionsSubject = new BehaviorSubject<{ [key: string]: string[] }>({});
   dropdownOptions$ = this.dropdownOptionsSubject.asObservable();
 
-  setOptions(options: string[]) {
-    this.dropdownOptionsSubject.next(options);
+  setOptions(key: string, options: string[]) {
+    const currentOptions = this.dropdownOptionsSubject.value;
+    this.dropdownOptionsSubject.next({ ...currentOptions, [key]: options });
   }
-  // end common dropdown service method/logic
+
+  getOptions(key: string) {
+    return this.dropdownOptionsSubject.value[key] || [];
+  }
 }

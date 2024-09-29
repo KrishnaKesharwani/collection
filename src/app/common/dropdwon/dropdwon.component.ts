@@ -13,18 +13,14 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 export class DropdwonComponent {
+  @Input() key!: string;
   options: string[] = [];
-  @Input() title: any;
-  selectedValue: string | undefined;
 
   constructor(private dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public data: { field_value: string }) { }
 
   ngOnInit() {
-    this.dropdownService.dropdownOptions$.subscribe((options) => {
-      this.options = options;
-      if (options.length > 0) {
-        this.selectedValue = options[0]; // Set a default value
-      }
+    this.dropdownService.dropdownOptions$.subscribe(options => {
+      this.options = options[this.key] || [];
     });
   }
 }

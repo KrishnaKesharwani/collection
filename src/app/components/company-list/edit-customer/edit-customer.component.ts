@@ -36,7 +36,7 @@ export class EditCustomerComponent {
       details: ['']
     });
 
-    this.dropdownService.setOptions(['Plan']);
+    this.dropdownService.setOptions('', ['Plan']);
   }
 
 
