@@ -12,12 +12,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputFieldValidationComponent } from 'src/app/common/input-field-validation/input-field-validation.component';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { CustomerBulkImportComponent } from './customer-bulk-import/customer-bulk-import.component';
+import { KeysPipe } from 'src/app/pipes/keys.pipe';
 
 
 
 @NgModule({
   declarations: [
-    CustomeComponent, LoanHistoryComponent, ProviderLoanComponent, ViewCustomerListComponent, EditCustomerListComponent, AddCustomerComponent],
+    CustomeComponent, LoanHistoryComponent, ProviderLoanComponent, ViewCustomerListComponent, EditCustomerListComponent, AddCustomerComponent
+    , CustomerBulkImportComponent, KeysPipe],
   imports: [
     CommonModule,
     MaterialModule,

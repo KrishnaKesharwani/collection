@@ -5,7 +5,7 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
 @Component({
   selector: 'app-assign-member',
   templateUrl: './assign-member.component.html',
-  styleUrls: ['./assign-member.component.css']
+  styleUrls: ['./assign-member.component.scss']
 })
 export class AssignMemberComponent {
   @Input() title: any;
@@ -16,6 +16,6 @@ export class AssignMemberComponent {
   ) { }
 
   ngOnInit() {
-    this.dropdownService.setOptions('', ['Allot Members', 'Roshan Kanojiya', 'Bhaijan']);
+    this.dropdownService.setOptions('member', ['Allot Members', 'Roshan Kanojiya', 'Bhaijan']);
   }
 }

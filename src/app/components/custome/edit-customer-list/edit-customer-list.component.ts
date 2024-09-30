@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Password } from '@mui/icons-material';
+import { CommonComponentService } from 'src/app/common/common-component.service';
 
 @Component({
   selector: 'app-edit-customer-list',
@@ -13,7 +15,7 @@ export class EditCustomerListComponent {
 
   @Output() deleteAction = new EventEmitter();
   customerForm!: FormGroup;
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
+  constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 
 
@@ -26,8 +28,13 @@ export class EditCustomerListComponent {
       memberLoingId: ['', Validators.required],
       joinDate: ['', Validators.required],
       email: ['', Validators.required],
-      address: ['', Validators.required]
+      address: ['', Validators.required],
+      password: ['', Validators.required],
+      status: ['']
     });
+
+    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+
   }
 
   update() {

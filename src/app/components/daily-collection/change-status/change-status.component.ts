@@ -9,7 +9,7 @@ interface Transaction {
 @Component({
   selector: 'app-change-status',
   templateUrl: './change-status.component.html',
-  styleUrls: ['./change-status.component.css']
+  styleUrls: ['./change-status.component.scss']
 })
 export class ChangeStatusComponent {
 
@@ -29,6 +29,6 @@ export class ChangeStatusComponent {
 
 
   ngOnInit() {
-    this.dropdownService.setOptions('', ['Active', 'Inactive']);
+    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
 }

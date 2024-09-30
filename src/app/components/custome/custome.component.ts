@@ -8,7 +8,9 @@ import { ViewCustomerListComponent } from './view-customer-list/view-customer-li
 import { EditCustomerListComponent } from './edit-customer-list/edit-customer-list.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import Swal from 'sweetalert2';
-
+import { CustomerBulkImportComponent } from './customer-bulk-import/customer-bulk-import.component';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-custome',
   templateUrl: './custome.component.html',
@@ -18,6 +20,9 @@ export class CustomeComponent {
 
   usertype: any;
   customer_action: any;
+  tableData: any[] = [];
+
+
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -136,5 +141,73 @@ export class CustomeComponent {
     });
 
   }
+  readonly dialog7 = inject(MatDialog);
+  openDialogImport() {
+    const dialogRef = this.dialog7.open(CustomerBulkImportComponent, {
+      disableClose: true,
+      width: '500px',
+      data: {
+        title: 'Import Customers'
+      },
+    });
+
+  }
+
+  fetchCustomreData() {
+    // this.customerService.getCustomers().subscribe(
+    //   (data) => {
+    //     this.tableData = data;
+    //   },
+    //   (error) => {
+    //     console.error('Error fetching customer data', error);
+    //   }
+    // );
+  }
+
+
+  readonly dialog8 = inject(MatDialog);
+
+  openDialogDownload() {
+
+    const header = [
+      'Customer No.',
+      'Name',
+      'Mobile',
+      'Aadhar No.',
+      'Loan Amt',
+      'Pending Amt',
+      'Status'
+    ];
+
+    const rows = this.tableData.map(data => [
+      data.customerNo,
+      data.name,
+      data.mobile,
+      data.aadharNo,
+      data.loanAmt,
+      data.pendingAmt,
+      data.status
+    ]);
+
+    const worksheetData = [header, ...rows];
+    // Create a new workbook
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(worksheetData);
+    const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+
+    // Append the worksheet to the workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+    // Generate buffer
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    // Create a Blob from the buffer
+    const data: Blob = new Blob([excelBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
+
+    // Save the file
+    saveAs(data, 'table-data.xlsx');
+  }
+
 
 }
