@@ -24,12 +24,15 @@
                     <thead class="thead-light">
                         <tr>
                             <th class="col">Loan No.</th>
-                            <th class="col">Start/Apply Date</th>
-                            <th class="col">Amount</th>
-                            <th class="col">Balance</th>
-                            <th class="col">Receiver</th>
+                            <th class="col">Customer No.</th>
+                            <th class="col text-center">Logo</th>
+                            <th class="col">Name</th>
+                            <th class="col">Mobile</th>
+                            <th class="col">Assign</th>
+                            <th class="col">Loan Amt</th>
+                            <th class="col">Pending Amt</th>
                             <th class="col text-center">Status</th>
-                            <th class="col action_col">History</th>
+
                             <th class="col action_col">Action</th>
                         </tr>
                     </thead>
@@ -37,15 +40,22 @@
                         <tr>
                             <td class="col" data-name="Loan No.">Innitial</td>
                             <td class="col" data-name="Date"><small>12-Jan-2022 To -</small></td>
+                            <td class="col" data-name="Logo">
+                                <div class="list_image_block">
+                                    <img src="assets/imgs/rk-group-logo.png" />
+                                </div>
+                            </td>
                             <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>12000.00</td>
                             <td class="col" data-name="Balance"><i class="mdi mdi-currency-inr mr-1"></i>0.00</td>
+                            <td class="col" data-name="Receiver">Not Assigned</td>
+                            <td class="col" data-name="Receiver">Not Assigned</td>
                             <td class="col" data-name="Receiver">Not Assigned</td>
                             <td class="col text-center" data-name="Status">
                                 <div class="badge bg-warning text-white">Pending</div>
                             </td>
-                            <td class="col text-center" data-name="History">
 
-                            </td>
+
+
                             <td class="col text-center" data-name="Action">
 
                                 <button mat-icon-button [matMenuTriggerFor]="menu"

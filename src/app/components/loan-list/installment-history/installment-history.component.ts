@@ -10,7 +10,7 @@ interface Transaction {
 @Component({
   selector: 'app-installment-history',
   templateUrl: './installment-history.component.html',
-  styleUrls: ['./installment-history.component.css']
+  styleUrls: ['./installment-history.component.scss']
 })
 export class InstallmentHistoryComponent {
   loanDetails: any = [];
