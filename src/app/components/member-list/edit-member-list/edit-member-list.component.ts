@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { CommonComponentService } from 'src/app/common/common-component.service';
 
 @Component({
   selector: 'app-edit-member-list',
@@ -15,12 +16,12 @@ export class EditMemberListComponent {
 
   @Output() deleteAction = new EventEmitter();
   memberForm!: FormGroup;
-  constructor(public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  constructor(private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
   ngOnInit() {
     this.memberForm = this.fb.group({
-      memberNo: [''],
+      memberNo: ['', Validators.required],
       memberName: ['', Validators.required],
       mobile: ['', Validators.required],
       email: ['', Validators.required],
@@ -28,8 +29,11 @@ export class EditMemberListComponent {
       joinDate: ['', Validators.required],
       memberLoginId: ['', Validators.required],
       password: ['', Validators.required],
-      status: ['', Validators.required]
+      address: ['', Validators.required],
+      status: ['']
     });
+
+    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
 
   update() {
