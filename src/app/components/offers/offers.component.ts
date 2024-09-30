@@ -34,6 +34,7 @@ export class OffersComponent {
   readonly dialog2 = inject(MatDialog);
   openDialog2() {
     const dialogRef = this.dialog.open(AddOfferComponent, {
+      disableClose: true,
       data: {
         title: 'Add New Offers / Schems',
       },
@@ -47,6 +48,7 @@ export class OffersComponent {
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
+      disableClose: true,
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -74,6 +76,7 @@ export class OffersComponent {
   readonly dialog3 = inject(MatDialog);
   openDialog3() {
     const dialogRef = this.dialog3.open(EditOfferComponent, {
+      disableClose: true,
       data: {
         title: 'Update New Offers / Schems',
       },
@@ -101,7 +104,9 @@ export class OffersComponent {
 
   readonly dialog5 = inject(MatDialog);
   openDialog5(enterAnimationDuration: string, exitAnimationDuration: string) {
+
     const dialogRef = this.dialog5.open(DeleteComponent, {
+      disableClose: true,
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,

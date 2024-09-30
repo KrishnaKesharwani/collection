@@ -33,7 +33,6 @@ export class CompanyListComponent {
   openDialog() {
     const dialogRef = this.dialog.open(CompanyHistoryComponent, {
 
-
       data: {
         title: 'Company Plan History Details',
 
@@ -65,7 +64,7 @@ export class CompanyListComponent {
   openDialog3() {
     const dialogRef = this.dialog3.open(EditCustomerComponent, {
 
-
+      disableClose: true,
       data: {
         title: 'Update Members Details',
 
@@ -80,7 +79,7 @@ export class CompanyListComponent {
   readonly dialog4 = inject(MatDialog);
   openDialog4() {
     const dialogRef = this.dialog4.open(ReceivedAmountComponent, {
-
+      disableClose: true,
       data: {
         title: 'Received Plan Amount',
 
@@ -95,7 +94,7 @@ export class CompanyListComponent {
   openDialog5(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
-
+      disableClose: true,
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
@@ -122,6 +121,7 @@ export class CompanyListComponent {
   openDialog7(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog7.open(DeleteComponent, {
+      disableClose: true,
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -138,6 +138,7 @@ export class CompanyListComponent {
   readonly dialog6 = inject(MatDialog);
   openDialog6() {
     const dialogRef = this.dialog6.open(AddCompanyComponent, {
+      disableClose: true,
       width: 'auto',
       data: {
         title: 'Add New Company'

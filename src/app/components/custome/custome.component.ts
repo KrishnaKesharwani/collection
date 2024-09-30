@@ -35,6 +35,7 @@ export class CustomeComponent {
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
+      disableClose: true,
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -63,7 +64,7 @@ export class CustomeComponent {
   readonly dialog2 = inject(MatDialog);
   openDialog2() {
     const dialogRef = this.dialog2.open(LoanHistoryComponent, {
-      width: '100%',
+      disableClose: true,
 
       data: {
         title: 'Customer Loan History Details',
@@ -79,7 +80,8 @@ export class CustomeComponent {
   openDialog3(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(ProviderLoanComponent, {
-      width: '850px',
+      disableClose: true,
+
       data: {
         title: 'Loan Provide Details'
       },
@@ -94,7 +96,7 @@ export class CustomeComponent {
 
   openDialog4() {
     const dialogRef = this.dialog4.open(ViewCustomerListComponent, {
-      width: '50%',
+
 
       data: {
         title: 'Customer Details',
@@ -111,7 +113,7 @@ export class CustomeComponent {
 
   openDialog5() {
     const dialogRef = this.dialog2.open(EditCustomerListComponent, {
-      width: '80%',
+      disableClose: true,
 
       data: {
         title: 'Update Customer Details',
@@ -127,7 +129,7 @@ export class CustomeComponent {
   readonly dialog6 = inject(MatDialog);
   openDialog6() {
     const dialogRef = this.dialog6.open(AddCustomerComponent, {
-      width: 'auto',
+      disableClose: true,
       data: {
         title: 'Add New Customer'
       },

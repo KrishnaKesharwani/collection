@@ -17,7 +17,7 @@ export class FixedDepositComponent {
   readonly dialog4 = inject(MatDialog);
   actionDeposit() {
     const dialogRef = this.dialog4.open(AddFixedDepositComponent, {
-
+      disableClose: true,
       data: {
         title: 'Update Fixed Deposit Details',
 
@@ -33,7 +33,7 @@ export class FixedDepositComponent {
   readonly dialog = inject(MatDialog);
   openDialog() {
     const dialogRef = this.dialog.open(EditFixedDepositComponent, {
-
+      disableClose: true,
 
       data: {
         title: 'Update Fixed Deposit Details',
@@ -69,7 +69,7 @@ export class FixedDepositComponent {
   readonly dialog3 = inject(MatDialog);
   openDialog3() {
     const dialogRef = this.dialog3.open(ChangeStatusComponent, {
-
+      disableClose: true,
       data: {
         title: 'Update Status',
         field_value: 'Status'

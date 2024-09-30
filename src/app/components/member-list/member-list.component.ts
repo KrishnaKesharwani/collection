@@ -44,6 +44,7 @@ export class MemberListComponent {
   openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
+      disableClose: true,
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -71,6 +72,7 @@ export class MemberListComponent {
 
   openDialogAdd() {
     const dialogRef = this.dialog5.open(AddMemberComponent, {
+      disableClose: true,
       panelClass: 'update_dialoge',
       data: {
         title: 'Add New Member',
@@ -86,6 +88,7 @@ export class MemberListComponent {
 
   openDialogUpdateDetails() {
     const dialogRef = this.dialog2.open(EditMemberListComponent, {
+      disableClose: true,
       panelClass: 'update_dialoge',
       data: {
         title: 'Update Member',
@@ -115,6 +118,7 @@ export class MemberListComponent {
 
   openDialogAssignLoan() {
     const dialogRef = this.dialog4.open(AssignLoanComponent, {
+      disableClose: true,
       panelClass: 'view_details_popup',
       data: {
         title: 'Assign Loan History Details',

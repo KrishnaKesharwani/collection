@@ -46,7 +46,7 @@ export class AddCompanyComponent {
     // Add New Company
     this.companyForm.markAllAsTouched()
     if (this.companyForm.valid) {
-      // this.dialog.closeAll();
+      this.dialog.closeAll();
     }
   }
 

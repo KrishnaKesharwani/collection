@@ -30,8 +30,7 @@ export class LoanListComponent {
 
   openDialog() {
     const dialogRef = this.dialog.open(InstallmentHistoryComponent, {
-      width: '450px',
-
+      disableClose: true,
       data: {
         title: 'Loan Instalment History',
 
@@ -48,7 +47,7 @@ export class LoanListComponent {
   openDialog2() {
     const dialogRef = this.dialog2.open(AssignMemberComponent, {
 
-
+      disableClose: true,
       data: {
         title: 'Assign Loan Member',
 
@@ -65,7 +64,7 @@ export class LoanListComponent {
 
   openDialog3() {
     const dialogRef = this.dialog3.open(ChangeMemberComponent, {
-      width: '50%',
+      disableClose: true,
 
       data: {
         title: 'Update Loan Member',
@@ -83,7 +82,6 @@ export class LoanListComponent {
 
   openDialog4() {
     const dialogRef = this.dialog4.open(ViewDetailsComponent, {
-      width: '50%',
 
       data: {
         title: 'Loan Details',
@@ -101,7 +99,7 @@ export class LoanListComponent {
 
   openDialog5() {
     const dialogRef = this.dialog5.open(ChangeStatusComponent, {
-      width: '50%',
+      disableClose: true,
 
       data: {
         title: 'Change Loan Status',

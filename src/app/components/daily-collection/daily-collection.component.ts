@@ -27,7 +27,7 @@ export class DailyCollectionComponent {
   openDialog() {
     const dialogRef = this.dialog.open(CollectionHistoryComponent, {
 
-
+      disableClose: true,
       data: {
         title: 'Collection History',
 
@@ -43,6 +43,7 @@ export class DailyCollectionComponent {
 
   openDialog2() {
     const dialogRef = this.dialog2.open(AssignMemberComponent, {
+      disableClose: true,
       data: {
         title: 'Assign Collection Member',
 
@@ -58,6 +59,7 @@ export class DailyCollectionComponent {
 
   openDialog3() {
     const dialogRef = this.dialog3.open(ChangeMemberComponent, {
+      disableClose: true,
       data: {
         title: 'Update Collection Member',
 
@@ -89,7 +91,7 @@ export class DailyCollectionComponent {
 
   openDialog5() {
     const dialogRef = this.dialog5.open(ChangeStatusComponent, {
-
+      disableClose: true,
       data: {
         title: 'Change Member Status',
 
