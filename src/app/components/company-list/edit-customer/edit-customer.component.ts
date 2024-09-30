@@ -16,27 +16,28 @@ export class EditCustomerComponent {
 
   ngOnInit() {
     this.companyForm = this.fb.group({
-      companyName: [''],
+      companyName: ['', Validators.required],
       ownerName: ['', Validators.required],
       mobile: ['', Validators.required],
       adharNumber: ['', Validators.required],
-      startDate: [''],
-      endDate: [''],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
       plan: [''],
-      totalAmount: [''],
-      advaceAmount: [''],
+      totalAmount: ['', Validators.required],
+      advaceAmount: ['', Validators.required],
       status: [''],
-      customerLoginId: [''],
-      password: [''],
+      companyLoginId: ['', Validators.required],
+      password: ['', Validators.required],
       companyLogo: [''],
       sidebarLogo: [''],
       faviconIcon: [''],
       ownerImgae: [''],
-      address: [''],
-      details: ['']
+      address: ['', Validators.required],
+      details: ['', Validators.required]
     });
 
-    this.dropdownService.setOptions('', ['Plan']);
+    this.dropdownService.setOptions('plan', ['Monthly', 'Yearly', 'Demo']);
+    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
 
 

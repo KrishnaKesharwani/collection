@@ -20,12 +20,24 @@
                                         <i class="mdi mdi-account"></i>
                                         <span class="btn-txt button-text">Add Customer</span>
                                     </button>
+                                    <button data-toggle="modal" (click)="openDialogImport()"
+                                        data-target="#actionCustomer_modal"
+                                        class="btn btn-success btn-sm create_header_btn" mat-raised-button>
+                                        <i class="mdi mdi-account"></i>
+                                        <span class="btn-txt button-text">Import Customer</span>
+                                    </button>
+                                    <button data-toggle="modal" (click)="openDialogDownload()"
+                                        data-target="#actionCustomer_modal"
+                                        class="btn btn-success btn-sm create_header_btn" mat-raised-button>
+                                        <i class="mdi mdi-account"></i>
+                                        <span class="btn-txt button-text">Download</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <table class="table align-items-center table-flush mydata-table">
+                <table class="table align-items-center table-flush mydata-table" id="customerData">
                     <thead class="thead-light">
                         <tr>
                             <th class="col">Customer No.</th>
