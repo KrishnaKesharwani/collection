@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { CommonComponentService } from 'src/app/common/common-component.service';
 
 @Component({
   selector: 'app-add-fixed-deposit',
@@ -12,7 +13,7 @@ export class AddFixedDepositComponent {
   @Input() title: any;
   @Output() deleteAction = new EventEmitter();
   fixedDepositForm!: FormGroup;
-  constructor(public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  constructor(public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
 
@@ -34,6 +35,9 @@ export class AddFixedDepositComponent {
       start_date: [''],
       end_date: ['']
     });
+
+    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+
   }
 
   save() {

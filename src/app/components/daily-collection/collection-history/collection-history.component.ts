@@ -10,7 +10,7 @@ interface Transaction {
 @Component({
   selector: 'app-collection-history',
   templateUrl: './collection-history.component.html',
-  styleUrls: ['./collection-history.component.css']
+  styleUrls: ['./collection-history.component.scss']
 })
 export class CollectionHistoryComponent {
 
