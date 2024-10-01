@@ -77,7 +77,18 @@ h5,
     overflow: auto;
     flex-flow: column;
 }
-
+.fullwidth_model {
+    width: 99vw;
+    max-width: 99vw !important; 
+    .internal_height_cover {
+        height: calc(100vh - 140px);
+        display: flex;
+        overflow: auto;
+        flex-flow: column;
+        padding: 15px;
+        background: #f5f5ff;
+    }
+}
 .dialoge_middle_container {
     padding: 20px 15px;
     background: #f5f5ff;

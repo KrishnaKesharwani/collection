@@ -1,0 +1,8 @@
+[01-10-2024]
+ng add angular-datatables      
+npm install @types/datatables.net --save-dev    
+npm install datatables.net --save
+npm i xlsx
+npm i --save-dev @types/file-saver
+
+npm i sweetalert2 

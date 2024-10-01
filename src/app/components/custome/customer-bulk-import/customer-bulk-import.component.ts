@@ -6,7 +6,7 @@ import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-customer-bulk-import',
   templateUrl: './customer-bulk-import.component.html',
-  styleUrls: ['./customer-bulk-import.component.css']
+  styleUrls: ['./customer-bulk-import.component.scss']
 })
 export class CustomerBulkImportComponent {
   data: any[] = [];

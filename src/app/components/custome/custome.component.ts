@@ -149,7 +149,7 @@ export class CustomeComponent {
   openDialogImport() {
     const dialogRef = this.dialog7.open(CustomerBulkImportComponent, {
       disableClose: true,
-      width: '500px',
+      panelClass: 'fullwidth_model',
       data: {
         title: 'Import Customers'
       },

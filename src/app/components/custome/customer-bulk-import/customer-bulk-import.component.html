@@ -2,36 +2,32 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-
-<div class="dialoge_middle_container full_height_cover">
+<div class="dialoge_middle_container internal_height_cover">
     <form focusInvalidInput [formGroup]="customerImportForm">
-        <div class="modal_insert">
-            <div class="row">
-                <div class="col-sm-12 col-lg-12 col-xs-12">
-                    <mat-label>Import Customers</mat-label>
-                    <app-fileupload formControlName="customer" name="customer" class="fileupload"
-                        (change)="handleFileInput($event)"></app-fileupload>
-                </div>
-            </div>
+        <div class="right_import_data global_textbox_block">
+            <mat-label>Import Customers</mat-label>
+            <app-fileupload formControlName="customer" name="customer" class="fileupload"
+                (change)="handleFileInput($event)"></app-fileupload>
         </div>
     </form>
+    <table class="table table-bordered table-responsive popup_table bg-white more_table" *ngIf="data.length">
+        <thead>
+            <tr>
+                <th *ngFor="let key of (data[0] | keys)">{{ key }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data">
+                <td *ngFor="let key of (item | keys)">{{ item[key] }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
     <button class="global_submit_btn" mat-flat-button (click)="submit()">Submit</button>
 </div>
-<table *ngIf="data.length">
-    <thead>
-        <tr>
-            <th *ngFor="let key of (data[0] | keys)">{{ key }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of data">
-            <td *ngFor="let key of (item | keys)">{{ item[key] }}</td>
-        </tr>
-    </tbody>
-</table>
+
 
 <!-- <input <mat-form-field class="example-full-width" appearance="outline"> (change)="handleFileInput($event)" />
 
