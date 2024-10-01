@@ -37,7 +37,10 @@
                         </div>
                     </div>
                 </div>
-                <table class="table align-items-center table-flush mydata-table" id="customerData">
+
+                <app-global-datatable [data]="customerData" [columns]="columns"></app-global-datatable>
+
+                <!-- <table class="table align-items-center table-flush mydata-table" id="customerData">
                     <thead class="thead-light">
                         <tr>
                             <th class="col">Customer No.</th>
@@ -112,7 +115,7 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
             </div>
         </div>
     </div>

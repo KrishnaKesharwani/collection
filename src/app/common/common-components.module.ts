@@ -9,6 +9,8 @@ import { DropdwonComponent } from './dropdwon/dropdwon.component';
 import { MaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputFieldValidationComponent } from './input-field-validation/input-field-validation.component';
+import { GlobalDatatableComponent } from './global-datatable/global-datatable.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -18,14 +20,16 @@ import { InputFieldValidationComponent } from './input-field-validation/input-fi
     InputComponent,
     FileuploadComponent,
     DropdwonComponent,
-    InputFieldValidationComponent
+    InputFieldValidationComponent,
+    GlobalDatatableComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+
   ],
-  exports: [InputFieldValidationComponent, DropdwonComponent, FileuploadComponent]
+  exports: [InputFieldValidationComponent, DropdwonComponent, FileuploadComponent, GlobalDatatableComponent]
 })
 export class CommonComponentsModule { }

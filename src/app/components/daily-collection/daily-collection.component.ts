@@ -3,8 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { CollectionHistoryComponent } from './collection-history/collection-history.component';
 import { AssignMemberComponent } from './assign-member/assign-member.component';
 import { ChangeMemberComponent } from './change-member/change-member.component';
-import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
+import { CommonComponentService } from 'src/app/common/common-component.service';
+import { ViewDetailsComponent } from './view-details/view-details.component';
 
 @Component({
   selector: 'app-daily-collection',
@@ -13,9 +14,10 @@ import { ChangeStatusComponent } from './change-status/change-status.component';
 })
 export class DailyCollectionComponent {
   loanassign_action = 0;
-  constructor() { }
+  constructor(public dropdownService: CommonComponentService) { }
 
   ngOnInit(): void {
+    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
 
   loanAssignMember(action: number) {

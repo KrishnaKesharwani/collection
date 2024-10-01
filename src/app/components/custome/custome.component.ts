@@ -21,7 +21,11 @@ export class CustomeComponent {
   usertype: any;
   customer_action: any;
   tableData: any[] = [];
-
+  columns = ['customerNo', 'name', 'mobile', 'aadharNo', 'loanAmt', 'pendingAmt', 'status'];
+  customerData = [
+    { customerNo: 1, name: 'John Doe', mobile: '1234567890', aadharNo: '1111-2222-3333', loanAmt: 50000, pendingAmt: 10000, status: 'Active' },
+    // Add more customer objects
+  ];
 
   constructor(public dialog: MatDialog) { }
 

@@ -57,6 +57,7 @@ import { CommonComponentsModule } from './common/common-components.module';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './authentication/token.interceptor';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DataTablesModule } from 'angular-datatables';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
@@ -89,7 +90,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     OffersModule,
     PaidDataEntryModule,
     LoginModule,
-    // CommonComponentsModule
+    CommonComponentsModule,
+    DataTablesModule
     // MaterialModule,
     // AdminDashboardModule,
     // FixedDepositModule

@@ -1,0 +1,12 @@
+<table #dataTable class="table align-items-center table-flush mydata-table" style="width: 100%">
+    <thead class="thead-light">
+        <tr>
+            <th class="col" *ngFor="let column of columns">{{ column }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of data">
+            <td class="col" *ngFor="let column of columns">{{ row[column] }}</td>
+        </tr>
+    </tbody>
+</table>
