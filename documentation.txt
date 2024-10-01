@@ -4,13 +4,16 @@ Money Collection Setup Requirements:
 1. Basic Configurations:
 ========================
 - Node JS:
+setup: version v20.9.0
 
 - Check NPM Version:
+by default after node.js : version 10.1.0
 
 - Angular CLI:
+cmd: npm i @angular/cli@16.2.15   
 
 - Angular Material:
-
+cmd: ng add @angular/material
 
 ========================
 2. Thrid Party Packages:
@@ -31,3 +34,44 @@ cmd: npm i xlsx
 - File Saver
 cmd: npm i file-saver   
      npm i --save-dev @types/file-saver[01-10-2024]
+
+
+
+> [!NOTE]
+>
+> - (✓) = Added
+> - (-) = Ignored (Not Added)
+
+| Component       | Included |
+| --------------- | :------: |
+| Accordion       |    -     |
+| Alert Dialog    |    ✓     |
+| Aspect Ratio    |    -     |
+| Avatar          |    ✓     |
+| Badge           |    ✓     |
+| Button          |    ✓     |
+| Card            |    ✓     |
+| Checkbox        |    ✓     |
+| Collapsible     |    -     |
+| Context Menu    |    -     |
+| Dialog          |    ✓     |
+| Dropdown Menu   |    ✓     |
+| Hover Card      |    -     |
+| Input           |    ✓     |
+| Label           |    ✓     |
+| Menubar         |    -     |
+| Navigation Menu |    -     |
+| Popover         |    -     |
+| Radio Group     |    ✓     |
+| Select          |    ✓     |
+| Separator       |    ✓     |
+| Skeleton        |    ✓     |
+| Switch          |    ✓     |
+| Table           |    -     |
+| Tabs            |    -     |
+| Text            |    ✓     |
+| Textarea        |    ✓     |
+| Toggle          |    -     |
+| Toggle Group    |    -     |
+| Tooltip         |    -     |
+| Typography      |    ✓     |
