@@ -8,13 +8,13 @@ import { Observable, tap } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'https://dummyjson.com/auth/login'; // Replace with your API URL
+  private apiUrl = 'https://pinku.tech/moneyCollectionBackend/api'; // Replace with your API URL
   private token: string | null = null;
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(credentials: { username: string; password: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
+  login(obj: object): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`, obj).pipe(
       tap((response: any) => {
         this.token = response.token;
 

@@ -5,12 +5,12 @@
         </div>
         <mat-card appearance="outlined" class="login_card" *ngIf="showlogo">
             <div class="card-body">
-                <form>
+                <form [formGroup]="loginForm">
                     <div class="form_control_row">
                         <mat-form-field class="global_input_block password_icons" appearance="outline">
                             <mat-label>User Name</mat-label>
                             <mat-icon class="input_right_icons">perm_identity</mat-icon>
-                            <input type="text" [(ngModel)]="credentials.username" name="username" required
+                            <input type="text" formControlName="email" name="email" required
                                 placeholder="Enter Username" matInput autocomplete="new-password" />
                         </mat-form-field>
                     </div>
@@ -20,7 +20,7 @@
                             <mat-icon class="input_right_icons" (click)="hide = !hide">{{
                                 hide ? "visibility_off" : "visibility"
                                 }}</mat-icon>
-                            <input [(ngModel)]="credentials.password" name="password" required maxlength="32" matInput
+                            <input formControlName="password" name="password" required maxlength="32" matInput
                                 [type]="hide ? 'password' : 'text'" class="placeholder" />
                         </mat-form-field>
                     </div>

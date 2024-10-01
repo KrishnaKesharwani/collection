@@ -4,10 +4,7 @@ import { LoginComponent } from './authentication/login/login.component';
 
 const routes: Routes = [
 
-  {
-    path: '',
-    loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule)
-  },
+
   {
     path: 'superadmin_dashboard',
     loadChildren: () => import('./components/superadmin-dashboard/super-admin-dashboard.module').then(m => m.SuperAdminDashboardModule)

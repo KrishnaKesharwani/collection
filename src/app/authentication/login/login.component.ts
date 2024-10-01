@@ -23,7 +23,8 @@ export class LoginComponent {
   subscription_popup = 0;
   subscriptionClass = 'subscription_section';
   hide = true;
-
+  userLoginDetails: any = [];
+  usertype: any;
   constructor(private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -39,9 +40,8 @@ export class LoginComponent {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      user_id: ['', Validators.required],
-      password: ['', Validators.required],
-      user_type: [1],
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -57,9 +57,24 @@ export class LoginComponent {
 
   check_authorizartion(): void {
 
-    this.authService.login(this.credentials).subscribe(
-      () => {
-        // Navigate to the dashboard or wherever
+    console.log(this.loginForm.value)
+    this.authService.login(this.loginForm.value).subscribe(
+      (data) => {
+        console.log(data);
+        this.userLoginDetails = data.user
+        localStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
+        if (this.userLoginDetails.user_type == 0) {
+          this.router.navigate(['/superadmin_dashboard']);
+        } else if (this.userLoginDetails.user_type == 1) {
+          this.router.navigate(['/admin_dashboard']);
+        } else if (this.userLoginDetails.user_type == 2) {
+          this.router.navigate(['/member_dashboard']);
+        } else {
+          this.router.navigate(['/user_dashboard']);
+        }
+
+
+
         this.errorMessage = null;
       },
       error => {

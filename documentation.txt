@@ -1,8 +1,33 @@
-[01-10-2024]
-ng add angular-datatables      
-npm install @types/datatables.net --save-dev    
-npm install datatables.net --save
-npm i xlsx
-npm i --save-dev @types/file-saver
+Money Collection Setup Requirements:
+====================================
 
-npm i sweetalert2 
+1. Basic Configurations:
+========================
+- Node JS:
+
+- Check NPM Version:
+
+- Angular CLI:
+
+- Angular Material:
+
+
+========================
+2. Thrid Party Packages:
+========================
+- Tostr:
+cmd: npm i ngx-toastr
+
+- Sweetalert2
+
+- Datatable
+cmd: ng add angular-datatables
+     npm install @types/datatables.net --save-dev
+     npm install datatables.net --save
+
+- XLSX
+cmd: npm i xlsx
+
+- File Saver
+cmd: npm i file-saver   
+     npm i --save-dev @types/file-saver[01-10-2024]

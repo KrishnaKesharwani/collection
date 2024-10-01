@@ -11,10 +11,23 @@ export class SidebarComponent {
   apic_sync_success = false;
   loading = false;
   staff_detail: any
+  usertype: any;
+  user_type: any;
+  userData: any;
   constructor(private formBuilder: FormBuilder, private router: Router) {
   }
 
   ngOnInit(): void {
+    const data = localStorage.getItem('CurrentUser');
+
+    if (data) {
+      const userData = JSON.parse(data);
+      this.user_type = userData.user_type
+    } else {
+      console.error('No user data found in localStorage.');
+      this.user_type = null; // or set a default value
+    }
+
   }
 
   onLetfMenuClick($event: { target: any; srcElement: any; }) {

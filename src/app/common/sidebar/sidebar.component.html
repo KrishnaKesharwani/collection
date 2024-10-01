@@ -25,46 +25,61 @@
                 </div>
             </div> -->
             <ul class="navbar-nav left-menu" (click)="onLetfMenuClick($event)">
-                <li class="nav-item">
-                    <a routerLink="/user_dashboard" class="nav-link"> <i class="mdi mdi-home-outline"></i>
+                <li class="nav-item" *ngIf="user_type == 0">
+                    <a routerLink="/superadmin_dashboard" class="nav-link active"> <i class="mdi mdi-home-outline"></i>
                         Dashboard
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a routerLink="/company_list" class="nav-link active"> <i class="mdi mdi-account-group-outline"></i>
+                <li class="nav-item" *ngIf="user_type == 1">
+                    <a routerLink="/admin_dashboard" class="nav-link active"> <i class="mdi mdi-home-outline"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="user_type == 2">
+                    <a routerLink="/member_dashboard" class="nav-link active"> <i class="mdi mdi-home-outline"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="user_type == 3">
+                    <a routerLink="/user_dashboard" class="nav-link active"> <i class="mdi mdi-home-outline"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="user_type == 0">
+                    <a routerLink="/company_list" class="nav-link "> <i class="mdi mdi-account-group-outline"></i>
                         Company List
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/member_list" class="nav-link"> <i class="mdi mdi-account-tie"></i> Members List
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="user_type == 1 || user_type == 2">
                     <a routerLink="/customer_list" class="nav-link"> <i class="mdi mdi-account-group-outline"></i>
                         Customer List
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="user_type == 3">
                     <a routerLink="/loan_list" class="nav-link"> <i class="mdi mdi-account-switch-outline"></i> Loan
                         List
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="user_type == 2 || user_type == 3">
                     <a routerLink="/daily_collection" class="nav-link"> <i class="mdi mdi-account-alert-outline"></i>
                         Daily Collection
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="user_type != 0">
                     <a routerLink="/offers" class="nav-link"> <i class="mdi mdi-tag-multiple-outline"></i>Offers
                         List</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/collect_money" class="nav-link"> <i class="mdi mdi-account-cash-outline"></i>
                         Collect Money
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/fixed_deposit" class="nav-link"> <i
                             class="mdi mdi-card-account-details-star-outline"></i> Fixed Deposit
                     </a>
