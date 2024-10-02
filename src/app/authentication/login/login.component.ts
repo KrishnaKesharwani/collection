@@ -64,12 +64,14 @@ export class LoginComponent {
           console.log(data);
           this.userLoginDetails = data.user
           localStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
+          this.toastr.success('Success');
           this.router.navigate(['/dashboard']);
 
 
           this.errorMessage = null;
         },
         error => {
+          this.toastr.error('Error');
           this.errorMessage = 'Login failed. Please check your credentials.';
         }
       );
