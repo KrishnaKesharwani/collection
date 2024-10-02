@@ -31,6 +31,7 @@ h5,
 .mat-typography h5 {
     font-family: "Poppins", sans-serif !important;
     font-size: initial;
+    font-weight: 400;
 }
 
 :root {
@@ -38,6 +39,7 @@ h5,
     --theme-bggraycolor: #f4f4f4;
     --theme-primary-color: #e20813;
     --theme-secondary-color: #000000;
+    --theme-danger-color: #ff0000;
     --app-brand-font: Montserrat, sans-serif;
     --app-brand-shadow: 0px 11px 19px rgba(0, 0, 0, 0.2);
     --app-brand-card-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
@@ -244,7 +246,9 @@ mat-option {
     outline: none !important;
     appearance: none !important;
 }
-
+.middle_dialoge {
+    width: 767px;
+}
 /* // Used Css For above */
 .list_image_block {
     width: 40px;
@@ -344,6 +348,10 @@ mat-option {
         width: 100%;
         padding: 0px 10px;
     }
+    .col-sm-9 {
+        width: 75%;
+        padding: 0px 10px;
+    }
 }
 .small_popup {
     width: 500px;
@@ -362,6 +370,23 @@ mat-option {
         z-index: 2;
         color: #ff0000;
         border-radius: 5px;
+    }
+}
+.btn_download {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme-danger-color);
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0px auto;
+    transition: .5s all;
+    &:hover{
+        box-shadow: var(--app-brand-shadow);
     }
 }
 .pl-0 {
@@ -1404,19 +1429,19 @@ mark {
     }
 }
 
-.popup_table {
-    display: inline-block;
-    position: relative;
-    margin: 0px;
+// .popup_table {
+//     display: inline-block;
+//     position: relative;
+//     margin: 0px;
 
-    tr td,
-    tr th {
-        font-size: 12px;
-        text-transform: capitalize;
-        white-space: inherit;
-        max-width: 250px;
-    }
-}
+//     tr td,
+//     tr th {
+//         font-size: 12px;
+//         text-transform: capitalize;
+//         white-space: inherit;
+//         max-width: 250px;
+//     }
+// }
 
 .fileupload {
     width: 100%;
