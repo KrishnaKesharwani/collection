@@ -58,20 +58,25 @@ export class LoginComponent {
   check_authorizartion(): void {
 
     console.log(this.loginForm.value)
-    this.authService.login(this.loginForm.value).subscribe(
-      (data) => {
-        console.log(data);
-        this.userLoginDetails = data.user
-        localStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
-        this.router.navigate(['/dashboard']);
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe(
+        (data) => {
+          if (data.success) {
+            console.log(data);
+            this.userLoginDetails = data.user
+            localStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
+            this.router.navigate(['/dashboard']);
 
 
-        this.errorMessage = null;
-      },
-      error => {
-        this.errorMessage = 'Login failed. Please check your credentials.';
-      }
-    );
+            this.errorMessage = null;
+          } else {
+            this.errorMessage = "Invalid credentials";
+          }
+
+        },
+
+      );
+    }
   }
 
 

@@ -12,6 +12,9 @@
                             <mat-icon class="input_right_icons">perm_identity</mat-icon>
                             <input type="text" formControlName="email" name="email" required
                                 placeholder="Enter Username" matInput autocomplete="new-password" />
+                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="loginForm"
+                                [key]="'email'" [displayMsg]="'Email is required'">
+                            </app-input-field-validation>
                         </mat-form-field>
                     </div>
                     <div class="form_control_row">
@@ -22,6 +25,9 @@
                                 }}</mat-icon>
                             <input formControlName="password" name="password" required maxlength="32" matInput
                                 [type]="hide ? 'password' : 'text'" class="placeholder" />
+                            <app-input-field-validation [className]="'bottom_error_msg'" [form]="loginForm"
+                                [key]="'password'" [displayMsg]="'Password is required'">
+                            </app-input-field-validation>
                         </mat-form-field>
                     </div>
                     <div class="login-btnblock text-center mt-3">
@@ -32,6 +38,7 @@
                             <span>Login</span>
                         </button>
                     </div>
+                    <span *ngIf="!errorMessage">{{errorMessage}}</span>
                 </form>
             </div>
         </mat-card>
