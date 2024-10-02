@@ -11,7 +11,7 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
 export class AddCompanyComponent {
 
   companyForm!: FormGroup;
-
+  company_id!: 1;
   constructor(private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 
@@ -81,7 +81,13 @@ export class AddCompanyComponent {
     console.log(file);
   }
 
-
+  update() {
+    // Add New Company
+    this.companyForm.markAllAsTouched()
+    if (this.companyForm.valid) {
+      // this.dialog.closeAll();
+    }
+  }
 
 
 

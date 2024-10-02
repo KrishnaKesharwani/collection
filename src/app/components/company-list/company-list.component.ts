@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CompanyHistoryComponent } from './company-history/company-history.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
-import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { ReceivedAmountComponent } from './received-amount/received-amount.component';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
@@ -62,7 +61,7 @@ export class CompanyListComponent {
 
   readonly dialog3 = inject(MatDialog);
   openDialog3() {
-    const dialogRef = this.dialog3.open(EditCustomerComponent, {
+    const dialogRef = this.dialog3.open(AddCompanyComponent, {
 
       disableClose: true,
       data: {

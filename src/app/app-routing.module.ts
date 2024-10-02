@@ -17,22 +17,22 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
-  {
-    path: 'superadmin_dashboard',
-    loadChildren: () => import('./components/superadmin-dashboard/super-admin-dashboard.module').then(m => m.SuperAdminDashboardModule)
-  },
-  {
-    path: 'admin_dashboard',
-    loadChildren: () => import('./components/admin-dashboard/admin-dashboard-routing.module').then(m => m.AdminDashboardRoutingModule)
-  },
-  {
-    path: 'member_dashboard',
-    loadChildren: () => import('./components/member-dashboard/member-dashboard.module').then(m => m.MemberDashboardModule)
-  },
-  {
-    path: 'user_dashboard',
-    loadChildren: () => import('./components/user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule)
-  },
+  // {
+  //   path: 'superadmin_dashboard',
+  //   loadChildren: () => import('./components/superadmin-dashboard/super-admin-dashboard.module').then(m => m.SuperAdminDashboardModule)
+  // },
+  // {
+  //   path: 'admin_dashboard',
+  //   loadChildren: () => import('./components/admin-dashboard/admin-dashboard-routing.module').then(m => m.AdminDashboardRoutingModule)
+  // },
+  // {
+  //   path: 'member_dashboard',
+  //   loadChildren: () => import('./components/member-dashboard/member-dashboard.module').then(m => m.MemberDashboardModule)
+  // },
+  // {
+  //   path: 'user_dashboard',
+  //   loadChildren: () => import('./components/user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule)
+  // },
   {
     path: 'fixed_deposit',
     loadChildren: () => import('./components/fixed-deposit/fixed-deposit.module').then(m => m.FixedDepositModule)
