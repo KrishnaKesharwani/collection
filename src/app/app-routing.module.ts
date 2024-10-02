@@ -86,6 +86,10 @@ const routes: Routes = [
     path: 'reports',
     loadChildren: () => import('./components/reports/reports.module').then(m => m.ReportsModule)
   },
+  {
+    path: 'change_password',
+    loadChildren: () => import('./components/reports/reports.module').then(m => m.ReportsModule)
+  },
   { path: '**', component: LoginComponent }
 ]
 

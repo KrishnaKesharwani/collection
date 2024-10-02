@@ -67,8 +67,7 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
 
     NumberToWordsPipe,
     SearchPipe,
-    SidebarComponent,
-    HeaderComponent
+    SidebarComponent
 
   ],
   imports: [

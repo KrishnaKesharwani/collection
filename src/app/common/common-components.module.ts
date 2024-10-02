@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputFieldValidationComponent } from './input-field-validation/input-field-validation.component';
 import { GlobalDatatableComponent } from './global-datatable/global-datatable.component';
 import { DataTablesModule } from 'angular-datatables';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { DataTablesModule } from 'angular-datatables';
     FileuploadComponent,
     DropdwonComponent,
     InputFieldValidationComponent,
-    GlobalDatatableComponent
+    GlobalDatatableComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,6 @@ import { DataTablesModule } from 'angular-datatables';
     FormsModule,
 
   ],
-  exports: [InputFieldValidationComponent, DropdwonComponent, FileuploadComponent, GlobalDatatableComponent]
+  exports: [InputFieldValidationComponent, DropdwonComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent]
 })
 export class CommonComponentsModule { }
