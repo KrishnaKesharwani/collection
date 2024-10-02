@@ -15,9 +15,17 @@ export interface DialogData {
 export class AdminDashboardComponent {
   animal!: string;
   name!: string;
+  userType: any;
   constructor(public dialog: MatDialog) { }
   ngOnInit() {
-
+    const data = localStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.userType = userData.user_type
+    } else {
+      console.error('No user data found in localStorage.');
+      this.userType = null; // or set a default value
+    }
   }
 
   openDialog(): void {

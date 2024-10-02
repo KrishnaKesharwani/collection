@@ -12,6 +12,7 @@ import { SuperAdminDashboardRoutingModule } from './super-admin-dashboard-routin
     CommonModule,
     MaterialModule,
     SuperAdminDashboardRoutingModule
-  ]
+  ],
+  exports: [SuperadminDashboardComponent]
 })
 export class SuperAdminDashboardModule { }

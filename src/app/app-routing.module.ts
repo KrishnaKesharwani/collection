@@ -4,7 +4,19 @@ import { LoginComponent } from './authentication/login/login.component';
 
 const routes: Routes = [
 
-
+  {
+    path: "",
+    redirectTo: "login",
+    pathMatch: "full",
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
   {
     path: 'superadmin_dashboard',
     loadChildren: () => import('./components/superadmin-dashboard/super-admin-dashboard.module').then(m => m.SuperAdminDashboardModule)

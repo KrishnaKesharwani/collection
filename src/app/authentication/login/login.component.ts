@@ -63,16 +63,7 @@ export class LoginComponent {
         console.log(data);
         this.userLoginDetails = data.user
         localStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
-        if (this.userLoginDetails.user_type == 0) {
-          this.router.navigate(['/superadmin_dashboard']);
-        } else if (this.userLoginDetails.user_type == 1) {
-          this.router.navigate(['/admin_dashboard']);
-        } else if (this.userLoginDetails.user_type == 2) {
-          this.router.navigate(['/member_dashboard']);
-        } else {
-          this.router.navigate(['/user_dashboard']);
-        }
-
+        this.router.navigate(['/dashboard']);
 
 
         this.errorMessage = null;

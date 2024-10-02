@@ -58,6 +58,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { TokenInterceptor } from './authentication/token.interceptor';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DataTablesModule } from 'angular-datatables';
+import { DashboardModule } from './components/dashboard/dashboard.module';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
@@ -77,15 +78,15 @@ import { DataTablesModule } from 'angular-datatables';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    UserDashboardModule,
 
-    AdminDashboardModule,
+    DashboardModule,
+
     CollectionListModule,
     CollectMoneyModule,
     CompanyListModule,
     LoanListModule,
     MasterLoanListModule,
-    MemberDashboardModule,
+
     MoneyReceivedModule,
     OffersModule,
     PaidDataEntryModule,

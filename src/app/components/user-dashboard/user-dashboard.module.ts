@@ -12,6 +12,7 @@ import { UserDashboarddRoutingModule } from './user-dashboardd-routing.module';
     CommonModule,
     MaterialModule,
     UserDashboarddRoutingModule
-  ]
+  ],
+  exports: [UserDashboardComponent]
 })
 export class UserDashboardModule { }

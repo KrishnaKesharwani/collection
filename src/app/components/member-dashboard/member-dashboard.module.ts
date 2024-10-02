@@ -12,6 +12,7 @@ import { MemberDashboardRoutingModule } from './member-dashboard-routing.module'
     CommonModule,
     MaterialModule,
     MemberDashboardRoutingModule
-  ]
+  ],
+  exports: [MemberDashboardComponent]
 })
 export class MemberDashboardModule { }

@@ -15,6 +15,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from 'src/app/material.module';
 import { MassageForApplierComponent } from './massage-for-applier/massage-for-applier.component';
+import { SuperAdminDashboardModule } from '../superadmin-dashboard/super-admin-dashboard.module';
+import { MemberDashboardModule } from '../member-dashboard/member-dashboard.module';
+import { UserDashboardModule } from '../user-dashboard/user-dashboard.module';
 @NgModule({
   declarations: [AdminDashboardComponent, MassageForApplierComponent],
   imports: [
@@ -23,6 +26,7 @@ import { MassageForApplierComponent } from './massage-for-applier/massage-for-ap
     AdminDashboardRoutingModule,
 
     MaterialModule
-  ]
+  ],
+  exports: [AdminDashboardComponent]
 })
 export class AdminDashboardModule { }
