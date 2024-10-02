@@ -61,22 +61,20 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
-          if (data.success) {
-            console.log(data);
-            this.userLoginDetails = data.user
-            localStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
-            this.router.navigate(['/dashboard']);
+          console.log(data);
+          this.userLoginDetails = data.user
+          localStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
+          this.router.navigate(['/dashboard']);
 
 
-            this.errorMessage = null;
-          } else {
-            this.errorMessage = "Invalid credentials";
-          }
-
+          this.errorMessage = null;
         },
-
+        error => {
+          this.errorMessage = 'Login failed. Please check your credentials.';
+        }
       );
     }
+
   }
 
 
