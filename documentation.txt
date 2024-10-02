@@ -45,12 +45,12 @@ cmd: npm i file-saver
 | Component       | Included |
 | --------------- | :------: |
 | Accordion       |    -     |
-| Alert Dialog    |    ✓     |
+| Alert Dialog    |    -     |
 | Aspect Ratio    |    -     |
 | Avatar          |    ✓     |
 | Badge           |    ✓     |
 | Button          |    ✓     |
-| Card            |    ✓     |
+| Card            |    -     |
 | Checkbox        |    ✓     |
 | Collapsible     |    -     |
 | Context Menu    |    -     |
@@ -75,3 +75,18 @@ cmd: npm i file-saver
 | Toggle Group    |    -     |
 | Tooltip         |    -     |
 | Typography      |    ✓     |
+=================================
+
+Project Conversion:
+====================
+
+Lower to Higher Version:
+Step 1. Need to check nodejs version (download nodejs compatible to target angular version)
+Step 2. Ex:
+ angular 12 to 13+
+ - need to upgrade angular cli version one by one like 12 to 13, 13 to 14 and so on...
+ cmd: ng update @angular/cli @angular/core
+               OR
+      ng update @angular/cli@^<major_version> @angular/core@^<major_version>
+       (ng update @angular/cli@^13 @angular/core@^13)
+
