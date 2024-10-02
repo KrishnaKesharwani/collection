@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MassageForApplierComponent } from './massage-for-applier/massage-for-applier.component';
+import { ActionForLoanComponent } from './action-for-loan/action-for-loan.component';
+import { ViewDetailsComponent } from './view-details/view-details.component';
 
 export interface DialogData {
   animal: string;
@@ -41,5 +43,32 @@ export class AdminDashboardComponent {
 
   submitMessage() {
 
+  }
+
+
+
+  // start view details
+  readonly dialog2 = inject(MatDialog);
+  openDialogViewDetails() {
+    const dialogRef = this.dialog2.open(ViewDetailsComponent, {
+
+
+      data: {
+        title: 'Apply Loan Coustomer Details',
+
+      },
+    });
+  }
+
+  readonly dialog3 = inject(MatDialog);
+  openDialogActionForLoan() {
+    const dialogRef = this.dialog3.open(ActionForLoanComponent, {
+
+
+      data: {
+        title: 'Massage For Applier',
+
+      },
+    });
   }
 }

@@ -52,11 +52,11 @@
                         </button>
                         <mat-menu #menu="matMenu">
                             <div class="table_actionmenu">
-                                <button mat-menu-item>
+                                <button mat-menu-item (click)="openDialogActionForLoan()">
                                     <i class="mdi mdi-message mr-2"></i>
                                     <span>Action For Loan</span>
                                 </button>
-                                <button mat-menu-item>
+                                <button mat-menu-item (click)="openDialogViewDetails()">
                                     <i class="mdi mdi-eye mr-2"></i>
                                     <span>View Details</span>
                                 </button>

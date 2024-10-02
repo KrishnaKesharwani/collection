@@ -18,14 +18,18 @@ import { MassageForApplierComponent } from './massage-for-applier/massage-for-ap
 import { SuperAdminDashboardModule } from '../superadmin-dashboard/super-admin-dashboard.module';
 import { MemberDashboardModule } from '../member-dashboard/member-dashboard.module';
 import { UserDashboardModule } from '../user-dashboard/user-dashboard.module';
+import { ActionForLoanComponent } from './action-for-loan/action-for-loan.component';
+import { ViewDetailsComponent } from './view-details/view-details.component';
+import { CommonComponentsModule } from 'src/app/common/common-components.module';
 @NgModule({
-  declarations: [AdminDashboardComponent, MassageForApplierComponent],
+  declarations: [AdminDashboardComponent, MassageForApplierComponent, ActionForLoanComponent, ViewDetailsComponent],
   imports: [
     CommonModule,
 
     AdminDashboardRoutingModule,
 
-    MaterialModule
+    MaterialModule,
+    CommonComponentsModule
   ],
   exports: [AdminDashboardComponent]
 })
