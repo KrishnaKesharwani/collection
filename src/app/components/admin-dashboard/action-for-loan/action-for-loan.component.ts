@@ -5,7 +5,7 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
 @Component({
   selector: 'app-action-for-loan',
   templateUrl: './action-for-loan.component.html',
-  styleUrls: ['./action-for-loan.component.css']
+  styleUrls: ['./action-for-loan.component.scss']
 })
 export class ActionForLoanComponent {
 

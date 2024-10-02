@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { EditFixedDepositComponent } from './edit-fixed-deposit/edit-fixed-deposit.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
@@ -32,7 +31,7 @@ export class FixedDepositComponent {
   // start edit fixed deposit 
   readonly dialog = inject(MatDialog);
   openDialog() {
-    const dialogRef = this.dialog.open(EditFixedDepositComponent, {
+    const dialogRef = this.dialog.open(AddFixedDepositComponent, {
       disableClose: true,
 
       data: {

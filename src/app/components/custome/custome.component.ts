@@ -5,7 +5,6 @@ import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { LoanHistoryComponent } from './loan-history/loan-history.component';
 import { ProviderLoanComponent } from './provider-loan/provider-loan.component';
 import { ViewCustomerListComponent } from './view-customer-list/view-customer-list.component';
-import { EditCustomerListComponent } from './edit-customer-list/edit-customer-list.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import Swal from 'sweetalert2';
 import { CustomerBulkImportComponent } from './customer-bulk-import/customer-bulk-import.component';
@@ -121,7 +120,7 @@ export class CustomeComponent {
   readonly dialog5 = inject(MatDialog);
 
   openDialog5() {
-    const dialogRef = this.dialog2.open(EditCustomerListComponent, {
+    const dialogRef = this.dialog2.open(AddCustomerComponent, {
       disableClose: true,
 
       data: {

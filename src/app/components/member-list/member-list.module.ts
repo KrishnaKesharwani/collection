@@ -4,7 +4,6 @@ import { MemberListRoutingModule } from './member-list-routing.module';
 import { MaterialModule } from 'src/app/material.module';
 import { MemberListComponent } from './member-list.component';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
-import { EditMemberListComponent } from './edit-member-list/edit-member-list.component';
 import { ViewMemberListComponent } from './view-member-list/view-member-list.component';
 import { AssignLoanComponent } from './assign-loan/assign-loan.component';
 import { InputFieldValidationComponent } from 'src/app/common/input-field-validation/input-field-validation.component';
@@ -15,7 +14,7 @@ import { AddMemberComponent } from './add-member/add-member.component';
 
 
 @NgModule({
-  declarations: [MemberListComponent, EditMemberListComponent, ViewMemberListComponent, AssignLoanComponent, AddMemberComponent],
+  declarations: [MemberListComponent, ViewMemberListComponent, AssignLoanComponent, AddMemberComponent],
   imports: [
     CommonModule,
     MemberListRoutingModule,

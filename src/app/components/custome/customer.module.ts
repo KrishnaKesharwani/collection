@@ -7,7 +7,6 @@ import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { LoanHistoryComponent } from './loan-history/loan-history.component';
 import { ProviderLoanComponent } from './provider-loan/provider-loan.component';
 import { ViewCustomerListComponent } from './view-customer-list/view-customer-list.component';
-import { EditCustomerListComponent } from './edit-customer-list/edit-customer-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputFieldValidationComponent } from 'src/app/common/input-field-validation/input-field-validation.component';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
@@ -19,7 +18,7 @@ import { KeysPipe } from 'src/app/pipes/keys.pipe';
 
 @NgModule({
   declarations: [
-    CustomeComponent, LoanHistoryComponent, ProviderLoanComponent, ViewCustomerListComponent, EditCustomerListComponent, AddCustomerComponent
+    CustomeComponent, LoanHistoryComponent, ProviderLoanComponent, ViewCustomerListComponent, AddCustomerComponent
     , CustomerBulkImportComponent, KeysPipe],
   imports: [
     CommonModule,

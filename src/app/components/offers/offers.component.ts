@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
-import { EditOfferComponent } from './edit-offer/edit-offer.component';
 import { ViewOfferComponent } from './view-offer/view-offer.component';
 import Swal from 'sweetalert2';
 
@@ -75,7 +74,7 @@ export class OffersComponent {
 
   readonly dialog3 = inject(MatDialog);
   openDialog3() {
-    const dialogRef = this.dialog3.open(EditOfferComponent, {
+    const dialogRef = this.dialog3.open(AddOfferComponent, {
       disableClose: true,
       data: {
         title: 'Update New Offers / Schems',

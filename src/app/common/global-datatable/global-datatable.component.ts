@@ -5,7 +5,7 @@ import DataTables from 'datatables.net';
 @Component({
   selector: 'app-global-datatable',
   templateUrl: './global-datatable.component.html',
-  styleUrls: ['./global-datatable.component.css']
+  styleUrls: ['./global-datatable.component.scss']
 })
 export class GlobalDatatableComponent {
   @Input() data: any[] = [];

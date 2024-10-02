@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'app-fileupload',
   templateUrl: './fileupload.component.html',
-  styleUrls: ['./fileupload.component.css']
+  styleUrls: ['./fileupload.component.scss']
 })
 export class FileuploadComponent {
   @Output() fileChange = new EventEmitter<File | null>();

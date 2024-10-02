@@ -18,6 +18,7 @@ export class AddOfferComponent {
 
   @Output() deleteAction = new EventEmitter();
   offerForm!: FormGroup;
+  offer_Id!: 1;
   constructor(private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
@@ -42,6 +43,13 @@ export class AddOfferComponent {
   }
 
   save() {
+    this.offerForm.markAllAsTouched()
+    if (this.offerForm.valid) {
+      // this.dialog.closeAll();
+    }
+  }
+
+  update() {
     this.offerForm.markAllAsTouched()
     if (this.offerForm.valid) {
       // this.dialog.closeAll();

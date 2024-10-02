@@ -66,7 +66,7 @@ export class AdminDashboardComponent {
 
 
       data: {
-        title: 'Massage For Applier',
+        title: 'Message For Applier',
 
       },
     });

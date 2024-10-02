@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
-import { EditMemberListComponent } from './edit-member-list/edit-member-list.component';
 import { ViewMemberListComponent } from './view-member-list/view-member-list.component';
 import { AssignLoanComponent } from './assign-loan/assign-loan.component';
 import { AddMemberComponent } from './add-member/add-member.component';
@@ -87,7 +86,7 @@ export class MemberListComponent {
   readonly dialog2 = inject(MatDialog);
 
   openDialogUpdateDetails() {
-    const dialogRef = this.dialog2.open(EditMemberListComponent, {
+    const dialogRef = this.dialog2.open(AddMemberComponent, {
       disableClose: true,
       panelClass: 'update_dialoge',
       data: {

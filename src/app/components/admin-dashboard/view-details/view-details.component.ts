@@ -5,7 +5,7 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
 @Component({
   selector: 'app-view-details',
   templateUrl: './view-details.component.html',
-  styleUrls: ['./view-details.component.css']
+  styleUrls: ['./view-details.component.scss']
 })
 export class ViewDetailsComponent {
 

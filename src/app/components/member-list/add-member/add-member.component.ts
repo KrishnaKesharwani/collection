@@ -17,6 +17,7 @@ export class AddMemberComponent {
 
   @Output() deleteAction = new EventEmitter();
   memberForm!: FormGroup;
+  member_Id!: 1;
   constructor(private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
@@ -46,6 +47,13 @@ export class AddMemberComponent {
   }
 
   save() {
+    this.memberForm.markAllAsTouched()
+    if (this.memberForm.valid) {
+      // this.dialog.closeAll();
+    }
+  }
+
+  update() {
     this.memberForm.markAllAsTouched()
     if (this.memberForm.valid) {
       // this.dialog.closeAll();

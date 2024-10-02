@@ -13,6 +13,7 @@ export class AddFixedDepositComponent {
   @Input() title: any;
   @Output() deleteAction = new EventEmitter();
   fixedDepositForm!: FormGroup;
+  fixedDepositId!: 1;
   constructor(public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
@@ -41,6 +42,14 @@ export class AddFixedDepositComponent {
   }
 
   save() {
+    this.fixedDepositForm.markAllAsTouched()
+    if (this.fixedDepositForm.valid) {
+      // this.dialog.closeAll();
+    }
+  }
+
+
+  update() {
     this.fixedDepositForm.markAllAsTouched()
     if (this.fixedDepositForm.valid) {
       // this.dialog.closeAll();

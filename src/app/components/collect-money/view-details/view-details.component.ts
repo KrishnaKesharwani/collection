@@ -14,7 +14,7 @@ interface Transaction2 {
 @Component({
   selector: 'app-view-details',
   templateUrl: './view-details.component.html',
-  styleUrls: ['./view-details.component.css']
+  styleUrls: ['./view-details.component.scss']
 })
 export class ViewDetailsComponent {
   displayedColumns2: string[] = ['customer_name', 'customer_number', 'time', 'amount'];

@@ -14,6 +14,7 @@ export class AddCustomerComponent {
 
   @Output() deleteAction = new EventEmitter();
   customerForm!: FormGroup;
+  customer_Id!: 1;
   constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 
@@ -42,6 +43,15 @@ export class AddCustomerComponent {
       // this.dialog.closeAll();
     }
   }
+
+
+  update() {
+    this.customerForm.markAllAsTouched()
+    if (this.customerForm.valid) {
+      // this.dialog.closeAll();
+    }
+  }
+
 
   selectedFile: File | null = null;
 
