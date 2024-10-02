@@ -2,8 +2,8 @@
     <div class="container-fluid search-topblock">
         <form class="navbar-search navbar-search-light form-inline mr-sm-3">
             <div class="search-box">
-                <i class="mdi mdi-magnify"></i>
                 <input type="text" class="searchtxt" placeholder="Search">
+                <i class="mdi mdi-magnify"></i>
             </div>
             <div class="subscription_block" *ngIf="usertype == 1">
                 <div class="subscription_row"><b>Subscription Date :</b><span>{{expiredDate}}</span></div>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </a>
-                
+
             </li>
         </ul>
         <div class="dropdown-menu" [ngClass]="{'showMenu': showMenuAction }">

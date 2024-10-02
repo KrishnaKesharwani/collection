@@ -16,7 +16,7 @@ export class ReceivedAmountComponent {
 
   ngOnInit() {
     this.receivedAmountForm = this.fb.group({
-      companyName: [''],
+      companyName: ['RK Group'],
       receivedAmount: [''],
       receivedDate: [''],
       amountDetails: ['']

@@ -13,7 +13,7 @@ interface Transaction {
 @Component({
   selector: 'app-company-history',
   templateUrl: './company-history.component.html',
-  styleUrls: ['./company-history.component.css']
+  styleUrls: ['./company-history.component.scss']
 })
 export class CompanyHistoryComponent {
 
