@@ -25,7 +25,7 @@ export class HeaderComponent {
   logout() {
     // this.api.clearStorage();
     // this.api.removesession("Staff_rfid");
-    this.router.navigate(['/authentication']);
+    this.router.navigate(['/login']);
   }
   showMenuAction = false;
   showhideMenu() {
