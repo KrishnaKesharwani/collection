@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class HeaderComponent {
   constructor(private router: Router) {
-
+    const data = sessionStorage.getItem('CurrentUser');
   }
 
   apic_sync_success = false;
@@ -23,8 +23,7 @@ export class HeaderComponent {
   isExpanded: any = [];
 
   logout() {
-    // this.api.clearStorage();
-    // this.api.removesession("Staff_rfid");
+    sessionStorage.removeItem('CurrentUser');
     this.router.navigate(['/login']);
   }
   showMenuAction = false;
