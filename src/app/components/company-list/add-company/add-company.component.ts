@@ -14,6 +14,18 @@ export class AddCompanyComponent {
 
   companyForm!: FormGroup;
   company_id!: 1;
+  details: string = '';
+  address: string = '';
+  password: string = '';
+  company_login_id: string = '';
+  advance_amount: string = '';
+  total_amount: string = '';
+  aadhar_no: string = '';
+  end_date: string = '';
+  start_date: string = '';
+  mobile: string = '';
+  owner_name: string = '';
+  company_name: string = '';
   constructor(private _toastr: ToastrService, public _service: CompanyService, private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 

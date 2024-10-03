@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DeleteComponent } from './delete/delete.component';
@@ -12,6 +12,7 @@ import { InputFieldValidationComponent } from './input-field-validation/input-fi
 import { GlobalDatatableComponent } from './global-datatable/global-datatable.component';
 import { DataTablesModule } from 'angular-datatables';
 import { HeaderComponent } from './header/header.component';
+import { TextareaComponent } from './textarea/textarea.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HeaderComponent } from './header/header.component';
     DropdwonComponent,
     InputFieldValidationComponent,
     GlobalDatatableComponent,
-    HeaderComponent
+    HeaderComponent,
+    TextareaComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,6 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
 
   ],
-  exports: [InputFieldValidationComponent, DropdwonComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent]
+  exports: [InputFieldValidationComponent, TextareaComponent, DropdwonComponent, InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent]
 })
 export class CommonComponentsModule { }

@@ -1,0 +1,5 @@
+<mat-form-field class="global_textbox_block" appearance="outline">
+    <mat-label>{{ label }}</mat-label>
+    <textarea row="5" matInput [required]="isRequired" [(ngModel)]="value"
+        (ngModelChange)="onChange($event)"></textarea>
+</mat-form-field>

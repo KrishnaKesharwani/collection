@@ -1,1 +1,5 @@
-<p>input works!</p>
+<mat-form-field class="global_textbox_block" appearance="outline">
+    <mat-label>{{ label }}</mat-label>
+    <input matInput [disabled]="disabled" [required]="isRequired" [(ngModel)]="value"
+        (ngModelChange)="onChange($event)">
+</mat-form-field>

@@ -15,6 +15,7 @@ export class AddCustomerComponent {
   @Output() deleteAction = new EventEmitter();
   customerForm!: FormGroup;
   customer_Id!: 1;
+  customerNo: string = '';
   constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 

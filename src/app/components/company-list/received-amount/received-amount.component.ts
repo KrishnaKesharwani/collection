@@ -10,6 +10,10 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 export class ReceivedAmountComponent {
 
   receivedAmountForm!: FormGroup;
+  amountDetails: string = '';
+  receivedDate: string = '';
+  companyName: string = '';
+  receivedAmount: string = '';
 
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }

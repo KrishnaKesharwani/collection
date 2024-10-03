@@ -3,12 +3,11 @@ import { CommonComponentService } from '../common-component.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  selector: 'app-textarea',
+  templateUrl: './textarea.component.html',
+  styleUrls: ['./textarea.component.scss']
 })
-export class InputComponent {
-
+export class TextareaComponent {
   @Input() key!: string;
   @Input() field!: string;
   // @Input() formControlName!: string;
@@ -18,12 +17,10 @@ export class InputComponent {
 
   @Input() label: string = '';
   @Input() isRequired: boolean = false;
-  @Input() disabled: boolean = false;
   @Input() value: string = '';
   @Output() valueChange = new EventEmitter<string>();
 
   onChange(value: string) {
     this.valueChange.emit(value);
   }
-
 }

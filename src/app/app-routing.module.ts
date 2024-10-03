@@ -51,6 +51,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/daily-collection/daily-collection.module').then(m => m.DailyCollectionModule)
   },
   {
+    path: 'daily_collect_list',
+    loadChildren: () => import('./components/daily-collect-list/daily-collect-list.module').then(m => m.DailyCollectListModule)
+  },
+  {
     path: 'loan_list',
     loadChildren: () => import('./components/loan-list/loan-list.module').then(m => m.LoanListModule)
   },

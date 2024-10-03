@@ -8,118 +8,97 @@
         <div class="modal_insert">
             <div class="row">
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Company Name</mat-label>
-                        <input matInput required formControlName="company_name" name="company_name" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'company_name'" [displayMsg]="'Company name is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+
+                    <app-input label="Company Name" [(value)]="company_name" [isRequired]="true"></app-input>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                        [key]="'company_name'" [displayMsg]="'Company name is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Owner Name</mat-label>
-                        <input matInput required formControlName="owner_name" name="owner_name" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'owner_name'" [displayMsg]="'Owner name is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+
+                    <app-input label="Owner Name" [(value)]="owner_name" [isRequired]="true"></app-input>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                        [key]="'owner_name'" [displayMsg]="'Owner name is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Mobile</mat-label>
-                        <input matInput required formControlName="mobile" name="mobile" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'mobile'" [displayMsg]="'Mobile is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input label="Mobile" [(value)]="mobile" [isRequired]="true"></app-input>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm" [key]="'mobile'"
+                        [displayMsg]="'Mobile is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Start Date</mat-label>
-                        <input type="date" matInput required formControlName="start_date" name="start_date" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'start_date'" [displayMsg]="'Start date is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+
+                    <app-input label="Start Date" [(value)]="start_date" [isRequired]="true"></app-input>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                        [key]="'start_date'" [displayMsg]="'Start date is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>End Date</mat-label>
-                        <input type="date" matInput required formControlName="end_date" name="end_date" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'end_date'" [displayMsg]="'End date is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input label="End Date" [(value)]="end_date" [isRequired]="true"></app-input>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm" [key]="'end_date'"
+                        [displayMsg]="'End date is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Aadhar No.</mat-label>
-                        <input matInput required formControlName="aadhar_no" name="aadhar_no" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'aadhar_no'" [displayMsg]="'Adhar number is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"></app-input>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                        [key]="'aadhar_no'" [displayMsg]="'Adhar number is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <app-dropdwon key="plan" field="Plan" formControlName="plan" name="plan"></app-dropdwon>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Total Amount</mat-label>
-                        <input matInput required formControlName="total_amount" name="total_amount" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'total_amount'" [displayMsg]="'Total amount is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input label="Total Amount" [(value)]="total_amount" [isRequired]="true"></app-input>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                        [key]="'total_amount'" [displayMsg]="'Total amount is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Advance Amount</mat-label>
-                        <input type="text" matInput required formControlName="advance_amount" name="advance_amount" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'advance_amount'" [displayMsg]="'Advance amount is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input label="Advance Amount" [(value)]="advance_amount" [isRequired]="true"></app-input>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                        [key]="'advance_amount'" [displayMsg]="'Advance amount is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Company Loing Id</mat-label>
-                        <input matInput required formControlName="company_login_id" name="company_login_id" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'company_login_id'" [displayMsg]="'Company login id is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input label="Company Loing Id" [(value)]="company_login_id" [isRequired]="true"></app-input>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
+                        [key]="'company_login_id'" [displayMsg]="'Company login id is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Password</mat-label>
-                        <input type="password" matInput required formControlName="password" name="password" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'password'" [displayMsg]="'Password is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input label="Password" [(value)]="password" [isRequired]="true"></app-input>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm" [key]="'password'"
+                        [displayMsg]="'Password is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-12 col-lg-6 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Address</mat-label>
-                        <input matInput formControlName="address" name="address" required />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'address'" [displayMsg]="'Address is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-textarea label="Address" [(value)]="address" [isRequired]="true"></app-textarea>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm" [key]="'address'"
+                        [displayMsg]="'Address is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-12 col-lg-6 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Details</mat-label>
-                        <input row="5" matInput formControlName="details" name="details" required />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'details'" [displayMsg]="'Details is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-textarea label="Details" [(value)]="details" [isRequired]="true"></app-textarea>
+                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm" [key]="'details'"
+                        [displayMsg]="'Details is required'">
+                    </app-input-field-validation>
+
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <div class="file_upload_block global_textbox_block">
