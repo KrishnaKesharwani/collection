@@ -52,7 +52,7 @@ export class OffersComponent {
       exitAnimationDuration,
       data: {
 
-        title: 'Delete This Record?',
+        title: 'Inactive This Offers/Schems?',
         subTitle: 'You wont be inactive Offers/Scheme!',
       },
     });
