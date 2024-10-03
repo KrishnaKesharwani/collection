@@ -146,6 +146,9 @@ mat-option {
 .checkbox_block {
     font-size: 13px;
     color: #666666;
+    border: solid thin #e1e1e1;
+    border-radius: 5px;
+    background: #ffffff;
 }
 
 .global_dropdown {
@@ -205,6 +208,17 @@ mat-option {
         resize: none;
         line-height: 16px !important;
         min-height: 50px;
+    }
+    .mat-mdc-text-field-wrapper {
+        width: 100%;
+        background: #ffffff;
+        padding: 0px 10px;
+    }
+}
+.toast-container {
+    .ngx-toastr {
+        box-shadow: var(--app-brand-shadow) !important;
+        font-size: 12px;
     }
 }
 .global_textbox_block {
@@ -431,22 +445,6 @@ mat-option {
     }
 }
 
-.pl-0 {
-    padding-left: 0px !important;
-}
-
-.pr-0 {
-    padding-right: 0px !important;
-}
-
-.p-0 {
-    padding: 0px !important;
-}
-
-.text-center {
-    text-align: center;
-}
-
 // Global Css
 .more_table {
     display: inline-table;
@@ -454,6 +452,7 @@ mat-option {
     font-size: 12px;
     border: solid thin #e1e1e1;
     border-radius: 5px;
+    width: 100%;
 
     thead tr th {
         height: 30px;
@@ -848,6 +847,24 @@ mat-option {
     width: calc(100vw - 55px);
 }
 
+
+.pl-0 {
+    padding-left: 0px !important;
+}
+
+.pr-0 {
+    padding-right: 0px !important;
+}
+
+.p-0 {
+    padding: 0px !important;
+}
+.mb-30 {
+    margin-bottom: 30px !important;
+}
+.text-center {
+    text-align: center;
+}
 .menu_container {
     margin-top: 10px;
     display: inline-block;

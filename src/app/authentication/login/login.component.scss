@@ -7,6 +7,10 @@
     background: #f5f5ff;
     min-width: 100vw;
     min-height: 100vh;
+    position: fixed;
+    z-index: 15;
+    left: 0px;
+    top: 0px;
     .login-form-box {
         width: 370px;
         display: flex;
