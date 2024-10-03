@@ -89,7 +89,7 @@ export class CompanyListComponent {
   openDialog5(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
-      disableClose: true,
+
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
@@ -116,7 +116,7 @@ export class CompanyListComponent {
   openDialog7(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog7.open(DeleteComponent, {
-      disableClose: true,
+
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,

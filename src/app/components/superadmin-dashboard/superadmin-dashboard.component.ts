@@ -62,7 +62,7 @@ export class SuperadminDashboardComponent {
   openDialog7(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog7.open(DeleteComponent, {
-      disableClose: true,
+
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,

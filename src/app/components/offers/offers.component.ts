@@ -46,7 +46,7 @@ export class OffersComponent {
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
-      disableClose: true,
+
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -102,7 +102,7 @@ export class OffersComponent {
   openDialog5(enterAnimationDuration: string, exitAnimationDuration: string) {
 
     const dialogRef = this.dialog5.open(DeleteComponent, {
-      disableClose: true,
+
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,

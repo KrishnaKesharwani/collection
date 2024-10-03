@@ -25,7 +25,7 @@ export class DeleteComponent {
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(DeleteComponent, {
-      disableClose: true,
+
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,

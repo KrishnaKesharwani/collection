@@ -43,7 +43,7 @@ export class MemberListComponent {
   openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
-      disableClose: true,
+
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
