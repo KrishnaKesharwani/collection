@@ -13,6 +13,7 @@ import { GlobalDatatableComponent } from './global-datatable/global-datatable.co
 import { DataTablesModule } from 'angular-datatables';
 import { HeaderComponent } from './header/header.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { ButtonLoaderComponent } from './button-loader/button-loader.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { TextareaComponent } from './textarea/textarea.component';
     InputFieldValidationComponent,
     GlobalDatatableComponent,
     HeaderComponent,
-    TextareaComponent
+    TextareaComponent,
+    ButtonLoaderComponent
   ],
   imports: [
     CommonModule,
