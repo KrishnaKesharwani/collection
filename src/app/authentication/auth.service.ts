@@ -18,7 +18,7 @@ export class AuthService {
       tap((response: any) => {
         this.token = response.token;
 
-        // sessionStorage.setItem('token', this.token); // Save token to sessionStorage
+        sessionStorage.setItem('token', response.token); // Save token to sessionStorage
       })
     );
   }

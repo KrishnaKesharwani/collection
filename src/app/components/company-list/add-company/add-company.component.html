@@ -10,18 +10,18 @@
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Company Name</mat-label>
-                        <input matInput required formControlName="companyName" name="companyName" />
+                        <input matInput required formControlName="company_name" name="company_name" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'companyName'" [displayMsg]="'Company name is required'">
+                            [key]="'company_name'" [displayMsg]="'Company name is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Owner Name</mat-label>
-                        <input matInput required formControlName="ownerName" name="ownerName" />
+                        <input matInput required formControlName="owner_name" name="owner_name" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'ownerName'" [displayMsg]="'Owner name is required'">
+                            [key]="'owner_name'" [displayMsg]="'Owner name is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
@@ -37,67 +37,67 @@
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Start Date</mat-label>
-                        <input type="date" matInput required formControlName="startDate" name="startDate" />
+                        <input type="date" matInput required formControlName="start_date" name="start_date" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'startDate'" [displayMsg]="'Start date is required'">
+                            [key]="'start_date'" [displayMsg]="'Start date is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>End Date</mat-label>
-                        <input type="date" matInput required formControlName="endDate" name="endDate" />
+                        <input type="date" matInput required formControlName="end_date" name="end_date" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'endDate'" [displayMsg]="'End date is required'">
+                            [key]="'end_date'" [displayMsg]="'End date is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Aadhar No.</mat-label>
-                        <input matInput required formControlName="adharNumber" name="adharNumber" />
+                        <input matInput required formControlName="aadhar_no" name="aadhar_no" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'adharNumber'" [displayMsg]="'Adhar number is required'">
+                            [key]="'aadhar_no'" [displayMsg]="'Adhar number is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-dropdwon key="plan"></app-dropdwon>
+                    <app-dropdwon key="plan" field="Plan" formControlName="plan" name="plan"></app-dropdwon>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Total Amount</mat-label>
-                        <input matInput required formControlName="totalAmount" name="totalAmount" />
+                        <input matInput required formControlName="total_amount" name="total_amount" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'totalAmount'" [displayMsg]="'Total amount is required'">
+                            [key]="'total_amount'" [displayMsg]="'Total amount is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Advance Amount</mat-label>
-                        <input type="password" matInput required formControlName="advaceAmount" name="advaceAmount" />
+                        <input type="text" matInput required formControlName="advance_amount" name="advance_amount" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'advaceAmount'" [displayMsg]="'Advance amount is required'">
+                            [key]="'advance_amount'" [displayMsg]="'Advance amount is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-dropdwon key="status"></app-dropdwon>
+                    <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Company Loing Id</mat-label>
-                        <input matInput required formControlName="companyLoginId" name="companyLoginId" />
+                        <input matInput required formControlName="company_login_id" name="company_login_id" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'companyLoginId'" [displayMsg]="'Company login id is required'">
+                            [key]="'company_login_id'" [displayMsg]="'Company login id is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input type="password" matInput required formControlName="passwrod" name="passwrod" />
+                        <input type="password" matInput required formControlName="password" name="password" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
                             [key]="'password'" [displayMsg]="'Password is required'">
                         </app-input-field-validation>
@@ -151,6 +151,7 @@
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" *ngIf="!company_id" mat-flat-button (click)="save()">Submit</button>
-    <button class="global_submit_btn" *ngIf="company_id" mat-flat-button (click)="update()">Update</button>
+    <button type="submit" class="global_submit_btn" *ngIf="!company_id" mat-flat-button (click)="save()">Submit</button>
+    <button type="submit" class="global_submit_btn" *ngIf="company_id" mat-flat-button
+        (click)="update()">Update</button>
 </div>

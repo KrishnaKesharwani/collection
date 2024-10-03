@@ -15,13 +15,31 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DropdwonComponent {
   @Input() key!: string;
   @Input() field!: string;
+  // @Input() formControlName!: string;
+  // @Input() name!: string;
+  value!: string;
   options: string[] = [];
 
-  constructor(private dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public data: { field_value: string }) { }
+  constructor(private dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public data: { field_value: string, value: string }) { }
 
   ngOnInit() {
     this.dropdownService.dropdownOptions$.subscribe(options => {
       this.options = options[this.key] || [];
     });
+  }
+
+  onChange = (value: string) => { };
+  onTouched = () => { };
+
+  writeValue(value: string): void {
+    this.value = value;
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
   }
 }

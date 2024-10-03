@@ -6,6 +6,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
+interface AdminFromBackend {
+  company_id: string;
+  email: string;
+  name: string;
+  user_type: string;
+  token: string;
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -60,8 +67,14 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
-          this.userLoginDetails = data.user
-          sessionStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
+          const userLoginDetails: AdminFromBackend = {
+            company_id: data.user.company_id,
+            email: data.user.email,
+            name: data.user.name,
+            user_type: data.user.user_type,
+            token: data.token
+          }
+          sessionStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
           this.toastr.success(data.message, 'Success');
           this.router.navigate(['/dashboard']);
 

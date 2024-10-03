@@ -9,6 +9,7 @@ import { ReceivedAmountComponent } from './received-amount/received-amount.compo
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CompanyService } from 'src/app/services/company/company.service';
 
 
 
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CompanyListRoutingModule,
     CommonComponentsModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers: [CompanyService]
 })
 export class CompanyListModule { }
