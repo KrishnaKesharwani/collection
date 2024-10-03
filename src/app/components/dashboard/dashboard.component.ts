@@ -32,7 +32,6 @@ export class DashboardComponent {
       }
 
     } else {
-      console.error('No user data found in sessionStorage.');
       this.userType = null; // or set a default value
     }
   }

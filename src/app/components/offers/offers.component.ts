@@ -40,7 +40,6 @@ export class OffersComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -82,7 +81,6 @@ export class OffersComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -96,7 +94,6 @@ export class OffersComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 

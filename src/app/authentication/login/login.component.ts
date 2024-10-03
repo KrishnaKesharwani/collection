@@ -57,22 +57,21 @@ export class LoginComponent {
 
   check_authorizartion(): void {
 
-    console.log(this.loginForm.value)
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
-          console.log(data);
           this.userLoginDetails = data.user
           sessionStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
-          this.toastr.success('Success');
+          this.toastr.success(data.message, 'Success');
           this.router.navigate(['/dashboard']);
 
 
           this.errorMessage = null;
         },
         error => {
-          this.toastr.error('Error');
-          this.errorMessage = 'Login failed. Please check your credentials.';
+
+          this.toastr.error(error.error.error, 'Error');
+
         }
       );
     }

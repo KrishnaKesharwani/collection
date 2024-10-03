@@ -61,7 +61,6 @@ export class AddFixedDepositComponent {
   onFileChange(file: File | null): void {
     this.selectedFile = file;
     // Handle the file as needed
-    console.log(file);
   }
 
   selectedFile2: File | null = null;
@@ -69,6 +68,5 @@ export class AddFixedDepositComponent {
   onFileChange2(file: File | null): void {
     this.selectedFile2 = file;
     // Handle the file as needed
-    console.log(file);
   }
 }

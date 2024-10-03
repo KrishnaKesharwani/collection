@@ -81,7 +81,6 @@ export class CustomeComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -113,7 +112,6 @@ export class CustomeComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -130,7 +128,6 @@ export class CustomeComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -162,7 +159,6 @@ export class CustomeComponent {
     //     this.tableData = data;
     //   },
     //   (error) => {
-    //     console.error('Error fetching customer data', error);
     //   }
     // );
   }

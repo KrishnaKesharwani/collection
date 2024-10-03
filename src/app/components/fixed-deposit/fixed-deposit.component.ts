@@ -24,7 +24,6 @@ export class FixedDepositComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -41,7 +40,6 @@ export class FixedDepositComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
   // end edit fixed deposit 
@@ -59,7 +57,6 @@ export class FixedDepositComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
   // end view details
@@ -76,7 +73,6 @@ export class FixedDepositComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
   // end change status

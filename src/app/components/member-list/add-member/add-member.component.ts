@@ -43,7 +43,6 @@ export class AddMemberComponent {
   onFileChange(file: File | null): void {
     this.selectedFile = file;
     // Handle the file as needed
-    console.log(file);
   }
 
   save() {

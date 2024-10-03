@@ -35,7 +35,6 @@ export class CustomerBulkImportComponent {
           const worksheet = workbook.Sheets[workbook.SheetNames[0]];
           const jsonData = XLSX.utils.sheet_to_json(worksheet);
           this.data = jsonData;
-          console.log(this.data); // Handle the data as needed
         }
       };
     }
@@ -47,14 +46,11 @@ export class CustomerBulkImportComponent {
     //     this.http.post('https://your-api-url.com/customers', this.data)
     //       .subscribe({
     //         next: (response) => {
-    //           console.log('Data saved successfully!', response);
     //         },
     //         error: (error) => {
-    //           console.error('There was an error saving the data!', error);
     //         }
     //       });
     //   } else {
-    //     console.log('No data to submit.');
     //   }
     // }
   }

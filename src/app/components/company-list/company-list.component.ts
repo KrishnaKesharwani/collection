@@ -39,7 +39,6 @@ export class CompanyListComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -55,7 +54,6 @@ export class CompanyListComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -71,7 +69,6 @@ export class CompanyListComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -86,7 +83,6 @@ export class CompanyListComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 

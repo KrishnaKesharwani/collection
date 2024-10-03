@@ -29,7 +29,6 @@ export class AppComponent {
       const userData = JSON.parse(data);
       this.user_type = userData.user_type
     } else {
-      console.error('No user data found in sessionStorage.');
       this.user_type = null; // or set a default value
     }
 

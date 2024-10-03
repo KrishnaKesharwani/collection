@@ -40,7 +40,6 @@ export class SuperadminDashboardComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -56,7 +55,6 @@ export class SuperadminDashboardComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 

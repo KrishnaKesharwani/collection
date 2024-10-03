@@ -25,7 +25,6 @@ export class AdminDashboardComponent {
       const userData = JSON.parse(data);
       this.userType = userData.user_type
     } else {
-      console.error('No user data found in sessionStorage.');
       this.userType = null; // or set a default value
     }
   }
@@ -36,7 +35,6 @@ export class AdminDashboardComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.animal = result;
     });
   }
