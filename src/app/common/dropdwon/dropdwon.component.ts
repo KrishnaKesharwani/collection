@@ -1,5 +1,5 @@
-import { Component, Inject, Input } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { Component, forwardRef, Inject, Input } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, NG_VALUE_ACCESSOR, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MaterialModule } from 'src/app/material.module';
 import { CommonComponentService } from '../common-component.service';
@@ -7,7 +7,14 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-dropdwon',
   templateUrl: './dropdwon.component.html',
-  styleUrls: ['./dropdwon.component.scss']
+  styleUrls: ['./dropdwon.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DropdwonComponent),
+      multi: true
+    }
+  ]
 })
 
 

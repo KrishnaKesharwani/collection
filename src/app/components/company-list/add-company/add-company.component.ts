@@ -32,10 +32,10 @@ export class AddCompanyComponent {
 
       password: ['', Validators.required],
       company_login_id: [''],
-      main_logo: [''],
-      sidebar_logo: [''],
-      favicon_icon: [''],
-      owner_image: [''],
+      main_logo: [null],
+      sidebar_logo: [null],
+      favicon_icon: [null],
+      owner_image: [null],
       address: ['', Validators.required],
       details: ['', Validators.required]
     });
@@ -47,15 +47,51 @@ export class AddCompanyComponent {
 
 
   save() {
-
     // Add New Company
     this.companyForm.markAllAsTouched()
-    if (this.companyForm.value) {
-      console.log(this.companyForm.value)
-      this._service.create(this.companyForm.value).subscribe((data: any) => {
-        console.log(data)
+    const formData = new FormData();
+    const files = [
+      { name: 'main_logo', file: this.companyForm.get('main_logo')?.value },
+      { name: 'sidebar_logo', file: this.companyForm.get('sidebar_logo')?.value },
+      { name: 'favicon_icon', file: this.companyForm.get('favicon_icon')?.value },
+      { name: 'owner_image', file: this.companyForm.get('owner_image')?.value },
+    ];
 
-        this._toastr.success(data, 'Success');
+    // Convert files to base64 strings
+    files.map(({ name, file }) => {
+      return new Promise((resolve, reject) => {
+        if (file) {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64String = reader.result as string; // Base64-encoded string
+            formData.append(name, base64String); // Append base64 string to FormData
+            resolve(true);
+          };
+          reader.onerror = () => reject(new Error(`Failed to read ${name}`));
+          reader.readAsDataURL(file); // Read the file as a base64 string
+        } else {
+          resolve(true); // Resolve if no file
+        }
+      });
+    });
+
+    // Append other form values to FormData
+    Object.keys(this.companyForm.value).forEach(key => {
+      if (!['main_logo', 'sidebar_logo', 'favicon_icon', 'owner_image'].includes(key)) {
+        formData.append(key, this.companyForm.value[key]);
+      }
+    });
+    if (formData) {
+
+      this._service.create(formData).subscribe((data: any) => {
+
+
+        if (data) {
+          this._toastr.success(data, 'Success');
+        } else {
+          this._toastr.error(data.message, 'Error');
+        }
+
       })
 
       this.dialog.closeAll();
@@ -66,26 +102,28 @@ export class AddCompanyComponent {
 
   onFileChange(file: File | null): void {
     this.selectedFile = file;
-    // Handle the file as needed
+    this.companyForm.patchValue({ main_logo: file });
   }
+
   selectedFile2: File | null = null;
 
   onFileChange2(file: File | null): void {
+    debugger
     this.selectedFile2 = file;
-    // Handle the file as needed
+    this.companyForm.patchValue({ sidebar_logo: file });
   }
 
   selectedFile3: File | null = null;
 
   onFileChange3(file: File | null): void {
     this.selectedFile3 = file;
-    // Handle the file as needed
+    this.companyForm.patchValue({ favicon_icon: file });
   }
   selectedFile4: File | null = null;
 
   onFileChange4(file: File | null): void {
     this.selectedFile4 = file;
-    // Handle the file as needed
+    this.companyForm.patchValue({ owner_image: file });
   }
 
   update() {
