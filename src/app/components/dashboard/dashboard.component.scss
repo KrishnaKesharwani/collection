@@ -72,23 +72,23 @@
     }
 }
 
-.received_row {
-    td {
-        background: #2dce895e;
-    }
-}
+// .received_row {
+//     td {
+//         background: #2dce895e;
+//     }
+// }
 
-.mydata-table {
-    .thead-light {
-        tr {
-            th {
-                height: 45px;
-            }
-        }
-    }
-}
+// .mydata-table {
+//     .thead-light {
+//         tr {
+//             th {
+//                 height: 45px;
+//             }
+//         }
+//     }
+// }
 
-// Media Css Below Call
-:host {
-    @import "../../../assets/css/media.scss";
-}
+// // Media Css Below Call
+// :host {
+//     @import "../../../assets/css/media.scss";
+// }

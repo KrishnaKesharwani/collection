@@ -50,13 +50,16 @@ h5,
     box-shadow: var(--app-brand-card-shadow);
     border-radius: 5px;
 }
+
 .dash-cardbox {
     .card-header {
         padding: 15px;
+
         .row {
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             h3 {
                 font-weight: 400;
                 color: var(--theme-primary-color);
@@ -139,15 +142,18 @@ mat-option {
         font-size: 12px !important;
     }
 }
+
 .checkbox_block {
     font-size: 13px;
     color: #666666;
 }
+
 .global_dropdown {
     width: 100%;
     font-size: 12px !important;
     margin-bottom: 15px;
     padding-bottom: 15px;
+
     .mat-mdc-form-field-infix {
         padding: 5px 0px !important;
         min-height: 40px;
@@ -186,7 +192,21 @@ mat-option {
         background: #ffffff;
     }
 }
-
+.global_textarea_block {
+    width: 100%;
+    font-size: 13px !important;
+    mat-label {
+        font-size: 12px;
+    }
+    .mat-mdc-form-field-infix {
+        padding: 8px 5px 5px 0px !important;
+    }
+    textarea {
+        resize: none;
+        line-height: 16px !important;
+        min-height: 50px;
+    }
+}
 .global_textbox_block {
     display: inline-block;
     width: 100%;
@@ -249,9 +269,11 @@ mat-option {
     outline: none !important;
     appearance: none !important;
 }
+
 .middle_dialoge {
     width: 767px;
 }
+
 /* // Used Css For above */
 .list_image_block {
     width: 40px;
@@ -301,12 +323,15 @@ mat-option {
     display: flex;
     max-width: 300px;
 }
+
 .bg-success {
     background: #4CAF50;
 }
+
 .bg-warning {
     background: #FF9800;
 }
+
 .badge {
     display: inline-block;
     padding: 0.35rem 0.375rem;
@@ -321,46 +346,57 @@ mat-option {
     width: 100%;
     max-width: 100px;
 }
+
 .long_details_table {
-   tr {
+    tr {
         width: 50%;
         display: flex;
         align-items: center;
         float: left;
         border-bottom: solid thin #e1e1e1;
+
         td:nth-child(1) {
             min-width: 35%;
         }
+
         td {
             min-height: 40px;
         }
     }
 }
+
 .row {
     display: flex;
     flex-wrap: wrap;
+
     .col-sm-4 {
         padding: 0px 10px;
         width: 25%;
     }
+
     .col-sm-6 {
         width: 50%;
         padding: 0px 10px;
     }
+
     .col-sm-12 {
         width: 100%;
         padding: 0px 10px;
     }
+
     .col-sm-9 {
         width: 75%;
         padding: 0px 10px;
     }
 }
+
 .small_popup {
     width: 500px;
 }
+
 .disabled_textbox {
     position: relative;
+
     &:after {
         position: absolute;
         content: "";
@@ -375,6 +411,7 @@ mat-option {
         border-radius: 5px;
     }
 }
+
 .btn_download {
     width: 30px;
     height: 30px;
@@ -388,22 +425,28 @@ mat-option {
     cursor: pointer;
     margin: 0px auto;
     transition: .5s all;
-    &:hover{
+
+    &:hover {
         box-shadow: var(--app-brand-shadow);
     }
 }
+
 .pl-0 {
     padding-left: 0px !important;
 }
+
 .pr-0 {
     padding-right: 0px !important;
 }
+
 .p-0 {
     padding: 0px !important;
 }
+
 .text-center {
     text-align: center;
 }
+
 // Global Css
 .more_table {
     display: inline-table;
@@ -411,6 +454,7 @@ mat-option {
     font-size: 12px;
     border: solid thin #e1e1e1;
     border-radius: 5px;
+
     thead tr th {
         height: 30px;
         font-weight: 400 !important;
@@ -424,12 +468,21 @@ mat-option {
         text-shadow: 1px 1px #eaeaea;
         background-color: #f6f9fc;
         color: #000000;
-    }
-    td{
         padding: 8px;
     }
+
+    td {
+        padding: 8px;
+    }
+
     tbody {
         background-color: #ffffff;
+    }
+
+    .amount_link {
+        color: #07d;
+        font-weight: 600;
+        cursor: pointer;
     }
 
     .col {
@@ -439,10 +492,25 @@ mat-option {
         font-family: var(--app-brand-font) !important;
         line-height: 16px;
     }
+
     b {
         font-weight: 500;
     }
 }
+
+.paid_popup {
+    max-width: fit-content !important;
+
+    .paid_amount_table_block {
+        padding: 10px 15px;
+
+        th {
+            min-width: 100px;
+            text-align: left;
+        }
+    }
+}
+
 .mydata-table {
     table-layout: fixed;
     position: relative;
@@ -450,6 +518,7 @@ mat-option {
     font-size: 12px;
     color: #9f9b9b;
     background-color: var(--theme-bggraycolor);
+
     .thead-light tr th {
         height: 35px;
         font-weight: 400 !important;
@@ -463,10 +532,15 @@ mat-option {
         text-shadow: 1px 1px #eaeaea;
         background-color: #f6f9fc;
         color: #000000;
-        line-height: 30px;
+        text-align: left;
     }
+
     tbody {
         background-color: #ffffff;
+    }
+
+    .action_col {
+        text-align: center;
     }
 
     .col {
@@ -1384,13 +1458,16 @@ mark {
             margin: 0px;
             background: var(--theme-primary-color);
             color: #ffffff !important;
+
             .mdc-button__label {
                 display: flex;
                 align-items: center;
+
                 i {
                     font-size: 22px;
                     margin-right: 5px;
                 }
+
                 .button-text {
                     display: inline-table;
                     align-items: center;
@@ -1417,16 +1494,19 @@ mark {
         min-height: 34px !important;
         margin: 0px !important;
         transition: .5s all;
+
         .mat-mdc-menu-item-text {
             font-size: 14px !important;
             display: flex;
             align-items: center;
+
             i {
                 font-size: 18px;
                 margin-right: 10px;
                 color: #919191;
             }
         }
+
         &:hover {
             i {
                 color: var(--theme-primary-color);
@@ -1466,6 +1546,7 @@ mark {
 .example-full-width {
     width: 100%;
 }
+
 .bg-footer {
     background: #f5f5ff;
 }
@@ -2265,7 +2346,7 @@ mark {
         .navbar-search {
             width: 30%;
 
-            
+
         }
 
         .navbar-nav {
@@ -2312,6 +2393,7 @@ mark {
         }
     }
 }
+
 .search-box {
     position: relative;
     background: #f4f4f4;
@@ -2328,6 +2410,7 @@ mark {
         align-items: center;
         margin: 0px 8px 0px 5px;
     }
+
     .searchtxt {
         border: none;
         background: transparent;
@@ -2335,7 +2418,7 @@ mark {
         color: #9b9696;
         width: 100%;
         outline: none;
-    
+
         &::placeholder {
             color: #c1c1c1;
         }

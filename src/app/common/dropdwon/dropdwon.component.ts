@@ -14,6 +14,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class DropdwonComponent {
   @Input() key!: string;
+  @Input() field!: string;
   options: string[] = [];
 
   constructor(private dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public data: { field_value: string }) { }
