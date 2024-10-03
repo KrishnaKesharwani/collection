@@ -18,14 +18,14 @@ export class AuthService {
       tap((response: any) => {
         this.token = response.token;
 
-        // localStorage.setItem('token', this.token); // Save token to localStorage
+        // sessionStorage.setItem('token', this.token); // Save token to sessionStorage
       })
     );
   }
 
   logout(): void {
     this.token = null;
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 
@@ -34,6 +34,6 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return this.token || localStorage.getItem('token');
+    return this.token || sessionStorage.getItem('token');
   }
 }

@@ -14,7 +14,7 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
-    const data = localStorage.getItem('CurrentUser');
+    const data = sessionStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.userType = userData.user_type
@@ -32,7 +32,7 @@ export class DashboardComponent {
       }
 
     } else {
-      console.error('No user data found in localStorage.');
+      console.error('No user data found in sessionStorage.');
       this.userType = null; // or set a default value
     }
   }

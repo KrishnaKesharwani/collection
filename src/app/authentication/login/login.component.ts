@@ -63,7 +63,7 @@ export class LoginComponent {
         (data) => {
           console.log(data);
           this.userLoginDetails = data.user
-          localStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
+          sessionStorage.setItem('CurrentUser', JSON.stringify(this.userLoginDetails));
           this.toastr.success('Success');
           this.router.navigate(['/dashboard']);
 

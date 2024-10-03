@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'moneyproject';
 
   showSidebar!: boolean;
+  user_type: any;
 
   constructor(private router: Router) {
     this.router.events
@@ -19,5 +20,18 @@ export class AppComponent {
         const navigationEndEvent = event as NavigationEnd; // Type assertion
         this.showSidebar = !navigationEndEvent.url.includes('/login');
       });
+  }
+
+  ngOnInit(): void {
+    const data = sessionStorage.getItem('CurrentUser');
+
+    if (data) {
+      const userData = JSON.parse(data);
+      this.user_type = userData.user_type
+    } else {
+      console.error('No user data found in sessionStorage.');
+      this.user_type = null; // or set a default value
+    }
+
   }
 }
