@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class MenoyReceivedComponent {
 
+  openDialogReceiverDetails() {
+
+  }
+  
+  openDialogChangeStatus() {
+
+  }
+
+  openDialogAdvanceMoney() {
+
+  }
+
 }

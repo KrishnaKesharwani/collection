@@ -4,12 +4,12 @@
             <div class="card shadow dash-cardbox">
                 <div class="card-header">
                     <div class="row align-items-center">
-                        <div class="col col-sm-4 pl-1">
+                        <div class="col col-sm-4 pl-0">
                             <h3 class="mb-0">Collect Money List</h3>
                         </div>
                         <div class="col text-right pr-1 datewith_search_block calender_withsearch">
                             <div class="list_calender_filter">
-                                <label>Select Date :</label>
+                                <label>Filter Date :</label>
                                 <input type="date" placeholder="Select date" class="form-control" />
                             </div>
                             <div class="listsearch-topblock search_withaddbtn pr-0">
@@ -40,8 +40,29 @@
                             <td class="col text-right" data-name="Collect Amount ">5000.00</td>
                             <td class="col text-center" data-name="Receive Status "><span
                                     class="badge bg-warning text-white">Working</span></td>
-                            <td class="action_col" data-name="Action ">
-                                <div ngbDropdown placement="bottom-right">
+                            <td class="action_col" data-name="Action">
+                                <div placement="bottom-right">
+                                    <button mat-icon-button class="matmenu_tablebtn" [matMenuTriggerFor]="menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <div class="table_actionmenu">
+                                            <button mat-menu-item (click)="openDialogReceiverDetails()">
+                                                <i class="mdi mdi-eye mr-2"></i>
+                                                <span>View Details</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialogChangeStatus()">
+                                                <i class="mdi mdi-cash-100 mr-2"></i>
+                                                <span>Change Status</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialogAdvanceMoney()">
+                                                <i class="mdi mdi-plus-circle-outline mr-2"></i>
+                                                <span>Advance Money</span>
+                                            </button>
+                                        </div>
+                                    </mat-menu>
+                                </div>
+                                <!-- <div ngbDropdown placement="bottom-right">
                                     <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
                                         <i class="mdi mdi-dots-vertical"></i>
                                     </a>
@@ -53,7 +74,7 @@
                                         <a class="dropdown-item" data-target="#advance_money_modal" data-toggle="modal">
                                             <i class="mdi mdi-plus-circle-outline mr-2"></i>Advance Money</a>
                                     </div>
-                                </div>
+                                </div> -->
                             </td>
                         </tr>
                         <tr>
@@ -63,23 +84,31 @@
                             <td class="col text-right">3200.00</td>
                             <td class="col text-center"><span class="badge bg-success text-white">Received</span></td>
                             <td class="action_col">
-                                <div ngbDropdown placement="bottom-right">
-                                    <a class="btn btn-sm btn-icon-only text-light no_before_after" ngbDropdownToggle>
-                                        <i class="mdi mdi-dots-vertical"></i>
-                                    </a>
-                                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" data-target="#view_modal" data-toggle="modal">
-                                            <i class="mdi mdi-eye mr-2"></i>View Details</a>
-                                        <a class="dropdown-item" data-target="#status_modal" data-toggle="modal">
-                                            <i class="mdi mdi-cash-100 mr-2"></i>Change Status</a>
-                                        <a class="dropdown-item" data-target="#advance_money_modal" data-toggle="modal">
-                                            <i class="mdi mdi-plus-circle-outline mr-2"></i>Advance Money</a>
-                                    </div>
+                                <div placement="bottom-right">
+                                    <button mat-icon-button class="matmenu_tablebtn" [matMenuTriggerFor]="menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <div class="table_actionmenu">
+                                            <button mat-menu-item (click)="openDialogReceiverDetails()">
+                                                <i class="mdi mdi-eye mr-2"></i>
+                                                <span>View Details</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialogChangeStatus()">
+                                                <i class="mdi mdi-cash-100 mr-2"></i>
+                                                <span>Change Status</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialogAdvanceMoney()">
+                                                <i class="mdi mdi-plus-circle-outline mr-2"></i>
+                                                <span>Advance Money</span>
+                                            </button>
+                                        </div>
+                                    </mat-menu>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="8" class="norecord_col">
+                            <td colspan="6" class="norecord_col">
                                 <div class="no_found">
                                     <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
                                 </div>
@@ -91,7 +120,7 @@
         </div>
     </div>
     <!-- View Collection Details Popup -->
-    <div class="modal upload-filemodel fade" id="view_modal" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+    <!-- <div class="modal upload-filemodel fade" id="view_modal" tabindex="-1" role="dialog" aria-labelledby="modal-form"
         aria-hidden="true">
         <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
@@ -173,9 +202,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Update Status -->
-    <div class="modal upload-filemodel fade" id="status_modal" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+    <!-- <div class="modal upload-filemodel fade" id="status_modal" tabindex="-1" role="dialog" aria-labelledby="modal-form"
         aria-hidden="true">
         <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
@@ -212,9 +241,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Advance Money Paid -->
-    <div class="modal upload-filemodel fade" id="advance_money_modal" tabindex="-1" role="dialog"
+    <!-- <div class="modal upload-filemodel fade" id="advance_money_modal" tabindex="-1" role="dialog"
         aria-labelledby="modal-form" aria-hidden="true">
         <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
@@ -244,5 +273,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

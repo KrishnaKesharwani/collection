@@ -325,10 +325,18 @@ mat-option {
             display: inline-block;
             min-width: 90px;
             margin: 0px;
+            font-weight: 400;
+            font-size: 13px;
+            color: #666666;
         }
 
-        input {
-            height: 33px;
+        .form-control {
+            padding: 8px 10px;
+            border: solid thin #e1e1e1;
+            border-radius: 3px;
+            width: 100%;
+            outline: none !important;
+            color: #666666;
         }
     }
 }
@@ -337,10 +345,10 @@ mat-option {
     white-space: break-spaces;
 }
 
-.list_calender_filter {
-    display: flex;
-    max-width: 300px;
-}
+// .list_calender_filter {
+//     display: flex;
+//     max-width: 300px;
+// }
 
 .bg-success {
     background: #4CAF50;
@@ -411,7 +419,11 @@ mat-option {
 .small_popup {
     width: 500px;
 }
-
+.datewith_search_block {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
 .disabled_textbox {
     position: relative;
 
@@ -850,8 +862,6 @@ mat-option {
     margin: 0px 0px 0px -146px;
     width: calc(100vw - 55px);
 }
-
-
 .pl-0 {
     padding-left: 0px !important;
 }
@@ -867,7 +877,10 @@ mat-option {
     margin-bottom: 30px !important;
 }
 .text-center {
-    text-align: center;
+    text-align: center !important;
+}
+.text-right {
+    text-align: right !important;
 }
 .menu_container {
     margin-top: 10px;
