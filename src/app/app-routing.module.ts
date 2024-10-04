@@ -52,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: 'daily_collect_list',
-    loadChildren: () => import('./components/daily-collect-list/daily-collect-list.module').then(m => m.DailyCollectListModule)
+    loadChildren: () => import('./components/daily-collection/daily-collection.module').then(m => m.DailyCollectionModule)
   },
   {
     path: 'loan_list',

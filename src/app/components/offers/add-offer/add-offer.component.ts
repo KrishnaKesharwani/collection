@@ -31,7 +31,7 @@ export class AddOfferComponent {
     });
 
     this.dropdownService.setOptions('offers', ['Offers', 'Schemes']);
-    this.dropdownService.setOptions('statuses', ['Active', 'Inactive', 'Pending']);
+    this.dropdownService.setOptions('status', ['Active', 'Inactive', 'Pending']);
   }
 
   selectedFile: File | null = null;

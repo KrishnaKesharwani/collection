@@ -1,5 +1,5 @@
-<app-header *ngIf="(user_type== 0 && 1 &&2 &&3) ? !showSidebar : showSidebar"></app-header>
-<app-sidebar *ngIf="(user_type== 0 && 1 &&2 &&3) ? !showSidebar : showSidebar"></app-sidebar>
+<app-header *ngIf="(user_type === 0 && 1 && 2 && 3) ? !showSidebar : showSidebar"></app-header>
+<app-sidebar *ngIf="(user_type === 0 && 1 && 2 && 3) ? !showSidebar : showSidebar"></app-sidebar>
 <div [ngClass]=" {'main-content': showSidebar}">
     <div [ngClass]="{'overall-containblock': showSidebar}">
         <router-outlet></router-outlet>

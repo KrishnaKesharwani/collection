@@ -54,16 +54,14 @@ export class AddCompanyComponent {
       details: ['', Validators.required]
     });
 
-    this.dropdownService.setOptions('plan', ['Monthly', 'Yearly', 'Demo']);
+    this.dropdownService.setOptions('plan', ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo']);
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
-
   }
 
 
   save() {
-    // Add New Company
-
     if (this.companyForm.valid) {
+      this.loading= true;
       const formData = new FormData();
       const files = [
         { name: 'main_logo', file: this.companyForm.get('main_logo')?.value },
@@ -97,22 +95,20 @@ export class AddCompanyComponent {
         }
       });
       if (formData) {
-
         this._service.create(formData).subscribe((data: any) => {
-
-
           if (data) {
             this._toastr.success(data.message, 'Success');
           } else {
             this._toastr.error(data.message, 'Error');
           }
-
-        })
-
-        this.dialog.closeAll();
+        });
+        setTimeout(() => {
+          this.loading= false;
+          this.dialog.closeAll();
+        }, 1000);      
       }
     } else {
-      this.companyForm.markAllAsTouched()
+      this.companyForm.markAllAsTouched();
     }
   }
 
@@ -126,7 +122,6 @@ export class AddCompanyComponent {
   selectedFile2: File | null = null;
 
   onFileChange2(file: File | null): void {
-    debugger
     this.selectedFile2 = file;
     this.companyForm.patchValue({ sidebar_logo: file });
   }
@@ -146,8 +141,10 @@ export class AddCompanyComponent {
 
   update() {
     // Add New Company
-    this.companyForm.markAllAsTouched()
-    if (this.companyForm.valid) {
+    this.companyForm.markAllAsTouched();    
+    this.loading= true;
+    if (this.companyForm.valid) {      
+      this.loading= false;
       // this.dialog.closeAll();
     }
   }
