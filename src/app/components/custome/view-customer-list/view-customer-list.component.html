@@ -1,1 +1,59 @@
-<h1>get history checking</h1>
+<div class="dialoge_header">
+    <div class="left_text">{{dataa.title}}</div>
+    <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container">
+    <table class="table table-bordered table-responsive bg-white more_table">
+        <tbody>
+            <tr>
+                <td><b>Customer No.:</b></td>
+                <td>RK-101</td>
+            </tr>
+            <tr>
+                <td><b>Profile Image :</b></td>
+                <td>
+                    <div class="list_image_block float-left">
+                        <img src="assets/imgs/default-pic.png">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Customer Name :</b></td>
+                <td>{{customerDetails.member_fname}}</td>
+            </tr>
+
+            <tr>
+                <td><b>Mobile :</b></td>
+                <td>{{customerDetails.member_mobile}}</td>
+            </tr>
+            <tr>
+                <td><b>Email Id :</b></td>
+                <td>sumit&#64;gmail.com</td>
+            </tr>
+            <tr>
+                <td><b>Aadhar No. :</b></td>
+                <td>626362650548</td>
+            </tr>
+            <tr>
+                <td><b>Join Date :</b></td>
+                <td>12-Mar-2021</td>
+            </tr>
+            <tr>
+                <td><b>Loan Amount :</b></td>
+                <td>12-Mar-2021</td>
+            </tr>
+            <tr>
+                <td><b>Pending Amount :</b></td>
+                <td>12-Mar-2021</td>
+            </tr>
+            <tr>
+                <td><b>Status :</b></td>
+                <td><span class="badge bg-success text-white">Active</span></td>
+            </tr>
+            <tr>
+                <td><b>Address :</b></td>
+                <td>Home no. 72, bajrang nagar jabalpur </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
