@@ -15,10 +15,8 @@ import { HeaderComponent } from './header/header.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { ButtonLoaderComponent } from './button-loader/button-loader.component';
 
-
 @NgModule({
   declarations: [
-
     ErrorComponent,
     InputComponent,
     FileuploadComponent,
@@ -34,8 +32,7 @@ import { ButtonLoaderComponent } from './button-loader/button-loader.component';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-
   ],
-  exports: [InputFieldValidationComponent, TextareaComponent, DropdwonComponent, InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent]
+  exports: [InputFieldValidationComponent, TextareaComponent, DropdwonComponent, InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent, ButtonLoaderComponent]
 })
 export class CommonComponentsModule { }

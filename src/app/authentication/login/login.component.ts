@@ -63,8 +63,8 @@ export class LoginComponent {
   // constructor(private authService: AuthService) { }
 
   check_authorizartion(): void {
-
     if (this.loginForm.valid) {
+      this.loading = true;
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
           const userLoginDetails: AdminFromBackend = {
@@ -75,20 +75,17 @@ export class LoginComponent {
             token: data.token
           }
           sessionStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
+          this.loading = false;
           this.toastr.success(data.message, 'Success');
           this.router.navigate(['/dashboard']);
-
-
           this.errorMessage = null;
         },
         error => {
-
+          this.loading = false;
           this.toastr.error(error.error.error, 'Error');
-
         }
       );
     }
-
   }
 
 

@@ -134,7 +134,12 @@
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button type="submit" class="global_submit_btn" *ngIf="!company_id" mat-flat-button (click)="save()">Submit</button>
+    <button type="submit" class="global_submit_btn" *ngIf="!company_id" mat-flat-button (click)="save()">
+        <mat-spinner  class="button_spinner" [diameter]="16"></mat-spinner>
+        <mat-icon class="submitbtn_icon">check</mat-icon>
+        <!-- <app-global-btn-loader *ngIf="loading"></app-global-btn-loader> -->
+        <span>Submit</span>
+    </button>
     <button type="submit" class="global_submit_btn" *ngIf="company_id" mat-flat-button
         (click)="update()">Update</button>
 </div>

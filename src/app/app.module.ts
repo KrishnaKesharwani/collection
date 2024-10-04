@@ -60,6 +60,7 @@ import { TokenInterceptor } from './authentication/token.interceptor';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DataTablesModule } from 'angular-datatables';
 import { DashboardModule } from './components/dashboard/dashboard.module';
+import { ButtonLoaderComponent } from './common/button-loader/button-loader.component';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({

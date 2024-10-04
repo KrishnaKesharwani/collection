@@ -10,8 +10,7 @@ import { AddCompanyComponent } from './add-company/add-company.component';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyService } from 'src/app/services/company/company.service';
-
-
+// import { ButtonLoaderComponent } from 'src/app/common/button-loader/button-loader.component';
 
 @NgModule({
   declarations: [CompanyListComponent, CompanyHistoryComponent, ViewDetailsComponent, ReceivedAmountComponent, AddCompanyComponent],
@@ -20,7 +19,7 @@ import { CompanyService } from 'src/app/services/company/company.service';
     MaterialModule,
     CompanyListRoutingModule,
     CommonComponentsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [CompanyService]
 })

@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
 
 
-
 @NgModule({
   declarations: [LoginComponent],
   imports: [

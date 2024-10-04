@@ -15,6 +15,7 @@ import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dial
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
       timeOut: 1000,
       positionClass: 'toast-top-right',
@@ -44,7 +46,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   exports: [
     CommonModule,
     MatIconModule,
-
+    MatProgressSpinnerModule,
     MatTableModule,
     MatCardModule,
     MatFormFieldModule,

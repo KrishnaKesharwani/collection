@@ -26,6 +26,7 @@ export class AddCompanyComponent {
   mobile: string = '';
   owner_name: string = '';
   company_name: string = '';
+  loading: boolean = false;
   constructor(private _toastr: ToastrService, public _service: CompanyService, private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 

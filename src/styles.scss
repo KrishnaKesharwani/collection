@@ -282,6 +282,10 @@ mat-option {
     margin-left: 20px;
     outline: none !important;
     appearance: none !important;
+    
+    .mdc-button__label {
+        display: flex;
+    }
 }
 
 .middle_dialoge {
@@ -1022,7 +1026,17 @@ mat-option {
         }
     }
 }
-
+.submit_btnicon {
+    margin-right: 5px;
+    font-size: 20px;
+    height: 20px;
+}
+.button_spinner {
+    margin-right: 10px;
+    circle {
+        stroke: white !important;
+    }
+}
 .right_items_container {
     width: 100%;
     display: inline-block;
@@ -4167,6 +4181,9 @@ mark {
 .btn_theme {
     min-height: 45px;
     width: 100%;
+    .mdc-button__label {
+        display: flex;
+    }
 }
 
 .bg-primary {
