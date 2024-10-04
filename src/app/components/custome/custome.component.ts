@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { CustomerBulkImportComponent } from './customer-bulk-import/customer-bulk-import.component';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { ActionService } from 'src/app/services/action/action.service';
 @Component({
   selector: 'app-custome',
   templateUrl: './custome.component.html',
@@ -20,13 +21,21 @@ export class CustomeComponent {
   usertype: any;
   customer_action: any;
   tableData: any[] = [];
-  columns = ['customerNo', 'name', 'mobile', 'aadharNo', 'loanAmt', 'pendingAmt', 'status', 'action'];
+  columns = ['customerNo', 'name', 'mobile', 'aadharNo', 'loanAmt', 'pendingAmt', 'status'];
   customerData = [
     { customerNo: 1, name: 'John Doe', mobile: '1234567890', aadharNo: '1111-2222-3333', loanAmt: 50000, pendingAmt: 10000, status: 'Active' },
     // Add more customer objects
   ];
 
-  constructor(public dialog: MatDialog) { }
+  actions = [
+    { action: 'loan_history', label: 'Loan History', icon: 'mdi mdi-history' },
+    { action: 'provide_loan', label: 'Provide Loan', icon: 'mdi mdi-cash-100' },
+    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
+    { action: 'edit_customer', label: 'Edit Customer', icon: 'mdi mdi-pencil mr-2' },
+    { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
+  ];
+
+  constructor(private actionService: ActionService, public dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -38,6 +47,29 @@ export class CustomeComponent {
 
   addMember(number: any) {
 
+  }
+
+
+  onAction(actionData: { action: string; row: any }) {
+
+    this.actionService.setAction(actionData);
+    switch (actionData.action) {
+      case 'loan_history':
+        this.openDialog2();
+        break;
+      case 'provide_loan':
+        this.openDialog3();
+        break;
+      case 'view_details':
+        this.openDialog4();
+        break;
+      case 'edit_customer':
+        this.openDialog5();
+        break;
+      case 'status':
+        this.openDialog('0ms', '0ms');
+        break;
+    }
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -69,8 +101,10 @@ export class CustomeComponent {
     });
   }
 
+  private isDialogOpen = false;
   readonly dialog2 = inject(MatDialog);
   openDialog2() {
+    if (this.isDialogOpen) return;
     const dialogRef = this.dialog2.open(LoanHistoryComponent, {
       disableClose: true,
 
@@ -81,12 +115,15 @@ export class CustomeComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
+      this.isDialogOpen = false;
     });
   }
 
-  openDialog3(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  readonly dialog3 = inject(MatDialog);
+  openDialog3(): void {
+    if (this.isDialogOpen) return;
     // this.dataForDelete = enterAnimationDuration
-    const dialogRef = this.dialog.open(ProviderLoanComponent, {
+    const dialogRef = this.dialog3.open(ProviderLoanComponent, {
       disableClose: true,
 
       data: {
@@ -95,13 +132,15 @@ export class CustomeComponent {
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
       this.delete();
+      this.isDialogOpen = false;
     });
   }
 
 
   readonly dialog4 = inject(MatDialog);
 
-  openDialog4() {
+  openDialog4(): void {
+    if (this.isDialogOpen) return;
     const dialogRef = this.dialog4.open(ViewCustomerListComponent, {
 
 
@@ -112,13 +151,15 @@ export class CustomeComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.isDialogOpen = false;
     });
   }
 
   readonly dialog5 = inject(MatDialog);
 
   openDialog5() {
-    const dialogRef = this.dialog2.open(AddCustomerComponent, {
+    if (this.isDialogOpen) return;
+    const dialogRef = this.dialog5.open(AddCustomerComponent, {
       disableClose: true,
 
       data: {
@@ -128,18 +169,22 @@ export class CustomeComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.isDialogOpen = false;
     });
   }
 
   readonly dialog6 = inject(MatDialog);
   openDialog6() {
+    if (this.isDialogOpen) return;
     const dialogRef = this.dialog6.open(AddCustomerComponent, {
       disableClose: true,
       data: {
         title: 'Add New Customer'
       },
     });
-
+    dialogRef.afterClosed().subscribe(result => {
+      this.isDialogOpen = false;
+    });
   }
   readonly dialog7 = inject(MatDialog);
   openDialogImport() {

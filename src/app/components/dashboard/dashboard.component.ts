@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SuperAdminDashboardService } from 'src/app/services/dashboard/super-admin-dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
   userType: any;
-  constructor(private router: Router) {
+  companyDashboardtData: any;
+
+  constructor(private router: Router, public _service: SuperAdminDashboardService) {
 
 
   }
@@ -34,5 +37,18 @@ export class DashboardComponent {
     } else {
       this.userType = null; // or set a default value
     }
+
+    this.getDashboardData();
+  }
+
+  getDashboardData() {
+    this._service.dashboard().subscribe((response: any) => {
+      console.log(typeof response);
+      if (response) {
+        this.companyDashboardtData = response;
+
+      }
+    })
+
   }
 }

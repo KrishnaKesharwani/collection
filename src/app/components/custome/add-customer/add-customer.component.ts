@@ -16,6 +16,14 @@ export class AddCustomerComponent {
   customerForm!: FormGroup;
   customer_Id!: 1;
   customerNo: string = '';
+  customerName: string = '';
+  address: string = '';
+  password: string = '';
+  memberLoingId: string = '';
+  joinDate: string = '';
+  adharNumber: string = '';
+  email: string = '';
+  mobile: string = '';
   constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 

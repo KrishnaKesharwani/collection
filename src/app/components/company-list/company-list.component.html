@@ -42,20 +42,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="col" data-name="Name">RK Group</td>
+
+                        <tr *ngFor="let item of companyListData">
+                            <td class="col" data-name="Name">{{item.company_name}}</td>
                             <td class="col" data-name="Logo">
                                 <div class="list_image_block">
-                                    <img src="assets/imgs/rk-group-logo.png" />
+                                    <img src="{{item.main_logo}}" />
                                 </div>
                             </td>
-                            <td class="col" data-name="Owner Name">Roshan Kanojiya</td>
-                            <td class="col" data-name="Mobile">6263626505</td>
-                            <td class="col" data-name="Start Date">12-02-2022</td>
-                            <td class="col" data-name="End Date">11-02-2023</td>
-                            <td class="col" data-name="Plan">Monthly</td>
-                            <td class="col text-right" data-name="Amount">1999.00</td>
-                            <td class="col text-right" data-name="Pending">1999.00</td>
+                            <td class="col" data-name="Owner Name">{{item.owner_name}}</td>
+                            <td class="col" data-name="Mobile">{{item.mobile}}</td>
+                            <td class="col" data-name="Start Date">{{item.start_date}}</td>
+                            <td class="col" data-name="End Date">{{item.end_date}}</td>
+                            <td class="col" data-name="Plan">{{item.plans[0].plan}}</td>
+                            <td class="col text-right" data-name="Amount">{{item.total_amount}}</td>
+                            <td class="col text-right" data-name="Pending">{{item.advance_amount}}</td>
                             <td class="col text-center" data-name="Status"><span
                                     class="badge bg-success text-white">Active</span></td>
                             <td class="action_col" data-name="Action">

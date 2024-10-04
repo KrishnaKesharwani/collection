@@ -38,84 +38,10 @@
                     </div>
                 </div>
 
-                <app-global-datatable [data]="customerData" [columns]="columns"></app-global-datatable>
+                <app-global-datatable [actions]="actions" [data]="customerData" [columns]="columns"
+                    (actionTriggered)="onAction($event)"></app-global-datatable>
 
-                <!-- <table class="table align-items-center table-flush mydata-table" id="customerData">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="col">Customer No.</th>
-                            <th class="col text-center">Image</th>
-                            <th class="col">Name</th>
-                            <th class="col">Mobile</th>
-                            <th class="col">Aadhar No.</th>
-                            <th class="col">Loan Amt</th>
-                            <th class="col">Pending Amt</th>
-                            <th class="col text-center">Status</th>
-                            <th class="col action_col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="col" data-name="Customer No. ">RK-Cus101</td>
-                            <td class="col" data-name="Image ">
-                                <div class="list_image_block">
-                                    <img src="assets/imgs/default-pic.png" />
-                                </div>
-                            </td>
-                            <td class="col" data-name="Name ">Sandeep Patel</td>
-                            <td class="col" data-name="Mobile ">6263626505</td>
-                            <td class="col" data-name="Aadhar No. ">126585965214</td>
-                            <td class="col text-right" data-name="Loan Amt ">12,000.00</td>
-                            <td class="col text-right" data-name="Pending Amt ">7200.00</td>
-                            <td class="col text-center" data-name="Status "><span
-                                    class="badge bg-success text-white">Active</span></td>
-                            <td class="action_col" data-name="Action ">
 
-                                <div placement="bottom-right">
-
-                                    <button mat-icon-button [matMenuTriggerFor]="menu"
-                                        aria-label="Example icon-button with a menu">
-                                        <mat-icon>more_vert</mat-icon>
-                                    </button>
-                                    <mat-menu #menu="matMenu">
-                                        <div class="table_actionmenu">
-                                            <button mat-menu-item (click)="openDialog2()">
-                                                <i class="mdi mdi-history mr-2"></i>
-                                                <span>Loan History</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog3('0ms', '0ms')">
-                                                <i class="mdi mdi-cash-100 mr-2"></i>
-                                                <span>Provide Loan</span>
-                                            </button>
-
-                                            <button mat-menu-item (click)="openDialog4()">
-                                                <i class="mdi mdi-eye mr-2"></i>
-                                                <span>View Details</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog5()">
-                                                <i class="mdi mdi-pencil mr-2"></i>
-                                                <span>Edit Customer</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog('0ms', '0ms')">
-                                                <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                <span>Inactive</span>
-                                            </button>
-                                        </div>
-                                    </mat-menu>
-
-                                </div>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="9" class="norecord_col">
-                                <div class="no_found">
-                                    <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> -->
             </div>
         </div>
     </div>

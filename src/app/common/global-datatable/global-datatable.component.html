@@ -1,12 +1,29 @@
 <table #dataTable class="table align-items-center table-flush mydata-table" style="width: 100%">
     <thead class="thead-light">
         <tr>
-            <th class="col" *ngFor="let column of columns">{{ column }}</th>
+            <th *ngFor="let column of columns">{{ column | titlecase }}</th>
+            <th>Action</th> <!-- Add Action Column -->
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let row of data">
-            <td class="col" *ngFor="let column of columns">{{ row[column] }}</td>
+            <ng-container *ngFor="let column of columns">
+                <td>{{ row[column] }}</td>
+            </ng-container>
+            <td>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <div class="table_actionmenu">
+                        <button *ngFor="let action of actions" mat-menu-item
+                            (click)="onAction({ action: action.action, row })">
+                            <i [class]="action.icon + ' mr-2'"></i>
+                            <span>{{ action.label }}</span>
+                        </button>
+                    </div>
+                </mat-menu>
+            </td>
         </tr>
     </tbody>
 </table>

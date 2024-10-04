@@ -32,6 +32,8 @@ export class LoginComponent {
   hide = true;
   userLoginDetails: any = [];
   usertype: any;
+  showSidebar: any;
+  showHeader: any;
   constructor(private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -67,6 +69,8 @@ export class LoginComponent {
       this.loading = true;
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
+          console.log(data);
+
           const userLoginDetails: AdminFromBackend = {
             company_id: data.user.company_id,
             email: data.user.email,
@@ -75,10 +79,12 @@ export class LoginComponent {
             token: data.token
           }
           sessionStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
+          // this.showSidebar = userLoginDetails.user_type;
+          // this.showHeader = userLoginDetails.user_type;
           this.loading = false;
           this.toastr.success(data.message, 'Success');
           this.router.navigate(['/dashboard']);
-          this.errorMessage = null;
+          // this.errorMessage = null;
         },
         error => {
           this.loading = false;

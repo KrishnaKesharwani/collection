@@ -6,6 +6,8 @@ import { ReceivedAmountComponent } from './received-amount/received-amount.compo
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import Swal from 'sweetalert2';
+import { CompanyService } from 'src/app/services/company/company.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-company-list',
@@ -14,19 +16,28 @@ import Swal from 'sweetalert2';
 })
 export class CompanyListComponent {
   customer_action: any;
+  companyListData: any[] = [];
+  companyDashboardtData: any;
+
+  constructor(private _toastr: ToastrService, public _service: CompanyService) { }
 
   ngOnInit() {
 
+    this.getCompanyList();
   }
 
-  statusActive() {
+  getCompanyList() {
 
+    this._service.getList().subscribe((response: any) => {
+      console.log(typeof response);
+      if (response) {
+        this.companyListData = JSON.parse(JSON.stringify(response.data));
+        console.log(typeof this.companyListData)
+      }
+
+    })
   }
 
-
-  statusInactive() {
-
-  }
 
   readonly dialog = inject(MatDialog);
   openDialog() {

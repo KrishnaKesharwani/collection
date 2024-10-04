@@ -8,30 +8,31 @@
             <div class="row">
 
                 <div class="col-sm-12 col-lg-12 col-xs-12 ">
-
-                    <app-input [disabled]="true" label="Company Name" [(value)]="companyName"
-                        [isRequired]="true"></app-input>
-
-                </div>
-                <div class="col-sm-12 col-lg-12 col-xs-12">
-                    <app-input label="Received Amount" [(value)]="receivedAmount" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="receivedAmountForm"
-                        [key]="'receivedAmount'" [displayMsg]="'Amount is required'">
-                    </app-input-field-validation>
+                    <app-input [disabled]="true" [isDateField]="false" label="Company Name" [(value)]="companyName"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="receivedAmountForm"
+                        [key]="'companyName'"></app-input>
 
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">
-                    <app-input label="Received Date" [(value)]="receivedDate" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="receivedAmountForm"
-                        [key]="'receivedDate'" [displayMsg]="'Date is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="false" label="Received Amount" [(value)]="receivedAmount"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="receivedAmountForm"
+                        [key]="'receivedAmount'" [displayMsg]="'Amount is required'"></app-input>
+
 
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">
-                    <app-input label="Amount Details" [(value)]="amountDetails" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="receivedAmountForm"
-                        [key]="'amountDetails'" [displayMsg]="'Amount Details is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="true" label="Received Date" [(value)]="receivedDate" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="receivedAmountForm" [key]="'receivedDate'"
+                        [displayMsg]="'Date is required'"></app-input>
+
+
+
+                </div>
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <app-input [isDateField]="false" label="Amount Details" [(value)]="amountDetails"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="receivedAmountForm"
+                        [key]="'amountDetails'" [displayMsg]="'Amount details is required'"></app-input>
+
 
                 </div>
             </div>
