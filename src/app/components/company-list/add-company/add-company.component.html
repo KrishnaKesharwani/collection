@@ -8,96 +8,92 @@
         <div class="modal_insert">
             <div class="row">
                 <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" label="Company Name" [(value)]="company_name" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'company_name'"
+                        [displayMsg]="'Company name is required'"></app-input>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
 
-                    <app-input label="Company Name" [(value)]="company_name" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                        [key]="'company_name'" [displayMsg]="'Company name is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="false" label="Owner Name" [(value)]="owner_name" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'owner_name'"
+                        [displayMsg]="'Owner name is required'"></app-input>
+
 
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
 
-                    <app-input label="Owner Name" [(value)]="owner_name" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                        [key]="'owner_name'" [displayMsg]="'Owner name is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="false" label="Mobile" [(value)]="mobile" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'mobile'"
+                        [displayMsg]="'Mobile is required'"></app-input>
+
+
 
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input label="Mobile" [(value)]="mobile" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm" [key]="'mobile'"
-                        [displayMsg]="'Mobile is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'start_date'"
+                        [displayMsg]="'Start date is required'"></app-input>
+
 
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-
-                    <app-input label="Start Date" [(value)]="start_date" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                        [key]="'start_date'" [displayMsg]="'Start date is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="true" label="End Date" [(value)]="end_date" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'end_date'"
+                        [displayMsg]="'End date is required'"></app-input>
 
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input label="End Date" [(value)]="end_date" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm" [key]="'end_date'"
-                        [displayMsg]="'End date is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="false" label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'aadhar_no'"
+                        [displayMsg]="'Adhar number is required'"></app-input>
 
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                        [key]="'aadhar_no'" [displayMsg]="'Adhar number is required'">
-                    </app-input-field-validation>
 
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <app-dropdwon key="plan" field="Plan" formControlName="plan" name="plan"></app-dropdwon>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input label="Total Amount" [(value)]="total_amount" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                        [key]="'total_amount'" [displayMsg]="'Total amount is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="false" label="Total Amount" [(value)]="total_amount" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'total_amount'"
+                        [displayMsg]="'Total amount is required'"></app-input>
+
 
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input label="Advance Amount" [(value)]="advance_amount" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                        [key]="'advance_amount'" [displayMsg]="'Advance amount is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="false" label="Advance Amount" [(value)]="advance_amount"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
+                        [key]="'advance_amount'" [displayMsg]="'Advance amount is required'"></app-input>
 
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input label="Company Loing Id" [(value)]="company_login_id" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm"
-                        [key]="'company_login_id'" [displayMsg]="'Company login id is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="false" label="Company Loing Id" [(value)]="company_login_id"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
+                        [key]="'company_login_id'" [displayMsg]="'Company login id is required'"></app-input>
+
 
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input label="Password" [(value)]="password" [isRequired]="true"></app-input>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm" [key]="'password'"
-                        [displayMsg]="'Password is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="false" label="Password" [(value)]="password" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'password'"
+                        [displayMsg]="'Password is required'"></app-input>
+
 
                 </div>
                 <div class="col-sm-12 col-lg-6 col-xs-12">
-                    <app-textarea label="Address" [(value)]="address" [isRequired]="true"></app-textarea>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm" [key]="'address'"
-                        [displayMsg]="'Address is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'address'"
+                        [displayMsg]="'Address is required'"></app-input>
+
 
                 </div>
                 <div class="col-sm-12 col-lg-6 col-xs-12">
-                    <app-textarea label="Details" [(value)]="details" [isRequired]="true"></app-textarea>
-                    <app-input-field-validation [className]="'bottom_error_msg'" [form]="companyForm" [key]="'details'"
-                        [displayMsg]="'Details is required'">
-                    </app-input-field-validation>
+                    <app-input [isDateField]="false" label="Details" [(value)]="details" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'details'"
+                        [displayMsg]="'Details is required'"></app-input>
+
 
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
@@ -135,9 +131,9 @@
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
     <button type="submit" class="global_submit_btn" *ngIf="!company_id" mat-flat-button (click)="save()">
-        <mat-spinner  class="button_spinner" [diameter]="16"></mat-spinner>
+        <mat-spinner class="button_spinner" [diameter]="16"></mat-spinner>
         <mat-icon class="submitbtn_icon">check</mat-icon>
-        <!-- <app-global-btn-loader *ngIf="loading"></app-global-btn-loader> -->
+        <app-button-loader *ngIf="loading"></app-button-loader>
         <span>Submit</span>
     </button>
     <button type="submit" class="global_submit_btn" *ngIf="company_id" mat-flat-button

@@ -1,5 +1,15 @@
 <mat-form-field class="global_textbox_block" appearance="outline">
     <mat-label>{{ label }}</mat-label>
-    <input matInput [disabled]="disabled" [required]="isRequired" [(ngModel)]="value"
-        (ngModelChange)="onChange($event)">
+    <input matInput [type]="isDateField ? 'date' : 'text'" [disabled]="disabled" [required]="isRequired"
+        [formControl]="control">
+    <div *ngIf="control?.invalid && control?.touched" class="{{ className }}">
+        <span class="bottom_error_msg" *ngIf="control.errors?.['required']">{{ displayMsg }}<br></span>
+        <span class="bottom_error_msg" *ngIf="control.errors?.['minlength']">Minimum length is {{
+            control.errors?.['minlength'].required
+            }} characters<br></span>
+        <span class="bottom_error_msg" *ngIf="control?.errors?.['maxlength']">Maximum length is {{
+            control.errors?.['maxlength'].required
+            }} characters<br></span>
+        <span class="bottom_error_msg" *ngIf="control?.errors?.['pattern']">Invalid format<br></span>
+    </div>
 </mat-form-field>

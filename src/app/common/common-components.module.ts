@@ -33,6 +33,8 @@ import { ButtonLoaderComponent } from './button-loader/button-loader.component';
     ReactiveFormsModule,
     FormsModule,
   ],
-  exports: [InputFieldValidationComponent, TextareaComponent, DropdwonComponent, InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent, ButtonLoaderComponent]
+  exports: [InputFieldValidationComponent, TextareaComponent, DropdwonComponent,
+    InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent,
+    ButtonLoaderComponent]
 })
 export class CommonComponentsModule { }

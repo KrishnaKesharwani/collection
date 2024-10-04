@@ -33,8 +33,8 @@
                     <div class="login-btnblock text-center mt-3">
                         <button type="submit" mat-stroked-button class="btn btn_theme bg-primary"
                             (click)="check_authorizartion()">
-                            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
-                            <!-- <app-global-btn-loader *ngIf="loading"></app-global-btn-loader> -->
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            <app-button-loader *ngIf="loading"></app-button-loader>
                             <mat-spinner *ngIf="loading" class="button_spinner" [diameter]="20"></mat-spinner>
                             <mat-icon *ngIf="!loading" class="submitbtn_icon">check</mat-icon>
                             <span>Login</span>
