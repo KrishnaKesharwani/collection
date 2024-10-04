@@ -9,7 +9,7 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
 })
 export class AssignMemberComponent {
   @Input() title: any;
-
+  loading = false;
   @Output() deleteAction = new EventEmitter();
 
   constructor(private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },

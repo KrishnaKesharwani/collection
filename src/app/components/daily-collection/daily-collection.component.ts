@@ -31,7 +31,7 @@ export class DailyCollectionComponent {
 
       disableClose: true,
       data: {
-        title: 'Collection History',
+        title: 'Recent Collection History',
 
       },
     });

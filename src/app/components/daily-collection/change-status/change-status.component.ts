@@ -12,7 +12,7 @@ interface Transaction {
   styleUrls: ['./change-status.component.scss']
 })
 export class ChangeStatusComponent {
-
+  loading = false;
   displayedColumns: string[] = ['item', 'cost'];
   transactions: Transaction[] = [
     { item: 'Fixed Deposit Name', cost: 4 },
