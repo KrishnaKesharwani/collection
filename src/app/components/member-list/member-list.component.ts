@@ -5,6 +5,7 @@ import { ViewMemberListComponent } from './view-member-list/view-member-list.com
 import { AssignLoanComponent } from './assign-loan/assign-loan.component';
 import { AddMemberComponent } from './add-member/add-member.component';
 import Swal from 'sweetalert2';
+import { ActionService } from 'src/app/services/action/action.service';
 
 @Component({
 
@@ -19,27 +20,49 @@ export class MemberListComponent {
   show_list: any;
   me: any;
   dataForDelete: any = {};
-  constructor(public dialog: MatDialog) { }
+
+  columns = ['Member No.', 'Image', 'Name', 'Mobile', 'Email', 'Aadhar No.', 'Join Date', 'Status'];
+  memberData = [
+    { MemberNo: 1, image: `<img src="assets/imgs/default-pic.png" />`, Name: 'John Doe', Mobile: '1234567890', Email: 'rk@gmail.com', AadharNo: '1111-2222-3333', JoinDate: '12-12-2000', status: 'Active' },
+    // Add more customer objects
+  ];
+
+  actions = [
+
+
+    { action: 'edit_customer', label: 'Edit Customer', icon: 'mdi mdi-pencil mr-2' },
+    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
+
+    { action: 'assign_loan', label: 'Assign Loan', icon: 'mdi mdi-account-check-outline mr-2' },
+
+    { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
+  ];
+  constructor(private actionService: ActionService, public dialog: MatDialog) { }
 
   ngOnInit() {
 
   }
-  statusActive() {
 
+
+  onAction(actionData: { action: string; row: any }) {
+
+    this.actionService.setAction(actionData);
+    switch (actionData.action) {
+
+      case 'view_details':
+        this.openDialogMemberDetails();
+        break;
+      case 'edit_customer':
+        this.openDialogAdd();
+        break;
+      case 'assign_loan':
+        this.openDialogAssignLoan();
+        break;
+      case 'status':
+        this.openDialogStatus('0ms', '0ms');
+        break;
+    }
   }
-
-  viewDetails() {
-
-  }
-
-  editDetails(number: any) {
-
-  }
-
-  addMember(number: any) {
-
-  }
-
   openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {

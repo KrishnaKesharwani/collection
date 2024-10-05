@@ -22,76 +22,11 @@
                         </div>
                     </div>
                 </div>
-                <table class="table align-items-center table-flush mydata-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="col">Customer No.</th>
-                            <th class="col text-center">Image</th>
-                            <th class="col">Name</th>
-                            <th class="col">Mobile</th>
-                            <th class="col">Assign</th>
-                            <th class="col">Available Amt</th>
-                            <th class="col text-center">Status</th>
-                            <th class="col action_col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="col">RK-Cus101</td>
-                            <td class="col">
-                                <div class="list_image_block">
-                                    <img src="assets/imgs/default-pic.png" />
-                                </div>
-                            </td>
-                            <td class="col">Sandeep Patel</td>
-                            <td class="col">6263626505</td>
-                            <td class="col">Roshan</td>
-                            <td class="col text-right">12,000.00</td>
-                            <td class="col text-center"><span class="badge bg-success text-white">Active</span></td>
-                            <td class="action_col">
-                                <div placement="bottom-right">
-                                    <button mat-icon-button [matMenuTriggerFor]="menu"
-                                        aria-label="Example icon-button with a menu">
-                                        <mat-icon>more_vert</mat-icon>
-                                    </button>
-                                    <mat-menu #menu="matMenu">
-                                        <div class="table_actionmenu">
-                                            <button mat-menu-item (click)="openDialog()">
-                                                <i class="mdi mdi-history mr-2"></i>
-                                                <span>Collection History</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog2()">
-                                                <i class="mdi mdi-account-check-outline mr-2"></i>
-                                                <span>Assign Member</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog3()">
-                                                <i class="mdi mdi-account-switch-outline mr-2"></i>
-                                                <span>Change Member</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog4()">
-                                                <i class="mdi mdi-eye mr-2"></i>
-                                                <span>View Details</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog5()">
-                                                <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                <span>Change Status</span>
-                                            </button>
-                                        </div>
-                                    </mat-menu>
-                                </div>
+
+                <app-global-datatable [actions]="actions" [data]="collectionData" [columns]="columns"
+                    (actionTriggered)="onAction($event)"></app-global-datatable>
 
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="8" class="norecord_col">
-                                <div class="no_found">
-                                    <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

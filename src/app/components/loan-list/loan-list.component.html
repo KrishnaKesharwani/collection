@@ -20,84 +20,10 @@
 
                     </div>
                 </div>
-                <table class="table align-items-center table-flush mydata-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="col">Loan No.</th>
-                            <th class="col">Customer No.</th>
-                            <th class="col text-center">Logo</th>
-                            <th class="col">Name</th>
-                            <th class="col">Mobile</th>
-                            <th class="col">Assign</th>
-                            <th class="col">Loan Amt</th>
-                            <th class="col">Pending Amt</th>
-                            <th class="col text-center">Status</th>
 
-                            <th class="col action_col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="col" data-name="Loan No.">Innitial</td>
-                            <td class="col" data-name="Date"><small>12-Jan-2022 To -</small></td>
-                            <td class="col" data-name="Logo">
-                                <div class="list_image_block">
-                                    <img src="assets/imgs/rk-group-logo.png" />
-                                </div>
-                            </td>
-                            <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>12000.00</td>
-                            <td class="col" data-name="Balance"><i class="mdi mdi-currency-inr mr-1"></i>0.00</td>
-                            <td class="col" data-name="Receiver">Not Assigned</td>
-                            <td class="col" data-name="Receiver">Not Assigned</td>
-                            <td class="col" data-name="Receiver">Not Assigned</td>
-                            <td class="col text-center" data-name="Status">
-                                <div class="badge bg-warning text-white">Pending</div>
-                            </td>
+                <app-global-datatable [actions]="actions" [data]="loanData" [columns]="columns"
+                    (actionTriggered)="onAction($event)"></app-global-datatable>
 
-
-
-                            <td class="col text-center" data-name="Action">
-
-                                <button mat-icon-button [matMenuTriggerFor]="menu"
-                                    aria-label="Example icon-button with a menu">
-                                    <mat-icon>more_vert</mat-icon>
-                                </button>
-                                <mat-menu #menu="matMenu">
-                                    <div class="table_actionmenu">
-                                        <button mat-menu-item (click)="openDialog()">
-                                            <i class="mdi mdi-history mr-2"></i>
-                                            <span>Installment History</span>
-                                        </button>
-                                        <button mat-menu-item (click)="openDialog2()">
-                                            <i class="mdi mdi-account-check-outline mr-2"></i>
-                                            <span>Assign Member</span>
-                                        </button>
-                                        <button mat-menu-item (click)="openDialog3()">
-                                            <i class="mdi mdi-account-switch-outline mr-2"></i>
-                                            <span>Change Member</span>
-                                        </button>
-                                        <button mat-menu-item (click)="openDialog4()">
-                                            <i class="mdi mdi-eye mr-2"></i>
-                                            <span>View Details</span>
-                                        </button>
-                                        <button mat-menu-item (click)="openDialog5()">
-                                            <i class="mdi mdi-account-off-outline mr-2"></i>
-                                            <span>Change Status</span>
-                                        </button>
-                                    </div>
-                                </mat-menu>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="6" class="norecord_col">
-                                <div class="no_found">
-                                    <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

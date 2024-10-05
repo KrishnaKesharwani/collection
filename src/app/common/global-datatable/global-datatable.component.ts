@@ -9,7 +9,7 @@ import { ActionData, ActionService } from 'src/app/services/action/action.servic
   styleUrls: ['./global-datatable.component.scss']
 })
 export class GlobalDatatableComponent {
-  @Input() data: any[] = [];
+  @Input() data: any = [];
   @Input() columns: string[] = [];
   @ViewChild('dataTable', { static: false }) table!: ElementRef;
   @Output() actionSelected = new EventEmitter<{ action: string, row: any }>();
@@ -19,6 +19,21 @@ export class GlobalDatatableComponent {
   constructor(public actionService: ActionService) { }
 
   ngAfterViewInit(): void {
+    this.initializeDataTable();
+  }
+
+  ngOnChanges(): void {
+    if (this.table) {
+      this.initializeDataTable();
+    }
+  }
+
+  private initializeDataTable() {
+    // Destroy the previous instance if it exists
+    if ($.fn.dataTable.isDataTable(this.table.nativeElement)) {
+      $(this.table.nativeElement).DataTable().destroy();
+    }
+
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,

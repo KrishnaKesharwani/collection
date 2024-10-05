@@ -8,6 +8,7 @@ import { AddCompanyComponent } from './add-company/add-company.component';
 import Swal from 'sweetalert2';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActionService } from 'src/app/services/action/action.service';
 
 @Component({
   selector: 'app-company-list',
@@ -16,10 +17,22 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CompanyListComponent {
   customer_action: any;
-  companyListData: any[] = [];
+  companyListData: any;
   companyDashboardtData: any;
+  columns = ['Name', 'Logo', 'Owner Name', 'Mobile', 'Start Date', 'End Date', 'Plan', 'Amount', 'Pending', 'Status'];
 
-  constructor(private _toastr: ToastrService, public _service: CompanyService) { }
+
+  actions = [
+
+
+    { action: 'collection_history', label: 'Collection History', icon: 'mdi mdi-history mr-2' },
+
+    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
+    { action: 'edit_company', label: 'Edit Company', icon: 'mdi mdi-pencil mr-2' },
+    { action: 'received_amount', label: 'Received Amount', icon: 'mdi mdi-cash-100 mr-2' },
+    { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
+  ];
+  constructor(private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService) { }
 
   ngOnInit() {
 
@@ -31,12 +44,36 @@ export class CompanyListComponent {
     this._service.getList().subscribe((response: any) => {
       console.log(typeof response);
       if (response) {
-        this.companyListData = JSON.parse(JSON.stringify(response.data));
+        this.companyListData = response.data;
         console.log(typeof this.companyListData)
       }
 
     })
   }
+
+  onAction(actionData: { action: string; row: any }) {
+
+    this.actionService.setAction(actionData);
+    switch (actionData.action) {
+
+      case 'collection_history':
+        this.openDialog();
+        break;
+      case 'view_details':
+        this.openDialog2();
+        break;
+      case 'edit_company':
+        this.openDialog3();
+        break;
+      case 'received_amount':
+        this.openDialog4();
+        break;
+      case 'status':
+        this.openDialog5('1ms', '5ms');
+        break;
+    }
+  }
+
 
 
   readonly dialog = inject(MatDialog);

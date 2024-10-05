@@ -4,6 +4,7 @@ import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { AddOfferComponent } from './add-offer/add-offer.component';
 import { ViewOfferComponent } from './view-offer/view-offer.component';
 import Swal from 'sweetalert2';
+import { ActionService } from 'src/app/services/action/action.service';
 
 @Component({
   selector: 'app-offers',
@@ -13,22 +14,50 @@ import Swal from 'sweetalert2';
 export class OffersComponent {
   offer_modalaction: any;
   usertype: any;
-  constructor(public dialog: MatDialog) { }
 
+
+  columns = ['Offer Name', 'Image', 'Type', 'Details', 'Status'];
+  offerData = [
+    {},
+    // Add more customer objects
+  ];
+
+  actions = [
+
+
+    { action: 'edit_deposit', label: 'Change Member', icon: 'mdi mdi-pencil mr-2' },
+    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
+    { action: 'change_status', label: 'Change Status', icon: 'mdi mdi-account-off-outline mr-2' },
+    { action: 'set_default', label: 'Set Default', icon: 'mdi mdi-checkbox-marked-circle-outline mr-2' },
+  ];
+
+  constructor(public dialog: MatDialog, private actionService: ActionService) { }
+
+
+  onAction(actionData: { action: string; row: any }) {
+
+    this.actionService.setAction(actionData);
+    switch (actionData.action) {
+
+
+      case 'edit_deposit':
+        this.openDialog2();
+        break;
+      case 'view_details':
+        this.openDialog4();
+        break;
+      case 'change_status':
+        this.openDialog('1ms', '5ms');
+        break;
+      case 'change_status':
+        this.openDialog5('1ms', '5ms');
+        break;
+    }
+  }
   ngOnInit() {
 
   }
-  offerModal(index: any) {
 
-  }
-
-  statusActive() {
-
-  }
-
-  setDefault() {
-
-  }
 
   readonly dialog2 = inject(MatDialog);
   openDialog2() {

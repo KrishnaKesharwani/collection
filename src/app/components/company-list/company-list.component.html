@@ -25,92 +25,10 @@
                         </div>
                     </div>
                 </div>
-                <table class="table align-items-center table-flush mydata-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="col">Name</th>
-                            <th class="col text-center">Logo</th>
-                            <th class="col">Owner Name</th>
-                            <th class="col">Mobile</th>
-                            <th class="col">Start Date</th>
-                            <th class="col">End Date</th>
-                            <th class="col">Plan</th>
-                            <th class="col">Amount</th>
-                            <th class="col">Pending</th>
-                            <th class="col text-center">Status</th>
-                            <th class="col action_col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <app-global-datatable [actions]="actions" [data]="companyListData" [columns]="columns"
+                    (actionTriggered)="onAction($event)"></app-global-datatable>
+                <pre>{{ companyListData | json }}</pre>
 
-                        <tr *ngFor="let item of companyListData">
-                            <td class="col" data-name="Name">{{item.company_name}}</td>
-                            <td class="col" data-name="Logo">
-                                <div class="list_image_block">
-                                    <img src="{{item.main_logo}}" />
-                                </div>
-                            </td>
-                            <td class="col" data-name="Owner Name">{{item.owner_name}}</td>
-                            <td class="col" data-name="Mobile">{{item.mobile}}</td>
-                            <td class="col" data-name="Start Date">{{item.start_date}}</td>
-                            <td class="col" data-name="End Date">{{item.end_date}}</td>
-                            <td class="col" data-name="Plan">{{item.plans[0].plan}}</td>
-                            <td class="col text-right" data-name="Amount">{{item.total_amount}}</td>
-                            <td class="col text-right" data-name="Pending">{{item.advance_amount}}</td>
-                            <td class="col text-center" data-name="Status"><span
-                                    class="badge bg-success text-white">Active</span></td>
-                            <td class="action_col" data-name="Action">
-
-                                <div placement="bottom-right">
-
-                                    <button mat-icon-button [matMenuTriggerFor]="menu"
-                                        aria-label="Example icon-button with a menu">
-                                        <mat-icon>more_vert</mat-icon>
-                                    </button>
-
-                                    <mat-menu #menu="matMenu">
-                                        <div class="table_actionmenu">
-                                            <button mat-menu-item (click)="openDialog()">
-                                                <i class="mdi mdi-history mr-2"></i>
-                                                <span>Company History</span>
-                                            </button>
-
-
-                                            <button mat-menu-item (click)="openDialog2()">
-
-                                                <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog3()">
-
-                                                <i class="mdi mdi-pencil mr-2"></i> <span>Edit Comapny</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog4()">
-                                                <i class="mdi mdi-cash-100 mr-2"></i>
-                                                <span>Received Amount</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog7('1ms', '5ms')">
-                                                <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                <span>Status</span>
-                                            </button>
-                                        </div>
-                                    </mat-menu>
-
-                                </div>
-
-
-
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="11" class="norecord_col">
-                                <div class="no_found">
-                                    <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ import { ChangeMemberComponent } from './change-member/change-member.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { ViewDetailsComponent } from './view-details/view-details.component';
+import { ActionService } from 'src/app/services/action/action.service';
 
 @Component({
   selector: 'app-daily-collection',
@@ -14,12 +15,50 @@ import { ViewDetailsComponent } from './view-details/view-details.component';
 })
 export class DailyCollectionComponent {
   loanassign_action = 0;
-  constructor(public dropdownService: CommonComponentService) { }
+  columns = ['Customer No.', 'Image', 'Name', 'Mobile', 'Assign', 'Available Amt', 'Status'];
+  collectionData = [
+    {},
+    // Add more customer objects
+  ];
+
+  actions = [
+
+
+    { action: 'collection_history', label: 'Collection History', icon: 'mdi mdi-history mr-2' },
+    { action: 'assign_member', label: 'Assign Member', icon: 'mdi mdi-account-check-outline mr-2' },
+    { action: 'change_member', label: 'Change Member', icon: 'mdi mdi-account-switch-outline mr-2' },
+    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
+    { action: 'status', label: 'Change Status', icon: 'mdi mdi-account-off-outline mr-2' },
+  ];
+
+  constructor(private actionService: ActionService, public dropdownService: CommonComponentService) { }
 
   ngOnInit(): void {
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
 
+  onAction(actionData: { action: string; row: any }) {
+
+    this.actionService.setAction(actionData);
+    switch (actionData.action) {
+
+      case 'collection_history':
+        this.openDialog();
+        break;
+      case 'assign_member':
+        this.openDialog2();
+        break;
+      case 'change_member':
+        this.openDialog3();
+        break;
+      case 'view_details':
+        this.openDialog4();
+        break;
+      case 'status':
+        this.openDialog5();
+        break;
+    }
+  }
   loanAssignMember(action: number) {
     this.loanassign_action = action;
   }

@@ -27,79 +27,10 @@
                         </div>
                     </div>
                 </div>
-                <table class="table align-items-center table-flush mydata-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="col">Offer Name</th>
-                            <th class="col image_block text-center">Image</th>
-                            <th class="col type_block">Type</th>
-                            <th class="col">Details</th>
-                            <th class="col text-center action_colbtn">Status</th>
-                            <th class="col action_col">Action</th>
+                <app-global-datatable [actions]="actions" [data]="offerData" [columns]="columns"
+                    (actionTriggered)="onAction($event)"></app-global-datatable>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="col" data-name="Offer Name">Opening Offers</td>
-                            <td class="col" data-name="Image">
-                                <div class="list_image_block">
-                                    <img src="assets/imgs/offer-img.jpeg" />
-                                </div>
-                            </td>
-                            <td class="col text-center" data-name="Type"><span
-                                    class="badge bg-warning text-white">Offers</span></td>
-                            <td class="col" data-name="Details">
-                                <div class="offer_details">Explore the Best Info Now. Quick Answers. Find All Info You
-                                    Want. 100+ Unique Results. Find in Seconds. Useful & Relevant. Services: Secure
-                                    Search, No.1 Answers, Trusted Results.</div>
-                            </td>
 
-                            <td class="col text-center" data-name="Status"><span
-                                    class="badge bg-success text-white">Active</span></td>
-                            <td class="action_col" data-name="Action">
-                                <div placement="bottom-right">
-
-                                    <button mat-icon-button [matMenuTriggerFor]="menu"
-                                        aria-label="Example icon-button with a menu">
-                                        <mat-icon>more_vert</mat-icon>
-                                    </button>
-                                    <mat-menu #menu="matMenu">
-                                        <div class="table_actionmenu">
-                                            <button mat-menu-item (click)="openDialog3()">
-                                                <i class="mdi mdi-pencil mr-2"></i>
-                                                <span>Edit Details</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog4()">
-                                                <i class="mdi mdi-eye mr-2"></i>
-                                                <span>View Details</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog('1ms', '5ms')">
-                                                <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                <span>Inactive</span>
-                                            </button>
-                                            <button mat-menu-item (click)="openDialog5('1ms', '5ms')">
-                                                <i class="mdi mdi-checkbox-marked-circle-outline mr-2"></i>
-                                                <span>Set Default</span>
-                                            </button>
-                                        </div>
-                                    </mat-menu>
-
-                                </div>
-
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="5" *ngIf='usertype != 1' class="norecord_col">
-                            <td colspan="6" *ngIf='usertype == 1' class="norecord_col">
-                                <div class="no_found">
-                                    <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
