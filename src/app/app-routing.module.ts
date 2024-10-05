@@ -80,7 +80,7 @@ const routes: Routes = [
   },
   {
     path: 'money_received',
-    loadChildren: () => import('./components/menoy-received/money-received.module').then(m => m.MoneyReceivedModule)
+    loadChildren: () => import('./components/money-received/money-received.module').then(m => m.MoneyReceivedModule)
   },
   {
     path: 'paid_data_entry',

@@ -1,0 +1,26 @@
+<div class="dialoge_header">
+    <div class="left_text">{{dataa.title}}</div>
+    <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container small_popup">
+    <form>
+        <div class="global_form_row">
+            <app-input [isDateField]="false" label="Amount" [isRequired]="true" [className]="'bottom_error_msg'"
+                [key]="'amount'" [displayMsg]="'Amount is required'"></app-input>
+        </div>
+        <div class="global_form_row">
+            <mat-form-field class="global_textarea_block" appearance="outline">
+                <mat-label>Enter Advance Money Details</mat-label>
+                <textarea matInput></textarea>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+    <button class="global_submit_btn" mat-flat-button>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <mat-icon *ngIf="!loading" class="submitbtn_icon">check</mat-icon>
+        <span>Login</span>
+    </button>
+</div>
