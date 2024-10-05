@@ -3,19 +3,29 @@
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container small_popup">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="global_form_row">
-                <app-dropdwon key="member" field="Select Member"></app-dropdwon>
-            </div>
+    <form focusInvalidInput [formGroup]="receivedAmountForm">
+        <div class="global_form_row">
+            <app-input [disabled]="true" [isDateField]="false" label="Amount" [(value)]="receivedamount"
+            [isRequired]="true" [className]="'bottom_error_msg'" [form]="receivedAmountForm"
+            [key]="'receivedamount'"></app-input>
         </div>
-    </div>
+        <div class="global_form_row">
+            <!-- <app-dropdwon key="moneyStatus" field="Collect Money Status"></app-dropdwon> -->
+            <app-dropdwon key="moneyStatus" field="Collect Money Status" formControlName="moneystatus" name="moneystatus"></app-dropdwon>
+        </div>
+        <div class="global_form_row">
+            <mat-form-field class="global_textarea_block" appearance="outline">
+                <mat-label>Money Received Details</mat-label>
+                <textarea matInput placeholder="Enter Details" formControlName="moneydetails" name="moneydetails"></textarea>
+            </mat-form-field>
+        </div>
+    </form>
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
     <button class="global_submit_btn" mat-flat-button>
         <app-button-loader *ngIf="loading"></app-button-loader>
         <mat-icon *ngIf="!loading" class="submitbtn_icon">check</mat-icon>
-        <span>Login</span>
+        <span>Update</span>
     </button>
 </div>

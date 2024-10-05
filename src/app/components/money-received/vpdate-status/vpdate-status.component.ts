@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 
 @Component({
@@ -10,12 +11,23 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
 export class VpdateStatusComponent {
   @Input() title: any;
   loading = false;
-  @Output() deleteAction = new EventEmitter();
+  receivedAmountForm!: FormGroup;
 
-  constructor(private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  @Output() deleteAction = new EventEmitter();
+  // constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
+  //   , public fb: FormBuilder) { }
+  receivedamount:string = '';
+  moneystatus: string= '';
+  moneydetails: string= '';
+  constructor(public fb: FormBuilder, private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
   ngOnInit() {
-    this.dropdownService.setOptions('member', ['Allot Members', 'Roshan Kanojiya', 'Bhaijan']);
+    this.receivedAmountForm = this.fb.group({
+      receivedamount: ['10000'],
+      moneystatus: [''],
+      moneydetails: ['']
+    });
+    this.dropdownService.setOptions('moneyStatus', ['Working', 'Received', 'Cancelled']);
   }
 }
