@@ -10,7 +10,7 @@ import { ActionData, ActionService } from 'src/app/services/action/action.servic
 })
 export class GlobalDatatableComponent {
   @Input() data: any = [];
-  @Input() columns: string[] = [];
+  @Input() columns: any[] = [];
   @ViewChild('dataTable', { static: false }) table!: ElementRef;
   @Output() actionSelected = new EventEmitter<{ action: string, row: any }>();
   @Output() actionTriggered = new EventEmitter<ActionData>();
@@ -32,6 +32,7 @@ export class GlobalDatatableComponent {
     // Destroy the previous instance if it exists
     if ($.fn.dataTable.isDataTable(this.table.nativeElement)) {
       $(this.table.nativeElement).DataTable().destroy();
+
     }
 
     this.dtOptions = {
@@ -45,6 +46,7 @@ export class GlobalDatatableComponent {
 
   onAction(actionData: ActionData) {
     this.actionService.setAction(actionData);
+
     this.actionTriggered.emit(actionData);
   }
 }

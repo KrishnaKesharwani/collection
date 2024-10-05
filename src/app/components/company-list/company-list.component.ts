@@ -17,13 +17,24 @@ import { ActionService } from 'src/app/services/action/action.service';
 })
 export class CompanyListComponent {
   customer_action: any;
-  companyListData: any;
+  companyListData: any[] = [
+  ]
   companyDashboardtData: any;
-  columns = ['Name', 'Logo', 'Owner Name', 'Mobile', 'Start Date', 'End Date', 'Plan', 'Amount', 'Pending', 'Status'];
-
+  // columns = ['Name', 'Logo', 'Owner Name', 'Mobile', 'Start Date', 'End Date', 'Plan', 'Amount', 'Pending', 'Status'];
+  columns = [
+    { prop: 'company_name', name: 'Name' },
+    { prop: 'logo', name: 'Logo' },
+    { prop: 'owner_name', name: 'Owner Name' },
+    { prop: 'mobile', name: 'Mobile' },
+    { prop: 'start_date', name: 'Start Date' },
+    { prop: 'end_date', name: 'End Date' },
+    { prop: 'plans', name: 'Plan' },
+    { prop: 'total_amount', name: 'Amount' },
+    { prop: 'advance_amount', name: 'Pending' },
+    { prop: 'status', name: 'Status' }
+  ];
 
   actions = [
-
 
     { action: 'collection_history', label: 'Collection History', icon: 'mdi mdi-history mr-2' },
 
@@ -42,10 +53,10 @@ export class CompanyListComponent {
   getCompanyList() {
 
     this._service.getList().subscribe((response: any) => {
-      console.log(typeof response);
-      if (response) {
+
+      if (response && Array.isArray(response.data)) {
         this.companyListData = response.data;
-        console.log(typeof this.companyListData)
+
       }
 
     })
@@ -63,13 +74,13 @@ export class CompanyListComponent {
         this.openDialog2();
         break;
       case 'edit_company':
-        this.openDialog3();
+        this.openDialog3(actionData.row);
         break;
       case 'received_amount':
         this.openDialog4();
         break;
       case 'status':
-        this.openDialog5('1ms', '5ms');
+        this.openDialog5('1ms', '5ms', actionData.row);
         break;
     }
   }
@@ -106,11 +117,12 @@ export class CompanyListComponent {
   }
 
   readonly dialog3 = inject(MatDialog);
-  openDialog3() {
+  openDialog3(data: any) {
     const dialogRef = this.dialog3.open(AddCompanyComponent, {
 
       disableClose: true,
       data: {
+        id: data.id,
         title: 'Update Members Details',
 
       },
@@ -134,34 +146,51 @@ export class CompanyListComponent {
     });
   }
 
-  openDialog5(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialog5(enterAnimationDuration: string, exitAnimationDuration: string, data?: any): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
 
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
-        title: 'Delete This Record?',
-        subTitle: 'You wont be inactive member status!',
-      },
+        title: 'Are you sure?',
+        subTitle: data && data.status === 'active'
+          ? 'You want to inactivate company status!'
+          : 'You want to activate company status!'
+      }
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete();
+      this.delete(data);
     });
   }
-  delete(e?: any) {
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: 'Success',
-      text: "Company status updated successfully...",
-      showConfirmButton: true,
-      timer: 1500
+  delete(data: any) {
+
+    let obj = {
+      company_id: data.id,
+      status: data.status
+    };
+
+
+    this._service.changeStatus(obj).subscribe((data: any) => {
+
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: 'Success',
+          text: 'Company Status Updated!',
+          showConfirmButton: true,
+          timer: 1500
+        });
+      }
+      this.getCompanyList();
     });
+
+
   }
 
   readonly dialog7 = inject(MatDialog);
-  openDialog7(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialog7(enterAnimationDuration: string, exitAnimationDuration: string, data?: any): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog7.open(DeleteComponent, {
 
@@ -174,7 +203,7 @@ export class CompanyListComponent {
       },
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete();
+      this.delete(data);
     });
   }
 

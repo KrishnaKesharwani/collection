@@ -1,14 +1,27 @@
 <table #dataTable class="table align-items-center table-flush mydata-table" style="width: 100%">
     <thead class="thead-light">
         <tr>
-            <th *ngFor="let column of columns">{{ column | titlecase }}</th>
+            <th *ngFor="let column of columns">{{ column.name | titlecase }}</th>
             <th>Action</th> <!-- Add Action Column -->
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let row of data">
             <ng-container *ngFor="let column of columns">
-                <td>{{ row[column] }}</td>
+
+                <!-- <td>{{ row[column.prop] }}</td> -->
+                <td>
+                    <ng-container *ngIf="column.prop === 'plans'">
+                        <!-- Assuming plans is an array, render it accordingly -->
+                        <div *ngFor="let plan of row[column.prop]">
+                            {{ plan.plan }}
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="column.prop !== 'plans'">
+                        {{ row[column.prop] }}
+                    </ng-container>
+
+                </td>
             </ng-container>
             <td>
                 <button mat-icon-button [matMenuTriggerFor]="menu">

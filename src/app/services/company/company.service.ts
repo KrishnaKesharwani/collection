@@ -17,9 +17,19 @@ export class CompanyService {
     return this.httpClient.post(url, form)
   }
 
+  update(form: object) {
+    const url = `${this.apiUrl}/updatecompany`;
+    return this.httpClient.post(url, form)
+  }
+
   getList() {
     const url = `${this.apiUrl}/companies`;
     return this.httpClient.get(url)
+  }
+
+  changeStatus(obj: object) {
+    const url = `${this.apiUrl}/updatecompanystatus`;
+    return this.httpClient.put(url, obj)
   }
 
   dashboard() {

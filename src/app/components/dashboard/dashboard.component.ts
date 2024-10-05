@@ -43,7 +43,7 @@ export class DashboardComponent {
 
   getDashboardData() {
     this._service.dashboard().subscribe((response: any) => {
-      console.log(typeof response);
+
       if (response) {
         this.companyDashboardtData = response;
 

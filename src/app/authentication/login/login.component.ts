@@ -69,7 +69,6 @@ export class LoginComponent {
       this.loading = true;
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
-          console.log(data);
 
           const userLoginDetails: AdminFromBackend = {
             company_id: data.user.company_id,
