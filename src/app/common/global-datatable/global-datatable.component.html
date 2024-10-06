@@ -9,7 +9,7 @@
         <tr *ngFor="let row of data">
             <ng-container *ngFor="let column of columns">
                 <!-- <td>{{ row[column.prop] }}</td> -->
-                <td >
+                <td [attr.data-name]="column.name | titlecase">
                     <ng-container *ngIf="column.prop === 'plans'">
                         <!-- Assuming plans is an array, render it accordingly -->
                         <div *ngFor="let plan of row[column.prop]">
@@ -21,7 +21,7 @@
                     </ng-container>
                 </td>
             </ng-container>
-            <td>
+            <td [attr.data-name]="'Actions'">
                 <button mat-icon-button [matMenuTriggerFor]="menu">
                     <mat-icon>more_vert</mat-icon>
                 </button>
