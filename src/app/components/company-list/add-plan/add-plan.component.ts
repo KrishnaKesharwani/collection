@@ -13,7 +13,7 @@ export class AddPlanComponent {
   endDate: string = '';
   totalAmount: string = '';
   receiveAmount: string = '';
-  planDetails: string='';
+  planDetails: string = '';
   loading = false;
   dropdownService: any;
 
@@ -21,21 +21,19 @@ export class AddPlanComponent {
     , public fb: FormBuilder) { }
 
   ngOnInit() {
-    this.dropdownService.setOptions('planType', ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo']);
+    this.dropdownService.setOptions('planList', ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo']);
     this.addplanForm = this.fb.group({
-      planType: [''],
-      startDate: [''],
-      endDate: [''],
-      totalAmount: [''],
+      planType: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', ],
+      totalAmount: ['', Validators.required],
       receiveAmount: [''],
       planDetails: ['']
     });
   }
 
-  addPlanDetails(){
+  addPlanDetails() {
     this.loading = true;
-    
   }
-
 
 }
