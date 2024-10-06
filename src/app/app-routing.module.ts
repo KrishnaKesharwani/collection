@@ -92,7 +92,7 @@ const routes: Routes = [
   },
   {
     path: 'change_password',
-    loadChildren: () => import('./components/reports/reports.module').then(m => m.ReportsModule)
+    loadChildren: () => import('./components/change-password/change-password.module').then(m => m.ChangePasswordModule)
   },
   { path: '**', component: LoginComponent }
 ]

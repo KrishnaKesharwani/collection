@@ -12,31 +12,21 @@ interface Transaction {
   styleUrls: ['./change-status.component.scss']
 })
 
-
-
 export class ChangeStatusComponent {
-
-
   displayedColumns: string[] = ['item', 'cost'];
   transactions: Transaction[] = [
     { item: 'Fixed Deposit Name', cost: 4 },
-
     { item: 'Start Date', cost: 15 },
     { item: 'End Date', cost: 15 },
     { item: 'Days / Time Slot', cost: 15 },
     { item: 'Start Amount', cost: 15 },
     { item: 'End  Amount', cost: 15 }
   ];
+
   constructor(private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
-
-
-
   ngOnInit() {
-    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+    this.dropdownService.setOptions('status', ['Working', 'Received', 'Cancelled']);
   }
-
   save() { }
-
-
 }

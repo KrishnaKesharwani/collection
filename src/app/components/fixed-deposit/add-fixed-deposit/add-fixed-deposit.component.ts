@@ -26,7 +26,6 @@ export class AddFixedDepositComponent {
       details: [''],
       email: [''],
       status: [''],
-
       address: [''],
       adhar_front: [''],
       adhar_back: [''],
@@ -36,9 +35,7 @@ export class AddFixedDepositComponent {
       start_date: [''],
       end_date: ['']
     });
-
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
-
   }
 
   save() {
