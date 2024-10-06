@@ -32,7 +32,8 @@ export class InputComponent {
   @Input() customErrorPatternMsg!: string;
   @Input() customErrorDisplayMsg!: string;
   @Input() customType!: string;
-  @Input() isDateField: boolean = false;
+  @Input() isDateField!: boolean;
+  @Input() matDatepicker!: boolean;
   @Input() className: string = 'bottom_error_msg';
 
   @Input() keyValidation!: string

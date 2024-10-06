@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { CommonComponentService } from 'src/app/common/common-component.service';
 
 @Component({
   selector: 'app-add-plan',
@@ -15,17 +16,17 @@ export class AddPlanComponent {
   receiveAmount: string = '';
   planDetails: string = '';
   loading = false;
-  dropdownService: any;
 
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
+
+  constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 
   ngOnInit() {
-    this.dropdownService.setOptions('planList', ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo']);
+    this.dropdownService.setOptions('planType', ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo']);
     this.addplanForm = this.fb.group({
       planType: ['', Validators.required],
       startDate: ['', Validators.required],
-      endDate: ['', ],
+      endDate: ['',],
       totalAmount: ['', Validators.required],
       receiveAmount: [''],
       planDetails: ['']
