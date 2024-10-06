@@ -55,7 +55,7 @@ export class AddCompanyComponent {
       address: ['', Validators.required],
       details: ['', Validators.required]
     });
-
+    this.company_id = this.dataa.id;
     this.dropdownService.setOptions('plan', ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo']);
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }

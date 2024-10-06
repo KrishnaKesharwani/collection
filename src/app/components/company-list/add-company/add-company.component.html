@@ -22,47 +22,49 @@
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'mobile'"
                         [displayMsg]="'Mobile is required'"></app-input>
                 </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-dropdwon key="plan" field="Plan" formControlName="plan" name="plan"></app-dropdwon>
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'start_date'"
-                        [displayMsg]="'Start date is required'"></app-input>
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="true" label="End Date" [(value)]="end_date" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'end_date'"
-                        [displayMsg]="'End date is required'"></app-input>
-                </div>
+                <ng-container *ngIf="!company_id">
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-dropdwon key="plan" field="Plan" formControlName="plan" name="plan"></app-dropdwon>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
+                            [className]="'bottom_error_msg'" [form]="companyForm" [key]="'start_date'"
+                            [displayMsg]="'Start date is required'"></app-input>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="true" label="End Date" [(value)]="end_date" [isRequired]="true"
+                            [className]="'bottom_error_msg'" [form]="companyForm" [key]="'end_date'"
+                            [displayMsg]="'End date is required'"></app-input>
+                    </div>
 
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Total Amount" [(value)]="total_amount" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'total_amount'"
-                        [displayMsg]="'Total amount is required'"></app-input>
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Advance Amount" [(value)]="advance_amount"
-                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
-                        [key]="'advance_amount'" [displayMsg]="'Advance amount is required'"></app-input>
-                </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="false" label="Total Amount" [(value)]="total_amount"
+                            [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'total_amount'" [displayMsg]="'Total amount is required'"></app-input>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="false" label="Advance Amount" [(value)]="advance_amount"
+                            [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'advance_amount'" [displayMsg]="'Advance amount is required'"></app-input>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="false" label="Company Login Id" [(value)]="company_login_id"
+                            [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'company_login_id'" [displayMsg]="'Login id is required'"></app-input>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="false" label="Password" [(value)]="password" [isRequired]="true"
+                            [className]="'bottom_error_msg'" [form]="companyForm" [key]="'password'"
+                            [displayMsg]="'Password is required'"></app-input>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
+                    </div>
+                </ng-container>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <app-input [isDateField]="false" label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'aadhar_no'"
                         [displayMsg]="'Aadhar number is required'"></app-input>
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Company Login Id" [(value)]="company_login_id"
-                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
-                        [key]="'company_login_id'" [displayMsg]="'Login id is required'"></app-input>
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Password" [(value)]="password" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'password'"
-                        [displayMsg]="'Password is required'"></app-input>
                 </div>
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"

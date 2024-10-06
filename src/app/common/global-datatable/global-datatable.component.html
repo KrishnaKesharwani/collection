@@ -1,8 +1,10 @@
 <table #dataTable class="table align-items-center table-flush mydata-table" style="width: 100%">
     <thead class="thead-light">
         <tr>
-            <th *ngFor="let column of columns">{{ column.name | titlecase }}</th>
-            <th>Action</th> <!-- Add Action Column -->
+            <ng-container *ngFor="let column of columns">
+                <th [class]="column.className">{{ column.name | titlecase }}</th>
+            </ng-container>
+            <th>Action</th> 
         </tr>
     </thead>
     <tbody>
