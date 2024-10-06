@@ -10,10 +10,11 @@ import { AddCompanyComponent } from './add-company/add-company.component';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyService } from 'src/app/services/company/company.service';
+import { AddPlanComponent } from './add-plan/add-plan.component';
 // import { ButtonLoaderComponent } from 'src/app/common/button-loader/button-loader.component';
 
 @NgModule({
-  declarations: [CompanyListComponent, CompanyHistoryComponent, ViewDetailsComponent, ReceivedAmountComponent, AddCompanyComponent],
+  declarations: [CompanyListComponent, CompanyHistoryComponent, ViewDetailsComponent, ReceivedAmountComponent, AddCompanyComponent, AddPlanComponent],
   imports: [
     CommonModule,
     MaterialModule,

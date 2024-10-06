@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { AddPlanComponent } from '../add-plan/add-plan.component';
+import { ReceivedAmountComponent } from '../received-amount/received-amount.component';
 
 interface Transaction {
   start_date: string;
@@ -17,7 +19,6 @@ interface Transaction {
 })
 export class CompanyHistoryComponent {
 
-
   loanDetails: any = [];
   displayedColumns: string[] = ['start_date', 'end_date', 'plan', 'amount', 'pending', 'status'];
   transactions: Transaction[] = [
@@ -27,4 +28,21 @@ export class CompanyHistoryComponent {
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
+  addNewPlan() {
+    const dialogRef = this.dialog.open(AddPlanComponent, {
+      data: {
+        title: 'Add New Company Plan',
+      },
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+    });
+  }
+
+  addReceiveMoney(){
+    const dialogRef = this.dialog.open(ReceivedAmountComponent, {
+      data: {
+        title: 'Received Plan Amount',        
+      }
+    });
+  }
 }

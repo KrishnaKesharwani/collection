@@ -14,6 +14,7 @@ export class ReceivedAmountComponent {
   receivedDate: string = '';
   companyName: string = '';
   receivedAmount: string = '';
+  loading = false;
 
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
