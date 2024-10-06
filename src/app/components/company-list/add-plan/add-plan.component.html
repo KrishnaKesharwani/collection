@@ -21,9 +21,8 @@
                         [displayMsg]="'Date is required'"></app-input>
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12 ">
-                    <app-input [matDatepicker]="false" [disabled]="true" label="Total Amount" [(value)]="totalAmount"
-                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="addplanForm"
-                        [key]="'totalAmount'"></app-input>
+                    <app-input [disabled]="true" label="Total Amount" [(value)]="totalAmount" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="addplanForm" [key]="'totalAmount'"></app-input>
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12 ">
                     <app-input [disabled]="true" label="Receive Amount" [(value)]="receiveAmount" [isRequired]="true"

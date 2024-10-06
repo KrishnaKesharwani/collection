@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output, ViewChild } from '@angular/core';
 import { CommonComponentService } from '../common-component.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-input',
@@ -32,9 +33,10 @@ export class InputComponent {
   @Input() customErrorPatternMsg!: string;
   @Input() customErrorDisplayMsg!: string;
   @Input() customType!: string;
-  @Input() isDateField!: boolean;
-  @Input() matDatepicker!: boolean;
+  @Input() isDateField: boolean = false;
+  // @Input() matDatepicker!: boolean;
   @Input() className: string = 'bottom_error_msg';
+  @ViewChild('picker') picker!: MatDatepicker<any>; // Declare the datepicker reference
 
   @Input() keyValidation!: string
   minLength: any;

@@ -23,16 +23,16 @@ export class CompanyListComponent {
   readonly dialog = inject(MatDialog);
   // columns = ['Name', 'Logo', 'Owner Name', 'Mobile', 'Start Date', 'End Date', 'Plan', 'Amount', 'Pending', 'Status'];
   columns = [
-    { prop: 'company_name', name: 'Name' },
-    { prop: 'logo', name: 'Logo' },
-    { prop: 'owner_name', name: 'Owner Name' },
-    { prop: 'mobile', name: 'Mobile' },
-    { prop: 'start_date', name: 'Start Date' },
-    { prop: 'end_date', name: 'End Date' },
-    { prop: 'plans', name: 'Plan' },
-    { prop: 'total_amount', name: 'Amount' },
-    { prop: 'advance_amount', name: 'Pending' },
-    { prop: 'status', name: 'Status' }
+    { prop: 'company_name', name: 'Name', orderable: true },
+    { prop: 'main_logo', name: 'Logo', orderable: false },
+    { prop: 'owner_name', name: 'Owner Name', orderable: true },
+    { prop: 'mobile', name: 'Mobile', orderable: false },
+    { prop: 'start_date', name: 'Start Date', orderable: false },
+    { prop: 'end_date', name: 'End Date', orderable: false },
+    { prop: 'plans', name: 'Plan', orderable: false },
+    { prop: 'total_amount', name: 'Amount', orderable: false },
+    { prop: 'advance_amount', name: 'Pending', orderable: false },
+    { prop: 'status', name: 'Status', orderable: false }
   ];
 
   actions = [

@@ -16,6 +16,7 @@ export class GlobalDatatableComponent {
   @Output() actionTriggered = new EventEmitter<ActionData>();
   dtOptions: any = {};  // Use DataTables.Settings for type definition
   @Input() actions: Array<{ action: string; label: string; icon: string }> = [];
+
   constructor(public actionService: ActionService) { }
 
   ngAfterViewInit(): void {
@@ -36,9 +37,17 @@ export class GlobalDatatableComponent {
     }
 
     this.dtOptions = {
+      data: this.data,
+      columns: this.columns.map(column => ({
+        data: column.prop,
+        title: column.name,
+        orderable: column.orderable
+      })),
       pagingType: 'full_numbers',
       pageLength: 10,
       processing: true,
+      searching: true, // Enable searching
+      order: [] // Initialize without any specific sorting
     };
 
     $(this.table.nativeElement).DataTable(this.dtOptions);
@@ -49,4 +58,6 @@ export class GlobalDatatableComponent {
 
     this.actionTriggered.emit(actionData);
   }
+
+
 }

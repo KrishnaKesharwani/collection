@@ -1,9 +1,14 @@
 <mat-form-field class="global_textbox_block" appearance="outline">
     <mat-label>{{ label }}</mat-label>
-    <input matInput [matDatepicker]="picker" [type]="isDateField ? 'date' : 'text'" [disabled]="disabled"
-        [required]="isRequired" [formControl]="control">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+
+    <input matInput [type]="isDateField ? 'date' : 'text'" [disabled]="disabled" [required]="isRequired"
+        [formControl]="control" [matDatepicker]="picker">
+
+    <ng-container *ngIf="isDateField">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </ng-container>
+
     <div *ngIf="control?.invalid && control?.touched" class="{{ className }}">
         <span *ngIf="control.errors?.['required']">{{ displayMsg }}<br></span>
         <span *ngIf="control.errors?.['minlength']">Minimum length is {{
