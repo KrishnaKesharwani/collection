@@ -37,7 +37,7 @@ export class GlobalDatatableComponent {
     }
 
     this.dtOptions = {
-      data: this.data,
+      // data: this.data,
       columns: this.columns.map(column => ({
         data: column.prop,
         title: column.name,

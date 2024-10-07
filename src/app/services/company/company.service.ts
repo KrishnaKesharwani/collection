@@ -36,4 +36,18 @@ export class CompanyService {
     const url = `${this.apiUrl}/companydashboard`;
     return this.httpClient.get(url)
   }
+
+  createPlan(form: object) {
+    const url = `${this.apiUrl}/createplan`;
+    return this.httpClient.post(url, form)
+  }
+
+  planAmount(form: object) {
+    const url = `${this.apiUrl}/createplanhistory`;
+    return this.httpClient.post(url, form)
+  }
+  companyHistory(form: object) {
+    const url = `${this.apiUrl}/plandetails`;
+    return this.httpClient.post(url, form)
+  }
 }

@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CompanyHistoryComponent } from './company-history/company-history.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ReceivedAmountComponent } from './received-amount/received-amount.component';
@@ -24,7 +24,7 @@ export class CompanyListComponent {
   // columns = ['Name', 'Logo', 'Owner Name', 'Mobile', 'Start Date', 'End Date', 'Plan', 'Amount', 'Pending', 'Status'];
   columns = [
     { prop: 'company_name', name: 'Name', orderable: true },
-    { prop: 'main_logo', name: 'Logo', orderable: false },
+    { prop: 'main_logo', name: 'Logo', orderable: false, isImage: true },
     { prop: 'owner_name', name: 'Owner Name', orderable: true },
     { prop: 'mobile', name: 'Mobile', orderable: false },
     { prop: 'start_date', name: 'Start Date', orderable: false },
@@ -42,7 +42,9 @@ export class CompanyListComponent {
     // { action: 'received_amount', label: 'Received Amount', icon: 'mdi mdi-cash-100 mr-2' },
     { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
   ];
-  constructor(private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService) { }
+  constructor(private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService
+
+  ) { }
 
   ngOnInit() {
     this.getCompanyList();
@@ -77,9 +79,11 @@ export class CompanyListComponent {
     }
   }
 
-  openDialogCompanyPlan(row_data: any) {
+  openDialogCompanyPlan(row: any) {
+
     const dialogRef = this.dialog.open(CompanyHistoryComponent, {
       data: {
+        id: row.id,
         title: 'Company Plan History Details',
       },
     });
@@ -154,8 +158,9 @@ export class CompanyListComponent {
           timer: 1500
         });
       }
-      this.getCompanyList();
+
     });
+    this.getCompanyList();
   }
 
   readonly dialog7 = inject(MatDialog);

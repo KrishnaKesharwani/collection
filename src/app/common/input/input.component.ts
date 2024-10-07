@@ -34,7 +34,7 @@ export class InputComponent {
   @Input() customErrorDisplayMsg!: string;
   @Input() customType!: string;
   @Input() isDateField: boolean = false;
-  // @Input() matDatepicker!: boolean;
+  @Input() matDatepicker: boolean = false;
   @Input() className: string = 'bottom_error_msg';
   @ViewChild('picker') picker!: MatDatepicker<any>; // Declare the datepicker reference
 

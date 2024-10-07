@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { AddPlanComponent } from '../add-plan/add-plan.component';
 import { ReceivedAmountComponent } from '../received-amount/received-amount.component';
+import { CompanyService } from 'src/app/services/company/company.service';
+import { ToastrService } from 'ngx-toastr';
 
 interface Transaction {
   start_date: string;
@@ -25,12 +27,33 @@ export class CompanyHistoryComponent {
     { start_date: 'Member No.', end_date: '4', plan: 5, amount: 4, pending: 4, status: 1 }
 
   ];
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  companyHistoryListData: any[] = [];
+  company_id: any;
+  constructor(public _tostr: ToastrService, public _service: CompanyService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any },
   ) { }
+
+  ngOnInit() {
+    this.company_id = this.dataa.id
+
+    this.getCompanyHistoryLsit();
+  }
+
+  getCompanyHistoryLsit() {
+
+    let obj = {
+      company_id: this.dataa.id
+    }
+
+    this._service.companyHistory(obj).subscribe((data: any) => {
+      console.log(data)
+      this.companyHistoryListData = data.data;
+    })
+  }
 
   addNewPlan() {
     const dialogRef = this.dialog.open(AddPlanComponent, {
       data: {
+        id: this.company_id,
         title: 'Add New Company Plan',
       },
     });
@@ -38,10 +61,10 @@ export class CompanyHistoryComponent {
     });
   }
 
-  addReceiveMoney(){
+  addReceiveMoney() {
     const dialogRef = this.dialog.open(ReceivedAmountComponent, {
       data: {
-        title: 'Received Plan Amount',        
+        title: 'Received Plan Amount',
       }
     });
   }
