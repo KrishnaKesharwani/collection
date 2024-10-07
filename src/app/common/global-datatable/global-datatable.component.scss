@@ -1,0 +1,7 @@
+::ng-deep {
+
+    table.dataTable tbody th,
+    table.dataTable tbody td {
+        overflow: hidden !important;
+    }
+}

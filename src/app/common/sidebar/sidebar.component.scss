@@ -55,6 +55,9 @@ table {
   }
 
   .left-menu {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
     .nav-link:hover {
       color: var(--theme-bgcolor) !important;
       background-image: linear-gradient(to right, #e4e7f3, #ffff);
