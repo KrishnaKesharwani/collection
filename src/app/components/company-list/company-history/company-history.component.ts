@@ -61,10 +61,11 @@ export class CompanyHistoryComponent {
     });
   }
 
-  addReceiveMoney() {
+  addReceiveMoney(item_id : any) {
     const dialogRef = this.dialog.open(ReceivedAmountComponent, {
       data: {
         title: 'Received Plan Amount',
+        data: item_id
       }
     });
   }

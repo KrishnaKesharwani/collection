@@ -15,9 +15,9 @@
     <table class="table table-bordered table-responsive bg-white more_table">
         <thead>
             <tr>
+                <th>Plan</th>
                 <th>Start Date</th>
                 <th>End Date </th>
-                <th>Plan</th>
                 <th>Total Amount</th>
                 <th>Paid Amount</th>
                 <th>Pending</th>
@@ -27,9 +27,9 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of companyHistoryListData">
+                <td>{{item.plan}}</td>
                 <td>{{item.start_date}}</td>
                 <td>{{item.end_date}}</td>
-                <td>{{item.plan}}</td>
                 <td>{{item.total_amount}}</td>
                 <td>
                     <span class="amount_link" [matMenuTriggerFor]="paidamoutDetails">{{item.total_paid_amount}}</span>
@@ -49,21 +49,38 @@
                                         <td class="col text-right">{{subItem.amount}}</td>
                                         <td class="col">{{subItem.detail}}</td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>
                     </mat-menu>
                 </td>
                 <td>{{item.remaining_amount}}</td>
-                <td><span class="badge bg-success text-white">{{item.status}}</span></td>
                 <td>
-                    <button mat-button class="global_table_smallbtn check">
+                    <ng-container *ngIf="item.status == 'inactive'">
+                        <span class="badge bg-danger text-white">{{item.status}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="item.status == 'active'">
+                        <span class="badge bg-success text-white">Active</span>
+                    </ng-container>
+                    <ng-container *ngIf="item.status == 'pending'">
+                        <span class="badge bg-warning text-white">Pending</span>
+                    </ng-container>
+                    <!-- <span class="badge bg-success text-white">{{item.status}}</span> -->
+                </td>
+                <td>
+                    <button mat-button class="global_table_smallbtn" (click)="addReceiveMoney(item.id)" *ngIf="item.full_paid == 0">
+                        <i class="mdi mdi-currency-inr"></i>
+                    </button>                    
+                    <button mat-button class="global_table_smallbtn" *ngIf="item.full_paid != 0">
                         <i class="mdi mdi-check"></i>
                     </button>
                 </td>
             </tr>
-
+            <!-- <tr>
+                <td colspan="8">
+                    
+                </td>
+            </tr> -->
         </tbody>
     </table>
 </div>

@@ -17,10 +17,17 @@
                     </div>
                 </td>
             </tr> -->
-
+            <tr>
+                <td><b>Owner Name :</b></td>
+                <td>{{data.owner_name}}</td>
+            </tr>
             <tr>
                 <td><b>Mobile :</b></td>
                 <td>{{data.mobile}}</td>
+            </tr>
+            <tr>
+                <td><b>Start Date :</b></td>
+                <td>{{data.start_date}}</td>
             </tr>
             <tr>
                 <td><b>End Date :</b></td>
@@ -31,41 +38,39 @@
                 <td>{{data.member_mobile}}</td>
             </tr>
             <tr>
+                <td><b>Total Amount :</b></td>
+                <td>{{data.total_paid_amount}}</td>
+            </tr>
+            <tr>
+                <td><b>Advance Amount :</b></td>
+                <td>{{data.advance_amount}}</td>
+            </tr>
+            <tr>
                 <td><b>Pending Amount :</b></td>
-                <td>{{data.member_mobile}}</td>
+                <td>{{data.remaining_amount}}</td>
             </tr>
             <tr>
                 <td><b>Login Id :</b></td>
                 <td>{{data.member_mobile}}</td>
-            </tr>
+            </tr>            
             <tr>
-                <td><b>Address :</b></td>
-                <td>{{data.address}}</td>
-            </tr>
-            <tr>
-                <td><b>Owner Name :</b></td>
-                <td>{{data.owner_name}}</td>
-            </tr>
-            <tr>
-                <td><b>Start Date :</b></td>
-                <td>{{data.start_date}}</td>
+                <td><b>Status :</b></td>
+                <td>
+                    <ng-container *ngIf="data.status == 'inactive'">
+                        <span class="badge bg-danger text-white">Inactive</span>
+                    </ng-container>
+                    <ng-container *ngIf="data.status == 'active'">
+                        <span class="badge bg-success text-white">Active</span>
+                    </ng-container>
+                </td>
             </tr>
             <tr>
                 <td><b>Aadhar No. :</b></td>
                 <td>{{data.aadhar_no}}</td>
             </tr>
             <tr>
-                <td><b>Total Amount :</b></td>
-                <td>{{data.total_amount}}</td>
-            </tr>
-
-            <tr>
-                <td><b>Status :</b></td>
-                <td><span class="badge bg-success text-white">{{data.status}}</span></td>
-            </tr>
-            <tr>
-                <td><b>Password :</b></td>
-                <td>Home no. 72, bajrang nagar jabalpur </td>
+                <td><b>Address :</b></td>
+                <td>{{data.address}}</td>
             </tr>
             <tr>
                 <td><b>Details :</b></td>
@@ -74,22 +79,21 @@
             <tr>
                 <td><b>Company Logo :</b></td>
                 <td>
-                    <div class="list_image_block float-left" *ngIf="data.owner_image != null">
+                    <div class="list_image_block float-left" *ngIf="data.main_logo != null">
                         <img src="{{data.main_logo}}">
                     </div>
-                    <div class="list_image_block float-left" *ngIf="data.owner_image == null">
+                    <div class="list_image_block float-left" *ngIf="data.main_logo == null">
                         <img src="assets/imgs/default-pic.png">
                     </div>
                 </td>
             </tr>
-
             <tr>
                 <td><b>Company Sidebar Logo :</b></td>
                 <td>
-                    <div class="list_image_block float-left" *ngIf="data.owner_image != null">
+                    <div class="list_image_block float-left" *ngIf="data.sidebar_logo != null">
                         <img src="{{data.sidebar_logo}}">
                     </div>
-                    <div class="list_image_block float-left" *ngIf="data.owner_image == null">
+                    <div class="list_image_block float-left" *ngIf="data.sidebar_logo == null">
                         <img src="assets/imgs/default-pic.png">
                     </div>
                 </td>
@@ -97,10 +101,10 @@
             <tr>
                 <td><b>Company Fevicon Icon :</b></td>
                 <td>
-                    <div class="list_image_block float-left" *ngIf="data.owner_image != null">
+                    <div class="list_image_block float-left" *ngIf="data.favicon_icon != null">
                         <img src="{{data.favicon_icon}}">
                     </div>
-                    <div class="list_image_block float-left" *ngIf="data.owner_image == null">
+                    <div class="list_image_block float-left" *ngIf="data.favicon_icon == null">
                         <img src="assets/imgs/default-pic.png">
                     </div>
                 </td>
