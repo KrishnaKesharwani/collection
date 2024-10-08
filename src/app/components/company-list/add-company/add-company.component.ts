@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -30,7 +30,9 @@ export class AddCompanyComponent {
   loading: boolean = false;
   date: any;
   company_id: any;
-  constructor(private router: Router, private _toastr: ToastrService, public _service: CompanyService, private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any }
+  companyViewData: any;
+
+  constructor(private cdr: ChangeDetectorRef, private router: Router, private _toastr: ToastrService, public _service: CompanyService, private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }
     , public fb: FormBuilder) { }
 
   ngOnInit() {
@@ -55,14 +57,16 @@ export class AddCompanyComponent {
       address: ['', Validators.required],
       details: ['', Validators.required]
     });
-    this.company_id = this.dataa.id;
+    this.company_id = this.dataa.data.id;
     this.dropdownService.setOptions('plan', ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo']);
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+
+    this.companyView();
   }
 
 
   save() {
-    this.company_id = this.dataa.id
+    this.company_id = this.dataa.data.id
 
     if (this.company_id) {
       if (this.companyForm.valid) {
@@ -204,14 +208,13 @@ export class AddCompanyComponent {
     this.companyForm.patchValue({ owner_image: file });
   }
 
-  update() {
+  companyView() {
     // Add New Company
-    this.companyForm.markAllAsTouched();
-    this.loading = true;
-    if (this.companyForm.valid) {
-      this.loading = false;
-      // this.dialog.closeAll();
-    }
+
+    this.companyForm.patchValue(this.dataa.data);
+    this.cdr.detectChanges();
+    console.log(this.companyForm.value)
+    console.log(this.dataa.data)
   }
 
 

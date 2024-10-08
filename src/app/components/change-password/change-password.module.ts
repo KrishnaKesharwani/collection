@@ -14,8 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ChangePasswordRoutingModule,
     MaterialModule,
     CommonComponentsModule,
-    ReactiveFormsModule,
-    FormsModule,
-]
+    ReactiveFormsModule
+
+  ]
 })
 export class ChangePasswordModule { }

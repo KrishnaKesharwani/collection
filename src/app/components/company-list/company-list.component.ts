@@ -91,9 +91,10 @@ export class CompanyListComponent {
     });
   }
 
-  openDialogViewDetails(row_data: any) {
+  openDialogViewDetails(row: any) {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
       data: {
+        data: row,
         title: 'Company Details',
       },
     });
@@ -105,7 +106,7 @@ export class CompanyListComponent {
     const dialogRef = this.dialog.open(AddCompanyComponent, {
       disableClose: true,
       data: {
-        id: data.id,
+        data: data,
         title: 'Update Members Details',
       },
     });

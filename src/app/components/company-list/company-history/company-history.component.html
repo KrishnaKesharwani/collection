@@ -43,11 +43,11 @@
                                         <th>Details</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody *ngFor="let subItem of item.company_plan_history">
                                     <tr>
-                                        <td>15-02-2024</td>
-                                        <td class="col text-right">{{item.remaining_amount}}</td>
-                                        <td class="col">Initial Payemnt for the setup the software</td>
+                                        <td>{{subItem.pay_date}}</td>
+                                        <td class="col text-right">{{subItem.amount}}</td>
+                                        <td class="col">{{subItem.detail}}</td>
                                     </tr>
 
                                 </tbody>
@@ -55,7 +55,7 @@
                         </div>
                     </mat-menu>
                 </td>
-                <td>1500.00</td>
+                <td>{{item.remaining_amount}}</td>
                 <td><span class="badge bg-success text-white">{{item.status}}</span></td>
                 <td>
                     <button mat-button class="global_table_smallbtn check">

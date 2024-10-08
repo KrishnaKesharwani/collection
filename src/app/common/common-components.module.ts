@@ -14,6 +14,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { HeaderComponent } from './header/header.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { ButtonLoaderComponent } from './button-loader/button-loader.component';
+import { NoRecordFoundComponent } from './no-record-found/no-record-found.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ButtonLoaderComponent } from './button-loader/button-loader.component';
     GlobalDatatableComponent,
     HeaderComponent,
     TextareaComponent,
-    ButtonLoaderComponent
+    ButtonLoaderComponent,
+    NoRecordFoundComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,6 @@ import { ButtonLoaderComponent } from './button-loader/button-loader.component';
   ],
   exports: [InputFieldValidationComponent, TextareaComponent, DropdwonComponent,
     InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent,
-    ButtonLoaderComponent]
+    ButtonLoaderComponent, NoRecordFoundComponent]
 })
 export class CommonComponentsModule { }

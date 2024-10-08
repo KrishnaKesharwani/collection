@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { CompanyService } from 'src/app/services/company/company.service';
 
 interface Transaction {
   item: string;
@@ -41,7 +43,17 @@ export class ViewDetailsComponent {
     { item: 'Company Owner Profile', cost: 4 }
 
   ];
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  company_id: any;
+  data: any;
+  constructor(public _service: CompanyService, public _tostr: ToastrService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
+
+  ngOnInit() {
+    this.viewCompanyDetail();
+  }
+
+  viewCompanyDetail() {
+    this.data = this.dataa.data;
+  }
 
 }

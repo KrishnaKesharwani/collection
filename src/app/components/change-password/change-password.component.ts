@@ -9,9 +9,8 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent {
-  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, public fb: FormBuilder) 
-  { }
-  
+  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, public fb: FormBuilder) { }
+
   changePasswordForm!: FormGroup;
   previouspassword: string = '';
   newpassword: string = '';
@@ -21,7 +20,7 @@ export class ChangePasswordComponent {
   newhide = true;
   confirmhide = true;
 
-  onInit() {
+  ngOnInit() {
     this.changePasswordForm = this.fb.group({
       previouspassword: ['', Validators.required],
       newpassword: ['', Validators.required],

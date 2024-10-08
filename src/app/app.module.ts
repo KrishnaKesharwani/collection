@@ -8,7 +8,7 @@ import { CustomeComponent } from './components/custome/custome.component';
 
 // import { MatTooltipModule } from '@angular/material';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; import { ReactiveFormsModule } from '@angular/forms';
 import { NumberToWordsPipe } from './pipes/number-to-words.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
@@ -59,6 +59,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { TokenInterceptor } from './authentication/token.interceptor';
 import { DataTablesModule } from 'angular-datatables';
 import { DashboardModule } from './components/dashboard/dashboard.module';
+import { ChangePasswordModule } from './components/change-password/change-password.module';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
@@ -91,7 +92,8 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
     PaidDataEntryModule,
     LoginModule,
     CommonComponentsModule,
-    DataTablesModule
+    DataTablesModule,
+    ChangePasswordModule
     // MaterialModule,
     // AdminDashboardModule,
     // FixedDepositModule

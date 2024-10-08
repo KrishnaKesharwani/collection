@@ -1,13 +1,19 @@
-import { Component, EventEmitter, Inject, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Inject, Input, Output, ViewChild } from '@angular/core';
 import { CommonComponentService } from '../common-component.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => InputComponent),
+    multi: true
+  }]
 })
 export class InputComponent {
 
@@ -44,5 +50,29 @@ export class InputComponent {
   get control() {
     return this.form.get(this.key) as FormControl;;
   }
+
+  writeValue(value: string): void {
+    this.value = value;
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  onInput(event: Event): void {
+    debugger
+    const input = event.target as HTMLInputElement;
+    this.value = input.value;
+    this.onChange(this.value);
+    this.onTouched();
+  }
+
+  onChange: (value: string) => void = () => { };
+  onTouched: () => void = () => { };
+
 
 }

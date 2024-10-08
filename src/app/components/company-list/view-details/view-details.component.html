@@ -7,7 +7,7 @@
         <tbody>
             <tr>
                 <td><b>Company Name:</b></td>
-                <td>RK-101</td>
+                <td>{{data.company_name}}</td>
             </tr>
             <!-- <tr>
                 <td><b>Profile Image :</b></td>
@@ -20,48 +20,48 @@
 
             <tr>
                 <td><b>Mobile :</b></td>
-                <td>{{companyDetails.member_mobile}}</td>
+                <td>{{data.mobile}}</td>
             </tr>
             <tr>
                 <td><b>End Date :</b></td>
-                <td>{{companyDetails.member_mobile}}</td>
+                <td>{{data.end_date}}</td>
             </tr>
             <tr>
                 <td><b>Current Plan :</b></td>
-                <td>{{companyDetails.member_mobile}}</td>
+                <td>{{data.member_mobile}}</td>
             </tr>
             <tr>
                 <td><b>Pending Amount :</b></td>
-                <td>{{companyDetails.member_mobile}}</td>
+                <td>{{data.member_mobile}}</td>
             </tr>
             <tr>
                 <td><b>Login Id :</b></td>
-                <td>{{companyDetails.member_mobile}}</td>
+                <td>{{data.member_mobile}}</td>
             </tr>
             <tr>
                 <td><b>Address :</b></td>
-                <td>{{companyDetails.member_mobile}}</td>
+                <td>{{data.address}}</td>
             </tr>
             <tr>
                 <td><b>Owner Name :</b></td>
-                <td>626362650548</td>
+                <td>{{data.owner_name}}</td>
             </tr>
             <tr>
                 <td><b>Start Date :</b></td>
-                <td>626362650548</td>
+                <td>{{data.start_date}}</td>
             </tr>
             <tr>
                 <td><b>Aadhar No. :</b></td>
-                <td>626362650548</td>
+                <td>{{data.aadhar_no}}</td>
             </tr>
             <tr>
                 <td><b>Total Amount :</b></td>
-                <td>626362650548</td>
+                <td>{{data.total_amount}}</td>
             </tr>
 
             <tr>
                 <td><b>Status :</b></td>
-                <td><span class="badge bg-success text-white">Active</span></td>
+                <td><span class="badge bg-success text-white">{{data.status}}</span></td>
             </tr>
             <tr>
                 <td><b>Password :</b></td>
@@ -69,12 +69,15 @@
             </tr>
             <tr>
                 <td><b>Details :</b></td>
-                <td>626362650548</td>
+                <td>{{data.details}}</td>
             </tr>
             <tr>
                 <td><b>Company Logo :</b></td>
                 <td>
-                    <div class="list_image_block float-left">
+                    <div class="list_image_block float-left" *ngIf="data.owner_image != null">
+                        <img src="{{data.main_logo}}">
+                    </div>
+                    <div class="list_image_block float-left" *ngIf="data.owner_image == null">
                         <img src="assets/imgs/default-pic.png">
                     </div>
                 </td>
@@ -83,7 +86,10 @@
             <tr>
                 <td><b>Company Sidebar Logo :</b></td>
                 <td>
-                    <div class="list_image_block float-left">
+                    <div class="list_image_block float-left" *ngIf="data.owner_image != null">
+                        <img src="{{data.sidebar_logo}}">
+                    </div>
+                    <div class="list_image_block float-left" *ngIf="data.owner_image == null">
                         <img src="assets/imgs/default-pic.png">
                     </div>
                 </td>
@@ -91,7 +97,10 @@
             <tr>
                 <td><b>Company Fevicon Icon :</b></td>
                 <td>
-                    <div class="list_image_block float-left">
+                    <div class="list_image_block float-left" *ngIf="data.owner_image != null">
+                        <img src="{{data.favicon_icon}}">
+                    </div>
+                    <div class="list_image_block float-left" *ngIf="data.owner_image == null">
                         <img src="assets/imgs/default-pic.png">
                     </div>
                 </td>
@@ -99,7 +108,10 @@
             <tr>
                 <td><b>Company Owner Profile :</b></td>
                 <td>
-                    <div class="list_image_block float-left">
+                    <div class="list_image_block float-left" *ngIf="data.owner_image != null">
+                        <img src="{{data.owner_image}}">
+                    </div>
+                    <div class="list_image_block float-left" *ngIf="data.owner_image == null">
                         <img src="assets/imgs/default-pic.png">
                     </div>
                 </td>
