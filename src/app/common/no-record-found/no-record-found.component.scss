@@ -1,0 +1,20 @@
+.no_record_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    margin: 15px 0px;
+    b {
+        margin-top: 10px;
+        color: #9f9b9b;
+    }
+    mat-icon {
+        font-size: 34px;
+        width: 36px;
+        height: 36px;
+        color: #F44336;
+    }
+    img {
+        width: 100px;        
+    }
+}

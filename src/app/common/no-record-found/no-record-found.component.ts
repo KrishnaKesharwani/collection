@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-no-record-found',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./no-record-found.component.scss']
 })
 export class NoRecordFoundComponent {
+
+  @Input() type: any;
+  @Input() notext: any;
+  
 
 }

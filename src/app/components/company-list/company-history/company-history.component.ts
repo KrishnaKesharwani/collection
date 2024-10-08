@@ -29,25 +29,26 @@ export class CompanyHistoryComponent {
   ];
   companyHistoryListData: any[] = [];
   company_id: any;
+  loader = false;
   constructor(public _tostr: ToastrService, public _service: CompanyService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any },
   ) { }
 
   ngOnInit() {
-    this.company_id = this.dataa.id
-
-    this.getCompanyHistoryLsit();
+    this.company_id = this.dataa.id;
+    this.getCompanyHistoryList();
   }
 
-  getCompanyHistoryLsit() {
-
+  getCompanyHistoryList() {
+    this.loader = true;
     let obj = {
       company_id: this.dataa.id
     }
-
     this._service.companyHistory(obj).subscribe((data: any) => {
       console.log(data)
       this.companyHistoryListData = data.data;
+      this.loader = false;
     })
+    // this.loader = false;
   }
 
   addNewPlan() {

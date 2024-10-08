@@ -15,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { ButtonLoaderComponent } from './button-loader/button-loader.component';
 import { NoRecordFoundComponent } from './no-record-found/no-record-found.component';
+import { PageLoaderComponent } from './page-loader/page-loader.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NoRecordFoundComponent } from './no-record-found/no-record-found.compon
     HeaderComponent,
     TextareaComponent,
     ButtonLoaderComponent,
-    NoRecordFoundComponent
+    NoRecordFoundComponent,
+    PageLoaderComponent
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,6 @@ import { NoRecordFoundComponent } from './no-record-found/no-record-found.compon
   ],
   exports: [InputFieldValidationComponent, TextareaComponent, DropdwonComponent,
     InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent,
-    ButtonLoaderComponent, NoRecordFoundComponent]
+    ButtonLoaderComponent, NoRecordFoundComponent, PageLoaderComponent]
 })
 export class CommonComponentsModule { }

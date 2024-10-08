@@ -26,6 +26,16 @@
             </tr>
         </thead>
         <tbody>
+            <tr *ngIf="loader">
+                <td colspan="8">
+                    <app-page-loader></app-page-loader>
+                </td>
+            </tr>
+            <tr *ngIf="companyHistoryListData.length == 0 && !loader">
+                <td colspan="8">
+                    <app-no-record-found type="table" notext="Company not paid any amount."></app-no-record-found>
+                </td>
+            </tr>  
             <tr *ngFor="let item of companyHistoryListData">
                 <td>{{item.plan}}</td>
                 <td>{{item.start_date}}</td>
@@ -75,12 +85,7 @@
                         <i class="mdi mdi-check"></i>
                     </button>
                 </td>
-            </tr>
-            <!-- <tr>
-                <td colspan="8">
-                    
-                </td>
-            </tr> -->
+            </tr>                     
         </tbody>
     </table>
 </div>
