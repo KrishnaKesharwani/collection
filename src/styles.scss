@@ -561,7 +561,7 @@ mat-option {
 .mydata-table {
     table-layout: fixed;
     position: relative;
-    width: 100%;
+    width: 100% !important;
     font-size: 12px;
     color: #9f9b9b;
     background-color: var(--theme-bggraycolor);
