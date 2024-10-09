@@ -49,12 +49,12 @@ export class SuperadminDashboardComponent {
 
 
 
-  openDialogCompanyHistory() {
+  openDialogCompanyHistory(id: any) {
     const dialogRef = this.dialog.open(CompanyHistoryComponent, {
 
       data: {
         title: 'Company Plan History Details',
-
+        id: id
       },
     });
 
@@ -63,13 +63,13 @@ export class SuperadminDashboardComponent {
   }
 
 
-  openDialogVieDetails() {
+  openDialogVieDetails(data: any) {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
 
 
       data: {
         title: 'Company Details',
-
+        data: data
       },
     });
 
