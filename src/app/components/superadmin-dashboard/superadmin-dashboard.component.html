@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="row align-items-center">
             <div class="col-sm-6 pl-0">
-                <h3 class="mb-0">Upcoming Expiered Company List Testing</h3>
+                <h3 class="mb-0">Upcoming Expiered Company List</h3>
             </div>
             <div class="col text-right pr-1 datewith_search_block">
                 <div class="listsearch-topblock search_withaddbtn">
@@ -31,63 +31,67 @@
             </tr>
         </thead>
         <tbody>
-
-            <tr class="received_row" *ngFor="let item of companyListData">
-                <td class="col" data-name="Name">{{item.company_name}}</td>
-                <td class="col" data-name="Logo">
-                    <div class="list_image_block" *ngIf="item.main_logo == null">
-                        <img src="assets/imgs/rk-group-logo.png" />
-                    </div>
-                    <div class="list_image_block" *ngIf="item.main_logo != null">
-                        <img src="{{item.main_logo}}" />
-                    </div>
-                </td>
-                <td class="col" data-name="Owner Name">{{item.owner_name}}</td>
-                <td class="col" data-name="Mobile">{{item.mobile}}</td>
-                <td class="col" data-name="Start Date">{{item.start_date}}</td>
-                <td class="col" data-name="End Date">{{item.end_date}}</td>
-                <td class="col" data-name="Plan">Monthly</td>
-                <td class="col text-right" data-name="Amount">{{item.advance_amount}}</td>
-                <td class="col text-right" data-name="Pending">{{item.remaining_amount}}</td>
-                <td class="col text-center" data-name="Status">
-                    <span class="badge bg-success text-white" *ngIf="item.status == 'active'">{{item.status}}</span>
-                    <span class="badge bg-warning text-white " *ngIf="item.status == 'inactive'">{{item.status}}</span>
-                </td>
-                <td class="action_col" data-name="Action">
-
-                    <div placement="bottom-right">
-
-                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                            <mat-icon>more_vert</mat-icon>
-                        </button>
-
-                        <mat-menu #menu="matMenu">
-                            <div class="table_actionmenu">
-                                <button mat-menu-item (click)="openDialogCompanyHistory(item.id)">
-                                    <i class="mdi mdi-history mr-2"></i>
-                                    <span>Company History</span>
-                                </button>
-
-
-                                <button mat-menu-item (click)="openDialogVieDetails(item)">
-
-                                    <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
-                                </button>
-
-                                <button mat-menu-item (click)="openDialogStatus('1ms', '5ms')">
-                                    <i class="mdi mdi-account-off-outline mr-2"></i>
-                                    <span>Status</span>
-                                </button>
-                            </div>
-                        </mat-menu>
-
-                    </div>
-
-
-
+            <tr *ngIf="loader">
+                <td colspan="11">
+                    <app-page-loader></app-page-loader>
                 </td>
             </tr>
+            <tr *ngIf="companyListData.length == 0 && !loader">
+                <td colspan="11">
+                    <app-no-record-found type="table" notext="No upcoming expiered company."></app-no-record-found>
+                </td>
+            </tr>
+            <ng-container *ngIf="companyListData.length != 0 && !loader">
+                <tr class="received_row" *ngFor="let item of companyListData">
+                    <td class="col" data-name="Name">{{item.company_name}}</td>
+                    <td class="col" data-name="Logo">
+                        <div class="list_image_block" *ngIf="item.main_logo == null">
+                            <img src="assets/imgs/rk-group-logo.png" />
+                        </div>
+                        <div class="list_image_block" *ngIf="item.main_logo != null">
+                            <img src="{{item.main_logo}}" />
+                        </div>
+                    </td>
+                    <td class="col" data-name="Owner Name">{{item.owner_name}}</td>
+                    <td class="col" data-name="Mobile">{{item.mobile}}</td>
+                    <td class="col" data-name="Start Date">{{item.start_date}}</td>
+                    <td class="col" data-name="End Date">{{item.end_date}}</td>
+                    <td class="col" data-name="Plan">Monthly</td>
+                    <td class="col text-right" data-name="Amount">{{item.advance_amount}}</td>
+                    <td class="col text-right" data-name="Pending">{{item.remaining_amount}}</td>
+                    <td class="col text-center" data-name="Status">
+                        <span class="badge bg-success text-white" *ngIf="item.status == 'active'">Active</span>
+                        <span class="badge bg-danger text-white " *ngIf="item.status == 'inactive'">Inactive</span>
+                    </td>
+                    <td class="action_col" data-name="Action">
+                        <div placement="bottom-right">
+                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                                aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <div class="table_actionmenu">
+                                    <button mat-menu-item (click)="openDialogCompanyHistory(item.id)">
+                                        <i class="mdi mdi-history mr-2"></i>
+                                        <span>Company History</span>
+                                    </button>
+                                    <button mat-menu-item (click)="openDialogVieDetails(item)">
+                                        <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                    </button>
+                                    <button mat-menu-item (click)="openDialogStatus('1ms', '5ms', item)">
+                                        <i class="mdi mdi-account-off-outline mr-2"></i>
+                                        <span>Status</span>
+                                    </button>
+                                </div>
+                            </mat-menu>
 
+                        </div>
+
+
+
+                    </td>
+                </tr>
+            </ng-container>
         </tbody>
     </table>
 </div>

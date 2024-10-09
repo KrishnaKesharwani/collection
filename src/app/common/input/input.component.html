@@ -1,22 +1,19 @@
-<mat-form-field class="global_textbox_block" appearance="outline">
+<mat-form-field class="global_textbox_block" appearance="outline" [ngClass]="{'date_picker_block': isDateField} ">
     <mat-label>{{ label }}</mat-label>
-
-    <input matInput [type]="isDateField ? 'date' : 'text'" [disabled]="disabled" [required]="isRequired"
-        [formControl]="control">
-
-    <!-- <ng-container>
+    <input matInput *ngIf="!isDateField" [disabled]="disabled" [required]="isRequired" [formControl]="control">
+    <ng-container *ngIf="isDateField">
+        <input matInput [matDatepicker]="picker" [disabled]="disabled" [required]="isRequired" [formControl]="control" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-    </ng-container> -->
-
+    </ng-container>
     <div *ngIf="control?.invalid && control?.touched" class="{{ className }}">
-        <span *ngIf="control.errors?.['required']">{{ displayMsg }}<br></span>
+        <span *ngIf="control.errors?.['required']">{{ displayMsg }}</span>
         <span *ngIf="control.errors?.['minlength']">Minimum length is {{
             control.errors?.['minlength'].required
-            }} characters<br></span>
+            }} characters</span>
         <span *ngIf="control?.errors?.['maxlength']">Maximum length is {{
             control.errors?.['maxlength'].required
-            }} characters<br></span>
-        <span *ngIf="control?.errors?.['pattern']">Invalid format<br></span>
+            }} characters</span>
+        <span *ngIf="control?.errors?.['pattern']">Invalid format</span>
     </div>
 </mat-form-field>

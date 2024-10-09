@@ -29,7 +29,7 @@ export class AddPlanComponent {
 
     this.dropdownService.setOptions('planType', ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo']);
     this.addplanForm = this.fb.group({
-      planType: ['', Validators.required],
+      planType: ['Demo', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
       totalAmount: ['', Validators.required],
