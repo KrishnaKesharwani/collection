@@ -12,21 +12,22 @@ import { CompanyService } from 'src/app/services/company/company.service';
 export class ReceivedAmountComponent {
 
   receivedAmountForm!: FormGroup;
-  amountDetails: string = '';
-  receivedDate: string = '';
-  companyName: string = '';
-  receivedAmount: string = '';
-  loading = false;
 
-  constructor(public _tostr: ToastrService, public _service: CompanyService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
+  loading = false;
+  amount: any;
+  received_date: any;
+  plan_id: any;
+
+  constructor(public _tostr: ToastrService, public _service: CompanyService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any }
     , public fb: FormBuilder) { }
 
   ngOnInit() {
+    this.plan_id = this.dataa.id
     this.receivedAmountForm = this.fb.group({
-      companyName: ['RK Group'],
-      receivedAmount: [''],
-      receivedDate: [''],
-      amountDetails: ['']
+
+      amount: ['', Validators.required],
+      received_date: ['', Validators.required],
+      detail: ['']
     });
   }
 
@@ -35,19 +36,29 @@ export class ReceivedAmountComponent {
     // Add New Company
     this.receivedAmountForm.markAllAsTouched()
     if (this.receivedAmountForm.valid) {
-      // this.dialog.closeAll();
+
+      this.loading = true;
       let obj = {
-        // amount:
-        //   plan_id:
-        // received_date:
-        //   detail:
+        amount: this.receivedAmountForm.value.amount,
+        plan_id: this.plan_id,
+        received_date: this.receivedAmountForm.value.received_date,
+        detail: this.receivedAmountForm.value.detail
       }
+
       this._service.planAmount(obj).subscribe((data: any) => {
         console.log(data);
         if (data) {
+
           this._tostr.success(data.message, "Success");
+
         }
+        this._tostr.error(data.message, "Error");
+
       })
     }
+    setTimeout(() => {
+      this.loading = false;
+      this.dialog.closeAll();
+    }, 1000);
   }
 }

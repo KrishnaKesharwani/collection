@@ -64,7 +64,7 @@ export class InputComponent {
   }
 
   onInput(event: Event): void {
-    debugger
+
     const input = event.target as HTMLInputElement;
     this.value = input.value;
     this.onChange(this.value);

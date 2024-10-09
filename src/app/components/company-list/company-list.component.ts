@@ -84,7 +84,7 @@ export class CompanyListComponent {
     const dialogRef = this.dialog.open(CompanyHistoryComponent, {
       data: {
         id: row.id,
-        title: 'Company Plan History Details',
+        title: row.company_name + ' Plan History Details',
       },
     });
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -146,8 +146,9 @@ export class CompanyListComponent {
   delete(data: any) {
     let obj = {
       company_id: data.id,
-      status: data.status
-    };
+      status: data.status == 'active' ? 'inactive' : 'active'
+    }
+
     this._service.changeStatus(obj).subscribe((data: any) => {
       if (data) {
         Swal.fire({

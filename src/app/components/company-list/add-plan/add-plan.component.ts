@@ -31,31 +31,37 @@ export class AddPlanComponent {
     this.addplanForm = this.fb.group({
       planType: ['', Validators.required],
       startDate: ['', Validators.required],
-      endDate: ['',],
+      endDate: ['', Validators.required],
       totalAmount: ['', Validators.required],
-      receiveAmount: [''],
+      receiveAmount: ['', Validators.required],
       planDetails: ['']
     });
   }
 
   addPlanDetails() {
-    this.loading = true;
-    let obj = {
-      company_id: this.dataa.id,
-      plan: this.addplanForm.value.planType,
-      total_amount: this.addplanForm.value.totalAmount,
-      advance_amount: this.addplanForm.value.receiveAmount,
 
-      start_date: this.addplanForm.value.startDate,
-      end_date: this.addplanForm.value.endDate,
-      detail: this.addplanForm.value.planDetails
-    }
-    this._service.createPlan(obj).subscribe((data: any) => {
-      console.log(data);
-      if (data) {
-        this._tostr.success(data.message, "Success");
+    if (this.addplanForm.valid) {
+      this.loading = true;
+      let obj = {
+        company_id: this.dataa.id,
+        plan: this.addplanForm.value.planType,
+        total_amount: this.addplanForm.value.totalAmount,
+        advance_amount: this.addplanForm.value.receiveAmount,
+
+        start_date: this.addplanForm.value.startDate,
+        end_date: this.addplanForm.value.endDate,
+        detail: this.addplanForm.value.planDetails
       }
-    })
+      this._service.createPlan(obj).subscribe((data: any) => {
+        console.log(data);
+        if (data) {
+          this._tostr.success(data.message, "Success");
+        }
+      })
+    } else {
+      this.addplanForm.markAllAsTouched()
+    }
+
 
   }
 

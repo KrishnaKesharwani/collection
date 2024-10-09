@@ -2,7 +2,7 @@
     <mat-label>{{ label }}</mat-label>
 
     <input matInput [type]="isDateField ? 'date' : 'text'" [disabled]="disabled" [required]="isRequired"
-        [formControl]="control" [matDatepicker]="picker">
+        [formControl]="control">
 
     <!-- <ng-container>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
