@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-input',
@@ -65,7 +64,6 @@ export class InputComponent {
   }
 
   onInput(event: Event): void {
-
     const input = event.target as HTMLInputElement;
     this.value = input.value;
     this.onChange(this.value);
@@ -74,24 +72,6 @@ export class InputComponent {
 
   onChange: (value: string) => void = () => { };
   onTouched: () => void = () => { };
-  formatDate(dateString: string, format: string): string {
-    const date = new Date(dateString);
 
-    const options: Intl.DateTimeFormatOptions = {};
-
-    if (format.includes('dd')) options.day = '2-digit';
-    if (format.includes('MM')) options.month = '2-digit';
-    if (format.includes('yyyy')) options.year = 'numeric';
-    if (format.includes('HH')) options.hour = '2-digit';
-    if (format.includes('mm')) options.minute = '2-digit';
-    if (format.includes('ss')) options.second = '2-digit';
-
-    return new Intl.DateTimeFormat('en-US', options).format(date);
-  }
-
-  // const dateStr = '2024-10-09T10:15:30';
-  // const newFormat = 'dd/MM/yyyy HH:mm:ss';
-  // const formattedDate = formatDate(this.dateStr, this.newFormat);
-  // console: any.log(formattedDate!: any | undefined | undefined | undefined;);  // Output will depend 
 
 }
