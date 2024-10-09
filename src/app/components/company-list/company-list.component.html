@@ -28,7 +28,7 @@
                 <app-global-datatable [actions]="actions" [data]="companyListData" [columns]="columns"
                     (actionTriggered)="onAction($event)"></app-global-datatable>
 
-                <app-no-record-found></app-no-record-found>
+                <app-no-record-found *ngIf="companyListData.length==0"></app-no-record-found>
 
             </div>
         </div>

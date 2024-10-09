@@ -26,6 +26,10 @@ export class CompanyService {
     const url = `${this.apiUrl}/companies`;
     return this.httpClient.get(url)
   }
+  getExpeiredCompanyList(form: object) {
+    const url = `${this.apiUrl}/companies`;
+    return this.httpClient.post(url, form)
+  }
 
   changeStatus(obj: object) {
     const url = `${this.apiUrl}/updatecompanystatus`;

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SuperadminDashboardComponent } from './superadmin-dashboard.component';
 import { MaterialModule } from 'src/app/material.module';
 import { SuperAdminDashboardRoutingModule } from './super-admin-dashboard-routing.module';
+import { CommonComponentsModule } from "../../common/common-components.module";
 
 
 
@@ -11,7 +12,8 @@ import { SuperAdminDashboardRoutingModule } from './super-admin-dashboard-routin
   imports: [
     CommonModule,
     MaterialModule,
-    SuperAdminDashboardRoutingModule
+    SuperAdminDashboardRoutingModule,
+    CommonComponentsModule
   ],
   exports: [SuperadminDashboardComponent]
 })

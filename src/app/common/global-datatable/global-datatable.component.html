@@ -26,6 +26,9 @@
                     <ng-container *ngIf="column.prop !== 'plans'">
                         {{ row[column.prop] }}
                     </ng-container>
+                    <ng-container *ngIf="column.prop === 'status'">
+                        <span class="badge bg-success text-white">{{ row[column.prop] }}</span>
+                    </ng-container>
                 </td>
             </ng-container>
             <td [attr.data-name]="'Actions'">

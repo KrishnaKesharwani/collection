@@ -6,6 +6,9 @@ import Swal from 'sweetalert2';
 import { CompanyHistoryComponent } from '../company-list/company-history/company-history.component';
 import { ViewDetailsComponent } from '../company-list/view-details/view-details.component';
 import { SuperAdminDashboardService } from 'src/app/services/dashboard/super-admin-dashboard.service';
+import { ActionService } from 'src/app/services/action/action.service';
+import { CompanyService } from 'src/app/services/company/company.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-superadmin-dashboard',
@@ -13,19 +16,40 @@ import { SuperAdminDashboardService } from 'src/app/services/dashboard/super-adm
   styleUrls: ['./superadmin-dashboard.component.scss']
 })
 export class SuperadminDashboardComponent {
+  companyListData: any[] = [];
+  readonly dialog = inject(MatDialog);
+  noRecordsFound: boolean = false;
 
-  constructor(public _service: SuperAdminDashboardService) {
+  constructor(public _dashboardService: SuperAdminDashboardService, private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService) {
 
   }
   ngOnInit() {
-    // this.getDashboardData();
+    this.getExpeiredCompanyList();
+  }
+
+  getExpeiredCompanyList() {
+    let obj = {
+      upcoming_expire: 1
+    }
+    this._service.getExpeiredCompanyList(obj).subscribe((response: any) => {
+      if (response && Array.isArray(response.data)) {
+        if (response) {
+          this.companyListData = response.data;
+
+        }
+        else {
+          this.companyListData = [];
+
+        }
+
+      }
+    })
   }
 
 
 
 
-  readonly dialog = inject(MatDialog);
-  openDialog() {
+  openDialogCompanyHistory() {
     const dialogRef = this.dialog.open(CompanyHistoryComponent, {
 
       data: {
@@ -38,9 +62,9 @@ export class SuperadminDashboardComponent {
     });
   }
 
-  readonly dialog2 = inject(MatDialog);
-  openDialog2() {
-    const dialogRef = this.dialog2.open(ViewDetailsComponent, {
+
+  openDialogVieDetails() {
+    const dialogRef = this.dialog.open(ViewDetailsComponent, {
 
 
       data: {
@@ -53,10 +77,10 @@ export class SuperadminDashboardComponent {
     });
   }
 
-  readonly dialog7 = inject(MatDialog);
-  openDialog7(enterAnimationDuration: string, exitAnimationDuration: string): void {
+
+  openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string): void {
     // this.dataForDelete = enterAnimationDuration
-    const dialogRef = this.dialog7.open(DeleteComponent, {
+    const dialogRef = this.dialog.open(DeleteComponent, {
 
       panelClass: 'delete_popup',
       enterAnimationDuration,
