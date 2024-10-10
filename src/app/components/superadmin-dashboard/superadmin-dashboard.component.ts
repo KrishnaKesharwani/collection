@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, NgModule } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import Swal from 'sweetalert2';
@@ -9,6 +9,7 @@ import { SuperAdminDashboardService } from 'src/app/services/dashboard/super-adm
 import { ActionService } from 'src/app/services/action/action.service';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-superadmin-dashboard',
@@ -17,9 +18,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SuperadminDashboardComponent {
   companyListData: any[] = [];
+  filteredDataarray: any[] = [];
   readonly dialog = inject(MatDialog);
   noRecordsFound: boolean = false;
   loader = false;
+  filterStateManagement: any;
 
   constructor(public _dashboardService: SuperAdminDashboardService, private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService) {
   }
@@ -27,7 +30,11 @@ export class SuperadminDashboardComponent {
   ngOnInit() {
     this.getExpeiredCompanyList();
   }
-
+  // get filteredData() {
+  //   return this.companyListData.filter(item =>
+  //     item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+  //   );
+  // }
   getExpeiredCompanyList() {
     this.loader = true;
     let obj = {
@@ -37,10 +44,12 @@ export class SuperadminDashboardComponent {
       if (response && Array.isArray(response.data)) {
         if (response) {
           this.companyListData = response.data;
+          this.filteredDataarray= this.companyListData;
           this.loader = false;
         }
         else {
           this.companyListData = [];
+          this.filteredDataarray= this.companyListData;         
           this.loader = false;
         }
       }
@@ -69,44 +78,7 @@ export class SuperadminDashboardComponent {
     });
   }
 
-  // change_status = true;
-  // status_massage = "";
-  // openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string, current_status: string): void {
-  //   // this.dataForDelete = enterAnimationDuration
-  //   if(current_status == 'inactive'){
-  //     this.change_status = true;
-  //     this.status_massage == 'You wont to be active this company!';
-  //   }else{
-  //     this.change_status == false;
-  //     this.status_massage == 'You wont to be inactive this company!'
-  //   }
-  //   const dialogRef = this.dialog.open(DeleteComponent, {
-  //     panelClass: 'delete_popup',
-  //     enterAnimationDuration,
-  //     exitAnimationDuration,
-  //     data: {
-  //       title: 'Are You Sure?',
-  //       subTitle: this.status_massage,
-  //     },
-  //   });
-  //   dialogRef.componentInstance.deleteAction.subscribe(() => {
-  //     this.delete();
-  //   });
-  // }
-
-  // delete(e?: any) {
-  //   Swal.fire({
-  //     position: "center",
-  //     icon: "success",
-  //     title: 'Success',
-  //     text: "Company status updated successfully...",
-  //     showConfirmButton: true,
-  //     timer: 1500
-  //   });
-  // }
-
   openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string, data?: any): void {
-    // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
       enterAnimationDuration,
       exitAnimationDuration,
@@ -119,11 +91,11 @@ export class SuperadminDashboardComponent {
       }
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete(data);
+      this.updateStatus(data);
     });
   }
 
-  delete(data: any) {
+  updateStatus(data: any) {
     let obj = {
       company_id: data.id,
       status: data.status == 'active' ? 'inactive' : 'active'
@@ -143,5 +115,106 @@ export class SuperadminDashboardComponent {
 
     });
     this.getExpeiredCompanyList();
+  }
+  searchText: string = '';
+  // allDataArray: any = [];
+  // allDataArrayInitialState: any = [];
+  // dataDisplay: any = [];
+  // initialDataArray: any = [];
+  // listDisplayArray: any = [];
+
+  // search(event: Event) {
+  //   const inputValue = (event.target as HTMLInputElement).value;
+  //   this.searchText = inputValue;
+  //   this.createDisplayArray();
+  // }
+  // onInputChange(event: Event): void {
+  //   const inputValue = (event.target as HTMLInputElement).value;
+  //   console.log(inputValue);
+  // }
+  // dataArray(data: { [x: string]: any; }, dataDisplay: any[], row: any, rowAdd: any = true) {
+  //   Object.keys(data)?.forEach((f: any) => {
+  //     const findInList = this.listDisplayArray.find((listf: { displayName: any; }) => listf?.displayName === f);
+  //     if (findInList || f) {
+  //       if (data[f]?.element === 'CUSTOM_ARRAY' || data[f]?.element === 'CUSTOM') {
+  //         const checkDataLength = data[f]?.data?.length;
+  //         data[f]?.data?.forEach((dataItem: any) => {
+  //           rowAdd = false;
+  //           if (checkDataLength > 1) {
+  //             this.dataArray(dataItem, dataDisplay, { ...row });
+  //           } else {
+  //             this.dataArray(dataItem, dataDisplay, row);
+  //           }
+  //         });
+
+  //       } else {
+  //         data[f].key = f;
+  //         this.addData(data[f], dataDisplay, row);
+  //       }
+  //     }
+  //   });
+  //   if (rowAdd) {
+  //     dataDisplay.push(row);
+  //   }
+  // }
+  addData(arg0: any, dataDisplay: any, row: any) {
+    throw new Error('Method not implemented.');
+  }
+  // createDisplayArray() {
+  //   this.companyListData?.forEach((val: any) => {
+  //     val.subTitleList = [];
+  //     const dataDisplay: any[] = [];
+  //     //  let array = this.dataArray(val?.data,dataDisplay);
+  //     const row: any = {};
+  //     const key = this.dataArray(val?.companyListData, dataDisplay, row);
+  //     let columnNames = this.listDisplayArray.map((item: { displayName: any; }) => item.displayName);
+  //     dataDisplay?.forEach((f: any) => {
+  //       f.id = val?.id
+  //       f.formData = val
+  //       let rowMatched = this.searchText ? false : true;
+  //       for (let index = 0; index < columnNames.length; index++) {
+  //         let column = columnNames[index];
+  //         // check search string
+  //         if (f[column] && this.searchText && f[column]?.toString().toLowerCase().includes(this.searchText?.toLowerCase())) {
+  //           rowMatched = true;
+  //         }
+
+  //         //do filter validation
+  //         if (this.filterStateManagement[column]?.length &&
+  //           !this.filterStateManagement[column]?.some((item: any) =>
+  //             String(item)?.toLowerCase() === String(f[column])?.toLowerCase())) {
+  //           rowMatched = false;
+  //           break;
+  //         }
+  //       }
+  //       if (rowMatched) {
+  //         this.allDataArray.push(f);
+  //         this.allDataArrayInitialState.push(f);
+  //       }
+  //       this.initialDataArray.push(f);
+  //     });
+
+  //     this.dataDisplay = dataDisplay;
+  //   });
+
+  // }
+
+  searchTerm: string = '';
+
+  searchTable(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+    this.filteredData();
+    
+  }
+
+  filteredData() {
+    this.filteredDataarray = this.companyListData.filter(item =>
+      item.company_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      item.owner_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      item.advance_amount.includes(this.searchTerm) ||
+      item.status.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      item.mobile.includes(this.searchTerm)   
+    );
   }
 }

@@ -7,7 +7,8 @@
             <div class="col text-right pr-1 datewith_search_block">
                 <div class="listsearch-topblock search_withaddbtn">
                     <div class="search-box">
-                        <input type="search" placeholder="Search" class="searchtxt" />
+                        <input type="text" placeholder="Search..."    (keyup)="searchTable($event)" class="searchtxt" />
+                        <!-- <input type="text" #inputElement [(ngModel)]="searchTerm"  (keyup)="search($event)" placeholder="Search" class="searchtxt" /> -->
                         <i class="mdi mdi-magnify"></i>
                     </div>
                 </div>
@@ -36,13 +37,13 @@
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
-            <tr *ngIf="companyListData.length == 0 && !loader">
+            <tr *ngIf="filteredDataarray.length == 0 && !loader">
                 <td colspan="11">
                     <app-no-record-found type="table" notext="No upcoming expiered company."></app-no-record-found>
                 </td>
             </tr>
-            <ng-container *ngIf="companyListData.length != 0 && !loader">
-                <tr class="received_row" *ngFor="let item of companyListData">
+            <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                <tr class="received_row" *ngFor="let item of filteredDataarray">
                     <td class="col" data-name="Name">{{item.company_name}}</td>
                     <td class="col" data-name="Logo">
                         <div class="list_image_block" *ngIf="item.main_logo == null">
@@ -60,8 +61,8 @@
                     <td class="col text-right" data-name="Amount">{{item.advance_amount}}</td>
                     <td class="col text-right" data-name="Pending">{{item.remaining_amount}}</td>
                     <td class="col text-center" data-name="Status">
-                        <span class="badge bg-success text-white" *ngIf="item.status == 'active'">Active</span>
-                        <span class="badge bg-danger text-white " *ngIf="item.status == 'inactive'">Inactive</span>
+                        <span class="badge bg-success text-white" *ngIf="item.status == 'active'">{{item.status}}</span>
+                        <span class="badge bg-danger text-white " *ngIf="item.status == 'inactive'">{{item.status}}</span>
                     </td>
                     <td class="action_col" data-name="Action">
                         <div placement="bottom-right">

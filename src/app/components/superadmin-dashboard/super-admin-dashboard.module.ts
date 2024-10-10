@@ -4,7 +4,7 @@ import { SuperadminDashboardComponent } from './superadmin-dashboard.component';
 import { MaterialModule } from 'src/app/material.module';
 import { SuperAdminDashboardRoutingModule } from './super-admin-dashboard-routing.module';
 import { CommonComponentsModule } from "../../common/common-components.module";
-
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,8 +13,9 @@ import { CommonComponentsModule } from "../../common/common-components.module";
     CommonModule,
     MaterialModule,
     SuperAdminDashboardRoutingModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    FormsModule
   ],
-  exports: [SuperadminDashboardComponent]
+  exports: [SuperadminDashboardComponent, FormsModule]
 })
 export class SuperAdminDashboardModule { }
