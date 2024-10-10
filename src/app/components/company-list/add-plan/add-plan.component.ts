@@ -34,7 +34,7 @@ export class AddPlanComponent {
       endDate: ['', Validators.required],
       totalAmount: ['', Validators.required],
       receiveAmount: ['', Validators.required],
-      planDetails: ['']
+      planDetails: ['', Validators.required]
     });
   }
 
@@ -52,12 +52,28 @@ export class AddPlanComponent {
         end_date: this.addplanForm.value.endDate,
         detail: this.addplanForm.value.planDetails
       }
+
       this._service.createPlan(obj).subscribe((data: any) => {
         console.log(data);
+
         if (data) {
           this._tostr.success(data.message, "Success");
+          this.loading = false;
+          this.addplanForm.value.reset();
+          this.dialog.closeAll()
+        } else {
+
+          this._tostr.error(data, "Error");
         }
-      })
+      },
+        (error) => {
+          this.loading = false; // Ensure loading is stopped
+          if (error.status === 409) {
+            this._tostr.error(error.error.message, 'Error');
+          } else {
+            this._tostr.error(error.message, 'Error');
+          }
+        })
     } else {
       this.addplanForm.markAllAsTouched()
     }

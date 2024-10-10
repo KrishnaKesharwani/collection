@@ -45,7 +45,7 @@ export class DashboardComponent {
     this._service.dashboard().subscribe((response: any) => {
 
       if (response) {
-        this.companyDashboardtData = response;
+        this.companyDashboardtData = response.data;
 
       }
     })

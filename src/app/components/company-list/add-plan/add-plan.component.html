@@ -31,10 +31,9 @@
                         [key]="'receiveAmount'" [displayMsg]="'Received amount is required'"></app-input>
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">
-                    <mat-form-field class="global_textarea_block" appearance="outline">
-                        <mat-label>Plan Details</mat-label>
-                        <textarea matInput formControlName="planDetails" name="planDetails"></textarea>
-                    </mat-form-field>
+                    <app-textarea [disabled]="true" label="Details" [(value)]="planDetails" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="addplanForm" [key]="'planDetails'"
+                        [displayMsg]="'Detail is required'"></app-textarea>
                 </div>
             </div>
         </div>

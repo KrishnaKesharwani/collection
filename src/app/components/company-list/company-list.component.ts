@@ -20,6 +20,7 @@ export class CompanyListComponent {
   companyListData: any[] = [
   ]
   companyDashboardtData: any;
+  loader = false;
   readonly dialog = inject(MatDialog);
   // columns = ['Name', 'Logo', 'Owner Name', 'Mobile', 'Start Date', 'End Date', 'Plan', 'Amount', 'Pending', 'Status'];
   columns = [
@@ -42,6 +43,7 @@ export class CompanyListComponent {
     // { action: 'received_amount', label: 'Received Amount', icon: 'mdi mdi-cash-100 mr-2' },
     { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
   ];
+  filteredDataarray: any[] = [];
   constructor(private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService
 
   ) { }
@@ -54,8 +56,27 @@ export class CompanyListComponent {
     this._service.getList().subscribe((response: any) => {
       if (response && Array.isArray(response.data)) {
         this.companyListData = response.data;
+        this.filteredDataarray = this.companyListData;
       }
     })
+  }
+
+  searchTerm: string = '';
+
+  searchTable(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+    this.filteredData();
+  }
+
+  filteredData() {
+    this.filteredDataarray = this.companyListData.filter(item =>
+      item.company_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      item.owner_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      item.advance_amount.includes(this.searchTerm) ||
+      item.status.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      item.mobile.includes(this.searchTerm)
+    );
   }
 
   onAction(actionData: { action: string; row: any }) {

@@ -1,0 +1,36 @@
+<div class="list-containner">
+    <div class="row">
+        <div class="col-xl-12 mb-xl-0">
+            <div class="card shadow dash-cardbox">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col col-sm-4 pl-1">
+                            <h3 class="mb-0">Company List</h3>
+                        </div>
+                        <div class="col text-right pr-1 datewith_search_block">
+                            <div class="listsearch-topblock search_withaddbtn">
+                                <div class="search-box">
+                                    <input type="search" placeholder="Search" class="searchtxt" />
+                                    <i class="mdi mdi-magnify"></i>
+                                </div>
+                                <div class="right_addbtn">
+                                    <button data-toggle="modal" (click)="openDialog6()"
+                                        data-target="#actionCompany_modal"
+                                        class="btn btn-success btn-sm create_header_btn" mat-raised-button>
+                                        <i class="mdi mdi-account"></i>
+                                        <span class="btn-txt button-text">Add Company</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <app-global-datatable [actions]="actions" [data]="companyListData" [columns]="columns"
+                    (actionTriggered)="onAction($event)"></app-global-datatable>
+
+                <app-no-record-found *ngIf="companyListData.length==0"></app-no-record-found>
+
+            </div>
+        </div>
+    </div>
+</div>
