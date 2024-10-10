@@ -2,7 +2,8 @@
     <mat-label>{{ label }}</mat-label>
     <input matInput *ngIf="!isDateField" [disabled]="disabled" [required]="isRequired" [formControl]="control">
     <ng-container *ngIf="isDateField">
-        <input matInput [matDatepicker]="picker" [disabled]="disabled" [required]="isRequired" [formControl]="control" />
+        <input matInput [matDatepicker]="picker" [disabled]="disabled" [required]="isRequired"
+            [formControl]="control" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </ng-container>

@@ -14,9 +14,10 @@ export class ActionService {
   constructor() { }
 
   private actionSource = new BehaviorSubject<ActionData | null>(null);
-  action$ = this.actionSource.asObservable();
+  actions$ = this.actionSource.asObservable();
 
   setAction(actionData: ActionData) {
+
     this.actionSource.next(actionData);
   }
 }
