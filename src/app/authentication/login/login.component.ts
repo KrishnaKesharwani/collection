@@ -71,10 +71,10 @@ export class LoginComponent {
         (data) => {
 
           const userLoginDetails: AdminFromBackend = {
-            company_id: data.user.company_id,
-            email: data.user.email,
-            name: data.user.name,
-            user_type: data.user.user_type,
+            company_id: data.data.company_id,
+            email: data.data.email,
+            name: data.data.name,
+            user_type: data.data.user_type,
             token: data.token
           }
           sessionStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
