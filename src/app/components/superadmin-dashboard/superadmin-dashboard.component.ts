@@ -205,7 +205,6 @@ export class SuperadminDashboardComponent {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
     this.filteredData();
-    
   }
 
   filteredData() {
@@ -216,5 +215,45 @@ export class SuperadminDashboardComponent {
       item.status.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       item.mobile.includes(this.searchTerm)   
     );
+  }
+  currentSortField: string | undefined;
+  SORTING_ORDER = { RESET: 0, ASC: 1, DESC: 2 }
+  currentSortOrder: number = this.SORTING_ORDER.RESET;
+  sortData(disClick: any, field: string, sortingOrder: any) {
+    // if (this.currentSortOrder == sortingOrder) {
+    //   this.companyListData = JSON.parse(JSON.stringify(this.companyListData));
+    //   this.currentSortOrder = 0;
+    //   return;
+    // }
+    // // divElement?.classList.contains('your-class-name')
+    // // if (!this.enableSorting) {
+    // //   return;
+    // // }
+    // this.currentSortOrder = sortingOrder;
+    // if (this.currentSortField !== field) {
+    //   this.currentSortField = field;
+    // }
+
+    // if (this.currentSortOrder == this.SORTING_ORDER.RESET) {
+    //   this.companyListData = JSON.parse(JSON.stringify(this.companyListData));
+    //   return;
+    // }
+
+    this.companyListData.sort((a: { [x: string]: string; }, b: { [x: string]: string; }) => {
+      let aValue = a[field] || '';
+      let bValue = b[field] || '';
+
+      if (typeof aValue === 'string' || typeof bValue === 'string') {
+        aValue = aValue.toString().toLowerCase();
+        bValue = bValue.toString().toLowerCase();
+      }
+      if (aValue < bValue) {
+        return this.currentSortOrder === this.SORTING_ORDER.ASC ? -1 : 1;
+      }
+      if (aValue > bValue) {
+        return this.currentSortOrder === this.SORTING_ORDER.ASC ? 1 : -1;
+      }
+      return 0;
+    });
   }
 }
