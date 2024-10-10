@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -14,14 +14,14 @@ export class SidebarComponent {
   usertype: any;
   user_type: any;
   userData: any;
+  @Input() menuAction: string = '';
+  menuActionClass = "";
   constructor(private formBuilder: FormBuilder, private router: Router) {
   }
 
   ngOnInit(): void {
     const data = sessionStorage.getItem('CurrentUser');
-
     if (data) {
-
       const userData = JSON.parse(data);
       this.user_type = userData.user_type
     } else {
@@ -31,6 +31,9 @@ export class SidebarComponent {
 
   }
 
+  ngOnChanges() {
+    this.menuActionClass = this.menuAction;
+  }
   onLetfMenuClick($event: { target: any; srcElement: any; }) {
     let clickedElement = $event.target || $event.srcElement;
     if (clickedElement.nodeName === "A") {

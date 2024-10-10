@@ -1,9 +1,9 @@
-<app-header
+<app-header [ngClass]="{'remove_sidebar_width': currentAction}" (menuClick)="handleMenuClick($event)"
     *ngIf="(user_type === 0 && user_type === 1 && user_type === 2 && user_type === 3) ? !showSidebar : showSidebar"></app-header>
-<app-sidebar
+<app-sidebar [menuAction]="currentAction"
     *ngIf="(user_type === 0 && user_type === 1 && user_type === 2 && user_type === 3) ? !showSidebar : showSidebar"></app-sidebar>
 <div [ngClass]=" {'main-content': showSidebar}">
-    <div [ngClass]="{'overall-containblock': showSidebar}">
+    <div [ngClass]="{'overall-containblock': showSidebar, 'remove_sidebar': currentAction}">
         <router-outlet></router-outlet>
     </div>
 </div>

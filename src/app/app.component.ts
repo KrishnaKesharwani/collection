@@ -22,6 +22,10 @@ export class AppComponent {
       });
   }
 
+  currentAction: string = '';
+  handleMenuClick(action: string) {
+    this.currentAction = action;
+  }
   ngOnInit(): void {
     const data = sessionStorage.getItem('CurrentUser');
 

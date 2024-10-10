@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -11,6 +11,7 @@ export class HeaderComponent {
   constructor(private router: Router) {
     const data = sessionStorage.getItem('CurrentUser');
   }
+  @Output() menuClick: EventEmitter<string> = new EventEmitter<string>();
 
   apic_sync_success = false;
   loading = false;
@@ -39,8 +40,15 @@ export class HeaderComponent {
     this.router.navigate(['/login']);
   }
 
-  menuClick(){
-
+  checkSideMenu = '';
+  
+  onMenuClick() {
+    if(this.checkSideMenu == ''){
+      this.checkSideMenu = 'hideSidebar';
+    }else{
+      this.checkSideMenu = '';
+    }
+    this.menuClick.emit(this.checkSideMenu);
   }
 
   showhideMenu() {

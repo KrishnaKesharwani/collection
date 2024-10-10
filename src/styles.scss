@@ -20,6 +20,7 @@
 body {
     font-family: "Poppins", sans-serif !important;
     overflow-x: hidden;
+    margin: 0px;
 }
 
 body,
@@ -50,7 +51,20 @@ h5,
     box-shadow: var(--app-brand-card-shadow);
     border-radius: 5px;
 }
-
+.remove_sidebar_width {
+    .navbar {
+        width: 100% !important;
+        left: 0px;
+        max-width: 100% !important;
+    }
+}
+.hideSidebar {
+    position: absolute !important;
+    left: -100% !important;
+}
+.remove_sidebar {
+    padding-left: 15px !important;
+}
 .dash-cardbox {
     .card-header {
         padding: 15px;
@@ -2409,7 +2423,7 @@ mark {
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
-
+    transition: .5s all;
     .search-topblock {
         display: flex;
         flex-wrap: wrap;
@@ -2533,7 +2547,7 @@ mark {
         background-color: #f5f5ff;
         min-height: 100vh;
         overflow-x: hidden;
-
+        transition: .5s all;
         .main-title {
             font-size: 24px;
             color: #000000;
