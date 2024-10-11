@@ -54,10 +54,6 @@ export class LoginComponent {
     });
   }
 
-  // check_authorizartion() {
-  //   this.toastr.success('Success');
-  //   this.router.navigate(['/customer_list']);
-  // }
 
   credentials = { username: '', password: '' };
   errorMessage: string | null = null;
@@ -71,7 +67,7 @@ export class LoginComponent {
         (data) => {
 
           const userLoginDetails: AdminFromBackend = {
-            company_id: data.data.company_id,
+            company_id: data.data.company?.id,
             email: data.data.email,
             name: data.data.name,
             user_type: data.data.user_type,

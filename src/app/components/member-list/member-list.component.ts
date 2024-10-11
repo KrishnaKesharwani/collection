@@ -6,6 +6,8 @@ import { AssignLoanComponent } from './assign-loan/assign-loan.component';
 import { AddMemberComponent } from './add-member/add-member.component';
 import Swal from 'sweetalert2';
 import { ActionService } from 'src/app/services/action/action.service';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
+import { MemberService } from 'src/app/services/member/member.service';
 
 @Component({
 
@@ -18,15 +20,21 @@ export class MemberListComponent {
   member_action: any;
   member_details: any;
   show_list: any;
-  me: any;
+  loader = false;
   dataForDelete: any = {};
+  readonly dialog = inject(MatDialog);
 
-  columns = ['Member No.', 'Image', 'Name', 'Mobile', 'Email', 'Aadhar No.', 'Join Date', 'Status'];
-  memberData = [
-    { MemberNo: 1, image: `<img src="assets/imgs/default-pic.png" />`, Name: 'John Doe', Mobile: '1234567890', Email: 'rk@gmail.com', AadharNo: '1111-2222-3333', JoinDate: '12-12-2000', status: 'Active' },
-    // Add more customer objects
+  columns = [
+    // { prop: 'company_name', name: 'Member No.', orderable: true },
+    { prop: 'name', name: 'Name', orderable: true },
+    { prop: 'image', name: 'Image', orderable: false, isImage: true },
+    { prop: 'mobile', name: 'Mobile', orderable: false },
+    { prop: 'email', name: 'Email', orderable: false },
+
+    { prop: 'aadhar_no', name: 'Aadhar No.', orderable: false },
+    { prop: 'join_date', name: 'Join Date', orderable: false },
+    { prop: 'status', name: 'Status', orderable: false }
   ];
-
   actions = [
 
 
@@ -37,12 +45,33 @@ export class MemberListComponent {
 
     { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
   ];
-  constructor(private actionService: ActionService, public dialog: MatDialog) { }
+  filteredDataarray: any;
+  memberListData: any[] = [];
+  company_id: any;
+  constructor(public _service: MemberService, public _customActionService: CustomActionsService, private actionService: ActionService) { }
 
   ngOnInit() {
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
 
+    }
+    this.getMemberList();
   }
 
+
+  getMemberList() {
+    let obj = {
+      company_id: this.company_id
+    }
+    this._service.getList(obj).subscribe((response: any) => {
+      if (response && Array.isArray(response.data)) {
+        this.memberListData = response.data;
+        this.filteredDataarray = this.memberListData;
+      }
+    })
+  }
 
   onAction(actionData: { action: string; row: any }) {
 
@@ -53,7 +82,7 @@ export class MemberListComponent {
         this.openDialogMemberDetails();
         break;
       case 'edit_customer':
-        this.openDialogAdd();
+        this.openDialogEditMember(actionData.row);
         break;
       case 'assign_loan':
         this.openDialogAssignLoan();
@@ -63,7 +92,7 @@ export class MemberListComponent {
         break;
     }
   }
-  openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string, data?: any): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
 
@@ -71,33 +100,47 @@ export class MemberListComponent {
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
-        title: 'Update Member Status?',
-        subTitle: 'You wont to be update member status!',
-      },
+        title: 'Are you sure?',
+        subTitle: data && data.status === 'active'
+          ? 'You want to inactivate member status!'
+          : 'You want to activate member status!'
+      }
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete();
+      this.delete(data);
     });
   }
 
-  delete(e?: any) {
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: 'Success',
-      text: "Member status updated successfully...",
-      showConfirmButton: true,
-      timer: 1500
-    });
-  }
-  readonly dialog5 = inject(MatDialog);
+  delete(data: any) {
+    let obj = {
+      member_id: data.id,
+      status: data.status == 'active' ? 'inactive' : 'active'
+    }
 
-  openDialogAdd() {
-    const dialogRef = this.dialog5.open(AddMemberComponent, {
+    this._service.changeStatus(obj).subscribe((data: any) => {
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: 'Success',
+          text: 'Member Status Updated!',
+          showConfirmButton: true,
+          timer: 1500
+        });
+      }
+
+    });
+    this.getMemberList();
+  }
+
+
+  openDialogEditMember(data: any) {
+    const dialogRef = this.dialog.open(AddMemberComponent, {
       disableClose: true,
       panelClass: 'update_dialoge',
       data: {
-        title: 'Add New Member',
+        title: 'Update Member',
+        data: data
       },
     });
 
@@ -105,10 +148,23 @@ export class MemberListComponent {
     });
   }
 
-  readonly dialog2 = inject(MatDialog);
+  openDialogAddMember() {
+    const dialogRef = this.dialog.open(AddMemberComponent, {
+      disableClose: true,
+      panelClass: 'update_dialoge',
+      data: {
+        title: 'Add New Member'
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+
 
   openDialogUpdateDetails() {
-    const dialogRef = this.dialog2.open(AddMemberComponent, {
+    const dialogRef = this.dialog.open(AddMemberComponent, {
       disableClose: true,
       panelClass: 'update_dialoge',
       data: {
@@ -120,10 +176,9 @@ export class MemberListComponent {
     });
   }
 
-  readonly dialog3 = inject(MatDialog);
 
   openDialogMemberDetails() {
-    const dialogRef = this.dialog3.open(ViewMemberListComponent, {
+    const dialogRef = this.dialog.open(ViewMemberListComponent, {
       panelClass: 'view_details_small_popup',
       data: {
         title: 'Member Details',
@@ -133,10 +188,10 @@ export class MemberListComponent {
     });
   }
 
-  readonly dialog4 = inject(MatDialog);
+
 
   openDialogAssignLoan() {
-    const dialogRef = this.dialog4.open(AssignLoanComponent, {
+    const dialogRef = this.dialog.open(AssignLoanComponent, {
       disableClose: true,
       panelClass: 'view_details_popup',
       data: {
@@ -147,5 +202,28 @@ export class MemberListComponent {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  isAsc: boolean = true;
+  sortTableData(column: string, responseData: any) {
+
+    this.filteredDataarray = this._customActionService.sortData(column, responseData);
+
+
+  }
+
+
+  searchColumns: any[] = ['company_name', 'owner_name', 'advance_amount', 'status', 'mobile'];
+  searchTerm: string = '';
+  searchTable(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.memberListData;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
+
   }
 }

@@ -8,104 +8,83 @@
         <div class="modal_insert">
             <div class="row">
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Member No.</mat-label>
-                        <input matInput required formControlName="memberNo" name="memberNo">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="memberForm"
-                            [key]="'memberNo'" [displayMsg]="'Member number is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input [isDateField]="false" label="Name" [(value)]="name" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="memberForm" [key]="'name'"
+                        [displayMsg]="'Name is required'"></app-input>
+                </div>
+
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" label="Mobile" [(value)]="mobile" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="memberForm" [key]="'mobile'"
+                        [displayMsg]="'Mobile is required'"></app-input>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Name</mat-label>
-                        <input matInput required formControlName="memberName" name="memberName" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="memberForm"
-                            [key]="'memberName'" [displayMsg]="'Name is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input [isDateField]="false" label="Email" [(value)]="email" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="memberForm" [key]="'email'"
+                        [displayMsg]="'Email is required'"></app-input>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Mobile</mat-label>
-                        <input matInput required formControlName="mobile" name="mobile" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="memberForm"
-                            [key]="'mobile'" [displayMsg]="'Mobile is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input [isDateField]="false" label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="memberForm" [key]="'aadhar_no'"
+                        [displayMsg]="'Aadhar number is required'"></app-input>
+                </div>
+
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="true" label="Join Date" [(value)]="join_date" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="memberForm" [key]="'join_date'"
+                        [displayMsg]="'Join date is required'"></app-input>
+                </div>
+
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" label="Member Login Id" [(value)]="member_login_id"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="memberForm"
+                        [key]="'member_login_id'" [displayMsg]="'Login id is required'"></app-input>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Email</mat-label>
-                        <input matInput required formControlName="email" name="email" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="memberForm" [key]="'email'"
-                            [displayMsg]="'Email is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input [isDateField]="false" label="Password" [(value)]="password" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="memberForm" [key]="'password'"
+                        [displayMsg]="'Password is required'"></app-input>
                 </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Aadhar No.</mat-label>
-                        <input matInput required formControlName="adharNumber" name="adharNumber" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="memberForm"
-                            [key]="'adharNumber'" [displayMsg]="'Adhar number is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
                 </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Join Date</mat-label>
-                        <input type="date" matInput required formControlName="joinDate" name="joinDate" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="memberForm"
-                            [key]="'joinDate'" [displayMsg]="'Join date is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+
+
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="memberForm" [key]="'address'"
+                        [displayMsg]="'Address is required'"></app-input>
                 </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Member Login Id</mat-label>
-                        <input matInput required formControlName="memberLoginId" name="memberLoginId" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="memberForm"
-                            [key]="'memberLoginId'" [displayMsg]="'Member login Id is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Password</mat-label>
-                        <input type="password" matInput required formControlName="password" name="password" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="memberForm"
-                            [key]="'password'" [displayMsg]="'Password is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
-                    <app-dropdwon key="status"></app-dropdwon>
-                </div>
+
                 <div class="col-sm-6 col-lg-6 col-xs-12">
                     <div class="file_upload_block global_textbox_block">
                         <label class="m-0">Member Image</label>
-                        <app-fileupload class="fileupload" (fileChange)="onFileChange($event)"></app-fileupload>
+                        <app-fileupload class="fileupload" formControlName="image" name="image"
+                            (fileChange)="onFileChange($event)"></app-fileupload>
                     </div>
                 </div>
-                <div class="col-sm-12">
-                    <mat-form-field class="global_textarea_block" appearance="outline">
-                        <mat-label>Address</mat-label>
-                        <textarea matInput  formControlName="address" name="address"></textarea>
-                        <!-- <input matInput required formControlName="address" name="address" /> -->
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="memberForm"
-                            [key]="'address'" [displayMsg]="'Address is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
+
+
 
             </div>
         </div>
+
+
+
+
 
     </form>
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button (click)="save()" *ngIf="!member_Id">Submit</button>
-    <button class="global_submit_btn" mat-flat-button (click)="update()" *ngIf="member_Id">Update</button>
+    <button type="submit" class="global_submit_btn" *ngIf="!member_Id" mat-flat-button (click)="save()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span>Submit</span>
+    </button>
+    <button type="submit" class="global_submit_btn" *ngIf="member_Id" mat-flat-button (click)="save()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span>Update</span>
+    </button>
 </div>

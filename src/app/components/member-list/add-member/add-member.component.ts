@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 import { CommonComponentService } from 'src/app/common/common-component.service';
+import { MemberService } from 'src/app/services/member/member.service';
 
 @Component({
   selector: 'app-add-member',
@@ -18,22 +22,45 @@ export class AddMemberComponent {
   @Output() deleteAction = new EventEmitter();
   memberForm!: FormGroup;
   member_Id!: 1;
-  constructor(private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  name: string = '';
+  mobile: string = '';
+  email: string = '';
+  aadhar_no: string = '';
+  join_date: string = '';
+  member_login_id: string = '';
+  password: string = '';
+  address: string = '';
+  details: string = '';
+  loading: boolean = false;
+  company_id: any;
+  memberName: string = '';
+  constructor(public _toastr: ToastrService, public router: Router, public _service: MemberService, private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any },
   ) { }
 
   ngOnInit() {
+
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+
+    }
+
     this.memberForm = this.fb.group({
-      memberNo: ['', Validators.required],
-      memberName: ['', Validators.required],
+      // memberNo: [''],
+      name: ['', Validators.required],
       mobile: ['', Validators.required],
       email: ['', Validators.required],
-      adharNumber: ['', Validators.required],
-      joinDate: ['', Validators.required],
-      memberLoginId: ['', Validators.required],
+      aadhar_no: ['', Validators.required],
+      join_date: ['', Validators.required],
+      member_login_id: ['', Validators.required],
       password: ['', Validators.required],
       address: ['', Validators.required],
-      status: ['']
+      status: [''],
+      image: [null]
     });
+    this.company_id = this.company_id
+
 
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
@@ -46,10 +73,118 @@ export class AddMemberComponent {
   }
 
   save() {
-    this.memberForm.markAllAsTouched()
-    if (this.memberForm.valid) {
-      // this.dialog.closeAll();
+    if (this.member_Id) {
+
+      if (this.member_Id) {
+        this.loading = true;
+        const formData = new FormData();
+        const files = [
+          { name: 'image', file: this.memberForm.get('image')?.value },
+
+        ];
+
+        // Convert files to base64 strings
+        files.map(({ name, file }) => {
+          return new Promise((resolve, reject) => {
+            if (file) {
+              const reader = new FileReader();
+              reader.onloadend = () => {
+                const base64String = reader.result as string; // Base64-encoded string
+                formData.append(name, base64String); // Append base64 string to FormData
+                resolve(true);
+              };
+              reader.onerror = () => reject(new Error(`Failed to read ${name}`));
+              reader.readAsDataURL(file); // Read the file as a base64 string
+            } else {
+              resolve(true); // Resolve if no file
+            }
+          });
+        });
+
+        // Append other form values to FormData
+        Object.keys(this.memberForm.value).forEach(key => {
+          if (!['main_logo', 'sidebar_logo', 'favicon_icon', 'owner_image'].includes(key)) {
+            formData.append(key, this.memberForm.value[key]);
+          }
+        });
+        formData.append('company_id', this.company_id)
+        // formData.append('member_Id', this.member_Id)
+        if (formData) {
+          this._service.update(formData).subscribe((data: any) => {
+            if (data) {
+
+              this._toastr.success(data.message, 'Success');
+              this.router.navigate(['/dashboard']);
+            } else {
+              this._toastr.error(data.message, 'Error');
+            }
+          });
+          setTimeout(() => {
+            this.loading = false;
+            this.dialog.closeAll();
+          }, 1000);
+        }
+      } else {
+        this.memberForm.markAllAsTouched();
+      }
     }
+    else {
+      if (this.memberForm.valid) {
+
+        this.loading = true;
+        const formData = new FormData();
+        const files = [
+          { name: 'image', file: this.memberForm.get('image')?.value },
+
+        ];
+
+        // Convert files to base64 strings
+        files.map(({ name, file }) => {
+          return new Promise((resolve, reject) => {
+            if (file) {
+              const reader = new FileReader();
+              reader.onloadend = () => {
+                const base64String = reader.result as string; // Base64-encoded string
+                formData.append(name, base64String); // Append base64 string to FormData
+                resolve(true);
+              };
+              reader.onerror = () => reject(new Error(`Failed to read ${name}`));
+              reader.readAsDataURL(file); // Read the file as a base64 string
+            } else {
+              resolve(true); // Resolve if no file
+            }
+          });
+        });
+
+        // Append other form values to FormData
+        Object.keys(this.memberForm.value).forEach(key => {
+          if (!['image'].includes(key)) {
+            formData.append(key, this.memberForm.value[key]);
+
+          }
+        });
+        formData.append('company_id', this.company_id)
+        console.log(formData)
+        if (formData) {
+          this._service.create(formData).subscribe((data: any) => {
+            console.log(data)
+
+            if (data.success == true) {
+              this._toastr.success(data.message, 'Success');
+              this.router.navigate(['/member_list']);
+            } else if (data.error.email) {
+              this._toastr.error(data.error.email, 'Error');
+            } else if (data.error.join_date) {
+              this._toastr.error(data.error.join_date, 'Error');
+            }
+          });
+
+        }
+      } else {
+        this.memberForm.markAllAsTouched();
+      }
+    }
+
   }
 
   update() {

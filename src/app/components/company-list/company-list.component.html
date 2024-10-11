@@ -58,8 +58,7 @@
                         </tr>
                         <tr *ngIf="filteredDataarray.length == 0 && !loader">
                             <td colspan="11">
-                                <app-no-record-found type="table"
-                                    notext="No upcoming expiered company."></app-no-record-found>
+                                <app-no-record-found type="table" notext="No company found"></app-no-record-found>
                             </td>
                         </tr>
                         <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
