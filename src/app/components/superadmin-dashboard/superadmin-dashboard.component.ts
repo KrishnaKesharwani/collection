@@ -116,91 +116,11 @@ export class SuperadminDashboardComponent {
     });
     this.getExpeiredCompanyList();
   }
-  searchText: string = '';
-  // allDataArray: any = [];
-  // allDataArrayInitialState: any = [];
-  // dataDisplay: any = [];
-  // initialDataArray: any = [];
-  // listDisplayArray: any = [];
-
-  // search(event: Event) {
-  //   const inputValue = (event.target as HTMLInputElement).value;
-  //   this.searchText = inputValue;
-  //   this.createDisplayArray();
-  // }
-  // onInputChange(event: Event): void {
-  //   const inputValue = (event.target as HTMLInputElement).value;
-  //   console.log(inputValue);
-  // }
-  // dataArray(data: { [x: string]: any; }, dataDisplay: any[], row: any, rowAdd: any = true) {
-  //   Object.keys(data)?.forEach((f: any) => {
-  //     const findInList = this.listDisplayArray.find((listf: { displayName: any; }) => listf?.displayName === f);
-  //     if (findInList || f) {
-  //       if (data[f]?.element === 'CUSTOM_ARRAY' || data[f]?.element === 'CUSTOM') {
-  //         const checkDataLength = data[f]?.data?.length;
-  //         data[f]?.data?.forEach((dataItem: any) => {
-  //           rowAdd = false;
-  //           if (checkDataLength > 1) {
-  //             this.dataArray(dataItem, dataDisplay, { ...row });
-  //           } else {
-  //             this.dataArray(dataItem, dataDisplay, row);
-  //           }
-  //         });
-
-  //       } else {
-  //         data[f].key = f;
-  //         this.addData(data[f], dataDisplay, row);
-  //       }
-  //     }
-  //   });
-  //   if (rowAdd) {
-  //     dataDisplay.push(row);
-  //   }
-  // }
   addData(arg0: any, dataDisplay: any, row: any) {
     throw new Error('Method not implemented.');
   }
-  // createDisplayArray() {
-  //   this.companyListData?.forEach((val: any) => {
-  //     val.subTitleList = [];
-  //     const dataDisplay: any[] = [];
-  //     //  let array = this.dataArray(val?.data,dataDisplay);
-  //     const row: any = {};
-  //     const key = this.dataArray(val?.companyListData, dataDisplay, row);
-  //     let columnNames = this.listDisplayArray.map((item: { displayName: any; }) => item.displayName);
-  //     dataDisplay?.forEach((f: any) => {
-  //       f.id = val?.id
-  //       f.formData = val
-  //       let rowMatched = this.searchText ? false : true;
-  //       for (let index = 0; index < columnNames.length; index++) {
-  //         let column = columnNames[index];
-  //         // check search string
-  //         if (f[column] && this.searchText && f[column]?.toString().toLowerCase().includes(this.searchText?.toLowerCase())) {
-  //           rowMatched = true;
-  //         }
-
-  //         //do filter validation
-  //         if (this.filterStateManagement[column]?.length &&
-  //           !this.filterStateManagement[column]?.some((item: any) =>
-  //             String(item)?.toLowerCase() === String(f[column])?.toLowerCase())) {
-  //           rowMatched = false;
-  //           break;
-  //         }
-  //       }
-  //       if (rowMatched) {
-  //         this.allDataArray.push(f);
-  //         this.allDataArrayInitialState.push(f);
-  //       }
-  //       this.initialDataArray.push(f);
-  //     });
-
-  //     this.dataDisplay = dataDisplay;
-  //   });
-
-  // }
 
   searchTerm: string = '';
-
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
@@ -218,6 +138,7 @@ export class SuperadminDashboardComponent {
   }
 
   isAsc: boolean = true;
+  
   sortTableData(column: string): void {
     this.filteredDataarray = this.companyListData.sort((a, b) => {
       const aValue = a[column];
