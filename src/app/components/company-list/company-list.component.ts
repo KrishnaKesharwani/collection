@@ -62,23 +62,23 @@ export class CompanyListComponent {
     })
   }
 
-  searchTerm: string = '';
+  // searchTerm: string = '';
 
-  searchTable(event: Event) {
-    const inputValue = (event.target as HTMLInputElement).value;
-    this.searchTerm = inputValue;
-    this.filteredData();
-  }
+  // searchTable(event: Event) {
+  //   const inputValue = (event.target as HTMLInputElement).value;
+  //   this.searchTerm = inputValue;
+  //   this.filteredData();
+  // }
 
-  filteredData() {
-    this.filteredDataarray = this.companyListData.filter(item =>
-      item.company_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.owner_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.advance_amount.includes(this.searchTerm) ||
-      item.status.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.mobile.includes(this.searchTerm)
-    );
-  }
+  // filteredData() {
+  //   this.filteredDataarray = this.companyListData.filter(item =>
+  //     item.company_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+  //     item.owner_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+  //     item.advance_amount.includes(this.searchTerm) ||
+  //     item.status.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+  //     item.mobile.includes(this.searchTerm)
+  //   );
+  // }
 
   onAction(actionData: { action: string; row: any }) {
     this.actionService.setAction(actionData);
@@ -225,4 +225,11 @@ export class CompanyListComponent {
 
   }
 
+
+  searchTerm: string = '';
+  searchTable(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+    this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm);
+  }
 }

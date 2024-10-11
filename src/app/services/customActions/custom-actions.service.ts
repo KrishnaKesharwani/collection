@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CustomActionsService {
   filteredDataarray: any[] = [];
+  filteredDataarrayForSearch: any[] = [];
   isAsc: boolean = true;
 
   constructor() { }
@@ -29,5 +30,19 @@ export class CustomActionsService {
     this.isAsc = !this.isAsc;
 
     return this.filteredDataarray;
+  }
+
+  filteredData(responseData: any, searchTerm: string = '') {
+
+    this.filteredDataarrayForSearch = responseData.filter((item: any) =>
+      item.company_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.owner_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.advance_amount.includes(searchTerm) ||
+      item.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.mobile.includes(searchTerm)
+    );
+    console.log(this.filteredDataarrayForSearch);
+
+    return this.filteredDataarrayForSearch;
   }
 }

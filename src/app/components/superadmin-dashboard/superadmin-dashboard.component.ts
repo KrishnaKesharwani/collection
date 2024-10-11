@@ -125,18 +125,20 @@ export class SuperadminDashboardComponent {
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
-    this.filteredData();
+
+    this._customActionService.filteredData(this.filteredDataarray, this.searchTerm);
+
   }
 
-  filteredData() {
-    this.filteredDataarray = this.companyListData.filter(item =>
-      item.company_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.owner_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.advance_amount.includes(this.searchTerm) ||
-      item.status.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.mobile.includes(this.searchTerm)
-    );
-  }
+  // filteredData() {
+  //   this.filteredDataarray = this.companyListData.filter(item =>
+  //     item.company_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+  //     item.owner_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+  //     item.advance_amount.includes(this.searchTerm) ||
+  //     item.status.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+  //     item.mobile.includes(this.searchTerm)
+  //   );
+  // }
 
 
   isAsc: boolean = true;
