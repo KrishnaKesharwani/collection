@@ -5,6 +5,7 @@ import { ChangePasswordRoutingModule } from './change-password-routing.module';
 import { MaterialModule } from 'src/app/material.module';
 import { CommonComponentsModule } from "../../common/common-components.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputComponent } from 'src/app/common/input/input.component';
 
 
 @NgModule({

@@ -70,7 +70,8 @@ export class AddCompanyComponent {
   save() {
 
     if (this.company_id) {
-      if (this.companyForm.valid) {
+      debugger
+      if (this.company_id) {
         this.loading = true;
         const formData = new FormData();
         const files = [

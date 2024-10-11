@@ -26,12 +26,26 @@ export class ChangePasswordComponent {
       previous_password: ['', Validators.required],
       new_password: ['', Validators.required],
       new_password_confirmation: ['', Validators.required]
+    }, {
+      validator: this.passwordMatchValidator  // Add the custom validator here
     });
   }
 
+  passwordMatchValidator(formGroup: FormGroup) {
+    const newPassword = formGroup.get('new_password')?.value;
+    const confirmPassword = formGroup.get('new_password_confirmation')?.value;
+
+    // Set an error on the 'new_password_confirmation' field if the passwords do not match
+    if (newPassword !== confirmPassword) {
+      formGroup.get('new_password_confirmation')?.setErrors({ passwordMismatch: true });
+    } else {
+      formGroup.get('new_password_confirmation')?.setErrors(null); // Clear errors if they match
+    }
+  }
   changePassword() {
     if (this.changePasswordForm.valid) {
       this.loading = true;
+
       this._service.passwordChange(this.changePasswordForm.value).subscribe((data: any) => {
         console.log(data);
         this.toastr.success('Reset Password Successfully...', 'Success');
@@ -40,7 +54,5 @@ export class ChangePasswordComponent {
 
     }
 
-    this.loading = false;
-    this.changePasswordForm.reset();
   }
 }

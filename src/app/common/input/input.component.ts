@@ -1,6 +1,6 @@
 import { Component, EventEmitter, forwardRef, Inject, Input, Output, ViewChild } from '@angular/core';
 import { CommonComponentService } from '../common-component.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+// import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -22,7 +22,7 @@ export class InputComponent {
   // @Input() formControlName!: string;
   // @Input() name!: string;
 
-  constructor(private dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public data: { field_value: string, value: string }) { }
+  constructor(private dropdownService: CommonComponentService,) { }
 
   @Input() label: string = '';
   @Input() isRequired: boolean = false;
