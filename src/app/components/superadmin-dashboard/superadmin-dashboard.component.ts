@@ -10,6 +10,7 @@ import { ActionService } from 'src/app/services/action/action.service';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 
 @Component({
   selector: 'app-superadmin-dashboard',
@@ -24,7 +25,7 @@ export class SuperadminDashboardComponent {
   loader = false;
   filterStateManagement: any;
 
-  constructor(public _dashboardService: SuperAdminDashboardService, private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService) {
+  constructor(public _customActionService: CustomActionsService, public _dashboardService: SuperAdminDashboardService, private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService) {
   }
 
   ngOnInit() {
@@ -137,23 +138,12 @@ export class SuperadminDashboardComponent {
     );
   }
 
+
   isAsc: boolean = true;
-  
-  sortTableData(column: string): void {
-    this.filteredDataarray = this.companyListData.sort((a, b) => {
-      const aValue = a[column];
-      const bValue = b[column];
-      if (this.isAsc) {
-        if (aValue > bValue) return 1;
-        if (aValue < bValue) return -1;
-        return 0;
-      }
-      else {
-        if (aValue < bValue) return 1;
-        if (aValue > bValue) return -1;
-        return 0;
-      }
-    });
-    this.isAsc = !this.isAsc;
+  sortTableData(column: string, responseData: any) {
+
+    this.filteredDataarray = this._customActionService.sortData(column, responseData);
+
+
   }
 }

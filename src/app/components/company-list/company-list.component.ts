@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActionService } from 'src/app/services/action/action.service';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 
 @Component({
   selector: 'app-company-list',
@@ -44,7 +45,7 @@ export class CompanyListComponent {
     { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
   ];
   filteredDataarray: any[] = [];
-  constructor(private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService
+  constructor(public _customActionService: CustomActionsService, private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService
 
   ) { }
 
@@ -128,7 +129,7 @@ export class CompanyListComponent {
       disableClose: true,
       data: {
         data: data,
-        title: 'Update Members Details',
+        title: 'Update Company Details',
       },
     });
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -216,6 +217,12 @@ export class CompanyListComponent {
   }
 
 
+  isAsc: boolean = true;
+  sortTableData(column: string, responseData: any) {
 
+    this.filteredDataarray = this._customActionService.sortData(column, responseData);
+
+
+  }
 
 }

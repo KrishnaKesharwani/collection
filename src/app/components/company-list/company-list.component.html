@@ -32,13 +32,13 @@
                         <tr>
                             <th class="col">Name</th>
                             <th class="col text-center">Logo</th>
-                            <th class="col" style="width: 200px;">Owner Name
-                                <!-- <mat-icon class="active_icon"
-                                    *ngIf="currentSortField === 'Owner Name' && currentSortOrder != SORTING_ORDER.RESET;">
-                                    {{ currentSortOrder === SORTING_ORDER.ASC ? 'north' : 'south' }}
-                                  </mat-icon> -->
-                                <!-- <mat-icon (click)="sortData(this, 'Owner Name', SORTING_ORDER.ASC)">north</mat-icon>
-                                <mat-icon (click)="sortData(this, 'Owner Name', SORTING_ORDER.DESC)">south</mat-icon> -->
+                            <th class="col sorting_apply">
+                                <span>Owner Name</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('owner_name',filteredDataarray);">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
                             </th>
                             <th class="col">Mobile</th>
                             <th class="col">Start Date</th>

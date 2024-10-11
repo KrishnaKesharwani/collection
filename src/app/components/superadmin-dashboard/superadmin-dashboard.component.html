@@ -23,7 +23,8 @@
                 <th class="col sorting_apply">
                     <span>Owner Name</span>
                     <div class="sorting_arrow">
-                        <mat-icon (click)="sortTableData('owner_name');">{{ isAsc ? 'north' : 'south' }}</mat-icon>
+                        <mat-icon (click)="sortTableData('owner_name',filteredDataarray);">{{ isAsc ? 'north' : 'south'
+                            }}</mat-icon>
                     </div>
                 </th>
                 <th class="col">Mobile</th>
