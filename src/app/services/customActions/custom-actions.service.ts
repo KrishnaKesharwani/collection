@@ -32,15 +32,22 @@ export class CustomActionsService {
     return this.filteredDataarray;
   }
 
-  filteredData(responseData: any, searchTerm: string = '') {
 
-    this.filteredDataarrayForSearch = responseData.filter((item: any) =>
-      item.company_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.owner_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.advance_amount.includes(searchTerm) ||
-      item.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.mobile.includes(searchTerm)
-    );
+  filteredData(responseData: any, searchTerm: string = '', filterColumnName: any[] = []) {
+    console.log(filterColumnName)
+    this.filteredDataarrayForSearch = responseData.filter((item: any) => {
+
+      for (let i = 0; i < filterColumnName.length; i++) {
+        const columnName = filterColumnName[i];
+        if (item[columnName] && typeof item[columnName] === 'string') {
+          if (item[columnName].toLowerCase().includes(searchTerm.toLowerCase())) {
+            return true;
+          }
+        }
+      }
+      return false;
+
+    });
     console.log(this.filteredDataarrayForSearch);
 
     return this.filteredDataarrayForSearch;

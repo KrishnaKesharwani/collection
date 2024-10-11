@@ -70,7 +70,7 @@ export class AddCompanyComponent {
   save() {
 
     if (this.company_id) {
-      debugger
+
       if (this.company_id) {
         this.loading = true;
         const formData = new FormData();

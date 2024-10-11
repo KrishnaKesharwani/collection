@@ -226,10 +226,17 @@ export class CompanyListComponent {
   }
 
 
+  searchColumns: any[] = ['company_name', 'owner_name', 'advance_amount', 'status', 'mobile'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
-    this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm);
+
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.companyListData;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
+
   }
 }

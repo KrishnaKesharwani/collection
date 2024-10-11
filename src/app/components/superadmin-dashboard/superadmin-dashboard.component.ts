@@ -120,13 +120,18 @@ export class SuperadminDashboardComponent {
   addData(arg0: any, dataDisplay: any, row: any) {
     throw new Error('Method not implemented.');
   }
-
+  searchColumns: any[] = ['company_name', 'owner_name', 'advance_amount', 'status', 'mobile'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
 
-    this._customActionService.filteredData(this.filteredDataarray, this.searchTerm);
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.companyListData;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
+
 
   }
 
