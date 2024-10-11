@@ -51,6 +51,7 @@ h5,
     box-shadow: var(--app-brand-card-shadow);
     border-radius: 5px;
 }
+
 .remove_sidebar_width {
     .navbar {
         width: 100% !important;
@@ -58,13 +59,16 @@ h5,
         max-width: 100% !important;
     }
 }
+
 .hideSidebar {
     position: absolute !important;
     left: -100% !important;
 }
+
 .remove_sidebar {
     padding-left: 15px !important;
 }
+
 .dash-cardbox {
     .card-header {
         padding: 15px;
@@ -89,11 +93,13 @@ h5,
     font-size: 16px;
     letter-spacing: 0.5px;
 }
+
 .add_btnrow {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 10px;
+
     .right_btnaction {
         .global_rightadd_popup {
             padding: 0px 15px;
@@ -101,10 +107,12 @@ h5,
             color: #ffffff !important;
             height: 30px !important;
             display: flex;
+
             .mdc-button__label {
                 display: flex;
                 align-items: center;
                 font-size: 12px;
+
                 i {
                     font-size: 20px;
                     margin-right: 5px;
@@ -113,15 +121,17 @@ h5,
         }
     }
 }
+
 .global_table_smallbtn {
     width: 30px !important;
     height: 24px !important;
-    padding: 0px!important;
+    padding: 0px !important;
     display: flex !important;
     align-items: center !important;
     min-width: 30px !important;
     border: solid thin #e1e1e1 !important;
 }
+
 .delete_popup {
     width: 400px;
 
@@ -241,32 +251,39 @@ mat-option {
         background: #ffffff;
     }
 }
+
 .global_textarea_block {
     width: 100%;
     font-size: 13px !important;
+
     mat-label {
         font-size: 12px;
     }
+
     .mat-mdc-form-field-infix {
         padding: 8px 5px 5px 0px !important;
     }
+
     textarea {
         resize: none;
         line-height: 16px !important;
         min-height: 50px;
     }
+
     .mat-mdc-text-field-wrapper {
         width: 100%;
         background: #ffffff;
         padding: 0px 10px;
     }
 }
+
 .toast-container {
     .ngx-toastr {
         box-shadow: var(--app-brand-shadow) !important;
         font-size: 12px;
     }
 }
+
 .global_textbox_block {
     display: inline-block;
     width: 100%;
@@ -328,7 +345,7 @@ mat-option {
     margin-left: 20px;
     outline: none !important;
     appearance: none !important;
-    
+
     .mdc-button__label {
         display: flex;
     }
@@ -403,13 +420,15 @@ mat-option {
 .bg-warning {
     background: #FF9800;
 }
+
 .bg-danger {
     background: #f00000;
 }
+
 .badge {
     display: inline-block;
     padding: 0.35rem 0.375rem;
-    font-size: 90%;
+    font-size: 13px;
     font-weight: 500;
     line-height: 1;
     text-align: center;
@@ -419,7 +438,38 @@ mat-option {
     color: #ffffff;
     width: 100%;
     max-width: 100px;
-    text-transform: uppercase;
+    text-transform: capitalize;
+}
+
+.sorting_apply {
+    padding-right: 20px !important;
+    position: relative;
+    .sorting_arrow {
+        position: absolute;
+        right: 2px;
+        top: 10px;
+        transition: .5s all;
+        opacity: .8;
+        color: #666666;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: scale(0);
+        cursor: pointer;
+        mat-icon{
+            font-size: 18px;
+            height: 18px;
+            width: 18px;
+        }
+        &:hover {
+            opacity: 1;
+        }
+    }
+    &:hover {
+        .sorting_arrow {
+            transform: scale(1);
+        }
+    }
 }
 
 .long_details_table {
@@ -468,11 +518,13 @@ mat-option {
 .small_popup {
     width: 500px;
 }
+
 .datewith_search_block {
     display: flex;
     justify-content: end;
     align-items: center;
 }
+
 .disabled_textbox {
     position: relative;
 
@@ -911,6 +963,7 @@ mat-option {
     margin: 0px 0px 0px -146px;
     width: calc(100vw - 55px);
 }
+
 .pl-0 {
     padding-left: 0px !important;
 }
@@ -922,18 +975,23 @@ mat-option {
 .p-0 {
     padding: 0px !important;
 }
+
 .mb-30 {
     margin-bottom: 30px !important;
 }
+
 .mb-20 {
     margin-bottom: 20px !important;
 }
+
 .text-center {
     text-align: center !important;
 }
+
 .text-right {
     text-align: right !important;
 }
+
 .menu_container {
     margin-top: 10px;
     display: inline-block;
@@ -1091,13 +1149,16 @@ mat-option {
         }
     }
 }
+
 .submit_btnicon {
     margin-right: 5px;
     font-size: 20px;
     height: 20px;
 }
+
 .button_spinner {
     margin-right: 10px;
+
     circle {
         stroke: white !important;
     }
@@ -2425,6 +2486,7 @@ mark {
     justify-content: flex-start;
     align-items: center;
     transition: .5s all;
+
     .search-topblock {
         display: flex;
         flex-wrap: wrap;
@@ -2435,13 +2497,15 @@ mark {
             width: 30%;
             display: flex;
             align-items: center;
+
             .menu_icons {
                 margin-right: 10px;
                 cursor: pointer;
                 transition: .5s all;
                 color: #000000;
                 opacity: .6;
-                &:hover{
+
+                &:hover {
                     opacity: 1;
                 }
             }
@@ -2549,6 +2613,7 @@ mark {
         min-height: 100vh;
         overflow-x: hidden;
         transition: .5s all;
+
         .main-title {
             font-size: 24px;
             color: #000000;
@@ -3908,6 +3973,7 @@ mark {
 .btn_theme {
     min-height: 45px;
     width: 100%;
+
     .mdc-button__label {
         display: flex;
     }

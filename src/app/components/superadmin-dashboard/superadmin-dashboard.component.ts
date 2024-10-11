@@ -9,7 +9,7 @@ import { SuperAdminDashboardService } from 'src/app/services/dashboard/super-adm
 import { ActionService } from 'src/app/services/action/action.service';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { ToastrService } from 'ngx-toastr';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-superadmin-dashboard',
@@ -44,12 +44,12 @@ export class SuperadminDashboardComponent {
       if (response && Array.isArray(response.data)) {
         if (response) {
           this.companyListData = response.data;
-          this.filteredDataarray= this.companyListData;
+          this.filteredDataarray = this.companyListData;
           this.loader = false;
         }
         else {
           this.companyListData = [];
-          this.filteredDataarray= this.companyListData;         
+          this.filteredDataarray = this.companyListData;
           this.loader = false;
         }
       }
@@ -213,47 +213,26 @@ export class SuperadminDashboardComponent {
       item.owner_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       item.advance_amount.includes(this.searchTerm) ||
       item.status.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.mobile.includes(this.searchTerm)   
+      item.mobile.includes(this.searchTerm)
     );
   }
-  currentSortField: string | undefined;
-  SORTING_ORDER = { RESET: 0, ASC: 1, DESC: 2 }
-  currentSortOrder: number = this.SORTING_ORDER.RESET;
-  sortData(disClick: any, field: string, sortingOrder: any) {
-    // if (this.currentSortOrder == sortingOrder) {
-    //   this.companyListData = JSON.parse(JSON.stringify(this.companyListData));
-    //   this.currentSortOrder = 0;
-    //   return;
-    // }
-    // // divElement?.classList.contains('your-class-name')
-    // // if (!this.enableSorting) {
-    // //   return;
-    // // }
-    // this.currentSortOrder = sortingOrder;
-    // if (this.currentSortField !== field) {
-    //   this.currentSortField = field;
-    // }
 
-    // if (this.currentSortOrder == this.SORTING_ORDER.RESET) {
-    //   this.companyListData = JSON.parse(JSON.stringify(this.companyListData));
-    //   return;
-    // }
-
-    this.companyListData.sort((a: { [x: string]: string; }, b: { [x: string]: string; }) => {
-      let aValue = a[field] || '';
-      let bValue = b[field] || '';
-
-      if (typeof aValue === 'string' || typeof bValue === 'string') {
-        aValue = aValue.toString().toLowerCase();
-        bValue = bValue.toString().toLowerCase();
+  isAsc: boolean = true;
+  sortTableData(column: string): void {
+    this.filteredDataarray = this.companyListData.sort((a, b) => {
+      const aValue = a[column];
+      const bValue = b[column];
+      if (this.isAsc) {
+        if (aValue > bValue) return 1;
+        if (aValue < bValue) return -1;
+        return 0;
       }
-      if (aValue < bValue) {
-        return this.currentSortOrder === this.SORTING_ORDER.ASC ? -1 : 1;
+      else {
+        if (aValue < bValue) return 1;
+        if (aValue > bValue) return -1;
+        return 0;
       }
-      if (aValue > bValue) {
-        return this.currentSortOrder === this.SORTING_ORDER.ASC ? 1 : -1;
-      }
-      return 0;
     });
+    this.isAsc = !this.isAsc;
   }
 }

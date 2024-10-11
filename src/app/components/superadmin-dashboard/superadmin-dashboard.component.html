@@ -7,7 +7,7 @@
             <div class="col text-right pr-1 datewith_search_block">
                 <div class="listsearch-topblock search_withaddbtn">
                     <div class="search-box">
-                        <input type="text" placeholder="Search..."    (keyup)="searchTable($event)" class="searchtxt" />
+                        <input type="text" placeholder="Search..." (keyup)="searchTable($event)" class="searchtxt" />
                         <!-- <input type="text" #inputElement [(ngModel)]="searchTerm"  (keyup)="search($event)" placeholder="Search" class="searchtxt" /> -->
                         <i class="mdi mdi-magnify"></i>
                     </div>
@@ -20,13 +20,11 @@
             <tr>
                 <th class="col">Name</th>
                 <th class="col text-center">Logo</th>
-                <th class="col" style="width: 200px;">Owner Name
-                    <!-- <mat-icon class="active_icon"
-                    *ngIf="currentSortField === 'Owner Name' && currentSortOrder != SORTING_ORDER.RESET;">
-                    {{ currentSortOrder === SORTING_ORDER.ASC ? 'north' : 'south' }}
-                  </mat-icon> -->
-                    <mat-icon (click)="sortData(this, 'Owner Name', SORTING_ORDER.ASC)">north</mat-icon>
-                    <mat-icon (click)="sortData(this, 'Owner Name', SORTING_ORDER.DESC)">south</mat-icon>                    
+                <th class="col sorting_apply">
+                    <span>Owner Name</span>
+                    <div class="sorting_arrow">
+                        <mat-icon (click)="sortTableData('owner_name');">{{ isAsc ? 'north' : 'south' }}</mat-icon>
+                    </div>
                 </th>
                 <th class="col">Mobile</th>
                 <th class="col">Start Date</th>
@@ -69,7 +67,8 @@
                     <td class="col text-right" data-name="Pending">{{item.remaining_amount}}</td>
                     <td class="col text-center" data-name="Status">
                         <span class="badge bg-success text-white" *ngIf="item.status == 'active'">{{item.status}}</span>
-                        <span class="badge bg-danger text-white " *ngIf="item.status == 'inactive'">{{item.status}}</span>
+                        <span class="badge bg-danger text-white "
+                            *ngIf="item.status == 'inactive'">{{item.status}}</span>
                     </td>
                     <td class="action_col" data-name="Action">
                         <div placement="bottom-right">
