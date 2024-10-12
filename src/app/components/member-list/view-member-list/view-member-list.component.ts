@@ -28,13 +28,16 @@ export class ViewMemberListComponent {
     { item: 'Status ', cost: 15 },
     { item: 'Address ', cost: 15 },
   ];
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  data: any;
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
 
+  ngOnInit() {
+    this.viewMemberDetails();
+  }
 
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  viewMemberDetails() {
+    this.data = this.dataa.data;
   }
 }

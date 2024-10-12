@@ -127,6 +127,7 @@ export class AddCompanyComponent {
     }
     else {
       if (this.companyForm.valid) {
+
         this.loading = true;
         const formData = new FormData();
         const files = [

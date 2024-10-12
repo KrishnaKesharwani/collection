@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Route, Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class AddMemberComponent {
 
   @Output() deleteAction = new EventEmitter();
   memberForm!: FormGroup;
-  member_Id!: 1;
+  member_id!: any;
   name: string = '';
   mobile: string = '';
   email: string = '';
@@ -34,7 +34,7 @@ export class AddMemberComponent {
   loading: boolean = false;
   company_id: any;
   memberName: string = '';
-  constructor(public _toastr: ToastrService, public router: Router, public _service: MemberService, private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any },
+  constructor(private cdr: ChangeDetectorRef, public _toastr: ToastrService, public router: Router, public _service: MemberService, private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
   ngOnInit() {
@@ -60,9 +60,12 @@ export class AddMemberComponent {
       image: [null]
     });
     this.company_id = this.company_id
+    this.member_id = this.dataa.data.id
 
 
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+
+    this.memberView();
   }
 
   selectedFile: File | null = null;
@@ -73,9 +76,9 @@ export class AddMemberComponent {
   }
 
   save() {
-    if (this.member_Id) {
+    if (this.member_id) {
 
-      if (this.member_Id) {
+      if (this.memberForm.valid) {
         this.loading = true;
         const formData = new FormData();
         const files = [
@@ -108,7 +111,7 @@ export class AddMemberComponent {
           }
         });
         formData.append('company_id', this.company_id)
-        // formData.append('member_Id', this.member_Id)
+        formData.append('member_id', this.member_id)
         if (formData) {
           this._service.update(formData).subscribe((data: any) => {
             if (data) {
@@ -172,11 +175,8 @@ export class AddMemberComponent {
             if (data.success == true) {
               this._toastr.success(data.message, 'Success');
               this.router.navigate(['/member_list']);
-            } else if (data.error.email) {
-              this._toastr.error(data.error.email, 'Error');
-            } else if (data.error.join_date) {
-              this._toastr.error(data.error.join_date, 'Error');
             }
+            this.loading = false
           });
 
         }
@@ -187,10 +187,21 @@ export class AddMemberComponent {
 
   }
 
-  update() {
-    this.memberForm.markAllAsTouched()
-    if (this.memberForm.valid) {
-      // this.dialog.closeAll();
+  memberView() {
+    if (this.dataa?.data) {
+
+      this.memberForm.patchValue({
+        ...this.dataa.data,
+        member_login_id: this.dataa.data.member_no,
+        status: this.dataa.data.status,
+        password: this.dataa.data.user?.password_hint
+      });
+
+
+      this.cdr.detectChanges();
+
     }
+
+
   }
 }

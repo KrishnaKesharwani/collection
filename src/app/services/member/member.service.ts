@@ -18,7 +18,7 @@ export class MemberService {
   }
 
   update(form: object) {
-    const url = `${this.apiUrl}/updatecompany`;
+    const url = `${this.apiUrl}/updatemember`;
     return this.httpClient.post(url, form)
   }
 

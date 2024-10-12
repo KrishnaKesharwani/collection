@@ -79,7 +79,7 @@ export class MemberListComponent {
     switch (actionData.action) {
 
       case 'view_details':
-        this.openDialogMemberDetails();
+        this.openDialogMemberDetails(actionData.row);
         break;
       case 'edit_customer':
         this.openDialogEditMember(actionData.row);
@@ -177,10 +177,11 @@ export class MemberListComponent {
   }
 
 
-  openDialogMemberDetails() {
+  openDialogMemberDetails(data: any) {
     const dialogRef = this.dialog.open(ViewMemberListComponent, {
       panelClass: 'view_details_small_popup',
       data: {
+        data: data,
         title: 'Member Details',
       },
     });
