@@ -1,15 +1,18 @@
 <nav class="navbar navbar-expand-md fixed-top top-navigation no-print" id="navbar-main">
-  
+    <div class="overlay_popup_block" (click)="onMenuClick()"></div>
     <div class="container-fluid search-topblock">
         <form class="navbar-search navbar-search-light form-inline mr-sm-3">
             <div class="menu_icons" (click)="onMenuClick()">
                 <mat-icon>menu</mat-icon>
             </div>  
+            <div class="res_display_show header_mainlogo">
+                <img src="../../../assets/imgs/rk-group-logo-inner.png" >
+            </div>
             <div class="search-box" *ngIf="userType == 0">
                 <input type="text" class="searchtxt" placeholder="Search">
                 <i class="mdi mdi-magnify"></i>
             </div>
-            <div class="subscription_block" *ngIf="userType == 1">
+            <div class="subscription_block res_display_none" *ngIf="userType == 1">
                 <div class="subscription_row"><b>Subscription Date :</b><span>{{expiredDate}}</span></div>
                 <div class="subscription_row"><b>Plan Type :</b><span>{{planType}}</span></div>
             </div>

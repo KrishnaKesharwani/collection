@@ -11,18 +11,20 @@
                 <!-- <td>{{ row[column.prop] }}</td> -->
                 <td [attr.data-name]="column.name | titlecase">
                     <ng-container *ngIf="column.prop === 'main_logo'">
-                        <img *ngIf="row[column.prop]" [src]="row[column.prop]" alt="Logo"
-                            style="width: 50px; height: 50px;" />
-                        <img *ngIf="!row[column.prop]" [src]="'./assets/imgs/rk-group-logo2.png'" alt="Logo"
-                            style="width: 50px; height: 50px;" />
+                        <div class="list_image_block">
+                            <img *ngIf="row[column.prop]" onerror="this.src='./assets/imgs/rk-group-logo2.png';"
+                                [src]="row[column.prop]" alt="Logo" />
+                        </div>
+                        <!-- <img *ngIf="!row[column.prop]" [src]="'./assets/imgs/rk-group-logo2.png'" alt="Logo"
+                            style="width: 50px; height: 50px;" /> -->
                         <!-- <span *ngIf="!row[column.prop]">No Image</span> -->
                     </ng-container>
-                    <ng-container *ngIf="column.prop === 'plans'">
-                        <!-- Assuming plans is an array, render it accordingly -->
+                    <!-- Assuming plans is an array, render it accordingly -->
+                    <!-- <ng-container *ngIf="column.prop === 'plans'">
                         <div *ngFor="let plan of row[column.prop]">
                             {{ plan.plan }}
                         </div>
-                    </ng-container>
+                    </ng-container> -->
                     <ng-container *ngIf="column.prop !== 'plans'">
                         {{ row[column.prop] }}
                     </ng-container>

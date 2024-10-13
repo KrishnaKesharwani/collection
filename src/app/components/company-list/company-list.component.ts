@@ -231,12 +231,10 @@ export class CompanyListComponent {
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
-
     if (this.searchTerm == null || this.searchTerm == '') {
       this.filteredDataarray = this.companyListData;
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
-
   }
 }

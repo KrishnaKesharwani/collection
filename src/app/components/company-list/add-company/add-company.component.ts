@@ -111,7 +111,7 @@ export class AddCompanyComponent {
             if (data) {
 
               this._toastr.success(data.message, 'Success');
-              this.router.navigate(['/dashboard']);
+              // this.router.navigate(['/dashboard']);
             } else {
               this._toastr.error(data.message, 'Error');
             }

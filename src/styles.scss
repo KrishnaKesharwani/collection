@@ -77,7 +77,9 @@ h5,
             display: flex;
             justify-content: space-between;
             align-items: center;
-
+            .pl-1 {
+                padding-left: 0px !important;
+            }
             h3 {
                 font-weight: 400;
                 color: var(--theme-primary-color);
@@ -2469,6 +2471,21 @@ mark {
     }
 }
 
+.res_display_show {
+    display: none;
+}
+.flex_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .left_text {
+        font-size: 16px;
+    }
+    .load_list_ddl {
+        margin-left: 10px;
+        width: 100%;
+    }
+}
 .top-navigation {
     background: #ffffff;
     width: calc(100% - 180px);
@@ -2477,7 +2494,7 @@ mark {
     left: 180px;
     box-shadow: 0px 2px 3px 0px rgb(0 0 0 / 10%);
     z-index: 11;
-    max-width: calc(100vw - 180px);
+    // max-width: calc(100vw - 180px);
     padding: 5px 10px 5px 10px;
     min-height: 55px;
     position: fixed;
@@ -2494,7 +2511,6 @@ mark {
         justify-content: space-between;
 
         .navbar-search {
-            width: 30%;
             display: flex;
             align-items: center;
 

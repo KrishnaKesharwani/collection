@@ -24,6 +24,7 @@ export class AddCustomerComponent {
   adharNumber: string = '';
   email: string = '';
   mobile: string = '';
+  loading = false;
   constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
     , public fb: FormBuilder) { }
 
