@@ -15,7 +15,8 @@ interface Transaction {
 
 
 export class ViewCustomerListComponent {
-
+  company_id: any;
+  data: any;
   customerDetails: any = [];
   displayedColumns: string[] = ['item', 'cost'];
   transactions: Transaction[] = [
@@ -31,8 +32,15 @@ export class ViewCustomerListComponent {
     { item: 'Status ', cost: 15 },
     { item: 'Address ', cost: 15 },
   ];
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
 
+  ngOnInit() {
+    this.viewCompanyDetail();
+  }
+
+  viewCompanyDetail() {
+    this.data = this.dataa.data;
+  }
 }

@@ -30,7 +30,14 @@
                 <table class="table align-items-center table-flush mydata-table">
                     <thead class="thead-light">
                         <tr>
-                            <th class="col">Name</th>
+                            <th class="col">
+                                <span>Name</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('name',memberListData);">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
                             <th class="col text-center">Image</th>
                             <!-- <th class="col sorting_apply">
                                 <span>Owner Name</span>

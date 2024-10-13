@@ -26,7 +26,7 @@ export class GlobalDatatableComponent {
     { name: 'Jane Doe', age: 25, job: 'Designer' },
     { name: 'Max Smith', age: 40, job: 'Manager' },
   ];
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject<any>();
   ngOnInit(): void {
     this.dtOptions = {
@@ -49,12 +49,12 @@ export class GlobalDatatableComponent {
     this.dtTrigger.unsubscribe();
   }
 
-    ngAfterViewInit(): void {
-      this.initializeDataTable();
-    }
+  ngAfterViewInit(): void {
+    this.initializeDataTable();
+  }
 
-    ngOnChanges(): void {
-      if(this.table) {
+  ngOnChanges(): void {
+    if (this.table) {
       this.initializeDataTable();
     }
   }

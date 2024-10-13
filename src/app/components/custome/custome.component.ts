@@ -11,6 +11,8 @@ import { CustomerBulkImportComponent } from './customer-bulk-import/customer-bul
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { ActionService } from 'src/app/services/action/action.service';
+import { CustomerService } from 'src/app/services/customer/customer.service';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 @Component({
   selector: 'app-custome',
   templateUrl: './custome.component.html',
@@ -21,10 +23,19 @@ export class CustomeComponent {
   usertype: any;
   customer_action: any;
   tableData: any[] = [];
-  columns = ['Customer No.', 'Name', 'Mobile', 'Aadhar No.', 'Loan Amount', 'Pending Amount', 'Status'];
-  customerData = [
-    { customerNo: 1, name: 'John Doe', mobile: '1234567890', aadharNo: '1111-2222-3333', loanAmt: 50000, pendingAmt: 10000, status: 'Active' },
-    // Add more customer objects
+  readonly dialog = inject(MatDialog);
+
+  columns = [
+    // { prop: 'company_name', name: 'Customer No.', orderable: true },
+    { prop: 'name', name: 'Name', orderable: true },
+
+    { prop: 'mobile', name: 'Mobile', orderable: false },
+
+
+    { prop: 'aadhar_no', name: 'Aadhar No.', orderable: false },
+    { prop: 'join_date', name: 'Loan Amount', orderable: false },
+    { prop: 'join_date', name: 'Pending Amount', orderable: false },
+    { prop: 'status', name: 'Status', orderable: false }
   ];
 
   actions = [
@@ -34,38 +45,59 @@ export class CustomeComponent {
     { action: 'edit_customer', label: 'Edit Customer', icon: 'mdi mdi-pencil mr-2' },
     { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
   ];
+  company_id: any;
+  customerData: any[] = [];
+  filteredDataarray: any[] = [];
+  loader = false;
 
-  constructor(private actionService: ActionService, public dialog: MatDialog) { }
+  constructor(public _customActionService: CustomActionsService, public _service: CustomerService, private actionService: ActionService) { }
 
   ngOnInit() {
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
 
+    }
+    this.getCustomerList();
+  }
+
+
+  getCustomerList() {
+    let obj = {
+      company_id: this.company_id
+    }
+    this._service.getList(obj).subscribe((response: any) => {
+      if (response && Array.isArray(response.data)) {
+        this.customerData = response.data;
+        this.filteredDataarray = this.customerData;
+      }
+    })
   }
 
 
   onAction(actionData: { action: string; row: any }) {
-
     this.actionService.setAction(actionData);
     switch (actionData.action) {
       case 'loan_history':
-        this.openDialog2();
+        this.openDialogLoanHistory();
         break;
       case 'provide_loan':
-        this.openDialog3();
+        this.openDialogProvideLoan();
         break;
       case 'view_details':
-        this.openDialog4();
+        this.openDialogViewDetail(actionData.row);
         break;
       case 'edit_customer':
-        this.openDialog5();
+        this.openDialogEditCustomer(actionData.row);
         break;
       case 'status':
-        this.openDialog('0ms', '0ms');
+        this.openDialogChangeStatus('0ms', '0ms', actionData.row);
         break;
     }
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    // this.dataForDelete = enterAnimationDuration
+  openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string, data: any): void {
     const dialogRef = this.dialog.open(DeleteComponent, {
 
       panelClass: 'delete_popup',
@@ -73,49 +105,58 @@ export class CustomeComponent {
       exitAnimationDuration,
       data: {
         title: 'Are you sure?',
-        subTitle: 'You wont be inactive customer status!',
-
-      },
+        subTitle: data && data.status === 'active'
+          ? 'You want to inactivate customer status!'
+          : 'You want to activate customer status!'
+      }
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete();
+      this.delete(data);
     });
   }
 
-  delete(e?: any) {
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: 'Success',
-      text: "Customer status updated successfully...",
-      showConfirmButton: true,
-      timer: 1500
+  delete(data: any) {
+    let obj = {
+      customer_id: data.id,
+      status: data.status == 'active' ? 'inactive' : 'active'
+    }
+
+    this._service.changeStatus(obj).subscribe((data: any) => {
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: 'Success',
+          text: 'Customer Status Updated!',
+          showConfirmButton: true,
+          timer: 1500
+        });
+      }
+
     });
+    this.getCustomerList();
   }
 
   private isDialogOpen = false;
-  readonly dialog2 = inject(MatDialog);
-  openDialog2() {
-    if (this.isDialogOpen) return;
-    const dialogRef = this.dialog2.open(LoanHistoryComponent, {
-      disableClose: true,
 
+  openDialogLoanHistory() {
+    if (this.isDialogOpen) return;
+    const dialogRef = this.dialog.open(LoanHistoryComponent, {
+      disableClose: true,
       data: {
         title: 'Customer Loan History Details',
-
       },
     });
-
     dialogRef.afterClosed().subscribe((result: any) => {
       this.isDialogOpen = false;
     });
   }
 
-  readonly dialog3 = inject(MatDialog);
-  openDialog3(): void {
+
+  openDialogProvideLoan(): void {
     if (this.isDialogOpen) return;
     // this.dataForDelete = enterAnimationDuration
-    const dialogRef = this.dialog3.open(ProviderLoanComponent, {
+    const dialogRef = this.dialog.open(ProviderLoanComponent, {
       disableClose: true,
 
       data: {
@@ -123,22 +164,22 @@ export class CustomeComponent {
       },
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete();
+      // this.delete();
       this.isDialogOpen = false;
     });
   }
 
 
-  readonly dialog4 = inject(MatDialog);
 
-  openDialog4(): void {
+
+  openDialogViewDetail(data: any): void {
     if (this.isDialogOpen) return;
-    const dialogRef = this.dialog4.open(ViewCustomerListComponent, {
+    const dialogRef = this.dialog.open(ViewCustomerListComponent, {
 
 
       data: {
         title: 'Customer Details',
-
+        data: data
       },
     });
 
@@ -147,16 +188,16 @@ export class CustomeComponent {
     });
   }
 
-  readonly dialog5 = inject(MatDialog);
 
-  openDialog5() {
+
+  openDialogEditCustomer(data: any) {
     if (this.isDialogOpen) return;
-    const dialogRef = this.dialog5.open(AddCustomerComponent, {
+    const dialogRef = this.dialog.open(AddCustomerComponent, {
       disableClose: true,
 
       data: {
         title: 'Update Customer Details',
-
+        data: data
       },
     });
 
@@ -165,10 +206,10 @@ export class CustomeComponent {
     });
   }
 
-  readonly dialog6 = inject(MatDialog);
-  openDialog6() {
+
+  openDialogAddCustomer() {
     if (this.isDialogOpen) return;
-    const dialogRef = this.dialog6.open(AddCustomerComponent, {
+    const dialogRef = this.dialog.open(AddCustomerComponent, {
       disableClose: true,
       data: {
         title: 'Add New Customer'
@@ -178,9 +219,9 @@ export class CustomeComponent {
       this.isDialogOpen = false;
     });
   }
-  readonly dialog7 = inject(MatDialog);
+
   openDialogImport() {
-    const dialogRef = this.dialog7.open(CustomerBulkImportComponent, {
+    const dialogRef = this.dialog.open(CustomerBulkImportComponent, {
       disableClose: true,
       panelClass: 'fullwidth_model',
       data: {
@@ -201,7 +242,7 @@ export class CustomeComponent {
   }
 
 
-  readonly dialog8 = inject(MatDialog);
+
 
   openDialogDownload() {
 
@@ -246,4 +287,24 @@ export class CustomeComponent {
   }
 
 
+  isAsc: boolean = true;
+  sortTableData(column: string, responseData: any) {
+    this.filteredDataarray = this._customActionService.sortData(column, responseData);
+  }
+
+
+  searchColumns: any[] = ['name', 'status', 'mobile'];
+  searchTerm: string = '';
+  searchTable(event: Event) {
+
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.customerData;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
+
+  }
 }

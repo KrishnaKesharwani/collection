@@ -53,8 +53,8 @@ export class AddMemberComponent {
       email: ['', Validators.required],
       aadhar_no: ['', Validators.required],
       join_date: ['', Validators.required],
-      member_login_id: ['', Validators.required],
-      password: ['', Validators.required],
+      member_login_id: [''],
+      password: [''],
       address: ['', Validators.required],
       status: [''],
       image: [null]
@@ -77,8 +77,8 @@ export class AddMemberComponent {
 
   save() {
     if (this.member_id) {
-
       if (this.memberForm.valid) {
+
         this.loading = true;
         const formData = new FormData();
         const files = [
@@ -178,7 +178,10 @@ export class AddMemberComponent {
             }
             this.loading = false
           });
-
+          setTimeout(() => {
+            this.loading = false;
+            this.dialog.closeAll();
+          }, 1000);
         }
       } else {
         this.memberForm.markAllAsTouched();

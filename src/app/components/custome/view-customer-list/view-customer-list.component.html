@@ -5,54 +5,57 @@
 <div class="dialoge_middle_container">
     <table class="table table-bordered table-responsive bg-white more_table">
         <tbody>
-            <tr>
+            <!-- <tr>
                 <td><b>Customer No.:</b></td>
                 <td>RK-101</td>
-            </tr>
+            </tr> -->
             <tr>
                 <td><b>Profile Image :</b></td>
                 <td>
-                    <div class="list_image_block float-left">
+                    <div class="list_image_block float-left" *ngIf="data.image == null && data.image ==''">
                         <img src="assets/imgs/default-pic.png">
+                    </div>
+                    <div class="list_image_block float-left">
+                        <img src="data.image">
                     </div>
                 </td>
             </tr>
             <tr>
                 <td><b>Customer Name :</b></td>
-                <td>{{customerDetails.member_fname}}</td>
+                <td>{{data.name}}</td>
             </tr>
 
             <tr>
                 <td><b>Mobile :</b></td>
-                <td>{{customerDetails.member_mobile}}</td>
+                <td>{{data.mobile}}</td>
             </tr>
             <tr>
                 <td><b>Email Id :</b></td>
-                <td>sumit&#64;gmail.com</td>
+                <td>{{data.email}}</td>
             </tr>
             <tr>
                 <td><b>Aadhar No. :</b></td>
-                <td>626362650548</td>
+                <td>{{data.aadhar_no}}</td>
             </tr>
             <tr>
                 <td><b>Join Date :</b></td>
-                <td>12-Mar-2021</td>
+                <td>{{data.join_date}}</td>
             </tr>
             <tr>
                 <td><b>Loan Amount :</b></td>
-                <td>12-Mar-2021</td>
+                <td>{{data.loan_amount}}</td>
             </tr>
             <tr>
                 <td><b>Pending Amount :</b></td>
-                <td>12-Mar-2021</td>
+                <td>{{data.pending_amount}}</td>
             </tr>
             <tr>
                 <td><b>Status :</b></td>
-                <td><span class="badge bg-success text-white">Active</span></td>
+                <td><span class="badge bg-success text-white">{{data.status}}</span></td>
             </tr>
             <tr>
                 <td><b>Address :</b></td>
-                <td>Home no. 72, bajrang nagar jabalpur </td>
+                <td>{{data.address}}</td>
             </tr>
         </tbody>
     </table>

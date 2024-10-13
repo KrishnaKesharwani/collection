@@ -207,14 +207,11 @@ export class MemberListComponent {
 
   isAsc: boolean = true;
   sortTableData(column: string, responseData: any) {
-
     this.filteredDataarray = this._customActionService.sortData(column, responseData);
-
-
   }
 
 
-  searchColumns: any[] = ['company_name', 'owner_name', 'advance_amount', 'status', 'mobile'];
+  searchColumns: any[] = ['name', 'status', 'mobile'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
