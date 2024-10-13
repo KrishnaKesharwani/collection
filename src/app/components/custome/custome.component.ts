@@ -30,8 +30,8 @@ export class CustomeComponent {
     { prop: 'name', name: 'Name', orderable: true },
     { prop: 'mobile', name: 'Mobile', orderable: false },
     { prop: 'aadhar_no', name: 'Aadhar No.', orderable: false },
-    { prop: 'join_date', name: 'Loan Amount', orderable: false },
-    { prop: 'join_date', name: 'Pending Amount', orderable: false },
+    { prop: 'loan_amount', name: 'Loan Amount', orderable: false },
+    { prop: 'pending_amount', name: 'Pending Amount', orderable: false },
     { prop: 'status', name: 'Status', orderable: false }
   ];
   actions = [
@@ -270,6 +270,7 @@ export class CustomeComponent {
   searchColumns: any[] = ['name', 'status', 'mobile'];
   searchTerm: string = '';
   searchTable(event: Event) {
+    debugger
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
     if (this.searchTerm == null || this.searchTerm == '') {

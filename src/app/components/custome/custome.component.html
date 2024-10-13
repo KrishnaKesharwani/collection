@@ -10,7 +10,6 @@
                         <div class="search-box">
                             <input type="text" placeholder="Search..." (keyup)="searchTable($event)"
                                 class="searchtxt" />
-                            <!-- <input type="text" #inputElement [(ngModel)]="searchTerm"  (keyup)="search($event)" placeholder="Search" class="searchtxt" /> -->
                             <i class="mdi mdi-magnify"></i>
                         </div>
                         <div class="right_addbtn multibtn_right_addbtn">
@@ -57,7 +56,7 @@
                         </div>
                     </th>
                     <th class="col" class="col sorting_apply">
-                        <span>Email Id</span>
+                        <span>Email</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('email');">{{ isAsc ?
                                 'north' : 'south'
@@ -97,7 +96,7 @@
                 </tr>
                 <ng-container *ngIf="customerData.length != 0 && !loader">
                     <tr class="received_row" *ngFor="let item of customerData">
-                        <td class="col">{{item.customer_no}}</td>
+                        <td class="col" data-name="Customer No."> {{item.customer_no}}</td>
                         <td class="col" data-name="Profile">
                             <div class="list_image_block" *ngIf="item.image == null">
                                 <img src="assets/imgs/default-pic.png" />
@@ -107,9 +106,9 @@
                             </div>
                         </td>
                         <td class="col" data-name="Name">{{item.name}}</td>
-                        <td class="col" data-name="Email Id">{{item.email}}</td>
+                        <td class="col" data-name="Email">{{item.email}}</td>
                         <td class="col" data-name="Mobile">{{item.mobile}}</td>
-                        <td class="col" data-name="Start Date">{{item.join_date}}</td>
+                        <td class="col" data-name="Join Date">{{item.join_date}}</td>
                         <!-- <td class="col" data-name="End Date">{{item.loan_amount}}</td>
                         <td class="col" data-name="End Date">{{item.pending_amount}}</td> -->
 

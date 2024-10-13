@@ -34,7 +34,7 @@ export class CustomActionsService {
 
 
   filteredData(responseData: any, searchTerm: string = '', filterColumnName: any[] = []) {
-    console.log(filterColumnName)
+
 
     this.filteredDataarrayForSearch = responseData.filter((item: any) => {
 

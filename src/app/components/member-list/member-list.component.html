@@ -12,16 +12,17 @@
                                 <div class="search-box">
                                     <input type="text" placeholder="Search..." (keyup)="searchTable($event)"
                                         class="searchtxt" />
-                                    <!-- <input type="text" #inputElement [(ngModel)]="searchTerm"  (keyup)="search($event)" placeholder="Search" class="searchtxt" /> -->
+
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                                 <div class="right_addbtn">
                                     <button data-toggle="modal" (click)="openDialogAddMember()"
-                                        data-target="#actionCompany_modal"
+                                        data-target="#actionCustomer_modal"
                                         class="btn btn-success btn-sm create_header_btn" mat-raised-button>
-                                        <i class="mdi mdi-account"></i>
-                                        <span class="btn-txt button-text">Add Member</span>
+                                        <i class="mdi mdi-account-plus-outline"></i>
+                                        <span class="btn-txt button-text">Add</span>
                                     </button>
+
                                 </div>
                             </div>
                         </div>
@@ -30,47 +31,49 @@
                 <table class="table align-items-center table-flush mydata-table">
                     <thead class="thead-light">
                         <tr>
-                            <th class="col">
-                                <span>Name</span>
+                            <th class="col sorting_apply id_col">
+                                <span>Member No.</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('name',memberListData);">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('member_no');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col text-center">Image</th>
-                            <!-- <th class="col sorting_apply">
-                                <span>Owner Name</span>
+                            <th class="col sorting_apply">
+                                <span>Name</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('owner_name',memberListData);">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
-                            </th> -->
-                            <th class="col">Mobile</th>
-                            <th class="col">Email</th>
-                            <th class="col">Aadhar No.</th>
-                            <th class="col">Join Date</th>
+                            </th>
+                            <th class="col profile_col">Profile</th>
 
-                            <th class="col text-center">Status</th>
+                            <th class="col mobile_col">Mobile</th>
+                            <th class="col email_col">Email</th>
+                            <th class="col">Aadhar No.</th>
+                            <th class="col date_col">Join Date</th>
+
+                            <th class="col status_col">Status</th>
                             <th class="col action_col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td colspan="11">
+                            <td colspan="9">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
                         <tr *ngIf="memberListData.length == 0 && !loader">
-                            <td colspan="11">
+                            <td colspan="9">
                                 <app-no-record-found type="table" notext="No member found"></app-no-record-found>
                             </td>
                         </tr>
                         <ng-container *ngIf="memberListData.length != 0 && !loader">
                             <tr class="received_row" *ngFor="let item of memberListData">
+                                <td class="col" data-name="Member No.">{{item.member_no}}</td>
                                 <td class="col" data-name="Name">{{item.name}}</td>
-                                <td class="col" data-name="Logo">
+                                <td class="col " data-name="Image">
                                     <div class="list_image_block" *ngIf="item.image == null">
                                         <img src="assets/imgs/rk-group-logo.png" />
                                     </div>
@@ -79,19 +82,19 @@
                                     </div>
                                 </td>
 
-                                <td class="col" data-name="Mobile">{{item.mobile}}</td>
-                                <td class="col" data-name="Start Date">{{item.email}}</td>
-                                <td class="col" data-name="Start Date">{{item.aadhar_no}}</td>
-                                <td class="col" data-name="End Date">{{item.join_date}}</td>
+                                <td class="col " data-name="Mobile">{{item.mobile}}</td>
+                                <td class="col " data-name="Email">{{item.email}}</td>
+                                <td class="col " data-name="Adhar No.">{{item.aadhar_no}}</td>
+                                <td class="col " data-name="Join Date">{{item.join_date}}</td>
 
 
-                                <td class="col text-center" data-name="Status">
+                                <td class="col " data-name="Status">
                                     <span class="badge bg-success text-white"
                                         *ngIf="item.status == 'active'">{{item.status}}</span>
                                     <span class="badge bg-danger text-white "
                                         *ngIf="item.status == 'inactive'">{{item.status}}</span>
                                 </td>
-                                <td class="action_col" data-name="Action">
+                                <td class="col " data-name="Action">
                                     <div placement="bottom-right">
                                         <button mat-icon-button [matMenuTriggerFor]="menu"
                                             aria-label="Example icon-button with a menu">

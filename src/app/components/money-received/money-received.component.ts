@@ -4,6 +4,7 @@ import { AdvanceMoneyComponent } from './advance-money/advance-money.component';
 import { VpdateStatusComponent } from './vpdate-status/vpdate-status.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ActionService } from 'src/app/services/action/action.service';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 
 @Component({
   selector: 'app-money-received',
@@ -11,11 +12,7 @@ import { ActionService } from 'src/app/services/action/action.service';
   styleUrls: ['./money-received.component.scss']
 })
 export class MoneyReceivedComponent {
-  columns = ['Member Name', 'Collect Date', 'Customer Meet', 'Collect Amount', 'Receive Status'];
-  moneyReceivedData = [
-    { MemberNo: 1, image: `<img src="assets/imgs/default-pic.png" />`, Name: 'John Doe', Mobile: '1234567890', Email: 'rk@gmail.com', AadharNo: '1111-2222-3333', JoinDate: '12-12-2000', status: 'Active' },
-    // Add more customer objects
-  ];
+
 
   actions = [
 
@@ -27,8 +24,11 @@ export class MoneyReceivedComponent {
 
 
   ];
-
-  constructor(private actionService: ActionService) { }
+  company_id: any;
+  customerData: any[] = [];
+  filteredDataarray: any[] = [];
+  loader = false;
+  constructor(public _customActionService: CustomActionsService, private actionService: ActionService) { }
 
   ngOnInit() {
 
@@ -40,14 +40,14 @@ export class MoneyReceivedComponent {
     this.actionService.setAction(actionData);
     switch (actionData.action) {
       case 'change_status':
-        this.openDialogChangeStatus();
+        this.openDialogChangeStatus('1ms', '5ms', actionData.row);
         break;
       case 'view_details':
-        this.openDialogReceiverDetails();
+        this.openDialogViewDetail(actionData.row);
         break;
 
       case 'advance_money':
-        this.openDialogAdvanceMoney();
+        this.openDialogAdvanceMoney(actionData.row);
         break;
 
     }
@@ -57,7 +57,7 @@ export class MoneyReceivedComponent {
 
   readonly dialog = inject(MatDialog);
 
-  openDialogReceiverDetails() {
+  openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
       disableClose: false,
       data: {
@@ -68,9 +68,12 @@ export class MoneyReceivedComponent {
     });
   }
 
-  openDialogChangeStatus() {
+  openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string, data: any) {
     const dialogRef = this.dialog.open(VpdateStatusComponent, {
       disableClose: true,
+      panelClass: 'delete_popup',
+      enterAnimationDuration,
+      exitAnimationDuration,
       data: {
         title: 'Received Money Status',
       },
@@ -79,7 +82,7 @@ export class MoneyReceivedComponent {
     });
   }
 
-  openDialogAdvanceMoney() {
+  openDialogAdvanceMoney(data: any) {
     const dialogRef = this.dialog.open(AdvanceMoneyComponent, {
       disableClose: true,
       data: {
@@ -90,4 +93,27 @@ export class MoneyReceivedComponent {
     });
   }
 
+
+  isAsc: boolean = true;
+  sortTableData(column: string) {
+    if (this.isAsc) {
+      this.isAsc = false;
+    } else {
+      this.isAsc = true;
+    }
+    this.filteredDataarray = this._customActionService.sortData(column, this.customerData);
+  }
+
+  searchColumns: any[] = ['name', 'status', 'mobile'];
+  searchTerm: string = '';
+  searchTable(event: Event) {
+    debugger
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.customerData;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
+  }
 }

@@ -7,6 +7,7 @@ import { ChangeStatusComponent } from './change-status/change-status.component';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ActionService } from 'src/app/services/action/action.service';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 
 @Component({
   selector: 'app-daily-collection',
@@ -15,11 +16,11 @@ import { ActionService } from 'src/app/services/action/action.service';
 })
 export class DailyCollectionComponent {
   loanassign_action = 0;
-  columns = ['Customer No.', 'Image', 'Name', 'Mobile', 'Assign', 'Available Amt', 'Status'];
-  collectionData = [
-    {},
-    // Add more customer objects
-  ];
+  readonly dialog = inject(MatDialog);
+  company_id: any;
+  customerData: any[] = [];
+  filteredDataarray: any[] = [];
+  loader = false;
 
   actions = [
 
@@ -31,9 +32,16 @@ export class DailyCollectionComponent {
     { action: 'status', label: 'Change Status', icon: 'mdi mdi-account-off-outline mr-2' },
   ];
 
-  constructor(private actionService: ActionService, public dropdownService: CommonComponentService) { }
+
+  constructor(public _customActionService: CustomActionsService, private actionService: ActionService, public dropdownService: CommonComponentService) { }
 
   ngOnInit(): void {
+
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+    }
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
 
@@ -43,19 +51,19 @@ export class DailyCollectionComponent {
     switch (actionData.action) {
 
       case 'collection_history':
-        this.openDialog();
+        this.openDialogCollectionHistory();
         break;
       case 'assign_member':
-        this.openDialog2();
+        this.openDialogAssignMember();
         break;
       case 'change_member':
-        this.openDialog3();
+        this.openDialogChangeMember();
         break;
       case 'view_details':
-        this.openDialog4();
+        this.openDialogViewDetail(actionData.row);
         break;
       case 'status':
-        this.openDialog5();
+        this.openDialogChangeStatus('1ms', '5ms', actionData.row);
         break;
     }
   }
@@ -63,9 +71,9 @@ export class DailyCollectionComponent {
     this.loanassign_action = action;
   }
 
-  readonly dialog = inject(MatDialog);
 
-  openDialog() {
+
+  openDialogCollectionHistory() {
     const dialogRef = this.dialog.open(CollectionHistoryComponent, {
 
       disableClose: true,
@@ -79,10 +87,9 @@ export class DailyCollectionComponent {
     });
   }
 
-  readonly dialog2 = inject(MatDialog);
 
-  openDialog2() {
-    const dialogRef = this.dialog2.open(AssignMemberComponent, {
+  openDialogAssignMember() {
+    const dialogRef = this.dialog.open(AssignMemberComponent, {
       disableClose: true,
       data: {
         title: 'Assign Collection Member',
@@ -94,10 +101,9 @@ export class DailyCollectionComponent {
     });
   }
 
-  readonly dialog3 = inject(MatDialog);
 
-  openDialog3() {
-    const dialogRef = this.dialog3.open(ChangeMemberComponent, {
+  openDialogChangeMember() {
+    const dialogRef = this.dialog.open(ChangeMemberComponent, {
       disableClose: true,
       data: {
         title: 'Update Collection Member',
@@ -109,10 +115,9 @@ export class DailyCollectionComponent {
     });
   }
 
-  readonly dialog4 = inject(MatDialog);
 
-  openDialog4() {
-    const dialogRef = this.dialog4.open(ViewDetailsComponent, {
+  openDialogViewDetail(data: any) {
+    const dialogRef = this.dialog.open(ViewDetailsComponent, {
 
       data: {
         title: 'Member Details',
@@ -124,11 +129,13 @@ export class DailyCollectionComponent {
     });
   }
 
-  readonly dialog5 = inject(MatDialog);
 
-  openDialog5() {
-    const dialogRef = this.dialog5.open(ChangeStatusComponent, {
+  openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string, data: any) {
+    const dialogRef = this.dialog.open(ChangeStatusComponent, {
       disableClose: true,
+      panelClass: 'delete_popup',
+      enterAnimationDuration,
+      exitAnimationDuration,
       data: {
         title: 'Change Member Status',
 
@@ -137,5 +144,27 @@ export class DailyCollectionComponent {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  isAsc: boolean = true;
+  sortTableData(column: string) {
+    if (this.isAsc) {
+      this.isAsc = false;
+    } else {
+      this.isAsc = true;
+    }
+    this.filteredDataarray = this._customActionService.sortData(column, this.customerData);
+  }
+
+  searchColumns: any[] = ['name', 'status', 'mobile'];
+  searchTerm: string = '';
+  searchTable(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.customerData;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
   }
 }

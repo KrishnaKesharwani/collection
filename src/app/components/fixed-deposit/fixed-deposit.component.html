@@ -17,11 +17,12 @@
                                 </div>
                                 <div class="right_addbtn">
                                     <button data-toggle="modal" (click)="openDialogAddFixedDeposit()"
-                                        data-target="#actionCompany_modal"
+                                        data-target="#actionCustomer_modal"
                                         class="btn btn-success btn-sm create_header_btn" mat-raised-button>
-                                        <i class="mdi mdi-account"></i>
-                                        <span class="btn-txt button-text">Add FixedDeposit</span>
+                                        <i class="mdi mdi-account-plus-outline"></i>
+                                        <span class="btn-txt button-text">Add</span>
                                     </button>
+
                                 </div>
                             </div>
                         </div>
@@ -30,27 +31,51 @@
                 <table class="table align-items-center table-flush mydata-table">
                     <thead class="thead-light">
                         <tr>
-                            <th class="col">Fixed Deposit Name</th>
-                            <th class="col text-center">Customer Name</th>
+                            <th class="col sorting_apply"><span>Fixed Deposit Name</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col sorting_apply"><span>Customer Name</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
 
-                            <th class="col">Start Date</th>
-                            <th class="col">End Date</th>
-                            <th class="col">Days / Time Slot</th>
-                            <th class="col">Start Amount</th>
-                            <th class="col">End Amount</th>
+                            <th class="col sorting_apply date_col"><span>Start Date</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col sorting_apply date_col"><span>End Date</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col days_time_slot_col">Days / Time Slot</th>
+                            <th class="col amount_col">Start Amount</th>
+                            <th class="col amount_col">End Amount</th>
 
-                            <th class="col text-center">Status</th>
+                            <th class="col status_col">Status</th>
                             <th class="col action_col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td colspan="11">
+                            <td colspan="9">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
                         <tr *ngIf="fixedDepositListData.length == 0 && !loader">
-                            <td colspan="11">
+                            <td colspan="9">
                                 <app-no-record-found type="table" notext="No FixedDeposit found"></app-no-record-found>
                             </td>
                         </tr>

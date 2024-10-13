@@ -25,7 +25,7 @@ export class MemberListComponent {
   readonly dialog = inject(MatDialog);
 
   columns = [
-    // { prop: 'company_name', name: 'Member No.', orderable: true },
+    { prop: 'member_no', name: 'Member No.', orderable: true },
     { prop: 'name', name: 'Name', orderable: true },
     { prop: 'image', name: 'Image', orderable: false, isImage: true },
     { prop: 'mobile', name: 'Mobile', orderable: false },
@@ -206,8 +206,13 @@ export class MemberListComponent {
   }
 
   isAsc: boolean = true;
-  sortTableData(column: string, responseData: any) {
-    this.filteredDataarray = this._customActionService.sortData(column, responseData);
+  sortTableData(column: string) {
+    if (this.isAsc) {
+      this.isAsc = false;
+    } else {
+      this.isAsc = true;
+    }
+    this.filteredDataarray = this._customActionService.sortData(column, this.memberListData);
   }
 
 

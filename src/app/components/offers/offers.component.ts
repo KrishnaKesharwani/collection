@@ -5,6 +5,7 @@ import { AddOfferComponent } from './add-offer/add-offer.component';
 import { ViewOfferComponent } from './view-offer/view-offer.component';
 import Swal from 'sweetalert2';
 import { ActionService } from 'src/app/services/action/action.service';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 
 @Component({
   selector: 'app-offers',
@@ -14,24 +15,30 @@ import { ActionService } from 'src/app/services/action/action.service';
 export class OffersComponent {
   offer_modalaction: any;
   usertype: any;
-
-
-  columns = ['Offer Name', 'Image', 'Type', 'Details', 'Status'];
-  offerData = [
-    {},
-    // Add more customer objects
-  ];
+  company_id: any;
+  customerData: any[] = [];
+  filteredDataarray: any[] = [];
+  loader = false;
 
   actions = [
 
 
-    { action: 'edit_deposit', label: 'Change Member', icon: 'mdi mdi-pencil mr-2' },
+    { action: 'change_member', label: 'Change Member', icon: 'mdi mdi-pencil mr-2' },
     { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
     { action: 'change_status', label: 'Change Status', icon: 'mdi mdi-account-off-outline mr-2' },
     { action: 'set_default', label: 'Set Default', icon: 'mdi mdi-checkbox-marked-circle-outline mr-2' },
   ];
 
-  constructor(public dialog: MatDialog, private actionService: ActionService) { }
+  constructor(public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
+
+  ngOnInit() {
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+    }
+  }
+
 
 
   onAction(actionData: { action: string; row: any }) {
@@ -40,27 +47,24 @@ export class OffersComponent {
     switch (actionData.action) {
 
 
-      case 'edit_deposit':
-        this.openDialog2();
+      case 'change_member':
+        this.openDialogChangeMember();
         break;
       case 'view_details':
-        this.openDialog4();
+        this.openDialogViewDetail(actionData.row);
         break;
       case 'change_status':
-        this.openDialog('1ms', '5ms');
+        this.openDialogChangeStatus('1ms', '5ms', actionData.row);
         break;
-      case 'change_status':
-        this.openDialog5('1ms', '5ms');
+      case 'set_default':
+        this.openDialogSetDefault('1ms', '5ms', actionData.row);
         break;
     }
   }
-  ngOnInit() {
-
-  }
 
 
-  readonly dialog2 = inject(MatDialog);
-  openDialog2() {
+
+  openDialogAddOffers() {
     const dialogRef = this.dialog.open(AddOfferComponent, {
       disableClose: true,
       data: {
@@ -72,7 +76,7 @@ export class OffersComponent {
     });
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string, data: any): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
 
@@ -114,9 +118,8 @@ export class OffersComponent {
   }
 
 
-  readonly dialog4 = inject(MatDialog);
-  openDialog4() {
-    const dialogRef = this.dialog4.open(ViewOfferComponent, {
+  openDialogViewDetail(data: any) {
+    const dialogRef = this.dialog.open(ViewOfferComponent, {
       data: {
         title: 'Offers / Schems Details',
       },
@@ -127,10 +130,9 @@ export class OffersComponent {
   }
 
 
-  readonly dialog5 = inject(MatDialog);
-  openDialog5(enterAnimationDuration: string, exitAnimationDuration: string) {
+  openDialogSetDefault(enterAnimationDuration: string, exitAnimationDuration: string, data: any) {
 
-    const dialogRef = this.dialog5.open(DeleteComponent, {
+    const dialogRef = this.dialog.open(DeleteComponent, {
 
       panelClass: 'delete_popup',
       enterAnimationDuration,
@@ -155,5 +157,31 @@ export class OffersComponent {
       showConfirmButton: true,
       timer: 1500
     });
+  }
+
+  openDialogChangeMember() {
+
+  }
+
+  isAsc: boolean = true;
+  sortTableData(column: string) {
+    if (this.isAsc) {
+      this.isAsc = false;
+    } else {
+      this.isAsc = true;
+    }
+    this.filteredDataarray = this._customActionService.sortData(column, this.customerData);
+  }
+
+  searchColumns: any[] = ['name', 'status', 'mobile'];
+  searchTerm: string = '';
+  searchTable(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.customerData;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
   }
 }

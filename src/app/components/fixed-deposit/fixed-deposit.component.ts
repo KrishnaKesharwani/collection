@@ -139,9 +139,9 @@ export class FixedDepositComponent {
 
 
   isAsc: boolean = true;
-  sortTableData(column: string, responseData: any) {
+  sortTableData(column: string) {
 
-    this.filteredDataarray = this._depositService.sortData(column, responseData);
+    this.filteredDataarray = this._depositService.sortData(column, this.fixedDepositListData);
 
 
   }

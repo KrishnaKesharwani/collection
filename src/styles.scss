@@ -77,9 +77,11 @@ h5,
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             .pl-1 {
                 padding-left: 0px !important;
             }
+
             h3 {
                 font-weight: 400;
                 color: var(--theme-primary-color);
@@ -446,6 +448,7 @@ mat-option {
 .sorting_apply {
     padding-right: 20px !important;
     position: relative;
+
     .sorting_arrow {
         position: absolute;
         right: 2px;
@@ -458,15 +461,18 @@ mat-option {
         justify-content: center;
         transform: scale(0);
         cursor: pointer;
-        mat-icon{
+
+        mat-icon {
             font-size: 18px;
             height: 18px;
             width: 18px;
         }
+
         &:hover {
             opacity: 1;
         }
     }
+
     &:hover {
         .sorting_arrow {
             transform: scale(1);
@@ -667,26 +673,42 @@ mat-option {
         padding: 5px 6px;
         font-family: var(--app-brand-font) !important;
         line-height: 16px;
-        word-wrap: break-word;        
+        word-wrap: break-word;
         line-height: 16px;
     }
+
     .id_col {
         width: 110px;
     }
+
     .mobile_col {
         width: 85px;
     }
+
+    .amount_col {
+        width: 100px;
+    }
+
+    .days_time_slot_col {
+        width: 130px;
+    }
+
+    width: 100px;
+
     .date_col {
         width: 85px;
     }
+
     .status_col {
         width: 80px;
         text-align: center !important;
     }
+
     .profile_col {
         width: 60px;
         text-align: center !important;
     }
+
     .s_no {
         width: 85px;
         padding: 0px !important;
@@ -704,6 +726,7 @@ mat-option {
     .action_col {
         text-align: center !important;
         width: 70px;
+
         i {
             font-size: 18px;
             line-height: 18px;
@@ -2486,6 +2509,7 @@ mark {
         }
     }
 }
+
 .no_found_center {
     display: flex;
     align-items: center;
@@ -2493,21 +2517,26 @@ mark {
     width: 100%;
     height: 100%;
 }
+
 .res_display_show {
     display: none;
 }
+
 .flex_header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     .assign_text {
         font-size: 16px;
     }
+
     .load_list_ddl {
         margin-left: 10px;
         width: 100%;
     }
 }
+
 .top-navigation {
     background: #ffffff;
     width: calc(100% - 180px);
@@ -2790,10 +2819,12 @@ mark {
 .right_actionbtn {
     float: right;
 }
+
 .right_actions {
     display: flex;
     align-items: center;
 }
+
 .upload_btn {
     position: relative;
     width: 30px;
@@ -2802,6 +2833,7 @@ mark {
     cursor: pointer;
     overflow: hidden;
 }
+
 .fileupload_transparent {
     position: absolute;
     width: 100%;
@@ -2810,6 +2842,7 @@ mark {
     top: 0px;
     opacity: 0;
 }
+
 .load_defaultletter {
     text-align: center;
     font-size: 100px;

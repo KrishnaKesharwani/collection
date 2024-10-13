@@ -23,8 +23,115 @@
                     </div>
                 </div>
 
-                <app-global-datatable [actions]="actions" [data]="collectionData" [columns]="columns"
-                    (actionTriggered)="onAction($event)"></app-global-datatable>
+                <table class="table align-items-center table-flush mydata-table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="col sorting_apply id_col">
+                                <span>Customer No.</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col profile_col">Profile</th>
+                            <th class="col sorting_apply">
+                                <span>Name</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+
+                            <th class="col mobile_col">Mobile</th>
+                            <th class="col mobile_col">Assign</th>
+                            <th class="col amount_col">Available Amt</th>
+                            <th class="col status_col sorting_apply">
+                                <span>Status</span>
+
+                            </th>
+                            <th class="col action_col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="loader">
+                            <td colspan="8">
+                                <app-page-loader></app-page-loader>
+                            </td>
+                        </tr>
+                        <tr *ngIf="customerData.length == 0 && !loader">
+                            <td colspan="8">
+                                <app-no-record-found type="table" notext="No member found"></app-no-record-found>
+                            </td>
+                        </tr>
+                        <ng-container *ngIf="customerData.length != 0 && !loader">
+                            <tr class="received_row" *ngFor="let item of customerData">
+                                <td class="col">{{item.customer_no}}</td>
+                                <td class="col" data-name="Profile">
+                                    <div class="list_image_block" *ngIf="item.image == null">
+                                        <img src="assets/imgs/default-pic.png" />
+                                    </div>
+                                    <div class="list_image_block" *ngIf="item.image != null">
+                                        <img onerror="this.src='assets/imgs/default-pic.png';" src="{{item.image}}" />
+                                    </div>
+                                </td>
+                                <td class="col" data-name="Name">{{item.name}}</td>
+
+                                <td class="col" data-name="Mobile">{{item.mobile}}</td>
+
+                                <td class="col" data-name="Assign ">{{item.name}}</td>
+
+                                <td class="col" data-name="Available Amt">{{item.name}}</td>
+                                <td class="col text-center" data-name="Status">
+                                    <span class="badge bg-success text-white"
+                                        *ngIf="item.status == 'active'">{{item.status}}</span>
+                                    <span class="badge bg-danger text-white "
+                                        *ngIf="item.status == 'inactive'">{{item.status}}</span>
+                                </td>
+                                <td class="action_col" data-name="Action">
+                                    <div placement="bottom-right">
+                                        <button mat-icon-button [matMenuTriggerFor]="menu"
+                                            aria-label="Example icon-button with a menu">
+                                            <mat-icon>more_vert</mat-icon>
+                                        </button>
+                                        <mat-menu #menu="matMenu">
+                                            <div class="table_actionmenu">
+
+
+                                                <button mat-menu-item (click)="openDialogCollectionHistory()">
+                                                    <i class="mdi mdi-history mr-2"></i> <span>
+                                                        Collection History</span>
+                                                </button>
+                                                <button mat-menu-item (click)="openDialogAssignMember()">
+                                                    <i class="mdi mdi-account-check-outline mr-2"></i> <span>
+                                                        Assign Member</span>
+                                                </button>
+                                                <button mat-menu-item (click)="openDialogChangeMember()">
+                                                    <i class="mdi mdi-account-switch-outline mr-2"></i> <span>
+                                                        Change Member</span>
+                                                </button>
+                                                <button mat-menu-item (click)="openDialogViewDetail(item)">
+                                                    <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                                </button>
+
+                                                <button mat-menu-item
+                                                    (click)="openDialogChangeStatus('1ms', '5ms',item)">
+                                                    <i class="mdi mdi-account-off-outline mr-2"></i>
+                                                    <span>Change Status</span>
+                                                </button>
+                                            </div>
+                                        </mat-menu>
+
+                                    </div>
+
+
+
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
 
 
             </div>
