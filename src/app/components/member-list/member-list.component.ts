@@ -62,6 +62,7 @@ export class MemberListComponent {
 
 
   getMemberList() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id
     }
@@ -69,8 +70,10 @@ export class MemberListComponent {
       if (response && Array.isArray(response.data)) {
         this.memberListData = response.data;
         this.filteredDataarray = this.memberListData;
+        this.loader = false;
       }
     })
+    this.loader = false;
   }
 
   onAction(actionData: { action: string; row: any }) {
