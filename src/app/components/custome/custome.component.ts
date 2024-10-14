@@ -281,10 +281,9 @@ export class CustomeComponent {
     this.filteredDataarray = this._customActionService.sortData(column, this.customerData);
   }
 
-  searchColumns: any[] = ['name', 'status', 'mobile'];
+  searchColumns: any[] = ['name', 'status', 'mobile', 'email', 'customer_no'];
   searchTerm: string = '';
   searchTable(event: Event) {
-    debugger
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
     if (this.searchTerm == null || this.searchTerm == '') {
@@ -292,6 +291,7 @@ export class CustomeComponent {
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
+    // console.log('after Filter Data', this.filteredDataarray);
   }
 
 }

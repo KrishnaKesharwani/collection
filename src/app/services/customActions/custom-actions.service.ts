@@ -34,10 +34,7 @@ export class CustomActionsService {
 
 
   filteredData(responseData: any, searchTerm: string = '', filterColumnName: any[] = []) {
-
-
     this.filteredDataarrayForSearch = responseData.filter((item: any) => {
-
       for (let i = 0; i < filterColumnName.length; i++) {
         const columnName = filterColumnName[i];
         if (item[columnName] && typeof item[columnName] === 'string') {
@@ -47,10 +44,8 @@ export class CustomActionsService {
         }
       }
       return false;
-
     });
-    console.log(this.filteredDataarrayForSearch);
-
+    // console.log("Filter data after search", this.filteredDataarrayForSearch);
     return this.filteredDataarrayForSearch;
   }
 }

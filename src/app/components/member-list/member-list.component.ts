@@ -45,7 +45,7 @@ export class MemberListComponent {
 
     { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
   ];
-  filteredDataarray: any;
+  filteredDataarray: any[] = [];
   memberListData: any[] = [];
   company_id: any;
   constructor(public _service: MemberService, public _customActionService: CustomActionsService, private actionService: ActionService) { }
@@ -219,14 +219,15 @@ export class MemberListComponent {
   searchColumns: any[] = ['name', 'status', 'mobile'];
   searchTerm: string = '';
   searchTable(event: Event) {
+    // debugger;
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
 
     if (this.searchTerm == null || this.searchTerm == '') {
       this.filteredDataarray = this.memberListData;
     } else {
-      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+      this.filteredDataarray = this._customActionService.filteredData(this.memberListData, this.searchTerm, this.searchColumns);
     }
-
+    console.log('Return Filter data', this.filteredDataarray);
   }
 }
