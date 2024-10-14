@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CommonComponentsModule } from 'src/app/common/common-components.module';
+// import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { LoanHistoryComponent } from './loan-history/loan-history.component';
 import { ProviderLoanComponent } from './provider-loan/provider-loan.component';
@@ -8,8 +8,8 @@ import { ViewCustomerListComponent } from './view-customer-list/view-customer-li
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import Swal from 'sweetalert2';
 import { CustomerBulkImportComponent } from './customer-bulk-import/customer-bulk-import.component';
-import * as XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
+// import * as XLSX from 'xlsx';
+// import { saveAs } from 'file-saver';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
@@ -28,16 +28,12 @@ export class CustomeComponent {
   columns = [
     // { prop: 'company_name', name: 'Customer No.', orderable: true },
     { prop: 'name', name: 'Name', orderable: true },
-
     { prop: 'mobile', name: 'Mobile', orderable: false },
-
-
     { prop: 'aadhar_no', name: 'Aadhar No.', orderable: false },
     { prop: 'join_date', name: 'Loan Amount', orderable: false },
     { prop: 'join_date', name: 'Pending Amount', orderable: false },
     { prop: 'status', name: 'Status', orderable: false }
   ];
-
   actions = [
     { action: 'loan_history', label: 'Loan History', icon: 'mdi mdi-history' },
     { action: 'provide_loan', label: 'Provide Loan', icon: 'mdi mdi-cash-100' },
@@ -57,11 +53,9 @@ export class CustomeComponent {
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
-
     }
     this.getCustomerList();
   }
-
 
   getCustomerList() {
     let obj = {
@@ -74,7 +68,6 @@ export class CustomeComponent {
       }
     })
   }
-
 
   onAction(actionData: { action: string; row: any }) {
     this.actionService.setAction(actionData);
@@ -99,7 +92,6 @@ export class CustomeComponent {
 
   openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string, data: any): void {
     const dialogRef = this.dialog.open(DeleteComponent, {
-
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -120,7 +112,6 @@ export class CustomeComponent {
       customer_id: data.id,
       status: data.status == 'active' ? 'inactive' : 'active'
     }
-
     this._service.changeStatus(obj).subscribe((data: any) => {
       if (data) {
         Swal.fire({
@@ -132,13 +123,11 @@ export class CustomeComponent {
           timer: 1500
         });
       }
-
     });
     this.getCustomerList();
   }
 
   private isDialogOpen = false;
-
   openDialogLoanHistory() {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(LoanHistoryComponent, {
@@ -152,13 +141,11 @@ export class CustomeComponent {
     });
   }
 
-
   openDialogProvideLoan(): void {
     if (this.isDialogOpen) return;
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(ProviderLoanComponent, {
       disableClose: true,
-
       data: {
         title: 'Loan Provide Details'
       },
@@ -169,43 +156,32 @@ export class CustomeComponent {
     });
   }
 
-
-
-
   openDialogViewDetail(data: any): void {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(ViewCustomerListComponent, {
-
-
       data: {
         title: 'Customer Details',
         data: data
       },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.isDialogOpen = false;
     });
   }
-
-
 
   openDialogEditCustomer(data: any) {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(AddCustomerComponent, {
       disableClose: true,
-
       data: {
         title: 'Update Customer Details',
         data: data
       },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.isDialogOpen = false;
     });
   }
-
 
   openDialogAddCustomer() {
     if (this.isDialogOpen) return;
@@ -228,7 +204,6 @@ export class CustomeComponent {
         title: 'Import Customers'
       },
     });
-
   }
 
   fetchCustomreData() {
@@ -241,70 +216,62 @@ export class CustomeComponent {
     // );
   }
 
+  // openDialogDownload() {
 
+  //   const header = [
+  //     'Customer No.',
+  //     'Name',
+  //     'Mobile',
+  //     'Aadhar No.',
+  //     'Loan Amt',
+  //     'Pending Amt',
+  //     'Status'
+  //   ];
 
+  //   const rows = this.tableData.map(data => [
+  //     data.customerNo,
+  //     data.name,
+  //     data.mobile,
+  //     data.aadharNo,
+  //     data.loanAmt,
+  //     data.pendingAmt,
+  //     data.status
+  //   ]);
 
-  openDialogDownload() {
+  //   const worksheetData = [header, ...rows];
+  //   // Create a new workbook
+  //   const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(worksheetData);
+  //   const workbook: XLSX.WorkBook = XLSX.utils.book_new();
 
-    const header = [
-      'Customer No.',
-      'Name',
-      'Mobile',
-      'Aadhar No.',
-      'Loan Amt',
-      'Pending Amt',
-      'Status'
-    ];
+  //   // Append the worksheet to the workbook
+  //   XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 
-    const rows = this.tableData.map(data => [
-      data.customerNo,
-      data.name,
-      data.mobile,
-      data.aadharNo,
-      data.loanAmt,
-      data.pendingAmt,
-      data.status
-    ]);
+  //   // Generate buffer
+  //   const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
-    const worksheetData = [header, ...rows];
-    // Create a new workbook
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(worksheetData);
-    const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+  //   // Create a Blob from the buffer
+  //   const data: Blob = new Blob([excelBuffer], {
+  //     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  //   });
 
-    // Append the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-
-    // Generate buffer
-    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-    // Create a Blob from the buffer
-    const data: Blob = new Blob([excelBuffer], {
-      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    });
-
-    // Save the file
-    saveAs(data, 'table-data.xlsx');
-  }
-
-
+  //   // Save the file
+  //   saveAs(data, 'table-data.xlsx');
+  // }
   isAsc: boolean = true;
-  sortTableData(column: string, responseData: any) {
-    this.filteredDataarray = this._customActionService.sortData(column, responseData);
+  sortTableData(column: string) {
+    this.filteredDataarray = this._customActionService.sortData(column, this.customerData);
   }
-
 
   searchColumns: any[] = ['name', 'status', 'mobile'];
   searchTerm: string = '';
   searchTable(event: Event) {
-
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
-
     if (this.searchTerm == null || this.searchTerm == '') {
       this.filteredDataarray = this.customerData;
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
-
   }
+
 }

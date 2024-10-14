@@ -21,16 +21,16 @@
                                 <span class="btn-txt button-text">Add</span>
                             </button>
                             <button data-toggle="modal" (click)="openDialogImport()" data-target="#actionCustomer_modal"
-                                class="btn btn-success btn-sm create_header_btn" mat-raised-button>
+                                class="btn btn-success btn-sm create_header_btn res_display_none" mat-raised-button>
                                 <i class="mdi mdi-import"></i>
                                 <span class="btn-txt button-text">Import</span>
                             </button>
-                            <button data-toggle="modal" (click)="openDialogDownload()"
+                            <!-- <button data-toggle="modal" (click)="openDialogDownload()"
                                 data-target="#actionCustomer_modal" class="btn btn-success btn-sm create_header_btn"
                                 mat-raised-button>
                                 <i class="mdi mdi-cloud-download-outline"></i>
                                 <span class="btn-txt button-text">Download</span>
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -39,44 +39,77 @@
         <table class="table align-items-center table-flush mydata-table">
             <thead class="thead-light">
                 <tr>
-                    <th class="col">
-                        <span>Name</span>
+                    <th class="col sorting_apply id_col">
+                        <span>Customer No.</span>
                         <div class="sorting_arrow">
-                            <mat-icon (click)="sortTableData('name',customerData);">{{ isAsc ?
+                            <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
                                 'north' : 'south'
                                 }}</mat-icon>
                         </div>
                     </th>
-
-                    <th class="col">Mobile</th>
-                    <th class="col">Email</th>
-                    <th class="col">Aadhar No.</th>
-
-
-                    <th class="col text-center">Status</th>
+                    <th class="col profile_col">Profile</th>
+                    <th class="col sorting_apply">
+                        <span>Name</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col" class="col sorting_apply">
+                        <span>Email Id</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('email');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col mobile_col">Mobile</th>
+                    <th class="col sorting_apply date_col">
+                        <span>Join Date</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('join_date');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col status_col sorting_apply">
+                        <span>Status</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('status');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
                     <th class="col action_col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngIf="loader">
-                    <td colspan="11">
+                    <td colspan="8">
                         <app-page-loader></app-page-loader>
                     </td>
                 </tr>
                 <tr *ngIf="customerData.length == 0 && !loader">
-                    <td colspan="11">
+                    <td colspan="8">
                         <app-no-record-found type="table" notext="No member found"></app-no-record-found>
                     </td>
                 </tr>
                 <ng-container *ngIf="customerData.length != 0 && !loader">
                     <tr class="received_row" *ngFor="let item of customerData">
+                        <td class="col">{{item.customer_no}}</td>
+                        <td class="col" data-name="Profile">
+                            <div class="list_image_block" *ngIf="item.image == null">
+                                <img src="assets/imgs/default-pic.png" />
+                            </div>
+                            <div class="list_image_block" *ngIf="item.image != null">
+                                <img onerror="this.src='assets/imgs/default-pic.png';" src="{{item.image}}" />
+                            </div>
+                        </td>
                         <td class="col" data-name="Name">{{item.name}}</td>
-
-
+                        <td class="col" data-name="Email Id">{{item.email}}</td>
                         <td class="col" data-name="Mobile">{{item.mobile}}</td>
-                        <td class="col" data-name="Mobile">{{item.email}}</td>
-
-                        <td class="col" data-name="Start Date">{{item.aadhar_no}}</td>
+                        <td class="col" data-name="Start Date">{{item.join_date}}</td>
                         <!-- <td class="col" data-name="End Date">{{item.loan_amount}}</td>
                         <td class="col" data-name="End Date">{{item.pending_amount}}</td> -->
 

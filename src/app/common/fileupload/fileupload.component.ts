@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -16,6 +16,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 export class FileuploadComponent {
   @Output() fileChange = new EventEmitter<File | null>();
   value: File | null = null;
+  @Input() accept: any;
 
   // ControlValueAccessor methods
   onChange = (file: File | null) => { };
