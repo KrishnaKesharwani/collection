@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { CustomerService } from 'src/app/services/customer/customer.service';
+import { ConnectableObservable } from 'rxjs';
 
 @Component({
   selector: 'app-customer-bulk-import',
@@ -13,9 +15,17 @@ export class CustomerBulkImportComponent {
   data: any[] = [];
   tableData: any[] = [];
   customerImportForm!: FormGroup;
-  constructor(public fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }) { }
+  company_id: any;
+  constructor(public _service: CustomerService, public fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }) { }
 
   ngOnInit() {
+
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+    }
+
     this.customerImportForm = this.fb.group({
       customer: ['']
     })
@@ -43,23 +53,23 @@ export class CustomerBulkImportComponent {
   }
 
   submit() {
-    // onSubmit() {
-    //   if (this.data.length) {
-    //     this.http.post('https://your-api-url.com/customers', this.data)
-    //       .subscribe({
-    //         next: (response) => {
-    //         },
-    //         error: (error) => {
-    //         }
-    //       });
-    //   } else {
-    //   }
-    // }
+    debugger
+    let obj = {
+      customers: this.data,
+      company_id: this.company_id
+    }
+    console.log(obj);
+    debugger
+    this._service.importData(obj).subscribe((data: any) => {
+      console.log(data);
+
+    })
+    debugger
   }
 
   downloadExcel() {
     const data = [
-      { Name: 'Customer Name', Mobile: '6263626505', Email: 'customer@example.com', Aadhar: '1234-5678-9101', JoinDate: '2021-05-01', Login: 'johnlogin', Password: '*****', Address: '123 Main St', Status: 'Active' }
+      { name: '', mobile: '', email: '', aadhar_no: '', join_date: '', customer_login_id: '', password: '', address: '', status: '' }
     ];
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();

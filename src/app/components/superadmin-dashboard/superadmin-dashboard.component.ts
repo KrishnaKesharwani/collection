@@ -31,11 +31,7 @@ export class SuperadminDashboardComponent {
   ngOnInit() {
     this.getExpeiredCompanyList();
   }
-  // get filteredData() {
-  //   return this.companyListData.filter(item =>
-  //     item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-  //   );
-  // }
+
   getExpeiredCompanyList() {
     this.loader = true;
     let obj = {
@@ -134,17 +130,6 @@ export class SuperadminDashboardComponent {
 
 
   }
-
-  // filteredData() {
-  //   this.filteredDataarray = this.companyListData.filter(item =>
-  //     item.company_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-  //     item.owner_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-  //     item.advance_amount.includes(this.searchTerm) ||
-  //     item.status.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-  //     item.mobile.includes(this.searchTerm)
-  //   );
-  // }
-
 
   isAsc: boolean = true;
   sortTableData(column: string, responseData: any) {

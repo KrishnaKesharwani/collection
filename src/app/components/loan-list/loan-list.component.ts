@@ -7,6 +7,8 @@ import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActionService } from 'src/app/services/action/action.service';
+import { LoanService } from 'src/app/services/loan/loan.service';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 
 @Component({
   selector: 'app-loan-list',
@@ -30,7 +32,10 @@ export class LoanListComponent {
     { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
     { action: 'change_status', label: 'Change Status', icon: 'mdi mdi-account-off-outline mr-2' },
   ];
-  constructor(private actionService: ActionService) { }
+  filteredDataarray: any[] = [];
+  loanDataList: any[] = [];
+  loader: any;
+  constructor(public _customActionService: CustomActionsService, private actionService: ActionService, public _loanService: LoanService) { }
 
 
   ngOnInit() {
@@ -38,33 +43,10 @@ export class LoanListComponent {
   }
 
 
-  onAction(actionData: { action: string; row: any }) {
-
-    this.actionService.setAction(actionData);
-    switch (actionData.action) {
-
-
-      case 'installment_history':
-        this.openDialog();
-        break;
-      case 'assign_member':
-        this.openDialog2();
-        break;
-      case 'change_member':
-        this.openDialog3();
-        break;
-      case 'view_details':
-        this.openDialog4();
-        break;
-      case 'change_status':
-        this.openDialog5();
-        break;
-    }
-  }
 
   readonly dialog = inject(MatDialog);
 
-  openDialog() {
+  openDialogInstallmentHistory() {
     const dialogRef = this.dialog.open(InstallmentHistoryComponent, {
       disableClose: true,
       data: {
@@ -77,10 +59,9 @@ export class LoanListComponent {
     });
   }
 
-  readonly dialog2 = inject(MatDialog);
 
-  openDialog2() {
-    const dialogRef = this.dialog2.open(AssignMemberComponent, {
+  openDialogAssignMember() {
+    const dialogRef = this.dialog.open(AssignMemberComponent, {
 
       disableClose: true,
       data: {
@@ -94,10 +75,9 @@ export class LoanListComponent {
   }
 
 
-  readonly dialog3 = inject(MatDialog);
 
-  openDialog3() {
-    const dialogRef = this.dialog3.open(ChangeMemberComponent, {
+  openDialogChangeMember() {
+    const dialogRef = this.dialog.open(ChangeMemberComponent, {
       disableClose: true,
 
       data: {
@@ -111,10 +91,9 @@ export class LoanListComponent {
   }
 
 
-  readonly dialog4 = inject(MatDialog);
 
-  openDialog4() {
-    const dialogRef = this.dialog4.open(ViewDetailsComponent, {
+  openDialogViewDetail() {
+    const dialogRef = this.dialog.open(ViewDetailsComponent, {
 
       data: {
         title: 'Loan Details',
@@ -127,12 +106,13 @@ export class LoanListComponent {
   }
 
 
-  readonly dialog5 = inject(MatDialog);
 
-  openDialog5() {
-    const dialogRef = this.dialog5.open(ChangeStatusComponent, {
+  openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string) {
+    const dialogRef = this.dialog.open(ChangeStatusComponent, {
       disableClose: true,
-
+      panelClass: 'delete_popup',
+      enterAnimationDuration,
+      exitAnimationDuration,
       data: {
         title: 'Change Loan Status',
 
@@ -141,5 +121,28 @@ export class LoanListComponent {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  isAsc: boolean = true;
+  sortTableData(column: string) {
+
+    this.filteredDataarray = this._customActionService.sortData(column, this.loanDataList);
+
+
+  }
+
+
+  searchColumns: any[] = ['company_name', 'owner_name', 'advance_amount', 'status', 'mobile'];
+  searchTerm: string = '';
+  searchTable(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.loanDataList;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
+
   }
 }

@@ -20,14 +20,6 @@ export class OffersComponent {
   filteredDataarray: any[] = [];
   loader = false;
 
-  actions = [
-
-
-    { action: 'change_member', label: 'Change Member', icon: 'mdi mdi-pencil mr-2' },
-    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
-    { action: 'change_status', label: 'Change Status', icon: 'mdi mdi-account-off-outline mr-2' },
-    { action: 'set_default', label: 'Set Default', icon: 'mdi mdi-checkbox-marked-circle-outline mr-2' },
-  ];
 
   constructor(public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
 
@@ -38,30 +30,6 @@ export class OffersComponent {
       this.company_id = userData.company_id;
     }
   }
-
-
-
-  onAction(actionData: { action: string; row: any }) {
-
-    this.actionService.setAction(actionData);
-    switch (actionData.action) {
-
-
-      case 'change_member':
-        this.openDialogChangeMember();
-        break;
-      case 'view_details':
-        this.openDialogViewDetail(actionData.row);
-        break;
-      case 'change_status':
-        this.openDialogChangeStatus('1ms', '5ms', actionData.row);
-        break;
-      case 'set_default':
-        this.openDialogSetDefault('1ms', '5ms', actionData.row);
-        break;
-    }
-  }
-
 
 
   openDialogAddOffers() {
@@ -104,9 +72,8 @@ export class OffersComponent {
     });
   }
 
-  readonly dialog3 = inject(MatDialog);
   openDialog3() {
-    const dialogRef = this.dialog3.open(AddOfferComponent, {
+    const dialogRef = this.dialog.open(AddOfferComponent, {
       disableClose: true,
       data: {
         title: 'Update New Offers / Schems',

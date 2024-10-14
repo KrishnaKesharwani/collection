@@ -35,13 +35,7 @@ export class CustomeComponent {
     { prop: 'pending_amount', name: 'Pending Amount', orderable: false },
     { prop: 'status', name: 'Status', orderable: false }
   ];
-  actions = [
-    { action: 'loan_history', label: 'Loan History', icon: 'mdi mdi-history' },
-    { action: 'provide_loan', label: 'Provide Loan', icon: 'mdi mdi-cash-100' },
-    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
-    { action: 'edit_customer', label: 'Edit Customer', icon: 'mdi mdi-pencil mr-2' },
-    { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
-  ];
+
   company_id: any;
   customerData: any[] = [];
   filteredDataarray: any[] = [];
@@ -72,26 +66,6 @@ export class CustomeComponent {
     })
   }
 
-  onAction(actionData: { action: string; row: any }) {
-    this.actionService.setAction(actionData);
-    switch (actionData.action) {
-      case 'loan_history':
-        this.openDialogLoanHistory();
-        break;
-      case 'provide_loan':
-        this.openDialogProvideLoan();
-        break;
-      case 'view_details':
-        this.openDialogViewDetail(actionData.row);
-        break;
-      case 'edit_customer':
-        this.openDialogEditCustomer(actionData.row);
-        break;
-      case 'status':
-        this.openDialogChangeStatus('0ms', '0ms', actionData.row);
-        break;
-    }
-  }
 
   openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string, data: any): void {
     const dialogRef = this.dialog.open(DeleteComponent, {
@@ -222,57 +196,7 @@ export class CustomeComponent {
     });
   }
 
-  fetchCustomreData() {
-    // this.customerService.getCustomers().subscribe(
-    //   (data) => {
-    //     this.tableData = data;
-    //   },
-    //   (error) => {
-    //   }
-    // );
-  }
 
-  // openDialogDownload() {
-
-  //   const header = [
-  //     'Customer No.',
-  //     'Name',
-  //     'Mobile',
-  //     'Aadhar No.',
-  //     'Loan Amt',
-  //     'Pending Amt',
-  //     'Status'
-  //   ];
-
-  //   const rows = this.tableData.map(data => [
-  //     data.customerNo,
-  //     data.name,
-  //     data.mobile,
-  //     data.aadharNo,
-  //     data.loanAmt,
-  //     data.pendingAmt,
-  //     data.status
-  //   ]);
-
-  //   const worksheetData = [header, ...rows];
-  //   // Create a new workbook
-  //   const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(worksheetData);
-  //   const workbook: XLSX.WorkBook = XLSX.utils.book_new();
-
-  //   // Append the worksheet to the workbook
-  //   XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-
-  //   // Generate buffer
-  //   const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-
-  //   // Create a Blob from the buffer
-  //   const data: Blob = new Blob([excelBuffer], {
-  //     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-  //   });
-
-  //   // Save the file
-  //   saveAs(data, 'table-data.xlsx');
-  // }
   isAsc: boolean = true;
   sortTableData(column: string) {
     if (this.isAsc) {
@@ -293,7 +217,7 @@ export class CustomeComponent {
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
-    // console.log('after Filter Data', this.filteredDataarray);
+
   }
 
 }

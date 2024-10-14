@@ -13,17 +13,6 @@ import { CustomActionsService } from 'src/app/services/customActions/custom-acti
 })
 export class MoneyReceivedComponent {
 
-
-  actions = [
-
-    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
-    { action: 'change_status', label: 'Change Status', icon: 'mdi mdi-plus-circle-outline mr-2' },
-
-
-    { action: 'advance_money', label: 'Advance Money', icon: 'mdi mdi-plus-circle-outline mr-2' },
-
-
-  ];
   company_id: any;
   customerData: any[] = [];
   filteredDataarray: any[] = [];
@@ -34,25 +23,6 @@ export class MoneyReceivedComponent {
 
   }
 
-
-  onAction(actionData: { action: string; row: any }) {
-
-    this.actionService.setAction(actionData);
-    switch (actionData.action) {
-      case 'change_status':
-        this.openDialogChangeStatus('1ms', '5ms', actionData.row);
-        break;
-      case 'view_details':
-        this.openDialogViewDetail(actionData.row);
-        break;
-
-      case 'advance_money':
-        this.openDialogAdvanceMoney(actionData.row);
-        break;
-
-    }
-
-  }
 
 
   readonly dialog = inject(MatDialog);

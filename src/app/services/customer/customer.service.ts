@@ -28,4 +28,11 @@ export class CustomerService {
     const url = `${this.apiUrl}/updatecustomerstatus`;
     return this.httpClient.put(url, obj)
   }
+
+  importData(obj: object) {
+    const url = `${this.apiUrl}/importcustomers`;
+    return this.httpClient.post(url, obj)
+  }
+
+
 }

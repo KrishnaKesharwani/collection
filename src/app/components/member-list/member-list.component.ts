@@ -24,27 +24,6 @@ export class MemberListComponent {
   dataForDelete: any = {};
   readonly dialog = inject(MatDialog);
 
-  columns = [
-    { prop: 'member_no', name: 'Member No.', orderable: true },
-    { prop: 'name', name: 'Name', orderable: true },
-    { prop: 'image', name: 'Image', orderable: false, isImage: true },
-    { prop: 'mobile', name: 'Mobile', orderable: false },
-    { prop: 'email', name: 'Email', orderable: false },
-
-    { prop: 'aadhar_no', name: 'Aadhar No.', orderable: false },
-    { prop: 'join_date', name: 'Join Date', orderable: false },
-    { prop: 'status', name: 'Status', orderable: false }
-  ];
-  actions = [
-
-
-    { action: 'edit_customer', label: 'Edit Customer', icon: 'mdi mdi-pencil mr-2' },
-    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
-
-    { action: 'assign_loan', label: 'Assign Loan', icon: 'mdi mdi-account-check-outline mr-2' },
-
-    { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
-  ];
   filteredDataarray: any[] = [];
   memberListData: any[] = [];
   company_id: any;
@@ -76,25 +55,7 @@ export class MemberListComponent {
     this.loader = false;
   }
 
-  onAction(actionData: { action: string; row: any }) {
 
-    this.actionService.setAction(actionData);
-    switch (actionData.action) {
-
-      case 'view_details':
-        this.openDialogMemberDetails(actionData.row);
-        break;
-      case 'edit_customer':
-        this.openDialogEditMember(actionData.row);
-        break;
-      case 'assign_loan':
-        this.openDialogAssignLoan();
-        break;
-      case 'status':
-        this.openDialogStatus('0ms', '0ms');
-        break;
-    }
-  }
   openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string, data?: any): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
