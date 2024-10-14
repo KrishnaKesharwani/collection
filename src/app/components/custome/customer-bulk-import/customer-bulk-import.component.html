@@ -26,7 +26,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of data">
-                <td *ngFor="let key of (item | keys)">{{ item[key] }}</td>
+                <td *ngFor="let key of (item | keys)" contenteditable='true'>{{ item[key] }}</td>
             </tr>
         </tbody>
     </table>
