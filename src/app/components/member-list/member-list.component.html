@@ -39,6 +39,8 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
+                            <th class="col profile_col">Profile</th>
+
                             <th class="col sorting_apply">
                                 <span>Name</span>
                                 <div class="sorting_arrow">
@@ -47,10 +49,10 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col profile_col">Profile</th>
 
-                            <th class="col mobile_col">Mobile</th>
+
                             <th class="col email_col">Email</th>
+                            <th class="col mobile_col">Mobile</th>
                             <th class="col">Aadhar No.</th>
                             <th class="col date_col">Join Date</th>
 
@@ -72,7 +74,6 @@
                         <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
                             <tr class="received_row" *ngFor="let item of filteredDataarray">
                                 <td class="col" data-name="Member No.">{{item.member_no}}</td>
-                                <td class="col" data-name="Name">{{item.name}}</td>
                                 <td class="col " data-name="Image">
                                     <div class="list_image_block" *ngIf="item.image == null">
                                         <img src="assets/imgs/rk-group-logo.png" />
@@ -81,9 +82,12 @@
                                         <img src="{{item.image}}" />
                                     </div>
                                 </td>
+                                <td class="col" data-name="Name">{{item.name}}</td>
 
-                                <td class="col " data-name="Mobile">{{item.mobile}}</td>
+
+
                                 <td class="col " data-name="Email">{{item.email}}</td>
+                                <td class="col " data-name="Mobile">{{item.mobile}}</td>
                                 <td class="col " data-name="Adhar No.">{{item.aadhar_no}}</td>
                                 <td class="col " data-name="Join Date">{{item.join_date}}</td>
 

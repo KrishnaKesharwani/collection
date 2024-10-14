@@ -21,8 +21,8 @@ export class FixedDepositComponent {
     // { prop: 'company_name', name: 'Member No.', orderable: true },
     { prop: 'name', name: 'Fixed Deposit Name', orderable: true },
     { prop: 'image', name: 'Customer Name', orderable: false, isImage: true },
-    { prop: 'mobile', name: 'Start Date', orderable: false },
-    { prop: 'email', name: 'End Date', orderable: false },
+    { prop: 'start_date', name: 'Start Date', orderable: false },
+    { prop: 'end_date', name: 'End Date', orderable: false },
     { prop: 'email', name: 'Days / Time Slot', orderable: false },
 
     { prop: 'aadhar_no', name: 'Start Amount', orderable: false },
