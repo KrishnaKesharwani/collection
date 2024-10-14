@@ -59,7 +59,7 @@ export class CustomerBulkImportComponent {
 
   downloadExcel() {
     const data = [
-      { Name: 'Customer Name', Mobile: '6263626505', Email: 'customer@example.com', Aadhar: '1234-5678-9101', JoinDate: '2021-05-01', Login: 'johnlogin', Password: '*****', Address: '123 Main St', Loan: 5000, Pending: 2000, Instalment: 200, Status: 'Active' }
+      { Name: 'Customer Name', Mobile: '6263626505', Email: 'customer@example.com', Aadhar: '1234-5678-9101', JoinDate: '2021-05-01', Login: 'johnlogin', Password: '*****', Address: '123 Main St', Status: 'Active' }
     ];
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();

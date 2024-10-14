@@ -59,6 +59,7 @@ export class CustomeComponent {
   }
 
   getCustomerList() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id
     }
@@ -66,6 +67,7 @@ export class CustomeComponent {
       if (response && Array.isArray(response.data)) {
         this.customerData = response.data;
         this.filteredDataarray = this.customerData;
+        this.loader = false;
       }
     })
   }
@@ -156,8 +158,8 @@ export class CustomeComponent {
       this.isDialogOpen = false;
     });
   }
-  
-  openDialogApplyLoan(){
+
+  openDialogApplyLoan() {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(ApplyLoanComponent, {
       disableClose: true,
