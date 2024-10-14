@@ -13,6 +13,7 @@ import { CustomerBulkImportComponent } from './customer-bulk-import/customer-bul
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
+import { ApplyLoanComponent } from './apply-loan/apply-loan.component';
 @Component({
   selector: 'app-custome',
   templateUrl: './custome.component.html',
@@ -155,7 +156,20 @@ export class CustomeComponent {
       this.isDialogOpen = false;
     });
   }
-
+  
+  openDialogApplyLoan(){
+    if (this.isDialogOpen) return;
+    const dialogRef = this.dialog.open(ApplyLoanComponent, {
+      disableClose: true,
+      data: {
+        title: 'Loan Apply Details'
+      },
+    });
+    dialogRef.componentInstance.deleteAction.subscribe(() => {
+      // this.delete();
+      this.isDialogOpen = false;
+    });
+  }
   openDialogViewDetail(data: any): void {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(ViewCustomerListComponent, {

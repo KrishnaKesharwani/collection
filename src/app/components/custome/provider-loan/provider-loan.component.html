@@ -2,80 +2,39 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container full_height_cover">
+<div class="dialoge_middle_container full_height_cover small_popup">
     <form focusInvalidInput [formGroup]="providerLoanForm">
         <div class="modal_insert">
-            <div class="row">
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Customer Name</mat-label>
-                        <input matInput formControlName="name" name="name">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="providerLoanForm"
-                            [key]="'name'" [displayMsg]="'Name is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Loan Amount</mat-label>
-                        <input matInput formControlName="loan_amount" name="loan_amount">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="providerLoanForm"
-                            [key]="'name'" [displayMsg]="'Loan amount is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Installment Amount</mat-label>
-                        <input matInput formControlName="installment_amount" name="installment_amount">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="providerLoanForm"
-                            [key]="'name'" [displayMsg]="'Installment amount is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>No. Of Days</mat-label>
-                        <input matInput formControlName="num_of_days" name="num_of_days">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="providerLoanForm"
-                            [key]="'name'" [displayMsg]="'No. of days is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Start Date</mat-label>
-                        <input type="date" matInput formControlName="start_date" name="start_date">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="providerLoanForm"
-                            [key]="'name'" [displayMsg]="'Start date is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>End date</mat-label>
-                        <input type="date" matInput formControlName="end_date" name="end_date">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="providerLoanForm"
-                            [key]="'name'" [displayMsg]="'End date is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <app-dropdwon></app-dropdwon>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Loan Details</mat-label>
-                        <input matInput formControlName="loan_details" name="loan_details">
-                    </mat-form-field>
-
-                </div>
-
-            </div>
+            <app-input [isDateField]="false" [disabled]=true label="Customer Name" [(value)]="customername"
+                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'customername'"
+                [displayMsg]="'Customer Name is required'"></app-input>
+            <app-input [isDateField]="false" [disabled]=true label="Loan Amount" [(value)]="loanamount"
+                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'loanamount'"
+                [displayMsg]="'Loan amount is required'"></app-input>
+            <app-input [isDateField]="false" [disabled]=true label="Instalment Amount" [(value)]="instalmentamount"
+                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'loanamount'"
+                [displayMsg]="'Instalment is required'"></app-input>
+            <app-input [isDateField]="false" [disabled]=true label="No. Of Days" [(value)]="noofdays"
+                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'noofdays'"
+                [displayMsg]="'No. of days is required'"></app-input>
+            <app-input [isDateField]="true" [disabled]=true label="Start Date" [(value)]="startdate"
+                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'noofdays'"
+                [displayMsg]="'Start date is required'"></app-input>
+            <app-input [isDateField]="true" [disabled]=true label="End date" [(value)]="enddate" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'enddate'"
+                [displayMsg]="'End date is required'"></app-input>
+            <app-dropdwon key="assingmember" field="Assign Member" formControlName="assingmember"
+                name="assingmember"></app-dropdwon>
+            <app-textarea [disabled]="true" label="Details" [(value)]="loandetails" [isRequired]="false"
+                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'loandetails'"></app-textarea>
         </div>
     </form>
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button (click)="update()">Submit</button>
+    <button class="global_submit_btn" mat-flat-button (click)="submit()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span>Submit</span>
+    </button>
 </div>

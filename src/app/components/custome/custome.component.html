@@ -127,15 +127,17 @@
                                 </button>
                                 <mat-menu #menu="matMenu">
                                     <div class="table_actionmenu">
-
-
                                         <button mat-menu-item (click)="openDialogLoanHistory()">
                                             <i class="mdi mdi-history"></i> <span>
                                                 Loan History</span>
                                         </button>
-                                        <button mat-menu-item (click)="openDialogLoanHistory()">
+                                        <button mat-menu-item (click)="openDialogProvideLoan()">
                                             <i class="mdi mdi-cash-100"></i> <span>
                                                 Provide Loan</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialogApplyLoan()">
+                                            <i class="mdi mdi-cash-100"></i> <span>
+                                                Apply Loan</span>
                                         </button>
                                         <button mat-menu-item (click)="openDialogViewDetail(item)">
                                             <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>

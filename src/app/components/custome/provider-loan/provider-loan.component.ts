@@ -11,26 +11,33 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
 export class ProviderLoanComponent {
   deleteAction: any;
   providerLoanForm!: FormGroup;
+  loading = true;
+  customername: string = ""
+  loanamount: string = "";
+  instalmentamount: string = "";
+  noofdays: string = "";
+  startdate: string = "";
+  enddate: string = "";
+  loandetails: string = "";
 
   constructor(private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
   ngOnInit() {
-    this.providerLoanForm = this.fb.group({
-      name: ['', Validators.required],
-      start_date: [''],
-      num_of_days: [''],
-      installment_amount: [''],
-      loan_amount: [''],
-      end_date: [''],
-      assign_member: [''],
-      loan_details: ['']
-    });
 
-    this.dropdownService.setOptions('', ['Bhaijan', 'Roshan Kanojiya']);
+    this.dropdownService.setOptions('assingmember', ['Bhaijan', 'Roshan Kanojiya']);
+    this.providerLoanForm = this.fb.group({
+      customername: ['', Validators.required],
+      loanamount: ['', Validators.required],
+      instalmentamount: ['', Validators.required],
+      noofdays: ['', Validators.required],
+      startdate: ['', Validators.required],
+      enddate: ['', Validators.required],
+      loandetails: ['']
+    });
   }
 
-  update() {
+  submit() {
     this.providerLoanForm.markAllAsTouched()
     if (this.providerLoanForm.valid) {
       // this.dialog.closeAll();
