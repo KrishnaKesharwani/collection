@@ -118,17 +118,17 @@ export class CustomeComponent {
     });
   }
 
-  openDialogProvideLoan(): void {
+  openDialogProvideLoan(data: any): void {
     if (this.isDialogOpen) return;
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(ProviderLoanComponent, {
       disableClose: true,
       data: {
+        data: data,
         title: 'Loan Provide Details'
       },
     });
-    dialogRef.componentInstance.deleteAction.subscribe(() => {
-      // this.delete();
+    dialogRef.afterClosed().subscribe((result: any) => {
       this.isDialogOpen = false;
     });
   }

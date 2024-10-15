@@ -39,6 +39,7 @@ export class InputComponent {
   @Input() customErrorPatternMsg!: string;
   @Input() customErrorDisplayMsg!: string;
   @Input() customType!: string;
+  @Input() readonly: boolean = false;
   @Input() isDateField: boolean = false;
   @Input() matDatepicker: boolean = false;
   @Input() className: string = 'bottom_error_msg';

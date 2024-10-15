@@ -5,29 +5,32 @@
 <div class="dialoge_middle_container full_height_cover small_popup">
     <form focusInvalidInput [formGroup]="providerLoanForm">
         <div class="modal_insert">
-            <app-input [isDateField]="false" [disabled]=true label="Customer Name" [(value)]="customername"
-                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'customername'"
-                [displayMsg]="'Customer Name is required'"></app-input>
-            <app-input [isDateField]="false" [disabled]=true label="Loan Amount" [(value)]="loanamount"
-                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'loanamount'"
+            <app-input [isDateField]="false" [disabled]='true' label="Customer Name" [(value)]="customername"
+                [readonly]="true" [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                [key]="'customername'" [displayMsg]="'Customer Name is required'"></app-input>
+            <app-input [isDateField]="false" [disabled]=true label="Loan Amount" [(value)]="loan_amount"
+                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'loan_amount'"
                 [displayMsg]="'Loan amount is required'"></app-input>
-            <app-input [isDateField]="false" [disabled]=true label="Installment Amount" [(value)]="instalmentamount"
-                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'loanamount'"
-                [displayMsg]="'Installment is required'"></app-input>
+            <app-input [isDateField]="false" label="Installment Amount" [(value)]="installment_amount"
+                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                [key]="'installment_amount'" [displayMsg]="'Installment is required'"></app-input>
 
-            <app-input [isDateField]="true" [disabled]=true label="Start Date" [(value)]="startdate" [isRequired]="true"
-                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'noofdays'"
+            <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'start_date'"
                 [displayMsg]="'Start date is required'"></app-input>
-            <app-input [isDateField]="true" [disabled]=true label="End date" [(value)]="enddate" [isRequired]="true"
-                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'enddate'"
+            <app-input [isDateField]="true" label="End date" [(value)]="end_date" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'end_date'"
                 [displayMsg]="'End date is required'"></app-input>
-            <app-input [isDateField]="false" [disabled]=true label="No. Of Days" [(value)]="noofdays"
-                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'noofdays'"
+            <app-input [isDateField]="false" [disabled]=true label="No. Of Days" [(value)]="no_of_days"
+                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'no_of_days'"
                 [displayMsg]="'No. of days is required'"></app-input>
-            <app-dropdwon key="assingmember" field="Assign Member" formControlName="assingmember"
-                name="assingmember"></app-dropdwon>
-            <app-textarea [disabled]="true" label="Details" [(value)]="loandetails" [isRequired]="false"
-                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'loandetails'"></app-textarea>
+            <app-dropdwon key="assingmember" field="Assign Member" formControlName="assigned_member_id"
+                name="assigned_member_id"></app-dropdwon>
+            <app-dropdwon key="loanstatus" field="Loan Status" formControlName="loan_status"
+                name="loan_status"></app-dropdwon>
+            <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
+            <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
+                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'details'"></app-textarea>
         </div>
     </form>
 </div>
