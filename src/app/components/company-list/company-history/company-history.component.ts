@@ -44,7 +44,7 @@ export class CompanyHistoryComponent {
       company_id: this.dataa.id
     }
     this._service.companyHistory(obj).subscribe((data: any) => {
-      console.log(data)
+
       this.companyHistoryListData = data.data;
       this.loader = false;
     })

@@ -47,7 +47,7 @@ export class ChangePasswordComponent {
       this.loading = true;
 
       this._service.passwordChange(this.changePasswordForm.value).subscribe((data: any) => {
-        console.log(data);
+
         this.toastr.success('Reset Password Successfully...', 'Success');
       })
 

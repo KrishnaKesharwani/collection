@@ -53,18 +53,18 @@ export class CustomerBulkImportComponent {
   }
 
   submit() {
-    debugger
+
     let obj = {
       customers: this.data,
       company_id: this.company_id
     }
-    console.log(obj);
-    debugger
+
+
     this._service.importData(obj).subscribe((data: any) => {
-      console.log(data);
+
 
     })
-    debugger
+
   }
 
   downloadExcel() {

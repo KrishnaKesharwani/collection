@@ -46,7 +46,7 @@ export class ReceivedAmountComponent {
       }
 
       this._service.planAmount(obj).subscribe((data: any) => {
-        console.log(data);
+
         if (data) {
 
           this._tostr.success(data.message, "Success");

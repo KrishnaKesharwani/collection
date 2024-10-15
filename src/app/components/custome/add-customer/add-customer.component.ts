@@ -157,10 +157,10 @@ export class AddCustomerComponent {
           }
         });
         formData.append('company_id', this.company_id)
-        console.log(formData)
+
         if (formData) {
           this._service.create(formData).subscribe((data: any) => {
-            console.log(data)
+
 
             if (data.success == true) {
               this._toastr.success(data.message, 'Success');

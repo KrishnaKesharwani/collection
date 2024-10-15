@@ -11,7 +11,7 @@ export class CustomActionsService {
   constructor() { }
 
   sortData(column: string, responseData: any) {
-    console.log(column, responseData)
+
 
     this.filteredDataarray = responseData.sort((a: any, b: any) => {
       const aValue = a[column];
@@ -45,7 +45,7 @@ export class CustomActionsService {
       }
       return false;
     });
-    // console.log("Filter data after search", this.filteredDataarrayForSearch);
+
     return this.filteredDataarrayForSearch;
   }
 }

@@ -54,7 +54,7 @@ export class AddPlanComponent {
       }
 
       this._service.createPlan(obj).subscribe((data: any) => {
-        console.log(data);
+
 
         if (data) {
           this._tostr.success(data.message, "Success");

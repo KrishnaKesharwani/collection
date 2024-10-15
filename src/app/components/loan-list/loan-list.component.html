@@ -51,7 +51,7 @@
                             </th>
 
                             <th class="col mobile_col">Mobile</th>
-                            <th class="col mobile_col">Assign</th>
+                            <th class="col assign_col">Assign</th>
                             <th class="col amount_col">Loan Amt</th>
                             <th class="col amount_col">Pending Amt</th>
 
@@ -68,12 +68,12 @@
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td colspan="8">
+                            <td colspan="10">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
                         <tr *ngIf="filteredDataarray.length == 0 && !loader">
-                            <td colspan="8">
+                            <td colspan="10">
                                 <app-no-record-found type="table" notext="No member found"></app-no-record-found>
                             </td>
                         </tr>

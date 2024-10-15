@@ -108,7 +108,11 @@ export class FixedDepositComponent {
 
   isAsc: boolean = true;
   sortTableData(column: string) {
-
+    if (this.isAsc) {
+      this.isAsc = false;
+    } else {
+      this.isAsc = true;
+    }
     this.filteredDataarray = this._customActionService.sortData(column, this.fixedDepositListData);
 
 

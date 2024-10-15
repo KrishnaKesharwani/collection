@@ -77,7 +77,7 @@ export class MoneyReceivedComponent {
   searchColumns: any[] = ['name', 'status', 'mobile'];
   searchTerm: string = '';
   searchTable(event: Event) {
-    debugger
+
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
     if (this.searchTerm == null || this.searchTerm == '') {

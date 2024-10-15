@@ -183,7 +183,7 @@ export class MemberListComponent {
   searchColumns: any[] = ['name', 'status', 'mobile'];
   searchTerm: string = '';
   searchTable(event: Event) {
-    // debugger;
+
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
 
@@ -192,6 +192,6 @@ export class MemberListComponent {
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.memberListData, this.searchTerm, this.searchColumns);
     }
-    console.log('Return Filter data', this.filteredDataarray);
+
   }
 }

@@ -216,8 +216,7 @@ export class AddCompanyComponent {
 
     this.companyForm.patchValue(this.dataa.data);
     this.cdr.detectChanges();
-    console.log(this.companyForm.value)
-    console.log(this.dataa.data)
+
   }
 
 
