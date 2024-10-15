@@ -1,0 +1,93 @@
+<table class="table align-items-center table-flush mydata-table">
+    <thead class="thead-light">
+        <tr>
+            <th class="col id_col">Loan No.</th>
+            <th class="col">Start / Apply Date</th>
+            <th class="col">Receiver</th>
+            <th class="col amount_col">Amount</th>
+            <th class="col amount_col">Balance</th>
+            <th class="col status_col">Status</th>
+            <th class="col action_col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr *ngIf="loader">
+            <td colspan="7">
+                <app-page-loader></app-page-loader>
+            </td>
+        </tr>
+        <tr *ngIf="filteredDataarray.length == 0 && !loader">
+            <td colspan="7">
+                <app-no-record-found type="table" notext="No member found"></app-no-record-found>
+            </td>
+        </tr>
+        <ng-container *ngIf="filteredDataarray.length != 0 && !loader"> -->
+            <tr>
+                <td class="col" data-name="Loan No.">Innitial</td>
+                <td class="col" data-name="Start / Apply Date"><small>12-Mar-2022 To 11-Jun-2022</small></td>
+                <td class="col" data-name="Receiver">Not Assigned</td>
+                <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>12000.00</td>
+                <td class="col" data-name="Balance"><i class="mdi mdi-currency-inr mr-1"></i>0.00</td>            
+                <td class="col text-center" data-name="Status">
+                    <div class="badge bg-warning text-white">Pending</div>
+                </td>
+                <td class="action_col" data-name="Action">
+                    <div placement="bottom-right">
+                        <button mat-icon-button [matMenuTriggerFor]="menu"
+                            aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <div class="table_actionmenu">
+                                <button mat-menu-item>
+                                    <i class="mdi mdi-history"></i> <span>
+                                        Loan History</span>
+                                </button>
+                                <button mat-menu-item (click)="openDialogViewDetail()">
+                                    <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                </button>
+                            </div>
+                        </mat-menu>
+
+                    </div>
+                </td>
+            </tr>
+            <!-- <tr>
+                <td class="col">Start#10000</td>
+                <td class="col"><small>12-Mar-2022 To 11-Jun-2022</small></td>
+                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>12000.00</td>
+                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
+                <td class="col">Roshan Kanojiya</td>
+                <td class="col text-center">
+                    <div class="badge bg-danger text-white">Running</div>
+                </td>
+                <td class="col text-center">
+                    <span class="btn btn-sm btn-primary btn_download"><i class="mdi mdi-download"></i></span>
+                </td>
+                <td class="col text-center">
+                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#view_modal">
+                        <i class="mdi mdi-more"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td class="col">Start#10003</td>
+                <td class="col"><small>12-Jan-2022 To 11-Mar-2022</small></td>
+                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>12000.00</td>
+                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>0.00</td>
+                <td class="col">Roshan Kanojiya</td>
+                <td class="col text-center">
+                    <div class="badge bg-success text-white">Completed</div>
+                </td>
+                <td class="col text-center">
+                    <span class="btn btn-sm btn-primary btn_download"><i class="mdi mdi-download"></i></span>
+                </td>
+                <td class="col text-center">
+                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#view_modal">
+                        <i class="mdi mdi-more"></i>
+                    </button>
+                </td>
+            </tr> -->
+        <!-- </ng-container> -->
+    </tbody>
+</table>

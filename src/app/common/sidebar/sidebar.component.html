@@ -60,8 +60,13 @@
                         Customer List
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="user_type == 3">
+                <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/loan_list" class="nav-link"> <i class="mdi mdi-account-switch-outline"></i> Loan
+                        List
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="user_type == 3">
+                    <a routerLink="/my_loan_list" class="nav-link"> <i class="mdi mdi-account-switch-outline"></i> My Loan
                         List
                     </a>
                 </li>

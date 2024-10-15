@@ -59,6 +59,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/loan-list/loan-list.module').then(m => m.LoanListModule)
   },
   {
+    path: 'my_loan_list',
+    loadChildren: () => import('./components/user-dashboard/user-dashboard.module').then(m  => m.UserDashboardModule)
+  },
+  {
     path: 'collection_list',
     loadChildren: () => import('./components/collection-list/collection-list.module').then(m => m.CollectionListModule)
   },
