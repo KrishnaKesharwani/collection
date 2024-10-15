@@ -1,10 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { ConnectableObservable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-customer-bulk-import',
@@ -16,7 +17,7 @@ export class CustomerBulkImportComponent {
   tableData: any[] = [];
   customerImportForm!: FormGroup;
   company_id: any;
-  constructor(public _service: CustomerService, public fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }) { }
+  constructor(public _tostr: ToastrService, public _service: CustomerService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }) { }
 
   ngOnInit() {
 
@@ -62,7 +63,8 @@ export class CustomerBulkImportComponent {
 
     this._service.importData(obj).subscribe((data: any) => {
 
-
+      this._tostr.success(data.message, 'Success');
+      this.dialog.closeAll();
     })
 
   }

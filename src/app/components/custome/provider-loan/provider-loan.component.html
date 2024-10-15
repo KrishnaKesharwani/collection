@@ -11,18 +11,19 @@
             <app-input [isDateField]="false" [disabled]=true label="Loan Amount" [(value)]="loanamount"
                 [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'loanamount'"
                 [displayMsg]="'Loan amount is required'"></app-input>
-            <app-input [isDateField]="false" [disabled]=true label="Instalment Amount" [(value)]="instalmentamount"
+            <app-input [isDateField]="false" [disabled]=true label="Installment Amount" [(value)]="instalmentamount"
                 [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'loanamount'"
-                [displayMsg]="'Instalment is required'"></app-input>
-            <app-input [isDateField]="false" [disabled]=true label="No. Of Days" [(value)]="noofdays"
-                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'noofdays'"
-                [displayMsg]="'No. of days is required'"></app-input>
-            <app-input [isDateField]="true" [disabled]=true label="Start Date" [(value)]="startdate"
-                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'noofdays'"
+                [displayMsg]="'Installment is required'"></app-input>
+
+            <app-input [isDateField]="true" [disabled]=true label="Start Date" [(value)]="startdate" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'noofdays'"
                 [displayMsg]="'Start date is required'"></app-input>
             <app-input [isDateField]="true" [disabled]=true label="End date" [(value)]="enddate" [isRequired]="true"
                 [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'enddate'"
                 [displayMsg]="'End date is required'"></app-input>
+            <app-input [isDateField]="false" [disabled]=true label="No. Of Days" [(value)]="noofdays"
+                [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'noofdays'"
+                [displayMsg]="'No. of days is required'"></app-input>
             <app-dropdwon key="assingmember" field="Assign Member" formControlName="assingmember"
                 name="assingmember"></app-dropdwon>
             <app-textarea [disabled]="true" label="Details" [(value)]="loandetails" [isRequired]="false"
