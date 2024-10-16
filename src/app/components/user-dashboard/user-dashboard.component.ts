@@ -15,18 +15,6 @@ export class UserDashboardComponent {
   // submitMessage() {
 
   // }
-  openDialogApplyLoan() {
-    if (this.isDialogOpen) return;
-    const dialogRef = this.dialog.open(ApplyLoanComponent, {
-      disableClose: true,
-      data: {
-        title: 'Apply New Loan',
-      },
-    });
-    dialogRef.componentInstance.deleteAction.subscribe(() => {
-      // this.delete();
-      this.isDialogOpen = false;
-    });
-  }
+
   
 }

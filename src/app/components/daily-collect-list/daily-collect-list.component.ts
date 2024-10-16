@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./daily-collect-list.component.scss']
 })
 export class DailyCollectListComponent {
+  userType: any;
 
+  ngOnInit() {
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.userType = userData.user_type
+    } else {
+      this.userType = null; 
+    }
+  }
 }

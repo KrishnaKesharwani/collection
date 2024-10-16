@@ -12,11 +12,24 @@
         </div>
     </div>
     <div class="entry_listing">
-        <div class="entry_action" *ngIf='usertype == 2'>
-            <div class="addrow"><input type="text" placeholder="Amount" value="200" class="form-control"><button
-                    class="btn btn-success"><i class="mdi mdi-plus mr-2"></i>Add</button></div>
-            <div class="addrow"><input type="text" placeholder="Amount" value="500" class="form-control"><button
-                    class="btn btn-danger"><i class="mdi mdi-minus mr-2"></i>Minus</button></div>
+        <div class="entry_action" *ngIf='userType == 2'>
+            <div class="addrow">
+                <form focusInvalidInput [formGroup]="receivedAmountForm">
+                    <app-input [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="receivedAmountForm" [key]="'amount'"
+                        [displayMsg]="'amount is required.'"></app-input>
+                    <!-- <input type="text" matInput placeholder="Amount" value="200" class="form-control"> -->
+                    <div class="button_block">
+                        <div></div>
+                        <button mat-raised-button class="btn btn-success global_submit_btn"><i
+                                class="mdi mdi-check mr-2"></i>Deposit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="addrow">
+                <input type="text" placeholder="Amount" value="500" class="form-control">
+                <button class="btn btn-danger global_submit_btn"></button><i class="mdi mdi-minus mr-2"></i>Minus</button>
+            </div> -->
         </div>
         <div class="entry_head">
             <div class="col date">Date</div>

@@ -1,0 +1,62 @@
+.assign_customer_container {
+    padding: 20px 15px 5px 15px;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: #f4f4f4;
+    border: solid thin #e1e1e1;
+    .assign_customer_block {
+        border: solid thin #e1e1e1;
+        border-radius: 5px;
+        width: 32%;
+        margin: 0px 0px 1% 0px;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.04);
+        background: #ffffff;
+        position: relative;
+        display: flex;
+        flex-flow: column;
+        .dynamic_card_data {
+            margin: 0px;
+            position: relative;
+            font-size: 12px;
+            padding: 10px;
+            list-style: none;
+            li {
+                margin-bottom: 5px;
+                line-height: 20px;
+            }
+            li.data_head {
+                font-weight: 550;
+                width: 40%;
+                font-size: 12px;
+                align-items: center;
+                float: left;
+            }
+            li.data_val {
+                width: 60%;
+                display: inline-block;
+                .btn {
+                    font-size: 10px;
+                    padding: 3px 8px;
+                }
+                .list_image_block {
+                    margin: 0px;
+                }
+            }
+        }
+        .status_row {
+            border: none;
+        }
+        .action_block {
+            text-align: center;
+            padding: 10px;
+            background: #f5f5ff;
+            border-top: solid thin #e1e1e1;
+            border-radius: 0px 0px 5px 5px;
+        }
+    }
+}
+.collect_money_card {
+    overflow: hidden;
+}

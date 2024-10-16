@@ -34,7 +34,11 @@ h5,
     font-size: initial;
     font-weight: 400;
 }
-
+ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
 :root {
     --theme-bgcolor: #e20813;
     --theme-bggraycolor: #f4f4f4;
@@ -352,6 +356,10 @@ mat-option {
 
     .mdc-button__label {
         display: flex;
+    }
+    i {
+        font-size: 16px;
+        margin-right: 5px;
     }
 }
 
