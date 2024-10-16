@@ -105,11 +105,12 @@ export class CustomeComponent {
   }
 
   private isDialogOpen = false;
-  openDialogLoanHistory() {
+  openDialogLoanHistory(data: any) {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(LoanHistoryComponent, {
       disableClose: true,
       data: {
+        data: data,
         title: 'Customer Loan History Details',
       },
     });

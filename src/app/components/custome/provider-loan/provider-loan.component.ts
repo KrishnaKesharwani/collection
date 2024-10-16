@@ -27,10 +27,11 @@ export class ProviderLoanComponent {
   noOfDays: number | null = null;
   installment_amount: string = '';
   details: string = '';
-  no_of_days: string = '';
+  // no_of_days: string = '';
   loan_amount: string = '';
-  end_date: string = '';
-  start_date: string = '';
+  start_date: any;
+  end_date: any;
+  no_of_days: string = '0';
 
 
   constructor(public _tostr: ToastrService, public _service: CustomerService, private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
@@ -99,5 +100,34 @@ export class ProviderLoanComponent {
     }
   }
 
+  onStartDateChange(newStartDate: any) {
+    debugger
+    this.start_date = newStartDate;
+    this.calculateDays();
+  }
 
+  // Event handler for end date change
+  onEndDateChange(newEndDate: any) {
+    debugger
+    this.end_date = newEndDate;
+    this.calculateDays();
+  }
+
+  calculateDays() {
+    debugger
+    if (this.start_date && this.end_date) {
+      const startDate = new Date(this.start_date);
+      const endDate = new Date(this.end_date);
+
+      // Ensure end date is after start date
+      if (endDate >= startDate) {
+        // Calculate the number of days between the two dates
+        const timeDifference = endDate.getTime() - startDate.getTime();
+        const days = Math.ceil(timeDifference / (1000 * 3600 * 24)); // Convert milliseconds to days
+        this.no_of_days = days.toString();  // Convert the number to string
+      } else {
+        this.no_of_days = '0';
+      }
+    }
+  }
 }

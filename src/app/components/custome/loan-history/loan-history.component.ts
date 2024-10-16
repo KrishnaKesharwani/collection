@@ -1,5 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
   selector: 'app-loan-history',
@@ -7,16 +8,34 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
   styleUrls: ['./loan-history.component.scss']
 })
 export class LoanHistoryComponent {
-  displayedColumns: string[] = ['state_date', 'end_date', 'days', 'amount', 'pending', 'status', 'download'];
-  data: string[] = ['one', 'two', 'three', 'four', 'five'];
+
   @Input() title: any;
+  company_id: any;
+  data: any[] = [];
 
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _service: CustomerService
   ) { }
-  ngOnInit() {
 
+  ngOnInit() {
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+    }
+
+    this.getLoanListData();
   }
 
+  getLoanListData() {
+    let obj = {
+      company_id: this.company_id
+    }
+
+    this._service.loanList(obj).subscribe((data: any) => {
+      console.log(data);
+      this.data = data.data
+    })
+  }
 
 }
 

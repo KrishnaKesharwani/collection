@@ -19,34 +19,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="col" data-name="Loan Id">Loan 101</td>
-                    <td class="col" data-name="Start Date">15-12-2024</td>
-                    <td class="col" data-name="End Date">15-12-2024</td>
-                    <td class="col" data-name="Days">60 Days</td>
-                    <td class="text-right col" data-name="Amount">12000</td>
-                    <td class="text-right col" data-name="Pending">7000</td>
-                    <td class="text-right col" data-name="Assign Member">Bhaijan</td>
+                <tr *ngFor="let data of data">
+                    <td class="col" data-name="Loan Id">{{data.assigned_member_id}}</td>
+                    <td class="col" data-name="Start Date">{{data.start_date}}</td>
+                    <td class="col" data-name="End Date">{{data.end_date}}</td>
+                    <td class="col" data-name="Days">{{data.no_of_days}}</td>
+                    <td class="text-right col" data-name="Amount">{{data.loan_amount}}</td>
+                    <td class="text-right col" data-name="Pending">{{data.installment_amount}}</td>
+                    <td class="text-right col" data-name="Assign Member">{{data.member.name}}</td>
                     <td class="text-center col" data-name="Status">
-                        <span class="badge bg-warning text-white">Running</span>
+                        <span class="badge bg-warning text-white">{{data.status}}</span>
                     </td>
                     <td class="text-center col" data-name="Remove"><span class="btn btn-sm btn-primary btn_download"><i
                                 class="mdi mdi-download"></i></span></td>
                 </tr>
-                <tr>
-                    <td class="col" data-name="Loan Id">Loan 101</td>
-                    <td class="col" data-name="Start Date">15-12-2024</td>
-                    <td class="col" data-name="End Date">15-12-2024</td>
-                    <td class="col" data-name="Days">60 Days</td>
-                    <td class="text-right col" data-name="Amount">12000</td>
-                    <td class="text-right col" data-name="Pending">7000</td>
-                    <td class="text-right col" data-name="Assign Member">Bhaijan</td>
-                    <td class="text-center" data-name="Status">
-                        <span class="badge bg-success text-white">Completed</span>
-                    </td>
-                    <td class="text-center"><span class="btn btn-sm btn-primary btn_download"><i
-                                class="mdi mdi-download"></i></span></td>
-                </tr>
+
             </tbody>
         </table>
     </div>

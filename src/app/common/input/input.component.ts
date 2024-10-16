@@ -46,8 +46,11 @@ export class InputComponent {
   @ViewChild('picker') picker!: MatDatepicker<any>; // Declare the datepicker reference
 
   @Input() keyValidation!: string
+  // @Output() dateChange = new EventEmitter<any>();
   minLength: any;
-
+  // onDateChange(newValue: any) {
+  //   this.dateChange.emit(newValue);  // Emit the selected date
+  // }
   get control() {
     return this.form.get(this.key) as FormControl;;
   }
