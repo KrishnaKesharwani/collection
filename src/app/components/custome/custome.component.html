@@ -141,7 +141,8 @@
                                             <i class="mdi mdi-card-account-details-star-outline"></i> <span>
                                                 New Deposit</span>
                                         </button>
-                                        <button *ngIf="user_type == 2" mat-menu-item (click)="openDialogApplyLoan()">
+                                        <button *ngIf="user_type == 2" mat-menu-item
+                                            (click)="openDialogApplyLoan(item)">
                                             <i class="mdi mdi-cash-100"></i> <span>
                                                 Apply Loan</span>
                                         </button>

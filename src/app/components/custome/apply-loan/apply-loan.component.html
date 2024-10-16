@@ -8,20 +8,25 @@
             <app-input [isDateField]="false" [disabled]=true label="Customer Name" [(value)]="customername"
                 [isRequired]="true" [className]="'bottom_error_msg'" [form]="applyLoanForm" [key]="'customername'"
                 [displayMsg]="'Name is required'"></app-input>
-            <app-input [isDateField]="false" [disabled]=true label="Loan Amount" [(value)]="loanamount"
-                [isRequired]="true" [className]="'bottom_error_msg'" [form]="applyLoanForm" [key]="'loanamount'"
+            <app-input [isDateField]="false" [disabled]=true label="Loan Amount" [(value)]="loan_amount"
+                [isRequired]="true" [className]="'bottom_error_msg'" [form]="applyLoanForm" [key]="'loan_amount'"
                 [displayMsg]="'Loan amount is required'"></app-input>
-            <app-textarea [disabled]="true" label="Details" [(value)]="loandetails" [isRequired]="true"
-                [className]="'bottom_error_msg'" [form]="applyLoanForm" [key]="'loandetails'"
+            <app-textarea [disabled]="true" label="Details" [(value)]="detail" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="applyLoanForm" [key]="'detail'"
                 [displayMsg]="'Loan Detail is required'"></app-textarea>
         </div>
     </form>
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button>
+    <button type="submit" class="global_submit_btn" *ngIf="!customer_id" mat-flat-button (click)="save()">
         <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
         <app-button-loader *ngIf="loading"></app-button-loader>
         <span>Submit</span>
+    </button>
+    <button type="submit" class="global_submit_btn" *ngIf="customer_id" mat-flat-button (click)="save()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span>Update</span>
     </button>
 </div>

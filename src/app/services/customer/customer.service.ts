@@ -46,6 +46,10 @@ export class CustomerService {
     const url = `${this.apiUrl}/companycustomerloans`;
     return this.httpClient.post(url, obj)
   }
+  applyLoan(obj: object) {
+    const url = `${this.apiUrl}/loanrequest`;
+    return this.httpClient.post(url, obj)
+  }
 
 
 }
