@@ -12,7 +12,7 @@ export class LoanHistoryComponent {
   @Input() title: any;
   company_id: any;
   data: any[] = [];
-
+  loader = false;
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _service: CustomerService
   ) { }
 
@@ -27,6 +27,7 @@ export class LoanHistoryComponent {
   }
 
   getLoanListData() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id
     }
@@ -34,6 +35,7 @@ export class LoanHistoryComponent {
     this._service.loanList(obj).subscribe((data: any) => {
       console.log(data);
       this.data = data.data
+      this.loader = false;
     })
   }
 

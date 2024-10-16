@@ -19,20 +19,32 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of data">
-                    <td class="col" data-name="Loan Id">{{data.assigned_member_id}}</td>
-                    <td class="col" data-name="Start Date">{{data.start_date}}</td>
-                    <td class="col" data-name="End Date">{{data.end_date}}</td>
-                    <td class="col" data-name="Days">{{data.no_of_days}}</td>
-                    <td class="text-right col" data-name="Amount">{{data.loan_amount}}</td>
-                    <td class="text-right col" data-name="Pending">{{data.installment_amount}}</td>
-                    <td class="text-right col" data-name="Assign Member">{{data.member.name}}</td>
-                    <td class="text-center col" data-name="Status">
-                        <span class="badge bg-warning text-white">{{data.status}}</span>
+                <tr *ngIf="loader">
+                    <td colspan="9">
+                        <app-page-loader></app-page-loader>
                     </td>
-                    <td class="text-center col" data-name="Remove"><span class="btn btn-sm btn-primary btn_download"><i
-                                class="mdi mdi-download"></i></span></td>
                 </tr>
+                <tr *ngIf="data.length == 0 && !loader">
+                    <td colspan="9">
+                        <app-no-record-found type="table" notext="No member found"></app-no-record-found>
+                    </td>
+                </tr>
+                <ng-container *ngIf="data.length != 0 && !loader">
+                    <tr class="received_row" *ngFor="let data of data">
+                        <td class="col" data-name="Loan Id">{{data.assigned_member_id}}</td>
+                        <td class="col" data-name="Start Date">{{data.start_date}}</td>
+                        <td class="col" data-name="End Date">{{data.end_date}}</td>
+                        <td class="col" data-name="Days">{{data.no_of_days}}</td>
+                        <td class="text-right col" data-name="Amount">{{data.loan_amount}}</td>
+                        <td class="text-right col" data-name="Pending">{{data.installment_amount}}</td>
+                        <td class="text-right col" data-name="Assign Member">{{data.member.name}}</td>
+                        <td class="text-center col" data-name="Status">
+                            <span class="badge bg-warning text-white">{{data.status}}</span>
+                        </td>
+                        <td class="text-center col" data-name="Remove"><span
+                                class="btn btn-sm btn-primary btn_download"><i class="mdi mdi-download"></i></span></td>
+                    </tr>
+                </ng-container>
 
             </tbody>
         </table>
