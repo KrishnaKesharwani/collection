@@ -14,6 +14,7 @@ import { ActionService } from 'src/app/services/action/action.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { ApplyLoanComponent } from './apply-loan/apply-loan.component';
+import { NewDepositComponent } from './new-deposit/new-deposit.component';
 @Component({
   selector: 'app-custome',
   templateUrl: './custome.component.html',
@@ -40,6 +41,7 @@ export class CustomeComponent {
   customerData: any[] = [];
   filteredDataarray: any[] = [];
   loader = false;
+  user_type: any;
 
   constructor(public _customActionService: CustomActionsService, public _service: CustomerService, private actionService: ActionService) { }
 
@@ -48,6 +50,7 @@ export class CustomeComponent {
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
+      this.user_type = userData.user_type;
     }
     this.getCustomerList();
   }
@@ -127,6 +130,21 @@ export class CustomeComponent {
       data: {
         data: data,
         title: 'Loan Provide Details'
+      },
+    });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      this.isDialogOpen = false;
+    });
+  }
+
+  openDialogNewDeposit(data: any) {
+    if (this.isDialogOpen) return;
+    // this.dataForDelete = enterAnimationDuration
+    const dialogRef = this.dialog.open(NewDepositComponent, {
+      disableClose: true,
+      data: {
+        data: data,
+        title: 'Add New Deposit'
       },
     });
     dialogRef.afterClosed().subscribe((result: any) => {

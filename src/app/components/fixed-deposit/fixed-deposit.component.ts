@@ -32,8 +32,11 @@ export class FixedDepositComponent {
       // this.company_id = userData.company_id;
 
     }
+
     this.getDepositList();
   }
+
+
 
 
   getDepositList() {

@@ -131,11 +131,17 @@
                                             <i class="mdi mdi-history"></i> <span>
                                                 Loan History</span>
                                         </button>
-                                        <button mat-menu-item (click)="openDialogProvideLoan(item)">
-                                            <i class="mdi mdi-cash-100"></i> <span>
+                                        <button *ngIf="user_type == 1" mat-menu-item
+                                            (click)="openDialogProvideLoan(item)">
+                                            <i class="mdi mdi-currency-inr"></i> <span>
                                                 Provide Loan</span>
                                         </button>
-                                        <button mat-menu-item (click)="openDialogApplyLoan()">
+                                        <button *ngIf="user_type == 1" mat-menu-item
+                                            (click)="openDialogNewDeposit(item)">
+                                            <i class="mdi mdi-card-account-details-star-outline"></i> <span>
+                                                New Deposit</span>
+                                        </button>
+                                        <button *ngIf="user_type == 2" mat-menu-item (click)="openDialogApplyLoan()">
                                             <i class="mdi mdi-cash-100"></i> <span>
                                                 Apply Loan</span>
                                         </button>
@@ -143,7 +149,7 @@
                                             <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                         </button>
                                         <button mat-menu-item (click)="openDialogEditCustomer(item)">
-                                            <i class="mdi mdi-pencil mr-2"></i> <span>Edit Company</span>
+                                            <i class="mdi mdi-pencil mr-2"></i> <span>Edit Customer</span>
                                         </button>
                                         <button mat-menu-item (click)="openDialogChangeStatus('1ms', '5ms',item)">
                                             <i class="mdi mdi-account-off-outline mr-2"></i>

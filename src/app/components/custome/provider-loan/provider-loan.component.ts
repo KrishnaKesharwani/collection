@@ -56,13 +56,11 @@ export class ProviderLoanComponent {
       loan_status: [''],
       status: ['']
     });
-    // this.startDate = this.providerLoanForm.value.startDate
-    // this.endDate = this.providerLoanForm.value.endDate
 
     this.getActiveMmberList();
     // this.calculateDays();
     // this.dropdownService.setOptions('assingmember', ['Bhaijan', 'Roshan Kanojiya']);
-    this.dropdownService.setOptions('loanstatus', ['Active', 'Inactive']);
+    this.dropdownService.setOptions('loanstatus', ['Approved', 'Paid']);
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
 

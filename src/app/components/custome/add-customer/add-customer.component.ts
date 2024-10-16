@@ -107,6 +107,7 @@ export class AddCustomerComponent {
             if (data) {
 
               this._toastr.success(data.message, 'Success');
+              this.dialog.closeAll();
               this._router.navigate(['/customer_list']);
             } else {
               this._toastr.error(data.message, 'Error');
@@ -164,6 +165,7 @@ export class AddCustomerComponent {
 
             if (data.success == true) {
               this._toastr.success(data.message, 'Success');
+              this.dialog.closeAll();
               this._router.navigate(['/customer_list']);
               this.customerForm.reset();
 
@@ -185,16 +187,27 @@ export class AddCustomerComponent {
 
   customerView() {
     if (this.dataa?.data) {
-
+      debugger
       this.customerForm.patchValue({
         ...this.dataa.data,
         // member_login_id: this.dataa.data.member_no,
-        status: this.dataa.data.status,
+
+        // status: this.dataa.data.status,
         // password: this.dataa.data.user?.password_hint
       });
 
+      const status = this.dataa?.data.status;
+      debugger
+      if (status == 'active') {
+        this.dropdownService.setOptions('status', [status, 'inactive']);
+      } else {
+        this.dropdownService.setOptions('status', [status, 'active']);
+      }
 
-      this.cdr.detectChanges();
+
+
+
+      // this.cdr.detectChanges();
 
     }
 

@@ -16,6 +16,8 @@ import { TextareaComponent } from './textarea/textarea.component';
 import { ButtonLoaderComponent } from './button-loader/button-loader.component';
 import { NoRecordFoundComponent } from './no-record-found/no-record-found.component';
 import { PageLoaderComponent } from './page-loader/page-loader.component';
+import { GlobalGoogleChartsComponent } from './global-google-charts/global-google-charts.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   declarations: [
@@ -29,16 +31,18 @@ import { PageLoaderComponent } from './page-loader/page-loader.component';
     TextareaComponent,
     ButtonLoaderComponent,
     NoRecordFoundComponent,
-    PageLoaderComponent
+    PageLoaderComponent,
+    GlobalGoogleChartsComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    GoogleChartsModule
   ],
   exports: [InputFieldValidationComponent, TextareaComponent, DropdwonComponent,
     InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent,
-    ButtonLoaderComponent, NoRecordFoundComponent, PageLoaderComponent]
+    ButtonLoaderComponent, NoRecordFoundComponent, PageLoaderComponent, GlobalGoogleChartsComponent]
 })
 export class CommonComponentsModule { }

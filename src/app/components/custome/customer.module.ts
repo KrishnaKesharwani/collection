@@ -14,13 +14,14 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { CustomerBulkImportComponent } from './customer-bulk-import/customer-bulk-import.component';
 import { KeysPipe } from 'src/app/pipes/keys.pipe';
 import { ApplyLoanComponent } from './apply-loan/apply-loan.component';
+import { NewDepositComponent } from './new-deposit/new-deposit.component';
 
 
 
 @NgModule({
   declarations: [
     CustomeComponent, LoanHistoryComponent, ProviderLoanComponent, ViewCustomerListComponent, AddCustomerComponent
-    , CustomerBulkImportComponent, KeysPipe, ApplyLoanComponent],
+    , CustomerBulkImportComponent, KeysPipe, ApplyLoanComponent, NewDepositComponent],
   imports: [
     CommonModule,
     MaterialModule,
