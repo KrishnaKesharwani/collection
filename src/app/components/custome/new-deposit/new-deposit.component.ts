@@ -62,7 +62,7 @@ export class NewDepositComponent {
 
   submit() {
     console.log(this.depositFrom.value)
-    debugger
+
     if (this.depositFrom.valid) {
       this.loading = true
       let obj = {
@@ -75,7 +75,7 @@ export class NewDepositComponent {
         this.depositFrom.reset();
         this._tostr.success(data.message, 'Success');
 
-        debugger
+
       })
       // this.dialog.closeAll();
     } else {

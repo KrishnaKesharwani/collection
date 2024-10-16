@@ -187,7 +187,7 @@ export class AddCustomerComponent {
 
   customerView() {
     if (this.dataa?.data) {
-      debugger
+
       this.customerForm.patchValue({
         ...this.dataa.data,
         // member_login_id: this.dataa.data.member_no,
@@ -197,7 +197,7 @@ export class AddCustomerComponent {
       });
 
       const status = this.dataa?.data.status;
-      debugger
+
       if (status == 'active') {
         this.dropdownService.setOptions('status', [status, 'inactive']);
       } else {

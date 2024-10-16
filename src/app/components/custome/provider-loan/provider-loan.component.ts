@@ -77,7 +77,7 @@ export class ProviderLoanComponent {
 
   submit() {
     console.log(this.providerLoanForm.value)
-    debugger
+
     if (this.providerLoanForm.valid) {
       this.loading = true
       let obj = {
@@ -90,7 +90,7 @@ export class ProviderLoanComponent {
         this.providerLoanForm.reset();
         this._tostr.success(data.message, 'Success');
 
-        debugger
+
       })
       // this.dialog.closeAll();
     } else {
@@ -99,20 +99,20 @@ export class ProviderLoanComponent {
   }
 
   onStartDateChange(newStartDate: any) {
-    debugger
+
     this.start_date = newStartDate;
     this.calculateDays();
   }
 
   // Event handler for end date change
   onEndDateChange(newEndDate: any) {
-    debugger
+
     this.end_date = newEndDate;
     this.calculateDays();
   }
 
   calculateDays() {
-    debugger
+
     if (this.start_date && this.end_date) {
       const startDate = new Date(this.start_date);
       const endDate = new Date(this.end_date);
