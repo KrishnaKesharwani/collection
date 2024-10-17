@@ -35,7 +35,8 @@ cmd: npm i xlsx
 cmd: npm i file-saver   
      npm i --save-dev @types/file-saver[01-10-2024]
 
-
+Google Chart
+npm install angular-google-charts
 
 > [!NOTE]
 >

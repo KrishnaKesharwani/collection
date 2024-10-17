@@ -22,7 +22,8 @@ export class ApplyLoanComponent {
   loan_amount: string = '';
   customer_id: any;
   company_id: any;
-
+  userType: any;
+  customer_name: any;
   constructor(private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _toastr: ToastrService, public _router: Router, public _service: CustomerService
   ) { }
 
@@ -31,32 +32,40 @@ export class ApplyLoanComponent {
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
-
+      this.customer_id = userData.customer_id;
+      this.customer_name = userData.name;
+      this.userType = userData.user_type;
     }
-
+    if (this.userType == 2) {
+      this.customer_name = this.dataa.data.name;
+    } else {
+      this.customer_name = this.customer_name;
+    }
+    // this.customer_name = this.customer_name == null ? this.dataa.data.name : this.customer_name;
     this.applyLoanForm = this.fb.group({
-      customername: [this.dataa.data.name],
+      customername: this.customer_name,
       loan_amount: ['', Validators.required],
       detail: ['', Validators.required]
     });
-    this.customer_id = this.dataa.data.id
+    this.customer_id = this.customer_id;
     this.company_id = this.company_id;
-    debugger
   }
 
   save() {
-    this.loading = true;
-    let obj = {
-      company_id: this.company_id,
-      customer_id: this.customer_id,
-      detail: this.applyLoanForm.value.detail,
-      loan_amount: this.applyLoanForm.value.loan_amount
+    if (this.applyLoanForm.valid) {
+      this.loading = true;
+      let obj = {
+        company_id: this.company_id,
+        customer_id: this.customer_id == null ? this.dataa.data.id : this.customer_id,
+        detail: this.applyLoanForm.value.detail,
+        loan_amount: this.applyLoanForm.value.loan_amount
+      }
+      this._service.applyLoan(obj).subscribe((data: any) => {
+        this._toastr.success(data.message, "Success");
+        this.applyLoanForm.reset();
+        this.loading = false;
+        this.dialog.closeAll();
+      })
     }
-    this._service.applyLoan(obj).subscribe((data: any) => {
-      this._toastr.success(data.message, "Success");
-      this._router.navigate(['/my_loan_list']);
-      this.applyLoanForm.reset();
-      this.loading = false;
-    })
   }
 }

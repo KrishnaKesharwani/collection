@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 interface AdminFromBackend {
   company_id: string;
   customer_id: string;
+  member_id: string,
   email: string;
   name: string;
   user_type: string;
@@ -36,6 +37,7 @@ export class LoginComponent {
   showSidebar: any;
   showHeader: any;
   customer_id: any;
+  member_id: any;
   constructor(private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -71,7 +73,8 @@ export class LoginComponent {
           const userLoginDetails: AdminFromBackend = {
 
             company_id: data.data.company?.id,
-            customer_id: data.data.id,
+            customer_id: data.data.customer?.id,
+            member_id: data.data.member?.id,   
             email: data.data.email,
             name: data.data.name,
             user_type: data.data.user_type,

@@ -18,6 +18,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
-
+    MatTabsModule,
     MatSortModule,
     MatPaginatorModule,
     ToastrModule.forRoot({
@@ -67,7 +68,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCheckboxModule,
     MatNativeDateModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTabsModule
   ],
 })
 export class MaterialModule { }

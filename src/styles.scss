@@ -34,11 +34,13 @@ h5,
     font-size: initial;
     font-weight: 400;
 }
+
 ul {
     list-style: none;
     padding: 0px;
     margin: 0px;
 }
+
 :root {
     --theme-bgcolor: #e20813;
     --theme-bggraycolor: #f4f4f4;
@@ -48,6 +50,8 @@ ul {
     --app-brand-font: Montserrat, sans-serif;
     --app-brand-shadow: 0px 11px 19px rgba(0, 0, 0, 0.2);
     --app-brand-card-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+    --mat-tab-header-active-label-text-color: #ffffff !important;
+    --mdc-tab-indicator-active-indicator-color: #000000 !important;
 }
 
 .card {
@@ -357,6 +361,7 @@ mat-option {
     .mdc-button__label {
         display: flex;
     }
+
     i {
         font-size: 16px;
         margin-right: 5px;
