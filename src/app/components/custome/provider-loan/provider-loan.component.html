@@ -16,11 +16,11 @@
                 [key]="'installment_amount'" [displayMsg]="'Installment is required'"></app-input>
 
             <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
-                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'start_date'"
-                [displayMsg]="'Start date is required'"></app-input>
+                (valueChange)="onDateChange()" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                [key]="'start_date'" [displayMsg]="'Start date is required'"></app-input>
             <app-input [isDateField]="true" label="End date" [(value)]="end_date" [isRequired]="true"
-                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'end_date'"
-                [displayMsg]="'End date is required'"></app-input>
+                (valueChange)="onDateChange()" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                [key]="'end_date'" [displayMsg]="'End date is required'"></app-input>
             <app-input [isDateField]="false" [disabled]=true label="No. Of Days" [(value)]="no_of_days"
                 [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'no_of_days'"
                 [displayMsg]="'No. of days is required'"></app-input>

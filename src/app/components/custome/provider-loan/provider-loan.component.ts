@@ -74,6 +74,21 @@ export class ProviderLoanComponent {
       this.dropdownService.setOptions('assingmember', members);
     })
   }
+  onDateChange() {
+    debugger
+    if (this.startDate && this.endDate) {
+      const start = new Date(this.startDate);
+      const end = new Date(this.endDate);
+
+      // Time difference in milliseconds
+      const timeDifference = end.getTime() - start.getTime();
+
+      // Convert time difference from milliseconds to days
+      this.noOfDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+    } else {
+      this.noOfDays = null;
+    }
+  }
 
   submit() {
     console.log(this.providerLoanForm.value)

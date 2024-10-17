@@ -2,7 +2,7 @@ import { Component, EventEmitter, forwardRef, Inject, Input, Output, ViewChild }
 import { CommonComponentService } from '../common-component.service';
 // import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDatepicker } from '@angular/material/datepicker';
+import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -19,6 +19,7 @@ export class InputComponent {
 
   @Input() key!: string;
   @Input() field!: string;
+  date: any;
   // @Input() formControlName!: string;
   // @Input() name!: string;
 
@@ -27,7 +28,7 @@ export class InputComponent {
   @Input() label: string = '';
   @Input() isRequired: boolean = false;
   @Input() disabled: boolean = false;
-  @Input() value: string = '';
+  @Input() value: Date | string | null = null;;
   @Output() valueChange = new EventEmitter<string>();
 
   @Input() form!: FormGroup;
@@ -48,9 +49,30 @@ export class InputComponent {
   @Input() keyValidation!: string
   // @Output() dateChange = new EventEmitter<any>();
   minLength: any;
-  // onDateChange(newValue: any) {
-  //   this.dateChange.emit(newValue);  // Emit the selected date
-  // }
+
+  get displayValue(): string | undefined {
+    if (this.value instanceof Date) {
+      return this.formatDate(this.value);  // Format date if it's a Date object
+    }
+    return this.value as string;  // Otherwise return the string value
+  }
+
+  onDateChange(event?: MatDatepickerInputEvent<Date>) {
+    this.date = event?.value;
+    if (this.date) {
+      this.valueChange.emit(this.date);  // Emit the Date object when a date is picked
+    } else {
+      this.valueChange.emit('');  // Emit null if the date is cleared
+    }
+  }
+
+  formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2); // Ensure two-digit month
+    const day = ('0' + date.getDate()).slice(-2); // Ensure two-digit day
+    return `${year}-${month}-${day}`;
+  }
+
   get control() {
     return this.form.get(this.key) as FormControl;;
   }

@@ -1,7 +1,7 @@
 <mat-form-field class="global_textbox_block" appearance="outline" [ngClass]="{'date_picker_block': isDateField} ">
     <mat-label>{{ label }}</mat-label>
     <input matInput *ngIf="!isDateField" [disabled]="disabled" [required]="isRequired" [formControl]="control"
-        [readonly]="readonly">
+        (dateChange)="onDateChange()" [readonly]="readonly">
     <ng-container *ngIf="isDateField">
         <input matInput [matDatepicker]="picker" [disabled]="disabled" [required]="isRequired"
             [formControl]="control" />
