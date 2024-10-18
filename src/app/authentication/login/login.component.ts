@@ -69,12 +69,10 @@ export class LoginComponent {
       this.loading = true;
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
-
           const userLoginDetails: AdminFromBackend = {
-
             company_id: data.data.company?.id,
             customer_id: data.data.customer?.id,
-            member_id: data.data.member?.id,   
+            member_id: data.data.member?.id,
             email: data.data.email,
             name: data.data.name,
             user_type: data.data.user_type,
@@ -86,11 +84,13 @@ export class LoginComponent {
           this.loading = false;
           this.toastr.success(data.message, 'Success');
           this.router.navigate(['/dashboard']);
+
           // this.errorMessage = null;
         },
         error => {
           this.loading = false;
-          this.toastr.error(error.error.error, 'Error');
+          this.toastr.error(error.error.message, 'Error');
+
         }
       );
     }

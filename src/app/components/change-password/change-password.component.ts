@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { ChangePasswordService } from 'src/app/services/changePassword/change-password.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-password',
@@ -10,7 +11,8 @@ import { ChangePasswordService } from 'src/app/services/changePassword/change-pa
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent {
-  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, public fb: FormBuilder, public _service: ChangePasswordService) { }
+  constructor(private route: ActivatedRoute,
+    private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public fb: FormBuilder, public _service: ChangePasswordService) { }
 
   changePasswordForm!: FormGroup;
   previouspassword: string = '';
@@ -34,25 +36,30 @@ export class ChangePasswordComponent {
   passwordMatchValidator(formGroup: FormGroup) {
     const newPassword = formGroup.get('new_password')?.value;
     const confirmPassword = formGroup.get('new_password_confirmation')?.value;
-
-    // Set an error on the 'new_password_confirmation' field if the passwords do not match
-    if (newPassword !== confirmPassword) {
-      formGroup.get('new_password_confirmation')?.setErrors({ passwordMismatch: true });
-    } else {
-      formGroup.get('new_password_confirmation')?.setErrors(null); // Clear errors if they match
+    if (confirmPassword != "") {
+      // Set an error on the 'new_password_confirmation' field if the passwords do not match
+      if (newPassword !== confirmPassword) {
+        formGroup.get('new_password_confirmation')?.setErrors({ passwordMismatch: true });
+      } else {
+        formGroup.get('new_password_confirmation')?.setErrors(null); // Clear errors if they match
+      }
     }
   }
+
   changePassword() {
     if (this.changePasswordForm.valid) {
       this.loading = true;
-
-      this._service.passwordChange(this.changePasswordForm.value).subscribe((data: any) => {
-
-        this.toastr.success('Reset Password Successfully...', 'Success');
-      })
-
-
+      this._service.passwordChange(this.changePasswordForm.value).subscribe(
+        (data: any) => {
+          this.loading = false;
+          this.toastr.success('Reset Password Successfully...', 'Success');
+          this.router.navigate(['/dashboard']);
+        },
+        error => {
+          this.loading = false;
+          this.toastr.error(error.error.message, 'Error');
+        }
+      )
     }
-
   }
 }

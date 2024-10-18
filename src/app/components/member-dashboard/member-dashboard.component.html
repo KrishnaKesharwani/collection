@@ -1,4 +1,18 @@
 <div class="card shadow dash-cardbox">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col col-sm-3 pl-1">
+                <h3 class="mb-0">Collection List</h3>
+            </div>
+            <div class="col p-0 head_details">
+                <div class="total_block bg-success mr-2"><span>Collect Amount</span><b>5,300.00</b>
+                </div>
+                <div class="total_block bg-warning mr-2"><span>Attend Customer</span><b>15</b>
+                </div>
+                <div class="total_block bg-primary"><span>Total Customer</span><b>50</b></div>
+            </div>
+        </div>
+    </div>
     <table class="table align-items-center table-flush mydata-table">
         <thead class="thead-light">
             <tr>
@@ -12,6 +26,17 @@
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td class="col">Bablu Mishra</td>
+                <td class="col">6263626505</td>
+                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
+                <td class="col"><small>23-05-2021 10:30 am</small></td>
+                <td class="col text-center">
+                    <div class="badge bg-warning text-white">Pending</div>
+                </td>
+                <td class="col text-center"><button mat-raised-button routerLink="/paid_data_entry"
+                        class="btn btn-warning global_submit_btn m-0">Collect</button></td>
+            </tr>
             <tr class="received_row">
                 <td class="col" data-name="Customer">Bablu Mishra</td>
                 <td class="col" data-name="Mobile">6263626505</td>
@@ -22,36 +47,7 @@
                 </td>
                 <td class="col text-center" data-name="Action">
                     <button disabled="disabled" mat-raised-button routerLink="/paid_data_entry"
-                        class="btn btn-warning btn-sm">Receive</button>
-                </td>
-            </tr>
-            <tr>
-                <td class="col">Bablu Mishra</td>
-                <td class="col">6263626505</td>
-                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
-                <td class="col"><small>23-05-2021 10:30 am</small></td>
-                <td class="col text-center">
-                    <div class="badge bg-warning text-white">Pending</div>
-                </td>
-                <td class="col text-center"><button routerLink="/paid_data_entry"
-                        class="btn btn-warning btn-sm">Receive</button></td>
-            </tr>
-            <tr>
-                <td class="col">Bablu Mishra</td>
-                <td class="col">6263626505</td>
-                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
-                <td class="col"><small>23-05-2021 10:30 am</small></td>
-                <td class="col text-center">
-                    <div class="badge bg-warning text-white">Pending</div>
-                </td>
-                <td class="col text-center"><button routerLink="/paid_data_entry"
-                        class="btn btn-warning btn-sm">Receive</button></td>
-            </tr>
-            <tr>
-                <td colspan="6" class="norecord_col">
-                    <div class="no_found">
-                        <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
-                    </div>
+                        class="btn btn-warning global_submit_btn m-0">Collect</button>
                 </td>
             </tr>
         </tbody>
