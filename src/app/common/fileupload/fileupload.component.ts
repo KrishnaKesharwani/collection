@@ -1,6 +1,7 @@
 import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-
+import { DynamicWidthDirective } from '../directive/dynamic-width.directive';
+import { CommonComponentsModule } from '../common-components.module';
 @Component({
   selector: 'app-fileupload',
   templateUrl: './fileupload.component.html',
@@ -17,7 +18,8 @@ export class FileuploadComponent {
   @Output() fileChange = new EventEmitter<File | null>();
   value: File | null = null;
   @Input() accept: any;
-
+  @Input() uploadType: any = 'file';
+  @Input() imageSize: any;
   // ControlValueAccessor methods
   onChange = (file: File | null) => { };
   onTouched = () => { };

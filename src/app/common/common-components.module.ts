@@ -18,6 +18,7 @@ import { NoRecordFoundComponent } from './no-record-found/no-record-found.compon
 import { PageLoaderComponent } from './page-loader/page-loader.component';
 import { GlobalGoogleChartsComponent } from './global-google-charts/global-google-charts.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { DynamicWidthDirective } from './directive/dynamic-width.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
     ButtonLoaderComponent,
     NoRecordFoundComponent,
     PageLoaderComponent,
-    GlobalGoogleChartsComponent
+    GlobalGoogleChartsComponent,
+    DynamicWidthDirective
   ],
   imports: [
     CommonModule,
@@ -43,6 +45,6 @@ import { GoogleChartsModule } from 'angular-google-charts';
   ],
   exports: [InputFieldValidationComponent, TextareaComponent, DropdwonComponent,
     InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent,
-    ButtonLoaderComponent, NoRecordFoundComponent, PageLoaderComponent, GlobalGoogleChartsComponent]
+    ButtonLoaderComponent, NoRecordFoundComponent, PageLoaderComponent, GlobalGoogleChartsComponent, DynamicWidthDirective]
 })
 export class CommonComponentsModule { }
