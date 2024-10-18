@@ -31,6 +31,13 @@
             <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
             <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
                 [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'details'"></app-textarea>
+            <div class="col-sm-6 col-lg-6 col-xs-12">
+                <div class="file_upload_block global_textbox_block">
+                    <label class="m-0">Documents</label>
+                    <app-fileupload class="fileupload" formControlName="document" name="document"
+                        (fileChange)="onFileChange($event)"></app-fileupload>
+                </div>
+            </div>
         </div>
     </form>
 </div>

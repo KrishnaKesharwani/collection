@@ -1,8 +1,19 @@
+<!-- <mat-form-field class="global_dropdown" appearance="outline">
+    <mat-label>{{field}}</mat-label>
+    <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+    <mat-select [(value)]="value" (selectionChange)="onSelectionChange($event.value)">
+        <mat-option *ngFor="let option of options" [value]="option">
+            {{ option }}
+        </mat-option>
+    </mat-select>
+</mat-form-field> -->
+
+
 <mat-form-field class="global_dropdown" appearance="outline">
     <mat-label>{{field}}</mat-label>
     <!-- <mat-label>{{value}}</mat-label> -->
     <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
-    <mat-select [(value)]="value" (selectionChange)="onSelectionChange($event.value)">
+    <mat-select [(value)]="value" (selectionChange)="onChange($event.value)">
         <mat-option *ngFor="let option of options" [value]="option">
             {{ option }}
         </mat-option>

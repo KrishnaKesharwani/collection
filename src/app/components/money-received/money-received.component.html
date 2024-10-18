@@ -9,8 +9,9 @@
                         </div>
                         <div class="col text-right pr-1 datewith_search_block calender_withsearch">
                             <div class="list_calender_filter">
-                                <label>Filter Date :</label>
-                                <input type="date" placeholder="Select date" class="form-control" />
+                                <app-input [isDateField]="true" label="Filter Date" [(value)]="filter_date"
+                                    [isRequired]="true" [className]="'bottom_error_msg'" [key]="'filter_date'"
+                                    [form]="filterDateForm" [displayMsg]="'End date is required'"></app-input>
                             </div>
                             <div class="listsearch-topblock search_withaddbtn pr-0">
                                 <div class="search-box">

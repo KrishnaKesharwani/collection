@@ -12,11 +12,11 @@
             <tr>
                 <td><b>Profile Image :</b></td>
                 <td>
-                    <div class="list_image_block float-left" *ngIf="data.image == null && data.image ==''">
+                    <div class="list_image_block float-left" *ngIf="data.image == null">
                         <img src="assets/imgs/default-pic.png">
                     </div>
                     <div class="list_image_block float-left">
-                        <img src="data.image">
+                        <img src="{{data.image}}">
                     </div>
                 </td>
             </tr>

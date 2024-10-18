@@ -5,6 +5,7 @@ import { VpdateStatusComponent } from './vpdate-status/vpdate-status.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-money-received',
@@ -17,10 +18,14 @@ export class MoneyReceivedComponent {
   customerData: any[] = [];
   filteredDataarray: any[] = [];
   loader = false;
-  constructor(public _customActionService: CustomActionsService, private actionService: ActionService) { }
+  filter_date!: string | Date | null;
+  filterDateForm!: FormGroup;
+  constructor(public _customActionService: CustomActionsService, private actionService: ActionService, public fb: FormBuilder) { }
 
   ngOnInit() {
-
+    this.filterDateForm = this.fb.group({
+      filter_date: ['']
+    })
   }
 
 

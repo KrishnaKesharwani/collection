@@ -54,7 +54,8 @@ export class ProviderLoanComponent {
       end_date: ['', Validators.required],
       details: [''],
       loan_status: [''],
-      status: ['']
+      status: [''],
+      document: ['']
     });
 
     this.getActiveMmberList();
@@ -95,18 +96,50 @@ export class ProviderLoanComponent {
 
     if (this.providerLoanForm.valid) {
       this.loading = true
-      let obj = {
-        company_id: this.company_id,
-        customer_id: this.dataa.data.id,
-        ...this.providerLoanForm.value
+
+      const formData = new FormData();
+      const files = [
+        { name: 'document', file: this.providerLoanForm.get('document')?.value },
+
+      ];
+
+      // Convert files to base64 strings
+      files.map(({ name, file }) => {
+        return new Promise((resolve, reject) => {
+          if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              const base64String = reader.result as string; // Base64-encoded string
+              formData.append(name, base64String); // Append base64 string to FormData
+              resolve(true);
+            };
+            reader.onerror = () => reject(new Error(`Failed to read ${name}`));
+            reader.readAsDataURL(file); // Read the file as a base64 string
+          } else {
+            resolve(true); // Resolve if no file
+          }
+        });
+      });
+
+      // Append other form values to FormData
+      Object.keys(this.providerLoanForm.value).forEach(key => {
+        if (!['document'].includes(key)) {
+          formData.append(key, this.providerLoanForm.value[key]);
+
+        }
+      });
+      formData.append('company_id', this.company_id)
+      formData.append('customer_id', this.dataa.data.id)
+      if (formData) {
+        this._service.provideLoan(formData).subscribe((data: any) => {
+          console.log(data)
+          debugger;
+          this.providerLoanForm.reset();
+          this._tostr.success(data.message, 'Success');
+
+
+        })
       }
-      this._service.provideLoan(obj).subscribe((data: any) => {
-        console.log(data)
-        this.providerLoanForm.reset();
-        this._tostr.success(data.message, 'Success');
-
-
-      })
       // this.dialog.closeAll();
     } else {
       this.providerLoanForm.markAllAsTouched()
@@ -143,4 +176,13 @@ export class ProviderLoanComponent {
       }
     }
   }
+
+  selectedFile: File | null = null;
+
+  onFileChange(file: File | null): void {
+    this.selectedFile = file;
+    // Handle the file as needed
+  }
+
+
 }

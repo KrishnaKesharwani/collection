@@ -18,5 +18,15 @@ export class LoanService {
     return this.httpClient.post(url, obj)
   }
 
+  getCustomerLoanList(obj: object) {
+    const url = `${this.apiUrl}/companycustomerloans`;
+    return this.httpClient.post(url, obj)
+  }
+
+  getMemberLoanList(obj: object) {
+    const url = `${this.apiUrl}/companycustomerloans`;
+    return this.httpClient.post(url, obj)
+  }
+
 
 }
