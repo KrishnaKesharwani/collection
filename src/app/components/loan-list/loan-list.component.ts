@@ -10,9 +10,10 @@ import { LoanService } from 'src/app/services/loan/loan.service';
   styleUrls: ['./loan-list.component.scss']
 })
 export class LoanListComponent {
-  loanListData: any;
+  loanListData: any[] = [];
   filteredDataarray: any;
   company_id: any;
+  loader: boolean = false;
 
   // columns = ['Loan No.', 'Customer No.', 'Logo', 'Name', 'Mobile', 'Assign', 'Loan Amt', 'Pending Amt', 'Status'];
   // loanData = [
@@ -43,15 +44,16 @@ export class LoanListComponent {
   }
 
 
-  // selectedTabIndex: number = 3;  // Default to 'Approved' tab
+  selectedTabIndex: number = 3;  // Default to 'Approved' tab
 
   listLoadType: any;  // Default to 'approved'
 
-  // tabLabels: string[] = ['running', 'pending', 'cancelled', 'approved'];
+  tabLabels: string[] = ['running', 'pending', 'cancelled', 'approved'];
 
-  onTabChange(event: any) {
-    // const listType = this.tabLabels[index];
-    this.listLoadType = event.target.value;
+  onTabChange(index: any) {
+    this.loader = true;
+    const listType = this.tabLabels[index];
+    this.listLoadType = listType;
 
     let obj = {
       company_id: this.company_id,
@@ -60,9 +62,14 @@ export class LoanListComponent {
     };
 
     this._service.getLoanList(obj).subscribe((data: any) => {
+
       this.loanListData = data.data;
-      debugger
+
       this._tostr.success(data.message, "Succes");
+      this.loader = false
+    }, error => {
+      this.loader = false;
+      this._tostr.error(error.error.message, 'Error');
 
     });
   }

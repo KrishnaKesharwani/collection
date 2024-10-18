@@ -92,7 +92,6 @@ export class ActionForLoanComponent {
   }
 
   onDateChange() {
-    debugger
     if (this.startDate && this.endDate) {
       const start = new Date(this.startDate);
       const end = new Date(this.endDate);
@@ -112,7 +111,7 @@ export class ActionForLoanComponent {
 
     }
     console.log(this.providerLoanForm.value)
-    debugger;
+
     console.log(this.providerLoanFormForCancelled.value)
     if (this.providerLoanForm.valid) {
       if (this.providerLoanForm.valid) {
@@ -131,7 +130,6 @@ export class ActionForLoanComponent {
           details: this.providerLoanForm.value.details,
           loan_status: this.providerLoanForm.value.loan_status,
         }
-        debugger
         this._service.provideLoan(obj).subscribe((data: any) => {
           console.log(data)
           this.providerLoanForm.reset();

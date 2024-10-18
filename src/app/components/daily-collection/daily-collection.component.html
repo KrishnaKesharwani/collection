@@ -8,7 +8,9 @@
                             <h3 class="mb-0">Deposit List</h3>
                         </div>
                         <div class="col p-0 head_details">
-                            <div class="total_block bg-primary mr-2"><span>Available Amount</span><b>5,30,100.00</b>
+                            <div class="total_block bg-warning mr-2"><span>Daily Amount</span><b>5,30,100.00</b>
+                            </div>
+                            <div class="total_block bg-primary mr-2"><span>Total Amount</span><b>5,30,100.00</b>
                             </div>
                             <div class="total_block bg-success"><span>Total Customer</span><b>150</b></div>
                         </div>
@@ -62,7 +64,8 @@
                         </tr>
                         <tr *ngIf="customerData.length == 0 && !loader">
                             <td colspan="8">
-                                <app-no-record-found type="table" notext="You have not added any deposit account."></app-no-record-found>
+                                <app-no-record-found type="table"
+                                    notext="You have not added any deposit account."></app-no-record-found>
                             </td>
                         </tr>
                         <ng-container *ngIf="customerData.length != 0 && !loader">

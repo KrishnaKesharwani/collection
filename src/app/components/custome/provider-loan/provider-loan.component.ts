@@ -75,7 +75,7 @@ export class ProviderLoanComponent {
     })
   }
   onDateChange() {
-    debugger
+
     if (this.startDate && this.endDate) {
       const start = new Date(this.startDate);
       const end = new Date(this.endDate);
