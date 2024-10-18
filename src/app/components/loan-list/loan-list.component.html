@@ -8,34 +8,180 @@
                 <div class="col text-right pr-1 datewith_search_block">
                     <div class="listsearch-topblock search_withaddbtn">
                         <div class="search-box">
-                            <input type="search" placeholder="Search" class="searchtxt" />
+                            <input type="text" placeholder="Search..." (keyup)="searchTable($event)"
+                                class="searchtxt" />
                             <i class="mdi mdi-magnify"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <mat-tab-group class="global_tabs_group">
-            <mat-tab label="Running" class="global_tabs" (click)="loanList('running')">
+        <mat-tab-group class="global_tabs_group" (selectedIndexChange)="onTabChange($event)">
+            <mat-tab label="Running" class="global_tabs">
                 <div class="tabs_table_container">
-                    <app-loan-list-view [listLoadType]="listLoadType"></app-loan-list-view>
+                    <table class="table align-items-center table-flush mydata-table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="col sorting_apply id_col">
+                                    <span>Loan
+                                        No.</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col sorting_apply id_col">
+                                    <span>Customer No.</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col profile_col">Profile</th>
+                                <th class="col sorting_apply">
+                                    <span>Name</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col">Assign</th>
+                                <th class="col mobile_col">Mobile</th>
+                                <th class="col amount_col">Loan
+                                    Amt</th>
+                                <th class="col amount_col">Pending
+                                    Amt
+                                </th>
+                                <th class="col action_col">Action</th>
+                            </tr>
+                        </thead>
+
+                    </table>
                 </div>
             </mat-tab>
-            <mat-tab label="Pending" class="global_tabs" (click)="loanList('pending')">
+            <mat-tab label="Pending" class="global_tabs">
                 <div class="tabs_table_container">
-                    <app-loan-list-view [listLoadType]="listLoadType"></app-loan-list-view>
+                    <table class="table align-items-center table-flush mydata-table">
+                        <thead class="thead-light">
+                            <tr>
+
+                                <th class="col sorting_apply id_col">
+                                    <span>Customer No.</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col profile_col">Profile</th>
+                                <th class="col sorting_apply">
+                                    <span>Name</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+
+                                <th class="col mobile_col">Mobile</th>
+                                <th class="col date_col">Apply Date</th>
+                                <th class="col type_col">Apply Type</th>
+                                <th class="col amount_col">Amount</th>
+                                <th class="col status_col">Status</th>
+
+                                <th class="col action_col">Action</th>
+                            </tr>
+                        </thead>
+
+                    </table>
                 </div>
             </mat-tab>
-            <mat-tab label="Cancelled" class="global_tabs" (click)="loanList('cancelled')">
+            <mat-tab label="Cancelled" class="global_tabs">
                 <div class="tabs_table_container">
-                    <app-loan-list-view [listLoadType]="listLoadType"></app-loan-list-view>
+                    <table class="table align-items-center table-flush mydata-table">
+                        <thead class="thead-light">
+                            <tr>
+
+                                <th class="col sorting_apply id_col">
+                                    <span>Customer No.</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col profile_col">Profile</th>
+                                <th class="col sorting_apply">
+                                    <span>Name</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+
+                                <th class="col mobile_col">Mobile</th>
+                                <th class="col date_col">Apply Date</th>
+                                <th class="col type_col">Apply Type</th>
+                                <th class="col amount_col">Amount</th>
+                                <th class="col status_col">Status</th>
+
+                            </tr>
+                        </thead>
+
+                    </table>
                 </div>
             </mat-tab>
-            <mat-tab label="Approved" class="global_tabs" (click)="loanList('approved')">
+            <mat-tab label="Approved" class="global_tabs">
                 <div class="tabs_table_container">
-                    <app-loan-list-view [listLoadType]="listLoadType"></app-loan-list-view>
+                    <table class="table align-items-center table-flush mydata-table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="col sorting_apply id_col">
+                                    <span>Loan
+                                        No.</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col sorting_apply id_col">
+                                    <span>Customer No.</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col profile_col">Profile</th>
+                                <th class="col sorting_apply">
+                                    <span>Name</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col">Assign</th>
+                                <th class="col mobile_col">Mobile</th>
+                                <th class="col amount_col">Loan
+                                    Amt</th>
+                                <th class="col amount_col">Pending
+                                    Amt
+                                </th>
+                                <th class="col action_col">Action</th>
+                            </tr>
+                        </thead>
+
+                    </table>
                 </div>
             </mat-tab>
         </mat-tab-group>
+
+
     </div>
 </div>

@@ -1,9 +1,10 @@
-import { Component, forwardRef, Inject, Input } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Inject, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NG_VALUE_ACCESSOR, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MaterialModule } from 'src/app/material.module';
 import { CommonComponentService } from '../common-component.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSelectChange } from '@angular/material/select';
 @Component({
   selector: 'app-dropdwon',
   templateUrl: './dropdwon.component.html',
@@ -26,6 +27,7 @@ export class DropdwonComponent {
   // @Input() name!: string;
   value!: string;
   options: string[] = [];
+  @Output() selectionChange = new EventEmitter<string>();
 
   constructor(private dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public data: { field_value: string, value: string }) { }
 
@@ -35,6 +37,10 @@ export class DropdwonComponent {
     });
   }
 
+
+  onSelectionChange(event: string) {
+    this.selectionChange.emit(event); // Emit only the selected value, not the event object
+  }
   onChange = (value: string) => { };
   onTouched = () => { };
 

@@ -2,22 +2,63 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container">
+<div class="dialoge_middle_container full_height_cover small_popup">
     <div class="row">
-
+        <!-- <div class="left_text">Customer Number: </div> -->
         <div class="col-sm-12">
-            <app-dropdwon key="status" field="Status"></app-dropdwon>
+            <app-dropdwon formControlName="status" name="status" key="status" field="Status"
+                (selectionChange)="onStatusChange($event)"></app-dropdwon>
         </div>
-        <div class="col-sm-12">
-            <mat-form-field class="global_textarea_block" appearance="outline">
-                <mat-label>Message For Loan</mat-label>
-                <textarea matInput></textarea>
-            </mat-form-field>
+
+        <div class="col-sm-12" *ngIf="selectedStatus == 'Cancelled'">
+            <form focusInvalidInput [formGroup]="providerLoanFormForCancelled">
+                <div class="modal_insert">
+                    <mat-form-field class="global_textarea_block" appearance="outline">
+                        <mat-label>Message For Loan</mat-label>
+                        <textarea matInput formControlName="details"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12" *ngIf="selectedStatus == 'Approved'">
+            <form focusInvalidInput [formGroup]="providerLoanForm">
+                <div class="modal_insert">
+                    <!-- <app-input [isDateField]="false" label="Customer Name" [(value)]="customername" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'customername'"
+                        [displayMsg]="'Customer Name is required'"></app-input> -->
+                    <app-input [isDateField]="false" [disabled]=true label="Loan Amount" [(value)]="loan_amount"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                        [key]="'loan_amount'" [displayMsg]="'Loan amount is required'"></app-input>
+                    <app-input [isDateField]="false" label="Installment Amount" [(value)]="installment_amount"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                        [key]="'installment_amount'" [displayMsg]="'Installment is required'"></app-input>
+
+                    <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
+                        (valueChange)="onDateChange()" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                        [key]="'start_date'" [displayMsg]="'Start date is required'"></app-input>
+                    <app-input [isDateField]="true" label="End date" [(value)]="end_date" [isRequired]="true"
+                        (valueChange)="onDateChange()" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                        [key]="'end_date'" [displayMsg]="'End date is required'"></app-input>
+                    <app-input [isDateField]="false" [disabled]=true label="No. Of Days" [(value)]="no_of_days"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                        [key]="'no_of_days'" [displayMsg]="'No. of days is required'"></app-input>
+                    <app-dropdwon key="assingmember" field="Assign Member" formControlName="assigned_member_id"
+                        name="assigned_member_id"></app-dropdwon>
+                    <app-dropdwon key="loanstatus" field="Loan Status" formControlName="loan_status"
+                        name="loan_status"></app-dropdwon>
+
+                    <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
+                        [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'details'"></app-textarea>
+                </div>
+            </form>
         </div>
     </div>
-
-    <div class="dialoge_button_container">
-        <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-        <button class="global_submit_btn" mat-flat-button (click)="send()">Sent Message</button>
-    </div>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+    <button class="global_submit_btn" mat-flat-button (click)="submit()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span>Submit</span>
+    </button>
 </div>

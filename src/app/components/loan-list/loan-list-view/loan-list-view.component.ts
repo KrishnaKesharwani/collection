@@ -18,12 +18,17 @@ import { LoanService } from 'src/app/services/loan/loan.service';
 export class LoanListViewComponent {
   @Input() listLoadType: any;
   filteredDataarray: any[] = [];
-  loanDataList: any[] = [];  
+  loanDataList: any[] = [];
   company_id: any;
   loader = false;
   user_type: any;
-
+  // @Input() listLoadType: string;
   constructor(public _customActionService: CustomActionsService, private actionService: ActionService, public _loanService: LoanService) { }
+
+  ngOnChanges() {
+    console.log('listLoadType in child component:', this.listLoadType);
+    // Perform any logic based on the listLoadType value here
+  }
 
   ngOnInit() {
     const data = sessionStorage.getItem('CurrentUser');
@@ -42,7 +47,7 @@ export class LoanListViewComponent {
       loan_status: this.listLoadType,
       status: 'active'
     }
-    this._loanService.getList(obj).subscribe((response: any) => {
+    this._loanService.getLoanList(obj).subscribe((response: any) => {
       if (response && Array.isArray(response.data)) {
         this.loanDataList = response.data;
         this.filteredDataarray = this.loanDataList;
@@ -147,5 +152,5 @@ export class LoanListViewComponent {
     }
 
   }
-  
+
 }

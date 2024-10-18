@@ -1,4 +1,7 @@
 import { Component, inject } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
+import { LoanService } from 'src/app/services/loan/loan.service';
 
 
 @Component({
@@ -7,6 +10,9 @@ import { Component, inject } from '@angular/core';
   styleUrls: ['./loan-list.component.scss']
 })
 export class LoanListComponent {
+  loanListData: any;
+  filteredDataarray: any;
+  company_id: any;
 
   // columns = ['Loan No.', 'Customer No.', 'Logo', 'Name', 'Mobile', 'Assign', 'Loan Amt', 'Pending Amt', 'Status'];
   // loanData = [
@@ -25,14 +31,64 @@ export class LoanListComponent {
   // loanDataList: any[] = [];
   // loader: any;
   // constructor(public _customActionService: CustomActionsService, private actionService: ActionService, public _loanService: LoanService) { }
+  constructor(public _customActionService: CustomActionsService, public _service: LoanService, public _tostr: ToastrService) { }
 
   ngOnInit() {
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+      // this.user_type = userData.user_type;
+    }
+  }
+
+
+  // selectedTabIndex: number = 3;  // Default to 'Approved' tab
+
+  listLoadType: any;  // Default to 'approved'
+
+  // tabLabels: string[] = ['running', 'pending', 'cancelled', 'approved'];
+
+  onTabChange(event: any) {
+    // const listType = this.tabLabels[index];
+    this.listLoadType = event.target.value;
+
+    let obj = {
+      company_id: this.company_id,
+      loan_status: this.listLoadType,
+      status: 'Active'
+    };
+
+    this._service.getLoanList(obj).subscribe((data: any) => {
+      this.loanListData = data.data;
+      debugger
+      this._tostr.success(data.message, "Succes");
+
+    });
+  }
+
+  isAsc: boolean = true;
+  sortTableData(column: string) {
+    if (this.isAsc) {
+      this.isAsc = false;
+    } else {
+      this.isAsc = true;
+    }
+    this.filteredDataarray = this._customActionService.sortData(column, this.loanListData);
+
 
   }
-  listLoadType: any = 'paid';
-  loanList(listType: any) {
-    debugger;
-    this.listLoadType= listType;
-  }
 
+  searchColumns: any[] = ['name', 'status', 'mobile', 'email', 'customer_no'];
+  searchTerm: string = '';
+  searchTable(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.loanListData;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
+
+  }
 }

@@ -21,6 +21,7 @@ import { UserDashboardModule } from '../user-dashboard/user-dashboard.module';
 import { ActionForLoanComponent } from './action-for-loan/action-for-loan.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AdminDashboardComponent, MassageForApplierComponent, ActionForLoanComponent, ViewDetailsComponent],
   imports: [
@@ -29,7 +30,9 @@ import { CommonComponentsModule } from 'src/app/common/common-components.module'
     AdminDashboardRoutingModule,
 
     MaterialModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    ReactiveFormsModule,
+
   ],
   exports: [AdminDashboardComponent]
 })
