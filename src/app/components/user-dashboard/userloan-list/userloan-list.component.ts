@@ -42,7 +42,7 @@ export class UserloanListComponent {
 
 
   getCustomerLoanList() {
-    debugger
+
     this.loader = true;
     let obj = {
       company_id: this.company_id,
@@ -62,7 +62,7 @@ export class UserloanListComponent {
   }
 
   getMemberLoanList() {
-    debugger
+
     this.loader = true;
     let obj = {
       company_id: this.company_id,

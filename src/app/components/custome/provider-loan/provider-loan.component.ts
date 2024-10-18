@@ -133,7 +133,7 @@ export class ProviderLoanComponent {
       if (formData) {
         this._service.provideLoan(formData).subscribe((data: any) => {
           console.log(data)
-          debugger;
+
           this.providerLoanForm.reset();
           this._tostr.success(data.message, 'Success');
 
