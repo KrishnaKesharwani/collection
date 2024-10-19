@@ -7,57 +7,79 @@
         <tbody>
             <tr>
                 <td><b>Loan No.:</b></td>
-                <td>RK-101</td>
+                <td>{{data.loan_no}}</td>
             </tr>
             <tr>
                 <td><b>Customer No.:</b></td>
-                <td>RK-101</td>
+                <td>{{data.customer?.customer_no}}</td>
             </tr>
             <tr>
                 <td><b>Profile Image :</b></td>
                 <td>
-                    <div class="list_image_block float-left">
+                    <div class="list_image_block float-left" *ngIf="data.customer?.image == null">
                         <img src="assets/imgs/default-pic.png">
+                    </div>
+                    <div class="list_image_block float-left" *ngIf="data.customer?.image != null">
+                        <img src="{{data.customer.image}}">
                     </div>
                 </td>
             </tr>
             <tr>
                 <td><b>Customer Name :</b></td>
-                <td>{{loanDetails.member_fname}}</td>
+                <td>{{data.customer?.name}}</td>
             </tr>
 
-            <tr>
-                <td><b>Mobile :</b></td>
-                <td>{{loanDetails.member_mobile}}</td>
-            </tr>
 
-            <tr>
-                <td><b>Aadhar No. :</b></td>
-                <td>626362650548</td>
-            </tr>
+
             <tr>
                 <td><b>Assign Member :</b></td>
-                <td>12</td>
+                <td>{{data.member?.name}}</td>
             </tr>
             <tr>
-                <td><b>Loan Start Date :</b></td>
-                <td>12-Mar-2021</td>
+                <td><b>Start Date :</b></td>
+                <td>{{data?.start_date}}</td>
+            </tr>
+            <tr>
+                <td><b>End Date :</b></td>
+                <td>{{data?.end_date}}</td>
+            </tr>
+            <tr>
+                <td><b>Applied Name :</b></td>
+                <td>{{data?.applied_user_name}}</td>
             </tr>
             <tr>
                 <td><b>Loan Amount :</b></td>
-                <td>12</td>
+                <td>{{data?.loan_amount}}</td>
+            </tr>
+            <tr>
+                <td><b>Installment Amount :</b></td>
+                <td>{{data?.installment_amount}}</td>
             </tr>
             <tr>
                 <td><b>Pending Amount :</b></td>
-                <td>10</td>
+                <td>{{data?.remaining_amount}}</td>
+            </tr>
+            <tr>
+                <td><b>Loan Status Message :</b></td>
+                <td>{{data?.loan_status_message}}</td>
+            </tr>
+            <tr>
+                <td><b>Loan Status :</b></td>
+                <td><span class="badge bg-success text-white"
+                        *ngIf="data?.loan_status == 'approved'">{{data?.loan_status}}</span>
+                    <span class="badge bg-danger text-white "
+                        *ngIf="data?.loan_status == 'cancelled'">{{data?.loan_status}}</span>
+                </td>
             </tr>
             <tr>
                 <td><b>Status :</b></td>
-                <td><span class="badge bg-success text-white">Active</span></td>
+                <td><span class="badge bg-success text-white" *ngIf="data.status == 'active'">{{data.status}}</span>
+                    <span class="badge bg-danger text-white " *ngIf="data.status == 'inactive'">{{data.status}}</span>
+                </td>
             </tr>
             <tr>
-                <td><b>Address :</b></td>
-                <td>Home no. 72, bajrang nagar jabalpur </td>
+                <td><b>Details :</b></td>
+                <td>{{data?.details}}</td>
             </tr>
         </tbody>
     </table>

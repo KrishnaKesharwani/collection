@@ -6,9 +6,11 @@
                     <h3 class="mb-0">Loan List For Status</h3>
                 </div>
                 <div class="col p-0 head_details">
-                    <div class="total_block bg-primary mr-2"><span>Pending Amount</span><b>5,30,100.00</b>
+                    <div class="total_block bg-primary mr-2"><span>Pending
+                            Amount</span><b>{{total_remaining_amount}}</b>
                     </div>
-                    <div class="total_block bg-success"><span>Total Customer</span><b>150</b></div>
+                    <div class="total_block bg-success"><span>Total
+                            Customer</span><b>{{total_cusotomer}}</b></div>
                 </div>
                 <div class="col text-right pr-1 datewith_search_block">
                     <div class="listsearch-topblock search_withaddbtn">
@@ -61,23 +63,23 @@
                                 <th class="col amount_col">Pending
                                     Amt
                                 </th>
-                                <th class="col status_col">Status</th>
+
                                 <th class="col action_col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngIf="loader">
-                                <td colspan="9">
+                                <td colspan="8">
                                     <app-page-loader></app-page-loader>
                                 </td>
                             </tr>
-                            <tr *ngIf="loanListData.length == 0 && !loader">
-                                <td colspan="9">
+                            <tr *ngIf="runningLoanListData.length == 0 && !loader">
+                                <td colspan="8">
                                     <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
                                 </td>
                             </tr>
-                            <ng-container *ngIf="loanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of loanListData">
+                            <ng-container *ngIf="runningLoanListData.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of runningLoanListData">
                                     <td class="col">{{item.loan_no}}</td>
                                     <td class="col">{{item.customer?.customer_no}}</td>
                                     <td class="col" data-name="Profile">
@@ -97,12 +99,7 @@
                                     <td class="col" data-name="Loan Amount ">{{item.loan_amount}}</td>
 
                                     <td class="col" data-name="Pending Amt">{{item.remaining_amount}}</td>
-                                    <td class="col text-center" data-name="Status">
-                                        <span class="badge bg-success text-white"
-                                            *ngIf="item.status == 'active'">{{item.loan_status}}</span>
-                                        <span class="badge bg-danger text-white "
-                                            *ngIf="item.status == 'inactive'">{{item.loan_status}}</span>
-                                    </td>
+
                                     <td class="action_col" data-name="Action">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
@@ -110,30 +107,11 @@
                                                 <mat-icon>more_vert</mat-icon>
                                             </button>
                                             <mat-menu #menu="matMenu">
-                                                <!-- <div class="table_actionmenu">
-                    
-                    
-                                                <button mat-menu-item (click)="openDialogCollectionHistory()">
-                                                    <i class="mdi mdi-history mr-2"></i> <span>
-                                                        Collection History</span>
-                                                </button>
-                                                <button mat-menu-item (click)="openDialogAssignMember()">
-                                                    <i class="mdi mdi-account-check-outline mr-2"></i> <span>
-                                                        Assign Member</span>
-                                                </button>
-                                                <button mat-menu-item (click)="openDialogChangeMember()">
-                                                    <i class="mdi mdi-account-switch-outline mr-2"></i> <span>
-                                                        Change Member</span>
-                                                </button>
-                                                <button mat-menu-item (click)="openDialogViewDetail(item)">
-                                                    <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
-                                                </button>
-                    
-                                                <button mat-menu-item (click)="openDialogChangeStatus('1ms', '5ms',item)">
-                                                    <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                    <span>Change Status</span>
-                                                </button>
-                                            </div> -->
+                                                <div class="table_actionmenu">
+                                                    <button mat-menu-item (click)="openDialogMoreDetail(item)">
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
+                                                    </button>
+                                                </div>
                                             </mat-menu>
 
                                         </div>
@@ -185,23 +163,23 @@
                                 <th class="col amount_col">Pending
                                     Amt
                                 </th>
-                                <th class="col status_col">Status</th>
+
                                 <th class="col action_col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngIf="loader">
-                                <td colspan="9">
+                                <td colspan="8">
                                     <app-page-loader></app-page-loader>
                                 </td>
                             </tr>
-                            <tr *ngIf="loanListData.length == 0 && !loader">
-                                <td colspan="9">
+                            <tr *ngIf="approvedLoanListData.length == 0 && !loader">
+                                <td colspan="8">
                                     <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
                                 </td>
                             </tr>
-                            <ng-container *ngIf="loanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of loanListData">
+                            <ng-container *ngIf="approvedLoanListData.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of approvedLoanListData">
                                     <td class="col">{{item.loan_no}}</td>
                                     <td class="col">{{item.customer?.customer_no}}</td>
                                     <td class="col" data-name="Profile">
@@ -221,12 +199,7 @@
                                     <td class="col" data-name="Loan Amount ">{{item.loan_amount}}</td>
 
                                     <td class="col" data-name="Pending Amt">{{item.remaining_amount}}</td>
-                                    <td class="col text-center" data-name="Status">
-                                        <span class="badge bg-success text-white"
-                                            *ngIf="item.status == 'active'">{{item.loan_status}}</span>
-                                        <span class="badge bg-danger text-white "
-                                            *ngIf="item.status == 'inactive'">{{item.loan_status}}</span>
-                                    </td>
+
                                     <td class="action_col" data-name="Action">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
@@ -234,30 +207,11 @@
                                                 <mat-icon>more_vert</mat-icon>
                                             </button>
                                             <mat-menu #menu="matMenu">
-                                                <!-- <div class="table_actionmenu">
-        
-        
-                                    <button mat-menu-item (click)="openDialogCollectionHistory()">
-                                        <i class="mdi mdi-history mr-2"></i> <span>
-                                            Collection History</span>
-                                    </button>
-                                    <button mat-menu-item (click)="openDialogAssignMember()">
-                                        <i class="mdi mdi-account-check-outline mr-2"></i> <span>
-                                            Assign Member</span>
-                                    </button>
-                                    <button mat-menu-item (click)="openDialogChangeMember()">
-                                        <i class="mdi mdi-account-switch-outline mr-2"></i> <span>
-                                            Change Member</span>
-                                    </button>
-                                    <button mat-menu-item (click)="openDialogViewDetail(item)">
-                                        <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
-                                    </button>
-        
-                                    <button mat-menu-item (click)="openDialogChangeStatus('1ms', '5ms',item)">
-                                        <i class="mdi mdi-account-off-outline mr-2"></i>
-                                        <span>Change Status</span>
-                                    </button>
-                                </div> -->
+                                                <div class="table_actionmenu">
+                                                    <button mat-menu-item (click)="openDialogMoreDetail(item)">
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
+                                                    </button>
+                                                </div>
                                             </mat-menu>
 
                                         </div>
@@ -299,7 +253,7 @@
                                 <th class="col date_col">Apply Date</th>
                                 <th class="col type_col">Apply Type</th>
                                 <th class="col amount_col">Amount</th>
-                                <th class="col status_col">Status</th>
+                                <th class="col action_col">Action</th>
 
                             </tr>
                         </thead>
@@ -309,13 +263,13 @@
                                     <app-page-loader></app-page-loader>
                                 </td>
                             </tr>
-                            <tr *ngIf="loanListData.length == 0 && !loader">
+                            <tr *ngIf="pendingLoanListData.length == 0 && !loader">
                                 <td colspan="7">
                                     <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
                                 </td>
                             </tr>
-                            <ng-container *ngIf="loanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of loanListData">
+                            <ng-container *ngIf="pendingLoanListData.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of pendingLoanListData">
 
                                     <td class="col">{{item.customer?.customer_no}}</td>
                                     <td class="col" data-name="Profile">
@@ -336,13 +290,26 @@
 
                                     <td class="col" data-name="Apply Type">{{item?.applied_user_name}}</td>
                                     <td class="col" data-name="Amount">{{item.remaining_amount}}</td>
-                                    <td class="col text-center" data-name="Status">
-                                        <span class="badge bg-success text-white"
-                                            *ngIf="item.status == 'active'">{{item.loan_status}}</span>
-                                        <span class="badge bg-danger text-white "
-                                            *ngIf="item.status == 'inactive'">{{item.loan_status}}</span>
-                                    </td>
 
+                                    <td class="action_col" data-name="Action">
+                                        <div placement="bottom-right">
+                                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                                                aria-label="Example icon-button with a menu">
+                                                <mat-icon>more_vert</mat-icon>
+                                            </button>
+                                            <mat-menu #menu="matMenu">
+                                                <div class="table_actionmenu">
+                                                    <button mat-menu-item (click)="openDialogMoreDetail(item)">
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
+                                                    </button>
+                                                </div>
+                                            </mat-menu>
+
+                                        </div>
+
+
+
+                                    </td>
                                 </tr>
                             </ng-container>
                         </tbody>
@@ -383,13 +350,13 @@
                                     <app-page-loader></app-page-loader>
                                 </td>
                             </tr>
-                            <tr *ngIf="loanListData.length == 0 && !loader">
+                            <tr *ngIf="cancelledLoanListData.length == 0 && !loader">
                                 <td colspan="7">
                                     <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
                                 </td>
                             </tr>
-                            <ng-container *ngIf="loanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of loanListData">
+                            <ng-container *ngIf="cancelledLoanListData.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of cancelledLoanListData">
 
                                     <td class="col">{{item.customer?.customer_no}}</td>
                                     <td class="col" data-name="Profile">
@@ -410,11 +377,25 @@
 
                                     <td class="col" data-name="Apply Type">{{item?.applied_user_name}}</td>
                                     <td class="col" data-name="Amount">{{item.remaining_amount}}</td>
-                                    <td class="col text-center" data-name="Status">
-                                        <span class="badge bg-success text-white"
-                                            *ngIf="item.status == 'active'">{{item.loan_status}}</span>
-                                        <span class="badge bg-danger text-white "
-                                            *ngIf="item.status == 'inactive'">{{item.loan_status}}</span>
+                                    <td class="action_col" data-name="Action">
+                                        <div placement="bottom-right">
+                                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                                                aria-label="Example icon-button with a menu">
+                                                <mat-icon>more_vert</mat-icon>
+                                            </button>
+                                            <mat-menu #menu="matMenu">
+                                                <div class="table_actionmenu">
+                                                    <button mat-menu-item (click)="openDialogMoreDetail(item)">
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
+                                                    </button>
+                                                </div>
+
+                                            </mat-menu>
+
+                                        </div>
+
+
+
                                     </td>
 
                                 </tr>
@@ -466,13 +447,13 @@
                                     <app-page-loader></app-page-loader>
                                 </td>
                             </tr>
-                            <tr *ngIf="loanListData.length == 0 && !loader">
+                            <tr *ngIf="completedLoanListData.length == 0 && !loader">
                                 <td colspan="8">
                                     <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
                                 </td>
                             </tr>
-                            <ng-container *ngIf="loanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of loanListData">
+                            <ng-container *ngIf="completedLoanListData.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of completedLoanListData">
                                     <td class="col">{{item.loan_no}}</td>
                                     <td class="col">{{item.customer?.customer_no}}</td>
                                     <td class="col" data-name="Profile">
@@ -496,7 +477,12 @@
                                             </button>
                                             <mat-menu #menu="matMenu">
                                                 <div class="table_actionmenu">
-                                                    <button mat-menu-item (click)="completeLoanHistory(item)">
+
+                                                    <button mat-menu-item (click)="openDialogMoreDetail(item)">
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
+                                                    </button>
+
+                                                    <button mat-menu-item (click)="openDialogCompleteLoanHistory(item)">
                                                         <i class="mdi mdi-eye mr-2"></i><span>
                                                             Collection History</span>
                                                     </button>

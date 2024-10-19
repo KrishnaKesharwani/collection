@@ -51,7 +51,9 @@
             </tr>
             <tr>
                 <td><b>Status :</b></td>
-                <td><span class="badge bg-success text-white">{{data.status}}</span></td>
+                <td><span class="badge bg-success text-white" *ngIf="data.status == 'active'">{{data.status}}</span>
+                    <span class="badge bg-danger text-white " *ngIf="data.status == 'inactive'">{{data.status}}</span>
+                </td>
             </tr>
             <tr>
                 <td><b>Address :</b></td>

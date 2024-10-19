@@ -193,14 +193,20 @@ export class AddMemberComponent {
     if (this.dataa?.data) {
 
       this.memberForm.patchValue({
-        ...this.dataa.data,
-        member_login_id: this.dataa.data.member_no,
-        status: this.dataa.data.status,
-        password: this.dataa.data.user?.password_hint
+        ...this.dataa.data
+        // member_login_id: this.dataa.data.member_no,
+        // status: this.dataa.data.status,
+        // password: this.dataa.data.user?.password_hint
       });
+      const status = this.dataa?.data.status;
 
+      if (status == 'active') {
+        this.dropdownService.setOptions('status', [status, 'inactive']);
+      } else {
+        this.dropdownService.setOptions('status', [status, 'active']);
+      }
 
-      this.cdr.detectChanges();
+      // this.cdr.detectChanges();
 
     }
 

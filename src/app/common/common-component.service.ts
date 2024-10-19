@@ -10,6 +10,7 @@ export class CommonComponentService {
   dropdownOptions$ = this.dropdownOptionsSubject.asObservable();
 
   setOptions(key: string, options: string[]) {
+
     const currentOptions = this.dropdownOptionsSubject.value;
     this.dropdownOptionsSubject.next({ ...currentOptions, [key]: options });
   }
