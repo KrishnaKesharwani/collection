@@ -22,7 +22,6 @@
                 <th class="col">Amount</th>
                 <th class="col">Last Received</th>
                 <th class="col status_col">Status</th>
-                <th class="col action_col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -42,10 +41,9 @@
                 <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>{{item.amount}}</td>
                 <td class="col"><small>{{item.receive_date}}</small></td>
                 <td class="col text-center">
-                    <div class="badge bg-warning text-white">-</div>
+                    <div class="badge bg-success text-white">Paid</div>
                 </td>
-                <td class="col text-center"><button mat-raised-button routerLink="/paid_data_entry"
-                        class="btn btn-warning global_submit_btn m-0">Collect</button></td>
+
             </tr>
 
         </tbody>

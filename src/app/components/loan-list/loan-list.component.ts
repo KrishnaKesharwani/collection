@@ -35,12 +35,14 @@ export class LoanListComponent {
       this.company_id = userData.company_id;
       // this.user_type = userData.user_type;
     }
+
+    this.onTabChange(this.selectedTabIndex);
   }
 
 
-  selectedTabIndex: number = 1;  // Default to 'Approved' tab
+  selectedTabIndex: number = 0;  // Default to 'Approved' tab
 
-  listLoadType: any;  // Default to 'approved'
+  listLoadType: any = 'running';  // Default to 'approved'
 
   tabLabels: string[] = ['running', 'approved', 'pending', 'cancelled', 'completed'];
 
