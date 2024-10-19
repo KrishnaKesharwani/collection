@@ -20,9 +20,13 @@
                         [displayMsg]="'amount is required.'"></app-input>
                     <!-- <input type="text" matInput placeholder="Amount" value="200" class="form-control"> -->
                     <div class="button_block">
-                        <div></div>
-                        <button mat-raised-button class="btn btn-success global_submit_btn"><i
-                                class="mdi mdi-check mr-2"></i>Deposit</button>
+
+                        <button mat-raised-button class="btn btn-success global_submit_btn" (click)="save()"><mat-icon
+                                class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+                            <app-button-loader *ngIf="loading"></app-button-loader>
+                            <span>Deposit</span>
+                        </button>
+
                     </div>
                 </form>
             </div>
