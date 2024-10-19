@@ -3,10 +3,10 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col col-sm-4 pl-1">
-                    <h3 class="mb-0">Loan List</h3>
+                    <h3 class="mb-0">Loan List For Status</h3>
                 </div>
                 <div class="col p-0 head_details">
-                    <div class="total_block bg-primary mr-2"><span>Available Amount</span><b>5,30,100.00</b>
+                    <div class="total_block bg-primary mr-2"><span>Pending Amount</span><b>5,30,100.00</b>
                     </div>
                     <div class="total_block bg-success"><span>Total Customer</span><b>150</b></div>
                 </div>
@@ -147,162 +147,6 @@
                     </table>
                 </div>
             </mat-tab>
-            <mat-tab label="Pending" class="global_tabs">
-                <div class="tabs_table_container">
-                    <table class="table align-items-center table-flush mydata-table">
-                        <thead class="thead-light">
-                            <tr>
-
-                                <th class="col sorting_apply id_col">
-                                    <span>Customer No.</span>
-                                    <div class="sorting_arrow">
-                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
-                                            'north' : 'south'
-                                            }}</mat-icon>
-                                    </div>
-                                </th>
-                                <th class="col profile_col">Profile</th>
-                                <th class="col sorting_apply">
-                                    <span>Name</span>
-                                    <div class="sorting_arrow">
-                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
-                                            'north' : 'south'
-                                            }}</mat-icon>
-                                    </div>
-                                </th>
-
-
-                                <th class="col date_col">Apply Date</th>
-                                <th class="col type_col">Apply Type</th>
-                                <th class="col amount_col">Amount</th>
-                                <th class="col status_col">Status</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngIf="loader">
-                                <td colspan="7">
-                                    <app-page-loader></app-page-loader>
-                                </td>
-                            </tr>
-                            <tr *ngIf="loanListData.length == 0 && !loader">
-                                <td colspan="7">
-                                    <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
-                                </td>
-                            </tr>
-                            <ng-container *ngIf="loanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of loanListData">
-
-                                    <td class="col">{{item.customer?.customer_no}}</td>
-                                    <td class="col" data-name="Profile">
-                                        <div class="list_image_block" *ngIf="item.customer?.image == null">
-                                            <img src="assets/imgs/default-pic.png" />
-                                        </div>
-                                        <div class="list_image_block" *ngIf="item.customer?.image != null">
-                                            <img onerror="this.src='assets/imgs/default-pic.png';"
-                                                src="{{item.customer?.image}}" />
-                                        </div>
-                                    </td>
-                                    <td class="col" data-name="Name">{{item.customer?.name}}</td>
-
-
-
-
-                                    <td class="col" data-name="Apply Date ">{{item?.apply_date}}</td>
-
-                                    <td class="col" data-name="Apply Type">{{item?.applied_user_name}}</td>
-                                    <td class="col" data-name="Amount">{{item.remaining_amount}}</td>
-                                    <td class="col text-center" data-name="Status">
-                                        <span class="badge bg-success text-white"
-                                            *ngIf="item.status == 'active'">{{item.loan_status}}</span>
-                                        <span class="badge bg-danger text-white "
-                                            *ngIf="item.status == 'inactive'">{{item.loan_status}}</span>
-                                    </td>
-
-                                </tr>
-                            </ng-container>
-                        </tbody>
-                    </table>
-                </div>
-            </mat-tab>
-            <mat-tab label="Cancelled" class="global_tabs">
-                <div class="tabs_table_container">
-                    <table class="table align-items-center table-flush mydata-table">
-                        <thead class="thead-light">
-                            <tr>
-
-                                <th class="col sorting_apply id_col">
-                                    <span>Customer No.</span>
-                                    <div class="sorting_arrow">
-                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
-                                            'north' : 'south'
-                                            }}</mat-icon>
-                                    </div>
-                                </th>
-                                <th class="col profile_col">Profile</th>
-                                <th class="col sorting_apply">
-                                    <span>Name</span>
-                                    <div class="sorting_arrow">
-                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
-                                            'north' : 'south'
-                                            }}</mat-icon>
-                                    </div>
-                                </th>
-
-
-                                <th class="col date_col">Apply Date</th>
-                                <th class="col type_col">Apply Type</th>
-                                <th class="col amount_col">Amount</th>
-                                <th class="col status_col">Status</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngIf="loader">
-                                <td colspan="7">
-                                    <app-page-loader></app-page-loader>
-                                </td>
-                            </tr>
-                            <tr *ngIf="loanListData.length == 0 && !loader">
-                                <td colspan="7">
-                                    <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
-                                </td>
-                            </tr>
-                            <ng-container *ngIf="loanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of loanListData">
-
-                                    <td class="col">{{item.customer?.customer_no}}</td>
-                                    <td class="col" data-name="Profile">
-                                        <div class="list_image_block" *ngIf="item.customer?.image == null">
-                                            <img src="assets/imgs/default-pic.png" />
-                                        </div>
-                                        <div class="list_image_block" *ngIf="item.customer?.image != null">
-                                            <img onerror="this.src='assets/imgs/default-pic.png';"
-                                                src="{{item.customer?.image}}" />
-                                        </div>
-                                    </td>
-                                    <td class="col" data-name="Name">{{item.customer?.name}}</td>
-
-
-
-
-                                    <td class="col" data-name="Apply Date ">{{item?.apply_date}}</td>
-
-                                    <td class="col" data-name="Apply Type">{{item?.applied_user_name}}</td>
-                                    <td class="col" data-name="Amount">{{item.remaining_amount}}</td>
-                                    <td class="col text-center" data-name="Status">
-                                        <span class="badge bg-success text-white"
-                                            *ngIf="item.status == 'active'">{{item.loan_status}}</span>
-                                        <span class="badge bg-danger text-white "
-                                            *ngIf="item.status == 'inactive'">{{item.loan_status}}</span>
-                                    </td>
-
-                                </tr>
-                            </ng-container>
-                        </tbody>
-                    </table>
-                </div>
-            </mat-tab>
             <mat-tab label="Approved" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
@@ -427,9 +271,245 @@
                     </table>
                 </div>
             </mat-tab>
+            <mat-tab label="Pending" class="global_tabs">
+                <div class="tabs_table_container">
+                    <table class="table align-items-center table-flush mydata-table">
+                        <thead class="thead-light">
+                            <tr>
 
+                                <th class="col sorting_apply id_col">
+                                    <span>Customer No.</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col profile_col">Profile</th>
+                                <th class="col sorting_apply">
+                                    <span>Name</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+
+
+                                <th class="col date_col">Apply Date</th>
+                                <th class="col type_col">Apply Type</th>
+                                <th class="col amount_col">Amount</th>
+                                <th class="col status_col">Status</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="loader">
+                                <td colspan="7">
+                                    <app-page-loader></app-page-loader>
+                                </td>
+                            </tr>
+                            <tr *ngIf="loanListData.length == 0 && !loader">
+                                <td colspan="7">
+                                    <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
+                                </td>
+                            </tr>
+                            <ng-container *ngIf="loanListData.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of loanListData">
+
+                                    <td class="col">{{item.customer?.customer_no}}</td>
+                                    <td class="col" data-name="Profile">
+                                        <div class="list_image_block" *ngIf="item.customer?.image == null">
+                                            <img src="assets/imgs/default-pic.png" />
+                                        </div>
+                                        <div class="list_image_block" *ngIf="item.customer?.image != null">
+                                            <img onerror="this.src='assets/imgs/default-pic.png';"
+                                                src="{{item.customer?.image}}" />
+                                        </div>
+                                    </td>
+                                    <td class="col" data-name="Name">{{item.customer?.name}}</td>
+
+
+
+
+                                    <td class="col" data-name="Apply Date ">{{item?.apply_date}}</td>
+
+                                    <td class="col" data-name="Apply Type">{{item?.applied_user_name}}</td>
+                                    <td class="col" data-name="Amount">{{item.remaining_amount}}</td>
+                                    <td class="col text-center" data-name="Status">
+                                        <span class="badge bg-success text-white"
+                                            *ngIf="item.status == 'active'">{{item.loan_status}}</span>
+                                        <span class="badge bg-danger text-white "
+                                            *ngIf="item.status == 'inactive'">{{item.loan_status}}</span>
+                                    </td>
+
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-tab>
+            <mat-tab label="Cancelled" class="global_tabs">
+                <div class="tabs_table_container">
+                    <table class="table align-items-center table-flush mydata-table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="col sorting_apply id_col">
+                                    <span>Customer No.</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col profile_col">Profile</th>
+                                <th class="col sorting_apply">
+                                    <span>Name</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col date_col">Apply Date</th>
+                                <th class="col type_col">Apply Type</th>
+                                <th class="col amount_col">Amount</th>
+                                <th class="col status_col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="loader">
+                                <td colspan="7">
+                                    <app-page-loader></app-page-loader>
+                                </td>
+                            </tr>
+                            <tr *ngIf="loanListData.length == 0 && !loader">
+                                <td colspan="7">
+                                    <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
+                                </td>
+                            </tr>
+                            <ng-container *ngIf="loanListData.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of loanListData">
+
+                                    <td class="col">{{item.customer?.customer_no}}</td>
+                                    <td class="col" data-name="Profile">
+                                        <div class="list_image_block" *ngIf="item.customer?.image == null">
+                                            <img src="assets/imgs/default-pic.png" />
+                                        </div>
+                                        <div class="list_image_block" *ngIf="item.customer?.image != null">
+                                            <img onerror="this.src='assets/imgs/default-pic.png';"
+                                                src="{{item.customer?.image}}" />
+                                        </div>
+                                    </td>
+                                    <td class="col" data-name="Name">{{item.customer?.name}}</td>
+
+
+
+
+                                    <td class="col" data-name="Apply Date ">{{item?.apply_date}}</td>
+
+                                    <td class="col" data-name="Apply Type">{{item?.applied_user_name}}</td>
+                                    <td class="col" data-name="Amount">{{item.remaining_amount}}</td>
+                                    <td class="col text-center" data-name="Status">
+                                        <span class="badge bg-success text-white"
+                                            *ngIf="item.status == 'active'">{{item.loan_status}}</span>
+                                        <span class="badge bg-danger text-white "
+                                            *ngIf="item.status == 'inactive'">{{item.loan_status}}</span>
+                                    </td>
+
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-tab>
+            <mat-tab label="Completed" class="global_tabs">
+                <div class="tabs_table_container">
+                    <table class="table align-items-center table-flush mydata-table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="col sorting_apply id_col">
+                                    <span>Loan
+                                        No.</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col sorting_apply id_col">
+                                    <span>Customer No.</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col profile_col">Profile</th>
+                                <th class="col sorting_apply">
+                                    <span>Name</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col">Last Assign</th>
+                                <th class="col amount_col">Loan Amt</th>
+                                <th class="col amount_col">Pending Amt</th>
+                                <th class="col action_col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="loader">
+                                <td colspan="8">
+                                    <app-page-loader></app-page-loader>
+                                </td>
+                            </tr>
+                            <tr *ngIf="loanListData.length == 0 && !loader">
+                                <td colspan="8">
+                                    <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
+                                </td>
+                            </tr>
+                            <ng-container *ngIf="loanListData.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of loanListData">
+                                    <td class="col">{{item.loan_no}}</td>
+                                    <td class="col">{{item.customer?.customer_no}}</td>
+                                    <td class="col" data-name="Profile">
+                                        <div class="list_image_block" *ngIf="item.customer?.image == null">
+                                            <img src="assets/imgs/default-pic.png" />
+                                        </div>
+                                        <div class="list_image_block" *ngIf="item.customer?.image != null">
+                                            <img onerror="this.src='assets/imgs/default-pic.png';"
+                                                src="{{item.customer?.image}}" />
+                                        </div>
+                                    </td>
+                                    <td class="col" data-name="Name">{{item.customer?.name}}</td>
+                                    <td class="col" data-name="Assign">{{item.member?.name}}</td>
+                                    <td class="col" data-name="Loan Amount ">{{item.loan_amount}}</td>
+                                    <td class="col" data-name="Pending Amt">{{item.remaining_amount}}</td>
+                                    <td class="action_col" data-name="Action">
+                                        <div placement="bottom-right">
+                                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                                                aria-label="Example icon-button with a menu">
+                                                <mat-icon>more_vert</mat-icon>
+                                            </button>
+                                            <mat-menu #menu="matMenu">
+                                                <div class="table_actionmenu">
+                                                    <button mat-menu-item (click)="completeLoanHistory(item)">
+                                                        <i class="mdi mdi-eye mr-2"></i><span>
+                                                            Collection History</span>
+                                                    </button>
+                                                </div>
+                                            </mat-menu>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-tab>
         </mat-tab-group>
-
-
     </div>
 </div>

@@ -73,7 +73,9 @@ export class LoanListComponent {
 
     });
   }
+  completeLoanHistory(loanDetails: any){
 
+  }
   isAsc: boolean = true;
   sortTableData(column: string) {
     if (this.isAsc) {
