@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MemberDashboardComponent } from './member-dashboard.component';
 import { MaterialModule } from 'src/app/material.module';
 import { MemberDashboardRoutingModule } from './member-dashboard-routing.module';
+import { CommonComponentsModule } from 'src/app/common/common-components.module';
 
 
 
@@ -11,7 +12,8 @@ import { MemberDashboardRoutingModule } from './member-dashboard-routing.module'
   imports: [
     CommonModule,
     MaterialModule,
-    MemberDashboardRoutingModule
+    MemberDashboardRoutingModule,
+    CommonComponentsModule
   ],
   exports: [MemberDashboardComponent]
 })

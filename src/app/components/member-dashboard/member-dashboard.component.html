@@ -5,11 +5,11 @@
                 <h3 class="mb-0">Collection List</h3>
             </div>
             <div class="col p-0 head_details">
-                <div class="total_block bg-success mr-2"><span>Collect Amount</span><b>5,300.00</b>
+                <div class="total_block bg-success mr-2"><span>Collect Amount</span><b>-</b>
                 </div>
-                <div class="total_block bg-warning mr-2"><span>Attend Customer</span><b>15</b>
+                <div class="total_block bg-warning mr-2"><span>Attend Customer</span><b>{{attended_customer}}</b>
                 </div>
-                <div class="total_block bg-primary"><span>Total Customer</span><b>50</b></div>
+                <div class="total_block bg-primary"><span>Total Customer</span><b>{{total_customer}}</b></div>
             </div>
         </div>
     </div>
@@ -19,37 +19,35 @@
                 <th class="col">Customer Name</th>
                 <th class="col">Mobile</th>
                 <!-- <th class="col">Balance</th> -->
-                 <th class="col">Amount</th>
+                <th class="col">Amount</th>
                 <th class="col">Last Received</th>
                 <th class="col status_col">Status</th>
                 <th class="col action_col">Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="col">Bablu Mishra</td>
-                <td class="col">6263626505</td>
-                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
-                <td class="col"><small>23-05-2021 10:30 am</small></td>
+            <tr *ngIf="loader">
+                <td colspan="6">
+                    <app-page-loader></app-page-loader>
+                </td>
+            </tr>
+            <tr *ngIf="collectionData.length == 0 && !loader">
+                <td colspan="6">
+                    <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
+                </td>
+            </tr>
+            <tr *ngFor="let item of collectionData">
+                <td class="col">{{item.loan.customer.name}}</td>
+                <td class="col">{{item.loan.customer.mobile}}</td>
+                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>{{item.amount}}</td>
+                <td class="col"><small>{{item.receive_date}}</small></td>
                 <td class="col text-center">
-                    <div class="badge bg-warning text-white">Pending</div>
+                    <div class="badge bg-warning text-white">-</div>
                 </td>
                 <td class="col text-center"><button mat-raised-button routerLink="/paid_data_entry"
                         class="btn btn-warning global_submit_btn m-0">Collect</button></td>
             </tr>
-            <tr class="received_row">
-                <td class="col" data-name="Customer">Bablu Mishra</td>
-                <td class="col" data-name="Mobile">6263626505</td>
-                <td class="col" data-name="Balance"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
-                <td class="col" data-name="Last Received"><small>23-05-2021 10:30 am</small></td>
-                <td class="col text-center" data-name="Status">
-                    <div class="badge bg-success text-white">Received</div>
-                </td>
-                <td class="col text-center" data-name="Action">
-                    <button disabled="disabled" mat-raised-button routerLink="/paid_data_entry"
-                        class="btn btn-warning global_submit_btn m-0">Collect</button>
-                </td>
-            </tr>
+
         </tbody>
     </table>
 </div>
