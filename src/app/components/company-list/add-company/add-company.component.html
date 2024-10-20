@@ -22,6 +22,16 @@
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'mobile'"
                         [displayMsg]="'Mobile is required'"></app-input>
                 </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" label="Primary Color" [(value)]="primaryColor" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'primaryColor'"
+                        [displayMsg]="'Primary color is required'"></app-input>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" label="Secondary Color" [(value)]="secondaryColor" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'secondaryColor'"
+                        [displayMsg]="'Secondary color is required'"></app-input>
+                </div>
                 <ng-container *ngIf="!company_id">
                     <div class="col-sm-4 col-lg-4 col-xs-12">
                         <app-dropdwon key="plan" field="Plan" formControlName="plan" name="plan"></app-dropdwon>
@@ -71,7 +81,7 @@
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'address'"
                         [displayMsg]="'Address is required'"></app-input>
                 </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
+                <div class="col-sm-12">
                     <app-input [isDateField]="false" label="Details" [(value)]="details" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'details'"
                         [displayMsg]="'Details is required'"></app-input>

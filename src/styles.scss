@@ -2657,6 +2657,7 @@ mark {
         .arrowblock {
             font-size: 24px;
             margin-left: 5px;
+            cursor: pointer;
         }
     }
 }
@@ -2877,6 +2878,18 @@ mark {
     .image_upload {
         margin-right: 15px;
     }
+}
+.outline_block {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    top: 60px;
+    z-index: 10;
+    transform: scale(0);
+}
+.showMenu_outline {
+    transform: scale(1);
 }
 .global_tabs_group {
     border-top: solid thin #e1e1e18c;

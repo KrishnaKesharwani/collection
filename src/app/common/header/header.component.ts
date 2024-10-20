@@ -39,7 +39,14 @@ export class HeaderComponent {
     sessionStorage.removeItem('CurrentUser');
     this.router.navigate(['/login']);
   }
-
+  editProfile() {
+    this.showMenuAction = false;
+    this.router.navigate(['/profiledetails']);
+  }
+  changePassword() {
+    this.showMenuAction = false;
+    this.router.navigate(['/change_password']);
+  }
   checkSideMenu = '';
   
   onMenuClick() {

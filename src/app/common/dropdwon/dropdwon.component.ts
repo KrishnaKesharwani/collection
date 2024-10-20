@@ -21,8 +21,12 @@ import { MatSelectChange } from '@angular/material/select';
 
 
 export class DropdwonComponent {
-  @Input() key!: string;
+  @Input() form!:FormGroup;
+  @Input() jsonKey: any;
+  @Input() key:any;
   @Input() field!: string;
+  @Input() optionArray:any=[];
+  @Input() arrayType:any="STRING_TYPE"
   // @Input() formControlName!: string;
   // @Input() name!: string;
   value!: string;

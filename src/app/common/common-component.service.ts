@@ -5,7 +5,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CommonComponentService {
-
+  loanstatus = ['Approved', 'Running', 'Pending', 'Cancelled'];
+  status = ['Active', 'Inactive'];
   private dropdownOptionsSubject = new BehaviorSubject<{ [key: string]: string[] }>({});
   dropdownOptions$ = this.dropdownOptionsSubject.asObservable();
 

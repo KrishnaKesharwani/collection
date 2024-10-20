@@ -14,15 +14,12 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 export class AddCustomerComponent {
   @Input() title: any;
   @Input() subTitle: any;
-
   @Output() deleteAction = new EventEmitter();
+
   customerForm!: FormGroup;
   // customer_Id!: 1;
-
   address: string = '';
   password: string = '';
-
-
   email: string = '';
   mobile: string = '';
   loading = false;
@@ -32,16 +29,17 @@ export class AddCustomerComponent {
   customer_login_id: string = '';
   customer_id: any;
   company_id: string = '';
+  selectedFile: File | null = null;
+
   constructor(private cdr: ChangeDetectorRef, public _toastr: ToastrService, public _router: Router, public _service: CustomerService, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }
     , public fb: FormBuilder) { }
-
 
   ngOnInit() {
     const data = sessionStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
-
+      console.log('Customer Data: ', data);
     }
     this.customerForm = this.fb.group({
       // customerNo: ['', Validators.required],
@@ -55,15 +53,11 @@ export class AddCustomerComponent {
       password: [''],
       status: ['']
     });
-
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
-
-    this.company_id = this.company_id
-    this.customer_id = this.dataa.data.id
-
+    this.company_id = this.company_id;
+    this.customer_id = this.dataa.data.id;
     this.customerView();
   }
-
 
   save() {
     if (this.customer_id) {
@@ -184,7 +178,6 @@ export class AddCustomerComponent {
 
   }
 
-
   customerView() {
     if (this.dataa?.data) {
 
@@ -213,10 +206,6 @@ export class AddCustomerComponent {
 
 
   }
-
-
-
-  selectedFile: File | null = null;
 
   onFileChange(file: File | null): void {
     this.selectedFile = file;

@@ -27,6 +27,8 @@ export class AddCompanyComponent {
   mobile: string = '';
   owner_name: string = '';
   company_name: string = '';
+  primaryColor: string ="";
+  secondaryColor: string="";
   loading: boolean = false;
   date: any;
   company_id: any;
@@ -41,13 +43,14 @@ export class AddCompanyComponent {
       owner_name: ['', Validators.required],
       mobile: ['', Validators.required],
       aadhar_no: ['', Validators.required],
+      primaryColor: ['', Validators.required],
+      secondaryColor: ['', Validators.required],
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
       plan: ['', Validators.required],
       total_amount: ['', Validators.required],
       advance_amount: ['', Validators.required],
       status: ['', Validators.required],
-
       password: ['', Validators.required],
       company_login_id: [''],
       main_logo: [null],
@@ -57,15 +60,11 @@ export class AddCompanyComponent {
       address: ['', Validators.required],
       details: ['', Validators.required]
     });
-
     this.dropdownService.setOptions('plan', ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo']);
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
-
     this.companyView();
     this.company_id = this.dataa.data.id
-
   }
-
 
   save() {
 
@@ -185,41 +184,32 @@ export class AddCompanyComponent {
   }
 
   selectedFile: File | null = null;
-
   onFileChange(file: File | null): void {
     this.selectedFile = file;
     this.companyForm.patchValue({ main_logo: file });
   }
 
   selectedFile2: File | null = null;
-
   onFileChange2(file: File | null): void {
     this.selectedFile2 = file;
     this.companyForm.patchValue({ sidebar_logo: file });
   }
 
   selectedFile3: File | null = null;
-
   onFileChange3(file: File | null): void {
     this.selectedFile3 = file;
     this.companyForm.patchValue({ favicon_icon: file });
   }
-  selectedFile4: File | null = null;
 
+  selectedFile4: File | null = null;
   onFileChange4(file: File | null): void {
     this.selectedFile4 = file;
     this.companyForm.patchValue({ owner_image: file });
   }
 
   companyView() {
-    // Add New Company
-
     this.companyForm.patchValue(this.dataa.data);
     this.cdr.detectChanges();
-
   }
-
-
-
 
 }

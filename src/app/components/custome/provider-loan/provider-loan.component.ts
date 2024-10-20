@@ -34,7 +34,7 @@ export class ProviderLoanComponent {
   no_of_days: string = '0';
 
 
-  constructor(public _tostr: ToastrService, public _service: CustomerService, private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
   ngOnInit() {
@@ -48,13 +48,13 @@ export class ProviderLoanComponent {
       customername: [this.dataa.data.name],
       loan_amount: ['', Validators.required],
       installment_amount: ['', Validators.required],
-      assigned_member_id: [''],
+      assigned_member_id: [this.dataa?.data?.assigned_member_id||null],
       no_of_days: ['', Validators.required],
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
       details: [''],
       loan_status: [''],
-      status: [''],
+      status: [''], 
       document: ['']
     });
 
@@ -64,15 +64,17 @@ export class ProviderLoanComponent {
     this.dropdownService.setOptions('loanstatus', ['Approved', 'Running', 'Pending', 'Cancelled']);
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
-
+  memberdata: []=[];
   getActiveMmberList() {
     let obj = {
       company_id: this.company_id,
       status: 'active'
     }
     this._service.activeMembers(obj).subscribe((memberData: any) => {
+      console.log('member Data: ', memberData.data);
+      this.memberdata = memberData.data;
       const members = memberData.data.map((member: any) => member.name);
-      this.dropdownService.setOptions('assingmember', members);
+      this.dropdownService.setOptions('assingmember', memberData.data);
     })
   }
   onDateChange() {
@@ -92,15 +94,12 @@ export class ProviderLoanComponent {
   }
 
   submit() {
-    console.log(this.providerLoanForm.value)
-
+    console.log(this.providerLoanForm.value);
     if (this.providerLoanForm.valid) {
-      this.loading = true
-
+      this.loading = true;
       const formData = new FormData();
       const files = [
         { name: 'document', file: this.providerLoanForm.get('document')?.value },
-
       ];
 
       // Convert files to base64 strings
@@ -125,7 +124,6 @@ export class ProviderLoanComponent {
       Object.keys(this.providerLoanForm.value).forEach(key => {
         if (!['document'].includes(key)) {
           formData.append(key, this.providerLoanForm.value[key]);
-
         }
       });
       formData.append('company_id', this.company_id)
@@ -133,16 +131,14 @@ export class ProviderLoanComponent {
       if (formData) {
         this._service.provideLoan(formData).subscribe((data: any) => {
           console.log(data)
-
           this.providerLoanForm.reset();
           this._tostr.success(data.message, 'Success');
-
-
+          this.dialog.closeAll();
         })
       }
       // this.dialog.closeAll();
     } else {
-      this.providerLoanForm.markAllAsTouched()
+      this.providerLoanForm.markAllAsTouched();
     }
   }
 

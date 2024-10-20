@@ -6,8 +6,13 @@
 <div class="dialoge_middle_container full_height_cover">
     <form focusInvalidInput [formGroup]="customerForm">
         <div class="modal_insert">
-            <div class="row">
-                <!-- <div class="col-sm-4 col-lg-4 col-xs-12">
+            <div class="profile_with_block">
+                <div class="image_upload">
+                    <app-fileupload class="fileupload_image" [uploadType]="'profile'"
+                        (fileChange)="onFileChange($event)"></app-fileupload>
+                </div>
+                <div class="row">
+                    <!-- <div class="col-sm-4 col-lg-4 col-xs-12">
 
                     <app-input [isDateField]="false" label="Customer No." [(value)]="customerNo" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="customerForm" [key]="'customerNo'"
@@ -15,72 +20,73 @@
 
 
                 </div> -->
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Name" [(value)]="name" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="customerForm" [key]="'name'"
-                        [displayMsg]="'Name is required'"></app-input>
-
-
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Mobile" [(value)]="mobile" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="customerForm" [key]="'mobile'"
-                        [displayMsg]="'Mobile is required'"></app-input>
-
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Email" [(value)]="email" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="customerForm" [key]="'email'"
-                        [displayMsg]="'Email is required'"></app-input>
-
-
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="customerForm" [key]="'aadhar_no'"
-                        [displayMsg]="'Aadhar number is required'"></app-input>
-
-
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="true" label="Join Date" [(value)]="join_date" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="customerForm" [key]="'join_date'"
-                        [displayMsg]="'Join date is required'"></app-input>
-
-
-                </div>
-                <ng-container *ngIf="!customer_id">
                     <div class="col-sm-4 col-lg-4 col-xs-12">
-                        <app-input [isDateField]="false" label="Customer Login Id" [(value)]="customer_login_id"
-                            [className]="'bottom_error_msg'" [form]="customerForm" [key]="'customer_login_id'"
-                            [displayMsg]="'Login Id is required'"></app-input>
+                        <app-input [isDateField]="false" label="Name" [(value)]="name" [isRequired]="true"
+                            [className]="'bottom_error_msg'" [form]="customerForm" [key]="'name'"
+                            [displayMsg]="'Name is required'"></app-input>
 
 
                     </div>
                     <div class="col-sm-4 col-lg-4 col-xs-12">
-                        <app-input [isDateField]="false" label="Password" [(value)]="password"
-                            [className]="'bottom_error_msg'" [form]="customerForm" [key]="'password'"
-                            [displayMsg]="'Password is required'"></app-input>
+                        <app-input [isDateField]="false" label="Mobile" [(value)]="mobile" [isRequired]="true"
+                            [className]="'bottom_error_msg'" [form]="customerForm" [key]="'mobile'"
+                            [displayMsg]="'Mobile is required'"></app-input>
+
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="false" label="Email" [(value)]="email" [isRequired]="true"
+                            [className]="'bottom_error_msg'" [form]="customerForm" [key]="'email'"
+                            [displayMsg]="'Email is required'"></app-input>
 
 
                     </div>
-                </ng-container>
-
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="customerForm" [key]="'address'"
-                        [displayMsg]="'Address is required'"></app-input>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="false" label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"
+                            [className]="'bottom_error_msg'" [form]="customerForm" [key]="'aadhar_no'"
+                            [displayMsg]="'Aadhar number is required'"></app-input>
 
 
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <div class="file_upload_block global_textbox_block">
-                        <label class="m-0">Customer Image</label>
-                        <app-fileupload class="fileupload" (fileChange)="onFileChange($event)"></app-fileupload>
                     </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="true" label="Join Date" [(value)]="join_date" [isRequired]="true"
+                            [className]="'bottom_error_msg'" [form]="customerForm" [key]="'join_date'"
+                            [displayMsg]="'Join date is required'"></app-input>
+
+
+                    </div>
+                    <ng-container *ngIf="!customer_id">
+                        <div class="col-sm-4 col-lg-4 col-xs-12">
+                            <app-input [isDateField]="false" label="Customer Login Id" [(value)]="customer_login_id"
+                                [className]="'bottom_error_msg'" [form]="customerForm" [key]="'customer_login_id'"
+                                [displayMsg]="'Login Id is required'"></app-input>
+
+
+                        </div>
+                        <div class="col-sm-4 col-lg-4 col-xs-12">
+                            <app-input [isDateField]="false" label="Password" [(value)]="password"
+                                [className]="'bottom_error_msg'" [form]="customerForm" [key]="'password'"
+                                [displayMsg]="'Password is required'"></app-input>
+
+
+                        </div>
+                    </ng-container>
+
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"
+                            [className]="'bottom_error_msg'" [form]="customerForm" [key]="'address'"
+                            [displayMsg]="'Address is required'"></app-input>
+
+
+                    </div>
+                    <!-- <div class="col-sm-6 col-lg-6 col-xs-12">
+                        <div class="file_upload_block global_textbox_block">
+                            <label class="m-0">Customer Image</label>
+                            <app-fileupload class="fileupload" (fileChange)="onFileChange($event)"></app-fileupload>
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </div>

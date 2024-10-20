@@ -46,11 +46,11 @@
             </li>
         </ul>
         <div class="dropdown-menu" [ngClass]="{'showMenu': showMenuAction }">
-            <a routerLink="/profiledetails" class="dropdown-item">
+            <a (click)="editProfile()" class="dropdown-item">
                 <i class="mdi mdi-account-outline mdi-18px"></i>
                 <span>My Profile</span>
             </a>
-            <a routerLink="/change_password" class="dropdown-item">
+            <a  routerLink="/change_password" (click)="changePassword()" class="dropdown-item">
                 <i class="mdi mdi-lock-alert mdi-18px"></i>
                 <span>Change Password</span>
             </a>
@@ -60,5 +60,6 @@
                 <span>Logout</span>
             </a>
         </div>
+        <div class="outline_block" (click)="showhideMenu()" [ngClass]="{'showMenu_outline': showMenuAction }"></div>
     </div>
 </nav>
