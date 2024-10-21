@@ -41,7 +41,7 @@ export class HeaderComponent {
   }
   editProfile() {
     this.showMenuAction = false;
-    this.router.navigate(['/profiledetails']);
+    this.router.navigate(['/profile_details']);
   }
   changePassword() {
     this.showMenuAction = false;

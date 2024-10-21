@@ -97,6 +97,9 @@ ul {
             }
         }
     }
+    .card_inner_block {
+        padding: 20px 15px;
+    }
 }
 
 .btn-theme-color {
@@ -510,14 +513,25 @@ mat-option {
         }
     }
 }
-
+.radius_none_bottom{
+    border-radius: 5px 5px 0px 0px;
+}
+.page_button {
+    background: #adadad75;
+    border-radius: 0px 0px 5px 5px;
+}
 .row {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
 
-    .col-sm-4 {
+    .col-sm-3 {
         padding: 0px 10px;
         width: 25%;
+    }
+    .col-sm-4 {
+        padding: 0px 10px;
+        width: 33%;
     }
 
     .col-sm-6 {

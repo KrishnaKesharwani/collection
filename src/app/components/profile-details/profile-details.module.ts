@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProfileDetailsComponent } from './profile-details.component';
 import { EditCompanyComponent } from './edit-company/edit-company.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { MaterialModule } from 'src/app/material.module';
@@ -8,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileDetailsRoutingModule } from './profile-details-routing.module';
 
 @NgModule({
-  declarations: [EditCompanyComponent, EditDetailsComponent],
+  declarations: [ProfileDetailsComponent, EditCompanyComponent, EditDetailsComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -16,7 +17,7 @@ import { ProfileDetailsRoutingModule } from './profile-details-routing.module';
     CommonComponentsModule,
     ReactiveFormsModule
   ],
-  
+  exports: [ProfileDetailsComponent, EditCompanyComponent, EditDetailsComponent],
 })
 
 export class ProfileDetailsModule { }

@@ -95,7 +95,7 @@ const routes: Routes = [
     loadChildren: () => import('./components/reports/reports.module').then(m => m.ReportsModule)
   },
   {
-    path: 'profiledetails',
+    path: 'profile_details',
     loadChildren: () => import('./components/profile-details/profile-details.module').then(m => m.ProfileDetailsModule)
   },
   {
