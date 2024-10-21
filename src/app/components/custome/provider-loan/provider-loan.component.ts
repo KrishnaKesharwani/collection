@@ -48,13 +48,13 @@ export class ProviderLoanComponent {
       customername: [this.dataa.data.name],
       loan_amount: ['', Validators.required],
       installment_amount: ['', Validators.required],
-      assigned_member_id: [this.dataa?.data?.assigned_member_id||null],
+      assigned_member_id: [this.dataa?.data?.assigned_member_id || null],
       no_of_days: ['', Validators.required],
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
       details: [''],
       loan_status: [''],
-      status: [''], 
+      status: [''],
       document: ['']
     });
 
@@ -64,7 +64,7 @@ export class ProviderLoanComponent {
     this.dropdownService.setOptions('loanstatus', ['Approved', 'Running', 'Pending', 'Cancelled']);
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
-  memberdata: []=[];
+  memberdata: [] = [];
   getActiveMmberList() {
     let obj = {
       company_id: this.company_id,
@@ -131,9 +131,13 @@ export class ProviderLoanComponent {
       if (formData) {
         this._service.provideLoan(formData).subscribe((data: any) => {
           console.log(data)
-          this.providerLoanForm.reset();
-          this._tostr.success(data.message, 'Success');
-          this.dialog.closeAll();
+          if (data.success) {
+            this.providerLoanForm.reset();
+            this._tostr.success(data.message, 'Success');
+            this.dialog.closeAll();
+          } else {
+            this._tostr.error(data.message, 'Error');
+          }
         })
       }
       // this.dialog.closeAll();

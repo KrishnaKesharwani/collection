@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Form, FormGroup } from '@angular/forms';
 import { ActionService } from 'src/app/services/action/action.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { ActionService } from 'src/app/services/action/action.service';
 
 export class ProfileDetailsComponent {  
   user_type: any;
-
+  editForm!: FormGroup;
+  
   constructor(private actionService: ActionService) { }
 
   ngOnInit() {

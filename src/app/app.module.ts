@@ -60,6 +60,8 @@ import { TokenInterceptor } from './authentication/token.interceptor';
 import { DataTablesModule } from 'angular-datatables';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { ChangePasswordModule } from './components/change-password/change-password.module';
+import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
+import { ProfileDetailsModule } from './components/profile-details/profile-details.module';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
@@ -78,7 +80,7 @@ import { ChangePasswordModule } from './components/change-password/change-passwo
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    ProfileDetailsModule,
     DashboardModule,
 
     CollectionListModule,
