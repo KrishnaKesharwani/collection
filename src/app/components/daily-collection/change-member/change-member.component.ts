@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 
@@ -8,6 +9,7 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
   styleUrls: ['./change-member.component.scss']
 })
 export class ChangeMemberComponent {
+  changeMemberForm!: FormGroup;
   @Input() title: any;
   loading = false;
   @Output() deleteAction = new EventEmitter();

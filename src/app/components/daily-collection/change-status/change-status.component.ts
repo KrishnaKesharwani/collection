@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 interface Transaction {
@@ -14,6 +15,7 @@ interface Transaction {
 export class ChangeStatusComponent {
   loading = false;
   displayedColumns: string[] = ['item', 'cost'];
+  statusForm!: FormGroup;
   transactions: Transaction[] = [
     { item: 'Fixed Deposit Name', cost: 4 },
 

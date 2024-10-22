@@ -3,17 +3,15 @@
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container small_popup">
-    <div class="row">
-        <div class="col-sm-12">
-            <mat-form-field class="global_textbox_block" appearance="outline">
-                <mat-label>Existing Member</mat-label>
-                <input matInput disabled>
-            </mat-form-field>
-        </div>
-        <div class="col-sm-12">
-            <app-dropdwon key="member" field="Select Collect Member"></app-dropdwon>
-        </div>
-    </div>
+    <form focusInvalidInput [formGroup]="changeMemberForm">
+        <mat-form-field class="global_textbox_block" appearance="outline">
+            <mat-label>Existing Member</mat-label>
+            <input matInput disabled>
+        </mat-form-field>
+        <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="changeMemberForm" [key]="'assigned_member_id'"
+            [optionArray]="dropdownService.getmemberdata"
+            *ngIf="dropdownService.getmemberdata?.length && changeMemberForm" field="Assign Member"></app-dropdwon>
+    </form>
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
