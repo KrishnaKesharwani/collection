@@ -21,19 +21,19 @@ import { MatSelectChange } from '@angular/material/select';
 
 
 export class DropdwonComponent {
-  @Input() form!:FormGroup;
+  @Input() form!: FormGroup;
   @Input() jsonKey: any;
-  @Input() key:any;
+  @Input() key: any;
   @Input() field!: string;
-  @Input() optionArray:any=[];
-  @Input() arrayType:any="STRING_TYPE"
+  @Input() optionArray: any = [];
+  @Input() arrayType: any = "STRING_TYPE"
   // @Input() formControlName!: string;
   // @Input() name!: string;
   value!: string;
   options: string[] = [];
   @Output() selectionChange = new EventEmitter<string>();
 
-  constructor(private dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public data: { field_value: string, value: string }) { }
+  constructor(public dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public data: { field_value: string, value: string }) { }
 
   ngOnInit() {
     this.dropdownService.dropdownOptions$.subscribe(options => {

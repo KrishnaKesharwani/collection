@@ -23,7 +23,7 @@ export class ChangeStatusComponent {
     { item: 'End  Amount', cost: 15 }
   ];
 
-  constructor(private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
   ngOnInit() {
     this.dropdownService.setOptions('status', ['Working', 'Received', 'Cancelled']);

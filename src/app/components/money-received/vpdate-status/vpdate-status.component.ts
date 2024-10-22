@@ -16,10 +16,10 @@ export class VpdateStatusComponent {
   @Output() deleteAction = new EventEmitter();
   // constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
   //   , public fb: FormBuilder) { }
-  receivedamount:string = '';
-  moneystatus: string= '';
-  moneydetails: string= '';
-  constructor(public fb: FormBuilder, private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  receivedamount: string = '';
+  moneystatus: string = '';
+  moneydetails: string = '';
+  constructor(public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
   ngOnInit() {

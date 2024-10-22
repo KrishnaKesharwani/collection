@@ -23,7 +23,7 @@ export class InputComponent {
   // @Input() formControlName!: string;
   // @Input() name!: string;
 
-  constructor(private dropdownService: CommonComponentService,) { }
+  constructor(public dropdownService: CommonComponentService,) { }
 
   @Input() label: string = '';
   @Input() isRequired: boolean = false;

@@ -24,7 +24,7 @@ export class ApplyLoanComponent {
   company_id: any;
   userType: any;
   customer_name: any;
-  constructor(private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _toastr: ToastrService, public _router: Router, public _service: CustomerService
+  constructor(public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _toastr: ToastrService, public _router: Router, public _service: CustomerService
   ) { }
 
   ngOnInit() {

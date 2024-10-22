@@ -31,7 +31,7 @@ export class TextareaComponent {
   @Input() customErrorDisplayMsg!: string;
   @Input() customType!: string;
   @Input() className: string = 'bottom_error_msg';
-  constructor(private dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public data: { field_value: string, value: string }) { }
+  constructor(public dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public data: { field_value: string, value: string }) { }
 
 
   get control() {

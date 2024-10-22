@@ -8,7 +8,7 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
   styleUrls: ['./view-details.component.scss']
 })
 export class ViewDetailsComponent {
-  constructor(private dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }) { }
+  constructor(public dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }) { }
 
 
 }

@@ -27,14 +27,14 @@ export class AddCompanyComponent {
   mobile: string = '';
   owner_name: string = '';
   company_name: string = '';
-  primaryColor: string ="";
-  secondaryColor: string="";
+  primaryColor: string = "";
+  secondaryColor: string = "";
   loading: boolean = false;
   date: any;
   company_id: any;
   companyViewData: any;
 
-  constructor(private cdr: ChangeDetectorRef, private router: Router, private _toastr: ToastrService, public _service: CompanyService, private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }
+  constructor(private cdr: ChangeDetectorRef, private router: Router, private _toastr: ToastrService, public _service: CompanyService, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }
     , public fb: FormBuilder) { }
 
   ngOnInit() {

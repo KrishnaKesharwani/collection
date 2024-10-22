@@ -24,7 +24,7 @@ export class NewDepositComponent {
 
 
 
-  constructor(public _tostr: ToastrService, public _service: CustomerService, private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
   ngOnInit() {
@@ -49,14 +49,17 @@ export class NewDepositComponent {
     this.dropdownService.setOptions('depositStatus', ['Active', 'Inactive']);
   }
 
+  memberdata: [] = [];
   getActiveMmberList() {
     let obj = {
       company_id: this.company_id,
       status: 'active'
     }
     this._service.activeMembers(obj).subscribe((memberData: any) => {
+      console.log('member Data: ', memberData.data);
+      this.memberdata = memberData.data;
       const members = memberData.data.map((member: any) => member.name);
-      this.dropdownService.setOptions('assingmember', members);
+      this.dropdownService.setOptions('assingmember', memberData.data);
     })
   }
 

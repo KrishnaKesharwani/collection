@@ -34,7 +34,7 @@ export class AddMemberComponent {
   loading: boolean = false;
   company_id: any;
   memberName: string = '';
-  constructor(private cdr: ChangeDetectorRef, public _toastr: ToastrService, public router: Router, public _service: MemberService, private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(private cdr: ChangeDetectorRef, public _toastr: ToastrService, public router: Router, public _service: MemberService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
   ngOnInit() {

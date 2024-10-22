@@ -59,10 +59,7 @@ export class ProviderLoanComponent {
     });
 
     this.getActiveMmberList();
-    // this.calculateDays();
-    // this.dropdownService.setOptions('assingmember', ['Bhaijan', 'Roshan Kanojiya']);
-    this.dropdownService.setOptions('loanstatus', ['Approved', 'Running', 'Pending', 'Cancelled']);
-    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+
   }
   memberdata: [] = [];
   getActiveMmberList() {

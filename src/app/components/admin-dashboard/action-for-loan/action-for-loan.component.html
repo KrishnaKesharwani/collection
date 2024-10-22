@@ -8,6 +8,8 @@
         <div class="col-sm-12">
             <app-dropdwon formControlName="status" name="status" key="status" field="Status"
                 (selectionChange)="onStatusChange($event)"></app-dropdwon>
+            <!-- <app-dropdwon [optionArray]="dropdownService.status" *ngIf="providerLoanForm" [form]="providerLoanForm" [key]="'status'"
+                    field="Status"></app-dropdwon> -->
         </div>
 
         <div class="col-sm-12" *ngIf="selectedStatus == 'Cancelled'">

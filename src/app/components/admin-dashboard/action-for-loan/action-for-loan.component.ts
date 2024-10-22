@@ -37,7 +37,7 @@ export class ActionForLoanComponent {
   statusOptions: string[] = [];
   customer_id: any;
 
-  constructor(public _tostr: ToastrService, public _service: CustomerService, private dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
 

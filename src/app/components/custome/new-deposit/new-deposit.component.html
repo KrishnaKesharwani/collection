@@ -11,11 +11,16 @@
 
 
 
-            <app-dropdwon key="assingmember" field="Assign Member" formControlName="assigned_member_id"
-                name="assigned_member_id"></app-dropdwon>
+            <!-- <app-dropdwon key="assingmember" field="Assign Member" formControlName="assigned_member_id"
+                name="assigned_member_id"></app-dropdwon> -->
+            <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="depositFrom" [key]="'assigned_member_id'"
+                [optionArray]="memberdata" *ngIf="memberdata?.length && depositFrom"
+                field="Assign Member"></app-dropdwon>
 
-            <app-dropdwon key="depositStatus" field="Deposit Status" formControlName="depositStatus"
-                name="depositStatus"></app-dropdwon>
+            <app-dropdwon [optionArray]="dropdownService.status" *ngIf="depositFrom" [form]="depositFrom"
+                [key]="'status'" formControlName="depositStatus" name="depositStatus" field="Status"></app-dropdwon>
+            <!-- <app-dropdwon key="status" field="Deposit Status" formControlName="depositStatus"
+                name="depositStatus"></app-dropdwon> -->
 
             <!-- <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon> -->
             <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"

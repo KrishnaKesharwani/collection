@@ -8,8 +8,8 @@
         <div class="modal_insert">
             <div class="profile_with_block">
                 <div class="image_upload">
-                    <app-fileupload class="fileupload_image" [imageSize]="'120'" [uploadType]="'profile'" formControlName="image"
-                            name="image" (fileChange)="onFileChange($event)"></app-fileupload>
+                    <app-fileupload class="fileupload_image" [imageSize]="'120'" [uploadType]="'profile'"
+                        formControlName="image" name="image" (fileChange)="onFileChange($event)"></app-fileupload>
                 </div>
                 <div class="row">
                     <div class="col-sm-4 col-lg-4 col-xs-12">
@@ -50,7 +50,9 @@
                         </div>
                     </ng-container>
                     <div class="col-sm-4 col-lg-4 col-xs-12">
-                        <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon>
+                        <!-- <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon> -->
+                        <app-dropdwon [optionArray]="dropdownService.status" *ngIf="memberForm" [form]="memberForm"
+                            [key]="'status'" field="Status"></app-dropdwon>
                     </div>
                     <div class="col-sm-12 col-lg-6 col-xs-12">
                         <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"

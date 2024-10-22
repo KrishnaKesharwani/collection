@@ -15,7 +15,7 @@ export class AdvanceMoneyComponent {
   advancedetails: string = "";
   advanceamount: string = "";
 
-  constructor(public fb: FormBuilder, private dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  constructor(public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
   ngOnInit() {
