@@ -60,7 +60,7 @@ const routes: Routes = [
   },
   {
     path: 'my_loan_list',
-    loadChildren: () => import('./components/user-dashboard/user-dashboard.module').then(m  => m.UserDashboardModule)
+    loadChildren: () => import('./components/user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule)
   },
   {
     path: 'collection_list',
@@ -87,7 +87,7 @@ const routes: Routes = [
     loadChildren: () => import('./components/money-received/money-received.module').then(m => m.MoneyReceivedModule)
   },
   {
-    path: 'paid_data_entry',
+    path: 'paid_data_entry/:id',
     loadChildren: () => import('./components/paid-data-entry/paid-data-entry.module').then(m => m.PaidDataEntryModule)
   },
   {

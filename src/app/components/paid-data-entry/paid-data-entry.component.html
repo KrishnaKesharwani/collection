@@ -20,20 +20,20 @@
                         [displayMsg]="'amount is required.'"></app-input>
                     <!-- <input type="text" matInput placeholder="Amount" value="200" class="form-control"> -->
                     <div class="button_block">
+                        <button class="btn btn-danger global_submit_btn">
+                            <i class="mdi mdi-minus mr-2"></i>Credit
+                        </button>
 
                         <button mat-raised-button class="btn btn-success global_submit_btn" (click)="save()"><mat-icon
                                 class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
                             <app-button-loader *ngIf="loading"></app-button-loader>
-                            <span>Deposit</span>
+                            <span>Debit</span>
                         </button>
 
                     </div>
                 </form>
             </div>
-            <!-- <div class="addrow">
-                <input type="text" placeholder="Amount" value="500" class="form-control">
-                <button class="btn btn-danger global_submit_btn"></button><i class="mdi mdi-minus mr-2"></i>Minus</button>
-            </div> -->
+
         </div>
         <div class="entry_head">
             <div class="col date">Date</div>

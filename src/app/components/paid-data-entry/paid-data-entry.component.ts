@@ -1,6 +1,6 @@
 import { Component, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PaidDataEntryService } from 'src/app/services/paidDataEntry/paid-data-entry.service';
 
@@ -14,8 +14,9 @@ export class PaidDataEntryComponent {
   amount: string = '';
   receivedAmountForm!: FormGroup;
   loading: any;
+  loan_id: any;
 
-  constructor(public _toastr: ToastrService, public router: Router, public fb: FormBuilder
+  constructor(public routes: ActivatedRoute, public _toastr: ToastrService, public router: Router, public fb: FormBuilder
     , public _service: PaidDataEntryService
   ) { }
 
@@ -28,6 +29,12 @@ export class PaidDataEntryComponent {
       this.userType = null;
     }
 
+    this.routes.params.subscribe((data) => {
+      if (data) {
+        this.loan_id = data['id'];
+      }
+    });
+
     this.receivedAmountForm = this.fb.group({
       amount: ['', Validators.required]
     });
@@ -36,7 +43,7 @@ export class PaidDataEntryComponent {
   save() {
     this.loading = true;
     let obj = {
-      loan_id: 1,
+      loan_id: this.loan_id,
       amount: this.receivedAmountForm.value.amount
     }
     this._service.collectMoney(obj).subscribe((data: any) => {

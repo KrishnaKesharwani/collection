@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="assign_customer_container">
-            <div class="assign_customer_block">
+            <div class="assign_customer_block" *ngFor="let loan of loanData">
                 <ul class="list-unstyled dynamic_card_data">
                     <li class="data_head">Daily Account</li>
                     <li class="data_val">#Daily12542</li>
@@ -18,35 +18,14 @@
                     <li class="data_val">2000.00</li>
                 </ul>
                 <div class="action_block">
-                    <button mat-raised-button class="btn btn-sm btn-success global_submit_btn" routerLink="/paid_data_entry">View Details</button>
+                    <button mat-raised-button class="btn btn-sm btn-success global_submit_btn"
+                        routerLink="/paid_data_entry">View Details</button>
                 </div>
             </div>
-            <div class="assign_customer_block">
-                <ul class="list-unstyled dynamic_card_data">
-                    <li class="data_head">Loan No.</li>
-                    <li class="data_val">Start#1000</li>
-                    <li class="data_head">Amount</li>
-                    <li class="data_val">12000.00</li>
-                    <li class="data_head">Balance</li>
-                    <li class="data_val">000.00</li>
-                </ul>
-                <div class="action_block">
-                    <button mat-raised-button class="btn btn-sm btn-success global_submit_btn" routerLink="/paid_data_entry">View Details</button>
-                </div>
-            </div>
-            <div class="assign_customer_block">
-                <ul class="list-unstyled dynamic_card_data">
-                    <li class="data_head">Loan No.</li>
-                    <li class="data_val">Start#1000</li>
-                    <li class="data_head">Amount</li>
-                    <li class="data_val">12000.00</li>
-                    <li class="data_head">Balance</li>
-                    <li class="data_val">000.00</li>
-                </ul>
-                <div class="action_block">
-                    <button mat-raised-button class="btn btn-sm btn-success global_submit_btn" routerLink="/paid_data_entry">View Details</button>
-                </div>
-            </div>
+            <!-- <div class="assign_customer_block" *ngIf="loanDataNotFound == false">
+                <app-no-record-found type="table" notext="No company found"></app-no-record-found>
+
+            </div> -->
         </div>
     </div>
     <!-- View Offers / Schems Details Popup -->
@@ -187,87 +166,34 @@
                     </div>
                 </div>
                 <div class="assign_customer_container">
-                    <div class="assign_customer_block">
+                    <div class="assign_customer_block" *ngFor="let loan of memberLoanData">
                         <ul class="list-unstyled dynamic_card_data">
                             <li class="data_head">Name</li>
-                            <li class="data_val">Sanjeev Sahu</li>
+                            <li class="data_val">{{loan.customer.name}}</li>
                             <li class="data_head">Profile</li>
                             <li class="data_val">
                                 <div class="list_image_block">
-                                    <img src="assets/imgs/default-pic.png" />
+                                    <img src="{{loan.customer.image}}" />
+                                    <img *ngIf="loan.customer.image == null" src="assets/imgs/default-pic.png" />
                                 </div>
                             </li>
                             <li class="data_head">Mobile</li>
-                            <li class="data_val">6263626505</li>
+                            <li class="data_val">{{loan.customer.mobile}}</li>
                             <li class="data_head">Collection Type</li>
                             <li class="data_val">Deposit</li>
                             <li class="data_head">Available</li>
-                            <li class="data_val">5000.00</li>
+                            <li class="data_val">{{loan.remaining_amount}}</li>
                         </ul>
                         <div class="action_block">
-                            <button mat-raised-button class="btn btn-sm btn-success global_submit_btn" routerLink="/paid_data_entry">
+                            <button mat-raised-button class="btn btn-sm btn-success global_submit_btn"
+                                routerLink="/paid_data_entry/{{loan.id}}">
                                 <i class="mdi mdi-currency-inr"></i>Collect Money</button>
                         </div>
                     </div>
-                    <div class="assign_customer_block">
-                        <ul class="list-unstyled dynamic_card_data">
-                            <li class="data_head">Name</li>
-                            <li class="data_val">Sanjeev Sahu</li>
-                            <li class="data_head">Profile</li>
-                            <li class="data_val">
-                                <div class="list_image_block">
-                                    <img src="assets/imgs/default-pic.png" />
-                                </div>
-                            </li>
-                            <li class="data_head">Mobile</li>
-                            <li class="data_val">6263626505</li>
-                            <li class="data_head">Loan</li>
-                            <li class="data_val">10000.00</li>
-                            <li class="data_head">Pending</li>
-                            <li class="data_val">5000.00</li>
-                        </ul>
-                        <div class="action_block">
-                            <button  mat-raised-button class="btn btn-sm btn-success global_submit_btn" routerLink="/paid_data_entry">
-                                <i class="mdi mdi-currency-inr"></i>Collect Money</button>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
-    </div>    
-    <!-- Action for loan apply -->
-    <!-- <div class="modal upload-filemodel fade" id="apply_loan_modal" tabindex="-1" role="dialog" aria-labelledby="modal-form"
-        aria-hidden="true">
-        <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Apply Loan</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body p-0 bg-secondary">
-                    <div class="card-body apic-lb-form-box">
-                        <form>
-                            <div class="form-group">
-                                <label class="mb-0"><small>Customer</small></label>
-                                <input class="form-control" disabled type="text" value="Sanjeev Sahu" />
-                            </div>
-                            <div class="form-group">
-                                <label class="mb-0"><small>Loan Amount</small></label>
-                                <input class="form-control" type="text" value="Amount" />
-                            </div>
-                            <div class="form-group">
-                                <label class="mb-0"><small>Money Received Details</small></label>
-                                <div class="input-group login-txtbox">
-                                    <textarea rows="3" class="form-control" placeholder="Enter Details"></textarea>
-                                </div>
-                            </div>
-                            <div class="login-btnblock text-center">
-                                <button data-dismiss="modal" class="btn btn-primary">Update</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    </div>
+
 </div>
