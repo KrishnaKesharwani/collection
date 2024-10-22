@@ -24,13 +24,16 @@
             <app-input [isDateField]="false" [disabled]=true label="No. Of Days" [(value)]="no_of_days"
                 [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'no_of_days'"
                 [displayMsg]="'No. of days is required'"></app-input>
-            <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="providerLoanForm"
+            <!-- <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="providerLoanForm"
                 [key]="'assigned_member_id'" [optionArray]="memberdata" *ngIf="memberdata?.length && providerLoanForm"
-                field="Assign Member"></app-dropdwon>
-            <app-dropdwon [optionArray]="dropdownService.loanstatus" *ngIf="providerLoanForm" field="Loan Status" [form]="providerLoanForm"
-                [key]="'loan_status'"></app-dropdwon>
-            <app-dropdwon [optionArray]="dropdownService.status" *ngIf="providerLoanForm" [form]="providerLoanForm" [key]="'status'"
-                field="Status"></app-dropdwon>
+                field="Assign Member"></app-dropdwon> -->
+            <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="providerLoanForm"
+                [key]="'assigned_member_id'" [optionArray]="dropdownService.getmemberdata"
+                *ngIf="dropdownService.getmemberdata?.length && providerLoanForm" field="Assign Member"></app-dropdwon>
+            <app-dropdwon [optionArray]="dropdownService.loanstatus" *ngIf="providerLoanForm" field="Loan Status"
+                [form]="providerLoanForm" [key]="'loan_status'"></app-dropdwon>
+            <app-dropdwon [optionArray]="dropdownService.status" *ngIf="providerLoanForm" [form]="providerLoanForm"
+                [key]="'status'" field="Status"></app-dropdwon>
             <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
                 [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'details'"></app-textarea>
             <div class="col-sm-6 col-lg-6 col-xs-12">

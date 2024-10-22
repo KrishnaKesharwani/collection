@@ -63,7 +63,7 @@ export class DailyCollectionComponent {
         this.openDialogViewDetail(actionData.row);
         break;
       case 'status':
-        this.openDialogChangeStatus('1ms', '5ms', actionData.row);
+        this.openDialogChangeStatus(actionData.row);
         break;
     }
   }
@@ -130,15 +130,12 @@ export class DailyCollectionComponent {
   }
 
 
-  openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string, data: any) {
+  openDialogChangeStatus(data: any) {
     const dialogRef = this.dialog.open(ChangeStatusComponent, {
       disableClose: true,
       panelClass: 'delete_popup',
-      enterAnimationDuration,
-      exitAnimationDuration,
       data: {
-        title: 'Change Member Status',
-
+        title: 'Change Deposit Status',
       },
     });
 
