@@ -68,7 +68,7 @@ export class ProviderLoanComponent {
 
   addNewDoc() {
     (<FormArray>this.providerLoanForm.get('document')).push(new FormControl(null));
-    debugger
+
   }
   memberdata: [] = [];
   getActiveMmberList() {
@@ -101,7 +101,7 @@ export class ProviderLoanComponent {
 
   submit() {
     console.log(this.providerLoanForm.value);
-    debugger
+
     const formData = new FormData();
     const documentArray = this.providerLoanForm.get('document') as FormArray;
 
@@ -142,7 +142,7 @@ export class ProviderLoanComponent {
       formData.append('company_id', this.company_id)
       formData.append('customer_id', this.dataa.data.id)
       console.log(formData)
-      debugger
+
       if (formData) {
         this._service.provideLoan(formData).subscribe((data: any) => {
           console.log(data)

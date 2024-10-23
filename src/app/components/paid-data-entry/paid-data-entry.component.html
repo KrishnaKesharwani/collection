@@ -25,7 +25,7 @@
                         </button>
 
                         <button mat-raised-button class="btn btn-success global_submit_btn" (click)="save()"><mat-icon
-                                class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+                                class="submitbtn_icon" *ngIf="!loading && collection_type == 'deposit'">check</mat-icon>
                             <app-button-loader *ngIf="loading"></app-button-loader>
                             <span>Debit</span>
                         </button>

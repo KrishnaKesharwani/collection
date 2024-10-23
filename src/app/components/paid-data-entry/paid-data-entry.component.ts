@@ -15,6 +15,7 @@ export class PaidDataEntryComponent {
   receivedAmountForm!: FormGroup;
   loading: any;
   loan_id: any;
+  collection_type: any;
 
   constructor(public routes: ActivatedRoute, public _toastr: ToastrService, public router: Router, public fb: FormBuilder
     , public _service: PaidDataEntryService
@@ -30,8 +31,10 @@ export class PaidDataEntryComponent {
     }
 
     this.routes.params.subscribe((data) => {
-      if (data) {
+      if (data && data) {
+
         this.loan_id = data['id'];
+        this.collection_type = '';
       }
     });
 
