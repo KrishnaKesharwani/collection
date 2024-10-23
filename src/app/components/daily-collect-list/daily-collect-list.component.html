@@ -3,7 +3,7 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col col-sm-4 pl-1">
-                    <h3 class="mb-0">Running Loan</h3>
+                    <h3 class="mb-0">Running Loan / Deposit Account List</h3>
                 </div>
             </div>
         </div>
@@ -205,9 +205,9 @@
             <ng-container *ngIf="memberDepositData.length">
                 <div class="assign_customer_block" *ngFor="let deposit of memberDepositData">
                     <ul class="list-unstyled dynamic_card_data">
-                        <li class="data_head">Name</li>
-                        <li class="data_val">{{deposit.deposit_no}}</li>                        
                         <li class="data_head">Deposit No.</li>
+                        <li class="data_val">{{deposit.deposit_no}}</li>                        
+                        <li class="data_head">Name</li>
                         <li class="data_val">{{deposit.customer.name}}</li>
                         <li class="data_head">Profile</li>
                         <li class="data_val">
