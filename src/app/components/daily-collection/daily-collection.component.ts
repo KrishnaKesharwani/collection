@@ -8,6 +8,7 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
+import { DailyCollectionService } from 'src/app/services/dailyCollection/daily-collection.service';
 
 @Component({
   selector: 'app-daily-collection',
@@ -18,7 +19,7 @@ export class DailyCollectionComponent {
   loanassign_action = 0;
   readonly dialog = inject(MatDialog);
   company_id: any;
-  customerData: any[] = [];
+  depositData: any[] = [];
   filteredDataarray: any[] = [];
   loader = false;
 
@@ -33,7 +34,7 @@ export class DailyCollectionComponent {
   ];
 
 
-  constructor(public _customActionService: CustomActionsService, private actionService: ActionService, public dropdownService: CommonComponentService) { }
+  constructor(public _serivce: DailyCollectionService, public _customActionService: CustomActionsService, private actionService: ActionService, public dropdownService: CommonComponentService) { }
 
   ngOnInit(): void {
 
@@ -43,6 +44,21 @@ export class DailyCollectionComponent {
       this.company_id = userData.company_id;
     }
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+
+    this.getDepositList();
+  }
+
+
+  getDepositList() {
+    let obj = {
+      company_id: this.company_id,
+      loan_status: 'Pending',
+      status: 'Active'
+    }
+    this._serivce.getDepositListForCustomer(obj).subscribe((data: any) => {
+
+      this.depositData = data.data.loans;
+    })
   }
 
   onAction(actionData: { action: string; row: any }) {
@@ -150,7 +166,7 @@ export class DailyCollectionComponent {
     } else {
       this.isAsc = true;
     }
-    this.filteredDataarray = this._customActionService.sortData(column, this.customerData);
+    this.filteredDataarray = this._customActionService.sortData(column, this.depositData);
   }
 
   searchColumns: any[] = ['name', 'status', 'mobile'];
@@ -159,7 +175,7 @@ export class DailyCollectionComponent {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
     if (this.searchTerm == null || this.searchTerm == '') {
-      this.filteredDataarray = this.customerData;
+      this.filteredDataarray = this.depositData;
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }

@@ -36,12 +36,18 @@
                 [key]="'status'" field="Status"></app-dropdwon>
             <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
                 [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'details'"></app-textarea>
-            <div class="col-sm-6 col-lg-6 col-xs-12">
-                <div class="file_upload_block global_textbox_block">
-                    <label class="m-0">Documents</label>
-                    <app-fileupload class="fileupload" formControlName="document" name="document"
-                        (fileChange)="onFileChange($event)"></app-fileupload>
-                </div>
+            <div class="file_upload_block global_textbox_block" formArrayName="document">
+                <label class="m-0">Documents</label>
+                <!-- <app-fileupload class="fileupload" formControlName="document" name="document"
+                                    (fileChange)="onFileChange($event)"></app-fileupload> -->
+                <ng-container *ngFor="let doc of documentControls;let i =index">
+                    <app-fileupload class="fileupload" formControlName="{{i}}" name="document"
+                        (fileChange)="onFileChange($event,i)"></app-fileupload>
+                </ng-container>
+
+                <button mat-menu-item (click)="addNewDoc()">
+                    <i class="mdi mdi-pencil mr-2"></i> <span>Add More</span>
+                </button>
             </div>
         </div>
     </form>

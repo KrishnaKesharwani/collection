@@ -6,13 +6,16 @@
                     <div class="row align-items-center">
                         <div class="col col-sm-3 pl-1">
                             <h3 class="mb-0">Deposit List</h3>
-                        </div> 
+                        </div>
                         <div class="col p-0 head_details">
-                            <div class="total_block bg-warning mr-2" (click)="openDialogCollectionHistory()"><span>Daily Amount</span><b>5,30,100.00</b>
+                            <div class="total_block bg-warning mr-2" (click)="openDialogCollectionHistory()"><span>Daily
+                                    Amount</span><b>5,30,100.00</b>
                             </div>
-                            <div class="total_block bg-primary mr-2" (click)="openDialogChangeStatus('data')"><span>Total Amount</span><b>5,30,100.00</b>
+                            <div class="total_block bg-primary mr-2" (click)="openDialogChangeStatus('data')">
+                                <span>Total Amount</span><b>5,30,100.00</b>
                             </div>
-                            <div class="total_block bg-success" (click)="openDialogChangeMember()"><span>Total Customer</span><b>150</b></div>
+                            <div class="total_block bg-success" (click)="openDialogChangeMember()"><span>Total
+                                    Customer</span><b>150</b></div>
                         </div>
                         <div class="col text-right pr-1">
                             <div class="listsearch-topblock mr-0">
@@ -62,15 +65,15 @@
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
-                        <tr *ngIf="customerData.length == 0 && !loader">
+                        <tr *ngIf="depositData.length == 0 && !loader">
                             <td colspan="8">
                                 <app-no-record-found type="table"
                                     notext="You have not added any deposit account."></app-no-record-found>
                             </td>
                         </tr>
-                        <ng-container *ngIf="customerData.length != 0 && !loader">
-                            <tr class="received_row" *ngFor="let item of customerData">
-                                <td class="col">{{item.customer_no}}</td>
+                        <ng-container *ngIf="depositData.length != 0 && !loader">
+                            <tr class="received_row" *ngFor="let item of depositData">
+                                <td class="col">{{item.customer.customer_no}}</td>
                                 <td class="col" data-name="Profile">
                                     <div class="list_image_block" *ngIf="item.image == null">
                                         <img src="assets/imgs/default-pic.png" />
@@ -79,13 +82,14 @@
                                         <img onerror="this.src='assets/imgs/default-pic.png';" src="{{item.image}}" />
                                     </div>
                                 </td>
-                                <td class="col" data-name="Name">{{item.name}}</td>
+                                <td class="col" data-name="Name">{{item.customer?.name}}</td>
 
-                                <td class="col" data-name="Mobile">{{item.mobile}}</td>
+                                <td class="col" data-name="Mobile">{{item.customer?.mobile}}</td>
 
-                                <td class="col" data-name="Assign ">{{item.name}}</td>
+                                <td class="col" data-name="Assign ">{{item.member?.name}}</td>
 
-                                <td class="col" data-name="Available Amt">{{item.name}}</td>
+
+                                <td class="col" data-name="Available Amt">{{item.remaining_amount}}</td>
                                 <td class="col text-center" data-name="Status">
                                     <span class="badge bg-success text-white"
                                         *ngIf="item.status == 'active'">{{item.status}}</span>
@@ -116,8 +120,7 @@
                                                     <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                                 </button>
 
-                                                <button mat-menu-item
-                                                    (click)="openDialogChangeStatus(item)">
+                                                <button mat-menu-item (click)="openDialogChangeStatus(item)">
                                                     <i class="mdi mdi-account-off-outline mr-2"></i>
                                                     <span>Change Status</span>
                                                 </button>

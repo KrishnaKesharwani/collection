@@ -16,6 +16,8 @@ export class DailyCollectListComponent {
   customer_id: any;
   loanData: any[] = [];
   loanDataNotFound: any;
+  memberDepositData: any;
+  customerDepositData: any;
 
   constructor(public _customActionService: CustomActionsService, public _service: DailyCollectionService, private actionService: ActionService) {
 
@@ -32,9 +34,11 @@ export class DailyCollectListComponent {
 
     if (this.member_id) {
       this.getMemberLoanList();
+      this.getDepsitForMember();
     }
     else {
       this.getCustomerLoanList();
+      this.getDepsitForCustomer();
     }
 
   }
@@ -66,4 +70,30 @@ export class DailyCollectListComponent {
       this.loanDataNotFound = data.success;
     })
   }
+
+  getDepsitForMember() {
+    let obj = {
+      company_id: this.company_id,
+      member_id: this.member_id,
+
+      status: "Active"
+    }
+    this._service.getDepositListForMember(obj).subscribe((data: any) => {
+      console.log(data.data);
+      this.memberDepositData = data.data.deposits;
+    })
+  }
+  getDepsitForCustomer() {
+    let obj = {
+      company_id: this.company_id,
+      customer_id: this.customer_id,
+
+      status: "Active"
+    }
+    this._service.getDepositListForCustomer(obj).subscribe((data: any) => {
+      console.log(data.data);
+      this.customerDepositData = data.data.deposits;
+    })
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ToastRef, ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
@@ -55,11 +55,20 @@ export class ProviderLoanComponent {
       details: [''],
       loan_status: [''],
       status: [''],
-      document: ['']
+      document: this.fb.array([])
     });
 
     this.getActiveMmberList();
 
+  }
+
+  get documentControls() {
+    return (this.providerLoanForm.get('document') as FormArray).controls;
+  }
+
+  addNewDoc() {
+    (<FormArray>this.providerLoanForm.get('document')).push(new FormControl(null));
+    debugger
   }
   memberdata: [] = [];
   getActiveMmberList() {
@@ -92,6 +101,13 @@ export class ProviderLoanComponent {
 
   submit() {
     console.log(this.providerLoanForm.value);
+    debugger
+    const formData = new FormData();
+    const documentArray = this.providerLoanForm.get('document') as FormArray;
+
+    documentArray.controls.forEach((control, index) => {
+      formData.append(`file${index}`, control.value);
+    });
     if (this.providerLoanForm.valid) {
       this.loading = true;
       const formData = new FormData();
@@ -125,6 +141,8 @@ export class ProviderLoanComponent {
       });
       formData.append('company_id', this.company_id)
       formData.append('customer_id', this.dataa.data.id)
+      console.log(formData)
+      debugger
       if (formData) {
         this._service.provideLoan(formData).subscribe((data: any) => {
           console.log(data)
@@ -176,9 +194,12 @@ export class ProviderLoanComponent {
 
   selectedFile: File | null = null;
 
-  onFileChange(file: File | null): void {
-    this.selectedFile = file;
-    // Handle the file as needed
+  onFileChange(event: any, index: number) {
+    const file = event.target.files[0];  // Get the selected file
+    const documentArray = this.providerLoanForm.get('document') as FormArray;
+
+    // Update the specific FormControl at the index with the file data
+    documentArray.at(index).setValue(file);
   }
 
 

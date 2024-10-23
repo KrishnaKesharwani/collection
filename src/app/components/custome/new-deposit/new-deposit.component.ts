@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { FixedDepositService } from 'src/app/services/fixedDeposit/fixed-deposit.service';
 
 @Component({
   selector: 'app-new-deposit',
@@ -24,7 +25,7 @@ export class NewDepositComponent {
 
 
 
-  constructor(public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public _fixedDepositService: FixedDepositService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
   ngOnInit() {
@@ -41,12 +42,12 @@ export class NewDepositComponent {
 
       details: [''],
 
-      depositStatus: ['']
+      status: ['']
     });
 
     this.getActiveMmberList();
     // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
-    this.dropdownService.setOptions('depositStatus', ['Active', 'Inactive']);
+    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
 
   memberdata: [] = [];
@@ -73,12 +74,13 @@ export class NewDepositComponent {
         customer_id: this.dataa.data.id,
         ...this.depositFrom.value
       }
-      this._service.provideLoan(obj).subscribe((data: any) => {
+      this._fixedDepositService.customerNewDeposit(obj).subscribe((data: any) => {
         console.log(data)
-        this.depositFrom.reset();
+
         this._tostr.success(data.message, 'Success');
 
-
+        this.depositFrom.reset();
+        this.loading = false;
       })
       // this.dialog.closeAll();
     } else {
