@@ -155,11 +155,12 @@ export class MemberListComponent {
 
 
 
-  openDialogAssignLoan() {
+  openDialogAssignLoan(data: any) {
     const dialogRef = this.dialog.open(AssignLoanComponent, {
       disableClose: true,
       panelClass: 'view_details_popup',
       data: {
+        data: data,
         title: 'Assign Loan History Details',
 
       },

@@ -32,4 +32,9 @@ export class MemberService {
     return this.httpClient.put(url, obj)
   }
 
+  unassignedLoans(obj: object) {
+    const url = `${this.apiUrl}/unassigned-loan`;
+    return this.httpClient.post(url, obj)
+  }
+
 }

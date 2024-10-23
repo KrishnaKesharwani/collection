@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CustomerService } from '../services/customer/customer.service';
+import { MemberService } from '../services/member/member.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CommonComponentService {
-  constructor(private _service: CustomerService) {
+  public getUnassignedData: any[] = [];
+  constructor(private _service: CustomerService, public _memberService: MemberService) {
     this.getActiveMemberList();
+    // this.getUnassignedLoans();
   }
   company_id: any;
   public getmemberdata: any[] = [];
@@ -41,5 +44,7 @@ export class CommonComponentService {
       this.getmemberdata = memberDataAPi.data;
     })
   }
+
+
 
 }
