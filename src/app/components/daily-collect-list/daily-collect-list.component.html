@@ -147,53 +147,89 @@
     </div> -->
 </div>
 <div class="list-containner" *ngIf='userType == 2'>
-    <div class="row">
-        <div class="col-xl-12 mb-xl-0">
-            <div class="card shadow dash-cardbox collect_money_card">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col col-sm-4 pl-1">
-                            <h3 class="mb-0">Assigned Customer</h3>
-                        </div>
-                        <div class="col text-right pr-1 datewith_search_block">
-                            <div class="listsearch-topblock search_withaddbtn pr-0">
-                                <div class="search-box">
-                                    <input type="search" placeholder="Search" class="searchtxt" />
-                                    <i class="mdi mdi-magnify"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="card shadow dash-cardbox collect_money_card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col col-sm-4 pl-1">
+                    <h3 class="mb-0">Assigned Customer</h3>
                 </div>
-                <div class="assign_customer_container">
-                    <div class="assign_customer_block" *ngFor="let loan of memberLoanData">
-                        <ul class="list-unstyled dynamic_card_data">
-                            <li class="data_head">Name</li>
-                            <li class="data_val">{{loan.customer.name}}</li>
-                            <li class="data_head">Profile</li>
-                            <li class="data_val">
-                                <div class="list_image_block">
-                                    <img src="{{loan.customer.image}}" />
-                                    <img *ngIf="loan.customer.image == null" src="assets/imgs/default-pic.png" />
-                                </div>
-                            </li>
-                            <li class="data_head">Mobile</li>
-                            <li class="data_val">{{loan.customer.mobile}}</li>
-                            <li class="data_head">Collection Type</li>
-                            <li class="data_val">Deposit</li>
-                            <li class="data_head">Available</li>
-                            <li class="data_val">{{loan.remaining_amount}}</li>
-                        </ul>
-                        <div class="action_block">
-                            <button mat-raised-button class="btn btn-sm btn-success global_submit_btn"
-                                routerLink="/paid_data_entry/{{loan.id}}">
-                                <i class="mdi mdi-currency-inr"></i>Collect Money</button>
+                <div class="col text-right pr-1 datewith_search_block">
+                    <div class="listsearch-topblock search_withaddbtn pr-0">
+                        <div class="search-box">
+                            <input type="search" placeholder="Search" class="searchtxt" />
+                            <i class="mdi mdi-magnify"></i>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
+        <div class="page_laoder_collection" *ngIf="loading">
+            <app-page-loader></app-page-loader>
+        </div>
+        <div class="assign_customer_container" *ngIf="!loading">           
+            <ng-container *ngIf="!memberLoanData.length && !memberDepositData.length">
+                <app-no-record-found type="page" notext="No assign found"></app-no-record-found>
+            </ng-container>
+            <ng-container *ngIf="memberLoanData.length">
+                <div class="assign_customer_block" *ngFor="let loan of memberLoanData">
+                    <ul class="list-unstyled dynamic_card_data">
+                        <li class="data_head">Loan No.</li>
+                        <li class="data_val">{{loan.loan_no}}</li>
+                        <li class="data_head">Name</li>
+                        <li class="data_val">{{loan.customer.name}}</li>
+                        <li class="data_head">Profile</li>
+                        <li class="data_val">
+                            <div class="list_image_block">
+                                <img *ngIf="loan.customer.image != null" src="{{loan.customer.image}}" />
+                                <img *ngIf="loan.customer.image == null" src="assets/imgs/default-pic.png" />
+                            </div>
+                        </li>
+                        <li class="data_head">Mobile</li>
+                        <li class="data_val">{{loan.customer.mobile}}</li>
+                        <li class="data_head">Collection Type</li>
+                        <li class="data_val">Loan</li>
+                        <li class="data_head">Total Amt</li>
+                        <li class="data_val">{{loan.loan_amount}}</li>
+                        <li class="data_head">Pending Amt</li>
+                        <li class="data_val">{{loan.remaining_amount}}</li>
+                        <li class="data_head">Instalment</li>
+                        <li class="data_val">{{loan.installment_amount}}</li>
+                    </ul>
+                    <div class="action_block">
+                        <button mat-raised-button (click)="collectMoneyType('loan')"
+                            class="btn btn-sm btn-success global_submit_btn" routerLink="/paid_data_entry/{{loan.id}}">
+                            <i class="mdi mdi-currency-inr"></i>Collect Money</button>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="memberDepositData.length">
+                <div class="assign_customer_block" *ngFor="let deposit of memberDepositData">
+                    <ul class="list-unstyled dynamic_card_data">
+                        <li class="data_head">Name</li>
+                        <li class="data_val">{{deposit.deposit_no}}</li>                        
+                        <li class="data_head">Deposit No.</li>
+                        <li class="data_val">{{deposit.customer.name}}</li>
+                        <li class="data_head">Profile</li>
+                        <li class="data_val">
+                            <div class="list_image_block">
+                                <img *ngIf="deposit.customer.image != null" src="{{deposit.customer.image}}" />
+                                <img *ngIf="deposit.customer.image == null" src="assets/imgs/default-pic.png" />
+                            </div>
+                        </li>
+                        <li class="data_head">Mobile</li>
+                        <li class="data_val">{{deposit.customer.mobile}}</li>
+                        <li class="data_head">Collection Type</li>
+                        <li class="data_val">Deposit</li>
+                        <li class="data_head">Available Amt</li>
+                        <li class="data_val">{{deposit.remaining_amount}}</li>
+                    </ul>
+                    <div class="action_block">
+                        <button mat-raised-button (click)="collectMoneyType('deposit')"
+                            class="btn btn-sm btn-success global_submit_btn" routerLink="/paid_data_entry/{{deposit.id}}">
+                            <i class="mdi mdi-currency-inr"></i>Collect Money</button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
     </div>
-
 </div>
