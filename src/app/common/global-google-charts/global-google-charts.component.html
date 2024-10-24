@@ -4,10 +4,60 @@
     </div>
 </ng-container>
 <ng-container *ngIf="currentuserType == 1">
-
+    <div class="chart_container">
+        <div class="card dash-cardbox">
+            <div class="chart_innercontainer">
+                <div class="chart_heading">
+                    <div class="left_data">Loan Status</div>
+                    <div class="loan_no_conainer">
+                        <b>Total Loan Customer :</b>
+                        <span>15</span>
+                    </div>
+                </div>
+                <div class="inner_block">
+                    <div id="pie_company_chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card dash-cardbox">
+            <div class="chart_innercontainer">
+                <div class="chart_heading">
+                    <div class="left_data">Last 6 Month Deposit Status</div>
+                    <div class="loan_no_conainer">
+                        <b>Total Customer :</b>
+                        <span>50</span>
+                    </div>
+                </div>
+                <div class="inner_block">
+                    <div id="column_company_chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-container>
 <ng-container *ngIf="currentuserType == 2">
-
+    <div class="chart_container">
+        <div class="card dash-cardbox">
+            <div class="chart_innercontainer">
+                <div class="chart_heading">
+                    <div class="left_data">Assign / Received Amount</div>
+                </div>
+                <div class="inner_block">
+                    <div id="pie_member_chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card dash-cardbox">
+            <div class="chart_innercontainer">
+                <div class="chart_heading">
+                    <div class="left_data">Last 10 Days Amount Received</div>
+                </div>
+                <div class="inner_block">
+                    <div id="column_member_chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-container>
 <ng-container *ngIf="currentuserType == 3">
     <div class="chart_container">
@@ -22,7 +72,6 @@
                     </div>
                 </div>
                 <div class="inner_block">
-                    <!-- <google-chart [data]="comboChart"></google-chart> -->
                     <div id="pie_user_chart"></div>
                 </div>
             </div>
@@ -39,7 +88,7 @@
         </div>
     </div>
 </ng-container>
-
+<!-- <div id="column_div" style="width:400; height:300"></div> -->
 <!-- <div id="column_div" style="width:400; height:300"></div>
 <div id="pie_div" style="width:400; height:300"></div>
 <div id="combo_div" style="width:400; height:300"></div>
