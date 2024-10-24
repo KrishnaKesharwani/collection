@@ -60,7 +60,7 @@ export class DailyCollectListComponent {
   }
   collectTypeClick: any;
   collectMoneyType(collectType: any) {
-    debugger;
+
     this.collectTypeClick = collectType;
   }
 

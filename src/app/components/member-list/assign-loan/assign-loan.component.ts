@@ -3,9 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
+import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { DailyCollectionService } from 'src/app/services/dailyCollection/daily-collection.service';
 import { LoanService } from 'src/app/services/loan/loan.service';
 import { MemberService } from 'src/app/services/member/member.service';
+import Swal from 'sweetalert2';
 interface Food {
   value: string;
   viewValue: string;
@@ -73,7 +75,8 @@ export class AssignLoanComponent {
     this.getAssignDeposit();
     this.getAssignLoan();
     setTimeout(() => {
-      this.total_assignlength = calc(this.assignDepositData.length + this.loanList.length);
+      this.total_assignlength = this.assignDepositData.length + this.loanList.length;
+
     }, 3000);
   }
 
@@ -89,7 +92,7 @@ export class AssignLoanComponent {
 
         this.dropdownService.setOptions('unassingmember', data.data);
       } else {
-        debugger
+
       }
 
     })
@@ -134,8 +137,100 @@ export class AssignLoanComponent {
 
     })
   }
+
+  openDialogLoanRemove(data: any) {
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      panelClass: 'delete_popup',
+      data: {
+        title: 'Are you sure?',
+        subTitle:
+          'You want to remove!'
+      }
+    });
+    dialogRef.componentInstance.deleteAction.subscribe(() => {
+      this.delete(data);
+    });
+  }
+
+  delete(data: any) {
+
+    let obj = {
+      loan_id: data.id,
+      member_id: data.member?.id
+
+    }
+    console.log(obj);
+
+    this._service.removeAssignLoan(obj).subscribe((data: any) => {
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: 'Removed',
+          text: 'Assign Loan Removed!',
+          showConfirmButton: true,
+          timer: 1500
+        });
+      }
+
+    }, error => {
+      this.loading = false;
+      this._tostr.error(error.error.error.member_id, 'Error');
+
+    });
+    this.getAssignLoan();
+    this.getAssignDeposit();
+    this.dialog.closeAll()
+  }
+
+  openDialogDepositRemove(data: any) {
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      panelClass: 'delete_popup',
+      data: {
+        title: 'Are you sure?',
+        subTitle:
+          'You want to remove!'
+      }
+    });
+    dialogRef.componentInstance.deleteAction.subscribe(() => {
+      this.deleteDeposit(data);
+    });
+  }
+
+  deleteDeposit(data: any) {
+
+    let obj = {
+      deposit_id: data.id,
+      member_id: data.member?.id
+
+    }
+    console.log(obj);
+
+    this._service.removeAssignDeposit(obj).subscribe((data: any) => {
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: 'Removed',
+          text: 'Assign Deposit Removed!',
+          showConfirmButton: true,
+          timer: 1500
+        });
+      }
+
+    }, error => {
+      this.loading = false;
+      this._tostr.error(error.error.error.member_id, 'Error');
+
+    });
+    this.getAssignLoan();
+    this.getAssignDeposit();
+    this.dialog.closeAll()
+  }
+
 }
-function calc(arg0: any): number {
-  throw new Error('Function not implemented.');
-}
+
+
+
+
 

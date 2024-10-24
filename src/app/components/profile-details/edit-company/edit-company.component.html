@@ -11,14 +11,14 @@
                     <div class="row">
                         <div class="col-sm-4 col-xs-12">
                             <app-input [disabled]="true" [isDateField]="false" label="Company Name"
-                                [(value)]="companyName" [isRequired]="true" [className]="'bottom_error_msg'"
-                                [form]="editForm" [key]="'companyName'"
+                                [(value)]="company_name" [isRequired]="true" [className]="'bottom_error_msg'"
+                                [form]="editForm" [key]="'company_name'"
                                 [displayMsg]="'Company name is required'"></app-input>
                         </div>
                         <div class="col-sm-4 col-xs-12">
-                            <app-input [isDateField]="false" label="Owner Name" [(value)]="ownerName"
+                            <app-input [isDateField]="false" label="Owner Name" [(value)]="owner_name"
                                 [isRequired]="true" [className]="'bottom_error_msg'" [form]="editForm"
-                                [key]="'ownerName'" [displayMsg]="'Owner name is required'"></app-input>
+                                [key]="'owner_name'" [displayMsg]="'Owner name is required'"></app-input>
                         </div>
                         <div class="col-sm-4 col-xs-12">
                             <app-input [disabled]='true' [isDateField]="false" label="Mobile" [(value)]="mobile"
@@ -26,19 +26,18 @@
                                 [displayMsg]="'Mobile is required'"></app-input>
                         </div>
                         <div class="col-sm-4 col-xs-12">
-                            <app-input [isDateField]="false" label="Primary Color" [(value)]="primaryColor"
+                            <app-input [isDateField]="false" label="Primary Color" [(value)]="primary_color"
                                 [isRequired]="true" [className]="'bottom_error_msg'" [form]="editForm"
-                                [key]="'primaryColor'" [displayMsg]="'Primary color is required'"></app-input>
+                                [key]="'primary_color'" [displayMsg]="'Primary color is required'"></app-input>
                         </div>
                         <div class="col-sm-4 col-xs-12">
-                            <app-input [isDateField]="false" label="Secondary Color" [(value)]="secondaryColor"
+                            <app-input [isDateField]="false" label="Secondary Color" [(value)]="secondary_color"
                                 [isRequired]="true" [className]="'bottom_error_msg'" [form]="editForm"
-                                [key]="'secondaryColor'" [displayMsg]="'Secondary color is required'"></app-input>
+                                [key]="'secondary_color'" [displayMsg]="'Secondary color is required'"></app-input>
                         </div>
                         <div class="col-sm-4 col-xs-12">
-                            <app-input [isDateField]="false" [disabled]='true' label="Company Login Id" [(value)]="companyLoginId"
-                                [isRequired]="true" [className]="'bottom_error_msg'" [form]="editForm"
-                                [key]="'companyLoginId'" [displayMsg]="'Login id is required'"></app-input>
+                            <app-input [isDateField]="false" [disabled]='true' label="Prefix" [(value)]="prefix"
+                                [className]="'bottom_error_msg'" [form]="editForm" [key]="'prefix'"></app-input>
                         </div>
                         <div class="col-sm-12">
                             <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"

@@ -37,4 +37,13 @@ export class MemberService {
     return this.httpClient.post(url, obj)
   }
 
+  removeAssignLoan(obj: object) {
+    const url = `${this.apiUrl}/remove-loan-member`;
+    return this.httpClient.post(url, obj)
+  }
+
+  removeAssignDeposit(obj: object) {
+    const url = `${this.apiUrl}/remove-loan-member`;
+    return this.httpClient.post(url, obj)
+  }
 }
