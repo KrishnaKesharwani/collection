@@ -24,7 +24,7 @@ export class AssignLoanComponent {
 
   selectedValue: string | undefined;
   selectedCar: string | undefined;
-
+  total_assignlength = 0;
   foods: Food[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
@@ -72,6 +72,9 @@ export class AssignLoanComponent {
     this.getUnassignedLoans();
     this.getAssignDeposit();
     this.getAssignLoan();
+    setTimeout(() => {
+      this.total_assignlength = calc(this.assignDepositData.length + this.loanList.length);
+    }, 3000);
   }
 
   getUnassignedLoans() {
@@ -132,3 +135,7 @@ export class AssignLoanComponent {
     })
   }
 }
+function calc(arg0: any): number {
+  throw new Error('Function not implemented.');
+}
+

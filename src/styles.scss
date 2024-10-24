@@ -2586,6 +2586,10 @@ mark {
     .load_list_ddl {
         margin-left: 10px;
         width: 100%;
+        display: flex;
+        app-dropdwon {
+            width: calc(100% - 125px);
+        }
     }
 }
 

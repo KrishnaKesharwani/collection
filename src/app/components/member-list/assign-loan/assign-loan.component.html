@@ -4,100 +4,89 @@
 </div>
 <div class="dialoge_middle_container full_height_cover middle_dialoge">
     <div class="flex_header res_flex_colum">
-        <div class="assign_text res_full_width">Total Assign : 02</div>
-        <div class="global_form_row res_full_width load_list_ddl">
-            <div class="row">
-                <div class="col-sm-8">
-
-                    <app-dropdwon [jsonKey]="'unassingmember'" [arrayType]="'KEY_TYPE'" [form]="unassignedForm"
-                        [key]="'unassigned_member_id'" [optionArray]="getUnassignedData"
-                        field="Not Assign Loan List"></app-dropdwon>
-
-                </div>
-                <div class="col-sm-4">
-                    <button type="submit" class="global_submit_btn" mat-flat-button (click)="save()">
-                        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
-                        <app-button-loader *ngIf="loading"></app-button-loader>
-                        <span>Submit</span>
-                    </button>
-                </div>
-
-            </div>
-
-
+        <div class="assign_text res_full_width">Total Assign : {{total_assignlength}}</div>
+        <div class="global_form_row res_full_width load_list_ddl" *ngIf="getUnassignedData?.length">
+            <app-dropdwon [jsonKey]="'unassingmember'" [arrayType]="'KEY_TYPE'" [form]="unassignedForm"
+                [key]="'unassigned_member_id'" [optionArray]="getUnassignedData"
+                field="Not Assign Loan List"></app-dropdwon>
+            <button type="submit" class="global_submit_btn" mat-flat-button (click)="save()">
+                <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+                <app-button-loader *ngIf="loading"></app-button-loader>
+                <span>Submit</span>
+            </button>
         </div>
     </div>
-    <div class="left_text">Assign Loan</div>
-    <br>
-    <table class="table table-bordered table-responsive popup_table bg-white more_table">
-        <thead>
-            <tr>
-                <th>#Cno.</th>
-                <th>Customer Name</th>
-                <th>Contact</th>
-                <th>Amount</th>
-                <th>Pending</th>
-                <th>Instalment</th>
-                <th>Status</th>
-                <th class="text-center">Remove</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let loan of loanList">
-                <td class="col" data-name="Cno.">{{loan.customer.customer_no}}</td>
-                <td class="col" data-name="Customer Name">{{loan.customer.name}}</td>
-                <td class="col" data-name="Contact">{{loan.customer.mobile}}</td>
-                <td class="text-right col" data-name="Amount">-</td>
-                <td class="text-right col" data-name="Pending">{{loan.remaining_amount}}</td>
-                <td class="text-right col" data-name="Instalment">{{loan.installment_amount}}</td>
-                <td class="text-center col" data-name="Status"><span class="btn btn-sm btn-danger btn_download"
-                        *ngIf="loan.status== 'running'"><i class="mdi mdi-account-off-outline"></i>
-                    </span>
-                    <span class="btn btn-sm btn-danger btn_download" *ngIf="loan.status== 'completed'"><i
-                            class="mdi mdi-account-off-outline"></i></span>
-                </td>
+    <ng-container *ngIf="loanList.length > 0">
+        <div class="main_table_head">Assign Loan</div>
+        <table class="table table-bordered table-responsive popup_table bg-white more_table">
+            <thead>
+                <tr>
+                    <th>Customer No.</th>
+                    <th>Customer Name</th>
+                    <th>Contact</th>
+                    <th>Amount</th>
+                    <th>Pending</th>
+                    <th>Instalment</th>
+                    <th>Status</th>
+                    <th class="text-center">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let loan of loanList">
+                    <td class="col" data-name="Cno.">{{loan.customer.customer_no}}</td>
+                    <td class="col" data-name="Customer Name">{{loan.customer.name}}</td>
+                    <td class="col" data-name="Contact">{{loan.customer.mobile}}</td>
+                    <td class="text-right col" data-name="Amount">-</td>
+                    <td class="text-right col" data-name="Pending">{{loan.remaining_amount}}</td>
+                    <td class="text-right col" data-name="Instalment">{{loan.installment_amount}}</td>
+                    <td class="text-center col" data-name="Status"><span class="btn btn-sm btn-danger btn_download"
+                            *ngIf="loan.status== 'running'"><i class="mdi mdi-account-off-outline"></i>
+                        </span>
+                        <span class="btn btn-sm btn-danger btn_download" *ngIf="loan.status== 'completed'"><i
+                                class="mdi mdi-account-off-outline"></i></span>
+                    </td>
 
-                <td class="text-center col" data-name="Remove"><span class="btn btn-sm btn-danger btn_download"><i
-                            class="mdi mdi-account-off-outline"></i></span></td>
-            </tr>
-
-        </tbody>
-
-    </table>
-    <br>
-    <div class="left_text">Assign Deposit</div>
-    <br>
-    <table class="table table-bordered table-responsive popup_table bg-white more_table">
-        <thead>
-            <tr>
-                <th>#Cno.</th>
-                <th>Customer Name</th>
-                <th>Contact</th>
-                <th>Amount</th>
-                <th>Pending</th>
-                <th>Instalment</th>
-                <th>Status</th>
-                <th class="text-center">Remove</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let deposit of assignDepositData">
-                <td class="col" data-name="Cno.">{{deposit.customer.customer_no}}</td>
-                <td class="col" data-name="Customer Name">{{deposit.customer.name}}</td>
-                <td class="col" data-name="Contact">{{deposit.customer.mobile}}</td>
-                <td class="text-right col" data-name="Amount">-</td>
-                <td class="text-right col" data-name="Pending">-</td>
-                <td class="text-right col" data-name="Instalment">-</td>
-                <td class="text-center col" data-name="Status">
-                    <span class="badge bg-warning text-white"
-                        *ngIf="deposit.status == 'pending'">{{deposit.status}}</span>
-                    <span class="badge bg-success text-white" *ngIf="deposit.status == 'compoleted'">Completed</span>
-
-
-                <td class="text-center col" data-name="Remove"><span class="btn btn-sm btn-danger btn_download"><i
-                            class="mdi mdi-account-off-outline"></i></span></td>
-            </tr>
-
-        </tbody>
-    </table>
+                    <td class="text-center col" data-name="Remove"><span class="btn btn-sm btn-danger btn_download"><i
+                                class="mdi mdi-account-off-outline"></i></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+    </ng-container>
+    <ng-container *ngIf="assignDepositData.length > 0">
+        <div class="main_table_head">Assign Deposit</div>
+        <table class="table table-bordered table-responsive popup_table bg-white more_table">
+            <thead>
+                <tr>
+                    <th>Customer No.</th>
+                    <th>Customer Name</th>
+                    <th>Contact</th>
+                    <th>Amount</th>
+                    <th>Pending</th>
+                    <th>Instalment</th>
+                    <th>Status</th>
+                    <th class="text-center">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let deposit of assignDepositData">
+                    <td class="col" data-name="Cno.">{{deposit.customer.customer_no}}</td>
+                    <td class="col" data-name="Customer Name">{{deposit.customer.name}}</td>
+                    <td class="col" data-name="Contact">{{deposit.customer.mobile}}</td>
+                    <td class="text-right col" data-name="Amount">-</td>
+                    <td class="text-right col" data-name="Pending">-</td>
+                    <td class="text-right col" data-name="Instalment">-</td>
+                    <td class="text-center col" data-name="Status">
+                        <span class="badge bg-warning text-white"
+                            *ngIf="deposit.status == 'pending'">{{deposit.status}}</span>
+                        <span class="badge bg-success text-white" *ngIf="deposit.status == 'completed'">Completed</span>
+                    <td class="text-center col" data-name="Remove"><span class="btn btn-sm btn-danger btn_download"><i
+                                class="mdi mdi-account-off-outline"></i></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-container>
+    <ng-container *ngIf="assignDepositData.length == 0 && loanList.length == 0">
+        <app-no-record-found type="page" notext="No assign found"></app-no-record-found>
+    </ng-container>
 </div>

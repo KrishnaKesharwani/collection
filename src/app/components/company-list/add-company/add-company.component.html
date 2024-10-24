@@ -32,6 +32,11 @@
                         [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
                         [key]="'secondaryColor'" [displayMsg]="'Secondary color is required'"></app-input>
                 </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" label="Prefix" [(value)]="prefix_no" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'prefix_no'"
+                        [displayMsg]="'Prefix is required'"></app-input>
+                </div>
                 <ng-container *ngIf="!company_id">
                     <div class="col-sm-4 col-lg-4 col-xs-12">
                         <!-- <app-dropdwon key="plan" field="Plan" formControlName="plan" name="plan"></app-dropdwon> -->
@@ -77,8 +82,8 @@
                     <app-input [isDateField]="false" label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'aadhar_no'"
                         [displayMsg]="'Aadhar number is required'"></app-input>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
+                </div>                
+                <div class="col-sm-12">
                     <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'address'"
                         [displayMsg]="'Address is required'"></app-input>

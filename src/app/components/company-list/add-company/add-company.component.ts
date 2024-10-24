@@ -29,6 +29,7 @@ export class AddCompanyComponent {
   company_name: string = '';
   primaryColor: string = "";
   secondaryColor: string = "";
+  prefix_no: string = "";
   loading: boolean = false;
   date: any;
   company_id: any;
