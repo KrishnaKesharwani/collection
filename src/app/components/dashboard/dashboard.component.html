@@ -70,17 +70,13 @@
             <div class="count">02 Loans</div>
         </div>
         <div class="tile_stats_count green_tiles">
-            <span class="count_top"><i class="mdi mdi-cash"></i>Daily Balance</span>
+            <span class="count_top"><i class="mdi mdi-cash"></i>Daily Account Balance</span>
             <div class="count">12,800.00</div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xl-12 mb-xl-0">
-            <app-superadmin-dashboard *ngIf="userType == 0"></app-superadmin-dashboard>
-            <app-admin-dashboard *ngIf="userType == 1"></app-admin-dashboard>
-            <app-member-dashboard *ngIf="userType == 2"></app-member-dashboard>
-            <app-user-dashboard *ngIf="userType == 3"></app-user-dashboard>
-        </div>
-    </div>
+    </div>    
+    <app-superadmin-dashboard *ngIf="userType == 0"></app-superadmin-dashboard>
+    <app-admin-dashboard *ngIf="userType == 1"></app-admin-dashboard>
+    <app-member-dashboard *ngIf="userType == 2"></app-member-dashboard>
+    <app-user-dashboard *ngIf="userType == 3"></app-user-dashboard>
+    <app-global-google-charts [currentuserType]="userType"></app-global-google-charts>
 </div>

@@ -1,5 +1,46 @@
-<!-- Google Chart -->
-<div id="column_div" style="width:400; height:300"></div>
+<ng-container *ngIf="currentuserType == 0">
+    <div class="card dash-cardbox">
+        <div class=""></div>
+    </div>
+</ng-container>
+<ng-container *ngIf="currentuserType == 1">
+
+</ng-container>
+<ng-container *ngIf="currentuserType == 2">
+
+</ng-container>
+<ng-container *ngIf="currentuserType == 3">
+    <div class="chart_container">
+        <div class="card dash-cardbox">
+            <div class="chart_innercontainer">
+                <div class="chart_heading">
+                    <div class="left_data">Current Loan Status</div>
+                    <div class="loan_no_conainer">
+                        <b>Selectd Loan Status :</b>
+                        <span>Loan-9-101</span>
+                        <span class="selected_loan">Loan-9-102</span>
+                    </div>
+                </div>
+                <div class="inner_block">
+                    <!-- <google-chart [data]="comboChart"></google-chart> -->
+                    <div id="pie_user_chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="card dash-cardbox">
+            <div class="chart_innercontainer">
+                <div class="chart_heading">
+                    <div class="left_data">Last 6 Month Deposit Status</div>
+                </div>
+                <div class="inner_block">
+                    <div id="column_user_chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<!-- <div id="column_div" style="width:400; height:300"></div>
 <div id="pie_div" style="width:400; height:300"></div>
 <div id="combo_div" style="width:400; height:300"></div>
-<div id="donut_div" style="width:400; height:300"></div>
+<div id="donut_div" style="width:400; height:300"></div> -->

@@ -43,7 +43,7 @@ import { DynamicWidthDirective } from './directive/dynamic-width.directive';
     FormsModule,
     GoogleChartsModule
   ],
-  exports: [InputFieldValidationComponent, TextareaComponent, DropdwonComponent,
+  exports: [GoogleChartsModule, InputFieldValidationComponent, TextareaComponent, DropdwonComponent,
     InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent,
     ButtonLoaderComponent, NoRecordFoundComponent, PageLoaderComponent, GlobalGoogleChartsComponent, DynamicWidthDirective]
 })

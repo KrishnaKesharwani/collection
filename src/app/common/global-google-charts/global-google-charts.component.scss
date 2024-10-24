@@ -1,0 +1,46 @@
+.chart_container {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column;
+    .dash-cardbox {
+        margin-top: 20px;
+        padding: 15px;
+        .chart_innercontainer {
+            display: flex;
+            flex-flow: column;
+            .chart_heading {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                color: var(--theme-primary-color);
+                .loan_no_conainer {
+                    display: flex;
+                    align-items: center;
+                    font-size: 12px;
+                    span {
+                        padding: 4px 13px;
+                        border-radius: 5px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        transition: .5s all;
+                        margin-left: 5px;
+                        &:hover {
+                            background: var(--theme-primary-color);
+                            color: #ffffff;
+                        }
+                    }
+                    b {
+                        color: #666666;
+                        font-weight: 500;
+                        font-size: 14px;
+                    }
+                    .selected_loan {
+                        background: var(--theme-primary-color);
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+}
