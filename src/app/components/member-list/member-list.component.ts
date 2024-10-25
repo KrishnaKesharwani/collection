@@ -58,15 +58,14 @@ export class MemberListComponent {
   openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string, data?: any): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
-
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
         title: 'Are you sure?',
         subTitle: data && data.status === 'active'
-          ? 'You want to inactivate member status!'
-          : 'You want to activate member status!'
+          ? 'You want to Inactivate Member Status!'
+          : 'You want to Activate Member Status!'
       }
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {

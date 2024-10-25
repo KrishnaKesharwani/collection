@@ -72,38 +72,45 @@ export class AddMemberComponent {
     this.selectedFile = file;
     // Handle the file as needed
   }
+  image_base16 = "";
 
   saveMemberData() {
     if (this.member_id) {
       if (this.memberForm.valid) {
         this.loading = true;
         const formData = new FormData();
-        const files = [
-          { name: 'image', file: this.memberForm.get('image')?.value },
-
-        ];
-
-        // Convert files to base64 strings
-        files.map(({ name, file }) => {
-          return new Promise((resolve, reject) => {
-            if (file) {
-              const reader = new FileReader();
-              reader.onloadend = () => {
-                const base64String = reader.result as string; // Base64-encoded string
-                formData.append(name, base64String); // Append base64 string to FormData
-                resolve(true);
-              };
-              reader.onerror = () => reject(new Error(`Failed to read ${name}`));
-              reader.readAsDataURL(file); // Read the file as a base64 string
-            } else {
-              resolve(true); // Resolve if no file
-            }
+        debugger;
+        if (this.memberForm.get('image')?.value) {
+          const files = [
+            { name: 'image', file: this.memberForm.get('image')?.value },
+          ];
+          // Convert files to base64 strings
+          files.map(({ name, file }) => {
+            return new Promise((resolve, reject) => {
+              if (file) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                  const base64String = reader.result as string; // Base64-encoded string
+                  formData.append(name, base64String); // Append base64 string to FormData
+                  resolve(true);
+                  this.image_base16 = base64String;
+                  // formData.append('image', base64String);
+                  console.log('Image Base String: ', base64String);
+                };
+                reader.onerror = () => reject(new Error(`Failed to read ${name}`));
+                reader.readAsDataURL(file); // Read the file as a base64 string
+              } else {
+                resolve(true); // Resolve if no file
+              }
+            });
           });
-        });
+        } else {
+
+        }
 
         // Append other form values to FormData
         Object.keys(this.memberForm.value).forEach(key => {
-          if (!['main_logo', 'sidebar_logo', 'favicon_icon', 'owner_image'].includes(key)) {
+          if (!['image'].includes(key)) {
             formData.append(key, this.memberForm.value[key]);
           }
         });
@@ -111,6 +118,7 @@ export class AddMemberComponent {
         // formData.append('member_id', this.member_id)
         formData.delete('member_login_id');
         formData.delete('password');
+        formData.append('image', this.image_base16);
         formData.append('company_id', this.company_id);
         formData.append('member_id', this.member_id);
         if (formData) {
