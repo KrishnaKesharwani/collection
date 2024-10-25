@@ -79,29 +79,67 @@ export class LoginComponent {
             token: data.token
           }
 
-          let comapnyData = {
-            aadhar_no: data.data.company?.aadhar_no,
-            address: data.data.company?.address,
-            advance_amount: data.data.company?.advance_amount,
-            company_name: data.data.company?.company_name,
-            customer_count: data.data.company?.customer_count,
-            details: data.data.company?.details,
-            end_date: data.data.company?.end_date,
-            favicon_icon: data.data.company?.favicon_icon,
-            id: data.data.company?.id,
-            main_logo: data.data.company?.main_logo,
-            member_count: data.data.company?.member_count,
-            mobile: data.data.company?.mobile,
-            owner_image: data.data.company?.owner_image,
-            owner_name: data.data.company?.owner_name,
-            sidebar_logo: data.data.company?.sidebar_logo,
-            start_date: data.data.company?.start_date,
-            status: data.data.company?.status,
-            total_amount: data.data.company?.total_amount,
-            user_id: data.data.company?.user_id,
+          if (data.data.user_type == 1) {
+            let comapnyData = {
+              aadhar_no: data.data.company?.aadhar_no,
+              address: data.data.company?.address,
+              advance_amount: data.data.company?.advance_amount,
+              company_name: data.data.company?.company_name,
+              customer_count: data.data.company?.customer_count,
+              details: data.data.company?.details,
+              end_date: data.data.company?.end_date,
+              favicon_icon: data.data.company?.favicon_icon,
+              id: data.data.company?.id,
+              main_logo: data.data.company?.main_logo,
+              member_count: data.data.company?.member_count,
+              mobile: data.data.company?.mobile,
+              owner_image: data.data.company?.owner_image,
+              owner_name: data.data.company?.owner_name,
+              sidebar_logo: data.data.company?.sidebar_logo,
+              start_date: data.data.company?.start_date,
+              status: data.data.company?.status,
+              total_amount: data.data.company?.total_amount,
+              user_id: data.data.company?.user_id,
+              primary_color: data.data.company?.primary_color,
+              secondary_color: data.data.company?.secondary_color,
+              prefix: data.data.company?.prefix,
+            }
+            sessionStorage.setItem('CompanyData', JSON.stringify(comapnyData));
+          } else if (data.data.user_type == 2) {
+            let memberData = {
+              aadhar_no: data.data.member?.aadhar_no,
+              address: data.data.member?.address,
+              name: data.data.member?.name,
+              member_no: data.data.member?.member_no,
+              join_date: data.data.member?.join_date,
+              mobile: data.data.member?.mobile,
+              balance: data.data.member?.balance,
+              status: data.data.member?.status,
+              email: data.data.member?.email,
+              id: data.data.company?.id,
+            }
+            sessionStorage.setItem('MemberData', JSON.stringify(memberData));
+          } else {
+            let customerData = {
+              aadhar_no: data.data.customer?.aadhar_no,
+              address: data.data.customer?.address,
+              name: data.data.customer?.name,
+              customer_no: data.data.customer?.customer_no,
+              id: data.data.customer?.id,
+              join_date: data.data.customer?.join_date,
+              mobile: data.data.customer?.mobile,
+              balance: data.data.customer?.balance,
+              deposit_count: data.data.customer?.deposit_count,
+              loan_count: data.data.customer?.loan_count,
+              status: data.data.customer?.status,
+              email: data.data.customer?.email,
+
+            }
+            sessionStorage.setItem('CustomerData', JSON.stringify(customerData));
           }
+
           sessionStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
-          sessionStorage.setItem('CompanyData', JSON.stringify(comapnyData));
+
           // sessionStorage.setItem('MemberData', JSON.stringify(userLoginDetails));
           // sessionStorage.setItem('CustomerData', JSON.stringify(userLoginDetails));
 

@@ -132,6 +132,7 @@ export class CompanyListComponent {
         title: 'Update Company Details',
       },
     });
+
     dialogRef.afterClosed().subscribe((result: any) => {
     });
   }

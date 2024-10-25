@@ -1,6 +1,6 @@
 <app-edit-company *ngIf="user_type == 1"></app-edit-company>
-<app-edit-details *ngIf="user_type == 2"></app-edit-details>
-<div class="list-containner"  *ngIf="user_type == 3">
+<app-edit-details *ngIf="user_type == 3"></app-edit-details>
+<div class="list-containner" *ngIf="user_type == 2">
     <form focusInvalidInput [formGroup]="editForm">
         <div class="card shadow dash-cardbox radius_none_bottom">
             <div class="card_inner_block">
@@ -12,15 +12,14 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4 col-xs-12">
-                            <app-input [disabled]='true' [isDateField]="false" label="Name"
-                                [(value)]="name" [isRequired]="true" [className]="'bottom_error_msg'"
-                                [form]="editForm" [key]="'name'"
+                            <app-input [disabled]='true' [isDateField]="false" label="Name" [(value)]="name"
+                                [isRequired]="true" [className]="'bottom_error_msg'" [form]="editForm" [key]="'name'"
                                 [displayMsg]="'Name is required'"></app-input>
                         </div>
                         <div class="col-sm-4 col-xs-12">
-                            <app-input [isDateField]="false" label="Email Id" [(value)]="email"
-                                [isRequired]="true" [className]="'bottom_error_msg'" [form]="editForm"
-                                [key]="'email'" [displayMsg]="'Email id is required'"></app-input>
+                            <app-input [isDateField]="false" label="Email Id" [(value)]="email" [isRequired]="true"
+                                [className]="'bottom_error_msg'" [form]="editForm" [key]="'email'"
+                                [displayMsg]="'Email id is required'"></app-input>
                         </div>
                         <div class="col-sm-4 col-xs-12">
                             <app-input [disabled]='true' [isDateField]="false" label="Mobile" [(value)]="mobile"

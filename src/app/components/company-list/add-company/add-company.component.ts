@@ -27,9 +27,9 @@ export class AddCompanyComponent {
   mobile: string = '';
   owner_name: string = '';
   company_name: string = '';
-  primaryColor: string = "";
-  secondaryColor: string = "";
-  prefix_no: string = "";
+  primary_color: string = "";
+  secondary_color: string = "";
+  prefix: string = "";
   loading: boolean = false;
   date: any;
   company_id: any;
@@ -54,6 +54,9 @@ export class AddCompanyComponent {
       status: ['', Validators.required],
       password: ['', Validators.required],
       company_login_id: [''],
+      primary_color: ['#e20813'],
+      secondary_color: ['#000000'],
+      prefix: [''],
       main_logo: [null],
       sidebar_logo: [null],
       favicon_icon: [null],
@@ -106,6 +109,7 @@ export class AddCompanyComponent {
           }
         });
         formData.append('company_id', this.company_id)
+
         if (formData) {
           this._service.update(formData).subscribe((data: any) => {
             if (data) {

@@ -23,19 +23,18 @@
                         [displayMsg]="'Mobile is required'"></app-input>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Primary Color" [(value)]="primaryColor" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'primaryColor'"
+                    <app-input [isDateField]="false" label="Primary Color" [(value)]="primary_color" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'primary_color'"
                         [displayMsg]="'Primary color is required'"></app-input>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Secondary Color" [(value)]="secondaryColor"
+                    <app-input [isDateField]="false" label="Secondary Color" [(value)]="secondary_color"
                         [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
-                        [key]="'secondaryColor'" [displayMsg]="'Secondary color is required'"></app-input>
+                        [key]="'secondary_color'" [displayMsg]="'Secondary color is required'"></app-input>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Prefix" [(value)]="prefix_no" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'prefix_no'"
-                        [displayMsg]="'Prefix is required'"></app-input>
+                    <app-input [isDateField]="false" label="Prefix" [(value)]="prefix" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="companyForm" [key]="'prefix'"></app-input>
                 </div>
                 <ng-container *ngIf="!company_id">
                     <div class="col-sm-4 col-lg-4 col-xs-12">
@@ -64,10 +63,15 @@
                             [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
                             [key]="'advance_amount'" [displayMsg]="'Advance amount is required'"></app-input>
                     </div>
-                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <div class="col-sm-4 col-lg-4 col-xs-12" *ngIf="!company_id">
                         <app-input [isDateField]="false" label="Company Login Id" [(value)]="company_login_id"
                             [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
                             [key]="'company_login_id'" [displayMsg]="'Login id is required'"></app-input>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12" *ngIf="company_id">
+                        <app-input [isDateField]="false" label="Company Login Id" [(value)]="company_login_id"
+                            [readonly]="true" [className]="'bottom_error_msg'" [form]="companyForm"
+                            [key]="'company_login_id'"></app-input>
                     </div>
                     <div class="col-sm-4 col-lg-4 col-xs-12">
                         <app-input [isDateField]="false" label="Password" [(value)]="password" [isRequired]="true"
@@ -82,7 +86,7 @@
                     <app-input [isDateField]="false" label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'aadhar_no'"
                         [displayMsg]="'Aadhar number is required'"></app-input>
-                </div>                
+                </div>
                 <div class="col-sm-12">
                     <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'address'"
