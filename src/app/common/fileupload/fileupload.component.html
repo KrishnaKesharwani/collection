@@ -1,6 +1,6 @@
 <input type="file" accept="{{accept}}" (change)="onFileSelected($event)" *ngIf="uploadType== 'file'" />
 <div class="file_upload_user" [appDynamicWidth]="imageSize"  *ngIf="uploadType== 'profile'" >
-    <img src="../../../assets/imgs/default-pic.png" onerror="this.src='../../../assets/imgs/default-pic.png' ">
+    <img [src]="imageSrc" onerror="this.src='../../../assets/imgs/default-pic.png' ">
     <!-- <img *ngIf="row[column.prop]" onerror="this.src='./assets/imgs/rk-group-logo2.png';"
                                 [src]="row[column.prop]" alt="Logo" /> -->
     <div class="upload_image_change">

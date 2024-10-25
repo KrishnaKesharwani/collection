@@ -20,9 +20,15 @@ export class FileuploadComponent {
   @Input() accept: any;
   @Input() uploadType: any = 'file';
   @Input() imageSize: any;
+  @Input() imageUrl: string | undefined;
   // ControlValueAccessor methods
   onChange = (file: File | null) => { };
   onTouched = () => { };
+
+  get imageSrc(): string {
+    return this.imageUrl || '../../../assets/imgs/default-pic.png';
+  }
+
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {

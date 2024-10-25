@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -34,7 +34,7 @@ export class AddMemberComponent {
   loading: boolean = false;
   company_id: any;
   memberName: string = '';
-  constructor(private cdr: ChangeDetectorRef, public _toastr: ToastrService, public router: Router, public _service: MemberService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(public dialogRef: MatDialogRef<AddMemberComponent>, private cdr: ChangeDetectorRef, public _toastr: ToastrService, public router: Router, public _service: MemberService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
   ngOnInit() {
@@ -56,29 +56,26 @@ export class AddMemberComponent {
       member_login_id: [''],
       password: [''],
       address: ['', Validators.required],
-      status: [''],
+      status: ['Active'],
       image: [null]
     });
     this.company_id = this.company_id
-    this.member_id = this.dataa.data.id
-
-
-    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
-
-    this.memberView();
+    this.member_id = this.dataa.data.id;
+    // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+    if (this.dataa?.data) {
+      this.memberView();
+    }
   }
 
   selectedFile: File | null = null;
-
   onFileChange(file: File | null): void {
     this.selectedFile = file;
     // Handle the file as needed
   }
 
-  save() {
+  saveMemberData() {
     if (this.member_id) {
       if (this.memberForm.valid) {
-
         this.loading = true;
         const formData = new FormData();
         const files = [
@@ -110,22 +107,28 @@ export class AddMemberComponent {
             formData.append(key, this.memberForm.value[key]);
           }
         });
-        formData.append('company_id', this.company_id)
-        formData.append('member_id', this.member_id)
+        // formData.remov('company_id', this.company_id)
+        // formData.append('member_id', this.member_id)
+        formData.delete('member_login_id');
+        formData.delete('password');
+        formData.append('company_id', this.company_id);
+        formData.append('member_id', this.member_id);
         if (formData) {
           this._service.update(formData).subscribe((data: any) => {
             if (data) {
-
               this._toastr.success(data.message, 'Success');
-              this.router.navigate(['/dashboard']);
+              this.loading = false;
+              this.dialogRef.close(true);
+              this.router.navigate(['/member_list']);
             } else {
               this._toastr.error(data.message, 'Error');
+              this.loading = false;
             }
           });
-          setTimeout(() => {
-            this.loading = false;
-            this.dialog.closeAll();
-          }, 1000);
+          // setTimeout(() => {
+          //   this.loading = false;
+          //   this.dialog.closeAll();
+          // }, 1000);
         }
       } else {
         this.memberForm.markAllAsTouched();
@@ -133,12 +136,10 @@ export class AddMemberComponent {
     }
     else {
       if (this.memberForm.valid) {
-
         this.loading = true;
         const formData = new FormData();
         const files = [
           { name: 'image', file: this.memberForm.get('image')?.value },
-
         ];
 
         // Convert files to base64 strings
@@ -170,45 +171,58 @@ export class AddMemberComponent {
 
         if (formData) {
           this._service.create(formData).subscribe((data: any) => {
-
             if (data.success == true) {
               this._toastr.success(data.message, 'Success');
+              this.loading = false;
+              this.dialogRef.close(true);
               this.router.navigate(['/member_list']);
+            } else {
+              this.loading = false;
+              this._toastr.error(data.message, 'Error');
             }
-            this.loading = false
           });
-          setTimeout(() => {
-            this.loading = false;
-            this.dialog.closeAll();
-          }, 1000);
+          // setTimeout(() => {
+          //   this.loading = false;
+          //   this.dialog.closeAll();
+          // }, 1000);
         }
       } else {
         this.memberForm.markAllAsTouched();
       }
     }
+  }
 
+  onClose() {
+    this.dialogRef.close();
   }
 
   memberView() {
-    if (this.dataa?.data) {
+    // if (this.dataa?.data) {
 
-      this.memberForm.patchValue({
-        ...this.dataa.data
-        // member_login_id: this.dataa.data.member_no,
-        // status: this.dataa.data.status,
-        // password: this.dataa.data.user?.password_hint
-      });
-      const status = this.dataa?.data.status;
+    this.memberForm.patchValue({
+      ...this.dataa.data,
+      // member_login_id: this.dataa.data.member_no,
+      // status: this.dataa?.data?.status, 
+      // password: this.dataa.data.user?.password_hint
+    });
 
-      if (status == 'active') {
-        this.dropdownService.setOptions('status', [status, 'inactive']);
-      } else {
-        this.dropdownService.setOptions('status', [status, 'active']);
-      }
+    // this.memberForm.controls['status'].setValue('Active');
+    // console.log('FormPatch Value', this.memberForm, this.dataa.data);
+    // const status = this.dataa?.data.status;
 
-      // this.cdr.detectChanges();
+    // if (status == 'active') {
+    //   this.memberForm.controls['status'].setValue('Active');
+    //   // this.memberForm.controls['status'].setValue('Active');
 
-    }
+    //   // this.dropdownService.setOptions('status', [status, 'inactive']);
+    // } else {
+    //   this.memberForm.controls['status'].setValue('Inactive');
+    //   // this.dropdownService.setOptions('status', [status, 'active']);
+    // }
+
+    // this.cdr.detectChanges();
+
+    // }
 
 
   }

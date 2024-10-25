@@ -15,9 +15,9 @@ export class CommonComponentService {
   }
   company_id: any;
   public getmemberdata: any[] = [];
-  loanstatus = ['Approved', 'Paid', 'Pending', 'Cancelled'];
-  status = ['Active', 'Inactive'];
-  plan = ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo'];
+  loanstatus = ['approved', 'paid', 'pending', 'cancelled'];
+  status = ['active', 'inactive'];
+  plan = ['monthly', 'quarterly', 'half yerly', 'yearly', 'demo'];
   private dropdownOptionsSubject = new BehaviorSubject<{ [key: string]: string[] }>({});
   dropdownOptions$ = this.dropdownOptionsSubject.asObservable();
 

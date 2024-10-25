@@ -5,12 +5,12 @@
         <mat-select formControlName="{{key}}" (selectionChange)="onChange($event.value)">
             <ng-container *ngIf="arrayType=='STRING_TYPE'">
                 <mat-option *ngFor="let option of optionArray" [value]="option">
-                    {{ option }}
+                    <span class="dropdown_text_caps">{{ option }}</span>
                 </mat-option>
             </ng-container>
             <ng-container *ngIf="arrayType=='KEY_TYPE'">
                 <mat-option *ngFor="let option of optionArray" [value]="option?.id">
-                    {{ option[jsonKey] }}
+                    <span class="dropdown_text_caps">{{ option[jsonKey] }}</span>
                 </mat-option>
             </ng-container>
         </mat-select>

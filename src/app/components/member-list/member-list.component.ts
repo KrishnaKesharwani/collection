@@ -52,7 +52,6 @@ export class MemberListComponent {
         this.loader = false;
       }
     })
-    this.loader = false;
   }
 
 
@@ -109,6 +108,9 @@ export class MemberListComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getMemberList();
+      }
     });
   }
 
@@ -122,10 +124,11 @@ export class MemberListComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getMemberList();
+      }
     });
   }
-
-
 
   openDialogUpdateDetails() {
     const dialogRef = this.dialog.open(AddMemberComponent, {
@@ -152,8 +155,6 @@ export class MemberListComponent {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
-
 
   openDialogAssignLoan(data: any) {
     const dialogRef = this.dialog.open(AssignLoanComponent, {
