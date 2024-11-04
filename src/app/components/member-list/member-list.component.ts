@@ -159,10 +159,8 @@ export class MemberListComponent {
       data: {
         data: data,
         title: 'Assign Loan History Details',
-
       },
     });
-
     dialogRef.afterClosed().subscribe(result => {
     });
   }
@@ -178,7 +176,7 @@ export class MemberListComponent {
   }
 
 
-  searchColumns: any[] = ['name', 'status', 'mobile'];
+  searchColumns: any[] = ['member_no', 'name', 'status', 'mobile', 'email' ];
   searchTerm: string = '';
   searchTable(event: Event) {
 

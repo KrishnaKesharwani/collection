@@ -49,9 +49,14 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-
-
-                            <th class="col email_col">Email</th>
+                            <th class="col sorting_apply email_col">
+                                <span>Email</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('email');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
                             <th class="col mobile_col">Mobile</th>
                             <th class="col aadhar_col">Aadhar No.</th>
                             <th class="col date_col">Join Date</th>
@@ -82,15 +87,10 @@
                                     </div>
                                 </td>
                                 <td class="col" data-name="Name">{{item.name}}</td>
-
-
-
                                 <td class="col " data-name="Email">{{item.email}}</td>
                                 <td class="col " data-name="Mobile">{{item.mobile}}</td>
                                 <td class="col " data-name="Adhar No.">{{item.aadhar_no}}</td>
                                 <td class="col " data-name="Join Date">{{item.join_date}}</td>
-
-
                                 <td class="col " data-name="Status">
                                     <span class="badge bg-success text-white"
                                         *ngIf="item.status == 'active'">{{item.status}}</span>
