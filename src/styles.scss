@@ -382,7 +382,7 @@ mat-option {
     box-shadow: 0 11px 19px rgb(0 0 0 / 9%);
     border-radius: 5px;
     overflow: hidden;
-
+    display: flex;
     img {
         width: 100%;
     }
@@ -553,7 +553,9 @@ mat-option {
 .small_popup {
     width: 500px;
 }
-
+.view_details_small_popup {
+    min-width: 576px;
+}
 .datewith_search_block {
     display: flex;
     justify-content: end;
@@ -605,7 +607,7 @@ mat-option {
     border: solid thin #e1e1e1;
     border-radius: 5px;
     width: 100%;
-
+    text-align: left;
     thead tr th {
         height: 30px;
         font-weight: 400 !important;
@@ -711,7 +713,9 @@ mat-option {
     .mobile_col {
         width: 85px;
     }
-
+    .aadhar_col {
+        width: 100px;
+    }
     .assign_col {
         width: 85px;
     }
@@ -723,8 +727,6 @@ mat-option {
     .days_time_slot_col {
         width: 130px;
     }
-
-    width: 100px;
 
     .date_col {
         width: 85px;

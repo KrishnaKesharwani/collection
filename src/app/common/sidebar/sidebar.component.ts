@@ -23,9 +23,8 @@ export class SidebarComponent {
     const data = sessionStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
-      this.user_type = userData.user_type
+      this.user_type = userData.user_type;
     } else {
-
       this.user_type = null; // or set a default value
     }
 

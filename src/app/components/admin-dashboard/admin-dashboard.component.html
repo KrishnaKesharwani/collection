@@ -1,3 +1,68 @@
+
+<div class="card shadow dash-cardbox">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col pl-1">
+                <h3 class="mb-0">Current Month Completed Loan List</h3>
+            </div>
+        </div>
+    </div>
+    <table class="table align-items-center table-flush mydata-table">
+        <thead class="thead-light">
+            <tr>
+                <th class="col id_col text-center">CNo.</th>
+                <th class="col">Customer Name</th>
+                <th class="col">Collect Member</th>
+                <th class="col mobile_col">Mobile</th>
+                <th class="col date_col">Date</th>
+                <th class="col amount_col">Total Amount</th>
+                <th class="col amount_col">Pending Amount</th>
+                <th class="col status_col">Status</th>
+                <th class="col action_col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col text-center" data-name="CNo.">Rk-01</td>
+                <td class="col" data-name="Customer">Bablu Mishra</td>
+                <td class="col" data-name="Collect Member">Bhaijan</td>
+                <td class="col" data-name="Mobile">6263626505</td>
+                <td class="col" data-name="Date">23-11-2024</td>
+                <td class="col text-right" data-name="Total Amount"><i class="mdi mdi-currency-inr mr-1"></i>22000.00</td>
+                <td class="col text-right" data-name="Pending Amount"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
+                <td class="col text-center" data-name="Status">
+                    <div class="badge bg-warning text-white">Pending</div>
+                </td>
+                <td class="action_col" data-name="Action">
+                    <div placement="bottom-right">
+                        <button mat-icon-button class="matmenu_tablebtn" [matMenuTriggerFor]="menuTable">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menuTable="matMenu">
+                            <div class="table_actionmenu">
+                                <button mat-menu-item (click)="openDialogLoanHistory()">
+                                    <i class="mdi mdi-history mr-2"></i>
+                                    <span>Loan History</span>
+                                </button>
+                                <button mat-menu-item (click)="openDialogViewDetails()">
+                                    <i class="mdi mdi-eye mr-2"></i>
+                                    <span>View Details</span>
+                                </button>
+                            </div>
+                        </mat-menu>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="9" class="norecord_col">
+                    <div class="no_found">
+                        <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <div class="card shadow dash-cardbox">
     <div class="card-header">
         <div class="row align-items-center">
@@ -24,13 +89,13 @@
     <table class="table align-items-center table-flush mydata-table">
         <thead class="thead-light">
             <tr>
-                <th class="col text-center">CNo.</th>
+                <th class="col id_col">CNo.</th>
                 <th class="col">Customer Name</th>
-                <th class="col">Mobile</th>
-                <th class="col">Apply Date</th>
                 <th class="col">Apply By</th>
+                <th class="col mobile_col">Mobile</th>
+                <th class="col date_col">Apply Date</th>
                 <th class="col">Amount</th>
-                <th class="col text-center">Status</th>
+                <th class="col status_col">Status</th>
                 <th class="col action_col">Action</th>
             </tr>
         </thead>
@@ -38,9 +103,9 @@
             <tr>
                 <td class="col text-center" data-name="CNo.">Rk-01</td>
                 <td class="col" data-name="Customer">Bablu Mishra</td>
+                <td class="col" data-name="Apply By">Self</td>
                 <td class="col" data-name="Mobile">6263626505</td>
                 <td class="col" data-name="Apply Date"><small>23-05-2021 10:30 am</small></td>
-                <td class="col" data-name="Apply By">Self</td>
                 <td class="col text-right" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
                 <td class="col text-center" data-name="Status">
                     <div class="badge bg-warning text-white">Pending</div>
@@ -70,7 +135,7 @@
             <tr>
                 <td colspan="8" class="norecord_col">
                     <div class="no_found">
-                        <h1 (click)="openDialog()"><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
+                        <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
                     </div>
                 </td>
             </tr>

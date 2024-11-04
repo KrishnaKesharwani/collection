@@ -5,18 +5,34 @@
 <div class="dialoge_middle_container full_height_cover middle_dialoge">
     <div class="flex_header res_flex_colum">
         <div class="assign_text res_full_width">Total Assign : {{total_assignlength}}</div>
-        <div class="global_form_row res_full_width load_list_ddl" *ngIf="getUnassignedData?.length">
-            <app-dropdwon [jsonKey]="'unassingmember'" [arrayType]="'KEY_TYPE'" [form]="unassignedForm"
+        <div class="global_form_row res_full_width load_list_ddl" *ngIf="getUnassignedData?.length">           
+            <form form="unassignedForm" class="main_form">
+                <!-- <app-dropdwon [jsonKey]="'unassingmember'" [arrayType]="'KEY_TYPE'" [form]="unassignedForm"
                 [key]="'unassigned_member_id'" [optionArray]="getUnassignedData"
-                field="Not Assign Loan List"></app-dropdwon>
-            <button type="submit" class="global_submit_btn" mat-flat-button (click)="save()">
+                field="Not Assign Loan List"></app-dropdwon> -->
+                <mat-form-field class="global_dropdown" appearance="outline">
+                    <mat-label>Not Assign Loan List - {{getUnassignedData.length}}</mat-label>
+                    <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+                    <mat-select [formControl]="selectControl">
+                        <mat-option *ngFor="let unassigndata of getUnassignedData; let i =index"
+                            [value]="unassigndata.id">
+                            {{unassigndata?.loan_no}} - {{unassigndata?.start_date}} -
+                            {{unassigndata?.loan_amount}} - {{unassigndata?.installment_amount}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+            <button type="submit" class="global_submit_btn" mat-flat-button (click)="assignLoan()">
                 <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
                 <app-button-loader *ngIf="loading"></app-button-loader>
                 <span>Submit</span>
             </button>
         </div>
     </div>
-    <ng-container *ngIf="loanList.length > 0">
+    <div class="page_center_loader" *ngIf="mainpageloader">
+        <app-page-loader></app-page-loader>
+    </div>
+    <ng-container *ngIf="loanList?.length && !mainpageloader">
         <div class="main_table_head">Assign Loan</div>
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
@@ -44,7 +60,6 @@
                         <span class="badge bg-danger text-white "
                             *ngIf="loan.status == 'inactive'">{{loan.status}}</span>
                     </td>
-
                     <td class="text-center col" data-name="Remove" (click)="openDialogLoanRemove(loan)"><span
                             class="btn btn-sm btn-danger btn_download"><i
                                 class="mdi mdi-account-off-outline"></i></span></td>
@@ -53,7 +68,7 @@
         </table>
         <br>
     </ng-container>
-    <ng-container *ngIf="assignDepositData.length > 0">
+    <ng-container *ngIf="assignDepositData?.length && !mainpageloader">
         <div class="main_table_head">Assign Deposit</div>
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
@@ -83,7 +98,8 @@
             </tbody>
         </table>
     </ng-container>
-    <ng-container *ngIf="assignDepositData.length == 0 && loanList.length == 0">
+    <ng-container *ngIf="assignDepositData?.length == 0 && loanList?.length == 0 && !mainpageloader">
         <app-no-record-found type="page" notext="No assign found"></app-no-record-found>
     </ng-container>
+
 </div>

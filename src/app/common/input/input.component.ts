@@ -47,6 +47,7 @@ export class InputComponent {
   @ViewChild('picker') picker!: MatDatepicker<any>; // Declare the datepicker reference
 
   @Input() keyValidation!: string
+  formattedDate: string = '';
   // @Output() dateChange = new EventEmitter<any>();
   minLength: any;
 
@@ -56,16 +57,61 @@ export class InputComponent {
     }
     return this.value as string;  // Otherwise return the string value
   }
+  formattedDate2: string = '';
 
+  onDateChange2(event: MatDatepickerInputEvent<Date>): void {
+    const selectedDate = event.value;
+
+    // let date=new date(dateGIven)
+    if (selectedDate) {
+      this.formattedDate = selectedDate.toLocaleDateString('en-US');
+    }
+  }
   onDateChange(event?: MatDatepickerInputEvent<Date>) {
+    // debugger;
+    // const selectedDate = new Date(event?.value);
+    // this.formattedDate = selectedDate.toLocaleDateString('en-US');
+
     this.date = event?.value;
     if (this.date) {
-      this.valueChange.emit(this.date);  // Emit the Date object when a date is picked
+      const newDate = new Date(this.date);
+      const selectedDate = new Date(this.date);
+      this.formattedDate = selectedDate.toLocaleDateString('en-US');
+      // this.form.controls['image'].setValue(reader.result);
+      console.log('Formated Date : ', this.formattedDate);
+      // this.formattedDate = this.getApidateFormatSet(this.formattedDate);  
+      const m = newDate.getMonth() + 1;
+      let year = this.date.getFullYear();
+      let day = this.date.getDate();
+      this.formattedDate = day + '/' + m + '/' + year;
+      this.valueChange.emit(this.formattedDate);
+      // this.control.value(this.formattedDate);
+      // return new Date(newDate.getFullYear() + '-' + m + '-' + newDate.getDate() + ' 00:00:00');
+      // this.valueChange.emit(newDate.getFullYear() + '-' + m + '-' + newDate.getDate() + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' + newDate.getSeconds());
+      // this.valueChange.emit(this.date);  // Emit the Date object when a date is picked
     } else {
       this.valueChange.emit('');  // Emit null if the date is cleared
     }
   }
+  // onDateFormatChange(dis: any) {
+  //   setTimeout(() => {
+  //     debugger;
+  //     // this.date = event?.value;
+  //     var getDate = dis['start_date'].value;
+  //     this.formattedDate = getDate.toLocaleDateString('en-US');
+  //   }, 1000);
 
+  // }
+  getApidateFormatSet(date: any) {
+    const newDate = new Date(this.date);
+    debugger;
+    let month = date.getMonth();
+    let year = date.getFullYear();
+    let day = date.getDate();
+    return (day + '/' + month + '/' + year);
+    // return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) + ' ' +
+    // ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2) + ':' + ('0' + d.getSeconds()).slice(-2);
+  }
   formatDate(date: Date): string {
     const year = date.getFullYear();
     const month = ('0' + (date.getMonth() + 1)).slice(-2); // Ensure two-digit month

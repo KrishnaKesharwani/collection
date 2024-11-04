@@ -29,7 +29,7 @@ export class AdminDashboardComponent {
     }
   }
 
-  openDialog(): void {
+  openDialogLoanHistory(): void {
     const dialogRef = this.dialog.open(MassageForApplierComponent, {
       // data: { name: this.name, animal: this.animal },
     });

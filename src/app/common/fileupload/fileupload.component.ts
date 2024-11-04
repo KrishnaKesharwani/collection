@@ -1,5 +1,5 @@
-import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, EventEmitter, forwardRef, Input, Output, Renderer2 } from '@angular/core';
+import { FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DynamicWidthDirective } from '../directive/dynamic-width.directive';
 import { CommonComponentsModule } from '../common-components.module';
 @Component({
@@ -21,6 +21,9 @@ export class FileuploadComponent {
   @Input() uploadType: any = 'file';
   @Input() imageSize: any;
   @Input() imageUrl: string | undefined;
+  @Output() image_base16String: string | ArrayBuffer | null = null;
+  @Input() form!: FormGroup;
+  // @Output() fileChange = new EventEmitter<string | ArrayBuffer | null>();
   // ControlValueAccessor methods
   onChange = (file: File | null) => { };
   onTouched = () => { };
@@ -36,6 +39,14 @@ export class FileuploadComponent {
       this.value = file;
       this.onChange(file); // Update form control value
       this.fileChange.emit(file);
+      // Buffer Code
+      const reader = new FileReader();
+      reader.onload = e => {
+        this.image_base16String = reader.result; // Set imageSrc to the base64 data
+        this.form.controls['image'].setValue(reader.result);
+      };
+      reader.readAsDataURL(file);
+      // this.fileChange.emit(this.image_base16File);
     } else {
       this.value = null;
       this.onChange(null); // Clear form control value

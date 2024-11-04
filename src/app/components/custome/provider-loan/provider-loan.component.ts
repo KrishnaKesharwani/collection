@@ -84,7 +84,7 @@ export class ProviderLoanComponent {
     })
   }
   onDateChange() {
-
+    // debugger;
     if (this.startDate && this.endDate) {
       const start = new Date(this.startDate);
       const end = new Date(this.endDate);
@@ -98,16 +98,19 @@ export class ProviderLoanComponent {
       this.noOfDays = null;
     }
   }
-
+  formattedDate: string = '';
   submit() {
-    console.log(this.providerLoanForm.value);
-
+    console.log('Form Data: ', this.providerLoanForm.value);
     const formData = new FormData();
     const documentArray = this.providerLoanForm.get('document') as FormArray;
-
     documentArray.controls.forEach((control, index) => {
       formData.append(`file${index}`, control.value);
     });
+    
+    // console.log('Form Data inner: ', formData);
+    // var getDate = this.providerLoanForm.value['start_date'];
+    // this.formattedDate = getDate.toLocaleDateString('en-US');
+    // console.log('Form Data inner: ', this.formattedDate);
     if (this.providerLoanForm.valid) {
       this.loading = true;
       const formData = new FormData();
@@ -119,6 +122,7 @@ export class ProviderLoanComponent {
       files.map(({ name, file }) => {
         return new Promise((resolve, reject) => {
           if (file) {
+            // debugger;
             const reader = new FileReader();
             reader.onloadend = () => {
               const base64String = reader.result as string; // Base64-encoded string
@@ -135,13 +139,15 @@ export class ProviderLoanComponent {
 
       // Append other form values to FormData
       Object.keys(this.providerLoanForm.value).forEach(key => {
-        if (!['document'].includes(key)) {
+        if (!['document'].includes(key) && !['start_date'].includes(key) && !['end_date'].includes(key)) {
           formData.append(key, this.providerLoanForm.value[key]);
+        }
+        if(['start_date'].includes(key) || ['end_date'].includes(key)){
+          formData.append(key, this.providerLoanForm.value[key].toLocaleDateString('en-US'));
         }
       });
       formData.append('company_id', this.company_id)
       formData.append('customer_id', this.dataa.data.id)
-      console.log(formData)
 
       if (formData) {
         this._service.provideLoan(formData).subscribe((data: any) => {

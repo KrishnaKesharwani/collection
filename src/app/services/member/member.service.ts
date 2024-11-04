@@ -46,4 +46,9 @@ export class MemberService {
     const url = `${this.apiUrl}/remove-loan-member`;
     return this.httpClient.post(url, obj)
   }
+
+  assignLoanMember(obj: object){
+    const url=`${this.apiUrl}/change-loan-member`;
+    return this.httpClient.post(url, obj)
+  }
 }

@@ -16,12 +16,13 @@
                 [key]="'installment_amount'" [displayMsg]="'Installment is required'"></app-input>
 
             <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
-                (valueChange)="onDateChange()" [className]="'bottom_error_msg'" [form]="providerLoanForm"
-                [key]="'start_date'" [displayMsg]="'Start date is required'"></app-input>
+                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'start_date'"
+                [displayMsg]="'Start date is required'"></app-input>
             <app-input [isDateField]="true" label="End date" [(value)]="end_date" [isRequired]="true"
-                (valueChange)="onDateChange()" [className]="'bottom_error_msg'" [form]="providerLoanForm"
-                [key]="'end_date'" [displayMsg]="'End date is required'"></app-input>
-            <app-input [isDateField]="false" [disabled]=true label="No. Of Days" [(value)]="no_of_days"
+                [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'end_date'"
+                [displayMsg]="'End date is required'"></app-input>
+            <!-- (valueChange)="onDateChange()" -->
+            <app-input [isDateField]="false" (valueChange)="onDateChange()" [disabled]=true label="No. Of Days" [(value)]="no_of_days"
                 [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'no_of_days'"
                 [displayMsg]="'No. of days is required'"></app-input>
             <!-- <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="providerLoanForm"
@@ -36,18 +37,19 @@
                 [key]="'status'" field="Status"></app-dropdwon>
             <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
                 [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'details'"></app-textarea>
-            <div class="file_upload_block global_textbox_block" formArrayName="document">
-                <label class="m-0">Documents</label>
+            <div class="multiple_file_upload" formArrayName="document">
+                <div class="file_upload_header">
+                    <label class="m-0">Documents</label>
+                    <div class="add_more_btnblock" (click)="addNewDoc()">
+                        <mat-icon>add</mat-icon><span>Add More</span>
+                    </div>
+                </div>
                 <!-- <app-fileupload class="fileupload" formControlName="document" name="document"
                                     (fileChange)="onFileChange($event)"></app-fileupload> -->
                 <ng-container *ngFor="let doc of documentControls;let i =index">
-                    <app-fileupload class="fileupload" formControlName="{{i}}" name="document"
-                        (fileChange)="onFileChange($event,i)"></app-fileupload>
+                    <app-fileupload type="file" class="fileupload file_upload_block" formControlName="{{i}}" name="document"
+                    (fileChange)="onFileChange($event,i)"></app-fileupload>
                 </ng-container>
-
-                <button mat-menu-item (click)="addNewDoc()">
-                    <i class="mdi mdi-pencil mr-2"></i> <span>Add More</span>
-                </button>
             </div>
         </div>
     </form>

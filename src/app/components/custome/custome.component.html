@@ -152,7 +152,7 @@
                                         <button mat-menu-item (click)="openDialogEditCustomer(item)">
                                             <i class="mdi mdi-pencil mr-2"></i> <span>Edit Customer</span>
                                         </button>
-                                        <button *ngIf="user_type == 1" mat-menu-item (click)="openDialogChangeStatus('1ms', '5ms',item)">
+                                        <button *ngIf="user_type == 1" mat-menu-item (click)="openDialogChangeStatus(item)">
                                             <i class="mdi mdi-account-off-outline mr-2"></i>
                                             <span>Status</span>
                                         </button>

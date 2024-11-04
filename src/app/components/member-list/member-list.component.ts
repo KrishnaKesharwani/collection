@@ -69,16 +69,15 @@ export class MemberListComponent {
       }
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete(data);
+      this.updateStatus(data);
     });
   }
 
-  delete(data: any) {
+  updateStatus(data: any) {
     let obj = {
       member_id: data.id,
       status: data.status == 'active' ? 'inactive' : 'active'
     }
-
     this._service.changeStatus(obj).subscribe((data: any) => {
       if (data) {
         Swal.fire({
@@ -87,14 +86,12 @@ export class MemberListComponent {
           title: 'Success',
           text: 'Member Status Updated!',
           showConfirmButton: true,
-          timer: 1500
+          timer: 1000
         });
+        this.getMemberList();
       }
-
     });
-    this.getMemberList();
   }
-
 
   openDialogEditMember(data: any) {
     const dialogRef = this.dialog.open(AddMemberComponent, {

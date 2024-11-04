@@ -70,11 +70,9 @@ export class CustomeComponent {
   }
 
 
-  openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string, data: any): void {
+  openDialogChangeStatus(data: any): void {
     const dialogRef = this.dialog.open(DeleteComponent, {
       panelClass: 'delete_popup',
-      enterAnimationDuration,
-      exitAnimationDuration,
       data: {
         title: 'Are you sure?',
         subTitle: data && data.status === 'active'
@@ -83,11 +81,11 @@ export class CustomeComponent {
       }
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete(data);
+      this.updateStatus(data);
     });
   }
 
-  delete(data: any) {
+  updateStatus(data: any) {
     let obj = {
       customer_id: data.id,
       status: data.status == 'active' ? 'inactive' : 'active'
@@ -100,11 +98,12 @@ export class CustomeComponent {
           title: 'Success',
           text: 'Customer Status Updated!',
           showConfirmButton: true,
-          timer: 1500
+          timer: 1000
         });
+        this.getCustomerList();
       }
     });
-    this.getCustomerList();
+    
   }
 
   private isDialogOpen = false;

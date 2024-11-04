@@ -1,6 +1,7 @@
 import { Component, Inject, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { data } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
@@ -27,56 +28,73 @@ export class AssignLoanComponent {
   selectedValue: string | undefined;
   selectedCar: string | undefined;
   total_assignlength = 0;
-  foods: Food[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
-  ];
+  // foods: Food[] = [
+  //   { value: 'steak-0', viewValue: 'Steak' },
+  //   { value: 'pizza-1', viewValue: 'Pizza' },
+  //   { value: 'tacos-2', viewValue: 'Tacos' },
+  // ];
 
-  cars: Car[] = [
-    { value: 'volvo', viewValue: 'Volvo' },
-    { value: 'saab', viewValue: 'Saab' },
-    { value: 'mercedes', viewValue: 'Mercedes' },
-  ];
+  // cars: Car[] = [
+  //   { value: 'volvo', viewValue: 'Volvo' },
+  //   { value: 'saab', viewValue: 'Saab' },
+  //   { value: 'mercedes', viewValue: 'Mercedes' },
+  // ];
 
-  displayedColumns: string[] = ['cno', 'customer_name', 'contact', 'amount', 'pending', 'installment', 'status', 'remove'];
-  data: { cno: number; customer_name: string; contact: string; amount: number; pending: boolean; installment: string; status: string }[] = [
-    { cno: 1, customer_name: 'Alice', contact: '12345', amount: 100, pending: false, installment: 'Monthly', status: 'Active' },
-    { cno: 2, customer_name: 'Bob', contact: '67890', amount: 200, pending: true, installment: 'Yearly', status: 'Pending' },
-    // Add more data as necessary
-  ];
+  // displayedColumns: string[] = ['cno', 'customer_name', 'contact', 'amount', 'pending', 'installment', 'status', 'remove'];
+  // data: { cno: number; customer_name: string; contact: string; amount: number; pending: boolean; installment: string; status: string }[] = [
+  //   { cno: 1, customer_name: 'Alice', contact: '12345', amount: 100, pending: false, installment: 'Monthly', status: 'Active' },
+  //   { cno: 2, customer_name: 'Bob', contact: '67890', amount: 200, pending: true, installment: 'Yearly', status: 'Pending' },
+  //   // Add more data as necessary
+  // ];
 
   @Input() title: any;
   loading: boolean = false;
+  mainpageloader: boolean = false;
   company_id: any;
   unassignedForm!: FormGroup;
+
   getUnassignedData: any[] = [];
   assignDepositData: any[] = [];
   assignDepositDataStatus: any;
   member_id: any;
   loanList: any;
   loanListData: any;
+  unassigned_loan_id: string = "";
+  selectControl = new FormControl('');
+
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _service: MemberService, public dropdownService: CommonComponentService, public fb: FormBuilder, public _dailyService: DailyCollectionService,
-    public _tostr: ToastrService, public _loanService: LoanService) { }
+    public _toaster: ToastrService, public _loanService: LoanService) { }
 
   ngOnInit() {
+    // debugger;
     const data = sessionStorage.getItem('CurrentUser');
+    this.mainpageloader = true;
+    console.log('Return data :', this.dataa)
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
-      this.member_id = userData.member_id;
-
+      this.member_id = this.dataa?.data.id;
     }
 
-    this.unassignedForm = this.fb.group({
-      unassigned_member_id: ['', Validators.required]
-    })
-    this.getUnassignedLoans();
+    // this.unassignedForm = this.fb.group({
+    //   unassigned_member_id: ['', Validators.required]
+    // })
     this.getAssignDeposit();
     this.getAssignLoan();
-    setTimeout(() => {
-      this.total_assignlength = this.assignDepositData.length + this.loanList.length;
+    this.getUnassignedLoans();
+    this.getAssignCount();
+  }
 
+  getAssignCount() {
+    setTimeout(() => {
+      if (this.loanList?.length) {
+        this.total_assignlength = this.total_assignlength + this.loanList?.length;
+      }
+      if (this.assignDepositData?.length) {
+        this.total_assignlength = this.total_assignlength + this.assignDepositData?.length;
+      }
+      // this.total_assignlength = this.assignDepositData?.length + this.loanList?.length;
+      this.mainpageloader = false;
     }, 3000);
   }
 
@@ -84,25 +102,61 @@ export class AssignLoanComponent {
     let obj = {
       company_id: this.company_id
     }
-
     this._service.unassignedLoans(obj).subscribe((data: any) => {
-      console.log(data.data)
-      if (data) {
-        this.getUnassignedData = data.data
-
-        this.dropdownService.setOptions('unassingmember', data.data);
-      } else {
-
+      if (data.success) {
+        this.getUnassignedData = data.data.loans;
+        console.log('Unassign Loan Data inner Call: ', this.getUnassignedData);
+        // this.dropdownService.setOptions('unassingmember', data.data);
       }
-
-    })
+    }, error => {
+      this.getUnassignedData = [];
+      // this._toaster.error(error.error.message, 'Error');
+    });
   }
 
-  save() {
-    if (this.unassignedForm.valid) {
+  getSelectedValue() {
+    // alert(this.selectControl.value);
+  }
 
-    } else {
-      this.unassignedForm.markAllAsTouched();
+  assignLoan() {
+    let gatLoanid = this.selectControl.value;
+    if (gatLoanid != "") {
+      // debugger;
+      this.loading = true;
+      let obj = {
+        member_id: this.member_id,
+        loan_id: gatLoanid,
+        reason: 'Assign Loan for member'
+      }
+      this._service.assignLoanMember(obj).subscribe((data: any) => {
+        if (data) {
+          this._toaster.success('Loan Assign Successfully!......', 'Success');
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: 'Assign Loan',
+            text: 'Loan Assign Successfully!......',
+            showConfirmButton: false,
+            timer: 1000
+          });
+          this.loading = false;
+          this.mainpageloader = true;
+          this.total_assignlength = 0;
+          this.getUnassignedData = [];
+          this.loanList = [];
+          this.assignDepositData = [];
+          this.getAssignLoan();
+          this.getAssignDeposit();
+          this.getUnassignedLoans();
+          this.getAssignCount();
+        } else {
+          this._toaster.error(data.message, 'Error');
+          this.loading = false;
+        }
+      }, error => {
+        this.loading = false;
+        this._toaster.error(error.error.message, 'Error');
+      });
     }
   }
 
@@ -117,25 +171,23 @@ export class AssignLoanComponent {
       // this.assignDepositDataStatus = data.data.deposits;
     })
   }
-  getAssignLoan() {
 
-    this.loading = true;
+  getAssignLoan() {
     let obj = {
       company_id: this.company_id,
-      member_id: this.member_id,
-      loan_status: 'Approved',
-      status: 'Active'
+      loan_status: 'approved',
+      status: 'active',
+      member_id: this.member_id
     }
     this._loanService.getMemberLoanList(obj).subscribe((data: any) => {
-      this.loading = false;
-      console.log(data)
-      this.loanList = data.data.loans;
-      this.loanListData = data.data;
-    }, error => {
-      this.loading = false;
-      this._tostr.error(error.error.message, 'Error');
-
-    })
+      if (data.success) {
+        this.loanList = data.data.loans;
+        this.loanListData = data.data;
+      } else {
+        this.loanList = 0;
+        // this._toaster.error(data.message, 'Error')
+      }
+    });
   }
 
   openDialogLoanRemove(data: any) {
@@ -144,89 +196,91 @@ export class AssignLoanComponent {
       data: {
         title: 'Are you sure?',
         subTitle:
-          'You want to remove!'
+          'You want to remove assign loan for this member!'
       }
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete(data);
+      this.removeLoanMember(data);
     });
   }
 
-  delete(data: any) {
-
+  removeLoanMember(data: any) {
+    this.mainpageloader = true;
     let obj = {
       loan_id: data.id,
       member_id: data.member?.id
-
     }
-    console.log(obj);
-
+    // console.log(obj);
     this._service.removeAssignLoan(obj).subscribe((data: any) => {
       if (data) {
         Swal.fire({
           position: "center",
           icon: "success",
           title: 'Removed',
-          text: 'Assign Loan Removed!',
+          text: 'Assign Loan Removed For This Member!',
           showConfirmButton: true,
-          timer: 1500
-        });
+          timer: 1000
+        });        
+        this.total_assignlength = 0;
+        this.getUnassignedData = [];
+        this.loanList = [];
+        this.assignDepositData = [];
+        this.getAssignLoan();
+        this.getAssignDeposit();
+        this.getUnassignedLoans();
+        this.getAssignCount();
+        this.mainpageloader = false;
       }
-
     }, error => {
-      this.loading = false;
-      this._tostr.error(error.error.error.member_id, 'Error');
-
+      this._toaster.error(error.error.error.member_id, 'Error');
     });
-    this.getAssignLoan();
-    this.getAssignDeposit();
-    this.dialog.closeAll()
+
   }
 
-  openDialogDepositRemove(data: any) {
-    const dialogRef = this.dialog.open(DeleteComponent, {
-      panelClass: 'delete_popup',
-      data: {
-        title: 'Are you sure?',
-        subTitle:
-          'You want to remove!'
-      }
-    });
-    dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.deleteDeposit(data);
-    });
-  }
+  // openDialogDepositRemove(data: any) {
+  //   const dialogRef = this.dialog.open(DeleteComponent, {
+  //     panelClass: 'delete_popup',
+  //     data: {
+  //       title: 'Are you sure?',
+  //       subTitle:
+  //         'You want to remove!'
+  //     }
+  //   });
+  //   dialogRef.componentInstance.deleteAction.subscribe(() => {
+  //     this.deleteDeposit(data);
+  //   });
+  // }
 
-  deleteDeposit(data: any) {
+  // deleteDeposit(data: any) {
 
-    let obj = {
-      deposit_id: data.id,
-      member_id: data.member?.id
+  //   let obj = {
+  //     deposit_id: data.id,
+  //     member_id: data.member?.id
 
-    }
-    console.log(obj);
+  //   }
+  //   console.log(obj);
 
-    this._service.removeAssignDeposit(obj).subscribe((data: any) => {
-      if (data) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: 'Removed',
-          text: 'Assign Deposit Removed!',
-          showConfirmButton: true,
-          timer: 1500
-        });
-      }
+  //   this._service.removeAssignDeposit(obj).subscribe((data: any) => {
+  //     if (data) {
+  //       Swal.fire({
+  //         position: "center",
+  //         icon: "success",
+  //         title: 'Removed',
+  //         text: 'Assign Deposit Removed!',
+  //         showConfirmButton: true,
+  //         timer: 1500
+  //       });
+  //     }
 
-    }, error => {
-      this.loading = false;
-      this._tostr.error(error.error.error.member_id, 'Error');
+  //   }, error => {
+  //     this.loading = false;
+  //     this._toaster.error(error.error.error.member_id, 'Error');
 
-    });
-    this.getAssignLoan();
-    this.getAssignDeposit();
-    this.dialog.closeAll()
-  }
+  //   });
+  //   this.getAssignLoan();
+  //   this.getAssignDeposit();
+  //   this.dialog.closeAll()
+  // }
 
 }
 

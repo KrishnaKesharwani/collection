@@ -1,7 +1,15 @@
 .assign_text {
     min-width: 140px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    color: #666666;
 }
 .main_table_head {
     margin-bottom: 5px;
+    color: #666666;
+}
+.main_form {
+    width: calc(100% - 125px);
+    .global_dropdown {
+        margin: 0px;
+    }
 }
