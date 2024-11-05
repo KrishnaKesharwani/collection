@@ -19,7 +19,6 @@ export class AddMemberComponent {
   @Input() subTitle: any;
   @Input() data: any;
   @Input() modal: any;
-  @Output() image_base16String: any;
   @Output() deleteAction = new EventEmitter();
   memberForm!: FormGroup;
   member_id!: any;
@@ -73,8 +72,6 @@ export class AddMemberComponent {
 
   selectedFile: File | null = null;
   onFileChange(file: File | null): void {
-    // this.image_base16 = this.fileupload.image_base16String;
-    // alert(this.image_base16);
     this.selectedFile = file;
   }
   // onFileChange(imgbase64: string | ArrayBuffer | null): void {
@@ -197,7 +194,6 @@ export class AddMemberComponent {
         formData.append('company_id', this.company_id);
         if (formData) {
           this._service.create(formData).subscribe((data: any) => {
-            debugger;
             if (data.success == true) {
               this._toastr.success(data.message, 'Success');
               this.loading = false;

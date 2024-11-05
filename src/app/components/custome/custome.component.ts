@@ -69,7 +69,6 @@ export class CustomeComponent {
     })
   }
 
-
   openDialogChangeStatus(data: any): void {
     const dialogRef = this.dialog.open(DeleteComponent, {
       panelClass: 'delete_popup',
@@ -98,12 +97,12 @@ export class CustomeComponent {
           title: 'Success',
           text: 'Customer Status Updated!',
           showConfirmButton: true,
-          timer: 1000
+          timer: 500
         });
         this.getCustomerList();
       }
     });
-    
+
   }
 
   private isDialogOpen = false;
@@ -165,10 +164,12 @@ export class CustomeComponent {
       this.isDialogOpen = false;
     });
   }
+
   openDialogViewDetail(data: any): void {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(ViewCustomerListComponent, {
       data: {
+        panelClass: 'view_details_small_popup',
         title: 'Customer Details',
         data: data
       },
@@ -188,7 +189,10 @@ export class CustomeComponent {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.isDialogOpen = false;
+      // this.isDialogOpen = false;
+      if (result) {
+        this.getCustomerList();
+      }
     });
   }
 

@@ -91,7 +91,7 @@
                 </tr>
                 <tr *ngIf="filteredDataarray.length == 0 && !loader">
                     <td colspan="8">
-                        <app-no-record-found type="table" notext="No member found"></app-no-record-found>
+                        <app-no-record-found type="table" notext="No customer found"></app-no-record-found>
                     </td>
                 </tr>
                 <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
@@ -111,8 +111,6 @@
                         <td class="col" data-name="Join Date">{{item.join_date}}</td>
                         <!-- <td class="col" data-name="End Date">{{item.loan_amount}}</td>
                         <td class="col" data-name="End Date">{{item.pending_amount}}</td> -->
-
-
                         <td class="col text-center" data-name="Status">
                             <span class="badge bg-success text-white"
                                 *ngIf="item.status == 'active'">{{item.status}}</span>
@@ -158,11 +156,7 @@
                                         </button>
                                     </div>
                                 </mat-menu>
-
                             </div>
-
-
-
                         </td>
                     </tr>
                 </ng-container>
