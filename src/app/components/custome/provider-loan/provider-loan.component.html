@@ -69,13 +69,12 @@
                         </div>
                         <!-- <app-fileupload class="fileupload" formControlName="document" name="document"
                                             (fileChange)="onFileChange($event)"></app-fileupload> -->
-                        <div formArrayName="document">
+                        <div>
                             <!-- <ng-container *ngFor="let doc of documentControls; let i =index"> -->
                             <ng-container *ngFor="let doc of document.controls; let i = index">
-                                <div class="file_upload_row"  [formGroupName]="i">
+                                <div class="file_upload_row" [formGroupName]="i">
                                     <!-- formControlName="{{i}}" -->
-                                    <app-fileupload type="file"  class="fileupload file_upload_block"
-                                         name="document"
+                                    <app-fileupload type="file" class="fileupload file_upload_block" name="document"
                                         (fileChange)="onFileChange($event,i)"></app-fileupload>
                                     <mat-icon (click)="removeDocument(i)">delete</mat-icon>
                                 </div>
