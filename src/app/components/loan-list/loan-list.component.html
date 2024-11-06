@@ -16,8 +16,7 @@
                 <div class="col text-right pr-1 datewith_search_block">
                     <div class="listsearch-topblock search_withaddbtn">
                         <div class="search-box">
-                            <input type="text" placeholder="Search" (keyup)="searchTable($event)"
-                                class="searchtxt" />
+                            <input type="text" placeholder="Search" (keyup)="searchTable($event)" class="searchtxt" />
                             <i class="mdi mdi-magnify"></i>
                         </div>
                     </div>
@@ -35,7 +34,7 @@
                                     <span>Loan
                                         No.</span>
                                     <div class="sorting_arrow">
-                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                        <mat-icon (click)="sortTableData('loan_no');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
@@ -57,14 +56,30 @@
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col">Assign</th>
-
-                                <th class="col amount_col">Loan
-                                    Amt</th>
-                                <th class="col amount_col">Pending
-                                    Amt
+                                <th class="col sorting_apply">
+                                    <span>Assign</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
                                 </th>
-
+                                <th class="col amount_col sorting_apply">
+                                    <span>Loan Amt</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('loan_amount');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col amount_col sorting_apply">
+                                    <span>Pending Amt</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('remaining_amount');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
                                 <th class="col action_col">Action</th>
                             </tr>
                         </thead>
@@ -74,13 +89,13 @@
                                     <app-page-loader></app-page-loader>
                                 </td>
                             </tr>
-                            <tr *ngIf="runningLoanListData.length == 0 && !loader">
+                            <tr *ngIf="filteredDataarray.length == 0 && !loader">
                                 <td colspan="8">
                                     <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
                                 </td>
                             </tr>
-                            <ng-container *ngIf="runningLoanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of runningLoanListData">
+                            <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of filteredDataarray">
                                     <td class="col">{{item.loan_no}}</td>
                                     <td class="col">{{item.customer?.customer_no}}</td>
                                     <td class="col" data-name="Profile">
@@ -97,7 +112,7 @@
 
 
 
-                                    <td class="col" data-name="Loan Amount ">{{item.loan_amount}}</td>
+                                    <td class="col" data-name="Loan Amt ">{{item.loan_amount}}</td>
 
                                     <td class="col" data-name="Pending Amt">{{item.remaining_amount}}</td>
 
@@ -135,7 +150,7 @@
                                     <span>Loan
                                         No.</span>
                                     <div class="sorting_arrow">
-                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                        <mat-icon (click)="sortTableData('loan_no');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
@@ -157,14 +172,30 @@
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col">Assign</th>
-
-                                <th class="col amount_col">Loan
-                                    Amt</th>
-                                <th class="col amount_col">Pending
-                                    Amt
+                                <th class="col sorting_apply">
+                                    <span>Assign</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
                                 </th>
-
+                                <th class="col amount_col sorting_apply">
+                                    <span>Loan Amt</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('loan_amount');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col amount_col sorting_apply">
+                                    <span>Pending Amt</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('remaining_amount');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
                                 <th class="col action_col">Action</th>
                             </tr>
                         </thead>
@@ -174,13 +205,13 @@
                                     <app-page-loader></app-page-loader>
                                 </td>
                             </tr>
-                            <tr *ngIf="approvedLoanListData.length == 0 && !loader">
+                            <tr *ngIf="filteredDataarray.length == 0 && !loader">
                                 <td colspan="8">
                                     <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
                                 </td>
                             </tr>
-                            <ng-container *ngIf="approvedLoanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of approvedLoanListData">
+                            <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of filteredDataarray">
                                     <td class="col">{{item.loan_no}}</td>
                                     <td class="col">{{item.customer?.customer_no}}</td>
                                     <td class="col" data-name="Profile">
@@ -197,7 +228,7 @@
 
 
 
-                                    <td class="col" data-name="Loan Amount ">{{item.loan_amount}}</td>
+                                    <td class="col" data-name="Loan Amt ">{{item.loan_amount}}</td>
 
                                     <td class="col" data-name="Pending Amt">{{item.remaining_amount}}</td>
 
@@ -231,7 +262,6 @@
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">
                             <tr>
-
                                 <th class="col sorting_apply id_col">
                                     <span>Customer No.</span>
                                     <div class="sorting_arrow">
@@ -249,13 +279,31 @@
                                             }}</mat-icon>
                                     </div>
                                 </th>
-
-
-                                <th class="col date_col">Apply Date</th>
-                                <th class="col type_col">Apply Type</th>
-                                <th class="col amount_col">Amount</th>
+                                <th class="col sorting_apply">
+                                    <span>Apply Type</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('applied_user_name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col date_col sorting_apply">
+                                    <span>Apply Date</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('apply_date');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col amount_col sorting_apply">
+                                    <span>Amount</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('remaining_amount');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
                                 <th class="col action_col">Action</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -264,14 +312,13 @@
                                     <app-page-loader></app-page-loader>
                                 </td>
                             </tr>
-                            <tr *ngIf="pendingLoanListData.length == 0 && !loader">
+                            <tr *ngIf="filteredDataarray.length == 0 && !loader">
                                 <td colspan="7">
-                                    <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
+                                    <app-no-record-found type="table" notext="No Loan Found."></app-no-record-found>
                                 </td>
                             </tr>
-                            <ng-container *ngIf="pendingLoanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of pendingLoanListData">
-
+                            <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of filteredDataarray">
                                     <td class="col">{{item.customer?.customer_no}}</td>
                                     <td class="col" data-name="Profile">
                                         <div class="list_image_block" *ngIf="item.customer?.image == null">
@@ -283,15 +330,9 @@
                                         </div>
                                     </td>
                                     <td class="col" data-name="Name">{{item.customer?.name}}</td>
-
-
-
-
-                                    <td class="col" data-name="Apply Date ">{{item?.apply_date}}</td>
-
                                     <td class="col" data-name="Apply Type">{{item?.applied_user_name}}</td>
+                                    <td class="col" data-name="Apply Date ">{{item?.apply_date}}</td>
                                     <td class="col" data-name="Amount">{{item.remaining_amount}}</td>
-
                                     <td class="action_col" data-name="Action">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
@@ -305,11 +346,7 @@
                                                     </button>
                                                 </div>
                                             </mat-menu>
-
                                         </div>
-
-
-
                                     </td>
                                 </tr>
                             </ng-container>
@@ -339,10 +376,31 @@
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col date_col">Apply Date</th>
-                                <th class="col type_col">Apply Type</th>
-                                <th class="col amount_col">Amount</th>
-                                <th class="col status_col">Actions</th>
+                                <th class="col sorting_apply">
+                                    <span>Apply Type</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('applied_user_name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col date_col sorting_apply">
+                                    <span>Apply Date</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('apply_date');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col amount_col sorting_apply">
+                                    <span>Amount</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('remaining_amount');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col action_col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -351,13 +409,13 @@
                                     <app-page-loader></app-page-loader>
                                 </td>
                             </tr>
-                            <tr *ngIf="cancelledLoanListData.length == 0 && !loader">
+                            <tr *ngIf="filteredDataarray.length == 0 && !loader">
                                 <td colspan="7">
                                     <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
                                 </td>
                             </tr>
-                            <ng-container *ngIf="cancelledLoanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of cancelledLoanListData">
+                            <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of filteredDataarray">
 
                                     <td class="col">{{item.customer?.customer_no}}</td>
                                     <td class="col" data-name="Profile">
@@ -414,7 +472,7 @@
                                     <span>Loan
                                         No.</span>
                                     <div class="sorting_arrow">
-                                        <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
+                                        <mat-icon (click)="sortTableData('loan_no');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
@@ -436,9 +494,30 @@
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col">Last Assign</th>
-                                <th class="col amount_col">Loan Amt</th>
-                                <th class="col amount_col">Pending Amt</th>
+                                <th class="col sorting_apply">
+                                    <span>Assign</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col amount_col sorting_apply">
+                                    <span>Loan Amt</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('loan_amount');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
+                                <th class="col amount_col sorting_apply">
+                                    <span>Pending Amt</span>
+                                    <div class="sorting_arrow">
+                                        <mat-icon (click)="sortTableData('remaining_amount');">{{ isAsc ?
+                                            'north' : 'south'
+                                            }}</mat-icon>
+                                    </div>
+                                </th>
                                 <th class="col action_col">Action</th>
                             </tr>
                         </thead>
@@ -448,13 +527,13 @@
                                     <app-page-loader></app-page-loader>
                                 </td>
                             </tr>
-                            <tr *ngIf="completedLoanListData.length == 0 && !loader">
+                            <tr *ngIf="filteredDataarray.length == 0 && !loader">
                                 <td colspan="8">
                                     <app-no-record-found type="table" notext="No Loan found"></app-no-record-found>
                                 </td>
                             </tr>
-                            <ng-container *ngIf="completedLoanListData.length != 0 && !loader">
-                                <tr class="received_row" *ngFor="let item of completedLoanListData">
+                            <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                                <tr class="received_row" *ngFor="let item of filteredDataarray">
                                     <td class="col">{{item.loan_no}}</td>
                                     <td class="col">{{item.customer?.customer_no}}</td>
                                     <td class="col" data-name="Profile">
@@ -468,7 +547,7 @@
                                     </td>
                                     <td class="col" data-name="Name">{{item.customer?.name}}</td>
                                     <td class="col" data-name="Assign">{{item.member?.name}}</td>
-                                    <td class="col" data-name="Loan Amount ">{{item.loan_amount}}</td>
+                                    <td class="col" data-name="Loan Amt ">{{item.loan_amount}}</td>
                                     <td class="col" data-name="Pending Amt">{{item.remaining_amount}}</td>
                                     <td class="action_col" data-name="Action">
                                         <div placement="bottom-right">
