@@ -1,6 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
@@ -24,7 +24,7 @@ export class ApplyLoanComponent {
   company_id: any;
   userType: any;
   customer_name: any;
-  constructor(public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _toastr: ToastrService, public _router: Router, public _service: CustomerService
+  constructor(public dialogRef: MatDialogRef<ApplyLoanComponent>,public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _toastr: ToastrService, public _router: Router, public _service: CustomerService
   ) { }
 
   ngOnInit() {
@@ -51,7 +51,7 @@ export class ApplyLoanComponent {
     this.company_id = this.company_id;
   }
 
-  save() {
+  customerLoanApply() {
     if (this.applyLoanForm.valid) {
       this.loading = true;
       let obj = {
@@ -61,10 +61,10 @@ export class ApplyLoanComponent {
         loan_amount: this.applyLoanForm.value.loan_amount
       }
       this._service.applyLoan(obj).subscribe((data: any) => {
-        this._toastr.success(data.message, "Success");
+        this._toastr.success('Loan Apply Successfully!....', "Success");
         this.applyLoanForm.reset();
         this.loading = false;
-        this.dialog.closeAll();
+        this.dialogRef.close(true);
       })
     }
   }

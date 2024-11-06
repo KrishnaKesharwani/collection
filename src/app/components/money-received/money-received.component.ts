@@ -43,17 +43,18 @@ export class MoneyReceivedComponent {
     });
   }
 
-  openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string, data: any) {
+  openDialogChangeStatus(data: any) {
     const dialogRef = this.dialog.open(VpdateStatusComponent, {
       disableClose: true,
       panelClass: 'delete_popup',
-      enterAnimationDuration,
-      exitAnimationDuration,
       data: {
         title: 'Received Money Status',
       },
     });
     dialogRef.afterClosed().subscribe(result => {
+      if(result){
+
+      }
     });
   }
 
@@ -65,9 +66,9 @@ export class MoneyReceivedComponent {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
+
     });
   }
-
 
   isAsc: boolean = true;
   sortTableData(column: string) {

@@ -403,7 +403,10 @@ mat-option {
         font-size: 14px;
         text-align: left;
         margin-right: 10px;
-
+        .date_picker_block {
+            padding: 0px;
+            margin: 0px;
+        }
         label {
             display: inline-block;
             min-width: 90px;
@@ -1084,6 +1087,7 @@ mat-option {
         span {
             margin-right: 10px;
             font-weight: 600;
+            text-transform: capitalize;
         }
     }
 }
@@ -1695,7 +1699,7 @@ mark {
     position: relative;
     margin: 0px;
     display: flex;
-
+    width: 100%;
     .right_addbtn {
         margin-left: 10px;
 

@@ -6,8 +6,9 @@
                     <h3 class="mb-0">Loan List For Status</h3>
                 </div>
                 <div class="col p-0 head_details">
-                    <div class="total_block bg-primary mr-2"><span>Pending
-                            Amount</span><b>{{total_remaining_amount}}</b>
+                    <div class="total_block bg-primary mr-2">
+                        <span>{{listLoadType}} Amount</span>
+                        <b>{{total_remaining_amount}}.00</b>
                     </div>
                     <div class="total_block bg-success"><span>Total
                             Customer</span><b>{{total_cusotomer}}</b></div>
@@ -15,7 +16,7 @@
                 <div class="col text-right pr-1 datewith_search_block">
                     <div class="listsearch-topblock search_withaddbtn">
                         <div class="search-box">
-                            <input type="text" placeholder="Search..." (keyup)="searchTable($event)"
+                            <input type="text" placeholder="Search" (keyup)="searchTable($event)"
                                 class="searchtxt" />
                             <i class="mdi mdi-magnify"></i>
                         </div>

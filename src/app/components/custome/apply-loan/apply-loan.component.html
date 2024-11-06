@@ -19,14 +19,10 @@
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button type="submit" class="global_submit_btn" *ngIf="!customer_id" mat-flat-button (click)="save()">
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="customerLoanApply()">
         <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
         <app-button-loader *ngIf="loading"></app-button-loader>
-        <span>Submit</span>
-    </button>
-    <button type="submit" class="global_submit_btn" *ngIf="customer_id" mat-flat-button (click)="save()">
-        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
-        <app-button-loader *ngIf="loading"></app-button-loader>
-        <span>Update</span>
+        <span *ngIf="!customer_id">Submit</span>
+        <span *ngIf="customer_id">Apply New Loan</span>
     </button>
 </div>

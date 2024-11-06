@@ -6,7 +6,6 @@ import { LoanService } from 'src/app/services/loan/loan.service';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { CompleteLoanHistoryComponent } from './complete-loan-history/complete-loan-history.component';
 
-
 @Component({
   selector: 'app-loan-list',
   templateUrl: './loan-list.component.html',
@@ -25,7 +24,6 @@ export class LoanListComponent {
   total_remaining_amount: any;
   total_cusotomer: any;
   readonly dialog = inject(MatDialog);
-
   constructor(public _customActionService: CustomActionsService, public _service: LoanService, public _tostr: ToastrService) { }
 
   ngOnInit() {
@@ -35,16 +33,12 @@ export class LoanListComponent {
       this.company_id = userData.company_id;
       // this.user_type = userData.user_type;
     }
-
     this.onTabChange(this.selectedTabIndex);
   }
 
-
   selectedTabIndex: number = 0;  // Default to 'Approved' tab
-
-  listLoadType: any = 'running';  // Default to 'approved'
-
-  tabLabels: string[] = ['running', 'approved', 'pending', 'cancelled', 'completed'];
+  listLoadType: any = 'paid';  // Default to 'approved'
+  tabLabels: string[] = ['paid', 'approved', 'pending', 'cancelled', 'completed'];
 
   onTabChange(index: any) {
     // this.loader = true;
@@ -54,56 +48,69 @@ export class LoanListComponent {
     let obj = {
       company_id: this.company_id,
       loan_status: this.listLoadType,
-      status: 'Active'
+      status: 'active'
     };
 
-    if (obj.loan_status == 'running') {
+    if (obj.loan_status == 'paid') {
       this._service.getLoanList(obj).subscribe((data: any) => {
-        this.total_remaining_amount = data.data.total_remaining_amount;
-        this.total_cusotomer = data.data.total_cusotomer;
-
-        this.runningLoanListData = data.data.loans;
-
-
-
+        if (data.success) {
+          this.total_remaining_amount = data.data.total_remaining_amount;
+          this.total_cusotomer = data.data.total_cusotomer;
+          this.runningLoanListData = data.data.loans;
+        }
+      }, error => {
+        this.total_remaining_amount = 0.00;
+        this.total_cusotomer = 0;
       });
     } else if (obj.loan_status == 'approved') {
       this._service.getLoanList(obj).subscribe((data: any) => {
-        this.total_remaining_amount = data.data.total_remaining_amount;
-        this.total_cusotomer = data.data.total_cusotomer;
-        this.approvedLoanListData = data.data.loans;
-
-        this.loader = false
+        if (data.success) {
+          this.total_remaining_amount = data.data.total_remaining_amount;
+          this.total_cusotomer = data.data.total_cusotomer;
+          this.approvedLoanListData = data.data.loans;
+          this.loader = false;
+        }
+      }, error => {
+        this.total_remaining_amount = 0.00;
+        this.total_cusotomer = 0;
       });
     } else if (obj.loan_status == 'pending') {
       this._service.getLoanList(obj).subscribe((data: any) => {
-        this.total_remaining_amount = data.data.total_remaining_amount;
-        this.total_cusotomer = data.data.total_cusotomer;
-        this.pendingLoanListData = data.data.loans;
-
-
-        this.loader = false
+        if (data.success) {
+          this.total_remaining_amount = data.data.total_remaining_amount;
+          this.total_cusotomer = data.data.total_cusotomer;
+          this.pendingLoanListData = data.data.loans;
+          this.loader = false
+        }
+      }, error => {
+        this.total_remaining_amount = 0.00;
+        this.total_cusotomer = 0;
       });
     } else if (obj.loan_status == 'cancelled') {
       this._service.getLoanList(obj).subscribe((data: any) => {
-        this.total_remaining_amount = data.data.total_remaining_amount;
-        this.total_cusotomer = data.data.total_cusotomer;
-        this.cancelledLoanListData = data.data.loans;
-
-
-        this.loader = false
+        if (data.success) {
+          this.total_remaining_amount = data.data.total_remaining_amount;
+          this.total_cusotomer = data.data.total_cusotomer;
+          this.cancelledLoanListData = data.data.loans;
+          this.loader = false
+        }
+      }, error => {
+        this.total_remaining_amount = 0.00;
+        this.total_cusotomer = 0;
       });
     } else {
       this._service.getLoanList(obj).subscribe((data: any) => {
-        this.total_remaining_amount = data.data.total_remaining_amount;
-        this.total_cusotomer = data.data.total_cusotomer;
-        this.cancelledLoanListData = data.data.loans;
-
-
-        this.loader = false
+        if (data.success) {
+          this.total_remaining_amount = data.data.total_remaining_amount;
+          this.total_cusotomer = data.data.total_cusotomer;
+          this.cancelledLoanListData = data.data.loans;
+          this.loader = false;
+        }
+      }, error => {
+        this.total_remaining_amount = 0.00;
+        this.total_cusotomer = 0;
       });
     }
-
   }
 
   private isDialogOpen = false;
@@ -140,8 +147,6 @@ export class LoanListComponent {
       this.isAsc = true;
     }
     this.filteredDataarray = this._customActionService.sortData(column, this.loanListData);
-
-
   }
 
   searchColumns: any[] = ['name', 'status', 'mobile', 'email', 'customer_no'];

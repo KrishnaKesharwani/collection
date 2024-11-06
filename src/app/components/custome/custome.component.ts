@@ -127,11 +127,13 @@ export class CustomeComponent {
       disableClose: true,
       data: {
         data: data,
-        title: 'Loan Provide Details'
+        title: 'New Loan Provide Details'
       },
     });
     dialogRef.afterClosed().subscribe((result: any) => {
-      this.isDialogOpen = false;
+      if (result) {
+        this.getCustomerList();
+      }
     });
   }
 
@@ -145,8 +147,11 @@ export class CustomeComponent {
         title: 'Add New Deposit'
       },
     });
-    dialogRef.afterClosed().subscribe((result: any) => {
-      this.isDialogOpen = false;
+    dialogRef.afterClosed().subscribe(result => {
+      // this.isDialogOpen = false;
+      if (result) {
+        this.getCustomerList();
+      }
     });
   }
 

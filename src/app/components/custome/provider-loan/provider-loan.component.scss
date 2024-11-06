@@ -25,3 +25,17 @@
     background: #ffffff;
     padding: 10px;
 }
+.file_upload_row {
+    display: flex;
+    align-items: center;
+    mat-icon {
+        color: #dd0000;
+        margin-left: 15px;
+        transition: .5s all;
+        opacity: .8;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

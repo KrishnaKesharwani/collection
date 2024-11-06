@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastRef, ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
@@ -32,9 +32,9 @@ export class ProviderLoanComponent {
   start_date: any;
   end_date: any;
   no_of_days: string = '0';
+  memberdata: [] = [];
 
-
-  constructor(public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(public dialogRef: MatDialogRef<ProviderLoanComponent>, public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
   ngOnInit() {
@@ -57,20 +57,39 @@ export class ProviderLoanComponent {
       status: [''],
       document: this.fb.array([])
     });
-
     this.getActiveMmberList();
-
   }
 
-  get documentControls() {
-    return (this.providerLoanForm.get('document') as FormArray).controls;
+  get document(): FormArray {
+    return this.providerLoanForm.get('document') as FormArray;
   }
 
-  addNewDoc() {
-    (<FormArray>this.providerLoanForm.get('document')).push(new FormControl(null));
-
+  addNewDoc(): void {
+    this.document.push(new FormControl('')); // Add a new FormControl with an empty string as the initial value
   }
-  memberdata: [] = [];
+
+  removeDocument(index: number): void {
+    this.document.removeAt(index);
+  }
+  // get documentControls() {
+  //   return (this.providerLoanForm.get('document') as FormArray).controls;
+  // }
+
+  // addNewDoc() {
+  //   (<FormArray>this.providerLoanForm.get('document')).push(new FormControl(null));
+  // }
+
+
+  // deleteDocument(index: number): void {
+  //   // Remove the item at the specified index
+  //   // (<FormArray>this.providerLoanForm.get('document')).splice(index, 1);
+  //   // this.items.splice(index, 1);
+  // }
+
+  onClose() {
+    this.dialogRef.close();
+  }
+
   getActiveMmberList() {
     let obj = {
       company_id: this.company_id,
@@ -83,6 +102,7 @@ export class ProviderLoanComponent {
       this.dropdownService.setOptions('assingmember', memberData.data);
     })
   }
+
   onDateChange() {
     // debugger;
     if (this.startDate && this.endDate) {
@@ -98,15 +118,16 @@ export class ProviderLoanComponent {
       this.noOfDays = null;
     }
   }
+
   formattedDate: string = '';
-  submit() {
+  submitProvideLoan() {
     console.log('Form Data: ', this.providerLoanForm.value);
     const formData = new FormData();
     const documentArray = this.providerLoanForm.get('document') as FormArray;
     documentArray.controls.forEach((control, index) => {
       formData.append(`file${index}`, control.value);
     });
-    
+
     // console.log('Form Data inner: ', formData);
     // var getDate = this.providerLoanForm.value['start_date'];
     // this.formattedDate = getDate.toLocaleDateString('en-US');
@@ -119,43 +140,44 @@ export class ProviderLoanComponent {
       ];
 
       // Convert files to base64 strings
-      files.map(({ name, file }) => {
-        return new Promise((resolve, reject) => {
-          if (file) {
-            // debugger;
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              const base64String = reader.result as string; // Base64-encoded string
-              formData.append(name, base64String); // Append base64 string to FormData
-              resolve(true);
-            };
-            reader.onerror = () => reject(new Error(`Failed to read ${name}`));
-            reader.readAsDataURL(file); // Read the file as a base64 string
-          } else {
-            resolve(true); // Resolve if no file
-          }
-        });
-      });
+      // files.map(({ name, file }) => {
+      //   return new Promise((resolve, reject) => {
+      //     if (file) {
+      //       // debugger;
+      //       const reader = new FileReader();
+      //       reader.onloadend = () => {
+      //         const base64String = reader.result as string; // Base64-encoded string
+      //         formData.append(name, base64String); // Append base64 string to FormData
+      //         resolve(true);
+      //       };
+      //       reader.onerror = () => reject(new Error(`Failed to read ${name}`));
+      //       reader.readAsDataURL(file); // Read the file as a base64 string
+      //     } else {
+      //       resolve(true); // Resolve if no file
+      //     }
+      //   });
+      // });
 
-      // Append other form values to FormData
+      // Append other form values to FormData !['document'].includes(key) &&
       Object.keys(this.providerLoanForm.value).forEach(key => {
-        if (!['document'].includes(key) && !['start_date'].includes(key) && !['end_date'].includes(key)) {
+        if (!['start_date'].includes(key) && !['end_date'].includes(key)) {
           formData.append(key, this.providerLoanForm.value[key]);
         }
-        if(['start_date'].includes(key) || ['end_date'].includes(key)){
+        if (['start_date'].includes(key) || ['end_date'].includes(key)) {
           formData.append(key, this.providerLoanForm.value[key].toLocaleDateString('en-US'));
         }
       });
+
       formData.append('company_id', this.company_id)
       formData.append('customer_id', this.dataa.data.id)
-
+      // formData.append('document', this.files[]);
       if (formData) {
         this._service.provideLoan(formData).subscribe((data: any) => {
           console.log(data)
           if (data.success) {
             this.providerLoanForm.reset();
             this._tostr.success(data.message, 'Success');
-            this.dialog.closeAll();
+            this.dialogRef.close(true);
           } else {
             this._tostr.error(data.message, 'Error');
           }
