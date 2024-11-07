@@ -9,9 +9,9 @@
                         </div>
                         <div class="col text-right pr-1 datewith_search_block calender_withsearch">
                             <div class="list_calender_filter">
-                                <app-input [isDateField]="true" label="Filter Date" [(value)]="filter_date"
-                                    [className]="'bottom_error_msg'" [key]="'filter_date'"
-                                    [form]="filterDateForm"></app-input>
+                                <app-input [isDateField]="true" label="Filter Date" [(value)]="date"
+                                    [className]="'bottom_error_msg'" [key]="'date'" [form]="filterDateForm"
+                                    (change)="getCollectionList()"></app-input>
                             </div>
                             <div class="listsearch-topblock search_withaddbtn pr-0">
                                 <div class="search-box">
@@ -61,24 +61,25 @@
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
-                        <tr *ngIf="customerData.length == 0 && !loader">
+                        <tr *ngIf="collectionData.length == 0 && !loader">
                             <td colspan="6">
-                                <app-no-record-found type="table" notext="No member collection found."></app-no-record-found>
+                                <app-no-record-found type="table"
+                                    notext="No member collection found."></app-no-record-found>
                             </td>
                         </tr>
-                        <ng-container *ngIf="customerData.length != 0 && !loader">
-                            <tr class="received_row" *ngFor="let item of customerData">
-                                <td class="col" data-name="Member Name"> {{item.member_name}}</td>
+                        <ng-container *ngIf="collectionData.length != 0 && !loader">
+                            <tr class="received_row" *ngFor="let item of collectionData">
+                                <td class="col" data-name="Member Name"> {{item.member.name}}</td>
                                 <td class="col" data-name="Collect Date">
-                                   11/06/2024
+                                    {{item.collect_date}}
                                 </td>
-                                <td class="col" data-name="Customer Meet">{{item.name}}</td>
-                                <td class="col" data-name="Collect Amount">{{item.email}}</td>
+                                <td class="col" data-name="Customer Meet">{{item.customer_count}}</td>
+                                <td class="col" data-name="Collect Amount">{{item.paid_amount}}</td>
                                 <td class="col text-center" data-name="Receive Status">
                                     <span class="badge bg-success text-white"
-                                        *ngIf="item.status == 'active'">{{item.status}}</span>
+                                        *ngIf="item.payment_status == 'working'">{{item.payment_status}}</span>
                                     <span class="badge bg-danger text-white "
-                                        *ngIf="item.status == 'inactive'">{{item.status}}</span>
+                                        *ngIf="item.payment_status == ''">{{item.payment_status}}</span>
                                 </td>
                                 <td class="action_col" data-name="Action">
                                     <div placement="bottom-right">
@@ -91,8 +92,7 @@
                                                 <button mat-menu-item (click)="openDialogViewDetail(item)">
                                                     <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                                 </button>
-                                                <button mat-menu-item
-                                                    (click)="openDialogChangeStatus(item)">
+                                                <button mat-menu-item (click)="openDialogChangeStatus(item)">
                                                     <i class="mdi mdi-account-off-outline mr-2"></i>
                                                     <span>Status</span>
                                                 </button>

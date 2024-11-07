@@ -34,10 +34,10 @@ export class AddMemberComponent {
   loading: boolean = false;
   company_id: any;
   memberName: string = '';
-  image_base16: string = ''; 
+  image_base16: string = '';
   fileupload: any;
   // image_base16: string | ArrayBuffer | null = null; public fileupload: FileuploadComponent,
-  constructor( public dialogRef: MatDialogRef<AddMemberComponent>, private cdr: ChangeDetectorRef, public _toastr: ToastrService, public router: Router, public _service: MemberService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(public dialogRef: MatDialogRef<AddMemberComponent>, private cdr: ChangeDetectorRef, public _toastr: ToastrService, public router: Router, public _service: MemberService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
   ngOnInit() {
@@ -113,15 +113,15 @@ export class AddMemberComponent {
         //     });
         //   });
         // }
-       
-        // debugger;
+
+
         // Append other form values to FormData
         Object.keys(this.memberForm.value).forEach(key => {
           // if (!['image'].includes(key)) {
-            formData.append(key, this.memberForm.value[key]);
+          formData.append(key, this.memberForm.value[key]);
           // }
         });
-        if(!this.selectedFile){
+        if (!this.selectedFile) {
           formData.delete('image');
         }
         // formData.remov('company_id', this.company_id)
@@ -157,7 +157,7 @@ export class AddMemberComponent {
     }
     else {
       if (this.memberForm.valid) {
-        debugger;
+
         this.loading = true;
         const formData = new FormData();
         // const files = [
@@ -185,7 +185,7 @@ export class AddMemberComponent {
         // Append other form values to FormData
         Object.keys(this.memberForm.value).forEach(key => {
           // if (!['image'].includes(key)) {
-            formData.append(key, this.memberForm.value[key]);
+          formData.append(key, this.memberForm.value[key]);
           // }
         });
         // if(!this.selectedFile){

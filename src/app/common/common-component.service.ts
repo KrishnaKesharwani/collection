@@ -18,6 +18,8 @@ export class CommonComponentService {
   loanstatus = ['approved', 'paid', 'pending', 'cancelled'];
   status = ['active', 'inactive'];
   plan = ['monthly', 'quarterly', 'half yerly', 'yearly', 'demo'];
+  offerType = ['offers', 'schemes'];
+  moneyStatus = ['working', 'received', 'cancelled'];
   private dropdownOptionsSubject = new BehaviorSubject<{ [key: string]: string[] }>({});
   dropdownOptions$ = this.dropdownOptionsSubject.asObservable();
 

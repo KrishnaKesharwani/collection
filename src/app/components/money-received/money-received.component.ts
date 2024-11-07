@@ -6,6 +6,7 @@ import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MoneyReceivedService } from 'src/app/services/moneyReceived/money-received.service';
 
 @Component({
   selector: 'app-money-received',
@@ -20,12 +21,23 @@ export class MoneyReceivedComponent {
   loader = false;
   filter_date!: string | Date | null;
   filterDateForm!: FormGroup;
-  constructor(public _customActionService: CustomActionsService, private actionService: ActionService, public fb: FormBuilder) { }
+  date: any;
+  collectionData: any[] = [];
+  constructor(public _service: MoneyReceivedService, public _customActionService: CustomActionsService, private actionService: ActionService, public fb: FormBuilder) { }
 
   ngOnInit() {
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+
+    }
+
     this.filterDateForm = this.fb.group({
-      filter_date: ['']
+      date: ['']
     })
+
+    this.getCollectionList();
   }
 
 
@@ -36,6 +48,8 @@ export class MoneyReceivedComponent {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
       disableClose: false,
       data: {
+        data: data,
+        id: data.id,
         title: 'Money Collection Details',
       },
     });
@@ -48,11 +62,12 @@ export class MoneyReceivedComponent {
       disableClose: true,
       panelClass: 'delete_popup',
       data: {
+        id: data.id,
         title: 'Received Money Status',
       },
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
 
       }
     });
@@ -62,6 +77,7 @@ export class MoneyReceivedComponent {
     const dialogRef = this.dialog.open(AdvanceMoneyComponent, {
       disableClose: true,
       data: {
+        id: data.id,
         title: 'Add Advance Money',
       },
     });
@@ -91,5 +107,16 @@ export class MoneyReceivedComponent {
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
+  }
+
+  getCollectionList() {
+    let obj = {
+      company_id: this.company_id,
+      date: 'Mon 4 Nov'
+    }
+    this._service.getCollection(obj).subscribe((data: any) => {
+      console.log(data.data);
+      this.collectionData = data.data;
+    })
   }
 }

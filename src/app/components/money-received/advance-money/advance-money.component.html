@@ -5,23 +5,23 @@
 <div class="dialoge_middle_container small_popup">
     <form focusInvalidInput [formGroup]="advanceAmountForm">
         <div class="global_form_row">
-            <app-input [disabled]="false" [isDateField]="false" label="Amount" [(value)]="advanceamount"
-                [isRequired]="true" [className]="'bottom_error_msg'" [form]="advanceAmountForm"
-                [key]="'advanceamount'"></app-input>
+            <app-input [disabled]="false" [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="advanceAmountForm" [key]="'amount'"></app-input>
         </div>
         <div class="global_form_row">
             <mat-form-field class="global_textarea_block" appearance="outline">
                 <mat-label>Enter Advance Money Details</mat-label>
-                <textarea matInput formControlName="advancedetails" name="advancedetails"></textarea>
+                <textarea matInput formControlName="details" name="details"></textarea>
             </mat-form-field>
         </div>
     </form>
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button>
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="save()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
         <app-button-loader *ngIf="loading"></app-button-loader>
-        <mat-icon *ngIf="!loading" class="submitbtn_icon">check</mat-icon>
         <span>Submit</span>
     </button>
+
 </div>

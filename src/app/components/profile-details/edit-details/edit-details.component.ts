@@ -49,7 +49,7 @@ export class EditDetailsComponent {
       this.member_id = userData.member_id;
       this.customer_id = customer.id;
       this.customerData = customer;
-      debugger
+
     }
 
     this.editForm = this.fb.group({
@@ -72,7 +72,7 @@ export class EditDetailsComponent {
     this.editForm.patchValue({ profile: file });
   }
   updateDetails() {
-    debugger
+
     if (this.customer_id) {
       if (this.editForm.valid) {
 

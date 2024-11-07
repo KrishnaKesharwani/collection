@@ -68,7 +68,7 @@ export class InputComponent {
     }
   }
   onDateChange(event?: MatDatepickerInputEvent<Date>) {
-    // debugger;
+
     // const selectedDate = new Date(event?.value);
     // this.formattedDate = selectedDate.toLocaleDateString('en-US');
 
@@ -95,7 +95,7 @@ export class InputComponent {
   }
   // onDateFormatChange(dis: any) {
   //   setTimeout(() => {
-  //     debugger;
+
   //     // this.date = event?.value;
   //     var getDate = dis['start_date'].value;
   //     this.formattedDate = getDate.toLocaleDateString('en-US');
@@ -104,7 +104,7 @@ export class InputComponent {
   // }
   getApidateFormatSet(date: any) {
     const newDate = new Date(this.date);
-    debugger;
+
     let month = date.getMonth();
     let year = date.getFullYear();
     let day = date.getDate();

@@ -66,7 +66,7 @@ export class AssignLoanComponent {
     public _toaster: ToastrService, public _loanService: LoanService) { }
 
   ngOnInit() {
-    // debugger;
+
     const data = sessionStorage.getItem('CurrentUser');
     this.mainpageloader = true;
     console.log('Return data :', this.dataa)
@@ -121,7 +121,7 @@ export class AssignLoanComponent {
   assignLoan() {
     let gatLoanid = this.selectControl.value;
     if (gatLoanid != "") {
-      // debugger;
+
       this.loading = true;
       let obj = {
         member_id: this.member_id,
@@ -220,7 +220,7 @@ export class AssignLoanComponent {
           text: 'Assign Loan Removed For This Member!',
           showConfirmButton: true,
           timer: 1000
-        });        
+        });
         this.total_assignlength = 0;
         this.getUnassignedData = [];
         this.loanList = [];

@@ -2,6 +2,8 @@ import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonComponentService } from 'src/app/common/common-component.service';
+import { MoneyReceivedService } from 'src/app/services/moneyReceived/money-received.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-vpdate-status',
@@ -16,18 +18,38 @@ export class VpdateStatusComponent {
   @Output() deleteAction = new EventEmitter();
   // constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }
   //   , public fb: FormBuilder) { }
-  receivedamount: string = '';
+  amount: string = '';
   moneystatus: string = '';
-  moneydetails: string = '';
-  constructor(public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  details: string = '';
+  constructor(public _service: MoneyReceivedService, public _tostr: ToastrService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any },
   ) { }
 
   ngOnInit() {
     this.receivedAmountForm = this.fb.group({
-      receivedamount: ['10000'],
-      moneystatus: [''],
-      moneydetails: ['']
+      amount: ['10000'],
+      // moneystatus: [''],
+      details: ['']
     });
-    this.dropdownService.setOptions('moneyStatus', ['Working', 'Received', 'Cancelled']);
+    // this.dropdownService.setOptions('moneyStatus', ['Working', 'Received', 'Cancelled']);
+  }
+
+  submit() {
+    let obj = {
+      collection_id: this.dataa.id,
+      ...this.receivedAmountForm.value
+    }
+    if (this.receivedAmountForm.valid) {
+      this._service.changeStatus(obj).subscribe((data: any) => {
+        console.log(data.data);
+        this.receivedAmountForm.reset();
+        this._tostr.success(data.message, 'Success');
+        this.dialog.closeAll();
+      })
+    } else {
+      this.receivedAmountForm.markAllAsTouched()
+    }
+
+
+
   }
 }

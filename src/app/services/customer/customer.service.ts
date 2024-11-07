@@ -15,7 +15,7 @@ export class CustomerService {
   }
 
   update(form: object) {
-    debugger;
+
     const url = `${this.apiUrl}/updatecustomer`;
     return this.httpClient.post(url, form)
   }

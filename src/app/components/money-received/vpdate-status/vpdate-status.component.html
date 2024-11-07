@@ -5,27 +5,26 @@
 <div class="dialoge_middle_container small_popup">
     <form focusInvalidInput [formGroup]="receivedAmountForm">
         <div class="global_form_row">
-            <app-input [disabled]="true" [isDateField]="false" label="Amount" [(value)]="receivedamount"
-            [isRequired]="true" [className]="'bottom_error_msg'" [form]="receivedAmountForm"
-            [key]="'receivedamount'"></app-input>
+            <app-input [disabled]="true" [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="receivedAmountForm" [key]="'amount'"></app-input>
         </div>
-        <div class="global_form_row">
-            <!-- <app-dropdwon key="moneyStatus" field="Collect Money Status"></app-dropdwon> -->
+        <!-- <div class="global_form_row">
+            <app-dropdwon key="moneyStatus" field="Collect Money Status"></app-dropdwon>
             <app-dropdwon key="moneyStatus" field="Collect Money Status" formControlName="moneystatus" name="moneystatus"></app-dropdwon>
-        </div>
+        </div> -->
         <div class="global_form_row">
             <mat-form-field class="global_textarea_block" appearance="outline">
                 <mat-label>Money Received Details</mat-label>
-                <textarea matInput placeholder="Enter Details" formControlName="moneydetails" name="moneydetails"></textarea>
+                <textarea matInput placeholder="Enter Details" formControlName="details" name="details"></textarea>
             </mat-form-field>
         </div>
     </form>
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button>
+    <button class="global_submit_btn" mat-flat-button (click)="submit()">
         <app-button-loader *ngIf="loading"></app-button-loader>
         <mat-icon *ngIf="!loading" class="submitbtn_icon">check</mat-icon>
-        <span>Update</span>
+        <span>Submit</span>
     </button>
 </div>

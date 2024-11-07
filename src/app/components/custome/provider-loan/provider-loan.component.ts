@@ -104,7 +104,7 @@ export class ProviderLoanComponent {
   }
 
   onDateChange() {
-    // debugger;
+
     if (this.startDate && this.endDate) {
       const start = new Date(this.startDate);
       const end = new Date(this.endDate);
@@ -143,7 +143,7 @@ export class ProviderLoanComponent {
       // files.map(({ name, file }) => {
       //   return new Promise((resolve, reject) => {
       //     if (file) {
-      //       // debugger;
+
       //       const reader = new FileReader();
       //       reader.onloadend = () => {
       //         const base64String = reader.result as string; // Base64-encoded string

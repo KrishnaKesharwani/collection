@@ -7,23 +7,23 @@
         <tbody>
             <tr>
                 <td><b>Member Name :</b></td>
-                <td>Roshan Kanojiya</td>
+                <td>{{memberData.member.name}}</td>
             </tr>
             <tr>
                 <td><b>Collect Date :</b></td>
-                <td>12-Mar-2021</td>
+                <td>{{memberData.collect_date}}</td>
             </tr>
             <tr>
                 <td><b>Customer Meet :</b></td>
-                <td>20 Customer</td>
+                <td>{{memberData.customer_count}}</td>
             </tr>
             <tr>
                 <td><b>Collect Amount :</b></td>
-                <td>1500.00</td>
+                <td>{{memberData.paid_amount}}</td>
             </tr>
             <tr>
                 <td><b>Receive Status :</b></td>
-                <td>1,00,000.00</td>
+                <td>{{memberData.payment_status}}</td>
             </tr>
         </tbody>
     </table>
@@ -38,36 +38,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Manish Sahu</td>
-                    <td>Rk-101</td>
-                    <td><small>11:30 am</small></td>
-                    <td class="text-right">200</td>
+                <tr *ngFor=" let item of customerData">
+                    <td>{{item.customer?.name}}</td>
+                    <td>{{item.customer?.customer_no}}</td>
+                    <td><small>{{item.amount_date}}</small></td>
+                    <td class="text-right">{{item.amount}}</td>
                 </tr>
-                <tr>
-                    <td>Santosh Mahajan</td>
-                    <td>Rk-102</td>
-                    <td><small>12:30 am</small></td>
-                    <td class="text-right">200</td>
-                </tr>
-                <tr>
-                    <td>Vinay Sinha</td>
-                    <td>Rk-103</td>
-                    <td><small>01:30 am</small></td>
-                    <td class="text-right">200</td>
-                </tr>
-                <tr>
-                    <td>Deepak Bajaj</td>
-                    <td>Rk-104</td>
-                    <td><small>02:30 am</small></td>
-                    <td class="text-right">200</td>
-                </tr>
-                <tr>
-                    <td>Santosh</td>
-                    <td>Rk-101</td>
-                    <td><small>12:30 am</small></td>
-                    <td class="text-right">200</td>
-                </tr>
+
             </tbody>
         </table>
     </div>

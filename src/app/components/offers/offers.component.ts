@@ -6,6 +6,7 @@ import { ViewOfferComponent } from './view-offer/view-offer.component';
 import Swal from 'sweetalert2';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
+import { OffersService } from 'src/app/services/offers/offers.service';
 
 @Component({
   selector: 'app-offers',
@@ -19,9 +20,10 @@ export class OffersComponent {
   customerData: any[] = [];
   filteredDataarray: any[] = [];
   loader = false;
+  offerListData: any[] = [];
 
 
-  constructor(public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
+  constructor(public _service: OffersService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
 
   ngOnInit() {
     const data = sessionStorage.getItem('CurrentUser');
@@ -29,6 +31,8 @@ export class OffersComponent {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
     }
+
+    this.getOfferList();
   }
 
 
@@ -150,5 +154,15 @@ export class OffersComponent {
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
+  }
+
+  getOfferList() {
+    let obj = {
+      company_id: this.company_id
+    }
+    this._service.getOfferList(obj).subscribe((data: any) => {
+      console.log(data.data);
+      this.offerListData = data.data;
+    })
   }
 }

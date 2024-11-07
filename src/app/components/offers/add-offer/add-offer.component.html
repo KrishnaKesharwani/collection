@@ -1,6 +1,6 @@
 <div class="dialoge_header">
-    <div class="left_text" *ngIf="!offer_Id">{{dataa.title}}</div>
-    <div class="left_text" *ngIf="offer_Id">{{dataa.title}}</div>
+    <div class="left_text" *ngIf="!offer_id">{{dataa.title}}</div>
+    <div class="left_text" *ngIf="offer_id">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container full_height_cover">
@@ -10,25 +10,27 @@
                 <div class="col-sm-12 col-lg-12 col-xs-12 ">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Offer Name</mat-label>
-                        <input matInput required formControlName="offerName" name="offerName">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="offerForm"
-                            [key]="'offerName'" [displayMsg]="'Offer name is required'">
+                        <input matInput required formControlName="name" name="name">
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="offerForm" [key]="'name'"
+                            [displayMsg]="'Offer name is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">
-                    <app-dropdwon key="offers" field="Type"></app-dropdwon>
+                    <app-dropdwon [optionArray]="dropdownService.offerType" *ngIf="offerForm" [form]="offerForm"
+                        [key]="'type'" field="Type"></app-dropdwon>
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">
-                    <app-dropdwon key="status" field="Status"></app-dropdwon>
+                    <app-dropdwon [optionArray]="dropdownService.status" *ngIf="offerForm" [form]="offerForm"
+                        [key]="'status'" field="Status"></app-dropdwon>
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">
                     <mat-form-field class="global_textarea_block" appearance="outline">
                         <mat-label>Details</mat-label>
-                        <textarea matInput formControlName="detail" name="detail"></textarea>
+                        <textarea matInput formControlName="details" name="details"></textarea>
                         <!-- <input matInput required formControlName="detail" name="detail"> -->
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="offerForm" [key]="'detail'"
-                            [displayMsg]="'Detail is required'">
+                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="offerForm"
+                            [key]="'details'" [displayMsg]="'Detail is required'">
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
@@ -40,7 +42,7 @@
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">
                     <div class="checkbox_block">
-                        <mat-checkbox class="mat_checkbox">Set Default</mat-checkbox>
+                        <mat-checkbox class="mat_checkbox" formControlName="default_offer"> Set Default</mat-checkbox>
                     </div>
                 </div>
             </div>
@@ -51,6 +53,6 @@
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button (click)="save()" *ngIf="!offer_Id">Submit</button>
-    <button class="global_submit_btn" mat-flat-button (click)="update()" *ngIf="offer_Id">Update</button>
+    <button class="global_submit_btn" mat-flat-button (click)="save()" *ngIf="!offer_id">Submit</button>
+    <button class="global_submit_btn" mat-flat-button (click)="save()" *ngIf="offer_id">Update</button>
 </div>
