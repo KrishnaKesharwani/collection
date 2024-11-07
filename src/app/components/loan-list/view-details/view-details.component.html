@@ -5,7 +5,7 @@
 <div class="dialoge_middle_container">
     <table class="table table-bordered table-responsive bg-white more_table">
         <tbody>
-            <tr>
+            <tr *ngIf="!loanApply">
                 <td><b>Loan No.:</b></td>
                 <td>{{data.loan_no}}</td>
             </tr>
@@ -28,22 +28,23 @@
                 <td><b>Customer Name :</b></td>
                 <td>{{data.customer?.name}}</td>
             </tr>
-
-
-
-            <tr>
+            <tr *ngIf="!loanApply">
                 <td><b>Assign Member :</b></td>
                 <td>{{data.member?.name}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="loanApply">
+                <td><b>Apply Date :</b></td>
+                <td>{{data.apply_date}}</td>
+            </tr>
+            <tr *ngIf="!loanApply">
                 <td><b>Start Date :</b></td>
                 <td>{{data?.start_date}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="!loanApply">
                 <td><b>End Date :</b></td>
                 <td>{{data?.end_date}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="loanApply">
                 <td><b>Applied Name :</b></td>
                 <td>{{data?.applied_user_name}}</td>
             </tr>
@@ -51,19 +52,19 @@
                 <td><b>Loan Amount :</b></td>
                 <td>{{data?.loan_amount}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="!loanApply">
                 <td><b>Installment Amount :</b></td>
                 <td>{{data?.installment_amount}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="!loanApply">
                 <td><b>Pending Amount :</b></td>
                 <td>{{data?.remaining_amount}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="!loanApply">
                 <td><b>Loan Status Message :</b></td>
                 <td>{{data?.loan_status_message}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="!loanApply">
                 <td><b>Loan Status :</b></td>
                 <td><span class="badge bg-success text-white"
                         *ngIf="data?.loan_status == 'approved'">{{data?.loan_status}}</span>

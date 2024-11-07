@@ -5,6 +5,10 @@ import { CustomActionsService } from 'src/app/services/customActions/custom-acti
 import { LoanService } from 'src/app/services/loan/loan.service';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { CompleteLoanHistoryComponent } from './complete-loan-history/complete-loan-history.component';
+import { ChangeStatusComponent } from './change-status/change-status.component';
+import { ChangeMemberComponent } from './change-member/change-member.component';
+import { AssignMemberComponent } from './assign-member/assign-member.component';
+import { InstallmentHistoryComponent } from './installment-history/installment-history.component';
 
 @Component({
   selector: 'app-loan-list',
@@ -23,8 +27,8 @@ export class LoanListComponent {
   completedLoanListData: any[] = [];
   total_remaining_amount: any;
   total_cusotomer: any;
-  searchColumnsLoan: any[] = ['loan_no', 'customer_no', 'name', 'loan_amount', 'remaining_amount'];
-  searchColumnsApply: any[] = ['customer_no', 'name', 'applied_user_name', 'apply_date', 'remaining_amount'];
+  searchColumnsLoan: any[] = ['loan_no', 'customer_no', 'customer?.name', 'member?.name', 'loan_amount', 'remaining_amount'];
+  searchColumnsApply: any[] = ['customer_no', 'name', 'customer?.name', 'applied_user_name', 'apply_date', 'remaining_amount'];
   searchTerm: string = '';
   currentlistFilterArray: any[] = [];
   currentListFilterColoum: any[] = [];
@@ -67,6 +71,7 @@ export class LoanListComponent {
           this.loader = false;
         }
       }, error => {
+        this.filteredDataarray = [];
         this.total_remaining_amount = 0.00;
         this.total_cusotomer = 0;
         this.loader = false;
@@ -83,6 +88,7 @@ export class LoanListComponent {
           this.loader = false;
         }
       }, error => {
+        this.filteredDataarray = [];
         this.total_remaining_amount = 0.00;
         this.total_cusotomer = 0;
         this.loader = false;
@@ -99,6 +105,7 @@ export class LoanListComponent {
           this.loader = false;
         }
       }, error => {
+        this.filteredDataarray = [];
         this.total_remaining_amount = 0.00;
         this.total_cusotomer = 0;
         this.loader = false;
@@ -115,6 +122,7 @@ export class LoanListComponent {
           this.loader = false;
         }
       }, error => {
+        this.filteredDataarray = [];
         this.total_remaining_amount = 0.00;
         this.total_cusotomer = 0;
         this.loader = false;
@@ -131,6 +139,7 @@ export class LoanListComponent {
           this.loader = false;
         }
       }, error => {
+        this.filteredDataarray = [];
         this.total_remaining_amount = 0.00;
         this.total_cusotomer = 0;
         this.loader = false;
@@ -139,13 +148,14 @@ export class LoanListComponent {
   }
 
   private isDialogOpen = false;
-  openDialogMoreDetail(data: any): void {
+  openDialogMoreDetail(data: any, loantype: boolean): void {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
+      panelClass: 'view_details_small_popup',
       data: {
         title: 'Loan Details',
-        panelClass: 'view_details_small_popup',
-        data: data
+        data: data,
+        loantype:loantype
       },
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -166,6 +176,61 @@ export class LoanListComponent {
     });
   }
 
+  openDialogInstallmentHistory(data: any) {
+    const dialogRef = this.dialog.open(InstallmentHistoryComponent, {
+      disableClose: true,
+      data: {
+        title: 'Loan Instalment History',
+
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  openDialogAssignMember(data: any) {
+    const dialogRef = this.dialog.open(AssignMemberComponent, {
+
+      disableClose: true,
+      data: {
+        title: 'Assign Loan Member',
+
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  openDialogChangeMember(data: any) {
+    const dialogRef = this.dialog.open(ChangeMemberComponent, {
+      disableClose: true,
+
+      data: {
+        title: 'Update Loan Member',
+
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  openDialogChangeStatus(data: any) {
+    const dialogRef = this.dialog.open(ChangeStatusComponent, {
+      disableClose: true,
+      panelClass: 'delete_popup',
+      data: {
+        title: 'Change Loan Status',
+
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+  
   isAsc: boolean = true;
   sortTableData(column: string) {
     if (this.isAsc) {

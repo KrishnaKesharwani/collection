@@ -103,7 +103,6 @@ export class LoanListViewComponent {
 
       data: {
         title: 'Loan Details',
-
       },
     });
 
