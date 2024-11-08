@@ -2,22 +2,31 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container">
-    <table class="table table-bordered table-responsive bg-white more_table">
+<div class="dialoge_middle_container view_details_small_popup">
+    <table class="table table-bordered table-responsive bg-white more_table instalment_details_container">
+        <thead>
+            <tr>
+                <th><b>Date </b></th>
+                <th><b>Receiver </b></th>
+                <th><b>Amount </b></th>
+            </tr>
+        </thead>
         <tbody>
-            <tr>
-                <td><b>Date </b></td>
-                <td><b>Receiver </b></td>
-                <td><b>Amount </b></td>
-
+           
+            <tr *ngIf="data.length == 0">
+                <td colspan="9">
+                    <app-no-record-found type="table"
+                        notext="No loan history found for this customer."></app-no-record-found>
+                </td>
             </tr>
-
-            <tr>
-                <td>RK-101</td>
-                <td>{{loanDetails.member_fname}}</td>
-                <td>{{loanDetails.member_mobile}}</td>
-            </tr>
-
+            <ng-container *ngIf="data.length != 0">
+                <tr class="received_row" *ngFor="let data of data; let i=index">
+                    <td class="col text-right">{{i}}</td>
+                    <td class="col text-right">RK-101</td>
+                    <td class="col text-right">{{loanDetails.member_fname}}</td>
+                    <td class="col text-right">{{loanDetails.member_mobile}}</td>
+                </tr>
+            </ng-container>
         </tbody>
     </table>
 </div>

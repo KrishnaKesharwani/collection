@@ -67,9 +67,7 @@
             <tr *ngIf="!loanApply">
                 <td><b>Loan Status :</b></td>
                 <td><span class="badge bg-success text-white"
-                        *ngIf="data?.loan_status == 'approved'">{{data?.loan_status}}</span>
-                    <span class="badge bg-danger text-white "
-                        *ngIf="data?.loan_status == 'cancelled'">{{data?.loan_status}}</span>
+                        *ngIf="data?.loan_status == 'paid'">{{data?.loan_status}}</span>                   
                 </td>
             </tr>
             <tr>

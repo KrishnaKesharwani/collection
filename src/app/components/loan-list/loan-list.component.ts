@@ -49,11 +49,14 @@ export class LoanListComponent {
   selectedTabIndex: number = 0;  // Default to 'Approved' tab
   listLoadType: any = 'paid';  // Default to 'approved'
   tabLabels: string[] = ['paid', 'approved', 'pending', 'cancelled', 'completed'];
-
+  listType: any;
   onTabChange(index: any) {
+    this.filteredDataarray = [];
     this.loader = true;
-    const listType = this.tabLabels[index];
-    this.listLoadType = listType;
+    if (this.tabLabels[index] != undefined) {
+      this.listType = this.tabLabels[index];
+    }
+    this.listLoadType = this.listType;
     let obj = {
       company_id: this.company_id,
       loan_status: this.listLoadType,
@@ -127,24 +130,26 @@ export class LoanListComponent {
         this.total_cusotomer = 0;
         this.loader = false;
       });
-    } else {
-      this._service.getLoanList(obj).subscribe((data: any) => {
-        if (data.success) {
-          this.total_remaining_amount = data.data.total_remaining_amount;
-          this.total_cusotomer = data.data.total_cusotomer;
-          this.completedLoanListData = data.data.loans;
-          this.filteredDataarray = this.completedLoanListData;
-          this.currentListFilterColoum = this.searchColumnsLoan;
-          this.currentlistFilterArray = this.completedLoanListData;
-          this.loader = false;
-        }
-      }, error => {
-        this.filteredDataarray = [];
-        this.total_remaining_amount = 0.00;
-        this.total_cusotomer = 0;
-        this.loader = false;
-      });
     }
+    // else {
+    //   this._service.getLoanList(obj).subscribe((data: any) => {
+    //     debugger;
+    //     if (data.success) {
+    //       this.total_remaining_amount = data.data.total_remaining_amount;
+    //       this.total_cusotomer = data.data.total_cusotomer;
+    //       this.completedLoanListData = data.data.loans;
+    //       this.filteredDataarray = this.completedLoanListData;
+    //       this.currentListFilterColoum = this.searchColumnsLoan;
+    //       this.currentlistFilterArray = this.completedLoanListData;
+    //       this.loader = false;
+    //     }
+    //   }, error => {
+    //     this.filteredDataarray = [];
+    //     this.total_remaining_amount = 0.00;
+    //     this.total_cusotomer = 0;
+    //     this.loader = false;
+    //   });
+    // }
   }
 
   private isDialogOpen = false;
@@ -155,7 +160,7 @@ export class LoanListComponent {
       data: {
         title: 'Loan Details',
         data: data,
-        loantype:loantype
+        loantype: loantype
       },
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -181,7 +186,7 @@ export class LoanListComponent {
       disableClose: true,
       data: {
         title: 'Loan Instalment History',
-
+        data: data
       },
     });
 
@@ -191,15 +196,15 @@ export class LoanListComponent {
 
   openDialogAssignMember(data: any) {
     const dialogRef = this.dialog.open(AssignMemberComponent, {
-
       disableClose: true,
       data: {
         title: 'Assign Loan Member',
-
+        data: data,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
+
     });
   }
 
@@ -209,11 +214,15 @@ export class LoanListComponent {
 
       data: {
         title: 'Update Loan Member',
-
+        data: data,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // let getindex =this.tabLabels[index];
+        this.onTabChange(this.listType);
+      }
     });
   }
 
@@ -230,7 +239,7 @@ export class LoanListComponent {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-  
+
   isAsc: boolean = true;
   sortTableData(column: string) {
     if (this.isAsc) {

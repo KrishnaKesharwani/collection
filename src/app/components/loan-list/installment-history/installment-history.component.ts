@@ -15,18 +15,21 @@ interface Transaction {
 export class InstallmentHistoryComponent {
   loanDetails: any = [];
   displayedColumns: string[] = ['date', 'receiver', 'amount'];
-  transactions: Transaction[] = [
-    { date: 'Member No.', receiver: 4, amount: 4 },
-    { date: 'Profile Image', receiver: 5, amount: 4 },
+  // transactions: Transaction[] = [
+  //   { date: 'Member No.', receiver: 4, amount: 4 },
+  //   { date: 'Profile Image', receiver: 5, amount: 4 },
+  // ];
+  data: [] = [];
 
-  ];
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any; },
   ) { }
 
-
+  onInit() {
+    this.data = this.dataa.data.loan_history;
+  }
 
   /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.receiver).reduce((acc, value) => acc + value, 0);
-  }
+  // getTotalCost() {
+  //   return this.transactions.map(t => t.receiver).reduce((acc, value) => acc + value, 0);
+  // }
 }
