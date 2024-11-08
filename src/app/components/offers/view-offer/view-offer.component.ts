@@ -8,6 +8,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ViewOfferComponent {
   offer_detials: any = [];
+  data: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }) { }
+
+  ngOnInit() {
+    this.viewOfferDetails();
+  }
+
+  viewOfferDetails() {
+    this.data = this.dataa.data;
+
+  }
 }

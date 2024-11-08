@@ -20,4 +20,16 @@ export class OffersService {
     const url = `${this.apiUrl}/create-offer`;
     return this.httpClient.post(url, obj)
   }
+  update(obj: object) {
+    const url = `${this.apiUrl}/update-offer`;
+    return this.httpClient.post(url, obj)
+  }
+  changeStatus(obj: object) {
+    const url = `${this.apiUrl}/update-offer-status`;
+    return this.httpClient.put(url, obj)
+  }
+  defaultOffer(obj: object) {
+    const url = `${this.apiUrl}/update-default-offer`;
+    return this.httpClient.put(url, obj)
+  }
 }

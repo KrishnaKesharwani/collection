@@ -112,8 +112,9 @@ export class MoneyReceivedComponent {
   getCollectionList() {
     let obj = {
       company_id: this.company_id,
-      date: 'Mon 4 Nov'
+      date: this.filterDateForm.value.date
     }
+
     this._service.getCollection(obj).subscribe((data: any) => {
       console.log(data.data);
       this.collectionData = data.data;

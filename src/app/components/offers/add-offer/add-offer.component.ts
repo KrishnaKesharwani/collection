@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { OffersService } from 'src/app/services/offers/offers.service';
 
@@ -21,7 +23,8 @@ export class AddOfferComponent {
   offerForm!: FormGroup;
   offer_id: any;
   company_id: any;
-  constructor(public _service: OffersService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  loading: boolean = false;
+  constructor(public dialogRef: MatDialogRef<AddOfferComponent>, public router: Router, public _tostr: ToastrService, public _service: OffersService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
   ngOnInit() {
@@ -39,9 +42,20 @@ export class AddOfferComponent {
       image: [''],
       default_offer: ['']
     });
+    this.offer_id = this.dataa.data.id;
+    if (this.dataa?.data) {
+      this.offerView();
+    }
+  }
 
-    // this.dropdownService.setOptions('offers', ['Offers', 'Schemes']);
-    // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+
+  offerView() {
+    this.offerForm.patchValue({
+      ...this.dataa.data,
+      // member_login_id: this.dataa.data.member_no,
+      // status: this.dataa?.data?.status, 
+      // password: this.dataa.data.user?.password_hint
+    });
   }
 
   selectedFile: File | null = null;
@@ -53,28 +67,53 @@ export class AddOfferComponent {
 
   save() {
     if (this.offer_id) {
-      if (this.offerForm.valid) {
 
-        let obj = {
-          offer_id: this.offer_id,
-          company_id: this.company_id,
-          ...this.offerForm.value
+      if (this.offerForm.valid) {
+        this.loading = true;
+        const formData = new FormData();
+        Object.keys(this.offerForm.value).forEach(key => {
+          formData.append(key, this.offerForm.value[key]);
+        });
+        if (!this.selectedFile) {
+          formData.delete('image');
         }
-        this.dialog.closeAll();
+        formData.append('company_id', this.company_id);
+        formData.append('offer_id', this.offer_id);
+        // let obj = {
+        //   offer_id: this.offer_id,
+        //   company_id: this.company_id,
+        //   ...this.offerForm.value
+        // }
+        this._service.update(formData).subscribe((data: any) => {
+          console.log(data)
+          this._tostr.success(data.message, "Success");
+          this.loading = false;
+          this.dialogRef.close(true);
+          this.router.navigate(['/offers']);
+        })
+
       } else {
         this.offerForm.markAllAsTouched()
       }
     } else {
       if (this.offerForm.valid) {
-
-        let obj = {
-          company_id: this.company_id,
-          ...this.offerForm.value
+        this.loading = true;
+        const formData = new FormData();
+        Object.keys(this.offerForm.value).forEach(key => {
+          formData.append(key, this.offerForm.value[key]);
+        });
+        if (!this.selectedFile) {
+          formData.delete('image');
         }
-        this._service.create(obj).subscribe((data: any) => {
-          console.log(data)
+        formData.append('company_id', this.company_id);
+        this._service.create(formData).subscribe((data: any) => {
+          console.log(data);
+          this._tostr.success(data.message, "Success");
+          this.loading = false;
+          this.dialogRef.close(true);
+          this.router.navigate(['/offers']);
         })
-        this.dialog.closeAll();
+
       } else {
         this.offerForm.markAllAsTouched()
       }

@@ -133,7 +133,7 @@ export class LoanListComponent {
     }
     // else {
     //   this._service.getLoanList(obj).subscribe((data: any) => {
-    //     debugger;
+
     //     if (data.success) {
     //       this.total_remaining_amount = data.data.total_remaining_amount;
     //       this.total_cusotomer = data.data.total_cusotomer;

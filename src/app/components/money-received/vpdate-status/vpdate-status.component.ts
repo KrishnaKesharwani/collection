@@ -26,7 +26,7 @@ export class VpdateStatusComponent {
 
   ngOnInit() {
     this.receivedAmountForm = this.fb.group({
-      amount: ['10000'],
+      amount: [''],
       // moneystatus: [''],
       details: ['']
     });

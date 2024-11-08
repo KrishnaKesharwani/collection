@@ -17,7 +17,7 @@ export class OffersComponent {
   offer_modalaction: any;
   usertype: any;
   company_id: any;
-  customerData: any[] = [];
+  // customerData: any[] = [];
   filteredDataarray: any[] = [];
   loader = false;
   offerListData: any[] = [];
@@ -33,6 +33,8 @@ export class OffersComponent {
     }
 
     this.getOfferList();
+
+
   }
 
 
@@ -56,23 +58,34 @@ export class OffersComponent {
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
-
-        title: 'Inactive This Offers/Schems?',
-        subTitle: 'You wont be inactive Offers/Scheme!',
+        id: data.id,
+        title: 'Are you sure?',
+        subTitle: data && data.status === 'active'
+          ? 'You want to Inactivate Offer Status!'
+          : 'You want to Activate Offer Status!'
       },
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete();
+      this.delete(data);
     });
   }
   delete(e?: any) {
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: 'Success',
-      text: "Offers / Scheme status updated successfully...",
-      showConfirmButton: true,
-      timer: 1500
+    let obj = {
+      offer_id: e?.id,
+      status: e?.status == 'active' ? 'inactive' : 'active'
+    }
+    this._service.changeStatus(obj).subscribe((data: any) => {
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: 'Success',
+          text: "Offers / Scheme status updated successfully...",
+          showConfirmButton: true,
+          timer: 1500
+        });
+      }
+      this.getOfferList();
     });
   }
 
@@ -88,10 +101,28 @@ export class OffersComponent {
     });
   }
 
+  openDialogEditOffer(data: any) {
+    const dialogRef = this.dialog.open(AddOfferComponent, {
+      disableClose: true,
+      panelClass: 'update_dialoge',
+      data: {
+        title: 'Update Offer',
+        data: data
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getOfferList();
+      }
+    });
+  }
+
 
   openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(ViewOfferComponent, {
       data: {
+        data: data,
         title: 'Offers / Schems Details',
       },
     });
@@ -116,22 +147,45 @@ export class OffersComponent {
     });
 
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.deleteActions();
+      this.deleteActions(data);
     });
   }
-  deleteActions() {
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: 'Success',
-      text: "Offers / Scheme default set successfully...",
-      showConfirmButton: true,
-      timer: 1500
+  deleteActions(data: any) {
+
+    let obj = {
+      offer_id: data?.id,
+      default_offer: data?.default_offer == 'true' ? 'false' : 'true'
+    }
+    this._service.defaultOffer(obj).subscribe((data: any) => {
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: 'Success',
+          text: "Offers / Scheme default set successfully...",
+          showConfirmButton: true,
+          timer: 1500
+        });
+      }
+      this.getOfferList();
     });
   }
 
   openDialogChangeMember() {
 
+  }
+
+  getOfferList() {
+    this.loader = true;
+    let obj = {
+      company_id: this.company_id
+    }
+    this._service.getOfferList(obj).subscribe((data: any) => {
+      console.log(data.data);
+      this.offerListData = data.data;
+      this.filteredDataarray = this.offerListData;
+      this.loader = false;
+    })
   }
 
   isAsc: boolean = true;
@@ -141,28 +195,21 @@ export class OffersComponent {
     } else {
       this.isAsc = true;
     }
-    this.filteredDataarray = this._customActionService.sortData(column, this.customerData);
+    this.filteredDataarray = this._customActionService.sortData(column, this.offerListData);
   }
 
-  searchColumns: any[] = ['name', 'status', 'mobile'];
+  searchColumns: any[] = ['name', 'type'];
   searchTerm: string = '';
   searchTable(event: Event) {
+
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
     if (this.searchTerm == null || this.searchTerm == '') {
-      this.filteredDataarray = this.customerData;
+      this.filteredDataarray = this.offerListData;
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
   }
 
-  getOfferList() {
-    let obj = {
-      company_id: this.company_id
-    }
-    this._service.getOfferList(obj).subscribe((data: any) => {
-      console.log(data.data);
-      this.offerListData = data.data;
-    })
-  }
+
 }

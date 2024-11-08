@@ -7,30 +7,35 @@
         <tbody>
             <tr>
                 <td><b>Offer Name :</b></td>
-                <td>RK-101</td>
+                <td>{{data.name}}</td>
             </tr>
             <tr>
                 <td><b>Type :</b></td>
-                <td>{{offer_detials.member_fname}}</td>
+                <td>{{data.type}}</td>
             </tr>
 
 
             <tr>
                 <td><b>Status :</b></td>
-                <td><span class="badge bg-success text-white">Active</span></td>
+                <td><span class="badge bg-success text-white" *ngIf="data.status == 'active'">{{data.status}}</span>
+                    <span class="badge bg-danger text-white " *ngIf="data.status == 'inactive'">{{data.status}}</span>
+                </td>
             </tr>
             <tr>
                 <td><b>Offer Image :</b></td>
                 <td>
-                    <div class="list_image_block float-left">
+                    <div class="list_image_block float-left" *ngIf="data.image == null ">
                         <img src="assets/imgs/default-pic.png">
+                    </div>
+                    <div class="list_image_block float-left" *ngIf="data.image != null ">
+                        <img src="{{data.image}}">
                     </div>
                 </td>
             </tr>
 
             <tr>
                 <td><b>Details :</b></td>
-                <td>Home no. 72, bajrang nagar jabalpur </td>
+                <td>{{data.details}}</td>
             </tr>
         </tbody>
     </table>

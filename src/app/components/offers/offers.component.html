@@ -11,7 +11,9 @@
                         <div class="col text-right pr-1 datewith_search_block">
                             <div class="listsearch-topblock search_withaddbtn">
                                 <div class="search-box">
-                                    <input type="search" placeholder="Search" class="searchtxt" />
+                                    <input type="text" placeholder="Search..." (keyup)="searchTable($event)"
+                                        class="searchtxt" />
+
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
 
@@ -45,7 +47,7 @@
                             <th class="col sorting_apply">
                                 <span>Type</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('email');">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('type');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
@@ -54,24 +56,24 @@
                                 <span>Details</span>
 
                             </th>
-
+                            <th class="col status_col">Status</th>
 
                             <th class="col action_col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td colspan="5">
+                            <td colspan="6">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
-                        <tr *ngIf="offerListData.length == 0 && !loader">
-                            <td colspan="5">
+                        <tr *ngIf="filteredDataarray.length == 0 && !loader">
+                            <td colspan="6">
                                 <app-no-record-found type="table" notext="No member found"></app-no-record-found>
                             </td>
                         </tr>
-                        <ng-container *ngIf="offerListData.length != 0 && !loader">
-                            <tr class="received_row" *ngFor="let item of offerListData">
+                        <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                            <tr class="received_row" *ngFor="let item of filteredDataarray">
                                 <td class="col" data-name="Name">{{item.name}}</td>
                                 <td class="col" data-name="Profile">
                                     <div class="list_image_block" *ngIf="item.image == null">
@@ -85,7 +87,12 @@
                                 <td class="col" data-name="Type">{{item.type}}</td>
 
                                 <td class="col" data-name="Details">{{item.details}}</td>
-
+                                <td class="col " data-name="Status">
+                                    <span class="badge bg-success text-white"
+                                        *ngIf="item.status == 'active'">{{item.status}}</span>
+                                    <span class="badge bg-danger text-white "
+                                        *ngIf="item.status == 'inactive'">{{item.status}}</span>
+                                </td>
 
                                 <td class="action_col" data-name="Action">
                                     <div placement="bottom-right">
@@ -97,15 +104,17 @@
                                             <div class="table_actionmenu">
 
 
-                                                <button mat-menu-item (click)="openDialogChangeMember()">
+                                                <!-- <button mat-menu-item (click)="openDialogChangeMember()">
                                                     <i class="mdi mdi-pencil mr-2"></i> <span>
                                                         Change Member</span>
-                                                </button>
+                                                </button> -->
 
                                                 <button mat-menu-item (click)="openDialogViewDetail(item)">
                                                     <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                                 </button>
-
+                                                <button mat-menu-item (click)="openDialogEditOffer(item)">
+                                                    <i class="mdi mdi-pencil mr-2"></i> <span>Edit Offer</span>
+                                                </button>
                                                 <button mat-menu-item
                                                     (click)="openDialogChangeStatus('1ms', '5ms',item)">
                                                     <i class="mdi mdi-account-off-outline mr-2"></i>

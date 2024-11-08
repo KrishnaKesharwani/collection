@@ -35,14 +35,15 @@
                     </mat-form-field>
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">
-                    <div class="file_upload_block global_textbox_block">
-                        <mat-label>Image</mat-label>
-                        <app-fileupload class="fileupload" (fileChange)="onFileChange($event)"></app-fileupload>
-                    </div>
+                    <app-fileupload [form]="offerForm" class="fileupload_image"
+                        [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="offerForm.value['image']"
+                        [imageSize]="'120'" [uploadType]="'profile'" formControlName="image" name="image"
+                        (fileChange)="onFileChange($event)"></app-fileupload>
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">
                     <div class="checkbox_block">
-                        <mat-checkbox class="mat_checkbox" formControlName="default_offer"> Set Default</mat-checkbox>
+                        <mat-checkbox class="mat_checkbox" formControlName="default_offer" name="default_offer"> Set
+                            Default</mat-checkbox>
                     </div>
                 </div>
             </div>
@@ -52,7 +53,11 @@
     </form>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button (click)="save()" *ngIf="!offer_id">Submit</button>
-    <button class="global_submit_btn" mat-flat-button (click)="save()" *ngIf="offer_id">Update</button>
+    <!-- <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button> -->
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="save()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span *ngIf="!offer_id">Submit</span>
+        <span *ngIf="offer_id">Update</span>
+    </button>
 </div>

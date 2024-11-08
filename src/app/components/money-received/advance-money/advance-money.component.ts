@@ -43,7 +43,7 @@ export class AdvanceMoneyComponent {
       this.memberUser = member;
     }
     this.advanceAmountForm = this.fb.group({
-      amount: ['10000'],
+      amount: [''],
       details: [''],
     });
     // this.dropdownService.setOptions('member', ['Allot Members', 'Roshan Kanojiya', 'Bhaijan']);

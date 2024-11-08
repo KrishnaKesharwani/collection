@@ -87,48 +87,16 @@ export class AddMemberComponent {
       if (this.memberForm.valid) {
         this.loading = true;
         const formData = new FormData();
-        // if (this.memberForm.get('image')?.value) {
-        //   // this.image_base16 = this.image_base16File;
-        //   const files = [
-        //     { name: 'image', file: this.memberForm.get('image')?.value },
-        //   ];
-        //   // Convert files to base64 strings
-        //   files.map(({ name, file }) => {
-        //     return new Promise((resolve, reject) => {
-        //       if (file) {
-        //         const reader = new FileReader();
-        //         reader.onloadend = () => {
-        //           const base64String = reader.result as string; // Base64-encoded string
-        //           formData.append(name, base64String); // Append base64 string to FormData
-        //           resolve(true);
-        //           this.image_base16 = base64String;
-        //           // formData.append('image', base64String);
-        //           console.log('Image Base String: ', base64String);
-        //         };
-        //         reader.onerror = () => reject(new Error(`Failed to read ${name}`));
-        //         reader.readAsDataURL(file); // Read the file as a base64 string
-        //       } else {
-        //         resolve(true); // Resolve if no file
-        //       }
-        //     });
-        //   });
-        // }
-
-
-        // Append other form values to FormData
         Object.keys(this.memberForm.value).forEach(key => {
-          // if (!['image'].includes(key)) {
           formData.append(key, this.memberForm.value[key]);
-          // }
         });
         if (!this.selectedFile) {
           formData.delete('image');
         }
-        // formData.remov('company_id', this.company_id)
-        // formData.append('member_id', this.member_id)
+
         formData.delete('member_login_id');
         formData.delete('password');
-        // formData.append('image', this.image_base16);
+
         formData.append('company_id', this.company_id);
         formData.append('member_id', this.member_id);
         if (formData) {
@@ -146,10 +114,7 @@ export class AddMemberComponent {
             this.loading = false;
             this._toastr.error(error.error.message, 'Error');
           });
-          // setTimeout(() => {
-          //   this.loading = false;
-          //   this.dialog.closeAll();
-          // }, 1000);
+
         }
       } else {
         this.memberForm.markAllAsTouched();
@@ -160,37 +125,12 @@ export class AddMemberComponent {
 
         this.loading = true;
         const formData = new FormData();
-        // const files = [
-        //   { name: 'image', file: this.memberForm.get('image')?.value },
-        // ];
-
-        // Convert files to base64 strings
-        // files.map(({ name, file }) => {
-        //   return new Promise((resolve, reject) => {
-        //     if (file) {
-        //       const reader = new FileReader();
-        //       reader.onloadend = () => {
-        //         const base64String = reader.result as string; // Base64-encoded string
-        //         formData.append(name, base64String); // Append base64 string to FormData
-        //         resolve(true);
-        //       };
-        //       reader.onerror = () => reject(new Error(`Failed to read ${name}`));
-        //       reader.readAsDataURL(file); // Read the file as a base64 string
-        //     } else {
-        //       resolve(true); // Resolve if no file
-        //     }
-        //   });
-        // });
-
-        // Append other form values to FormData
         Object.keys(this.memberForm.value).forEach(key => {
           // if (!['image'].includes(key)) {
           formData.append(key, this.memberForm.value[key]);
           // }
         });
-        // if(!this.selectedFile){
-        //   formData.delete('image');
-        // }
+
         formData.append('company_id', this.company_id);
         if (formData) {
           this._service.create(formData).subscribe((data: any) => {
@@ -204,10 +144,7 @@ export class AddMemberComponent {
               this._toastr.error(data.message, 'Error');
             }
           });
-          // setTimeout(() => {
-          //   this.loading = false;
-          //   this.dialog.closeAll();
-          // }, 1000);
+
         }
       } else {
         this.memberForm.markAllAsTouched();
