@@ -9,6 +9,7 @@ import { ChangeStatusComponent } from './change-status/change-status.component';
 import { ChangeMemberComponent } from './change-member/change-member.component';
 import { AssignMemberComponent } from './assign-member/assign-member.component';
 import { InstallmentHistoryComponent } from './installment-history/installment-history.component';
+import { ActionForLoanComponent } from '../admin-dashboard/action-for-loan/action-for-loan.component';
 
 @Component({
   selector: 'app-loan-list',
@@ -130,26 +131,25 @@ export class LoanListComponent {
         this.total_cusotomer = 0;
         this.loader = false;
       });
-    }
-    // else {
-    //   this._service.getLoanList(obj).subscribe((data: any) => {
+    } else {
+      this._service.getLoanList(obj).subscribe((data: any) => {
 
-    //     if (data.success) {
-    //       this.total_remaining_amount = data.data.total_remaining_amount;
-    //       this.total_cusotomer = data.data.total_cusotomer;
-    //       this.completedLoanListData = data.data.loans;
-    //       this.filteredDataarray = this.completedLoanListData;
-    //       this.currentListFilterColoum = this.searchColumnsLoan;
-    //       this.currentlistFilterArray = this.completedLoanListData;
-    //       this.loader = false;
-    //     }
-    //   }, error => {
-    //     this.filteredDataarray = [];
-    //     this.total_remaining_amount = 0.00;
-    //     this.total_cusotomer = 0;
-    //     this.loader = false;
-    //   });
-    // }
+        if (data.success) {
+          this.total_remaining_amount = data.data.total_remaining_amount;
+          this.total_cusotomer = data.data.total_cusotomer;
+          this.completedLoanListData = data.data.loans;
+          this.filteredDataarray = this.completedLoanListData;
+          this.currentListFilterColoum = this.searchColumnsLoan;
+          this.currentlistFilterArray = this.completedLoanListData;
+          this.loader = false;
+        }
+      }, error => {
+        this.filteredDataarray = [];
+        this.total_remaining_amount = 0.00;
+        this.total_cusotomer = 0;
+        this.loader = false;
+      });
+    }
   }
 
   private isDialogOpen = false;
@@ -167,7 +167,7 @@ export class LoanListComponent {
       this.isDialogOpen = false;
     });
   }
-
+  
   openDialogCompleteLoanHistory(data: any) {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(CompleteLoanHistoryComponent, {
@@ -229,14 +229,33 @@ export class LoanListComponent {
   openDialogChangeStatus(data: any) {
     const dialogRef = this.dialog.open(ChangeStatusComponent, {
       disableClose: true,
-      panelClass: 'delete_popup',
+      panelClass: 'view_details_small_popup',
       data: {
         title: 'Change Loan Status',
-
+        data: data,
       },
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onTabChange(this.listType);
+      }
+    });
+  }
+
+  openDialogPendingLoan(data: any) {
+    const dialogRef = this.dialog.open(ActionForLoanComponent, {
+      disableClose: true,
+      data: {
+        title: 'Update Loan Status',
+        data: data,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onTabChange(this.listType);
+      }
     });
   }
 

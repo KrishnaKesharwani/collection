@@ -16,6 +16,7 @@ export class CommonComponentService {
   company_id: any;
   public getmemberdata: any[] = [];
   loanstatus = ['approved', 'paid', 'pending', 'cancelled'];
+  loanliststatus = ['completed', 'paid', 'approved', 'pending', 'cancelled'];
   status = ['active', 'inactive'];
   plan = ['monthly', 'quarterly', 'half yerly', 'yearly', 'demo'];
   offerType = ['offers', 'schemes'];
