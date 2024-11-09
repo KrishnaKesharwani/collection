@@ -123,11 +123,11 @@
                                                         <i class="mdi mdi-history mr-2"></i> <span>
                                                             Installment History</span>
                                                     </button>
-                                                    <button mat-menu-item (click)="openDialogAssignMember(item)">
+                                                    <!-- <button mat-menu-item (click)="openDialogAssignMember(item)">
                                                         <i class="mdi mdi-account-check-outline mr-2"></i>
                                                         <span>
                                                             Assign Member</span>
-                                                    </button>
+                                                    </button> -->
                                                     <button mat-menu-item (click)="openDialogChangeMember(item)">
                                                         <i class="mdi mdi-account-switch-outline mr-2"></i>
                                                         <span>
@@ -139,7 +139,7 @@
                                                     </button>
                                                     <button mat-menu-item (click)="openDialogChangeStatus(item)">
                                                         <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                        <span>Status</span>
+                                                        <span>Change Status</span>
                                                     </button>
                                                 </div>
                                             </mat-menu>
@@ -239,13 +239,8 @@
                                     </td>
                                     <td class="col" data-name="Name">{{item.customer?.name}}</td>
                                     <td class="col" data-name="Assign">{{item.member?.name}}</td>
-
-
-
                                     <td class="col" data-name="Loan Amt ">{{item.loan_amount}}</td>
-
                                     <td class="col" data-name="Pending Amt">{{item.remaining_amount}}</td>
-
                                     <td class="action_col" data-name="Action">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
@@ -254,8 +249,22 @@
                                             </button>
                                             <mat-menu #menu="matMenu">
                                                 <div class="table_actionmenu">
-                                                    <button mat-menu-item  (click)="openDialogMoreDetail(item, false)">
-                                                        <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
+                                                    <button mat-menu-item (click)="openDialogInstallmentHistory(item)">
+                                                        <i class="mdi mdi-history mr-2"></i> <span>
+                                                            Installment History</span>
+                                                    </button>
+                                                    <button mat-menu-item (click)="openDialogChangeMember(item)">
+                                                        <i class="mdi mdi-account-switch-outline mr-2"></i>
+                                                        <span>
+                                                            Change Member</span>
+                                                    </button>
+                                                    <button mat-menu-item (click)="openDialogMoreDetail(item, false)">
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>View
+                                                            Details</span>
+                                                    </button>
+                                                    <button mat-menu-item (click)="openDialogChangeStatus(item)">
+                                                        <i class="mdi mdi-account-off-outline mr-2"></i>
+                                                        <span>Change Status</span>
                                                     </button>
                                                 </div>
                                             </mat-menu>
@@ -355,6 +364,9 @@
                                             </button>
                                             <mat-menu #menu="matMenu">
                                                 <div class="table_actionmenu">
+                                                    <button mat-menu-item  (click)="openDialogPendingLoan(item)">
+                                                        <i class="mdi mdi-message-outline mr-2"></i> <span>Action For Loan</span>
+                                                    </button>
                                                     <button mat-menu-item  (click)="openDialogMoreDetail(item, true)">
                                                         <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
                                                     </button>
@@ -458,7 +470,7 @@
                                             </button>
                                             <mat-menu #menu="matMenu">
                                                 <div class="table_actionmenu">
-                                                    <button mat-menu-item  (click)="openDialogMoreDetail(item, false)">
+                                                    <button mat-menu-item  (click)="openDialogMoreDetail(item, true)">
                                                         <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
                                                     </button>
                                                 </div>
@@ -571,14 +583,13 @@
                                             </button>
                                             <mat-menu #menu="matMenu">
                                                 <div class="table_actionmenu">
-
-                                                    <button mat-menu-item (click)="openDialogMoreDetail(item, false)">
-                                                        <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
+                                                    <button mat-menu-item (click)="openDialogInstallmentHistory(item)">
+                                                        <i class="mdi mdi-history mr-2"></i> <span>
+                                                            Installment History</span>
                                                     </button>
-
-                                                    <button mat-menu-item (click)="openDialogCompleteLoanHistory(item)">
-                                                        <i class="mdi mdi-eye mr-2"></i><span>
-                                                            Collection History</span>
+                                                    <button mat-menu-item (click)="openDialogMoreDetail(item, false)">
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>View
+                                                            Details</span>
                                                     </button>
                                                 </div>
                                             </mat-menu>

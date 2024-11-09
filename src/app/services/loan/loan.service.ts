@@ -28,5 +28,9 @@ export class LoanService {
     return this.httpClient.post(url, obj)
   }
 
+  updateLoanStatus(obj: object) {
+    const url = `${this.apiUrl}/update-loan-status`;
+    return this.httpClient.put(url, obj)
+  }
 
 }

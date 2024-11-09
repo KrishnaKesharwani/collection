@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
@@ -37,7 +37,7 @@ export class ActionForLoanComponent {
   statusOptions: string[] = [];
   customer_id: any;
 
-  constructor(public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(public dialogRef: MatDialogRef<ActionForLoanComponent>, public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
 
@@ -79,6 +79,9 @@ export class ActionForLoanComponent {
     this.selectedStatus = value;
   }
 
+  onClose() {
+    this.dialogRef.close();
+  }
 
   getActiveMmberList() {
     let obj = {
