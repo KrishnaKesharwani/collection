@@ -7,3 +7,11 @@
         <input type="file" class="fileupload_transparent" accept="{{accept}}" (change)="onFileSelected($event)" />
     </div>
 </div>
+<div class="file_upload_full" [appDynamicWidth]="imageSize" *ngIf="uploadType== 'fullwidth'" >
+    <img [src]="imageSrc"  *ngIf="!image_base16String" onerror="this.src='../../../assets/imgs/no-images.jpg' ">
+    <img *ngIf="image_base16String" [src]="image_base16String" alt="Image Preview" />
+    <input type="file" class="fileupload_transparent" accept="{{accept}}" (change)="onFileSelected($event)" />
+    <!-- <div class="upload_image_change">
+        
+    </div> -->
+</div>

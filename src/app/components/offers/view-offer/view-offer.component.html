@@ -6,6 +6,16 @@
     <table class="table table-bordered table-responsive bg-white more_table">
         <tbody>
             <tr>
+                <td colspan="2">
+                    <div class="offer_image" *ngIf="data.image == null ">
+                        <img src="assets/imgs/default-pic.png">
+                    </div>
+                    <div class="offer_image" *ngIf="data.image != null ">
+                        <img src="{{data.image}}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
                 <td><b>Offer Name :</b></td>
                 <td>{{data.name}}</td>
             </tr>
@@ -13,25 +23,19 @@
                 <td><b>Type :</b></td>
                 <td>{{data.type}}</td>
             </tr>
-
-
+            <tr>
+                <td><b>Default Status :</b></td>
+                <td><span class="badge bg-warning text-white" *ngIf="data.default_offer == 0">No</span>
+                    <span class="badge setdefault_color text-white " *ngIf="data.status == 1">Yes</span>
+                </td>
+            </tr>
             <tr>
                 <td><b>Status :</b></td>
                 <td><span class="badge bg-success text-white" *ngIf="data.status == 'active'">{{data.status}}</span>
                     <span class="badge bg-danger text-white " *ngIf="data.status == 'inactive'">{{data.status}}</span>
                 </td>
             </tr>
-            <tr>
-                <td><b>Offer Image :</b></td>
-                <td>
-                    <div class="list_image_block float-left" *ngIf="data.image == null ">
-                        <img src="assets/imgs/default-pic.png">
-                    </div>
-                    <div class="list_image_block float-left" *ngIf="data.image != null ">
-                        <img src="{{data.image}}">
-                    </div>
-                </td>
-            </tr>
+           
 
             <tr>
                 <td><b>Details :</b></td>

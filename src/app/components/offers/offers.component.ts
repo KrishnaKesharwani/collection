@@ -22,7 +22,6 @@ export class OffersComponent {
   loader = false;
   offerListData: any[] = [];
 
-
   constructor(public _service: OffersService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
 
   ngOnInit() {
@@ -31,12 +30,8 @@ export class OffersComponent {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
     }
-
     this.getOfferList();
-
-
   }
-
 
   openDialogAddOffers() {
     const dialogRef = this.dialog.open(AddOfferComponent, {
@@ -53,7 +48,6 @@ export class OffersComponent {
   openDialogChangeStatus(enterAnimationDuration: string, exitAnimationDuration: string, data: any): void {
     // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(DeleteComponent, {
-
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -66,10 +60,11 @@ export class OffersComponent {
       },
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.delete(data);
+      this.statusAction(data);
     });
   }
-  delete(e?: any) {
+
+  statusAction(e?: any) {
     let obj = {
       offer_id: e?.id,
       status: e?.status == 'active' ? 'inactive' : 'active'
@@ -89,7 +84,7 @@ export class OffersComponent {
     });
   }
 
-  openDialog3() {
+  openDialogAddOffer() {
     const dialogRef = this.dialog.open(AddOfferComponent, {
       disableClose: true,
       data: {
@@ -98,6 +93,9 @@ export class OffersComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
+      if(result){
+        this.getOfferList();
+      }
     });
   }
 
@@ -121,6 +119,7 @@ export class OffersComponent {
 
   openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(ViewOfferComponent, {
+      panelClass: 'view_details_small_popup',
       data: {
         data: data,
         title: 'Offers / Schems Details',
@@ -131,27 +130,23 @@ export class OffersComponent {
     });
   }
 
-
   openDialogSetDefault(enterAnimationDuration: string, exitAnimationDuration: string, data: any) {
-
     const dialogRef = this.dialog.open(DeleteComponent, {
-
       panelClass: 'delete_popup',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
-
         title: 'Are you sure?',
         subTitle: 'You wont be show this Offers / Scheme in default login!',
       },
     });
 
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      this.deleteActions(data);
+      this.setDefaultActions(data);
     });
   }
-  deleteActions(data: any) {
 
+  setDefaultActions(data: any) {
     let obj = {
       offer_id: data?.id,
       default_offer: data?.default_offer == 'true' ? 'false' : 'true'
@@ -169,10 +164,6 @@ export class OffersComponent {
       }
       this.getOfferList();
     });
-  }
-
-  openDialogChangeMember() {
-
   }
 
   getOfferList() {
@@ -198,10 +189,9 @@ export class OffersComponent {
     this.filteredDataarray = this._customActionService.sortData(column, this.offerListData);
   }
 
-  searchColumns: any[] = ['name', 'type'];
+  searchColumns: any[] = ['name', 'type', 'status', 'i'];
   searchTerm: string = '';
   searchTable(event: Event) {
-
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
     if (this.searchTerm == null || this.searchTerm == '') {
@@ -210,6 +200,5 @@ export class OffersComponent {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
   }
-
 
 }

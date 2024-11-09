@@ -379,6 +379,7 @@ mat-option {
 /* // Used Css For above */
 .list_image_block {
     width: 40px;
+    height: 40px;
     margin: 0px auto;
     box-shadow: 0 11px 19px rgb(0 0 0 / 9%);
     border-radius: 5px;
@@ -564,7 +565,9 @@ mat-option {
 .small_popup {
     width: 500px;
 }
-
+.setdefault_color {
+    background: #4bdf5161;
+}
 .view_details_small_popup {
     min-width: 576px;
 }
@@ -769,7 +772,7 @@ mat-option {
     .s_no {
         width: 85px;
         padding: 0px !important;
-        text-align: center;
+        text-align: center !important;
     }
 
     .total_col {
@@ -3026,7 +3029,15 @@ mark {
         letter-spacing: 0.5px;
     }
 }
-
+.offer_image {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        max-height: 300px;
+    }
+}
 /* Add application styles & imports to this file! */
 
 .cursor-all-scroll {

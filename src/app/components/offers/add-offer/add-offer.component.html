@@ -7,7 +7,13 @@
     <form focusInvalidInput [formGroup]="offerForm">
         <div class="modal_insert small_popup">
             <div class="row">
-                <div class="col-sm-12 col-lg-12 col-xs-12 ">
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <div class="col-sm-12 col-lg-12 col-xs-12">
+                        <app-fileupload [form]="offerForm" class="fileupload_image"
+                            [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="offerForm.value['image']"
+                            [imageSize]="'120'" [uploadType]="'fullwidth'" formControlName="image" name="image"
+                            (fileChange)="onFileChange($event)"></app-fileupload>
+                    </div>
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Offer Name</mat-label>
                         <input matInput required formControlName="name" name="name">
@@ -25,6 +31,12 @@
                         [key]="'status'" field="Status"></app-dropdwon>
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <div class="checkbox_block">
+                        <mat-checkbox class="mat_checkbox" formControlName="default_offer" name="default_offer"> Set
+                            Default</mat-checkbox>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-12 col-xs-12">
                     <mat-form-field class="global_textarea_block" appearance="outline">
                         <mat-label>Details</mat-label>
                         <textarea matInput formControlName="details" name="details"></textarea>
@@ -33,18 +45,6 @@
                             [key]="'details'" [displayMsg]="'Detail is required'">
                         </app-input-field-validation>
                     </mat-form-field>
-                </div>
-                <div class="col-sm-12 col-lg-12 col-xs-12">
-                    <app-fileupload [form]="offerForm" class="fileupload_image"
-                        [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="offerForm.value['image']"
-                        [imageSize]="'120'" [uploadType]="'profile'" formControlName="image" name="image"
-                        (fileChange)="onFileChange($event)"></app-fileupload>
-                </div>
-                <div class="col-sm-12 col-lg-12 col-xs-12">
-                    <div class="checkbox_block">
-                        <mat-checkbox class="mat_checkbox" formControlName="default_offer" name="default_offer"> Set
-                            Default</mat-checkbox>
-                    </div>
                 </div>
             </div>
         </div>
