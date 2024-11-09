@@ -39,22 +39,25 @@ export class ProfileDetailsComponent {
   ngOnInit() {
 
 
-    const memberData = sessionStorage.getItem('MemberData');
+    const companyData = sessionStorage.getItem('CompanyData');
 
     const currentUserData = sessionStorage.getItem('CurrentUser');
 
-    if (memberData && currentUserData) {
-      const member = JSON.parse(memberData);
-      const memberUser = JSON.parse(memberData);
+    if (companyData && currentUserData) {
+
+      const member = JSON.parse(companyData);
+      // const memberUser = JSON.parse(companyData);
 
 
       const userData = JSON.parse(currentUserData);
 
       this.user_type = userData.user_type;
-      debugger
+
       this.company_id = userData.company_id;
       this.member_id = member.id;
       this.memberUser = member;
+
+    } else {
 
     }
 

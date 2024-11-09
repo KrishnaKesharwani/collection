@@ -1,5 +1,6 @@
 <app-edit-company *ngIf="user_type == 1"></app-edit-company>
 <app-edit-details *ngIf="user_type == 3"></app-edit-details>
+{{user_type}}
 <div class="list-containner" *ngIf="user_type == 2">
     <form focusInvalidInput [formGroup]="editForm">
         <div class="card shadow dash-cardbox radius_none_bottom">

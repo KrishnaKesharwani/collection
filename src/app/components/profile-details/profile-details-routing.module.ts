@@ -6,9 +6,9 @@ import { ProfileDetailsComponent } from './profile-details.component';
 
 
 const routes: Routes = [
-  { path: '', component: ProfileDetailsComponent},
-  { path: 'profile_details/edit-details', component: EditDetailsComponent },
-  { path: 'profile_details/edit-company', component: EditCompanyComponent}
+  { path: '', component: ProfileDetailsComponent },
+  // { path: 'profile_details/edit-details', component: EditDetailsComponent },
+  // { path: 'profile_details/edit-company', component: EditCompanyComponent }
 ];
 
 @NgModule({

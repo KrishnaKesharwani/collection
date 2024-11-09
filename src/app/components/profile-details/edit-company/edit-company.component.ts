@@ -42,6 +42,7 @@ export class EditCompanyComponent {
       const userData2 = JSON.parse(data2);
       this.user_type = userData;
       this.company_id = userData2.company_id;
+      debugger
     }
 
 

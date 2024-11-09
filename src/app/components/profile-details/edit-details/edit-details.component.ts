@@ -35,7 +35,7 @@ export class EditDetailsComponent {
   ngOnInit() {
 
     const customerData = sessionStorage.getItem('CustomerData');
-
+    debugger
     const currentUserData = sessionStorage.getItem('CurrentUser');
     if (customerData && currentUserData) {
       const customer = JSON.parse(customerData);
@@ -50,6 +50,8 @@ export class EditDetailsComponent {
       this.customer_id = customer.id;
       this.customerData = customer;
 
+    } else {
+      debugger
     }
 
     this.editForm = this.fb.group({
