@@ -94,7 +94,7 @@ export class OffersComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      if(result){
+      if (result) {
         this.getOfferList();
       }
     });
@@ -132,10 +132,11 @@ export class OffersComponent {
   }
 
   deleteOffer(data: any) {
-    let obj = {
-      offer_id: data?.id,
-    }
-    this._service.deleteOffer(obj).subscribe((data: any) => {
+    // let obj = {
+    //   offer_id: data?.id,
+    // }
+    let offerid = data?.id;
+    this._service.deleteOffer(offerid).subscribe((data: any) => {
       if (data) {
         Swal.fire({
           position: "center",
