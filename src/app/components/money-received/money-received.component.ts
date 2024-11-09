@@ -16,13 +16,13 @@ import { MoneyReceivedService } from 'src/app/services/moneyReceived/money-recei
 export class MoneyReceivedComponent {
 
   company_id: any;
-  customerData: any[] = [];
+  collectionData: any[] = [];
   filteredDataarray: any[] = [];
   loader = false;
   filter_date!: string | Date | null;
   filterDateForm!: FormGroup;
   date: any;
-  collectionData: any[] = [];
+  // collectionData: any[] = [];
   constructor(public _service: MoneyReceivedService, public _customActionService: CustomActionsService, private actionService: ActionService, public fb: FormBuilder) { }
 
   ngOnInit() {
@@ -93,7 +93,7 @@ export class MoneyReceivedComponent {
     } else {
       this.isAsc = true;
     }
-    this.filteredDataarray = this._customActionService.sortData(column, this.customerData);
+    this.filteredDataarray = this._customActionService.sortData(column, this.collectionData);
   }
 
   searchColumns: any[] = ['name', 'status', 'mobile'];
@@ -103,13 +103,14 @@ export class MoneyReceivedComponent {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
     if (this.searchTerm == null || this.searchTerm == '') {
-      this.filteredDataarray = this.customerData;
+      this.filteredDataarray = this.collectionData;
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
   }
 
   getCollectionList() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id,
       date: this.filterDateForm.value.date
@@ -118,6 +119,7 @@ export class MoneyReceivedComponent {
     this._service.getCollection(obj).subscribe((data: any) => {
       console.log(data.data);
       this.collectionData = data.data;
+      this.loader = false;
     })
   }
 }

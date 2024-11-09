@@ -51,6 +51,7 @@ export class ProfileDetailsComponent {
       const userData = JSON.parse(currentUserData);
 
       this.user_type = userData.user_type;
+      debugger
       this.company_id = userData.company_id;
       this.member_id = member.id;
       this.memberUser = member;
@@ -59,18 +60,18 @@ export class ProfileDetailsComponent {
 
 
     this.editForm = this.fb.group({
-      name: [this.memberUser.name, Validators.required],
+      name: [this.memberUser?.name, Validators.required],
       // owner_name: [this.memberUser.owner_name, Validators.required],
-      mobile: [this.memberUser.mobile, Validators.required],
-      email: [this.memberUser.email, Validators.required],
-      // primary_color: [this.memberUser.primary_color, Validators.required],
-      // secondary_color: [this.memberUser.secondary_color, Validators.required],
+      mobile: [this.memberUser?.mobile, Validators.required],
+      email: [this.memberUser?.email, Validators.required],
+      // primary_color: [this.memberUser?.primary_color, Validators.required],
+      // secondary_color: [this.memberUser?.secondary_color, Validators.required],
       // aadhar_no: [, Validators.required],
-      // prefix: [this.memberUser.prefix],
-      address: [this.memberUser.address, Validators.required],
+      // prefix: [this.memberUser?.prefix],
+      address: [this.memberUser?.address, Validators.required],
 
-      status: [this.memberUser.status],
-      join_date: [this.memberUser.join_date]
+      status: [this.memberUser?.status],
+      join_date: [this.memberUser?.join_date]
     });
 
   }
