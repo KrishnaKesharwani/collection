@@ -32,4 +32,8 @@ export class OffersService {
     const url = `${this.apiUrl}/update-default-offer`;
     return this.httpClient.put(url, obj)
   }
+  deleteOffer(obj: object) {
+    const url = `${this.apiUrl}/delete-offer`;
+    return this.httpClient.delete(url, obj)
+  }
 }

@@ -32,12 +32,19 @@
 .file_upload_full {
     position: relative;
     width: 100%;
-    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--app-brand-shadow);
-    margin-bottom: 10px;
+    flex-flow: column;
+    padding: 10px;
+    cursor: pointer;
+    .image_upload_caption {
+        width: 100%;
+        text-align: center;
+        color: #aba7a7;
+        font-size: 12px;
+        margin-top: 10px;
+    }
     img {
         max-height: 150px;
     }

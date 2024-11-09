@@ -87,8 +87,9 @@ export class OffersComponent {
   openDialogAddOffer() {
     const dialogRef = this.dialog.open(AddOfferComponent, {
       disableClose: true,
+      panelClass: 'medium_popup',
       data: {
-        title: 'Update New Offers / Schems',
+        title: 'Add New Offers / Schems',
       },
     });
 
@@ -102,9 +103,9 @@ export class OffersComponent {
   openDialogEditOffer(data: any) {
     const dialogRef = this.dialog.open(AddOfferComponent, {
       disableClose: true,
-      panelClass: 'update_dialoge',
+      panelClass: 'medium_popup',
       data: {
-        title: 'Update Offer',
+        title: 'Update Offers / Schems',
         data: data
       },
     });
@@ -116,6 +117,38 @@ export class OffersComponent {
     });
   }
 
+  openDialogDelete(data: any) {
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      panelClass: 'delete_popup',
+      data: {
+        title: 'Are you sure?',
+        subTitle: 'You wont be delete this Offers / Scheme!',
+      },
+    });
+
+    dialogRef.componentInstance.deleteAction.subscribe(() => {
+      this.deleteOffer(data);
+    });
+  }
+
+  deleteOffer(data: any) {
+    let obj = {
+      offer_id: data?.id,
+    }
+    this._service.deleteOffer(obj).subscribe((data: any) => {
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: 'Success',
+          text: "Offers / Scheme deleted successfully...",
+          showConfirmButton: true,
+          timer: 1500
+        });
+      }
+      this.getOfferList();
+    });
+  }
 
   openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(ViewOfferComponent, {

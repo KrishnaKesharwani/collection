@@ -20,6 +20,7 @@ export class FileuploadComponent {
   @Input() accept: any;
   @Input() uploadType: any = 'file';
   @Input() imageSize: any;
+  @Input() imageCaption: any;
   @Input() imageUrl: string | undefined;
   @Output() image_base16String: string | ArrayBuffer | null = null;
   @Input() form!: FormGroup;

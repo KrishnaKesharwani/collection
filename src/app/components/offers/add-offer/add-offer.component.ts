@@ -28,7 +28,6 @@ export class AddOfferComponent {
   ) { }
 
   ngOnInit() {
-
     const data = sessionStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
@@ -36,10 +35,10 @@ export class AddOfferComponent {
     }
     this.offerForm = this.fb.group({
       name: ['', Validators.required],
-      details: [''],
-      type: [''],
-      status: [''],
-      image: [''],
+      details: ['', Validators.required],
+      type: ['', Validators.required],
+      status: ['', Validators.required],
+      image: ['../../../assets/imgs/no-images.jpg'],
       default_offer: ['']
     });
     this.offer_id = this.dataa.data.id;
@@ -48,6 +47,9 @@ export class AddOfferComponent {
     }
   }
 
+  onClose() {
+    this.dialogRef.close();
+  }
 
   offerView() {
     this.offerForm.patchValue({
@@ -65,7 +67,7 @@ export class AddOfferComponent {
     // Handle the file as needed
   }
 
-  save() {
+  saveDetails() {
     if (this.offer_id) {
 
       if (this.offerForm.valid) {

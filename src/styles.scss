@@ -221,6 +221,10 @@ mat-option {
     border: solid thin #e1e1e1;
     border-radius: 5px;
     background: #ffffff;
+    margin-bottom: 10px;
+    label {
+        color: #666666;
+    }
 }
 
 .global_dropdown {
@@ -567,6 +571,9 @@ mat-option {
 }
 .setdefault_color {
     background: #4bdf5161;
+}
+.medium_popup {
+    max-width: 760px !important;
 }
 .view_details_small_popup {
     min-width: 576px;
@@ -2970,7 +2977,17 @@ mark {
     overflow: hidden;
     position: relative;
 }
-
+.fileupload_image_fullwidth {
+    display: flex;
+    background: #ffffff;
+    border: solid thin #e1e1e1;
+    box-shadow: var(--app-brand-card-shadow);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
 .fileupload_transparent {
     position: absolute;
     width: 100%;
