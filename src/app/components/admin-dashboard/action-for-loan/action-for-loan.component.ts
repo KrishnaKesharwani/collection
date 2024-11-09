@@ -60,7 +60,7 @@ export class ActionForLoanComponent {
       end_date: ['', Validators.required],
       details: [''],
       loan_status: [''],
-      // status: ['']
+      status: ['pending']
     });
 
     this.providerLoanFormForCancelled = this.fb.group({
@@ -75,10 +75,8 @@ export class ActionForLoanComponent {
   }
 
   onStatusChange(value: string) {
-    debugger
-    console.log('Status changed manually:', value);
+    // console.log('Status changed manually:', value);
     this.selectedStatus = value;
-
   }
 
   onClose() {

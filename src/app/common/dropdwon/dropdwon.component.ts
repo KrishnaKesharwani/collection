@@ -40,12 +40,14 @@ export class DropdwonComponent {
       this.options = options[this.key] || [];
     });
   }
-
-
+  
   onSelectionChange(event: string) {
     this.selectionChange.emit(event); // Emit only the selected value, not the event object
   }
-  onChange = (value: string) => { };
+  onChange = (event: string) => {
+    this.selectionChange.emit(event);
+  };
+
   onTouched = () => { };
 
   writeValue(value: string): void {

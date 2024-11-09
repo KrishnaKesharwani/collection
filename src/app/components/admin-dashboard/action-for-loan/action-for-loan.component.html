@@ -22,7 +22,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-sm-12" *ngIf="selectedStatus == 'approved'">
+        <div class="col-sm-12" *ngIf="selectedStatus == 'approved' || selectedStatus == 'running'">
             <form focusInvalidInput [formGroup]="providerLoanForm">
                 <div class="modal_insert">
                     <!-- <app-input [isDateField]="false" label="Customer Name" [(value)]="customername" [isRequired]="true"
