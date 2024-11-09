@@ -33,7 +33,7 @@ export class ActionForLoanComponent {
   start_date: any;
   end_date: any;
   no_of_days: string = '0';
-  selectedStatus: string = '';
+  selectedStatus: any;
   statusOptions: string[] = [];
   customer_id: any;
 
@@ -69,14 +69,16 @@ export class ActionForLoanComponent {
 
     this.getActiveMmberList();
 
-    this.dropdownService.setOptions('status', ['Approved', 'Cancelled']);
-    this.dropdownService.setOptions('loanstatus', ['Approved', 'Running', 'Pending', 'Cancelled']);
+    // this.dropdownService.setOptions('status', ['Approved', 'Cancelled']);
+    // this.dropdownService.setOptions('loanstatus', ['Approved', 'Running', 'Pending', 'Cancelled']);
 
   }
-  onStatusChange(value: string) {
 
+  onStatusChange(value: string) {
+    debugger
     console.log('Status changed manually:', value);
     this.selectedStatus = value;
+
   }
 
   onClose() {

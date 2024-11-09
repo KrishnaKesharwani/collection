@@ -6,13 +6,13 @@
     <div class="row">
         <!-- <div class="left_text">Customer Number: </div> -->
         <div class="col-sm-12">
-            <app-dropdwon formControlName="status" name="status" key="status" field="Status"
-                (selectionChange)="onStatusChange($event)"></app-dropdwon>
-            <!-- <app-dropdwon [optionArray]="dropdownService.status" *ngIf="providerLoanForm" [form]="providerLoanForm" [key]="'status'"
-                    field="Status"></app-dropdwon> -->
+            <!-- <app-dropdwon formControlName="status" name="status" key="status" field="Status"
+                (selectionChange)="onStatusChange($event)"></app-dropdwon> -->
+            <app-dropdwon [optionArray]="dropdownService.actionForLoanStatus" (selectionChange)="onStatusChange($event)"
+                [form]="providerLoanForm" [key]="'status'" field="Status"></app-dropdwon>
         </div>
 
-        <div class="col-sm-12" *ngIf="selectedStatus == 'Cancelled'">
+        <div class="col-sm-12" *ngIf="selectedStatus == 'cancelled'">
             <form focusInvalidInput [formGroup]="providerLoanFormForCancelled">
                 <div class="modal_insert">
                     <mat-form-field class="global_textarea_block" appearance="outline">
@@ -22,7 +22,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-sm-12" *ngIf="selectedStatus == 'Approved'">
+        <div class="col-sm-12" *ngIf="selectedStatus == 'approved'">
             <form focusInvalidInput [formGroup]="providerLoanForm">
                 <div class="modal_insert">
                     <!-- <app-input [isDateField]="false" label="Customer Name" [(value)]="customername" [isRequired]="true"
