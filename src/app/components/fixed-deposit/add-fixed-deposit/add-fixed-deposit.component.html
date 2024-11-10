@@ -1,13 +1,36 @@
 <div class="dialoge_header">
     <div class="left_text" *ngIf="!fixedDepositId">{{dataa.title}}</div>
     <div class="left_text" *ngIf="fixedDepositId">{{dataa.title}}</div>
-    <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
+    <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container full_height_cover">
     <form focusInvalidInput [formGroup]="fixedDepositForm">
         <div class="modal_insert">
             <div class="row">
-                <div class="col-sm-6 col-xs-12">
+                <div class="col-sm-12">
+                    <mat-form-field class="global_dropdown" appearance="outline">
+                        <mat-label>Available Customer - {{customerListData.length}}</mat-label>
+                        <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+                        <mat-select [formControl]="selectControl">
+                            <mat-option *ngFor="let customerdata of customerListData; let i =index"
+                                [value]="customerdata.id">
+                                <div class="customer_data_row">
+                                    <span class="image_block">
+                                        <img src="{{customerdata.image}}" onerror="this.src='assets/imgs/default-pic.png';" >
+                                    </span>
+                                    <span class="other_details">
+                                        {{customerdata?.name}} - {{customerdata?.mobile}} - {{customerdata?.customer_no}} 
+                                    </span>
+                                    <span class="badge bg-success text-white" [ngClass]="customerdata.status == 'active' ? 'bg-success' : 'bg-danger'" >{{customerdata.status}}</span>
+                                    <!-- <span class="badge bg-danger text-white "
+                                        *ngIf="customerdata.status == 'inactive'">{{customerdata.status}}</span>
+                                    <span class="status">{{customerdata?.status}}</span> -->
+                                </div>
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Fixed Deposite Name</mat-label>
                         <input matInput required formControlName="fixed_deposit_name" name="fixed_deposit_name">
@@ -16,7 +39,7 @@
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
-                <div class="col-sm-4 col-xs-12">
+                <div class="col-sm-4">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>Start Date</mat-label>
                         <input type="date" matInput required formControlName="start_date" name="start_date" />
@@ -25,7 +48,7 @@
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
-                <div class="col-sm-4 col-xs-12">
+                <div class="col-sm-4">
                     <mat-form-field class="global_textbox_block" appearance="outline">
                         <mat-label>End Date</mat-label>
                         <input type="date" matInput required formControlName="end_date" name="end_date" />
@@ -34,34 +57,9 @@
                         </app-input-field-validation>
                     </mat-form-field>
                 </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
+                <div class="col-sm-4">
                     <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Customer Name</mat-label>
-                        <input matInput required formControlName="customer_name" name="customer_name" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'customer_name'" [displayMsg]="'Name is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Customer Mobile</mat-label>
-                        <input matInput required formControlName="moblie" name="moblie" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'moblie'" [displayMsg]="'Mobile is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Customer Email</mat-label>
-                        <input matInput formControlName="email" name="email" />
-
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Start Amount</mat-label>
+                        <mat-label>Deposit Amount</mat-label>
                         <input matInput required formControlName="start_amount" name="start_amount" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
                             [key]="'start_amount'" [displayMsg]="'Start amount is required'">
@@ -70,7 +68,7 @@
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>End Amount</mat-label>
+                        <mat-label>Refund Amount</mat-label>
                         <input matInput required formControlName="end_amount" name="end_amount" />
                         <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
                             [key]="'end_amount'" [displayMsg]="'End amount is required'">
@@ -82,35 +80,11 @@
                     <app-dropdwon [optionArray]="dropdownService.status" *ngIf="fixedDepositForm"
                         [form]="fixedDepositForm" [key]="'status'" field="Status"></app-dropdwon>
                 </div>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Aadhar No.</mat-label>
-                        <input matInput formControlName="adhar_number" name="adhar_number" />
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textarea_block" appearance="outline">
-                        <mat-label>Address</mat-label>
-                        <textarea matInput formControlName="address" name="address"></textarea>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-4 col-xs-12">
+                <div class="col-sm-12">
                     <mat-form-field class="global_textarea_block" appearance="outline">
                         <mat-label>Details</mat-label>
                         <textarea matInput formControlName="details" name="details"></textarea>
                     </mat-form-field>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <div class="file_upload_block global_textbox_block">
-                        <label class="m-0">Aadhar Front</label>
-                        <app-fileupload class="fileupload" (fileChange)="onFileChange($event)"></app-fileupload>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-6 col-xs-12">
-                    <div class="file_upload_block global_textbox_block">
-                        <label class="m-0">Aadhar Back</label>
-                        <app-fileupload class="fileupload" (fileChange)="onFileChange2($event)"></app-fileupload>
-                    </div>
                 </div>
             </div>
         </div>
@@ -118,7 +92,7 @@
     </form>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
     <button class="global_submit_btn" mat-flat-button (click)="save()" *ngIf="!fixedDepositId">Submit</button>
     <button class="global_submit_btn" mat-flat-button (click)="save()" *ngIf="fixedDepositId">Update</button>
 </div>

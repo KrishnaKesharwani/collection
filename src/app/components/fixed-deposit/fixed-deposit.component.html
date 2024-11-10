@@ -76,10 +76,10 @@
                         </tr>
                         <tr *ngIf="fixedDepositListData.length == 0 && !loader">
                             <td colspan="9">
-                                <app-no-record-found type="table" notext="No FixedDeposit found"></app-no-record-found>
+                                <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
                             </td>
                         </tr>
-                        <!-- <ng-container *ngIf="fixedDepositListData.length != 0 && !loader">
+                        <ng-container *ngIf="fixedDepositListData.length != 0 && !loader">
                             <tr class="received_row" *ngFor="let item of fixedDepositListData">
                                 <td class="col" data-name="Name">{{item.name}}</td>
                                 <td class="col" data-name="Logo">
@@ -112,16 +112,18 @@
                                         <mat-menu #menu="matMenu">
                                             <div class="table_actionmenu">
 
-                                                <button mat-menu-item (click)="openDialogFixedDepositDetails()">
+                                                <button mat-menu-item (click)="openDialogFixedDepositDetails(item)">
                                                     <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                                 </button>
-
-                                                <button mat-menu-item (click)="openDialogEditFixedDeposit()">
-                                                    <i class="mdi mdi-pencil mr-2"></i> <span>Edit Company</span>
+                                                <button mat-menu-item (click)="openDialogPaidMoney(item)">
+                                                    <i class="mdi mdi-currency-inr mr-2"></i> <span>Paid Money</span>
                                                 </button>
-                                                <button mat-menu-item (click)="openDialogStatus('1ms', '5ms')">
+                                                <button mat-menu-item (click)="openDialogEditFixedDeposit(item)">
+                                                    <i class="mdi mdi-pencil mr-2"></i> <span>Edit Deposit</span>
+                                                </button>
+                                                <button mat-menu-item (click)="openDialogStatus()">
                                                     <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                    <span>Status</span>
+                                                    <span>Status Update</span>
                                                 </button>
                                             </div>
                                         </mat-menu>
@@ -132,7 +134,7 @@
 
                                 </td>
                             </tr>
-                        </ng-container> -->
+                        </ng-container>
                     </tbody>
                 </table>
             </div>

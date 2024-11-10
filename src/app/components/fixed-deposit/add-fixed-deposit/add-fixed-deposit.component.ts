@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CommonComponentService } from 'src/app/common/common-component.service';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
   selector: 'app-add-fixed-deposit',
@@ -14,11 +16,23 @@ export class AddFixedDepositComponent {
   @Output() deleteAction = new EventEmitter();
   fixedDepositForm!: FormGroup;
   fixedDepositId!: 1;
-  constructor(public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  selectControl = new FormControl('');
+  company_id: any;
+  customerListData: any[] = [];
+  user_type: any;
+
+  constructor(public dialogRef: MatDialogRef<AddFixedDepositComponent>, public _customActionService: CustomActionsService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
   ) { }
 
 
   ngOnInit() {
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+      this.user_type = userData.user_type;
+    }
+    this.getCustomerList();
     this.fixedDepositForm = this.fb.group({
       customer_name: ['', Validators.required],
       fixed_deposit_name: ['', Validators.required],
@@ -44,8 +58,24 @@ export class AddFixedDepositComponent {
       // this.dialog.closeAll();
     }
   }
-
-
+  
+  loader = false;
+  getCustomerList() {
+    this.loader = true;
+    let obj = {
+      company_id: this.company_id
+    }
+    this._service.getList(obj).subscribe((response: any) => {
+      if (response && Array.isArray(response.data)) {
+        this.customerListData = response.data;
+        console.log('Customer Data', this.customerListData);
+        this.loader = false;
+      }
+    })
+  }
+  onClose() {
+    this.dialogRef.close();
+  }
   update() {
     this.fixedDepositForm.markAllAsTouched()
     if (this.fixedDepositForm.valid) {
