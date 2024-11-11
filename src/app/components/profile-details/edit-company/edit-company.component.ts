@@ -42,11 +42,8 @@ export class EditCompanyComponent {
       const userData2 = JSON.parse(data2);
       this.user_type = userData;
       this.company_id = userData2.company_id;
-
     }
-
-
-
+    console.log('Edit Company Data:', this.user_type);
     this.editForm = this.fb.group({
       company_name: [this.user_type.company_name, Validators.required],
       owner_name: [this.user_type.owner_name, Validators.required],
@@ -57,16 +54,15 @@ export class EditCompanyComponent {
       prefix: [this.user_type.prefix],
       address: [this.user_type.address, Validators.required],
       profile: [''],
-      main_logo: [''],
-      sidebar_logo: [''],
-      favicon_icon: [],
+      main_logo: [this.user_type.main_logo, ''],
+      sidebar_logo: [this.user_type.sidebar_logo,''],
+      favicon_icon: [this.user_type.favicon_icon,],
       status: ['active'],
     });
 
   }
 
   updateDetails() {
-
     if (this.company_id) {
       this.loading = true;
       const formData = new FormData();
@@ -76,7 +72,6 @@ export class EditCompanyComponent {
         { name: 'favicon_icon', file: this.editForm.get('favicon_icon')?.value },
         { name: 'owner_image', file: this.editForm.get('owner_image')?.value },
       ];
-
       // Convert files to base64 strings
       files.map(({ name, file }) => {
         return new Promise((resolve, reject) => {
@@ -119,30 +114,35 @@ export class EditCompanyComponent {
     }
   }
 
+  // selectedFile: File | null = null;
 
+  // onFileChange(file: File | null): void {
+  //   this.selectedFile = file;
+  //   // Handle the file as needed
+  // }
 
   selectedFile_profile: File | null = null;
   profileChange(file: File | null): void {
     this.selectedFile_profile = file;
-    this.editForm.patchValue({ profile: file });
+    // this.editForm.patchValue({ profile: file });
   }
 
   selectedFile_mainlogo: File | null = null;
   mainlogoChange(file: File | null): void {
     this.selectedFile_mainlogo = file;
-    this.editForm.patchValue({ main_logo: file });
+    // this.editForm.patchValue({ main_logo: file });
   }
 
   selectedFile_sidebarlogo: File | null = null;
   sidebarChange(file: File | null): void {
     this.selectedFile_sidebarlogo = file;
-    this.editForm.patchValue({ sidebar_logo: file });
+    // this.editForm.patchValue({ sidebar_logo: file });
   }
 
   selectedFile_feviconlogo: File | null = null;
   feviconChange(file: File | null): void {
     this.selectedFile_feviconlogo = file;
-    this.editForm.patchValue({ favicon_icon: file });
+    // this.editForm.patchValue({ favicon_icon: file });
   }
 
 }

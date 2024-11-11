@@ -21,32 +21,35 @@ export class CompanyListComponent {
   companyListData: any[] = [
   ]
   companyDashboardtData: any;
-  loader = false;
+  loader = true;
   readonly dialog = inject(MatDialog);
   // columns = ['Name', 'Logo', 'Owner Name', 'Mobile', 'Start Date', 'End Date', 'Plan', 'Amount', 'Pending', 'Status'];
-  columns = [
-    { prop: 'company_name', name: 'Name', orderable: true },
-    { prop: 'main_logo', name: 'Logo', orderable: false, isImage: true },
-    { prop: 'owner_name', name: 'Owner Name', orderable: true },
-    { prop: 'mobile', name: 'Mobile', orderable: false },
-    { prop: 'start_date', name: 'Start Date', orderable: false },
-    { prop: 'end_date', name: 'End Date', orderable: false },
-    { prop: 'plans', name: 'Plan', orderable: false },
-    { prop: 'total_amount', name: 'Amount', orderable: false },
-    { prop: 'advance_amount', name: 'Pending', orderable: false },
-    { prop: 'status', name: 'Status', orderable: false }
-  ];
+  // columns = [
+  //   { prop: 'company_name', name: 'Name', orderable: true },
+  //   { prop: 'main_logo', name: 'Logo', orderable: false, isImage: true },
+  //   { prop: 'owner_name', name: 'Owner Name', orderable: true },
+  //   { prop: 'mobile', name: 'Mobile', orderable: false },
+  //   { prop: 'start_date', name: 'Start Date', orderable: false },
+  //   { prop: 'end_date', name: 'End Date', orderable: false },
+  //   { prop: 'plans', name: 'Plan', orderable: false },
+  //   { prop: 'total_amount', name: 'Amount', orderable: false },
+  //   { prop: 'advance_amount', name: 'Pending', orderable: false },
+  //   { prop: 'status', name: 'Status', orderable: false }
+  // ];
 
-  actions = [
-    { action: 'collection_history', label: 'Collection History', icon: 'mdi mdi-history mr-2' },
-    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
-    { action: 'edit_company', label: 'Edit Company', icon: 'mdi mdi-pencil mr-2' },
-    // { action: 'received_amount', label: 'Received Amount', icon: 'mdi mdi-cash-100 mr-2' },
-    { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
-  ];
+  // actions = [
+  //   { action: 'collection_history', label: 'Collection History', icon: 'mdi mdi-history mr-2' },
+  //   { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
+  //   { action: 'edit_company', label: 'Edit Company', icon: 'mdi mdi-pencil mr-2' },
+  //   // { action: 'received_amount', label: 'Received Amount', icon: 'mdi mdi-cash-100 mr-2' },
+  //   { action: 'status', label: 'Status', icon: 'mdi mdi-account-off-outline mr-2' },
+  // ];
   filteredDataarray: any[] = [];
-  constructor(public _customActionService: CustomActionsService, private actionService: ActionService, private _toastr: ToastrService, public _service: CompanyService
 
+  constructor(public _customActionService: CustomActionsService,
+    private actionService: ActionService,
+    private _toastr: ToastrService,
+    public _service: CompanyService
   ) { }
 
   ngOnInit() {
@@ -58,8 +61,12 @@ export class CompanyListComponent {
       if (response && Array.isArray(response.data)) {
         this.companyListData = response.data;
         this.filteredDataarray = this.companyListData;
+        this.loader = false;
       }
-    })
+    }, error => {
+      this.loader = false;
+      this._toastr.error(error.message, 'Error');
+    });
   }
 
   // searchTerm: string = '';
@@ -80,29 +87,28 @@ export class CompanyListComponent {
   //   );
   // }
 
-  onAction(actionData: { action: string; row: any }) {
-    this.actionService.setAction(actionData);
-    switch (actionData.action) {
-      case 'collection_history':
-        this.openDialogCompanyPlan(actionData.row);
-        break;
-      case 'view_details':
-        this.openDialogViewDetails(actionData.row);
-        break;
-      case 'edit_company':
-        this.openDialogEditDetails(actionData.row);
-        break;
-      // case 'received_amount':
-      //   this.openDialogReceiveAmount(actionData.row);
-      //   break;
-      case 'status':
-        this.openDialogStatus('1ms', '5ms', actionData.row);
-        break;
-    }
-  }
+  // onAction(actionData: { action: string; row: any }) {
+  //   this.actionService.setAction(actionData);
+  //   switch (actionData.action) {
+  //     case 'collection_history':
+  //       this.openDialogCompanyPlan(actionData.row);
+  //       break;
+  //     case 'view_details':
+  //       this.openDialogViewDetails(actionData.row);
+  //       break;
+  //     case 'edit_company':
+  //       this.openDialogEditDetails(actionData.row);
+  //       break;
+  //     // case 'received_amount':
+  //     //   this.openDialogReceiveAmount(actionData.row);
+  //     //   break;
+  //     case 'status':
+  //       this.openDialogStatus('1ms', '5ms', actionData.row);
+  //       break;
+  //   }
+  // }
 
   openDialogCompanyPlan(row: any) {
-
     const dialogRef = this.dialog.open(CompanyHistoryComponent, {
       data: {
         id: row.id,
@@ -134,6 +140,9 @@ export class CompanyListComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.getCompanyList();
+      }
     });
   }
 
@@ -206,7 +215,7 @@ export class CompanyListComponent {
   }
 
   readonly dialog6 = inject(MatDialog);
-  openDialog6() {
+  openDialogCreateCompany() {
     const dialogRef = this.dialog6.open(AddCompanyComponent, {
       disableClose: true,
       width: 'auto',
@@ -214,18 +223,18 @@ export class CompanyListComponent {
         title: 'Add New Company'
       },
     });
-
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.getCompanyList();
+      }
+    });
   }
 
 
   isAsc: boolean = true;
   sortTableData(column: string, responseData: any) {
-
     this.filteredDataarray = this._customActionService.sortData(column, responseData);
-
-
   }
-
 
   searchColumns: any[] = ['company_name', 'owner_name', 'advance_amount', 'status', 'mobile'];
   searchTerm: string = '';

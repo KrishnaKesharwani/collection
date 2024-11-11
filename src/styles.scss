@@ -59,7 +59,9 @@ ul {
     box-shadow: var(--app-brand-card-shadow);
     border-radius: 5px;
 }
-
+.display_none {
+    display: none;
+}
 .remove_sidebar_width {
     .navbar {
         width: 100% !important;

@@ -47,22 +47,37 @@
                         <div class="col-sm-4 col-xs-12">
                             <div class="file_upload_block global_textbox_block">
                                 <label class="m-0">Company Main Logo</label>
-                                <app-fileupload class="fileupload" formControlName="main_logo" name="main_logo"
+                                <app-fileupload [form]="editForm" class="fileupload_image_fullwidth"
+                                    [accept]="'image/png, image/gif, image/jpeg'"
+                                    [imageUrl]="editForm.value['main_logo']" [uploadType]="'fullwidth'"
+                                    [imageCaption]="''" formControlName="main_logo" name="main_logo"
                                     (fileChange)="mainlogoChange($event)"></app-fileupload>
+                                <!-- <app-fileupload class="fileupload" formControlName="main_logo" name="main_logo"
+                                    (fileChange)="mainlogoChange($event)"></app-fileupload> -->
                             </div>
                         </div>
                         <div class="col-sm-4 col-xs-12">
                             <div class="file_upload_block global_textbox_block">
                                 <label class="m-0">Company Sidebar Logo</label>
-                                <app-fileupload class="fileupload" formControlName="sidebar_logo" name="sidebar_logo"
+                                <app-fileupload [form]="editForm" class="fileupload_image_fullwidth"
+                                    [accept]="'image/png, image/gif, image/jpeg'"
+                                    [imageUrl]="editForm.value['sidebar_logo']" [uploadType]="'fullwidth'"
+                                    [imageCaption]="''" formControlName="sidebar_logo" name="sidebar_logo"
                                     (fileChange)="sidebarChange($event)"></app-fileupload>
+                                <!-- <app-fileupload class="fileupload" formControlName="sidebar_logo" name="sidebar_logo"
+                                    (fileChange)="sidebarChange($event)"></app-fileupload> -->
                             </div>
                         </div>
                         <div class="col-sm-4 col-xs-12">
                             <div class="file_upload_block global_textbox_block">
                                 <label class="m-0">Company Favicon Icon</label>
-                                <app-fileupload class="fileupload" formControlName="favicon_icon" name="favicon_icon"
+                                <app-fileupload [form]="editForm" class="fileupload_image_fullwidth"
+                                    [accept]="'image/png, image/gif, image/jpeg'"
+                                    [imageUrl]="editForm.value['favicon_icon']" [uploadType]="'fullwidth'"
+                                    [imageCaption]="''" formControlName="favicon_icon" name="favicon_icon"
                                     (fileChange)="feviconChange($event)"></app-fileupload>
+                                <!-- <app-fileupload class="fileupload" formControlName="favicon_icon" name="favicon_icon"
+                                    (fileChange)="feviconChange($event)"></app-fileupload> -->
                             </div>
                         </div>
                     </div>

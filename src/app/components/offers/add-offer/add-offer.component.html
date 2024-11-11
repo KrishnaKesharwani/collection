@@ -11,7 +11,7 @@
                     <app-fileupload [form]="offerForm" class="fileupload_image_fullwidth"
                         [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="offerForm.value['image']"
                         [uploadType]="'fullwidth'" [imageCaption]="'Upload images for this Offer/Scheme'" formControlName="image" name="image"
-                        (fileChange)="onFileChange($event)"></app-fileupload>
+                        [formcontrolname]="'image'" (fileChange)="onFileChange($event)"></app-fileupload>
                 </div>
                 <div class="col-sm-12 col-lg-12 col-xs-12">                   
                     <mat-form-field class="global_textbox_block" appearance="outline">

@@ -117,7 +117,6 @@ export class AddCustomerComponent {
           formData.append(key, this.customerForm.value[key]);
           // }
         });
-
         if (!this.selectedFile) {
           formData.delete('image');
         }

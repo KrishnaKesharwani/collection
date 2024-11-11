@@ -24,6 +24,7 @@ export class FileuploadComponent {
   @Input() imageUrl: string | undefined;
   @Output() image_base16String: string | ArrayBuffer | null = null;
   @Input() form!: FormGroup;
+  @Input() formcontrolname: any;
   // @Output() fileChange = new EventEmitter<string | ArrayBuffer | null>();
   // ControlValueAccessor methods
   onChange = (file: File | null) => { };
@@ -44,7 +45,7 @@ export class FileuploadComponent {
       const reader = new FileReader();
       reader.onload = e => {
         this.image_base16String = reader.result; // Set imageSrc to the base64 data
-        this.form.controls['image'].setValue(reader.result);
+        this.form.controls[this.formcontrolname].setValue(reader.result);
       };
       reader.readAsDataURL(file);
       // this.fileChange.emit(this.image_base16File);

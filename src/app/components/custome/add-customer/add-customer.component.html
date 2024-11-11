@@ -10,7 +10,7 @@
                 <div class="image_upload">
                     <app-fileupload [form]="customerForm" class="fileupload_image"
                         [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="customerForm.value['image']"
-                        [imageSize]="'120'" [uploadType]="'profile'" formControlName="image" name="image"
+                        [imageSize]="'120'" [uploadType]="'profile'" [formcontrolname]="'image'" formControlName="image" name="image"
                         (fileChange)="onFileChange($event)"></app-fileupload>
                     <!-- <app-fileupload class="fileupload_image" [accept]="'image/png, image/gif, image/jpeg'"
                         [uploadType]="'profile'" (fileChange)="onFileChange($event)"></app-fileupload> -->

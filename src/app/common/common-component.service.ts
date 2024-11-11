@@ -46,9 +46,13 @@ export class CommonComponentService {
       company_id: this.company_id,
       status: 'active'
     }
-    this._service.activeMembers(obj).subscribe((memberDataAPi: any) => {
-      this.getmemberdata = memberDataAPi.data;
-    })
+    if (this.company_id != '' && this.company_id != null) {
+      this._service.activeMembers(obj).subscribe((memberDataAPi: any) => {
+        this.getmemberdata = memberDataAPi.data;
+      }, error => {
+        console.log('Member error Found', error.massage);
+      });
+    }
   }
 
 

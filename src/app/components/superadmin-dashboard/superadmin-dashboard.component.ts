@@ -11,6 +11,7 @@ import { CompanyService } from 'src/app/services/company/company.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-superadmin-dashboard',
@@ -38,19 +39,14 @@ export class SuperadminDashboardComponent {
       upcoming_expire: 1
     }
     this._service.getExpeiredCompanyList(obj).subscribe((response: any) => {
-      if (response && Array.isArray(response.data)) {
-        if (response) {
-          this.companyListData = response.data;
-          this.filteredDataarray = this.companyListData;
-          this.loader = false;
-        }
-        else {
-          this.companyListData = [];
-          this.filteredDataarray = this.companyListData;
-          this.loader = false;
-        }
+      if (response.success) {
+        this.companyListData = response.data;
+        this.filteredDataarray = this.companyListData;
+        this.loader = false;
       }
-    })
+    }, error => {
+      this.loader = false;
+    });
   }
 
   openDialogCompanyHistory(id: any) {

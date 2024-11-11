@@ -16,7 +16,7 @@
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                                 <div class="right_addbtn">
-                                    <button data-toggle="modal" (click)="openDialog6()"
+                                    <button data-toggle="modal" (click)="openDialogCreateCompany()"
                                         data-target="#actionCompany_modal"
                                         class="btn btn-success btn-sm create_header_btn" mat-raised-button>
                                         <i class="mdi mdi-account"></i>
@@ -66,7 +66,7 @@
                                 <td class="col" data-name="Name">{{item.company_name}}</td>
                                 <td class="col" data-name="Logo">
                                     <div class="list_image_block" *ngIf="item.main_logo == null">
-                                        <img src="assets/imgs/rk-group-logo.png" />
+                                        <img src="assets/imgs/rk-group-logo.png" onerror="this.src='assets/imgs/no-images.png';"  />
                                     </div>
                                     <div class="list_image_block" *ngIf="item.main_logo != null">
                                         <img src="{{item.main_logo}}" />
