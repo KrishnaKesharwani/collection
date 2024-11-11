@@ -2,45 +2,43 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container full_height_cover small_popup">
+<div class="dialoge_middle_container full_height_cover ">
     <table class="table table-bordered table-responsive bg-white more_table mb-30">
         <tbody>
             <tr>
                 <td><b>Fixed Deposit Name:</b></td>
-                <td>RK-101</td>
+                <td>{{data.name}}</td>
             </tr>
             <tr>
                 <td><b>Start Date :</b></td>
-                <td>RK-101</td>
+                <td>{{data.start_date}}</td>
             </tr>
             <tr>
                 <td><b>End Date :</b></td>
-                <td>10</td>
+                <td>{{data.end_date}}</td>
             </tr>
-            <tr>
-                <td><b>Days / Time Slot :</b></td>
-                <td>2</td>
-            </tr>
+
             <tr>
                 <td><b>Start Amount :</b></td>
-                <td>2</td>
+                <td>{{data.deposit_amount}}</td>
             </tr>
             <tr>
                 <td><b>End Amount :</b></td>
-                <td>2</td>
+                <td>{{data.refund_amount}}</td>
             </tr>
             <tr>
                 <td><b>Customer Name :</b></td>
-                <td>2</td>
+                <td>{{data.customer?.name}}</td>
             </tr>
         </tbody>
     </table>
     <form focusInvalidInput [formGroup]="moneyPaidForm">
         <div class="modal_insert">
             <app-input label="Paid Amount" [(value)]="amount" [isRequired]="true" [className]="'bottom_error_msg'"
-                [form]="moneyPaidForm" [key]="'amount'" [displayMsg]="'Customer Name is required'"></app-input>
-            <app-dropdwon [optionArray]="debitTypeArray" [form]="moneyPaidForm" [key]="'debitType'"
-                field="Money Paid Type"></app-dropdwon>
+                [form]="moneyPaidForm" [key]="'amount'" [displayMsg]="'Paid amount is required'"></app-input>
+            <app-dropdwon [optionArray]="dropdownService.debit_type" [form]="moneyPaidForm" [key]="'status'"
+                formControlName="debit_type" field="Money Paid Type"></app-dropdwon>
+
             <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
                 [className]="'bottom_error_msg'" [form]="moneyPaidForm" [key]="'details'"></app-textarea>
         </div>
@@ -48,5 +46,10 @@
 </div>
 <div class="dialoge_button_container">
     <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button (click)="moneySubmit()">Submit</button>
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="save()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span>Submit</span>
+
+    </button>
 </div>

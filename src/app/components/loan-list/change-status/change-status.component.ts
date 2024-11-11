@@ -21,7 +21,7 @@ export class ChangeStatusComponent {
   loading = false;
   gatLoanid: any;
 
-  constructor(public dialogRef: MatDialogRef<ChangeStatusComponent>, public _service: LoanService ,public _toaster: ToastrService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string; data: any; },
+  constructor(public dialogRef: MatDialogRef<ChangeStatusComponent>, public _service: LoanService, public _toaster: ToastrService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string; data: any; },
   ) { }
 
   ngOnInit() {
@@ -34,14 +34,14 @@ export class ChangeStatusComponent {
       loanreason: ['', Validators.required]
     });
   }
-  
+
   onClose() {
     this.dialogRef.close();
   }
 
   updateLoanStatus() {
     if (this.changeLoanStatusForm.valid) {
-      debugger;
+
       let currentloan_status = this.changeLoanStatusForm.get('loan_status')?.value;
       let currentloan_reason = this.changeLoanStatusForm.get('loanreason')?.value;
       if (this.gatLoanid != "") {

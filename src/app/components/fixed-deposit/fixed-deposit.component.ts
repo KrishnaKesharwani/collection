@@ -20,17 +20,18 @@ export class FixedDepositComponent {
 
 
   fixedDepositListData: any[] = [];
-  loader: any;
+  loader: boolean = false;
   filteredDataarray: any;
   depositListData: any;
-  constructor(private actionService: ActionService, public _customActionService: CustomActionsService,) { }
+  company_id: any;
+  constructor(public _service: FixedDepositService, private actionService: ActionService, public _customActionService: CustomActionsService,) { }
 
 
   ngOnInit() {
     const data = sessionStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
-      // this.company_id = userData.company_id;
+      this.company_id = userData.company_id;
 
     }
 
@@ -38,7 +39,17 @@ export class FixedDepositComponent {
   }
 
   getDepositList() {
-    this.fixedDepositListData = [];
+    this.loader = true;
+    let obj = {
+      company_id: this.company_id,
+      status: 'active'
+    }
+    this._service.getFixedDeposit(obj).subscribe((data: any) => {
+      this.fixedDepositListData = data.data.deposits;
+      this.filteredDataarray = this.fixedDepositListData;
+      this.loader = false;
+    })
+
   }
 
   openDialogAddFixedDeposit() {
@@ -92,11 +103,12 @@ export class FixedDepositComponent {
   // end view details
 
   // start change status
-  openDialogStatus(data?: any) {
+  openDialogStatus(data: any) {
     const dialogRef = this.dialog.open(ChangeStatusComponent, {
       disableClose: true,
       panelClass: 'delete_popup',
       data: {
+        data: data,
         title: 'Update Status',
         field_value: 'Status'
       },
@@ -108,7 +120,7 @@ export class FixedDepositComponent {
       }
     });
   }
-  
+
   statusUpdate(data: any) {
 
   }
@@ -139,17 +151,21 @@ export class FixedDepositComponent {
     this.filteredDataarray = this._customActionService.sortData(column, this.fixedDepositListData);
   }
 
-  searchColumns: any[] = ['company_name', 'owner_name', 'advance_amount', 'status', 'mobile'];
+  searchColumns: any[] = ['name', 'start_date', 'end_date',];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
 
     if (this.searchTerm == null || this.searchTerm == '') {
-      this.filteredDataarray = this.depositListData;
+      this.filteredDataarray = this.fixedDepositListData;
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
+  }
+
+  getFixedDeposit() {
+
   }
 
 }

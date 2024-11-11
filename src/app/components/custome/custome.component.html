@@ -8,8 +8,7 @@
                 <div class="col text-right pr-1 optionwith_search_block">
                     <div class="listsearch-topblock search_withaddbtn">
                         <div class="search-box">
-                            <input type="text" placeholder="Search..." (keyup)="searchTable($event)"
-                                class="searchtxt" />
+                            <input type="text" placeholder="Search" (keyup)="searchTable($event)" class="searchtxt" />
                             <i class="mdi mdi-magnify"></i>
                         </div>
                         <div class="right_addbtn multibtn_right_addbtn">
@@ -19,7 +18,8 @@
                                 <i class="mdi mdi-account-plus-outline"></i>
                                 <span class="btn-txt button-text">Add</span>
                             </button>
-                            <button *ngIf="user_type == 1" data-toggle="modal" (click)="openDialogImport()" data-target="#actionCustomer_modal"
+                            <button *ngIf="user_type == 1" data-toggle="modal" (click)="openDialogImport()"
+                                data-target="#actionCustomer_modal"
                                 class="btn btn-success btn-sm create_header_btn res_display_none" mat-raised-button>
                                 <i class="mdi mdi-import"></i>
                                 <span class="btn-txt button-text">Import</span>
@@ -150,7 +150,8 @@
                                         <button mat-menu-item (click)="openDialogEditCustomer(item)">
                                             <i class="mdi mdi-pencil mr-2"></i> <span>Edit Customer</span>
                                         </button>
-                                        <button *ngIf="user_type == 1" mat-menu-item (click)="openDialogChangeStatus(item)">
+                                        <button *ngIf="user_type == 1" mat-menu-item
+                                            (click)="openDialogChangeStatus(item)">
                                             <i class="mdi mdi-account-off-outline mr-2"></i>
                                             <span>Status</span>
                                         </button>

@@ -19,9 +19,11 @@ export class CommonComponentService {
   actionForLoanStatus = ['approved', 'running', 'pending', 'cancelled'];
   loanliststatus = ['completed', 'paid', 'approved', 'pending', 'cancelled'];
   status = ['active', 'inactive'];
+  debit_type = ['monthly', 'money back'];
   plan = ['monthly', 'quarterly', 'half yerly', 'yearly', 'demo'];
   offerType = ['offers', 'schemes'];
   moneyStatus = ['working', 'received', 'cancelled'];
+  deposit_status = ['completed', 'received', 'cancelled'];
   private dropdownOptionsSubject = new BehaviorSubject<{ [key: string]: string[] }>({});
   dropdownOptions$ = this.dropdownOptionsSubject.asObservable();
 

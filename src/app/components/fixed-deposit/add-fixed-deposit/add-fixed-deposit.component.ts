@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ToastRef, ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { FixedDepositService } from 'src/app/services/fixedDeposit/fixed-deposit.service';
 
 @Component({
   selector: 'app-add-fixed-deposit',
@@ -20,8 +23,15 @@ export class AddFixedDepositComponent {
   company_id: any;
   customerListData: any[] = [];
   user_type: any;
+  name: string = '';
+  start_date: string = '';
+  end_date: string = '';
+  deposit_amount: string = '';
+  refund_amount: string = '';
+  details: string = '';
+  loading: boolean = false;
 
-  constructor(public dialogRef: MatDialogRef<AddFixedDepositComponent>, public _customActionService: CustomActionsService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  constructor(public _router: Router, public _tostr: ToastrService, public _fixedDepositService: FixedDepositService, public dialogRef: MatDialogRef<AddFixedDepositComponent>, public _customActionService: CustomActionsService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
 
@@ -33,32 +43,75 @@ export class AddFixedDepositComponent {
       this.user_type = userData.user_type;
     }
     this.getCustomerList();
+
+
     this.fixedDepositForm = this.fb.group({
-      customer_name: ['', Validators.required],
-      fixed_deposit_name: ['', Validators.required],
-      moblie: ['', Validators.required],
-      details: [''],
-      email: [''],
+      customer_id: ['', Validators.required],
+      name: ['', Validators.required],
+
       status: [''],
-      address: [''],
-      adhar_front: [''],
-      adhar_back: [''],
-      adhar_number: [''],
-      start_amount: ['', Validators.required],
-      end_amount: [''],
+
+      deposit_amount: ['', Validators.required],
+      refund_amount: [''],
       start_date: [''],
-      end_date: ['']
+      end_date: [''],
+      details: ['']
     });
-    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+    this.fixedDepositId = this.dataa.data.id;
+    this.depositView();
+  }
+
+  depositView() {
+    this.fixedDepositForm.patchValue({
+      ...this.dataa.data,
+
+    });
   }
 
   save() {
-    this.fixedDepositForm.markAllAsTouched()
-    if (this.fixedDepositForm.valid) {
-      // this.dialog.closeAll();
+    this.loader = true;
+
+    if (this.fixedDepositId) {
+      let obj = {
+        company_id: this.company_id,
+        deposit_id: this.fixedDepositId,
+        ...this.fixedDepositForm.value
+      }
+
+      this._fixedDepositService.update(obj).subscribe((data: any) => {
+        console.log(data);
+
+        this.loading = false;
+        this.dialogRef.close(true);
+        this._tostr.success(data.message, "Success");
+        this._router.navigate(['/fixed_deposit']);
+
+      })
+    } else {
+      if (this.fixedDepositForm.valid) {
+        let obj = {
+          company_id: this.company_id,
+          // deposit_id: this.fixedDepositId,
+          ...this.fixedDepositForm.value
+        }
+
+        this._fixedDepositService.create(obj).subscribe((data: any) => {
+          console.log(data);
+          this.loading = false;
+          this.dialogRef.close(true);
+          this._tostr.success(data.message, "Success");
+          this._router.navigate(['/fixed_deposit']);
+
+        })
+      } else {
+        this.fixedDepositForm.markAllAsTouched()
+      }
     }
+
+
+
   }
-  
+
   loader = false;
   getCustomerList() {
     this.loader = true;
@@ -76,24 +129,6 @@ export class AddFixedDepositComponent {
   onClose() {
     this.dialogRef.close();
   }
-  update() {
-    this.fixedDepositForm.markAllAsTouched()
-    if (this.fixedDepositForm.valid) {
-      // this.dialog.closeAll();
-    }
-  }
 
-  selectedFile: File | null = null;
 
-  onFileChange(file: File | null): void {
-    this.selectedFile = file;
-    // Handle the file as needed
-  }
-
-  selectedFile2: File | null = null;
-
-  onFileChange2(file: File | null): void {
-    this.selectedFile2 = file;
-    // Handle the file as needed
-  }
 }

@@ -10,9 +10,9 @@
                         <div class="col text-right pr-1 datewith_search_block">
                             <div class="listsearch-topblock search_withaddbtn">
                                 <div class="search-box">
-                                    <input type="text" placeholder="Search..." (keyup)="searchTable($event)"
+                                    <input type="text" placeholder="Search" (keyup)="searchTable($event)"
                                         class="searchtxt" />
-                                    <!-- <input type="text" #inputElement [(ngModel)]="searchTerm"  (keyup)="search($event)" placeholder="Search" class="searchtxt" /> -->
+
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                                 <div class="right_addbtn">
@@ -39,11 +39,11 @@
                                 </div>
                             </th>
                             <th class="col sorting_apply"><span>Customer Name</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                <!-- <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('cutomer_name');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
-                                </div>
+                                </div> -->
                             </th>
 
                             <th class="col sorting_apply date_col"><span>Start Date</span>
@@ -60,41 +60,42 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col days_time_slot_col">Days / Time Slot</th>
+
                             <th class="col amount_col">Start Amount</th>
                             <th class="col amount_col">End Amount</th>
 
-                            <th class="col status_col">Status</th>
+                            <th class="col status_col"><span>Status</span>
+                                <!-- <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('status');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div> -->
+                            </th>
                             <th class="col action_col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td colspan="9">
+                            <td colspan="8">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
-                        <tr *ngIf="fixedDepositListData.length == 0 && !loader">
-                            <td colspan="9">
+                        <tr *ngIf="filteredDataarray.length == 0 && !loader">
+                            <td colspan="8">
                                 <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
                             </td>
                         </tr>
-                        <ng-container *ngIf="fixedDepositListData.length != 0 && !loader">
-                            <tr class="received_row" *ngFor="let item of fixedDepositListData">
+                        <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                            <tr class="received_row" *ngFor="let item of filteredDataarray">
                                 <td class="col" data-name="Name">{{item.name}}</td>
-                                <td class="col" data-name="Logo">
-                                    <div class="list_image_block" *ngIf="item.image == null">
-                                        <img src="assets/imgs/rk-group-logo.png" />
-                                    </div>
-                                    <div class="list_image_block" *ngIf="item.image != null">
-                                        <img src="{{item.image}}" />
-                                    </div>
-                                </td>
+                                <td class="col" data-name="Name">{{item.customer?.name}}</td>
 
-                                <td class="col" data-name="Mobile">{{item.mobile}}</td>
-                                <td class="col" data-name="Start Date">{{item.email}}</td>
-                                <td class="col" data-name="Start Date">{{item.aadhar_no}}</td>
-                                <td class="col" data-name="End Date">{{item.join_date}}</td>
+
+                                <td class="col" data-name="Start Date">{{item.start_date}}</td>
+                                <td class="col" data-name="End Date">{{item.end_date}}</td>
+
+                                <td class="col" data-name="Start Amount">{{item.deposit_amount}}</td>
+                                <td class="col" data-name="End Amount">{{item.refund_amount}}</td>
 
 
                                 <td class="col text-center" data-name="Status">
@@ -121,7 +122,7 @@
                                                 <button mat-menu-item (click)="openDialogEditFixedDeposit(item)">
                                                     <i class="mdi mdi-pencil mr-2"></i> <span>Edit Deposit</span>
                                                 </button>
-                                                <button mat-menu-item (click)="openDialogStatus()">
+                                                <button mat-menu-item (click)="openDialogStatus(item)">
                                                     <i class="mdi mdi-account-off-outline mr-2"></i>
                                                     <span>Status Update</span>
                                                 </button>

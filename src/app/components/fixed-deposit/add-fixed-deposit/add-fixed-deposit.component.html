@@ -11,17 +11,20 @@
                     <mat-form-field class="global_dropdown" appearance="outline">
                         <mat-label>Available Customer - {{customerListData.length}}</mat-label>
                         <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
-                        <mat-select [formControl]="selectControl">
+                        <mat-select formControlName="customer_id">
                             <mat-option *ngFor="let customerdata of customerListData; let i =index"
                                 [value]="customerdata.id">
                                 <div class="customer_data_row">
                                     <span class="image_block">
-                                        <img src="{{customerdata.image}}" onerror="this.src='assets/imgs/default-pic.png';" >
+                                        <img src="{{customerdata.image}}"
+                                            onerror="this.src='assets/imgs/default-pic.png';">
                                     </span>
                                     <span class="other_details">
-                                        {{customerdata?.name}} - {{customerdata?.mobile}} - {{customerdata?.customer_no}} 
+                                        {{customerdata?.name}} - {{customerdata?.mobile}} -
+                                        {{customerdata?.customer_no}}
                                     </span>
-                                    <span class="badge bg-success text-white" [ngClass]="customerdata.status == 'active' ? 'bg-success' : 'bg-danger'" >{{customerdata.status}}</span>
+                                    <span class="badge bg-success text-white"
+                                        [ngClass]="customerdata.status == 'active' ? 'bg-success' : 'bg-danger'">{{customerdata.status}}</span>
                                     <!-- <span class="badge bg-danger text-white "
                                         *ngIf="customerdata.status == 'inactive'">{{customerdata.status}}</span>
                                     <span class="status">{{customerdata?.status}}</span> -->
@@ -31,49 +34,33 @@
                     </mat-form-field>
                 </div>
                 <div class="col-sm-4">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Fixed Deposite Name</mat-label>
-                        <input matInput required formControlName="fixed_deposit_name" name="fixed_deposit_name">
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'fixed_deposit_name'" [displayMsg]="'Fixed deposit name is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input [isDateField]="false" label="Name" [(value)]="name" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="fixedDepositForm" [key]="'name'"
+                        [displayMsg]="'Name is required'"></app-input>
                 </div>
                 <div class="col-sm-4">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Start Date</mat-label>
-                        <input type="date" matInput required formControlName="start_date" name="start_date" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'start_date'" [displayMsg]="'Start date is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="fixedDepositForm" [key]="'start_date'"
+                        [displayMsg]="'Start date is required'"></app-input>
                 </div>
                 <div class="col-sm-4">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>End Date</mat-label>
-                        <input type="date" matInput required formControlName="end_date" name="end_date" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'end_date'" [displayMsg]="'End date is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input [isDateField]="true" label="End Date" [(value)]="end_date" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="fixedDepositForm" [key]="'end_date'"
+                        [displayMsg]="'End date is required'"></app-input>
                 </div>
                 <div class="col-sm-4">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Deposit Amount</mat-label>
-                        <input matInput required formControlName="start_amount" name="start_amount" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'start_amount'" [displayMsg]="'Start amount is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+                    <app-input [isDateField]="false" label="Deposit Amount" [(value)]="deposit_amount"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="fixedDepositForm"
+                        [key]="'deposit_amount'" [displayMsg]="'Deposit amount is required'"></app-input>
+
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <mat-form-field class="global_textbox_block" appearance="outline">
-                        <mat-label>Refund Amount</mat-label>
-                        <input matInput required formControlName="end_amount" name="end_amount" />
-                        <app-input-field-validation [className]="'bottom_error_msg'" [form]="fixedDepositForm"
-                            [key]="'end_amount'" [displayMsg]="'End amount is required'">
-                        </app-input-field-validation>
-                    </mat-form-field>
+
+                    <app-input [isDateField]="false" label="Refund Amount" [(value)]="refund_amount" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="fixedDepositForm" [key]="'refund_amount'"
+                        [displayMsg]="'Refund amount is required'"></app-input>
+
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <!-- <app-dropdwon key="status" field="Status"></app-dropdwon> -->
@@ -81,18 +68,22 @@
                         [form]="fixedDepositForm" [key]="'status'" field="Status"></app-dropdwon>
                 </div>
                 <div class="col-sm-12">
-                    <mat-form-field class="global_textarea_block" appearance="outline">
-                        <mat-label>Details</mat-label>
-                        <textarea matInput formControlName="details" name="details"></textarea>
-                    </mat-form-field>
+                    <app-input [isDateField]="false" label="Details" [(value)]="details" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="fixedDepositForm" [key]="'details'"
+                        [displayMsg]="'Details is required'"></app-input>
                 </div>
             </div>
         </div>
 
     </form>
 </div>
+
 <div class="dialoge_button_container">
     <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button (click)="save()" *ngIf="!fixedDepositId">Submit</button>
-    <button class="global_submit_btn" mat-flat-button (click)="save()" *ngIf="fixedDepositId">Update</button>
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="save()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span *ngIf="!fixedDepositId">Submit</span>
+        <span *ngIf="fixedDepositId">Update</span>
+    </button>
 </div>

@@ -31,11 +31,18 @@ export class ViewDetailsComponent {
     { item: 'Status', cost: 15 },
     { item: 'Details', cost: 15 },
   ];
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  data: any;
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
+  ngOnInit() {
+    this.getViewDeposit();
+  }
+  getViewDeposit() {
+    console.log(this.dataa.data)
+    this.data = this.dataa.data;
 
-
+  }
 
 
 }
