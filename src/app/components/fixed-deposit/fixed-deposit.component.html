@@ -88,16 +88,11 @@
                         <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
                             <tr class="received_row" *ngFor="let item of filteredDataarray">
                                 <td class="col" data-name="Name">{{item.name}}</td>
-                                <td class="col" data-name="Name">{{item.customer?.name}}</td>
-
-
+                                <td class="col" data-name="Customer Name">{{item.customer?.name}}</td>
                                 <td class="col" data-name="Start Date">{{item.start_date}}</td>
                                 <td class="col" data-name="End Date">{{item.end_date}}</td>
-
                                 <td class="col" data-name="Start Amount">{{item.deposit_amount}}</td>
                                 <td class="col" data-name="End Amount">{{item.refund_amount}}</td>
-
-
                                 <td class="col text-center" data-name="Status">
                                     <span class="badge bg-success text-white"
                                         *ngIf="item.status == 'active'">{{item.status}}</span>
@@ -112,7 +107,9 @@
                                         </button>
                                         <mat-menu #menu="matMenu">
                                             <div class="table_actionmenu">
-
+                                                <button mat-menu-item (click)="openDialogPaidhistory(item)">
+                                                    <i class="mdi mdi-history mr-2"></i> <span>Paid History</span>
+                                                </button>
                                                 <button mat-menu-item (click)="openDialogFixedDepositDetails(item)">
                                                     <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                                 </button>

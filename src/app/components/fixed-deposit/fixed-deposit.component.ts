@@ -7,6 +7,8 @@ import { ActionService } from 'src/app/services/action/action.service';
 import { FixedDepositService } from 'src/app/services/fixedDeposit/fixed-deposit.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { PaidMoneyComponent } from './paid-money/paid-money.component';
+import { ToastrService } from 'ngx-toastr';
+import { AmountPaidHistoryComponent } from './amount-paid-history/amount-paid-history.component';
 
 @Component({
   selector: 'app-fixed-deposit',
@@ -20,11 +22,11 @@ export class FixedDepositComponent {
 
 
   fixedDepositListData: any[] = [];
-  loader: boolean = false;
+  loader: boolean = true;
   filteredDataarray: any;
   depositListData: any;
   company_id: any;
-  constructor(public _service: FixedDepositService, private actionService: ActionService, public _customActionService: CustomActionsService,) { }
+  constructor(public _toaster: ToastrService, public _service: FixedDepositService, private actionService: ActionService, public _customActionService: CustomActionsService,) { }
 
 
   ngOnInit() {
@@ -48,8 +50,10 @@ export class FixedDepositComponent {
       this.fixedDepositListData = data.data.deposits;
       this.filteredDataarray = this.fixedDepositListData;
       this.loader = false;
-    })
-
+    }, error => {
+      this._toaster.error(error.massage);
+      this.loader = false;
+    });
   }
 
   openDialogAddFixedDeposit() {
@@ -85,7 +89,17 @@ export class FixedDepositComponent {
     });
   }
   // end edit fixed deposit 
-
+  openDialogPaidhistory(data?: any) {
+    const dialogRef = this.dialog.open(AmountPaidHistoryComponent, {
+      panelClass: 'medium_popup',
+      data: {
+        title: 'Fixed Deposit Details',
+        data: data,
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
   // start view details
   openDialogFixedDepositDetails(data?: any) {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
@@ -151,7 +165,7 @@ export class FixedDepositComponent {
     this.filteredDataarray = this._customActionService.sortData(column, this.fixedDepositListData);
   }
 
-  searchColumns: any[] = ['name', 'start_date', 'end_date',];
+  searchColumns: any[] = ['name', 'start_date', 'end_date', 'deposit_amount', 'refund_amount'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
@@ -162,10 +176,6 @@ export class FixedDepositComponent {
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
-  }
-
-  getFixedDeposit() {
-
   }
 
 }

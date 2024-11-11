@@ -9,8 +9,9 @@ import { CommonComponentsModule } from 'src/app/common/common-components.module'
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddFixedDepositComponent } from './add-fixed-deposit/add-fixed-deposit.component';
 import { PaidMoneyComponent } from './paid-money/paid-money.component';
+import { AmountPaidHistoryComponent } from './amount-paid-history/amount-paid-history.component';
 @NgModule({
-  declarations: [PaidMoneyComponent, FixedDepositComponent, ViewDetailsComponent, ChangeStatusComponent, AddFixedDepositComponent],
+  declarations: [AmountPaidHistoryComponent, PaidMoneyComponent, FixedDepositComponent, ViewDetailsComponent, ChangeStatusComponent, AddFixedDepositComponent],
   imports: [
     CommonModule,
     MaterialModule,

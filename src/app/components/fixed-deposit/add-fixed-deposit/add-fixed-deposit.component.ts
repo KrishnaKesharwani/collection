@@ -68,10 +68,9 @@ export class AddFixedDepositComponent {
     });
   }
 
-  save() {
-    this.loader = true;
-
+  submitDeposit() {
     if (this.fixedDepositId) {
+      this.loader = true;
       let obj = {
         company_id: this.company_id,
         deposit_id: this.fixedDepositId,

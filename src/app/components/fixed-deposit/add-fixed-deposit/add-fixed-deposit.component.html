@@ -52,15 +52,11 @@
                     <app-input [isDateField]="false" label="Deposit Amount" [(value)]="deposit_amount"
                         [isRequired]="true" [className]="'bottom_error_msg'" [form]="fixedDepositForm"
                         [key]="'deposit_amount'" [displayMsg]="'Deposit amount is required'"></app-input>
-
-
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-
                     <app-input [isDateField]="false" label="Refund Amount" [(value)]="refund_amount" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="fixedDepositForm" [key]="'refund_amount'"
                         [displayMsg]="'Refund amount is required'"></app-input>
-
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
                     <!-- <app-dropdwon key="status" field="Status"></app-dropdwon> -->
@@ -68,19 +64,21 @@
                         [form]="fixedDepositForm" [key]="'status'" field="Status"></app-dropdwon>
                 </div>
                 <div class="col-sm-12">
-                    <app-input [isDateField]="false" label="Details" [(value)]="details" [isRequired]="true"
+                    <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [displayMsg]="'Details is required.'" [form]="fixedDepositForm"
+                        [key]="'details'"></app-textarea>
+                    <!-- <app-input [isDateField]="false" label="Details" [(value)]="details" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="fixedDepositForm" [key]="'details'"
-                        [displayMsg]="'Details is required'"></app-input>
+                        [displayMsg]="'Details is required'"></app-input> -->
                 </div>
             </div>
         </div>
 
     </form>
 </div>
-
 <div class="dialoge_button_container">
     <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
-    <button type="submit" class="global_submit_btn" mat-flat-button (click)="save()">
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="submitDeposit()">
         <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
         <app-button-loader *ngIf="loading"></app-button-loader>
         <span *ngIf="!fixedDepositId">Submit</span>
