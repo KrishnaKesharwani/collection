@@ -17,9 +17,6 @@ interface Transaction {
 })
 
 export class ChangeStatusComponent {
-
-
-
   loading: boolean = false;
   changeStatusForm!: FormGroup;
   reason: string = '';
@@ -27,19 +24,16 @@ export class ChangeStatusComponent {
 
   constructor(public _router: Router, public _service: FixedDepositService, public _tostr: ToastrService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialogRef: MatDialogRef<ChangeStatusComponent>, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
+
   ngOnInit() {
-
-
     this.changeStatusForm = this.fb.group({
-
       deposit_status: ['', Validators.required],
       reason: ['', Validators.required]
     });
-
     this.getViewDeposit();
   }
-  save() {
 
+  submitStatus() {
     if (this.changeStatusForm.valid) {
       this.loading = true;
       let obj = {
@@ -65,6 +59,5 @@ export class ChangeStatusComponent {
   getViewDeposit() {
     console.log(this.dataa.data)
     this.data = this.dataa.data;
-
   }
 }

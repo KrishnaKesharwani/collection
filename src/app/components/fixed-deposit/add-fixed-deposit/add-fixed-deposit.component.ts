@@ -48,9 +48,7 @@ export class AddFixedDepositComponent {
     this.fixedDepositForm = this.fb.group({
       customer_id: ['', Validators.required],
       name: ['', Validators.required],
-
       status: [''],
-
       deposit_amount: ['', Validators.required],
       refund_amount: [''],
       start_date: [''],
@@ -70,7 +68,7 @@ export class AddFixedDepositComponent {
 
   submitDeposit() {
     if (this.fixedDepositId) {
-      this.loader = true;
+      this.loading = true;
       let obj = {
         company_id: this.company_id,
         deposit_id: this.fixedDepositId,
@@ -98,8 +96,8 @@ export class AddFixedDepositComponent {
           console.log(data);
           this.loading = false;
           this.dialogRef.close(true);
-          this._tostr.success(data.message, "Success");
-          this._router.navigate(['/fixed_deposit']);
+          // this._tostr.success(data.message, "Success");
+          // this._router.navigate(['/fixed_deposit']);
 
         })
       } else {

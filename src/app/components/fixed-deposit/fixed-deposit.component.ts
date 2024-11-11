@@ -34,9 +34,7 @@ export class FixedDepositComponent {
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
-
     }
-
     this.getDepositList();
   }
 
@@ -93,25 +91,19 @@ export class FixedDepositComponent {
     const dialogRef = this.dialog.open(AmountPaidHistoryComponent, {
       panelClass: 'medium_popup',
       data: {
-        title: 'Fixed Deposit Details',
+        title: 'Amount Paid History',
         data: data,
       },
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    });   
   }
   // start view details
   openDialogFixedDepositDetails(data?: any) {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
-
-
+      panelClass: 'medium_popup',
       data: {
         title: 'Fixed Deposit Details',
         data: data,
       },
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
     });
   }
   // end view details
@@ -130,14 +122,15 @@ export class FixedDepositComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.statusUpdate(data);
+        this.getDepositList();
+        // this.statusUpdate(data);
       }
     });
   }
 
-  statusUpdate(data: any) {
+  // statusUpdate(data: any) {
 
-  }
+  // }
 
   openDialogPaidMoney(data: any) {
     const dialogRef = this.dialog.open(PaidMoneyComponent, {
@@ -151,6 +144,9 @@ export class FixedDepositComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.getDepositList();
+      }
     });
   }
   // end change status

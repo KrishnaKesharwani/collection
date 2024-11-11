@@ -6,9 +6,9 @@
     <table class="table table-bordered table-responsive bg-white more_table instalment_details_container">
         <thead>
             <tr>
-                <th><b>Sno. </b></th>
+                <th class="text-center"><b>Sno. </b></th>
                 <th><b>Date </b></th>
-                <th><b>Type </b></th>
+                <th class="text-center"><b>Type </b></th>
                 <th><b>Amount </b></th>
                 <th><b>Details </b></th>
             </tr>
@@ -23,11 +23,11 @@
             </tr>
             <ng-container *ngIf="data.length != 0">
                 <tr class="received_row" *ngFor="let datainner of data; let i=index">
-                    <td class="col text-right">{{i+1}}</td>
-                    <!-- <td class="col">{{datainner.action_date}}</td>
+                    <td class="col text-center">{{i+1}}</td>
+                    <td class="col">{{datainner?.action_date}}</td>
                     <td class="col text-center">{{datainner?.debit_type}}</td>
                     <td class="col text-right">{{datainner?.amount}}</td>
-                    <td class="col">{{datainner?.details}}</td> -->
+                    <td class="col">{{datainner?.details}}</td>
                 </tr>
             </ng-container>
         </tbody>

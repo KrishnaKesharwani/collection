@@ -27,12 +27,10 @@ export class PaidMoneyComponent {
   ) { }
 
   ngOnInit() {
-
     this.fixedDepositId = this.dataa.data.id;
-
     this.moneyPaidForm = this.fb.group({
       amount: ['', Validators.required],
-      debit_type: ['', Validators.required],
+      debit_type: ['monthly', Validators.required],
       details: [''],
     });
     this.getViewDeposit();
@@ -40,15 +38,15 @@ export class PaidMoneyComponent {
 
 
   getViewDeposit() {
-    console.log(this.dataa.data)
+    // console.log(this.dataa.data)
     this.data = this.dataa.data;
-
   }
+
   onClose() {
     this.dialogRef.close();
   }
 
-  save() {
+  savePaidAmount() {
     if (this.moneyPaidForm.valid) {
       this.loading = true;
       let obj = {
@@ -59,7 +57,7 @@ export class PaidMoneyComponent {
         this.loading = false;
         this.dialogRef.close(true);
         this._tostr.success(data.message, "Success");
-        this._router.navigate(['/fixed_deposit']);
+        // this._router.navigate(['/fixed_deposit']);
       })
     } else {
       this.moneyPaidForm.markAllAsTouched()
@@ -67,7 +65,7 @@ export class PaidMoneyComponent {
 
   }
 
-  moneySubmit() {
-    this.dialogRef.close();
-  }
+  // moneySubmit() {
+  //   this.dialogRef.close();
+  // }
 }
