@@ -96,7 +96,7 @@ export class AddCompanyComponent {
   }
   submitCompanyDetails() {
     if (this.company_id) {
-      // debugger;
+
       // const invalidFields = this.getInvalidControls();
       // console.log('Invalid Controls:', invalidFields);
       if (this.companyForm.valid) {

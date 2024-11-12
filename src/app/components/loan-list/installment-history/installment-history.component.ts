@@ -24,8 +24,9 @@ export class InstallmentHistoryComponent {
   constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any; },
   ) { }
 
-  onInit() {
+  ngOnInit() {
     this.data = this.dataa.data.loan_history;
+
   }
 
   /** Gets the total cost of all transactions. */

@@ -1,4 +1,3 @@
-
 <div class="card shadow dash-cardbox">
     <div class="card-header">
         <div class="row align-items-center">
@@ -22,16 +21,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="col text-center" data-name="CNo.">Rk-01</td>
-                <td class="col" data-name="Customer">Bablu Mishra</td>
-                <td class="col" data-name="Collect Member">Bhaijan</td>
-                <td class="col" data-name="Mobile">6263626505</td>
-                <td class="col" data-name="Date">23-11-2024</td>
-                <td class="col text-right" data-name="Total Amount"><i class="mdi mdi-currency-inr mr-1"></i>22000.00</td>
-                <td class="col text-right" data-name="Pending Amount"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
+            <tr *ngFor="let loan of loanData">
+                <td class="col text-center" data-name="CNo.">{{loan.customer?.customer_no}}</td>
+                <td class="col" data-name="Customer">{{loan.customer?.name}}</td>
+                <td class="col" data-name="Collect Member">{{loan.member?.name}}</td>
+                <td class="col" data-name="Mobile">{{loan.customer?.mobile}}</td>
+                <td class="col" data-name="Date">{{loan.apply_date}}</td>
+                <td class="col text-right" data-name="Total Amount"><i
+                        class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}</td>
+                <td class="col text-right" data-name="Pending Amount"><i
+                        class="mdi mdi-currency-inr mr-1"></i>{{loan.remaining_amount}}</td>
                 <td class="col text-center" data-name="Status">
-                    <div class="badge bg-warning text-white">Pending</div>
+                    <div class="badge bg-success text-white">{{loan.loan_status}}</div>
                 </td>
                 <td class="action_col" data-name="Action">
                     <div placement="bottom-right">
@@ -40,11 +41,11 @@
                         </button>
                         <mat-menu #menuTable="matMenu">
                             <div class="table_actionmenu">
-                                <button mat-menu-item (click)="openDialogLoanHistory()">
+                                <button mat-menu-item (click)="openDialogLoanHistory(loan)">
                                     <i class="mdi mdi-history mr-2"></i>
                                     <span>Loan History</span>
                                 </button>
-                                <button mat-menu-item (click)="openDialogViewDetails()">
+                                <button mat-menu-item (click)="openDialogViewDetails(loan)">
                                     <i class="mdi mdi-eye mr-2"></i>
                                     <span>View Details</span>
                                 </button>
@@ -69,21 +70,6 @@
             <div class="col col-sm-4 pl-1">
                 <h3 class="mb-0">Apply new loan list</h3>
             </div>
-            <!-- <div class="col text-right pr-1">
-                <div class="listsearch-topblock search_withaddbtn">
-                    <div class="search-box">
-                        <input type="search" placeholder="Search" class="searchtxt long_search" />
-                        <i class="mdi mdi-magnify"></i>
-                    </div>
-                    <div class="right_addbtn">
-                        <button data-toggle="modal" data-target="#addmember_modal" type="button" class="btn btn-success btn-sm create_header_btn" mat-raised-button>
-                            <i class="mdi mdi-account">
-                            </i>
-                            <span class="btn-txt button-text">Add Member</span>
-                        </button>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
     <table class="table align-items-center table-flush mydata-table">
@@ -100,15 +86,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="col text-center" data-name="CNo.">Rk-01</td>
-                <td class="col" data-name="Customer">Bablu Mishra</td>
-                <td class="col" data-name="Apply By">Self</td>
-                <td class="col" data-name="Mobile">6263626505</td>
-                <td class="col" data-name="Apply Date"><small>23-05-2021 10:30 am</small></td>
-                <td class="col text-right" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>1500.00</td>
+            <tr *ngFor="let loan of newLoanData">
+                <td class="col text-center" data-name="CNo.">{{loan.customer?.customer_no}}</td>
+                <td class="col" data-name="Customer">{{loan.customer?.name}}</td>
+                <td class="col" data-name="Apply By">{{loan.customer?.apply_by}}</td>
+                <td class="col" data-name="Mobile">{{loan.customer?.mobile}}</td>
+                <td class="col" data-name="Apply Date"><small>{{loan.customer?.apply_date}}</small></td>
+                <td class="col text-right" data-name="Amount"><i
+                        class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}</td>
                 <td class="col text-center" data-name="Status">
-                    <div class="badge bg-warning text-white">Pending</div>
+                    <div class="badge bg-warning text-white">{{loan.loan_status}}</div>
                 </td>
                 <td class="action_col" data-name="Action">
                     <div placement="bottom-right">
@@ -117,11 +104,11 @@
                         </button>
                         <mat-menu #menu="matMenu">
                             <div class="table_actionmenu">
-                                <button mat-menu-item (click)="openDialogActionForLoan()">
+                                <button mat-menu-item (click)="openDialogActionForLoan(loan)">
                                     <i class="mdi mdi-message mr-2"></i>
                                     <span>Action For Loan</span>
                                 </button>
-                                <button mat-menu-item (click)="openDialogViewDetails()">
+                                <button mat-menu-item (click)="openDialogViewDetails(loan)">
                                     <i class="mdi mdi-eye mr-2"></i>
                                     <span>View Details</span>
                                 </button>

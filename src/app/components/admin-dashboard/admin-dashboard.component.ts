@@ -3,6 +3,8 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angu
 import { MassageForApplierComponent } from './massage-for-applier/massage-for-applier.component';
 import { ActionForLoanComponent } from './action-for-loan/action-for-loan.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
+import { LoanService } from 'src/app/services/loan/loan.service';
+import { InstallmentHistoryComponent } from '../loan-list/installment-history/installment-history.component';
 
 export interface DialogData {
   animal: string;
@@ -18,24 +20,36 @@ export class AdminDashboardComponent {
   animal!: string;
   name!: string;
   userType: any;
-  constructor(public dialog: MatDialog) { }
+  company_id: any;
+  loanData: any;
+  dashboardData: any;
+  newLoanData: any;
+  newLoanDashboardData: any;
+  constructor(public dialog: MatDialog, public _service: LoanService) { }
   ngOnInit() {
     const data = sessionStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
-      this.userType = userData.user_type
+      this.userType = userData.user_type;
+      this.company_id = userData.company_id;
     } else {
       this.userType = null; // or set a default value
     }
+
+    this.getCompletedLoanList();
+    this.getApplyNewLoanList();
   }
 
-  openDialogLoanHistory(): void {
-    const dialogRef = this.dialog.open(MassageForApplierComponent, {
-      // data: { name: this.name, animal: this.animal },
+  openDialogLoanHistory(data?: any): void {
+    const dialogRef = this.dialog.open(InstallmentHistoryComponent, {
+      disableClose: true,
+      data: {
+        title: 'Loan History',
+        data: data
+      },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.animal = result;
     });
   }
 
@@ -47,11 +61,12 @@ export class AdminDashboardComponent {
 
   // start view details
   readonly dialog2 = inject(MatDialog);
-  openDialogViewDetails() {
+  openDialogViewDetails(data?: any) {
     const dialogRef = this.dialog2.open(ViewDetailsComponent, {
 
 
       data: {
+        data: data,
         title: 'Apply Loan Coustomer Details',
 
       },
@@ -59,14 +74,40 @@ export class AdminDashboardComponent {
   }
 
   readonly dialog3 = inject(MatDialog);
-  openDialogActionForLoan() {
+  openDialogActionForLoan(data?: any) {
     const dialogRef = this.dialog3.open(ActionForLoanComponent, {
 
 
       data: {
         title: 'Message For Applier',
-
+        data: data
       },
     });
+  }
+
+  getCompletedLoanList() {
+    let obj = {
+      company_id: this.company_id,
+      loan_status: 'completed',
+      status: 'active'
+    };
+    this._service.getLoanList(obj).subscribe((data: any) => {
+      this.loanData = data.data.loans;
+      this.dashboardData = data.data;
+
+    })
+  }
+
+  getApplyNewLoanList() {
+    let obj = {
+      company_id: this.company_id,
+      loan_status: 'pending',
+      status: 'active'
+    };
+    this._service.getLoanList(obj).subscribe((data: any) => {
+      this.newLoanData = data.data.loans;
+      this.newLoanDashboardData = data.data;
+
+    })
   }
 }

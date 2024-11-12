@@ -7,38 +7,37 @@
         <tbody>
             <tr>
                 <td><b>Loan No. :</b></td>
-                <td>Start#10000</td>
+                <td>{{data.loan_no}}</td>
             </tr>
             <tr>
                 <td><b>Start/Apply Date :</b></td>
-                <td>12-Mar-2022 To 11-Jun-2022</td>
+                <td>{{data.start_date}} To {{data.end_date}}</td>
             </tr>
             <tr>
                 <td><b>Apply Amount :</b></td>
-                <td><i class="mdi mdi-currency-inr mr-1"></i>10,000.00</td>
+                <td><i class="mdi mdi-currency-inr mr-1"></i>{{data.loan_amount}}</td>
             </tr>
             <tr>
                 <td><b>Balance :</b></td>
-                <td><i class="mdi mdi-currency-inr mr-1"></i>0.00</td>
+                <td><i class="mdi mdi-currency-inr mr-1"></i>{{data.remaining_amount}}</td>
             </tr>
             <tr>
                 <td><b>Receiver :</b></td>
-                <td>Not Assigned</td>
+                <td></td>
             </tr>
             <tr>
                 <td><b>Status :</b></td>
                 <td>
-                    <div class="badge bg-warning text-white">Pending</div>
+                    <div class="badge bg-success text-white">{{data.loan_status}}</div>
                 </td>
             </tr>
             <tr>
                 <td><b>Loan Details :</b></td>
-                <td>Want to loan 10000 for the bussiness purpose</td>
+                <td>{{data.details}}</td>
             </tr>
             <tr>
                 <td><b>Reply For Loan :</b></td>
-                <td>Your loan approved.... will creadit amount in your bank account or casn in
-                    12-Mar-2022</td>
+                <td>{{data.loan_status_message}}</td>
             </tr>
         </tbody>
     </table>

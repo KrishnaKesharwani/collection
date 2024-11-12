@@ -53,7 +53,7 @@ export class UserloanListComponent {
     this._service.getCustomerLoanList(obj).subscribe((data: any) => {
       this.loader = false;
       console.log(data)
-      this.loanList = data.data;
+      this.loanList = data.data.loans;
     }, error => {
       this.loader = false;
       this._tostr.error(error.error.message, 'Error');
@@ -81,12 +81,12 @@ export class UserloanListComponent {
     })
   }
 
-  openDialogViewDetail(): void {
+  openDialogViewDetail(data?: any): void {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
       data: {
         title: 'Loan Details',
-        data: this.data
+        data: data
       },
     });
     dialogRef.afterClosed().subscribe((result: any) => {

@@ -8,7 +8,15 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
   styleUrls: ['./view-details.component.scss']
 })
 export class ViewDetailsComponent {
-  constructor(public dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }) { }
+  data: any;
+  constructor(public dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }) { }
 
+  ngOnInit() {
+    this.getViewDetails();
+  }
 
+  getViewDetails() {
+    this.data = this.dataa.data;
+    console.log(this.data)
+  }
 }

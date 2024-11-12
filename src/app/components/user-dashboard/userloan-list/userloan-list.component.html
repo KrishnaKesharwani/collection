@@ -39,14 +39,17 @@
                 </td>
             </tr>
             <ng-container *ngIf="loanList.length != 0 && !loader">
-                <tr>
-                    <td class="col" data-name="Loan No.">Innitial</td>
-                    <td class="col" data-name="Start / Apply Date"><small>12-Mar-2022 To 11-Jun-2022</small></td>
+                <tr *ngFor="let loan of loanList">
+                    <td class="col" data-name="Loan No.">{{loan.loan_no}}</td>
+                    <td class="col" data-name="Start / Apply Date"><small>{{loan.start_date}} To
+                            {{loan.end_date}}</small></td>
                     <td class="col" data-name="Receiver">Not Assigned</td>
-                    <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>12000.00</td>
-                    <td class="col" data-name="Balance"><i class="mdi mdi-currency-inr mr-1"></i>0.00</td>
+                    <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}
+                    </td>
+                    <td class="col" data-name="Balance"><i
+                            class="mdi mdi-currency-inr mr-1"></i>{{loan.remaining_amount}}</td>
                     <td class="col text-center" data-name="Status">
-                        <div class="badge bg-warning text-white">Pending</div>
+                        <div class="badge bg-success text-white">{{loan.loan_status}}</div>
                     </td>
                     <td class="action_col" data-name="Action">
                         <div placement="bottom-right">
@@ -56,11 +59,11 @@
                             </button>
                             <mat-menu #menu="matMenu">
                                 <div class="table_actionmenu">
-                                    <button mat-menu-item>
+                                    <!-- <button mat-menu-item>
                                         <i class="mdi mdi-history"></i> <span>
                                             Loan History</span>
-                                    </button>
-                                    <button mat-menu-item (click)="openDialogViewDetail()">
+                                    </button> -->
+                                    <button mat-menu-item (click)="openDialogViewDetail(loan)">
                                         <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                     </button>
                                 </div>
