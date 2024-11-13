@@ -55,7 +55,7 @@ export class EditCompanyComponent {
       address: [this.user_type.address, Validators.required],
       profile: [''],
       main_logo: [this.user_type.main_logo, ''],
-      sidebar_logo: [this.user_type.sidebar_logo,''],
+      sidebar_logo: [this.user_type.sidebar_logo, ''],
       favicon_icon: [this.user_type.favicon_icon,],
       status: ['active'],
     });
@@ -63,50 +63,68 @@ export class EditCompanyComponent {
   }
 
   updateDetails() {
-    if (this.company_id) {
+    // if (this.company_id) {
+    if (this.editForm.valid) {
+      debugger;
       this.loading = true;
       const formData = new FormData();
-      const files = [
-        { name: 'main_logo', file: this.editForm.get('main_logo')?.value },
-        { name: 'sidebar_logo', file: this.editForm.get('sidebar_logo')?.value },
-        { name: 'favicon_icon', file: this.editForm.get('favicon_icon')?.value },
-        { name: 'owner_image', file: this.editForm.get('owner_image')?.value },
-      ];
+      // const files = [
+      //   { name: 'main_logo', file: this.editForm.get('main_logo')?.value },
+      //   { name: 'sidebar_logo', file: this.editForm.get('sidebar_logo')?.value },
+      //   { name: 'favicon_icon', file: this.editForm.get('favicon_icon')?.value },
+      //   { name: 'owner_image', file: this.editForm.get('owner_image')?.value },
+      // ];
       // Convert files to base64 strings
-      files.map(({ name, file }) => {
-        return new Promise((resolve, reject) => {
-          if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              const base64String = reader.result as string; // Base64-encoded string
-              formData.append(name, base64String); // Append base64 string to FormData
-              resolve(true);
-            };
-            reader.onerror = () => reject(new Error(`Failed to read ${name}`));
-            reader.readAsDataURL(file); // Read the file as a base64 string
-          } else {
-            resolve(true); // Resolve if no file
-          }
-        });
-      });
+      // files.map(({ name, file }) => {
+      //   return new Promise((resolve, reject) => {
+      //     if (file) {
+      //       const reader = new FileReader();
+      //       reader.onloadend = () => {
+      //         const base64String = reader.result as string; // Base64-encoded string
+      //         formData.append(name, base64String); // Append base64 string to FormData
+      //         resolve(true);
+      //       };
+      //       reader.onerror = () => reject(new Error(`Failed to read ${name}`));
+      //       reader.readAsDataURL(file); // Read the file as a base64 string
+      //     } else {
+      //       resolve(true); // Resolve if no file
+      //     }
+      //   });
+      // });
 
       // Append other form values to FormData
       Object.keys(this.editForm.value).forEach(key => {
-        if (!['main_logo', 'sidebar_logo', 'favicon_icon', 'owner_image'].includes(key)) {
-          formData.append(key, this.editForm.value[key]);
-        }
+        // if (!['main_logo', 'sidebar_logo', 'favicon_icon', 'owner_image'].includes(key)) {
+        formData.append(key, this.editForm.value[key]);
+        // }
       });
+      if (!this.selectedFile_mainlogo) {
+        formData.delete('main_logo');
+      }
+      if (!this.selectedFile_sidebarlogo) {
+        formData.delete('sidebar_logo');
+      }
+      if (!this.selectedFile_feviconlogo) {
+        formData.delete('favicon_icon');
+      }
+      if (!this.selectedFile_profile) {
+        formData.delete('owner_image');
+      }
       formData.append('company_id', this.company_id)
 
       if (formData) {
         this._service.update(formData).subscribe((data: any) => {
           if (data) {
-
+            this.loading = false;
             this._toastr.success(data.message, 'Success');
             // this.router.navigate(['/dashboard']);
           } else {
+            this.loading = false;
             this._toastr.error(data.message, 'Error');
           }
+        }, error => {
+          this.loading = false;
+          this._toastr.error(error.message, 'Error');
         });
       }
     } else {
@@ -123,6 +141,7 @@ export class EditCompanyComponent {
 
   selectedFile_profile: File | null = null;
   profileChange(file: File | null): void {
+    // debugger;
     this.selectedFile_profile = file;
     // this.editForm.patchValue({ profile: file });
   }

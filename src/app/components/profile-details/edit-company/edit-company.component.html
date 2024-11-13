@@ -4,9 +4,14 @@
             <div class="card_inner_block">
                 <div class="profile_with_block">
                     <div class="image_upload">
-                        <app-fileupload class="fileupload_image" [imageSize]="'120'" [uploadType]="'profile'"
-                            formControlName="profile" name="profile"
+                        <app-fileupload class="fileupload_image" [form]="editForm" [imageUrl]="editForm.value['profile']" [imageSize]="'120'" [uploadType]="'profile'"
+                            formControlName="profile" name="profile" [formcontrolname]="'profile'"
                             (fileChange)="profileChange($event)"></app-fileupload>
+                        <!-- <app-fileupload [form]="companyForm" class="fileupload_image_fullwidth"
+                            [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="companyForm.value['owner_image']"
+                            [uploadType]="'fullwidth'" [imageCaption]="''" [formcontrolname]="'owner_image'"
+                            formControlName="owner_image" name="owner_image"
+                            (fileChange)="ownerImageChange($event)"></app-fileupload> -->
                     </div>
                     <div class="row">
                         <div class="col-sm-4 col-xs-12">
@@ -48,9 +53,9 @@
                             <div class="file_upload_block global_textbox_block">
                                 <label class="m-0">Company Main Logo</label>
                                 <app-fileupload [form]="editForm" class="fileupload_image_fullwidth"
-                                    [accept]="'image/png, image/gif, image/jpeg'"
+                                    [accept]="'image/png, image/gif, image/jpeg'" [formcontrolname]="'main_logo'"
                                     [imageUrl]="editForm.value['main_logo']" [uploadType]="'fullwidth'"
-                                    [imageCaption]="''" formControlName="main_logo" name="main_logo"
+                                    [imageCaption]="''" [form]="editForm" formControlName="main_logo" name="main_logo"
                                     (fileChange)="mainlogoChange($event)"></app-fileupload>
                                 <!-- <app-fileupload class="fileupload" formControlName="main_logo" name="main_logo"
                                     (fileChange)="mainlogoChange($event)"></app-fileupload> -->
@@ -60,9 +65,9 @@
                             <div class="file_upload_block global_textbox_block">
                                 <label class="m-0">Company Sidebar Logo</label>
                                 <app-fileupload [form]="editForm" class="fileupload_image_fullwidth"
-                                    [accept]="'image/png, image/gif, image/jpeg'"
+                                    [accept]="'image/png, image/gif, image/jpeg'" [formcontrolname]="'sidebar_logo'"
                                     [imageUrl]="editForm.value['sidebar_logo']" [uploadType]="'fullwidth'"
-                                    [imageCaption]="''" formControlName="sidebar_logo" name="sidebar_logo"
+                                    [imageCaption]="''" [form]="editForm" formControlName="sidebar_logo" name="sidebar_logo"
                                     (fileChange)="sidebarChange($event)"></app-fileupload>
                                 <!-- <app-fileupload class="fileupload" formControlName="sidebar_logo" name="sidebar_logo"
                                     (fileChange)="sidebarChange($event)"></app-fileupload> -->
@@ -72,9 +77,9 @@
                             <div class="file_upload_block global_textbox_block">
                                 <label class="m-0">Company Favicon Icon</label>
                                 <app-fileupload [form]="editForm" class="fileupload_image_fullwidth"
-                                    [accept]="'image/png, image/gif, image/jpeg'"
+                                    [accept]="'image/png, image/gif, image/jpeg'" [formcontrolname]="'favicon_icon'"
                                     [imageUrl]="editForm.value['favicon_icon']" [uploadType]="'fullwidth'"
-                                    [imageCaption]="''" formControlName="favicon_icon" name="favicon_icon"
+                                    [imageCaption]="''" [form]="editForm" formControlName="favicon_icon" name="favicon_icon"
                                     (fileChange)="feviconChange($event)"></app-fileupload>
                                 <!-- <app-fileupload class="fileupload" formControlName="favicon_icon" name="favicon_icon"
                                     (fileChange)="feviconChange($event)"></app-fileupload> -->
