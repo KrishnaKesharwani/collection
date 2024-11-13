@@ -47,21 +47,18 @@
                     </ng-container>
                 </td>
             </tr>
-            <tr>
-                <td><b>Previous Loan Amount :</b></td>
-                <td>{{data}}</td>
-            </tr>
+
             <tr>
                 <td><b>Total Paid Amount :</b></td>
                 <td>{{data?.total_paid}}</td>
             </tr>
             <tr>
                 <td><b>Total Pending Amount :</b></td>
-                <td>{{data}}</td>
+                <td>{{data.remaining_amount}}</td>
             </tr>
             <tr>
                 <td><b>Address :</b></td>
-                <td>{{data}}</td>
+                <td>{{data.customer?.address}}</td>
             </tr>
         </tbody>
     </table>

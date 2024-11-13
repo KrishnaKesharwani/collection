@@ -69,6 +69,7 @@ export class LoginComponent {
       this.loading = true;
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
+
           const userLoginDetails: AdminFromBackend = {
             company_id: data.data.company?.id,
             customer_id: data.data.customer?.id,
@@ -116,7 +117,8 @@ export class LoginComponent {
               balance: data.data.member?.balance,
               status: data.data.member?.status,
               email: data.data.member?.email,
-              id: data.data.company?.id,
+              id: data.data.id,
+              image: data.data.member?.image
             }
             sessionStorage.setItem('MemberData', JSON.stringify(memberData));
           } else {
@@ -133,8 +135,10 @@ export class LoginComponent {
               loan_count: data.data.customer?.loan_count,
               status: data.data.customer?.status,
               email: data.data.customer?.email,
+              image: data.data.customer?.image,
 
             }
+
             sessionStorage.setItem('CustomerData', JSON.stringify(customerData));
           }
 

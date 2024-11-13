@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { DailyCollectionService } from 'src/app/services/dailyCollection/daily-collection.service';
 import { MemberDashboardService } from 'src/app/services/memberDashboard/member-dashboard.service';
 
 @Component({
@@ -11,10 +12,12 @@ export class MemberDashboardComponent {
   company_id: any;
   member_id: any;
   collectionData: any[] = [];
-  loader: any;
+  loader: boolean = false;
   total_customer: any;
   attended_customer: any;
-  constructor(public _service: MemberDashboardService, public _tostr: ToastrService) { }
+  memberDepositData: any[] = [];
+  loading: boolean = false;
+  constructor(public _service: MemberDashboardService, public _memberService: DailyCollectionService, public _tostr: ToastrService) { }
 
   ngOnInit() {
     const data = sessionStorage.getItem('CurrentUser');
@@ -24,6 +27,7 @@ export class MemberDashboardComponent {
       this.member_id = userData.member_id;
     }
     this.getMemberCollectionList();
+    this.getDepsitForMember();
   }
 
   getMemberCollectionList() {
@@ -40,6 +44,21 @@ export class MemberDashboardComponent {
       this.collectionData = data.data.collection
     })
     this.loader = false
+  }
+
+
+  getDepsitForMember() {
+    this.loader = true;
+    let obj = {
+      company_id: this.company_id,
+      member_id: this.member_id,
+      status: "Active"
+    }
+    this._memberService.getDepositListForMember(obj).subscribe((data: any) => {
+      console.log(data.data);
+      this.memberDepositData = data.data.deposits;
+    })
+    this.loader = false;
   }
 
 }

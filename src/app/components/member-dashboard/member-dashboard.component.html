@@ -26,20 +26,20 @@
         </thead>
         <tbody>
             <tr *ngIf="loader">
-                <td colspan="6">
+                <td colspan="5">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
-            <tr *ngIf="collectionData.length == 0 && !loader">
-                <td colspan="6">
+            <tr *ngIf="memberDepositData.length == 0 && !loader">
+                <td colspan="5">
                     <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
                 </td>
             </tr>
-            <tr *ngFor="let item of collectionData">
-                <td class="col">{{item.loan.customer.name}}</td>
-                <td class="col">{{item.loan.customer.mobile}}</td>
-                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>{{item.amount}}</td>
-                <td class="col"><small>{{item.receive_date}}</small></td>
+            <tr *ngFor="let item of memberDepositData">
+                <td class="col">{{item.customer?.name}}</td>
+                <td class="col">{{item.customer?.mobile}}</td>
+                <td class="col"><i class="mdi mdi-currency-inr mr-1"></i>{{item.deposit_history[0]?.amount}}</td>
+                <td class="col"><small>{{item.deposit_history[0]?.action_date}}</small></td>
                 <td class="col text-center">
                     <div class="badge bg-success text-white">Paid</div>
                 </td>

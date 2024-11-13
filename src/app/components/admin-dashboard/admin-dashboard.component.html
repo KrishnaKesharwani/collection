@@ -21,6 +21,16 @@
             </tr>
         </thead>
         <tbody>
+            <tr *ngIf="loader">
+                <td colspan="9">
+                    <app-page-loader></app-page-loader>
+                </td>
+            </tr>
+            <tr *ngIf="loanData.length == 0 && !loader">
+                <td colspan="9">
+                    <app-no-record-found type="table" notext="No Loan Found."></app-no-record-found>
+                </td>
+            </tr>
             <tr *ngFor="let loan of loanData">
                 <td class="col text-center" data-name="CNo.">{{loan.customer?.customer_no}}</td>
                 <td class="col" data-name="Customer">{{loan.customer?.name}}</td>
@@ -54,13 +64,7 @@
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td colspan="9" class="norecord_col">
-                    <div class="no_found">
-                        <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
-                    </div>
-                </td>
-            </tr>
+
         </tbody>
     </table>
 </div>
@@ -86,6 +90,16 @@
             </tr>
         </thead>
         <tbody>
+            <tr *ngIf="loader">
+                <td colspan="8">
+                    <app-page-loader></app-page-loader>
+                </td>
+            </tr>
+            <tr *ngIf="newLoanData.length == 0 && !loader">
+                <td colspan="8">
+                    <app-no-record-found type="table" notext="No Loan Found."></app-no-record-found>
+                </td>
+            </tr>
             <tr *ngFor="let loan of newLoanData">
                 <td class="col text-center" data-name="CNo.">{{loan.customer?.customer_no}}</td>
                 <td class="col" data-name="Customer">{{loan.customer?.name}}</td>
@@ -119,13 +133,7 @@
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td colspan="8" class="norecord_col">
-                    <div class="no_found">
-                        <h1><i class="mdi mdi-alert-outline"></i></h1><b> No record found </b>
-                    </div>
-                </td>
-            </tr>
+
         </tbody>
     </table>
 </div>

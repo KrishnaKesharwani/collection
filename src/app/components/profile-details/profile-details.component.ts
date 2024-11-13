@@ -39,7 +39,7 @@ export class ProfileDetailsComponent {
   ngOnInit() {
 
 
-    const companyData = sessionStorage.getItem('CompanyData');
+    const companyData = sessionStorage.getItem('MemberData');
 
     const currentUserData = sessionStorage.getItem('CurrentUser');
 
@@ -74,7 +74,8 @@ export class ProfileDetailsComponent {
       address: [this.memberUser?.address, Validators.required],
 
       status: [this.memberUser?.status],
-      join_date: [this.memberUser?.join_date]
+      join_date: [this.memberUser?.join_date],
+      image: [this.memberUser?.main_logo]
     });
 
   }

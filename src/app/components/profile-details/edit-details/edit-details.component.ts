@@ -38,6 +38,7 @@ export class EditDetailsComponent {
 
     const currentUserData = sessionStorage.getItem('CurrentUser');
     if (customerData && currentUserData) {
+
       const customer = JSON.parse(customerData);
 
 
@@ -63,7 +64,8 @@ export class EditDetailsComponent {
       address: [this.customerData.address, Validators.required],
 
       status: [this.customerData.status],
-      join_date: [this.customerData.join_date]
+      join_date: [this.customerData.join_date],
+      image: [this.customerData.image]
     });
 
   }
@@ -80,46 +82,26 @@ export class EditDetailsComponent {
 
         this.loading = true;
         const formData = new FormData();
-        const files = [
-          { name: 'image', file: this.editForm.get('image')?.value },
-
-        ];
-
-        // Convert files to base64 strings
-        files.map(({ name, file }) => {
-          return new Promise((resolve, reject) => {
-            if (file) {
-              const reader = new FileReader();
-              reader.onloadend = () => {
-                const base64String = reader.result as string; // Base64-encoded string
-                formData.append(name, base64String); // Append base64 string to FormData
-                resolve(true);
-              };
-              reader.onerror = () => reject(new Error(`Failed to read ${name}`));
-              reader.readAsDataURL(file); // Read the file as a base64 string
-            } else {
-              resolve(true); // Resolve if no file
-            }
-          });
-        });
-
-        // Append other form values to FormData
         Object.keys(this.editForm.value).forEach(key => {
-          if (!['main_logo', 'sidebar_logo', 'favicon_icon', 'owner_image'].includes(key)) {
-            formData.append(key, this.editForm.value[key]);
-          }
+          // if (!['image'].includes(key)) {
+          formData.append(key, this.editForm.value[key]);
+          // }
         });
+
         formData.append('company_id', this.company_id)
         formData.append('customer_id', this.customer_id)
         if (formData) {
+
           this._service.update(formData).subscribe((data: any) => {
             if (data) {
 
               this._toastr.success(data.message, 'Success');
+              this.loading = false;
               // this.dialog.closeAll();
               // this._router.navigate(['/customer_list']);
             } else {
               this._toastr.error(data.message, 'Error');
+              this.loading = false;
             }
           });
 

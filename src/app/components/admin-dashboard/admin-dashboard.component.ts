@@ -25,6 +25,7 @@ export class AdminDashboardComponent {
   dashboardData: any;
   newLoanData: any;
   newLoanDashboardData: any;
+  loader: any;
   constructor(public dialog: MatDialog, public _service: LoanService) { }
   ngOnInit() {
     const data = sessionStorage.getItem('CurrentUser');
@@ -86,6 +87,7 @@ export class AdminDashboardComponent {
   }
 
   getCompletedLoanList() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id,
       loan_status: 'completed',
@@ -94,11 +96,12 @@ export class AdminDashboardComponent {
     this._service.getLoanList(obj).subscribe((data: any) => {
       this.loanData = data.data.loans;
       this.dashboardData = data.data;
-
+      this.loader = false;
     })
   }
 
   getApplyNewLoanList() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id,
       loan_status: 'pending',
@@ -107,6 +110,7 @@ export class AdminDashboardComponent {
     this._service.getLoanList(obj).subscribe((data: any) => {
       this.newLoanData = data.data.loans;
       this.newLoanDashboardData = data.data;
+      this.loader = false;
 
     })
   }
