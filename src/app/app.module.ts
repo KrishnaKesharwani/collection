@@ -63,6 +63,7 @@ import { ChangePasswordModule } from './components/change-password/change-passwo
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 import { ProfileDetailsModule } from './components/profile-details/profile-details.module';
 import { ReportsModule } from './components/reports/reports.module';
+import { VcManagementModule } from './components/vc-management/vc-management.module';
 // import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
@@ -97,7 +98,8 @@ import { ReportsModule } from './components/reports/reports.module';
     CommonComponentsModule,
     DataTablesModule,
     ChangePasswordModule,
-    ReportsModule
+    ReportsModule,
+    // VcManagementModule,
     // MaterialModule,
     // AdminDashboardModule,
     // FixedDepositModule
