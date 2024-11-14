@@ -43,7 +43,7 @@ export class EditDetailsComponent {
 
 
       const userData = JSON.parse(currentUserData);
-
+      debugger
       this.user_type = userData.user_type;
 
       this.company_id = userData.company_id;

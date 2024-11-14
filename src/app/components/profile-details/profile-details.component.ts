@@ -54,7 +54,7 @@ export class ProfileDetailsComponent {
       this.user_type = userData.user_type;
 
       this.company_id = userData.company_id;
-      this.member_id = member.id;
+      this.member_id = userData.member_id;
       this.memberUser = member;
 
     } else {

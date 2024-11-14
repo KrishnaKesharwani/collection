@@ -69,7 +69,8 @@ export class LoginComponent {
       this.loading = true;
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
-
+          console.log(data)
+          debugger
           const userLoginDetails: AdminFromBackend = {
             company_id: data.data.company?.id,
             customer_id: data.data.customer?.id,
@@ -117,7 +118,7 @@ export class LoginComponent {
               balance: data.data.member?.balance,
               status: data.data.member?.status,
               email: data.data.member?.email,
-              id: data.data.id,
+              id: data.data.member?.id,
               image: data.data.member?.image
             }
             sessionStorage.setItem('MemberData', JSON.stringify(memberData));

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
@@ -60,14 +60,15 @@ export class ActionForLoanComponent {
       end_date: ['', Validators.required],
       details: [''],
       loan_status: [''],
-      status: ['pending']
+      status: ['pending'],
+      document: this.fb.array([])
     });
 
     this.providerLoanFormForCancelled = this.fb.group({
       details: ['']
     })
 
-    this.getActiveMmberList();
+    this.getActiveMemberList();
 
     // this.dropdownService.setOptions('status', ['Approved', 'Cancelled']);
     // this.dropdownService.setOptions('loanstatus', ['Approved', 'Running', 'Pending', 'Cancelled']);
@@ -83,17 +84,31 @@ export class ActionForLoanComponent {
     this.dialogRef.close();
   }
 
-  getActiveMmberList() {
+  // getActiveMmberList() {
+  //   let obj = {
+  //     company_id: this.company_id,
+  //     status: 'active'
+  //   }
+  //   this._service.activeMembers(obj).subscribe((memberData: any) => {
+  //     const members = memberData.data.map((member: any) => member.name);
+  //     this.dropdownService.setOptions('assingmember', members);
+  //   })
+  // }
+
+
+  memberdata: [] = [];
+  getActiveMemberList() {
     let obj = {
       company_id: this.company_id,
       status: 'active'
     }
     this._service.activeMembers(obj).subscribe((memberData: any) => {
+      console.log('member Data: ', memberData.data);
+      this.memberdata = memberData.data;
       const members = memberData.data.map((member: any) => member.name);
-      this.dropdownService.setOptions('assingmember', members);
+      this.dropdownService.setOptions('assingmember', memberData.data);
     })
   }
-
   onDateChange() {
     if (this.startDate && this.endDate) {
       const start = new Date(this.startDate);
@@ -109,6 +124,28 @@ export class ActionForLoanComponent {
     }
   }
 
+  get document(): FormArray {
+    return this.providerLoanForm.get('document') as FormArray;
+  }
+
+  addNewDoc(): void {
+    this.document.push(new FormControl('')); // Add a new FormControl with an empty string as the initial value
+  }
+
+  selectedFile: File | null = null;
+
+  onFileChange(event: any, index: number) {
+    const file = event.target.files[0];  // Get the selected file
+    const documentArray = this.providerLoanForm.get('document') as FormArray;
+
+    // Update the specific FormControl at the index with the file data
+    documentArray.at(index).setValue(file);
+  }
+
+  removeDocument(index: number): void {
+    this.document.removeAt(index);
+  }
+
   submit() {
     if (this.selectedStatus == 'Approved') {
 
@@ -119,21 +156,38 @@ export class ActionForLoanComponent {
     if (this.providerLoanForm.valid) {
       if (this.providerLoanForm.valid) {
         this.loading = true
-        let obj = {
-          company_id: this.company_id,
-          // customer_id: this.dataa.data.id,
-          status: this.selectedStatus,
-          // customername: this.providerLoanForm.value.customername,
-          loan_amount: this.providerLoanForm.value.loan_amount,
-          installment_amount: this.providerLoanForm.value.installment_amount,
-          assigned_member_id: this.providerLoanForm.value.assigned_member_id,
-          no_of_days: this.providerLoanForm.value.no_of_days,
-          start_date: this.providerLoanForm.value.start_date,
-          end_date: this.providerLoanForm.value.end_date,
-          details: this.providerLoanForm.value.details,
-          loan_status: this.providerLoanForm.value.loan_status,
-        }
-        this._service.provideLoan(obj).subscribe((data: any) => {
+
+        const formData = new FormData();
+        const files = [
+          { name: 'document', file: this.providerLoanForm.get('document')?.value },
+        ];
+
+        Object.keys(this.providerLoanForm.value).forEach(key => {
+          if (!['start_date'].includes(key) && !['end_date'].includes(key)) {
+            formData.append(key, this.providerLoanForm.value[key]);
+          }
+          if (['start_date'].includes(key) || ['end_date'].includes(key)) {
+            formData.append(key, this.providerLoanForm.value[key].toLocaleDateString('en-US'));
+          }
+        });
+
+        formData.append('company_id', this.company_id)
+        formData.append('customer_id', this.dataa.data.id)
+        // let obj = {
+        //   company_id: this.company_id,
+        //   customer_id: this.dataa.data.id,
+        //   status: this.selectedStatus,
+        //   // customername: this.providerLoanForm.value.customername,
+        //   loan_amount: this.providerLoanForm.value.loan_amount,
+        //   installment_amount: this.providerLoanForm.value.installment_amount,
+        //   assigned_member_id: this.providerLoanForm.value.assigned_member_id,
+        //   no_of_days: this.providerLoanForm.value.no_of_days,
+        //   start_date: this.providerLoanForm.value.start_date,
+        //   end_date: this.providerLoanForm.value.end_date,
+        //   details: this.providerLoanForm.value.details,
+        //   loan_status: this.providerLoanForm.value.loan_status,
+        // }
+        this._service.provideLoan(formData).subscribe((data: any) => {
           console.log(data)
           this.providerLoanForm.reset();
           this._tostr.success(data.message, 'Success');

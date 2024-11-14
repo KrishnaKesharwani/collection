@@ -158,12 +158,14 @@ export class AddMemberComponent {
 
   memberView() {
     // if (this.dataa?.data) {
-
+    console.log(this.dataa?.data)
     this.memberForm.patchValue({
       ...this.dataa.data,
+
       // member_login_id: this.dataa.data.member_no,
       // status: this.dataa?.data?.status, 
       // password: this.dataa.data.user?.password_hint
+
     });
 
     // this.memberForm.controls['status'].setValue('Active');
