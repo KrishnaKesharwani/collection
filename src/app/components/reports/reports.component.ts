@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteComponent } from 'src/app/common/delete/delete.component';
+import Swal from 'sweetalert2';
+import { ActionService } from 'src/app/services/action/action.service';
+import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
+import { OffersService } from 'src/app/services/offers/offers.service';
+import { DownloadReportComponent } from './download-report/download-report.component';
 
 @Component({
   selector: 'app-reports',
@@ -6,15 +13,73 @@ import { Component } from '@angular/core';
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent {
-  rechargeRecieptData: any;
-  report_dates: any;
-  checkprint: any;
+  offer_modalaction: any;
+  usertype: any;
+  company_id: any;
+  // customerData: any[] = [];
+  filteredDataarray: any[] = [];
+  loader = false;
+  offerListData: any[] = [];
 
-  get_reports() {
+  constructor(public _service: OffersService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
 
+  ngOnInit() {
+    const data = sessionStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+    }
+    this.getReportList();
   }
 
-  reports_type(index: any) {
+  getReportList() {
+    this.loader = true;
+    let obj = {
+      company_id: this.company_id
+    }
+    this._service.getOfferList(obj).subscribe((data: any) => {
+      console.log(data.data);
+      this.offerListData = data.data;
+      this.filteredDataarray = this.offerListData;
+      this.loader = false;
+    })
+  }
 
+  openDialogBackupnow(data: any){
+    const dialogRef = this.dialog.open(DownloadReportComponent, {
+      disableClose: true,
+      data: {
+        title: 'Download Report',
+        data: data
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.getReportList();
+      }
+    });
+  }
+
+  isAsc: boolean = true;
+  sortTableData(column: string) {
+    if (this.isAsc) {
+      this.isAsc = false;
+    } else {
+      this.isAsc = true;
+    }
+    this.filteredDataarray = this._customActionService.sortData(column, this.offerListData);
+  }
+
+  searchColumns: any[] = ['name', 'type', 'status', 'i'];
+  searchTerm: string = '';
+  searchTable(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.offerListData;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
   }
 }
