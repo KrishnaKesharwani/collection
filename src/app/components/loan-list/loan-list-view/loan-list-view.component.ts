@@ -31,7 +31,7 @@ export class LoanListViewComponent {
   }
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;

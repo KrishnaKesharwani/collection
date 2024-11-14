@@ -30,7 +30,7 @@ export class FixedDepositComponent {
 
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
@@ -94,7 +94,7 @@ export class FixedDepositComponent {
         title: 'Amount Paid History',
         data: data,
       },
-    });   
+    });
   }
   // start view details
   openDialogFixedDepositDetails(data?: any) {
@@ -144,7 +144,7 @@ export class FixedDepositComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.getDepositList();
       }
     });

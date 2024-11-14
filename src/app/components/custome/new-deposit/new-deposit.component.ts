@@ -24,7 +24,7 @@ export class NewDepositComponent {
   ) { }
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
@@ -40,7 +40,7 @@ export class NewDepositComponent {
     // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
-  
+
   onClose() {
     this.dialogRef.close();
   }

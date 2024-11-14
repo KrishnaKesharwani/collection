@@ -39,9 +39,9 @@ export class ProfileDetailsComponent {
   ngOnInit() {
 
 
-    const companyData = sessionStorage.getItem('MemberData');
+    const companyData = localStorage.getItem('MemberData');
 
-    const currentUserData = sessionStorage.getItem('CurrentUser');
+    const currentUserData = localStorage.getItem('CurrentUser');
 
     if (companyData && currentUserData) {
 

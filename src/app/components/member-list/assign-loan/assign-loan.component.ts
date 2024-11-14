@@ -67,7 +67,7 @@ export class AssignLoanComponent {
 
   ngOnInit() {
 
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     this.mainpageloader = true;
     console.log('Return data :', this.dataa)
     if (data) {

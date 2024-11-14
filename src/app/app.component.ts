@@ -27,7 +27,7 @@ export class AppComponent {
     this.currentAction = action;
   }
   ngOnInit(): void {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
 
     if (data) {
       const userData = JSON.parse(data);

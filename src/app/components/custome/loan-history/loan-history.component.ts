@@ -19,7 +19,7 @@ export class LoanHistoryComponent {
   ) { }
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
@@ -37,7 +37,7 @@ export class LoanHistoryComponent {
     }
 
     this._service.loanList(obj).subscribe((data: any) => {
-      console.log('Customer Loan List',data.data.loans);
+      console.log('Customer Loan List', data.data.loans);
       this.data = data.data.loans;
       this.loader = false;
     }, error => {

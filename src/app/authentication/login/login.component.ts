@@ -14,6 +14,7 @@ interface AdminFromBackend {
   name: string;
   user_type: string;
   token: string;
+  image: string;
 }
 @Component({
   selector: 'app-login',
@@ -38,6 +39,7 @@ export class LoginComponent {
   showHeader: any;
   customer_id: any;
   member_id: any;
+  currentLoingImage: any;
   constructor(private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -56,6 +58,8 @@ export class LoginComponent {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+
   }
 
 
@@ -70,7 +74,7 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
           console.log(data)
-          debugger
+
           const userLoginDetails: AdminFromBackend = {
             company_id: data.data.company?.id,
             customer_id: data.data.customer?.id,
@@ -78,7 +82,8 @@ export class LoginComponent {
             email: data.data.email,
             name: data.data.name,
             user_type: data.data.user_type,
-            token: data.token
+            token: data.token,
+            image: data.data.company?.sidebar_logo
           }
 
           if (data.data.user_type == 1) {
@@ -106,7 +111,7 @@ export class LoginComponent {
               secondary_color: data.data.company?.secondary_color,
               prefix: data.data.company?.prefix,
             }
-            sessionStorage.setItem('CompanyData', JSON.stringify(comapnyData));
+            localStorage.setItem('CompanyData', JSON.stringify(comapnyData));
           } else if (data.data.user_type == 2) {
             let memberData = {
               aadhar_no: data.data.member?.aadhar_no,
@@ -121,7 +126,7 @@ export class LoginComponent {
               id: data.data.member?.id,
               image: data.data.member?.image
             }
-            sessionStorage.setItem('MemberData', JSON.stringify(memberData));
+            localStorage.setItem('MemberData', JSON.stringify(memberData));
           } else {
             let customerData = {
               aadhar_no: data.data.customer?.aadhar_no,
@@ -140,13 +145,11 @@ export class LoginComponent {
 
             }
 
-            sessionStorage.setItem('CustomerData', JSON.stringify(customerData));
+            localStorage.setItem('CustomerData', JSON.stringify(customerData));
           }
 
-          sessionStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
+          localStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
 
-          // sessionStorage.setItem('MemberData', JSON.stringify(userLoginDetails));
-          // sessionStorage.setItem('CustomerData', JSON.stringify(userLoginDetails));
 
           this.loading = false;
           this.toastr.success(data.message, 'Success');

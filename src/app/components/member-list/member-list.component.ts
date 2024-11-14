@@ -30,7 +30,7 @@ export class MemberListComponent {
   constructor(public _service: MemberService, public _customActionService: CustomActionsService, private actionService: ActionService) { }
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
@@ -52,6 +52,7 @@ export class MemberListComponent {
         this.loader = false;
       }
     })
+
   }
 
 
@@ -176,7 +177,7 @@ export class MemberListComponent {
   }
 
 
-  searchColumns: any[] = ['member_no', 'name', 'status', 'mobile', 'email' ];
+  searchColumns: any[] = ['member_no', 'name', 'status', 'mobile', 'email'];
   searchTerm: string = '';
   searchTable(event: Event) {
 

@@ -34,16 +34,16 @@ export class EditDetailsComponent {
 
   ngOnInit() {
 
-    const customerData = sessionStorage.getItem('CustomerData');
+    const customerData = localStorage.getItem('CustomerData');
 
-    const currentUserData = sessionStorage.getItem('CurrentUser');
+    const currentUserData = localStorage.getItem('CurrentUser');
     if (customerData && currentUserData) {
 
       const customer = JSON.parse(customerData);
 
 
       const userData = JSON.parse(currentUserData);
-      debugger
+
       this.user_type = userData.user_type;
 
       this.company_id = userData.company_id;

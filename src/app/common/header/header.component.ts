@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class HeaderComponent {
 
   constructor(private router: Router) {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
   }
   @Output() menuClick: EventEmitter<string> = new EventEmitter<string>();
 
@@ -26,17 +26,17 @@ export class HeaderComponent {
   showMenuAction = false;
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.userType = userData.user_type;
     } else {
-      this.userType = null; 
+      this.userType = null;
     }
   }
 
   logout() {
-    sessionStorage.removeItem('CurrentUser');
+    localStorage.removeItem('CurrentUser');
     this.router.navigate(['/login']);
   }
   editProfile() {
@@ -48,11 +48,11 @@ export class HeaderComponent {
     this.router.navigate(['/change_password']);
   }
   checkSideMenu = '';
-  
+
   onMenuClick() {
-    if(this.checkSideMenu == ''){
+    if (this.checkSideMenu == '') {
       this.checkSideMenu = 'hideSidebar';
-    }else{
+    } else {
       this.checkSideMenu = '';
     }
     this.menuClick.emit(this.checkSideMenu);
@@ -65,5 +65,5 @@ export class HeaderComponent {
       this.showMenuAction = false;
     }
   }
-  
+
 }

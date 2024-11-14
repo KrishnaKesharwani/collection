@@ -38,7 +38,7 @@ export class LoanListComponent {
   constructor(public _customActionService: CustomActionsService, public _service: LoanService, public _tostr: ToastrService) { }
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
@@ -167,7 +167,7 @@ export class LoanListComponent {
       this.isDialogOpen = false;
     });
   }
-  
+
   openDialogCompleteLoanHistory(data: any) {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(CompleteLoanHistoryComponent, {

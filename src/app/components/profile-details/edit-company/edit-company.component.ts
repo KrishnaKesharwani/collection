@@ -35,8 +35,8 @@ export class EditCompanyComponent {
     private dropdownService: CommonComponentService, public fb: FormBuilder) { }
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CompanyData');
-    const data2 = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CompanyData');
+    const data2 = localStorage.getItem('CurrentUser');
     if (data && data2) {
       const userData = JSON.parse(data);
       const userData2 = JSON.parse(data2);

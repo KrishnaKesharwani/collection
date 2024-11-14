@@ -28,7 +28,7 @@ export class AdminDashboardComponent {
   loader: any;
   constructor(public dialog: MatDialog, public _service: LoanService) { }
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.userType = userData.user_type;

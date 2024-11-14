@@ -23,7 +23,7 @@ export class UserloanListComponent {
   constructor(public dialog: MatDialog, public _service: LoanService, public _tostr: ToastrService) { }
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;

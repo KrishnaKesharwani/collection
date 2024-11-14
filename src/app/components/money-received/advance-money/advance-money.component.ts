@@ -26,9 +26,9 @@ export class AdvanceMoneyComponent {
   ) { }
 
   ngOnInit() {
-    const companyData = sessionStorage.getItem('CompanyData');
+    const companyData = localStorage.getItem('CompanyData');
 
-    const currentUserData = sessionStorage.getItem('CurrentUser');
+    const currentUserData = localStorage.getItem('CurrentUser');
 
     if (companyData && currentUserData) {
       const member = JSON.parse(companyData);

@@ -24,7 +24,7 @@ export class ReportsComponent {
   constructor(public _service: OffersService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
@@ -45,7 +45,7 @@ export class ReportsComponent {
     })
   }
 
-  openDialogBackupnow(data: any){
+  openDialogBackupnow(data: any) {
     const dialogRef = this.dialog.open(DownloadReportComponent, {
       disableClose: true,
       data: {
