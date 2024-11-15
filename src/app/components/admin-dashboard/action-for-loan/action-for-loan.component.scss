@@ -1,0 +1,38 @@
+.file_upload_header {
+    font-size: 12px;
+    color: #666666;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .add_more_btnblock {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: var(--theme-primary-color);
+        opacity: .8;
+        transition: .5s all;
+        mat-icon {
+            height: 20px;
+            font-size: 20px;
+        }
+    }
+}
+.file_upload_block {
+    margin: 10px 0px;
+    background: #ffffff;
+    padding: 10px;
+}
+.file_upload_row {
+    display: flex;
+    align-items: center;
+    mat-icon {
+        color: #dd0000;
+        margin-left: 15px;
+        transition: .5s all;
+        opacity: .8;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

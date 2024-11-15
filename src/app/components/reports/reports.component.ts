@@ -4,8 +4,8 @@ import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import Swal from 'sweetalert2';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
-import { OffersService } from 'src/app/services/offers/offers.service';
 import { DownloadReportComponent } from './download-report/download-report.component';
+import { BackupListService } from 'src/app/services/backupList/backup-list.service';
 
 @Component({
   selector: 'app-reports',
@@ -19,9 +19,9 @@ export class ReportsComponent {
   // customerData: any[] = [];
   filteredDataarray: any[] = [];
   loader = false;
-  offerListData: any[] = [];
+  backupListData: any[] = [];
 
-  constructor(public _service: OffersService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
+  constructor(public _service: BackupListService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
@@ -37,10 +37,10 @@ export class ReportsComponent {
     let obj = {
       company_id: this.company_id
     }
-    this._service.getOfferList(obj).subscribe((data: any) => {
-      console.log(data.data);
-      this.offerListData = data.data;
-      this.filteredDataarray = this.offerListData;
+    this._service.getbackupList(obj).subscribe((data: any) => {
+      console.log(data.message);
+      this.backupListData = data.message;
+      this.filteredDataarray = this.backupListData;
       this.loader = false;
     })
   }
@@ -68,7 +68,7 @@ export class ReportsComponent {
     } else {
       this.isAsc = true;
     }
-    this.filteredDataarray = this._customActionService.sortData(column, this.offerListData);
+    this.filteredDataarray = this._customActionService.sortData(column, this.backupListData);
   }
 
   searchColumns: any[] = ['name', 'type', 'status', 'i'];
@@ -77,7 +77,7 @@ export class ReportsComponent {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
     if (this.searchTerm == null || this.searchTerm == '') {
-      this.filteredDataarray = this.offerListData;
+      this.filteredDataarray = this.backupListData;
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
