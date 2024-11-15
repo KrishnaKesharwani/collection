@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { height } from '@mui/system';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { GraphService } from 'src/app/services/dashboardGraph/graph.service';
 
 @Component({
   selector: 'app-global-google-charts',
@@ -9,7 +10,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 })
 export class GlobalGoogleChartsComponent {
   @Input() currentuserType: any;
-  data: any []=[];
+  data: any[] = [];
   public comboChart = {
     chartType: 'ComboChart',
     dataTable: [
@@ -28,7 +29,26 @@ export class GlobalGoogleChartsComponent {
       colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
     }
   };
+  userType: any;
+  company_id: any;
+
+  constructor(public _service: GraphService) {
+
+  }
   ngOnInit() {
+
+    const data = localStorage.getItem('CurrentUser');
+    const memberData = localStorage.getItem('MemberData');
+    const customerData = localStorage.getItem('CustomerData');
+
+    if (data) {
+      const userData = JSON.parse(data);
+      this.userType = userData.user_type;
+      this.company_id = userData.company_id;
+    } else {
+      this.userType = null; // or set a default value
+    }
+
     google.charts.load('current', { packages: ['corechart'] });
     // google.charts.setOnLoadCallback(this.drawChart);
     if (this.currentuserType == 0) {
@@ -41,6 +61,9 @@ export class GlobalGoogleChartsComponent {
       // this.drawUsercharts();
       google.charts.setOnLoadCallback(this.drawUsercharts);
     }
+
+
+    this.getLastDepositStatus();
   }
 
   drawMastercharts() {
@@ -59,7 +82,7 @@ export class GlobalGoogleChartsComponent {
       vAxis: { title: 'Amount' },
       hAxis: { title: 'Days' },
       is3D: true,
-      tooltip: {trigger: 'selection'},
+      tooltip: { trigger: 'selection' },
     };
     var assignreceived = google.visualization.arrayToDataTable([
       ['Amount', 'Count'],
@@ -71,7 +94,7 @@ export class GlobalGoogleChartsComponent {
       pieHole: 0.4,
     };
     const columnUserElement = document.getElementById('column_company_chart') as HTMLElement;
-    const pieUserElement = document.getElementById('pie_company_chart') as HTMLElement;    
+    const pieUserElement = document.getElementById('pie_company_chart') as HTMLElement;
     var columnUserChart = new google.visualization.ColumnChart(columnUserElement);
     columnUserChart.draw(userdataColoum, comboOptions);
     var pieUserChart = new google.visualization.PieChart(pieUserElement);
@@ -95,7 +118,7 @@ export class GlobalGoogleChartsComponent {
       vAxis: { title: 'Amount' },
       hAxis: { title: 'Days' },
       is3D: true,
-      tooltip: {trigger: 'selection'},
+      tooltip: { trigger: 'selection' },
     };
     var assignreceived = google.visualization.arrayToDataTable([
       ['Assign', 'Received'],
@@ -107,7 +130,7 @@ export class GlobalGoogleChartsComponent {
       pieHole: 0.4,
     };
     const columnUserElement = document.getElementById('column_member_chart') as HTMLElement;
-    const pieUserElement = document.getElementById('pie_member_chart') as HTMLElement;    
+    const pieUserElement = document.getElementById('pie_member_chart') as HTMLElement;
     var columnUserChart = new google.visualization.ColumnChart(columnUserElement);
     columnUserChart.draw(userdataColoum, comboOptions);
     var pieUserChart = new google.visualization.PieChart(pieUserElement);
@@ -129,7 +152,7 @@ export class GlobalGoogleChartsComponent {
       hAxis: { title: 'Month' },
       seriesType: 'bars',
       is3D: true,
-      tooltip: {trigger: 'selection'},
+      tooltip: { trigger: 'selection' },
     };
     var loandata = google.visualization.arrayToDataTable([
       ['Loans', 'Amount'],
@@ -141,7 +164,7 @@ export class GlobalGoogleChartsComponent {
       pieHole: 0.4,
     };
     const columnUserElement = document.getElementById('column_user_chart') as HTMLElement;
-    const pieUserElement = document.getElementById('pie_user_chart') as HTMLElement;    
+    const pieUserElement = document.getElementById('pie_user_chart') as HTMLElement;
     var columnUserChart = new google.visualization.ComboChart(columnUserElement);
     columnUserChart.draw(userdataColoum, comboOptions);
     var pieUserChart = new google.visualization.PieChart(pieUserElement);
@@ -197,4 +220,13 @@ export class GlobalGoogleChartsComponent {
   //   donutChart.draw(data, options);
   // }
 
+  getLastDepositStatus() {
+    let obj = {
+      company_id: this.company_id,
+      customer_id: '2'
+    }
+    this._service.lastDepositStatus(obj).subscribe((data: any) => {
+      console.log(data.data);
+    })
+  }
 }

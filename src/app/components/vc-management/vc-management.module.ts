@@ -8,7 +8,7 @@ import { ChangeMemberComponent } from './change-member/change-member.component';
 import { MaterialModule } from 'src/app/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
-import { VcRoughtingModule } from './vc-management-routing.module';
+import { VcManagementRoutingModule } from './vc-management-routing.module';
 
 @NgModule({
   declarations: [VcManagementComponent, AddVcComponent, ChangeMemberComponent, ReceivedAmountComponent, ViewDetailsComponent],
@@ -17,7 +17,7 @@ import { VcRoughtingModule } from './vc-management-routing.module';
     MaterialModule,
     ReactiveFormsModule,
     CommonComponentsModule,
-    VcRoughtingModule
+    VcManagementRoutingModule
   ]
 })
 

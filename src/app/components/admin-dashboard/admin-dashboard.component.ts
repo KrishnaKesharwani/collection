@@ -21,11 +21,11 @@ export class AdminDashboardComponent {
   name!: string;
   userType: any;
   company_id: any;
-  loanData: any;
+  loanData: any[] = [];
   dashboardData: any;
-  newLoanData: any;
+  newLoanData: any[] = [];
   newLoanDashboardData: any;
-  loader: any;
+  loader: boolean = false;
   constructor(public dialog: MatDialog, public _service: LoanService) { }
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');

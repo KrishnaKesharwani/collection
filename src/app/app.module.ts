@@ -99,7 +99,7 @@ import { VcManagementModule } from './components/vc-management/vc-management.mod
     DataTablesModule,
     ChangePasswordModule,
     ReportsModule,
-    // VcManagementModule,
+    VcManagementModule,
     // MaterialModule,
     // AdminDashboardModule,
     // FixedDepositModule

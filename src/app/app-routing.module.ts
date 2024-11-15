@@ -102,6 +102,10 @@ const routes: Routes = [
     path: 'change_password',
     loadChildren: () => import('./components/change-password/change-password.module').then(m => m.ChangePasswordModule)
   },
+  {
+    path: 'vc_management',
+    loadChildren: () => import('./components/vc-management/vc-management.module').then(m => m.VcManagementModule)
+  },
   { path: '**', component: LoginComponent }
 ]
 

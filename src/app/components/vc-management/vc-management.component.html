@@ -45,7 +45,7 @@
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
-                            </th>                       
+                            </th>
                             <th class="col days_time_slot_col sorting_apply">
                                 <span>Last Backup Date</span>
                                 <div class="sorting_arrow">
@@ -65,8 +65,7 @@
                         </tr>
                         <tr *ngIf="filteredDataarray.length == 0 && !loader">
                             <td colspan="6">
-                                <app-no-record-found type="table"
-                                    notext="No Last Backup found."></app-no-record-found>
+                                <app-no-record-found type="table" notext="No Last Backup found."></app-no-record-found>
                             </td>
                         </tr>
                         <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
@@ -90,18 +89,15 @@
                                                     <button mat-menu-item (click)="openDialogViewDetail(item)">
                                                         <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                                     </button>
-                                                    <button mat-menu-item
-                                                        (click)="openDialogChangeMember(item)">
+                                                    <button mat-menu-item (click)="openDialogChangeMember(item)">
                                                         <i class="mdi mdi-account-check-outline mr-2"></i>
                                                         <span>Change Member</span>
                                                     </button>
-                                                    <button mat-menu-item
-                                                        (click)="openDialogReceivedAmount(item)">
+                                                    <button mat-menu-item (click)="openDialogReceivedAmount(item)">
                                                         <i class="mdi mdi-currency-inr mr-2"></i>
                                                         <span>Received Amount</span>
                                                     </button>
-                                                    <button mat-menu-item
-                                                        (click)="openDialogEditDetails(item)">
+                                                    <button mat-menu-item (click)="openDialogEditDetails(item)">
                                                         <i class="mdi mdi-edit mr-2"></i>
                                                         <span>Edit Details</span>
                                                     </button>
