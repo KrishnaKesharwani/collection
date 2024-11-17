@@ -42,7 +42,6 @@ export class DailyCollectListComponent {
       this.collection_type = 'Loan';
       this.getCustomerLoanList();
       this.getDepsitForCustomer();
-      this.loading = false;
     }
   }
 
@@ -58,6 +57,19 @@ export class DailyCollectListComponent {
       this.memberLoanData = data.data.loans;
     })
   }
+  getDepsitForMember() {
+    let obj = {
+      company_id: this.company_id,
+      member_id: this.member_id,
+      status: "Active"
+    }
+    this._service.getDepositListForMember(obj).subscribe((data: any) => {
+      console.log('Deposit List For Member', data.data);
+      this.memberDepositData = data.data.deposits;      
+      this.loading = false;
+    })
+  }
+
   collectTypeClick: any;
   collectMoneyType(collectType: any) {
     this.collectTypeClick = collectType;
@@ -85,6 +97,7 @@ export class DailyCollectListComponent {
     this._service.getDepositListForCustomer(obj).subscribe((data: any) => {
       console.log('Get Customer Deposit List', data.data);
       this.customerDepositData = data.data.deposits;
+      this.loading = false;
     })
   }
 
@@ -101,17 +114,6 @@ export class DailyCollectListComponent {
     this.collection_type = data;
   }
 
-  getDepsitForMember() {
-    let obj = {
-      company_id: this.company_id,
-      member_id: this.member_id,
-      status: "Active"
-    }
-    this._service.getDepositListForMember(obj).subscribe((data: any) => {
-      console.log('Deposit List For Member', data.data);
-      this.memberDepositData = data.data.deposits;      
-      this.loading = false;
-    })
-  }
+ 
 
 }

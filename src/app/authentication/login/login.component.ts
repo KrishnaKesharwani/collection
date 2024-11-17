@@ -74,11 +74,7 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
           // console.log('After Login Data: ', data)
-          if (data.data.company?.primary_color != null) {
-            document.documentElement.style.setProperty('--theme-bgcolor', data.data.company?.primary_color);
-            document.documentElement.style.setProperty('--theme-primary-color', data.data.company?.primary_color);
-            document.documentElement.style.setProperty('--theme-secondary-color', data.data.company?.secondary_color);
-          }
+          // debugger;
           const userLoginDetails: AdminFromBackend = {
             company_id: data.data.company?.id,
             customer_id: data.data.customer?.id,
@@ -152,9 +148,8 @@ export class LoginComponent {
             localStorage.setItem('CustomerData', JSON.stringify(customerData));
           }
 
-          localStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
-
-
+          localStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));   
+          localStorage.setItem('AfterLoginData', JSON.stringify(data));        
           this.loading = false;
           this.toastr.success(data.message, 'Success');
           this.router.navigate(['/dashboard']);

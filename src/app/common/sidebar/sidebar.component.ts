@@ -23,6 +23,13 @@ export class SidebarComponent {
   ngOnInit(): void {
     const data: any = localStorage.getItem('CurrentUser');
     const userData = JSON.parse(data);
+    const allData: any = localStorage.getItem('AfterLoginData');
+    const allLoginData = JSON.parse(allData);
+     if (allLoginData.data.company?.primary_color != null) {
+      document.documentElement.style.setProperty('--theme-bgcolor',allLoginData.data.company?.primary_color);
+      document.documentElement.style.setProperty('--theme-primary-color', allLoginData.data.company?.primary_color);
+      document.documentElement.style.setProperty('--theme-secondary-color', allLoginData.data.company?.secondary_color);
+    }
     // const imageData = localStorage.getItem('image');
     const imageData = userData.image;
     if (data) {

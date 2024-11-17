@@ -7,7 +7,7 @@
                 </div>
             </div>
         </div>
-        <div class="assign_customer_container" *ngIf="loading">
+        <div class="assign_customer_container justify-center" *ngIf="loading">
             <div class="page_laoder_collection">
                 <app-page-loader></app-page-loader>
             </div>
@@ -208,14 +208,14 @@
                 </div>
             </div>
         </div>
-        <div class="assign_customer_container" *ngIf="loading">
+        <div class="assign_customer_container justify-center" *ngIf="loading">
             <div class="page_laoder_collection">
                 <app-page-loader></app-page-loader>
             </div>
         </div>
         <div class="assign_customer_container" *ngIf="!loading">
             <ng-container *ngIf="!memberLoanData.length && !memberDepositData.length">
-                <app-no-record-found type="page" notext="No assign found"></app-no-record-found>
+                <app-no-record-found type="page" notext="Admin not assign any loan & collection..."></app-no-record-found>
             </ng-container>
             <ng-container *ngIf="memberLoanData.length">
                 <div class="assign_customer_block" *ngFor="let loan of memberLoanData">
