@@ -66,8 +66,8 @@
                     <div class="fileupload file_upload_block">
                         <input type="file" maxlength="6" multiple (change)="onFileSelected($event)" />
                     </div>
-                    <div class="uploaded_images_container" *ngIf="base64Images.length > 0">
-                        <div class="upload_image_block card" *ngFor="let image of base64Images">
+                    <div class="global_details_image_container" *ngIf="base64Images.length > 0">
+                        <div class="image_fourpart card" *ngFor="let image of base64Images">
                             <img [src]="'data:image/png;base64,' + image" alt="Uploaded Image" />
                         </div>
                     </div>

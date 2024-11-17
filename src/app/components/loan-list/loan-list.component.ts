@@ -183,7 +183,6 @@ export class LoanListComponent {
 
   openDialogInstallmentHistory(data: any) {
     const dialogRef = this.dialog.open(InstallmentHistoryComponent, {
-      disableClose: true,
       data: {
         title: 'Loan Instalment History',
         data: data

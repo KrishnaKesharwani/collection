@@ -26,13 +26,34 @@ export class HeaderComponent {
   showMenuAction = false;
 
   ngOnInit() {
-    const data = localStorage.getItem('CurrentUser');
-    if (data) {
-      const userData = JSON.parse(data);
-      this.userType = userData.user_type;
+    const data: any = localStorage.getItem('CurrentUser');
+    const userData = JSON.parse(data);
+    this.userType = userData.user_type;
+    if (this.userType == 0) {
+
+    } else if (this.userType == 1) {
+      const currentAllData: any = localStorage.getItem('CompanyData');
+      const currentCompanyDataParse = JSON.parse(currentAllData);
+      this.userImage = currentCompanyDataParse.owner_image;
+    } else if (this.userType == 2) {
+      const currentAllData: any = localStorage.getItem('MemberData');
+      const currentMemberDataParse = JSON.parse(currentAllData);
+      this.userImage = currentMemberDataParse.image;
     } else {
-      this.userType = null;
+      const currentAllData: any = localStorage.getItem('CustomerData');
+      const currentCustomerDataParse = JSON.parse(currentAllData);   
+      this.userImage = currentCustomerDataParse.image;   
     }
+
+    // if (data) {
+    //   debugger;
+    //   if (userData.image !== null && userData.image !== '') {
+    //     this.userImage = userData.image;
+    //     const customerData: any = localStorage.getItem('CustomerData');
+    //   }
+    // } else {
+    //   this.userType = null;
+    // }
   }
 
   logout() {

@@ -2,8 +2,8 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container">
-    <table class="table table-bordered table-responsive bg-white more_table">
+<div class="dialoge_middle_container table_details_scroll">
+    <table class="table table-responsive more_table">
         <tbody>
             <tr *ngIf="!loanApply">
                 <td><b>Loan No.:</b></td>
@@ -82,4 +82,9 @@
             </tr>
         </tbody>
     </table>
+    <div class="global_details_image_container" *ngIf="!loanApply && data?.document.length">
+        <div class="image_twopart card" *ngFor="let docdata of data?.document; let i=index">
+            <img [src]="docdata?.document_url" alt="Uploaded Image" />
+        </div>
+    </div>
 </div>

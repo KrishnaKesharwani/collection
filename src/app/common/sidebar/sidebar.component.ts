@@ -16,26 +16,24 @@ export class SidebarComponent {
   userData: any;
   @Input() menuAction: string = '';
   menuActionClass = "";
-  currentLoingImage: any;
+  currentLogingImage: any = 'assets/imgs/master-logo.png';
   constructor(private formBuilder: FormBuilder, private router: Router) {
   }
 
   ngOnInit(): void {
-    const data = localStorage.getItem('CurrentUser');
-    const imageData = localStorage.getItem('image');
+    const data: any = localStorage.getItem('CurrentUser');
+    const userData = JSON.parse(data);
+    // const imageData = localStorage.getItem('image');
+    const imageData = userData.image;
     if (data) {
-      const userData = JSON.parse(data);
-      this.user_type = userData.user_type;
-      this.currentLoingImage = userData.image;
+      this.user_type = userData.user_type;      
+      // this.currentLogingImage = userData.image;
     } else {
       this.user_type = null; // or set a default value
     }
-
     if (imageData) {
-      const userImageData = JSON.parse(imageData);
-      this.currentLoingImage = userImageData.image;
+      this.currentLogingImage = imageData;
     }
-
   }
 
   ngOnChanges() {

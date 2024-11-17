@@ -16,6 +16,7 @@
         position: relative;
         display: flex;
         flex-flow: column;
+        justify-content: space-between;
         .dynamic_card_data {
             margin: 0px;
             position: relative;

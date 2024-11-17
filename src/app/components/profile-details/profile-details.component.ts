@@ -66,7 +66,7 @@ export class ProfileDetailsComponent {
 
         status: [this.memberUser?.status],
         join_date: [this.memberUser?.join_date],
-        image: [this.memberUser?.main_logo]
+        image: [this.memberUser?.image]
       });
     } 
     // else if (this.user_type == 3) {

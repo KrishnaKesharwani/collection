@@ -4,6 +4,7 @@ import { ApplyLoanComponent } from '../../custome/apply-loan/apply-loan.componen
 import { ViewDetailsComponent } from '../view-details/view-details.component';
 import { LoanService } from 'src/app/services/loan/loan.service';
 import { ToastrService } from 'ngx-toastr';
+import { InstallmentHistoryComponent } from '../../loan-list/installment-history/installment-history.component';
 
 @Component({
   selector: 'app-userloan-list',
@@ -36,10 +37,20 @@ export class UserloanListComponent {
     } else {
       this.getMemberLoanList();
     }
-
-
   }
 
+  openDialogInstallmentHistory(data: any) {
+    const dialogRef = this.dialog.open(InstallmentHistoryComponent, {
+      data: {
+        title: 'Loan Instalment History',
+        data: data
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
 
   getCustomerLoanList() {
 

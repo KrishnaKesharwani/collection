@@ -14,7 +14,7 @@
                                         class="searchtxt" />
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
-                                <div class="right_addbtn multibtn_right_addbtn">
+                                <div class="right_addbtn multibtn_right_addbtn" *ngIf="usertype == 1">
                                     <button data-toggle="modal" (click)="openDialogAddOffer()"
                                         data-target="#actionCustomer_modal"
                                         class="btn btn-success btn-sm create_header_btn" mat-raised-button>

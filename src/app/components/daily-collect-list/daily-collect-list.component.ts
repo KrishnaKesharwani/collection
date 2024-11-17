@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { DailyCollectionService } from 'src/app/services/dailyCollection/daily-collection.service';
+import { InstallmentHistoryComponent } from '../loan-list/installment-history/installment-history.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-daily-collect-list',
@@ -19,30 +21,28 @@ export class DailyCollectListComponent {
   memberDepositData: any;
   customerDepositData: any;
   collection_type: any;
-  loading = false;
-  constructor(public _customActionService: CustomActionsService, public _service: DailyCollectionService, private actionService: ActionService) {
+  loading = true;
+  constructor(public dialog: MatDialog, public _customActionService: CustomActionsService, public _service: DailyCollectionService, private actionService: ActionService) {
 
   }
   ngOnInit() {
-    const data = localStorage.getItem('CurrentUser');
+    const data: any = localStorage.getItem('CurrentUser');
+    const userData = JSON.parse(data);
+    this.userType = userData.user_type;
     if (data) {
-      const userData = JSON.parse(data);
       this.company_id = userData.company_id;
       this.member_id = userData?.member_id;
       this.customer_id = userData?.customer_id;
-      this.userType = userData.user_type;
     }
-
-    if (this.member_id) {
+    if (this.userType == 2) {
       this.collection_type = 'Deposit';
-      this.loading = true;
       this.getMemberLoanList();
       this.getDepsitForMember();
     } else {
       this.collection_type = 'Loan';
-      this.loading = true;
       this.getCustomerLoanList();
       this.getDepsitForCustomer();
+      this.loading = false;
     }
   }
 
@@ -60,7 +60,6 @@ export class DailyCollectListComponent {
   }
   collectTypeClick: any;
   collectMoneyType(collectType: any) {
-
     this.collectTypeClick = collectType;
   }
 
@@ -72,16 +71,34 @@ export class DailyCollectListComponent {
       status: "Active"
     }
     this._service.getCustomerLoanList(obj).subscribe((data: any) => {
-      console.log(data.data);
-
+      console.log('Get Customer Active Loan List', data.data);
       this.loanData = data.data.loans;
       this.loanDataNotFound = data.success;
     })
   }
+  getDepsitForCustomer() {
+    let obj = {
+      company_id: this.company_id,
+      customer_id: this.customer_id,
+      status: "Active"
+    }
+    this._service.getDepositListForCustomer(obj).subscribe((data: any) => {
+      console.log('Get Customer Deposit List', data.data);
+      this.customerDepositData = data.data.deposits;
+    })
+  }
+
+  openDialogInstallmentHistory(data: any) {
+    const dialogRef = this.dialog.open(InstallmentHistoryComponent, {
+      data: {
+        title: 'Loan Instalment History',
+        data: data
+      },
+    });
+  }
 
   get(data: any) {
-
-    this.collection_type = data
+    this.collection_type = data;
   }
 
   getDepsitForMember() {
@@ -91,22 +108,10 @@ export class DailyCollectListComponent {
       status: "Active"
     }
     this._service.getDepositListForMember(obj).subscribe((data: any) => {
-      console.log(data.data);
-      this.memberDepositData = data.data.deposits;
+      console.log('Deposit List For Member', data.data);
+      this.memberDepositData = data.data.deposits;      
+      this.loading = false;
     })
-    this.loading = false;
-  }
-  getDepsitForCustomer() {
-    let obj = {
-      company_id: this.company_id,
-      customer_id: this.customer_id,
-      status: "Active"
-    }
-    this._service.getDepositListForCustomer(obj).subscribe((data: any) => {
-      console.log(data.data);
-      this.customerDepositData = data.data.deposits;
-    })
-    this.loading = false;
   }
 
 }

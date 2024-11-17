@@ -61,10 +61,10 @@
                             </button>
                             <mat-menu #menu="matMenu">
                                 <div class="table_actionmenu">
-                                    <!-- <button mat-menu-item>
+                                    <button mat-menu-item (click)="openDialogInstallmentHistory(loan)">
                                         <i class="mdi mdi-history"></i> <span>
                                             Loan History</span>
-                                    </button> -->
+                                    </button>
                                     <button mat-menu-item (click)="openDialogViewDetail(loan)">
                                         <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                     </button>
