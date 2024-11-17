@@ -1,4 +1,4 @@
-<input type="file" accept="{{accept}}" (change)="onFileSelected($event)" *ngIf="uploadType== 'file'" />
+<input type="file" accept="{{accept}}" multiple (change)="onFileSelected($event)" *ngIf="uploadType== 'file'" />
 <div class="file_upload_user" [appDynamicWidth]="imageSize" *ngIf="uploadType== 'profile'">
     <img [src]="imageSrc" *ngIf="!image_base16String" onerror="this.src='../../../assets/imgs/default-pic.png' ">
     <img *ngIf="image_base16String" [src]="image_base16String" alt="Image Preview" />

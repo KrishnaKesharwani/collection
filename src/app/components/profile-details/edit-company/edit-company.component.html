@@ -5,9 +5,9 @@
                 <div class="profile_with_block">
                     <div class="image_upload">
                         <app-fileupload [form]="editForm" class="fileupload_image"
-                            [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="editForm.value['image']"
-                            [imageSize]="'120'" [uploadType]="'profile'" formControlName="image"
-                            [formcontrolname]="'image'" name="image"
+                            [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="editForm.value['owner_image']"
+                            [imageSize]="'120'" [uploadType]="'profile'" formControlName="owner_image"
+                            [formcontrolname]="'owner_image'" name="owner_image"
                             (fileChange)="profileChange($event)"></app-fileupload>
                     </div>
                     <div class="row">

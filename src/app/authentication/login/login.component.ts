@@ -73,8 +73,11 @@ export class LoginComponent {
       this.loading = true;
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
-          console.log(data)
-
+          // debugger;
+          // console.log('After Login Data: ', data)
+          document.documentElement.style.setProperty('--theme-bgcolor', data.data.company?.primary_color);
+          document.documentElement.style.setProperty('--theme-primary-color', data.data.company?.primary_color);
+          document.documentElement.style.setProperty('--theme-secondary-color', data.data.company?.secondary_color);
           const userLoginDetails: AdminFromBackend = {
             company_id: data.data.company?.id,
             customer_id: data.data.customer?.id,

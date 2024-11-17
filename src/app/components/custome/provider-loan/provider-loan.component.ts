@@ -10,6 +10,10 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
   templateUrl: './provider-loan.component.html',
   styleUrls: ['./provider-loan.component.scss']
 })
+// interface CustomFile {
+//   name: string;
+//   file: File;
+// }
 export class ProviderLoanComponent {
   deleteAction: any;
   providerLoanForm!: FormGroup;
@@ -55,7 +59,7 @@ export class ProviderLoanComponent {
       details: [''],
       loan_status: [''],
       status: [''],
-      document: this.fb.array([])
+      // document: this.fb.array([])
     });
     this.getActiveMmberList();
   }
@@ -70,6 +74,37 @@ export class ProviderLoanComponent {
 
   removeDocument(index: number): void {
     this.document.removeAt(index);
+  }
+
+  base64Images: string[] = []; // Array to store Base64 strings for images
+  base64allString: any;
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (!input.files) return;
+
+    const files = Array.from(input.files); // Convert FileList to Array
+    const base64Promises = files.map((file) => this.convertToBase64(file));
+
+    // Wait for all files to be converted and store them
+    Promise.all(base64Promises).then((base64Strings) => {
+      this.base64allString = base64Strings;
+      this.base64Images = base64Strings.map((base64) =>
+        base64.split(',')[1] // Remove the prefix
+      );
+    });
+
+  }
+  private convertToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => resolve(reader.result as string);
+
+      reader.onerror = (error) => reject(error);
+
+      reader.readAsDataURL(file); // Read file as Base64
+    });
   }
   // get documentControls() {
   //   return (this.providerLoanForm.get('document') as FormArray).controls;
@@ -121,12 +156,17 @@ export class ProviderLoanComponent {
 
   formattedDate: string = '';
   submitProvideLoan() {
-    console.log('Form Data: ', this.providerLoanForm.value);
-    const formData = new FormData();
-    const documentArray = this.providerLoanForm.get('document') as FormArray;
-    documentArray.controls.forEach((control, index) => {
-      formData.append(`file${index}`, control.value);
-    });
+    // debugger;
+    // alert(this.base64allString);
+    // alert('Image Count',  this.base64Images)
+    // console.log('Form Data: ', this.providerLoanForm.value);
+    // const formData = new FormData();
+    // const documentArray = this.providerLoanForm.get('document') as FormArray;
+    // documentArray.controls.forEach((control, index) => {
+    //   // debugger;
+    //   // alert(control.value);
+    //   formData.append(`file${index}`, control.value);
+    // });
 
     // console.log('Form Data inner: ', formData);
     // var getDate = this.providerLoanForm.value['start_date'];
@@ -135,15 +175,79 @@ export class ProviderLoanComponent {
     if (this.providerLoanForm.valid) {
       this.loading = true;
       const formData = new FormData();
-      const files = [
-        { name: 'document', file: this.providerLoanForm.get('document')?.value },
-      ];
+      // const files = [
+      //   { name: 'document', file: this.providerLoanForm.get('document')?.value },
+      // ];
+      debugger;
+      // const base64Array: string[] = [];
 
+      // if (files) {
+      //     const fileCount = files.length;
+      //     let processedFiles = 0; // To track processed files
+
+      //     for (let i = 0; i < fileCount; i++) {
+      //         const file: File = files[i];
+      //         const reader: FileReader = new FileReader();
+
+      //         reader.onload = (event: ProgressEvent<FileReader>) => {
+      //             const base64String: string = (event.target!.result as string).split(',')[1]; // Get the Base64 part
+      //             base64Array.push(base64String);
+      //             processedFiles++;
+
+      //             // If all files are processed, display the result
+      //             if (processedFiles === fileCount) {
+      //                 const result: string = base64Array.join(','); // Join with commas
+      //                 document.getElementById('output')!.innerText = result;
+      //             }
+      //         };
+
+      //         reader.readAsDataURL(file); // Read the file as a data URL
+      //     }
+      // }
+      //   const base64Array: string[] = [];
+      //   for (let i = 0; i < files.length; i++) {
+
+      //     const file: File = files[i];
+      //     const reader: FileReader = new FileReader();
+
+      //     reader.onload = (event: ProgressEvent<FileReader>) => {
+      //         const base64String: string = (event.target!.result as string).split(',')[1]; // Get the Base64 part
+      //         base64Array.push(base64String);
+
+      //         // If all files are processed, display the result
+      //         if (base64Array.length === files.length) {
+      //             const result: string = base64Array.join(','); // Join with commas
+      //             document.getElementById('output')!.innerText = result;
+      //         }
+      //     };
+
+      //     reader.readAsDataURL(file); // Read the file as a data URL
+      // }
+      // for (let i = 0; i < files.length; i++) {
+      //   debugger;
+
+      // const file: any = files[i];
+      // const reader = new FileReader();
+
+      // reader.onload = function (event: any) {
+      //   const base64String = event.target.result.split(',')[1]; // Get the Base64 part
+      //   base64Array.push(base64String);
+
+      //   // If all files are processed, display the result
+      //   if (base64Array.length === files.length) {
+      //     const result = base64Array.join(','); // Join with commas
+      //     alert(result);
+      //     // document.getElementById('output').innerText = result;
+      //   }
+      // };
+
+      // reader.readAsDataURL(file); // Read the file as a data URL
+      // }
       // Convert files to base64 strings
       // files.map(({ name, file }) => {
       //   return new Promise((resolve, reject) => {
       //     if (file) {
-
+      //       debugger;
       //       const reader = new FileReader();
       //       reader.onloadend = () => {
       //         const base64String = reader.result as string; // Base64-encoded string
@@ -167,7 +271,9 @@ export class ProviderLoanComponent {
           formData.append(key, this.providerLoanForm.value[key].toLocaleDateString('en-US'));
         }
       });
-
+      if (this.base64allString.length) {
+        formData.append('document', this.base64allString);
+      }
       formData.append('company_id', this.company_id)
       formData.append('customer_id', this.dataa.data.id)
       // formData.append('document', this.files[]);
@@ -181,7 +287,10 @@ export class ProviderLoanComponent {
           } else {
             this._tostr.error(data.message, 'Error');
           }
-        })
+        }, error => {
+          this.loading = false;
+          this._tostr.error(error.message, 'Error');
+        });
       }
       // this.dialog.closeAll();
     } else {
@@ -222,10 +331,17 @@ export class ProviderLoanComponent {
 
   selectedFile: File | null = null;
 
+  selectedFile2: File | null = null;
+  onFileChange2(file: File | null): void {
+    // debugger;
+    this.selectedFile2 = file;
+    // Handle the file as needed
+  }
   onFileChange(event: any, index: number) {
+    // debugger;
     const file = event.target.files[0];  // Get the selected file
+    // this.selectedFile = file;
     const documentArray = this.providerLoanForm.get('document') as FormArray;
-
     // Update the specific FormControl at the index with the file data
     documentArray.at(index).setValue(file);
   }

@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { ActionService } from 'src/app/services/action/action.service';
+import { DeleteComponent } from 'src/app/common/delete/delete.component';
 
 @Component({
   selector: 'app-edit-company',
@@ -32,17 +33,20 @@ export class EditCompanyComponent {
     private router: Router,
     private _toastr: ToastrService,
     public _service: CompanyService,
+    public dialog: MatDialog,
     private dropdownService: CommonComponentService, public fb: FormBuilder) { }
 
   ngOnInit() {
-    const data = localStorage.getItem('CompanyData');
-    const data2 = localStorage.getItem('CurrentUser');
-    if (data && data2) {
-      const userData = JSON.parse(data);
-      const userData2 = JSON.parse(data2);
-      this.user_type = userData;
-      this.company_id = userData2.company_id;
-    }
+    // debugger;
+    const customerData: any = localStorage.getItem('CompanyData');
+    const data2: any = localStorage.getItem('CurrentUser');
+    const userData = JSON.parse(customerData);
+    const currentUserDataParse = JSON.parse(data2);
+    this.user_type = userData;
+    this.company_id = currentUserDataParse?.company_id;
+    // this.user_type = currentUserDataParse?.user_type;
+    // this.company_id = currentUserDataParse?.company_id;
+
     console.log('Edit Company Data:', this.user_type);
     this.editForm = this.fb.group({
       company_name: [this.user_type.company_name, Validators.required],
@@ -53,7 +57,7 @@ export class EditCompanyComponent {
       // aadhar_no: [, Validators.required],
       prefix: [this.user_type.prefix],
       address: [this.user_type.address, Validators.required],
-      image: [this.user_type.main_logo],
+      owner_image: [this.user_type.owner_image],
       main_logo: [this.user_type.main_logo],
       sidebar_logo: [this.user_type.sidebar_logo],
       favicon_icon: [this.user_type.favicon_icon],
@@ -92,6 +96,7 @@ export class EditCompanyComponent {
           if (data) {
             this.loading = false;
             this._toastr.success(data.message, 'Success');
+            this.openDialogonfirmation();
             // this.router.navigate(['/dashboard']);
           } else {
             this.loading = false;
@@ -107,6 +112,23 @@ export class EditCompanyComponent {
     }
   }
 
+  openDialogonfirmation(): void {
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      panelClass: 'delete_popup',
+      data: {
+        title: 'Are you sure to login again?',
+        subTitle: 'This changes will apply after login!....',
+      },
+    });
+    dialogRef.componentInstance.deleteAction.subscribe(() => {
+      this.logout();
+    });
+  }
+  
+  logout() {
+    localStorage.removeItem('CurrentUser');
+    this.router.navigate(['/login']);
+  }
   // selectedFile: File | null = null;
 
   // onFileChange(file: File | null): void {

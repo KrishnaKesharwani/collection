@@ -110,23 +110,27 @@
                                                     <button mat-menu-item (click)="openDialogViewDetail(item)">
                                                         <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                                     </button>
-                                                    <button mat-menu-item (click)="openDialogEditOffer(item)">
-                                                        <i class="mdi mdi-pencil mr-2"></i> <span>Edit Details</span>
-                                                    </button>
-                                                    <button mat-menu-item (click)="openDialogDelete(item)">
-                                                        <i class="mdi mdi-delete mr-2"></i> <span>Delete Details</span>
-                                                    </button>
-                                                    <button mat-menu-item
-                                                        (click)="openDialogChangeStatus('1ms', '5ms',item)">
-                                                        <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                        <span>Status</span>
-                                                    </button>
-                                                    <button mat-menu-item
-                                                        *ngIf="item.status == 'active' && item.default_offer != 1"
-                                                        (click)="openDialogSetDefault('1ms', '5ms',item)">
-                                                        <i class="mdi mdi-checkbox-marked-circle-outline mr-2"></i>
-                                                        <span>Set Default</span>
-                                                    </button>
+                                                    <ng-container *ngIf="usertype == 1">
+                                                        <button mat-menu-item (click)="openDialogEditOffer(item)">
+                                                            <i class="mdi mdi-pencil mr-2"></i> <span>Edit
+                                                                Details</span>
+                                                        </button>
+                                                        <button mat-menu-item (click)="openDialogDelete(item)">
+                                                            <i class="mdi mdi-delete mr-2"></i> <span>Delete
+                                                                Details</span>
+                                                        </button>
+                                                        <button mat-menu-item
+                                                            (click)="openDialogChangeStatus('1ms', '5ms',item)">
+                                                            <i class="mdi mdi-account-off-outline mr-2"></i>
+                                                            <span>Status</span>
+                                                        </button>
+                                                        <button mat-menu-item
+                                                            *ngIf="item.status == 'active' && item.default_offer != 1"
+                                                            (click)="openDialogSetDefault('1ms', '5ms',item)">
+                                                            <i class="mdi mdi-checkbox-marked-circle-outline mr-2"></i>
+                                                            <span>Set Default</span>
+                                                        </button>
+                                                    </ng-container>
                                                 </div>
                                             </mat-menu>
                                         </div>

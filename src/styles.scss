@@ -42,7 +42,7 @@ ul {
 }
 
 :root {
-    --theme-bgcolor: #e20813;
+    --theme-bgcolor:#e20813;
     --theme-bggraycolor: #f4f4f4;
     --theme-primary-color: #e20813;
     --theme-secondary-color: #000000;
@@ -59,7 +59,10 @@ ul {
     box-shadow: var(--app-brand-card-shadow);
     border-radius: 5px;
 }
-
+app-member-dashboard {
+    margin-bottom: 20px;
+    display: flex;
+}
 .display_none {
     display: none;
 }
@@ -741,6 +744,7 @@ mat-option {
 
     .id_col {
         width: 110px;
+        text-align: center !important;
     }
 
     .mobile_col {
