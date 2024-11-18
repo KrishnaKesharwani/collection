@@ -8,47 +8,52 @@
 
             <tr>
                 <td><b>Customer No.:</b></td>
-                <td>RK-101</td>
+                <td>{{data.customer?.customer_no}}</td>
             </tr>
             <tr>
                 <td><b>Profile Image :</b></td>
                 <td>
                     <div class="list_image_block float-left">
-                        <img src="assets/imgs/default-pic.png">
+                        <img *ngIf="data.customer.image == null && data.customer.image == ''"
+                            src="assets/imgs/default-pic.png">
+                        <img *ngIf="data.customer.image != null" src="{{data.customer.image}}">
                     </div>
                 </td>
             </tr>
             <tr>
                 <td><b>Customer Name :</b></td>
-                <td>{{dailCollectionDetails.member_fname}}</td>
+                <td>{{data.customer?.name}}</td>
             </tr>
 
             <tr>
                 <td><b>Mobile :</b></td>
-                <td>{{dailCollectionDetails.member_mobile}}</td>
+                <td>{{data.customer?.mobile}}</td>
             </tr>
 
             <tr>
                 <td><b>Aadhar No. :</b></td>
-                <td>626362650548</td>
+                <td>{{data.customer?.adhar_no}}</td>
             </tr>
             <tr>
                 <td><b>Assign Member :</b></td>
-                <td>12</td>
+                <td>{{data.member?.name}}</td>
             </tr>
 
             <tr>
                 <td><b>Available Amount :</b></td>
-                <td>12</td>
+                <td>{{data.total_paid}}</td>
             </tr>
 
             <tr>
                 <td><b>Status :</b></td>
-                <td><span class="badge bg-success text-white">Active</span></td>
+                <td>
+                    <span class="badge bg-success text-white" *ngIf="data.status=='active'">{{data.status}}</span>
+                    <span class="badge bg-warning text-white" *ngIf="data.status=='inactive'">{{data.status}}</span>
+                </td>
             </tr>
             <tr>
                 <td><b>Address :</b></td>
-                <td>Home no. 72, bajrang nagar jabalpur </td>
+                <td>{{data.customer?.address}}</td>
             </tr>
         </tbody>
     </table>

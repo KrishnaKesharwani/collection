@@ -147,7 +147,7 @@ export class ActionForLoanComponent {
   }
 
   submit() {
-    debugger;
+
     if (this.selectedStatus == 'Approved') {
 
     }

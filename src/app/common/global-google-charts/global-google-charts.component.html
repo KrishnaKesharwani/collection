@@ -11,7 +11,7 @@
                     <div class="left_data">Loan Status</div>
                     <div class="loan_no_conainer">
                         <b>Total Loan Customer :</b>
-                        <span>15</span>
+                        <span>{{loanStatus.total_cusotomer}}</span>
                     </div>
                 </div>
                 <div class="inner_block">
@@ -67,8 +67,8 @@
                     <div class="left_data">Current Loan Status</div>
                     <div class="loan_no_conainer">
                         <b>Selectd Loan Status :</b>
-                        <span>Loan-9-101</span>
-                        <span class="selected_loan">Loan-9-102</span>
+                        <!-- <span>{{item.loan_no}}</span> -->
+                        <span class="selected_loan" *ngFor="let item of customerLoanStatus">{{item.loan_no}}</span>
                     </div>
                 </div>
                 <div class="inner_block">

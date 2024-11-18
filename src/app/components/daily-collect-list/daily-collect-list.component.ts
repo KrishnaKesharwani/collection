@@ -65,13 +65,14 @@ export class DailyCollectListComponent {
     }
     this._service.getDepositListForMember(obj).subscribe((data: any) => {
       console.log('Deposit List For Member', data.data);
-      this.memberDepositData = data.data.deposits;      
+      this.memberDepositData = data.data.deposits;
       this.loading = false;
     })
   }
 
   collectTypeClick: any;
   collectMoneyType(collectType: any) {
+
     this.collectTypeClick = collectType;
   }
 
@@ -102,6 +103,7 @@ export class DailyCollectListComponent {
   }
 
   openDialogInstallmentHistory(data: any) {
+
     const dialogRef = this.dialog.open(InstallmentHistoryComponent, {
       data: {
         title: 'Loan Instalment History',
@@ -114,6 +116,6 @@ export class DailyCollectListComponent {
     this.collection_type = data;
   }
 
- 
+
 
 }

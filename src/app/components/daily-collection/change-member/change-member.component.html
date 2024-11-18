@@ -4,20 +4,17 @@
 </div>
 <div class="dialoge_middle_container small_popup">
     <form focusInvalidInput [formGroup]="changeMemberForm">
-        <mat-form-field class="global_textbox_block" appearance="outline">
-            <mat-label>Existing Member</mat-label>
-            <input matInput disabled>
-        </mat-form-field>
+
         <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="changeMemberForm" [key]="'assigned_member_id'"
             [optionArray]="dropdownService.getmemberdata"
             *ngIf="dropdownService.getmemberdata?.length && changeMemberForm" field="Assign Member"></app-dropdwon>
     </form>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button>
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="assignLoan()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
         <app-button-loader *ngIf="loading"></app-button-loader>
-        <mat-icon *ngIf="!loading" class="submitbtn_icon">check</mat-icon>
-        <span>Login</span>
+        <span>Submit</span>
     </button>
 </div>

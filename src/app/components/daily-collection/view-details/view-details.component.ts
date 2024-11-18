@@ -17,6 +17,16 @@ interface Transaction {
 export class ViewDetailsComponent {
 
     dailCollectionDetails: any = [];
+    data: any;
 
-    constructor(@Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string }) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }) { }
+
+    ngOnInit() {
+        this.getViewDetails();
+    }
+
+    getViewDetails() {
+        this.data = this.dataa.data;
+
+    }
 }

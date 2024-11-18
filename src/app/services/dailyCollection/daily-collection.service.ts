@@ -27,4 +27,9 @@ export class DailyCollectionService {
     const url = `${this.apiUrl}/company-customer-deposits`;
     return this.httpClient.post(url, obj)
   }
+
+  changeMember(obj: object) {
+    const url = `${this.apiUrl}/change-deposit-member`;
+    return this.httpClient.post(url, obj)
+  }
 }

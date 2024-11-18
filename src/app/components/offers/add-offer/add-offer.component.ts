@@ -63,7 +63,7 @@ export class AddOfferComponent {
   selectedFile: File | null = null;
 
   onFileChange(file: File | null): void {
-    debugger;
+
     this.selectedFile = file;
     // Handle the file as needed
   }
@@ -72,7 +72,7 @@ export class AddOfferComponent {
     if (this.offer_id) {
 
       if (this.offerForm.valid) {
-        debugger;
+
         this.loading = true;
         const formData = new FormData();
         Object.keys(this.offerForm.value).forEach(key => {

@@ -32,6 +32,7 @@ export class DailyCollectionComponent {
     { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
     { action: 'status', label: 'Change Status', icon: 'mdi mdi-account-off-outline mr-2' },
   ];
+  depositDetail: any;
 
 
   constructor(public _serivce: DailyCollectionService, public _customActionService: CustomActionsService, private actionService: ActionService, public dropdownService: CommonComponentService) { }
@@ -43,13 +44,14 @@ export class DailyCollectionComponent {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
     }
-    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+    // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
 
     this.getDepositList();
   }
 
 
   getDepositList() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id,
       loan_status: 'Pending',
@@ -57,45 +59,28 @@ export class DailyCollectionComponent {
     }
     this._serivce.getDepositListForCustomer(obj).subscribe((data: any) => {
 
-      this.depositData = data.data.loans;
-    })
+      this.depositData = data.data.deposits;
+      this.filteredDataarray = this.depositData;
+      this.depositDetail = data.data;
+      this.loader = false;
+    });
+
   }
 
-  onAction(actionData: { action: string; row: any }) {
 
-    this.actionService.setAction(actionData);
-    switch (actionData.action) {
-
-      case 'collection_history':
-        this.openDialogCollectionHistory();
-        break;
-      case 'assign_member':
-        this.openDialogAssignMember();
-        break;
-      case 'change_member':
-        this.openDialogChangeMember();
-        break;
-      case 'view_details':
-        this.openDialogViewDetail(actionData.row);
-        break;
-      case 'status':
-        this.openDialogChangeStatus(actionData.row);
-        break;
-    }
-  }
   loanAssignMember(action: number) {
     this.loanassign_action = action;
   }
 
 
 
-  openDialogCollectionHistory() {
+  openDialogCollectionHistory(data?: any) {
     const dialogRef = this.dialog.open(CollectionHistoryComponent, {
 
       disableClose: true,
       data: {
         title: 'Recent Collection History',
-
+        data: data
       },
     });
 
@@ -118,12 +103,12 @@ export class DailyCollectionComponent {
   }
 
 
-  openDialogChangeMember() {
+  openDialogChangeMember(data?: any) {
     const dialogRef = this.dialog.open(ChangeMemberComponent, {
       disableClose: true,
       data: {
         title: 'Update Collection Member',
-
+        data: data
       },
     });
 
@@ -136,8 +121,8 @@ export class DailyCollectionComponent {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
 
       data: {
-        title: 'Member Details',
-
+        title: 'Customer Details',
+        data: data
       },
     });
 
@@ -169,7 +154,7 @@ export class DailyCollectionComponent {
     this.filteredDataarray = this._customActionService.sortData(column, this.depositData);
   }
 
-  searchColumns: any[] = ['name', 'status', 'mobile'];
+  searchColumns: any[] = ['customer_no', 'name', 'status'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;

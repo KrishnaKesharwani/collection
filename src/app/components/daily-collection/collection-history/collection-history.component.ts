@@ -20,13 +20,26 @@ export class CollectionHistoryComponent {
     { date: 'Profile Image', receiver: 5, amount: 4 },
 
   ];
-  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+  company_id: any;
+  data: any;
+  loader: boolean = false;
+  constructor(public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
+  ngOnInit() {
+    const data = localStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+    }
+    this.getDepositDetails();
+  }
 
+  getDepositDetails() {
+    this.loader = true;
 
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions.map(t => t.receiver).reduce((acc, value) => acc + value, 0);
+    this.data = this.dataa.data;
+
+    this.loader = false;
   }
 }

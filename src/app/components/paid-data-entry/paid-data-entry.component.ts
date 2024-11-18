@@ -16,6 +16,10 @@ export class PaidDataEntryComponent {
   loading: any;
   loan_id: any;
   collection_type: any;
+  customer_id: any;
+  depositData: any[] = [];
+  deposit_id: any;
+  // customer_id: any;
 
   constructor(public routes: ActivatedRoute, public _toastr: ToastrService, public router: Router, public fb: FormBuilder
     , public _service: PaidDataEntryService
@@ -25,7 +29,9 @@ export class PaidDataEntryComponent {
     const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
-      this.userType = userData.user_type
+
+      this.userType = userData.user_type;
+      this.customer_id = userData.customer_id;
     } else {
       this.userType = null;
     }
@@ -34,6 +40,7 @@ export class PaidDataEntryComponent {
       if (data && data) {
 
         this.loan_id = data['id'];
+        this.deposit_id = data['id'];
         this.collection_type = '';
       }
     });
@@ -41,6 +48,8 @@ export class PaidDataEntryComponent {
     this.receivedAmountForm = this.fb.group({
       amount: ['', Validators.required]
     });
+
+    this.getCustomerDepositDetails();
   }
 
   save() {
@@ -54,5 +63,21 @@ export class PaidDataEntryComponent {
       this.receivedAmountForm.reset();
       this.loading = false;
     })
+  }
+
+  getCustomerDepositDetails() {
+    this.loading = true;
+    let obj = {
+      customer_id: this.customer_id,
+      deposit_id: this.deposit_id,
+      from_day: 10
+    }
+    this._service.depositDetails(obj).subscribe((data: any) => {
+      this._toastr.success(data.message, "Success");
+      // this.receivedAmountForm.reset();
+      this.depositData = data.data;
+
+    })
+    this.loading = false;
   }
 }

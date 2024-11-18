@@ -22,7 +22,7 @@ export class FixedDepositComponent {
 
 
   fixedDepositListData: any[] = [];
-  loader: boolean = true;
+  loader: boolean = false;
   filteredDataarray: any;
   depositListData: any;
   company_id: any;

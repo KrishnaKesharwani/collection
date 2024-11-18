@@ -178,7 +178,7 @@ export class ProviderLoanComponent {
       // const files = [
       //   { name: 'document', file: this.providerLoanForm.get('document')?.value },
       // ];
-      debugger;
+
       // const base64Array: string[] = [];
 
       // if (files) {

@@ -19,6 +19,7 @@ import { PageLoaderComponent } from './page-loader/page-loader.component';
 import { GlobalGoogleChartsComponent } from './global-google-charts/global-google-charts.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { DynamicWidthDirective } from './directive/dynamic-width.directive';
+import { GraphService } from '../services/dashboardGraph/graph.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DynamicWidthDirective } from './directive/dynamic-width.directive';
     FormsModule,
     GoogleChartsModule
   ],
+
   exports: [GoogleChartsModule, InputFieldValidationComponent, TextareaComponent, DropdwonComponent,
     InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent,
     ButtonLoaderComponent, NoRecordFoundComponent, PageLoaderComponent, GlobalGoogleChartsComponent, DynamicWidthDirective]

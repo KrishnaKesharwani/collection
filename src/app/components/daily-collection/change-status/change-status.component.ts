@@ -1,7 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
+import { DailyCollectionService } from 'src/app/services/dailyCollection/daily-collection.service';
 interface Transaction {
   item: string;
   cost: number;
@@ -25,12 +27,25 @@ export class ChangeStatusComponent {
     { item: 'Start Amount', cost: 15 },
     { item: 'End  Amount', cost: 15 }
   ];
-  constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string },
+
+  changeDepositStatusForm!: FormGroup;
+  constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public fb: FormBuilder, public _service: DailyCollectionService, public _tostr: ToastrService, public dialogRef: MatDialogRef<ChangeStatusComponent>,
   ) { }
 
 
 
   ngOnInit() {
+    this.changeDepositStatusForm = this.fb.group({
+      deposit_status: [this.dataa?.data?.loans?.loan_status, Validators.required],
+      reason: ['', Validators.required]
+    });
     this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+  }
+
+  onClose() {
+    this.dialogRef.close();
+  }
+  assignLoan() {
+
   }
 }

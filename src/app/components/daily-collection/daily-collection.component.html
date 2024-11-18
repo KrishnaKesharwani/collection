@@ -9,18 +9,20 @@
                         </div>
                         <div class="col p-0 head_details">
                             <div class="total_block bg-warning mr-2" (click)="openDialogCollectionHistory()"><span>Daily
-                                    Amount</span><b>5,30,100.00</b>
+                                    Amount</span><b>{{depositDetail?.last_date_total_credit}}</b>
                             </div>
                             <div class="total_block bg-primary mr-2" (click)="openDialogChangeStatus('data')">
-                                <span>Total Amount</span><b>5,30,100.00</b>
+                                <span>Total Amount</span><b>{{depositDetail?.total_paid_amount}}</b>
                             </div>
                             <div class="total_block bg-success" (click)="openDialogChangeMember()"><span>Total
-                                    Customer</span><b>150</b></div>
+                                    Customer</span><b>{{depositDetail?.total_cusotomer}}</b></div>
                         </div>
                         <div class="col text-right pr-1">
                             <div class="listsearch-topblock mr-0">
                                 <div class="search-box">
-                                    <input type="search" placeholder="Search" class="searchtxt" />
+                                    <input type="text" placeholder="Search" (keyup)="searchTable($event)"
+                                        class="searchtxt" />
+
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                             </div>
@@ -50,10 +52,15 @@
                             </th>
 
                             <th class="col mobile_col">Mobile</th>
-                            <th class="col assign_col">Assign</th>
+                            <th class="col profile_col">Assign</th>
                             <th class="col amount_col">Available Amt</th>
                             <th class="col status_col sorting_apply">
                                 <span>Status</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('status');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
 
                             </th>
                             <th class="col action_col">Action</th>
@@ -65,14 +72,14 @@
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
-                        <tr *ngIf="depositData.length == 0 && !loader">
+                        <tr *ngIf="filteredDataarray.length == 0 && !loader">
                             <td colspan="8">
                                 <app-no-record-found type="table"
                                     notext="You have not added any deposit account."></app-no-record-found>
                             </td>
                         </tr>
-                        <ng-container *ngIf="depositData.length != 0 && !loader">
-                            <tr class="received_row" *ngFor="let item of depositData">
+                        <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                            <tr class="received_row" *ngFor="let item of filteredDataarray">
                                 <td class="col">{{item.customer.customer_no}}</td>
                                 <td class="col" data-name="Profile">
                                     <div class="list_image_block" *ngIf="item.image == null">
@@ -104,7 +111,7 @@
                                         </button>
                                         <mat-menu #menu="matMenu">
                                             <div class="table_actionmenu">
-                                                <button mat-menu-item (click)="openDialogCollectionHistory()">
+                                                <button mat-menu-item (click)="openDialogCollectionHistory(item)">
                                                     <i class="mdi mdi-history mr-2"></i> <span>
                                                         Collection History</span>
                                                 </button>
@@ -112,7 +119,7 @@
                                                     <i class="mdi mdi-account-check-outline mr-2"></i> <span>
                                                         Assign Member</span>
                                                 </button> -->
-                                                <button mat-menu-item (click)="openDialogChangeMember()">
+                                                <button mat-menu-item (click)="openDialogChangeMember(item)">
                                                     <i class="mdi mdi-account-switch-outline mr-2"></i> <span>
                                                         Change Member</span>
                                                 </button>
