@@ -36,6 +36,7 @@ export class GlobalGoogleChartsComponent {
   lastDaysAmount: any[] = [];
   memberLoanStatus: any;
   customerDepositStatus: any[] = [];
+  depositTotalCustomer: any;
 
   constructor(public _service: GraphService) { }
   ngOnInit() {
@@ -207,7 +208,8 @@ export class GlobalGoogleChartsComponent {
     }
     this._service.lastDepositStatus(obj).subscribe((data: any) => {
       console.log(data.data);
-      this.depositStatus = data.data || [];
+      this.depositStatus = data.data.graphdata || [];
+      this.depositTotalCustomer = data.data;
       console.log("Deposit Status:", this.depositStatus);  // Check if data is available
 
       if (this.depositStatus.length > 0) {

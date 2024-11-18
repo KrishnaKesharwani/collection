@@ -10,9 +10,14 @@ export class BackupListService {
   private token: string | null = null;
 
   constructor(public httpClient: HttpClient) { }
-  
+
   getbackupList(form: object) {
     const url = `${this.apiUrl}/backup-list?`;
     return this.httpClient.post(url, form)
+  }
+
+  getBack(obj: object) {
+    const url = `${this.apiUrl}/download-customers`;
+    return this.httpClient.post(url, obj)
   }
 }
