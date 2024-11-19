@@ -9,6 +9,7 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 import { FixedDepositService } from 'src/app/services/fixedDeposit/fixed-deposit.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-download-report',
@@ -23,7 +24,7 @@ export class DownloadReportComponent {
   company_id: any;
   details: string = '';
 
-  constructor(public dialogRef: MatDialogRef<DownloadReportComponent>, public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public _fixedDepositService: FixedDepositService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _backupService: BackupListService
+  constructor(public dialogRef: MatDialogRef<DownloadReportComponent>, public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public _fixedDepositService: FixedDepositService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _backupService: BackupListService, public _httpClient: HttpClient
 
   ) { }
 
@@ -47,14 +48,17 @@ export class DownloadReportComponent {
     }
 
     this._backupService.getBack(obj).subscribe((data: any) => {
-      console.log(data.data.download_url);
-      const downloadedData = data.data.download_url
-      const worksheet = downloadedData;
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, 'Report Data');
-      const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-      const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-      saveAs(blob, 'report-data.xlsx');
+      const downloadUrl = data.data.download_url; // Retrieve the download URL
+
+      // Use HttpClient to fetch the file data as a blob
+      this._httpClient.get(downloadUrl, { responseType: 'blob' }).subscribe((blob: Blob) => {
+        // Use FileSaver.js to save the file locally
+        const fileName = 'report-data.xlsx'; // Set the file name
+        saveAs(blob, fileName); // Save the downloaded blob
+      }, error => {
+        this._tostr.error('Failed to download the file', "Error");
+      });
+
     }, error => {
       this._tostr.error(error.error.message, "Error");
     });
