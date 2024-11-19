@@ -156,7 +156,7 @@ export class DailyCollectionComponent {
     this.filteredDataarray = this._customActionService.sortData(column, this.depositData);
   }
 
-  searchColumns: any[] = ['customer_no', 'name', 'status'];
+  searchColumns: any[] = ['deposit_no', 'name', 'status', 'remaining_amount'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;

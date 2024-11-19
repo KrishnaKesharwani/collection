@@ -8,11 +8,28 @@
                             <h3 class="mb-0">VC List</h3>
                         </div>
                         <div class="col text-right pr-1 datewith_search_block">
+                            <div class="head_details">
+                                <div class="total_block bg-warning mr-2"><span>Daily
+                                        Amount</span><b>1000</b>
+                                </div>
+                                <div class="total_block bg-primary mr-2">
+                                    <span>Total Amount</span><b>1000</b>
+                                </div>
+                                <div class="total_block bg-success"><span>Total
+                                        Customer</span><b>1000</b></div>
+                            </div>
                             <div class="listsearch-topblock search_withaddbtn">
                                 <div class="search-box">
                                     <input type="text" placeholder="Search" (keyup)="searchTable($event)"
                                         class="searchtxt" />
                                     <i class="mdi mdi-magnify"></i>
+                                </div>
+                                <div class="right_addbtn">
+                                    <button data-toggle="modal" class="btn btn-success btn-sm create_header_btn"
+                                        mat-raised-button>
+                                        <i class="mdi mdi-account-plus-outline"></i>
+                                        <span class="btn-txt button-text">Add</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -23,7 +40,15 @@
                         <tr>
                             <th class="col s_no">Sno.</th>
                             <th class="col sorting_apply">
-                                <span>Backup Type</span>
+                                <span>VC Name</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col sorting_apply">
+                                <span>Type</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('type');">{{ isAsc ?
                                         'north' : 'south'
@@ -31,25 +56,41 @@
                                 </div>
                             </th>
                             <th class="col sorting_apply days_time_slot_col text-center">
-                                <span>Total Active</span>
+                                <span>End Amount</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('active');">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('end_amount');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
                             </th>
                             <th class="col sorting_apply days_time_slot_col text-center">
-                                <span>Total Inactive</span>
+                                <span>Start Date</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('inactive');">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('total_customer');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col sorting_apply days_time_slot_col text-center">
+                                <span>Total Customer</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('total_customer');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
                             </th>
                             <th class="col days_time_slot_col sorting_apply">
-                                <span>Last Backup Date</span>
+                                <span>Paid Customer</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('type');">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('paid_customer');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col sorting_apply days_time_slot_col text-center">
+                                <span>Pending Coustomer</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('pending_customer');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>

@@ -4,8 +4,18 @@
             <div class="card shadow dash-cardbox">
                 <div class="card-header">
                     <div class="row align-items-center">
-                        <div class="col col-sm-4 pl-1">
+                        <div class="col col-sm-3 pl-1">
                             <h3 class="mb-0">Fixed Deposit List</h3>
+                        </div>
+                        <div class="col p-0 head_details">
+                            <div class="total_block bg-warning mr-2"><span>Total
+                                    Deposit</span><b>{{getTotaldata.total_paid_amount}}</b>
+                            </div>
+                            <div class="total_block bg-primary mr-2">
+                                <span>Total End Amount</span><b>{{getTotaldata?.total_paid_amount}}</b>
+                            </div>
+                            <div class="total_block bg-success"><span>Total
+                                    Customer</span><b>{{getTotaldata?.total_cusotomer}}</b></div>
                         </div>
                         <div class="col text-right pr-1 datewith_search_block">
                             <div class="listsearch-topblock search_withaddbtn">

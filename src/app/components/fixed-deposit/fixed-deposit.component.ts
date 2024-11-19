@@ -37,7 +37,7 @@ export class FixedDepositComponent {
     }
     this.getDepositList();
   }
-
+  getTotaldata: any = "";
   getDepositList() {
     this.loader = true;
     let obj = {
@@ -45,6 +45,7 @@ export class FixedDepositComponent {
       status: 'active'
     }
     this._service.getFixedDeposit(obj).subscribe((data: any) => {
+      this.getTotaldata = data.data;
       this.fixedDepositListData = data.data.deposits;
       this.filteredDataarray = this.fixedDepositListData;
       this.loader = false;
