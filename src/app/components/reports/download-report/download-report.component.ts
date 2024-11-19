@@ -37,6 +37,27 @@ export class DownloadReportComponent {
       status: ['active']
     });
 
+    this.downloadReport();
+  }
+
+  downloadReport() {
+    let obj = {
+      company_id: this.company_id,
+      status: 'all'
+    }
+
+    this._backupService.getBack(obj).subscribe((data: any) => {
+      console.log(data.data.download_url);
+      const downloadedData = data.data.download_url
+      const worksheet = downloadedData;
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Report Data');
+      const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+      const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+      saveAs(blob, 'report-data.xlsx');
+    }, error => {
+      this._tostr.error(error.error.message, "Error");
+    });
 
   }
 
@@ -45,22 +66,22 @@ export class DownloadReportComponent {
       company_id: this.company_id,
       status: this.reportDownloadFrom.value.status
     }
-    this._backupService.getBack(obj).subscribe((data: any) => {
-      console.log(data.data);
-      this._tostr.success(data.data, "Success");
+    // this._backupService.getBack(obj).subscribe((data: any) => {
+    //   console.log(data.data);
+    //   this._tostr.success(data.data, "Success");
 
-      // const downloadedData = [
-      //   { name: '', mobile: '', email: '', aadhar_no: '', join_date: '', customer_login_id: '', password: '', address: '', status: '' }
-      // ];
-      // const worksheet = XLSX.utils.json_to_sheet(downloadedData);
-      // const workbook = XLSX.utils.book_new();
-      // XLSX.utils.book_append_sheet(workbook, worksheet, 'Report Data');
-      // const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-      // const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-      // saveAs(blob, 'report-data.xlsx');
-    }, error => {
-      this._tostr.error(error.error.message, "Error");
-    });
+    //   // const downloadedData = [
+    //   //   { name: '', mobile: '', email: '', aadhar_no: '', join_date: '', customer_login_id: '', password: '', address: '', status: '' }
+    //   // ];
+    //   // const worksheet = XLSX.utils.json_to_sheet(downloadedData);
+    //   // const workbook = XLSX.utils.book_new();
+    //   // XLSX.utils.book_append_sheet(workbook, worksheet, 'Report Data');
+    //   // const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    //   // const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    //   // saveAs(blob, 'report-data.xlsx');
+    // }, error => {
+    //   this._tostr.error(error.error.message, "Error");
+    // });
   }
 
   onClose() {

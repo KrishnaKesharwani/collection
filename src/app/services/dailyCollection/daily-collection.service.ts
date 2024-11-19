@@ -32,4 +32,9 @@ export class DailyCollectionService {
     const url = `${this.apiUrl}/change-deposit-member`;
     return this.httpClient.post(url, obj)
   }
+
+  changeStatus(obj: object) {
+    const url = `${this.apiUrl}/update-deposit-status`;
+    return this.httpClient.put(url, obj)
+  }
 }

@@ -37,14 +37,20 @@ export class GlobalGoogleChartsComponent {
   memberLoanStatus: any;
   customerDepositStatus: any[] = [];
   depositTotalCustomer: any;
+  member_id: any;
+  customer_id: any;
 
   constructor(public _service: GraphService) { }
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
+    // const companyData = localStorage.getItem('CompanyData');
+    // const memberData = localStorage.getItem('MemberData');
+    // const customerData = localStorage.getItem('CustomerData');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
-
+      this.member_id = userData.member_id;
+      this.customer_id = userData.customer_id;
     }
 
     if (this.currentuserType == 1) {
@@ -167,37 +173,46 @@ export class GlobalGoogleChartsComponent {
   }
 
   drawUsercharts() {
-    var userdataColoum = google.visualization.arrayToDataTable([
-      ['Month', 'Deposit', 'Creadit'],
-      ['Junuary', 15000, 20000],
-      ['February', 20000, 25000],
-      ['March', 13000, 16000],
-      ['April', 22000, 25000],
-      ['May', 14000, 16000],
-      ['June', 14000, 16000],
-    ]);
-    var comboOptions = {
+    if (!this.customerDepositStatus.length && !this.customerLoanStatus.length) {
+      console.error("Deposit status is empty, cannot draw chart.");
+      return;
+    }
+    const chartData: any[][] = [['Days', 'Debit', 'Credit']];
+    this.customerDepositStatus.forEach((entry: any) => {
+      const dayLabel = entry.month; // Adjust this to match the actual label in your data, e.g., entry.day or entry.label
+      const debitValue = Number(entry.deposit_amount); // Ensure amount is a number
+      const creditValue = Number(entry.withdraw_amount); // Ensure amount is a number
+      chartData.push([dayLabel, debitValue, creditValue]);
+    });
+    const dataTable = google.visualization.arrayToDataTable(chartData);
+    const options2 = {
       vAxis: { title: 'Amount' },
       hAxis: { title: 'Month' },
       seriesType: 'bars',
       is3D: true,
       tooltip: { trigger: 'selection' },
     };
-    var loandata = google.visualization.arrayToDataTable([
-      ['Loans', 'Amount'],
-      ['Pending Amount', 5000],
-      ['Paid Amount', 15000],
+    const columnUserElement = document.getElementById('column_user_chart') as HTMLElement;
+    const columnUserChart = new google.visualization.ColumnChart(columnUserElement);
+    columnUserChart.draw(dataTable, options2);
+
+    // logic for pie chart
+    const totalAmount = Number(this.customerLoanStatus[0].total_paid);
+    const pendingAmount = Number(this.customerLoanStatus[0].remaining_amount);
+    const completedAmount = totalAmount - pendingAmount;
+    const pieChartData = google.visualization.arrayToDataTable([
+      ['Amount Type', 'Amount'],
+      ['Pending Amount', pendingAmount],
+      ['Completed Amount', completedAmount],
     ]);
-    var options = {
+    const pieOptions = {
       is3D: true,
       pieHole: 0.4,
     };
-    const columnUserElement = document.getElementById('column_user_chart') as HTMLElement;
     const pieUserElement = document.getElementById('pie_user_chart') as HTMLElement;
-    var columnUserChart = new google.visualization.ComboChart(columnUserElement);
-    columnUserChart.draw(userdataColoum, comboOptions);
-    var pieUserChart = new google.visualization.PieChart(pieUserElement);
-    pieUserChart.draw(loandata, options);
+    const pieUserChart = new google.visualization.PieChart(pieUserElement);
+    pieUserChart.draw(pieChartData, pieOptions);
+
   }
 
   // company dashboard graph api's
@@ -268,7 +283,7 @@ export class GlobalGoogleChartsComponent {
   getCustomerLoanStatus() {
     let obj = {
       company_id: this.company_id,
-      customer_id: '2'
+      customer_id: this.customer_id
     }
     this._service.customerLoanStatus(obj).subscribe((data: any) => {
       console.log(data.data);
@@ -298,7 +313,7 @@ export class GlobalGoogleChartsComponent {
   getLastSixMonthDepositForCustomer() {
     let obj = {
       company_id: this.company_id,
-      customer_id: '2'
+      customer_id: this.customer_id
     }
     this._service.customerLastDepositStatus(obj).subscribe((data: any) => {
       console.log(data.data);
@@ -331,7 +346,7 @@ export class GlobalGoogleChartsComponent {
   getLastTenDaysAmount() {
     let obj = {
       company_id: this.company_id,
-      member_id: '2'
+      member_id: this.member_id
     }
     this._service.lastDaysAmount(obj).subscribe((data: any) => {
       console.log(data.data);
@@ -361,7 +376,7 @@ export class GlobalGoogleChartsComponent {
   getAssignReceivedAmount() {
     let obj = {
       company_id: this.company_id,
-      member_id: '2'
+      member_id: this.member_id
     }
     this._service.assingReceivedAmoutn(obj).subscribe((data: any) => {
       console.log(data.data);
@@ -386,5 +401,31 @@ export class GlobalGoogleChartsComponent {
         console.error("No deposit status data available to draw charts.");
       }
     });
+  }
+
+  loan(data: any, loan: any) {
+
+    // logic for pie chart
+    const totalAmount = Number(data.total_paid); // Make sure these fields match your API response
+    const pendingAmount = Number(data.remaining_amount);
+    // if (totalAmount < 0 || pendingAmount < 0) {
+    //   console.error('Negative values detected in the data. Please check the API response.');
+    // }
+    const completedAmount = totalAmount - pendingAmount; // Calculate completed amount
+    // Create pie chart data
+    const pieChartData = google.visualization.arrayToDataTable([
+      ['Amount Type', 'Amount'],
+      ['Pending Amount', pendingAmount],
+      ['Completed Amount', completedAmount],
+    ]);
+
+    const pieOptions = {
+      is3D: true,
+      pieHole: 0.4,
+    };
+
+    const pieUserElement = document.getElementById('pie_user_chart') as HTMLElement;
+    const pieUserChart = new google.visualization.PieChart(pieUserElement);
+    pieUserChart.draw(pieChartData, pieOptions);
   }
 }

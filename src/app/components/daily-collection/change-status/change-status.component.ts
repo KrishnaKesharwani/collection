@@ -29,23 +29,38 @@ export class ChangeStatusComponent {
   ];
 
   changeDepositStatusForm!: FormGroup;
-  constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public fb: FormBuilder, public _service: DailyCollectionService, public _tostr: ToastrService, public dialogRef: MatDialogRef<ChangeStatusComponent>,
+  constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any }, public fb: FormBuilder, public _service: DailyCollectionService, public _tostr: ToastrService, public dialogRef: MatDialogRef<ChangeStatusComponent>,
   ) { }
 
 
 
   ngOnInit() {
     this.changeDepositStatusForm = this.fb.group({
-      deposit_status: [this.dataa?.data?.loans?.loan_status, Validators.required],
-      reason: ['', Validators.required]
+      status: ['', Validators.required],
+      status_changed_reason: ['', Validators.required]
     });
-    this.dropdownService.setOptions('status', ['Active', 'Inactive']);
+    // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
 
   onClose() {
     this.dialogRef.close();
   }
-  assignLoan() {
+  changeStatus() {
+    if (this.changeDepositStatusForm.valid) {
+      this.loading = true;
+      let obj = {
+        deposit_id: this.dataa.id,
+        ...this.changeDepositStatusForm.value
+      }
+
+      this._service.changeStatus(obj).subscribe((data: any) => {
+        this._tostr.success(data.message, "Success");
+        this.loading = false;
+        this.dialogRef.close();
+      });
+    } else {
+      this.changeDepositStatusForm.markAllAsTouched();
+    }
 
   }
 }

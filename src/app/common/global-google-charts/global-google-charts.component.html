@@ -68,7 +68,8 @@
                     <div class="loan_no_conainer">
                         <b>Selectd Loan Status :</b>
                         <!-- <span>{{item.loan_no}}</span> -->
-                        <span class="selected_loan" *ngFor="let item of customerLoanStatus">{{item.loan_no}}</span>
+                        <span class="selected_loan" *ngFor="let item of customerLoanStatus"
+                            (click)="loan(item,item.loan_no)">{{item.loan_no}}</span>
                     </div>
                 </div>
                 <div class="inner_block">
@@ -88,8 +89,3 @@
         </div>
     </div>
 </ng-container>
-<!-- <div id="column_div" style="width:400; height:300"></div> -->
-<!-- <div id="column_div" style="width:400; height:300"></div>
-<div id="pie_div" style="width:400; height:300"></div>
-<div id="combo_div" style="width:400; height:300"></div>
-<div id="donut_div" style="width:400; height:300"></div> -->
