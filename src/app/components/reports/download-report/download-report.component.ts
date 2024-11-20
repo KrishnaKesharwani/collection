@@ -45,7 +45,20 @@ export class DownloadReportComponent {
       company_id: this.company_id,
       status: this.reportDownloadFrom.value.status
     }
-    this._backupService.getBack(obj).subscribe((data: any) => {
+    debugger;
+    let type = this.dataa.data.type;
+    if (type == 'customer_list') {
+      type = 'download-customers';
+    } else if (type == 'member_list') {
+      type = 'download-members';
+    } else if (type == 'loan_list') {
+      type = 'download-loans';
+    } else if (type == 'deposit_list') {
+      type = 'download-deposits';
+    } else if (type == 'offer_list') {
+      type = 'download-offers';
+    }
+    this._backupService.getDownloadurl(obj, type).subscribe((data: any) => {
       const downloadUrl = data.data.download_url.full_url; // Retrieve the download URL
       this.downloadFile(downloadUrl);
       this.onClose();

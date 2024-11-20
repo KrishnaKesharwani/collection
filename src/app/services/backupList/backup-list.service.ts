@@ -16,8 +16,9 @@ export class BackupListService {
     return this.httpClient.post(url, form)
   }
 
-  getBack(obj: object) {
-    const url = `${this.apiUrl}/download-customers`;
+  getDownloadurl(obj: object, api_link: any) {
+    // const url = `${this.apiUrl}/download-customers`;
+    const url = `${this.apiUrl}/`+api_link;
     return this.httpClient.post(url, obj)
   }
 }
