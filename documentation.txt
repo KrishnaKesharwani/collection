@@ -22,6 +22,7 @@ cmd: ng add @angular/material
 cmd: npm i ngx-toastr
 
 - Sweetalert2
+cmd: npm i sweetalert2
 
 - Datatable
 cmd: ng add angular-datatables

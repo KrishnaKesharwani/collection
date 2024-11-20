@@ -39,4 +39,8 @@ export class FixedDepositService {
     const url = `${this.apiUrl}/update-fixed-deposit-status`;
     return this.httpClient.put(url, obj)
   }
+  delete(id: string) {
+    const url = `${this.apiUrl}/delete-fixed-deposit/${id}`;
+    return this.httpClient.delete(url)
+  }
 }

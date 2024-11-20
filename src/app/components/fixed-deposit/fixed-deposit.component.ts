@@ -9,6 +9,8 @@ import { CustomActionsService } from 'src/app/services/customActions/custom-acti
 import { PaidMoneyComponent } from './paid-money/paid-money.component';
 import { ToastrService } from 'ngx-toastr';
 import { AmountPaidHistoryComponent } from './amount-paid-history/amount-paid-history.component';
+import { DeleteComponent } from 'src/app/common/delete/delete.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-fixed-deposit',
@@ -152,6 +154,38 @@ export class FixedDepositComponent {
   }
   // end change status
 
+
+  openDialogDelete(data: any) {
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      panelClass: 'delete_popup',
+      data: {
+        title: 'Are you sure, you want to delete?',
+        // subTitle: data && data.status === 'active'
+        //   ? 'You want to inactivate customer status!'
+        //   : 'You want to activate customer status!'
+      }
+    });
+    dialogRef.componentInstance.deleteAction.subscribe(() => {
+      this.delete(data);
+    });
+  }
+
+  delete(data: any) {
+    this._service.delete(data.id).subscribe((data: any) => {
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: 'Success',
+          text: 'Fixed Deposit Deleted!',
+          showConfirmButton: true,
+          timer: 500
+        });
+        this.getDepositList();
+      }
+    });
+
+  }
   isAsc: boolean = true;
   sortTableData(column: string) {
     if (this.isAsc) {

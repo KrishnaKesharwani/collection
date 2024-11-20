@@ -90,12 +90,12 @@
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
-                        <tr *ngIf="filteredDataarray.length == 0 && !loader">
+                        <tr *ngIf="filteredDataarray?.length == 0 && !loader">
                             <td colspan="8">
                                 <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
                             </td>
                         </tr>
-                        <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                        <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                             <tr class="received_row" *ngFor="let item of filteredDataarray">
                                 <td class="col" data-name="Name">{{item.name}}</td>
                                 <td class="col" data-name="Customer Name">{{item.customer?.name}}</td>
@@ -132,6 +132,10 @@
                                                 <button mat-menu-item (click)="openDialogStatus(item)">
                                                     <i class="mdi mdi-account-off-outline mr-2"></i>
                                                     <span>Status Update</span>
+                                                </button>
+                                                <button mat-menu-item (click)="openDialogDelete(item)">
+                                                    <i class="mdi mdi-delete mr-2"></i>
+                                                    <span>Delete</span>
                                                 </button>
                                             </div>
                                         </mat-menu>
