@@ -39,16 +39,6 @@
             </div>
         </div>
         <div class="entry_head" *ngIf="userType == 3">
-            <div *ngIf="loading">
-                <div colspan="3">
-                    <!-- <app-page-loading></app-page-loading> -->
-                </div>
-            </div>
-            <div *ngIf="depositData?.length == 0 && !loading">
-                <div colspan="3">
-                    <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
-                </div>
-            </div>
             <div class="col date">Date</div>
             <div class="col balance">Balance</div>
             <div class="col amount">Amount</div>
@@ -58,6 +48,12 @@
                 <div class="col date">{{item}} <small>{{item}}</small></div>
                 <div class="col balance">{{item}}</div>
                 <div class="col amount"><span class="color-green">{{item}}</span></div>
+            </div>
+            <div *ngIf="loading">
+                <app-page-loader></app-page-loader>
+            </div>
+            <div *ngIf="depositData?.length == 0 && !loading">
+                <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
             </div>
         </div>
     </div>
