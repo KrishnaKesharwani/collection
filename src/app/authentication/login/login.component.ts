@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
+import { SessionService } from 'src/app/services/session/session.service';
 
 interface AdminFromBackend {
   company_id: string;
@@ -16,6 +17,10 @@ interface AdminFromBackend {
   token: string;
   image: string;
 }
+@Injectable({
+  providedIn: 'root',
+})
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -39,14 +44,18 @@ export class LoginComponent {
   showHeader: any;
   customer_id: any;
   member_id: any;
-  currentLoingImage: any;
+  // private lastLoginImagePath: string = '';
+  public lastLoginImagePath: string= './assets/imgs/login-default-image.png';
   constructor(private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     // public api: ApiService,
-    private router: Router, private authService: AuthService,
+    private router: Router, 
+    private authService: AuthService,
     // private share: SharedataService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private sessionService: SessionService
+
   ) {
     setTimeout(() => {
       this.showlogo = true;
@@ -58,15 +67,19 @@ export class LoginComponent {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
-
-
+    const storedImagePath = this.sessionService.getImagePath();
+    if (storedImagePath) {
+      this.lastLoginImagePath = storedImagePath;
+    }
   }
 
+  updateLoginImage(newImagePath: string): void {
+    debugger;
+    this.sessionService.setImagePath(newImagePath);
+  }
 
   credentials = { username: '', password: '' };
   errorMessage: string | null = null;
-
-  // constructor(private authService: AuthService) { }
 
   check_authorizartion(): void {
     if (this.loginForm.valid) {
@@ -147,9 +160,11 @@ export class LoginComponent {
 
             localStorage.setItem('CustomerData', JSON.stringify(customerData));
           }
-
           localStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));   
-          localStorage.setItem('AfterLoginData', JSON.stringify(data));        
+          localStorage.setItem('AfterLoginData', JSON.stringify(data));   
+          // this.lastLoginImagePath = data.company?.main_logo;
+          this.updateLoginImage(data.data.company?.main_logo);
+          // localStorage.setItem('lastLoginImagePath', data.company?.main_logo);
           this.loading = false;
           this.toastr.success(data.message, 'Success');
           this.router.navigate(['/dashboard']);
@@ -159,11 +174,8 @@ export class LoginComponent {
         error => {
           this.loading = false;
           this.toastr.error(error.error.message, 'Error');
-
         }
       );
     }
   }
-
-
 }
