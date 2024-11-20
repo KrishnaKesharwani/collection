@@ -30,6 +30,7 @@ export class GlobalGoogleChartsComponent {
     }
   };
   company_id: any;
+  loader: boolean = false;
   depositStatus: any[] = [];
   loanStatus: any;
   customerLoanStatus: any;
@@ -217,6 +218,7 @@ export class GlobalGoogleChartsComponent {
 
   // company dashboard graph api's
   getLastSixMonthDeposit() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id,
       // customer_id: '2'
@@ -226,7 +228,7 @@ export class GlobalGoogleChartsComponent {
       this.depositStatus = data.data.graphdata || [];
       this.depositTotalCustomer = data.data;
       console.log("Deposit Status:", this.depositStatus);  // Check if data is available
-
+      this.loader = false;
       if (this.depositStatus.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(() => {
@@ -248,6 +250,7 @@ export class GlobalGoogleChartsComponent {
   }
 
   getLoanStatus() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id,
       // member_id: '2'
@@ -256,7 +259,7 @@ export class GlobalGoogleChartsComponent {
       console.log(data.data);
       this.loanStatus = data.data || [];
       console.log("Deposit Status:", this.loanStatus);  // Check if data is available
-
+      this.loader = false;
 
       if (this.loanStatus.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
@@ -281,6 +284,7 @@ export class GlobalGoogleChartsComponent {
 
   // customer dashboardgraph api's
   getCustomerLoanStatus() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id,
       customer_id: this.customer_id
@@ -290,7 +294,7 @@ export class GlobalGoogleChartsComponent {
       this.customerLoanStatus = data.data.loans || [];
       console.log("Deposit Status:", this.customerLoanStatus);  // Check if data is available
 
-
+      this.loader = false;
       if (this.customerLoanStatus.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(() => {
@@ -311,6 +315,7 @@ export class GlobalGoogleChartsComponent {
   }
 
   getLastSixMonthDepositForCustomer() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id,
       customer_id: this.customer_id
@@ -319,7 +324,7 @@ export class GlobalGoogleChartsComponent {
       console.log(data.data);
       this.customerDepositStatus = data.data.graphdata || [];
       console.log("Deposit Status:", this.customerDepositStatus);  // Check if data is available
-
+      this.loader = false;
       if (this.customerDepositStatus.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(() => {
@@ -344,6 +349,7 @@ export class GlobalGoogleChartsComponent {
 
   // member dashboard graph api's
   getLastTenDaysAmount() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id,
       member_id: this.member_id
@@ -352,7 +358,7 @@ export class GlobalGoogleChartsComponent {
       console.log(data.data);
       this.lastDaysAmount = data.data || [];
       console.log("Last Days Amount:", this.lastDaysAmount);  // Check if data is available
-
+      this.loader = false;
 
       if (this.lastDaysAmount.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
@@ -374,6 +380,7 @@ export class GlobalGoogleChartsComponent {
   }
 
   getAssignReceivedAmount() {
+    this.loader = true;
     let obj = {
       company_id: this.company_id,
       member_id: this.member_id
@@ -383,7 +390,7 @@ export class GlobalGoogleChartsComponent {
       this.memberLoanStatus = data.data || [];
       console.log("Deposit Status:", this.memberLoanStatus);  // Check if data is available
 
-
+      this.loader = false;
       if (this.memberLoanStatus.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(() => {

@@ -40,7 +40,6 @@ export class UserloanListComponent {
     }
   }
   openDialogDownloadReport(data: any) {
-    debugger;
     let obj = {
       loan_id: data.id,
     }

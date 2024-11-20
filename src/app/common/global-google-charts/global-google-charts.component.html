@@ -11,10 +11,20 @@
                     <div class="left_data">Loan Status</div>
                     <div class="loan_no_conainer">
                         <b>Total Loan Customer :</b>
-                        <span>{{loanStatus.total_cusotomer}}</span>
+                        <span>{{loanStatus?.total_cusotomer}}</span>
                     </div>
                 </div>
                 <div class="inner_block">
+                    <div *ngIf="loader">
+                        <td colspan="8">
+                            <app-page-loader></app-page-loader>
+                        </td>
+                    </div>
+                    <div *ngIf="loanStatus?.length == 0 && !loader">
+                        <td colspan="8">
+                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
+                        </td>
+                    </div>
                     <div id="pie_company_chart"></div>
                 </div>
             </div>
@@ -25,10 +35,20 @@
                     <div class="left_data">Last 6 Month Deposit Status</div>
                     <div class="loan_no_conainer">
                         <b>Total Customer :</b>
-                        <span>{{depositTotalCustomer.total_customer}}</span>
+                        <span>{{depositTotalCustomer?.total_customer}}</span>
                     </div>
                 </div>
                 <div class="inner_block">
+                    <div *ngIf="loader">
+                        <td colspan="8">
+                            <app-page-loader></app-page-loader>
+                        </td>
+                    </div>
+                    <div *ngIf="depositStatus?.length == 0 && !loader">
+                        <td colspan="8">
+                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
+                        </td>
+                    </div>
                     <div id="column_company_chart"></div>
                 </div>
             </div>
@@ -43,6 +63,16 @@
                     <div class="left_data">Assign / Received Amount</div>
                 </div>
                 <div class="inner_block">
+                    <div *ngIf="loader">
+                        <td colspan="8">
+                            <app-page-loader></app-page-loader>
+                        </td>
+                    </div>
+                    <div *ngIf="memberLoanStatus?.length == 0 && !loader">
+                        <td colspan="8">
+                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
+                        </td>
+                    </div>
                     <div id="pie_member_chart"></div>
                 </div>
             </div>
@@ -53,6 +83,16 @@
                     <div class="left_data">Last 10 Days Amount Received</div>
                 </div>
                 <div class="inner_block">
+                    <div *ngIf="loader">
+                        <td colspan="8">
+                            <app-page-loader></app-page-loader>
+                        </td>
+                    </div>
+                    <div *ngIf="lastDaysAmount?.length == 0 && !loader">
+                        <td colspan="8">
+                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
+                        </td>
+                    </div>
                     <div id="column_member_chart"></div>
                 </div>
             </div>
@@ -73,6 +113,16 @@
                     </div>
                 </div>
                 <div class="inner_block">
+                    <div *ngIf="loader">
+                        <td colspan="8">
+                            <app-page-loader></app-page-loader>
+                        </td>
+                    </div>
+                    <div *ngIf="customerLoanStatus?.length == 0 && !loader">
+                        <td colspan="8">
+                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
+                        </td>
+                    </div>
                     <div id="pie_user_chart"></div>
                 </div>
             </div>
@@ -83,6 +133,16 @@
                     <div class="left_data">Last 6 Month Deposit Status</div>
                 </div>
                 <div class="inner_block">
+                    <div *ngIf="loader">
+                        <td colspan="8">
+                            <app-page-loader></app-page-loader>
+                        </td>
+                    </div>
+                    <div *ngIf="customerDepositStatus?.length == 0 && !loader">
+                        <td colspan="8">
+                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
+                        </td>
+                    </div>
                     <div id="column_user_chart"></div>
                 </div>
             </div>
