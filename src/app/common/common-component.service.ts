@@ -17,6 +17,8 @@ export class CommonComponentService {
   public getmemberdata: any[] = [];
   loanstatus = ['approved', 'paid', 'pending', 'cancelled'];
   provideloanstatus = ['approved', 'paid'];
+  downloadloanreport = ['approved', 'paid', 'all'];
+  downloadstatus = ['active', 'inactive', 'all'];
   actionForLoanStatus = ['approved', 'running', 'pending', 'cancelled'];
   loanliststatus = ['completed', 'paid', 'approved', 'pending', 'cancelled'];
   status = ['active', 'inactive'];

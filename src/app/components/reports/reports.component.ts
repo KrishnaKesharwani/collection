@@ -71,7 +71,7 @@ export class ReportsComponent {
     this.filteredDataarray = this._customActionService.sortData(column, this.backupListData);
   }
 
-  searchColumns: any[] = ['name', 'type', 'status', 'i'];
+  searchColumns: any[] = ['name','active', 'inactive', 'last_backup_date'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;

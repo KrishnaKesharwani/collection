@@ -23,7 +23,7 @@ export class DownloadReportComponent {
   customername: string = "";
   company_id: any;
   details: string = '';
-
+  getListtype: any;
   constructor(public dialogRef: MatDialogRef<DownloadReportComponent>, public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public _fixedDepositService: FixedDepositService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _backupService: BackupListService, public _httpClient: HttpClient
 
   ) { }
@@ -37,33 +37,34 @@ export class DownloadReportComponent {
     this.reportDownloadFrom = this.fb.group({
       status: ['active']
     });
-
-    this.downloadReport();
   }
 
   downloadReport() {
+    this.loading = true;
     let obj = {
       company_id: this.company_id,
-      status: 'all'
+      status: this.reportDownloadFrom.value.status
     }
-
     this._backupService.getBack(obj).subscribe((data: any) => {
-      const downloadUrl = data.data.download_url; // Retrieve the download URL
-
-      // Use HttpClient to fetch the file data as a blob
-      this._httpClient.get(downloadUrl, { responseType: 'blob' }).subscribe((blob: Blob) => {
-        // Use FileSaver.js to save the file locally
-        const fileName = 'report-data.xlsx'; // Set the file name
-        saveAs(blob, fileName); // Save the downloaded blob
-      }, error => {
-        this._tostr.error('Failed to download the file', "Error");
-      });
-
+      const downloadUrl = data.data.download_url.full_url; // Retrieve the download URL
+      this.downloadFile(downloadUrl);
+      this.onClose();
+      this.loading = false;
     }, error => {
+      this.loading = false;
       this._tostr.error(error.error.message, "Error");
     });
-
   }
+
+  downloadFile(filePath: string) {
+    const link = document.createElement('a');
+    link.href = filePath;
+    link.download = 'filename.extension';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
 
   submitDownload() {
     let obj = {
