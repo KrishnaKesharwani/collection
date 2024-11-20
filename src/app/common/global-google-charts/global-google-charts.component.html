@@ -16,14 +16,10 @@
                 </div>
                 <div class="inner_block">
                     <div *ngIf="loader">
-                        <td colspan="8">
-                            <app-page-loader></app-page-loader>
-                        </td>
+                        <app-page-loader></app-page-loader>
                     </div>
                     <div *ngIf="loanStatus?.length == 0 && !loader">
-                        <td colspan="8">
-                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
-                        </td>
+                        <app-no-record-found type="table" notext="No chart found"></app-no-record-found>
                     </div>
                     <div id="pie_company_chart"></div>
                 </div>
@@ -40,13 +36,11 @@
                 </div>
                 <div class="inner_block">
                     <div *ngIf="loader">
-                        <td colspan="8">
-                            <app-page-loader></app-page-loader>
-                        </td>
+                        <app-page-loader></app-page-loader>
                     </div>
                     <div *ngIf="depositStatus?.length == 0 && !loader">
                         <td colspan="8">
-                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
+                            <app-no-record-found type="table" notext="No Deposit chart found."></app-no-record-found>
                         </td>
                     </div>
                     <div id="column_company_chart"></div>
@@ -64,14 +58,10 @@
                 </div>
                 <div class="inner_block">
                     <div *ngIf="loader">
-                        <td colspan="8">
-                            <app-page-loader></app-page-loader>
-                        </td>
+                        <app-page-loader></app-page-loader>
                     </div>
                     <div *ngIf="memberLoanStatus?.length == 0 && !loader">
-                        <td colspan="8">
-                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
-                        </td>
+                        <app-no-record-found type="table" notext="No chart found"></app-no-record-found>
                     </div>
                     <div id="pie_member_chart"></div>
                 </div>
@@ -114,14 +104,10 @@
                 </div>
                 <div class="inner_block">
                     <div *ngIf="loader">
-                        <td colspan="8">
-                            <app-page-loader></app-page-loader>
-                        </td>
+                        <app-page-loader></app-page-loader>
                     </div>
                     <div *ngIf="customerLoanStatus?.length == 0 && !loader">
-                        <td colspan="8">
-                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
-                        </td>
+                        <app-no-record-found type="table" notext="No chart found"></app-no-record-found>
                     </div>
                     <div id="pie_user_chart"></div>
                 </div>
@@ -134,14 +120,10 @@
                 </div>
                 <div class="inner_block">
                     <div *ngIf="loader">
-                        <td colspan="8">
-                            <app-page-loader></app-page-loader>
-                        </td>
+                        <app-page-loader></app-page-loader>
                     </div>
                     <div *ngIf="customerDepositStatus?.length == 0 && !loader">
-                        <td colspan="8">
-                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
-                        </td>
+                        <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
                     </div>
                     <div id="column_user_chart"></div>
                 </div>
