@@ -45,7 +45,6 @@ export class DownloadReportComponent {
       company_id: this.company_id,
       status: this.reportDownloadFrom.value.status
     }
-    debugger;
     let type = this.dataa.data.type;
     if (type == 'customer_list') {
       type = 'download-customers';
