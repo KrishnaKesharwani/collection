@@ -21,4 +21,8 @@ export class BackupListService {
     const url = `${this.apiUrl}/`+api_link;
     return this.httpClient.post(url, obj)
   }
+  getDownloadloan(obj: object) {
+    const url = `${this.apiUrl}/download-loan-history`;
+    return this.httpClient.post(url, obj)
+  }
 }

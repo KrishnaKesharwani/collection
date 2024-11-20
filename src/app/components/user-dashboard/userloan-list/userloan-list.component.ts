@@ -5,6 +5,7 @@ import { ViewDetailsComponent } from '../view-details/view-details.component';
 import { LoanService } from 'src/app/services/loan/loan.service';
 import { ToastrService } from 'ngx-toastr';
 import { InstallmentHistoryComponent } from '../../loan-list/installment-history/installment-history.component';
+import { BackupListService } from 'src/app/services/backupList/backup-list.service';
 
 @Component({
   selector: 'app-userloan-list',
@@ -21,7 +22,7 @@ export class UserloanListComponent {
   customer_id: any;
   loanList: any[] = [];
   member_id: any;
-  constructor(public dialog: MatDialog, public _service: LoanService, public _tostr: ToastrService) { }
+  constructor(public _backupService: BackupListService, public dialog: MatDialog, public _service: LoanService, public _tostr: ToastrService) { }
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
@@ -38,6 +39,27 @@ export class UserloanListComponent {
       this.getMemberLoanList();
     }
   }
+  openDialogDownloadReport(data: any) {
+    debugger;
+    let obj = {
+      loan_id: data.id,
+    }
+    this._backupService.getDownloadloan(obj).subscribe((data: any) => {
+      const downloadUrl = data.data.download_url.full_url; // Retrieve the download URL
+      this.downloadFile(downloadUrl);
+    }, error => {
+      this._tostr.error(error.error.message, "Error");
+    });
+  }
+
+  downloadFile(filePath: string) {
+    const link = document.createElement('a');
+    link.href = filePath;
+    link.download = 'filename.extension';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
   openDialogInstallmentHistory(data: any) {
     const dialogRef = this.dialog.open(InstallmentHistoryComponent, {
@@ -45,10 +67,6 @@ export class UserloanListComponent {
         title: 'Loan Instalment History',
         data: data
       },
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
     });
   }
 
