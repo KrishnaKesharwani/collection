@@ -8,6 +8,11 @@
                 <li>Pinku Kesharwani</li>
                 <li>6263626505</li>
                 <li><b><i class="mdi mdi-currency-inr"></i>1600</b></li>
+                <li>
+                    <button mat-raised-button class="btn btn-small" (click)="openRequestMoney()">
+                        Request Money
+                    </button>
+                </li>
             </ul>
         </div>
     </div>
@@ -20,20 +25,18 @@
                         [displayMsg]="'amount is required.'"></app-input>
                     <!-- <input type="text" matInput placeholder="Amount" value="200" class="form-control"> -->
                     <div class="button_block">
-                        <button class="btn btn-danger global_submit_btn">
+                        <button mat-raised-button class="btn bg-secondary global_submit_btn"
+                            (click)="dabitDeposit()"><mat-icon class="submitbtn_icon"
+                                *ngIf="!loading && collection_type == 'deposit'">check</mat-icon>
+                            <app-button-loader *ngIf="loading"></app-button-loader>
+                            <i class="mdi mdi-plus mr-2"></i><span>Debit</span>
+                        </button>
+                        <button mat-raised-button class="btn btn-danger global_submit_btn" (click)="creditDeposit()">
                             <i class="mdi mdi-minus mr-2"></i>Credit
                         </button>
-
-                        <button mat-raised-button class="btn btn-success global_submit_btn" (click)="save()"><mat-icon
-                                class="submitbtn_icon" *ngIf="!loading && collection_type == 'deposit'">check</mat-icon>
-                            <app-button-loader *ngIf="loading"></app-button-loader>
-                            <span>Debit</span>
-                        </button>
-
                     </div>
                 </form>
             </div>
-
         </div>
         <div class="entry_head">
             <div class="col date">Date</div>

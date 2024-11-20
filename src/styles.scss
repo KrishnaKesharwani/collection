@@ -4279,7 +4279,10 @@ mark {
     background: var(--theme-bgcolor) !important;
     color: #ffffff !important;
 }
-
+.bg-secondary {
+    background: var(--theme-secondary-color) !important;
+    color: #ffffff !important;
+}
 /* Media Css Below Call */
 /* // Responsive Css */
 // @media (min-width: 320px) and (max-width: 767px) {

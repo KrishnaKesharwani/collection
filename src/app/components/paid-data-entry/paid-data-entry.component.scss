@@ -106,3 +106,16 @@
         }
     }
 }
+.btn-small {
+    padding: 3px 10px;
+    font-size: 12px;
+    height: 27px !important;
+    margin: 10px 0px;
+    background: #673AB7 !important;
+    color: #ffffff !important;
+}
+.button_block {
+    .btn {
+        margin: 0px !important;
+    }
+}

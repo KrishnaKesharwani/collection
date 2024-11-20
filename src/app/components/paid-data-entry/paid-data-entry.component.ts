@@ -52,7 +52,7 @@ export class PaidDataEntryComponent {
     this.getCustomerDepositDetails();
   }
 
-  save() {
+  dabitDeposit() {
     this.loading = true;
     let obj = {
       loan_id: this.loan_id,
@@ -63,6 +63,12 @@ export class PaidDataEntryComponent {
       this.receivedAmountForm.reset();
       this.loading = false;
     })
+  }
+
+  creditDeposit() {
+  }
+  openRequestMoney() {
+
   }
 
   getCustomerDepositDetails() {
