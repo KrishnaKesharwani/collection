@@ -1,8 +1,10 @@
 import { Component, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PaidDataEntryService } from 'src/app/services/paidDataEntry/paid-data-entry.service';
+import { CustomerDepositRequestMoneyComponent } from './customer-deposit-request-money/customer-deposit-request-money.component';
 
 @Component({
   selector: 'app-paid-data-entry',
@@ -19,10 +21,11 @@ export class PaidDataEntryComponent {
   customer_id: any;
   depositData: any[] = [];
   deposit_id: any;
+  isDialogOpen!: boolean;
   // customer_id: any;
 
-  constructor(public routes: ActivatedRoute, public _toastr: ToastrService, public router: Router, public fb: FormBuilder
-    , public _service: PaidDataEntryService
+  constructor(public routes: ActivatedRoute, public _toastr: ToastrService, public router: Router, public fb: FormBuilder, public dialog: MatDialog,
+    public _service: PaidDataEntryService
   ) { }
 
   ngOnInit() {
@@ -67,8 +70,20 @@ export class PaidDataEntryComponent {
 
   creditDeposit() {
   }
-  openRequestMoney() {
 
+  openDialogRequestMoney(data?: any) {
+    if (this.isDialogOpen) return;
+    const dialogRef = this.dialog.open(CustomerDepositRequestMoneyComponent, {
+      disableClose: true,
+      data: {
+        title: 'Customer Deposit Request Money',
+        data: data
+      },
+    });
+    dialogRef.componentInstance.deleteAction.subscribe(() => {
+      // this.delete();
+      this.isDialogOpen = false;
+    });
   }
 
   getCustomerDepositDetails() {
@@ -76,14 +91,15 @@ export class PaidDataEntryComponent {
     let obj = {
       customer_id: this.customer_id,
       deposit_id: this.deposit_id,
-      from_day: 10
+      from_day: 30
     }
     this._service.depositDetails(obj).subscribe((data: any) => {
-      this._toastr.success(data.message, "Success");
-      // this.receivedAmountForm.reset();
       this.depositData = data.data;
+      this.loading = false;
+      debugger
+    }, error => {
+      this.loading = false
+    });
 
-    })
-    this.loading = false;
   }
 }

@@ -1,0 +1,28 @@
+<div class="dialoge_header">
+    <div class="left_text">{{dataa.title}}</div>
+    <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container full_height_cover small_popup">
+    <form focusInvalidInput [formGroup]="requestMoneyForm">
+        <app-input [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"
+            [className]="'bottom_error_msg'" [form]="requestMoneyForm" [key]="'amount'"
+            [displayMsg]="'amount is required.'"></app-input>
+
+        <div class="col-sm-12">
+            <mat-form-field class="global_textarea_block" appearance="outline">
+                <mat-label>Reason</mat-label>
+                <textarea matInput formControlName="reason" name="reason" required="true"></textarea>
+            </mat-form-field>
+        </div>
+
+    </form>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="customerDepositApply()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span *ngIf="!customer_id">Submit</span>
+        <span *ngIf="customer_id">Apply New Loan</span>
+    </button>
+</div>
