@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="assign_customer_container" *ngIf="!loading">
-            <ng-container *ngIf="loanData.length">
+            <ng-container *ngIf="loanData?.length">
                 <div class="assign_customer_block" *ngFor="let loan of loanData">
                     <ul class="list-unstyled dynamic_card_data">
                         <li class="data_head">Loan No.</li>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </ng-container>
-            <ng-container *ngIf="customerDepositData.length">
+            <ng-container *ngIf="customerDepositData?.length">
                 <div class="assign_customer_block" *ngFor="let deposit of customerDepositData">
                     <ul class="list-unstyled dynamic_card_data">
                         <li class="data_head">Deposit No.</li>
@@ -60,11 +60,7 @@
                     </ul>
                     <div class="action_block">
                         <button mat-raised-button class="btn btn-sm btn-success global_submit_btn"
-                            routerLink="/paid_data_entry/{{deposit.id}}">View Details</button>
-                        <!-- <button mat-raised-button (click)="collectMoneyType('deposit')"
-                            class="btn btn-sm btn-success global_submit_btn"
-                            routerLink="/paid_data_entry/{{deposit.id}}">
-                            <i class="mdi mdi-currency-inr"></i>Collect Money</button> -->
+                            (click)="viewDetails(deposit,'deposit')">View Details</button>
                     </div>
                 </div>
             </ng-container>
@@ -127,8 +123,8 @@
                         <li class="data_val">{{loan.installment_amount}}</li>
                     </ul>
                     <div class="action_block">
-                        <button mat-raised-button (click)="collectMoneyType(loan)"
-                            class="btn btn-sm btn-success global_submit_btn" routerLink="/paid_data_entry/{{loan.id}}">
+                        <button mat-raised-button (click)="loanViewDetails(loan, 'loan')"
+                            class="btn btn-sm btn-success global_submit_btn">
                             <i class="mdi mdi-currency-inr"></i>Collect Money</button>
                     </div>
                 </div>
@@ -155,9 +151,8 @@
                         <li class="data_val">{{deposit.remaining_amount}}</li>
                     </ul>
                     <div class="action_block">
-                        <button mat-raised-button (click)="collectMoneyType('deposit')"
-                            class="btn btn-sm btn-success global_submit_btn"
-                            routerLink="/paid_data_entry/{{deposit.id}}">
+                        <button mat-raised-button (click)="viewDetails(deposit, 'deposit')"
+                            class="btn btn-sm btn-success global_submit_btn">
                             <i class="mdi mdi-currency-inr"></i>Collect Money</button>
                     </div>
                 </div>

@@ -18,8 +18,17 @@ export class PaidDataEntryService {
     const url = `${this.apiUrl}/collectmoney`;
     return this.httpClient.post(url, obj)
   }
+
+  collectDepositMoney(obj: object) {
+    const url = `${this.apiUrl}/collect-deposit-money`;
+    return this.httpClient.post(url, obj)
+  }
   depositDetails(obj: object) {
     const url = `${this.apiUrl}/customer-deposit-history`;
+    return this.httpClient.post(url, obj)
+  }
+  loanDetails(obj: object) {
+    const url = `${this.apiUrl}/customer-loan-history`;
     return this.httpClient.post(url, obj)
   }
 }

@@ -4,6 +4,8 @@ import { CustomActionsService } from 'src/app/services/customActions/custom-acti
 import { DailyCollectionService } from 'src/app/services/dailyCollection/daily-collection.service';
 import { InstallmentHistoryComponent } from '../loan-list/installment-history/installment-history.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-daily-collect-list',
@@ -22,7 +24,7 @@ export class DailyCollectListComponent {
   customerDepositData: any;
   collection_type: any;
   loading = true;
-  constructor(public dialog: MatDialog, public _customActionService: CustomActionsService, public _service: DailyCollectionService, private actionService: ActionService) {
+  constructor(public dialog: MatDialog, public _customActionService: CustomActionsService, public _service: DailyCollectionService, private actionService: ActionService, private _dataSharingService: DataSharingService, private _router: Router) {
 
   }
   ngOnInit() {
@@ -100,6 +102,20 @@ export class DailyCollectListComponent {
       this.customerDepositData = data.data.deposits;
       this.loading = false;
     })
+  }
+
+  viewDetails(deposit: any, collectTypeClick: any): void {
+
+    // this.collectTypeClick = collectType;
+    this._dataSharingService.setDepositData(deposit, collectTypeClick);
+    this._router.navigate(['/paid_data_entry', deposit.id]);
+  }
+
+  loanViewDetails(loan: any, collectTypeClick: any) {
+
+    // this.collectTypeClick = collectType;
+    this._dataSharingService.setLoanData(loan, collectTypeClick);
+    this._router.navigate(['/paid_data_entry', loan.id]);
   }
 
   openDialogInstallmentHistory(data: any) {

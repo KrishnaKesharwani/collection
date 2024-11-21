@@ -5,6 +5,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PaidDataEntryService } from 'src/app/services/paidDataEntry/paid-data-entry.service';
 import { CustomerDepositRequestMoneyComponent } from './customer-deposit-request-money/customer-deposit-request-money.component';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
 
 @Component({
   selector: 'app-paid-data-entry',
@@ -20,11 +21,14 @@ export class PaidDataEntryComponent {
   collection_type: any;
   customer_id: any;
   depositData: any[] = [];
+  depositDataSharre: any;
   deposit_id: any;
   isDialogOpen!: boolean;
+  loanDataShare: any;
+  loanData: any;
   // customer_id: any;
 
-  constructor(public routes: ActivatedRoute, public _toastr: ToastrService, public router: Router, public fb: FormBuilder, public dialog: MatDialog,
+  constructor(public routes: ActivatedRoute, public _toastr: ToastrService, public router: Router, public fb: FormBuilder, public dialog: MatDialog, private _dataSharingService: DataSharingService,
     public _service: PaidDataEntryService
   ) { }
 
@@ -38,13 +42,25 @@ export class PaidDataEntryComponent {
     } else {
       this.userType = null;
     }
+    const depositDataResult = this._dataSharingService.getDepositData();
+    const loanDataResult = this._dataSharingService.getLoanData();
 
-    this.routes.params.subscribe((data) => {
-      if (data && data) {
+    this.depositDataSharre = depositDataResult.data;
+    this.loanDataShare = loanDataResult.data;
+    this.collection_type = depositDataResult.type;
 
-        this.loan_id = data['id'];
-        this.deposit_id = data['id'];
-        this.collection_type = '';
+    this.routes.params.subscribe(params => {
+      if (!this.depositDataSharre || this.depositDataSharre.id !== params['id']
+        && !this.loanDataShare || this.loanDataShare.id !== params['id']
+      ) {
+
+        console.log(this.depositDataSharre, this.loanDataShare)
+        this.loan_id = params['id'];
+        this.deposit_id = params['id'];
+
+        ;
+        console.warn('Data not found in service. Fetching from server...');
+        // Perform API call here to fetch data by ID if needed
       }
     });
 
@@ -52,23 +68,54 @@ export class PaidDataEntryComponent {
       amount: ['', Validators.required]
     });
 
-    this.getCustomerDepositDetails();
+    this.getCustomerDepositHistory();
+    this.getCustomerLoanHistory();
   }
 
-  dabitDeposit() {
-    this.loading = true;
-    let obj = {
-      loan_id: this.loan_id,
-      amount: this.receivedAmountForm.value.amount
+  debitAmount() {
+
+  }
+
+  creditAmount() {
+    if (this.collection_type == 'loan') {
+      if (this.receivedAmountForm.valid) {
+        this.loading = true;
+        let obj = {
+          loan_id: this.loan_id,
+          amount: this.receivedAmountForm.value.amount
+        }
+        this._service.collectMoney(obj).subscribe((data: any) => {
+          this._toastr.success(data.message, "Success");
+          this.receivedAmountForm.reset();
+          this.loading = false;
+        }, error => {
+          this._toastr.error(error.error.message, "Error");
+          this.loading = false;
+        })
+      } else {
+        this.receivedAmountForm.markAllAsTouched();
+      }
+    } else {
+      if (this.receivedAmountForm.valid) {
+        this.loading = true;
+        let obj = {
+          deposit_id: this.deposit_id,
+          amount: this.receivedAmountForm.value.amount,
+          deposit_type: 'credit'
+        }
+        this._service.collectDepositMoney(obj).subscribe((data: any) => {
+          this._toastr.success(data.message, "Success");
+
+          this.receivedAmountForm.reset();
+          this.loading = false;
+        }, error => {
+          this._toastr.error(error.error.message, "Error");
+          this.loading = false;
+        })
+      } else {
+        this.receivedAmountForm.markAllAsTouched();
+      }
     }
-    this._service.collectMoney(obj).subscribe((data: any) => {
-      this._toastr.success(data.message, "Success");
-      this.receivedAmountForm.reset();
-      this.loading = false;
-    })
-  }
-
-  creditDeposit() {
   }
 
   openDialogRequestMoney(data?: any) {
@@ -86,7 +133,7 @@ export class PaidDataEntryComponent {
     });
   }
 
-  getCustomerDepositDetails() {
+  getCustomerDepositHistory() {
     this.loading = true;
     let obj = {
       customer_id: this.customer_id,
@@ -94,12 +141,30 @@ export class PaidDataEntryComponent {
       from_day: 30
     }
     this._service.depositDetails(obj).subscribe((data: any) => {
-      this.depositData = data.data;
+      this.depositData = data.data.collection;
       this.loading = false;
-      debugger
+
     }, error => {
       this.loading = false
     });
+
+  }
+
+  getCustomerLoanHistory() {
+    this.loading = true;
+    let obj = {
+      customer_id: this.customer_id,
+      loan_id: this.loan_id,
+      from_day: 30
+    }
+    this._service.loanDetails(obj).subscribe((data: any) => {
+      this.loanData = data.data.collection;
+      this.loading = false;
+
+    }, error => {
+      this.loading = false
+    });
+
 
   }
 }
