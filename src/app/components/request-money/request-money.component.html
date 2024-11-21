@@ -1,0 +1,75 @@
+<div class="card shadow dash-cardbox">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col col-sm-4 pl-1">
+                <h3 class="mb-0">Request Loan / Money List</h3>
+            </div>
+            <!-- <div class="col text-right pr-1 datewith_search_block">
+                <div class="listsearch-topblock search_withaddbtn">
+                    <div class="right_addbtn">
+                        <button class="btn btn-success btn-sm create_header_btn" (click)="openDialogApplyLoan()"
+                            mat-raised-button>
+                            <i class="mdi mdi-currency-inr"></i>
+                            <span class="btn-txt button-text">Apply Loan</span>
+                        </button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <table class="table align-items-center table-flush mydata-table">
+        <thead class="thead-light">
+            <tr>
+                <th class="col id_col">Request No.</th>
+                <th class="col">Request Date</th>
+                <th class="col">Request By</th>
+                <th class="col amount_col">Amount</th>
+                <th class="col status_col">Type</th>
+                <th class="col status_col">Status</th>
+                <th class="col action_col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="loader">
+                <td colspan="7">
+                    <app-page-loader></app-page-loader>
+                </td>
+            </tr>
+            <tr *ngIf="requestList.length == 0 && !loader">
+                <td colspan="7">
+                    <app-no-record-found type="table" notext="No member found"></app-no-record-found>
+                </td>
+            </tr>
+            <ng-container *ngIf="requestList.length != 0 && !loader">
+                <tr *ngFor="let loan of requestList">
+                    <td class="col" data-name="Request No.">{{loan.deposit_no}}</td>
+                    <td class="col" data-name="Request Date">{{loan.request_date}}</td>
+                    <td class="col" data-name="Request By">{{loan.requested_by}}</td>
+                    <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{loan.request_amount}}
+                    </td>
+                    <td class="col" data-name="Type">{{loan.requested_type}}</td>
+                    <td class="col text-center" data-name="Status">
+                        <div class="badge bg-success text-white">{{loan.status}}</div>
+                    </td>
+                    <td class="action_col" data-name="Action">
+                        <div placement="bottom-right">
+                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                                aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <div class="table_actionmenu">
+                                    <button mat-menu-item (click)="openDialogViewDetail(loan)">
+                                        <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                    </button>
+                                </div>
+                            </mat-menu>
+
+                        </div>
+                    </td>
+                </tr>
+
+            </ng-container>
+        </tbody>
+    </table>
+</div>

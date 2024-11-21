@@ -35,16 +35,13 @@ export class DownloadReportComponent {
       this.company_id = userData.company_id;
     }
     this.reportDownloadFrom = this.fb.group({
-      status: ['active']
+      status: ['active'],
+      loan_status: ['all']
     });
   }
 
   downloadReport() {
     this.loading = true;
-    let obj = {
-      company_id: this.company_id,
-      status: this.reportDownloadFrom.value.status
-    }
     let type = this.dataa.data.type;
     if (type == 'customer_list') {
       type = 'download-customers';
@@ -56,6 +53,19 @@ export class DownloadReportComponent {
       type = 'download-deposits';
     } else if (type == 'offer_list') {
       type = 'download-offers';
+    }
+    let obj;
+    if (type == 'download-loans') {
+      obj = {
+        company_id: this.company_id,
+        status: this.reportDownloadFrom.value.status,
+        loan_status: this.reportDownloadFrom.value.loan_status,
+      }
+    } else {
+      obj = {
+        company_id: this.company_id,
+        status: this.reportDownloadFrom.value.status
+      }
     }
     this._backupService.getDownloadurl(obj, type).subscribe((data: any) => {
       const downloadUrl = data.data.download_url.full_url; // Retrieve the download URL

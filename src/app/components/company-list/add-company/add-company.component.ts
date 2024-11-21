@@ -42,7 +42,7 @@ export class AddCompanyComponent {
       company_name: ['', Validators.required],
       owner_name: ['', Validators.required],
       mobile: ['', Validators.required],
-      aadhar_no: ['', Validators.required],
+      aadhar_no: [''],
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
       plan: ['', Validators.required],
@@ -57,9 +57,11 @@ export class AddCompanyComponent {
       main_logo: ['../../../assets/imgs/no-images.jpg'],
       sidebar_logo: ['../../../assets/imgs/no-images.jpg'],
       favicon_icon: ['../../../assets/imgs/no-images.jpg'],
+      adhar_front: ['../../../assets/imgs/no-images.jpg'],
+      adhar_back: ['../../../assets/imgs/no-images.jpg'],
       owner_image: [null],
       address: ['', Validators.required],
-      details: ['', Validators.required]
+      details: ['']
     });
     // this.dropdownService.setOptions('plan', ['Monthly', 'Quarterly', 'Half Yerly', 'Yearly', 'Demo']);
     // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
@@ -67,16 +69,15 @@ export class AddCompanyComponent {
     if (this.company_id) {
       this.companyForm.patchValue({
         ...this.dataa.data,
-        // plan: this.dataa.data.plans.plan,
+        company_login_id: this.dataa.data.user.email,        
       });
-      this.removeControl('company_login_id');
       this.removeControl('password');
       this.removeControl('plan');
       this.removeControl('start_date');
       this.removeControl('end_date');
       this.removeControl('total_amount');
       this.removeControl('advance_amount');
-      this.removeControl('company_login_id');
+      // this.removeControl('company_login_id');
       this.removeControl('password');
     }
   }
@@ -84,7 +85,6 @@ export class AddCompanyComponent {
     this.companyForm.removeControl(controlName);
   }
   getInvalidControls(): string[] {
-
     const invalidControls = [];
     const controls = this.companyForm.controls;
     for (const name in controls) {
@@ -96,7 +96,7 @@ export class AddCompanyComponent {
   }
   submitCompanyDetails() {
     if (this.company_id) {
-
+      this.removeControl('company_login_id');
       // const invalidFields = this.getInvalidControls();
       // console.log('Invalid Controls:', invalidFields);
       if (this.companyForm.valid) {
@@ -148,6 +148,12 @@ export class AddCompanyComponent {
         if (!this.selectedFile4) {
           formData.delete('owner_image');
         }
+        if (!this.selectedFile5) {
+          formData.delete('adhar_front');
+        }
+        if (!this.selectedFile6) {
+          formData.delete('adhar_back');
+        }
         formData.append('company_id', this.company_id)
 
         if (formData) {
@@ -155,9 +161,11 @@ export class AddCompanyComponent {
             if (data) {
               this.dialogRef.close(true);
               this._toastr.success(data.message, 'Success');
+              this.loading = false;
               // this.router.navigate(['/dashboard']);
             } else {
               this._toastr.error(data.message, 'Error');
+              this.loading = false;
             }
           });
         }
@@ -217,10 +225,12 @@ export class AddCompanyComponent {
           this._service.create(formData).subscribe((data: any) => {
             if (data) {
               this.dialogRef.close(true);
+              this.loading = false;
               this._toastr.success(data.message, 'Success');
               // this.router.navigate(['/company_list']);
             }
           }, error => {
+            this.loading = false;
             this._toastr.error(error.massage, 'Error');
           });
           // setTimeout(() => {
@@ -260,6 +270,14 @@ export class AddCompanyComponent {
   ownerImageChange(file: File | null): void {
     this.selectedFile4 = file;
     // this.companyForm.patchValue({ owner_image: file });
+  }
+  selectedFile5: File | null = null;
+  aadharFrontImageChange(file: File | null): void {
+    this.selectedFile5 = file;
+  }
+  selectedFile6: File | null = null;
+  aadharBackImageChange(file: File | null): void {
+    this.selectedFile6 = file;
   }
 
   // companyView() {

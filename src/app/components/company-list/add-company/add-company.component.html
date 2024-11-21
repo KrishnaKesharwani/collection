@@ -68,37 +68,39 @@
                             [isRequired]="true" [className]="'bottom_error_msg'" [form]="companyForm"
                             [key]="'company_login_id'" [displayMsg]="'Login id is required'"></app-input>
                     </div>
-                    <div class="col-sm-4 col-lg-4 col-xs-12" *ngIf="company_id">
-                        <app-input [isDateField]="false" label="Company Login Id" [(value)]="company_login_id"
-                            [readonly]="true" [className]="'bottom_error_msg'" [form]="companyForm"
-                            [key]="'company_login_id'"></app-input>
-                    </div>
+
                     <div class="col-sm-4 col-lg-4 col-xs-12">
                         <app-input [isDateField]="false" label="Password" [(value)]="password" [isRequired]="true"
                             [className]="'bottom_error_msg'" [form]="companyForm" [key]="'password'"
                             [displayMsg]="'Password is required'"></app-input>
-                    </div>                  
+                    </div>
                 </ng-container>
-                <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-dropdwon [optionArray]="dropdownService.status" [form]="companyForm"
-                        formControlName="status" name="status" [key]="'status'" field="Status"></app-dropdwon>                    
+                <div class="col-sm-4 col-lg-4 col-xs-12" *ngIf="company_id">
+                    <app-input [isDateField]="false" label="Company Login Id" [(value)]="company_login_id"
+                        [readonly]="true" [className]="'bottom_error_msg'" [form]="companyForm"
+                        [key]="'company_login_id'"></app-input>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"
+                    <app-dropdwon [optionArray]="dropdownService.status" [form]="companyForm" formControlName="status"
+                        name="status" [key]="'status'" field="Status"></app-dropdwon>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" label="Aadhar No." [(value)]="aadhar_no"
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'aadhar_no'"
                         [displayMsg]="'Aadhar number is required'"></app-input>
                 </div>
 
                 <div class="col-sm-6">
                     <app-textarea [disabled]="true" label="Address" [(value)]="address" [isRequired]="true"
-                    [className]="'bottom_error_msg'" [displayMsg]="'Address is required'" [form]="companyForm" [key]="'address'"></app-textarea>
+                        [className]="'bottom_error_msg'" [displayMsg]="'Address is required'" [form]="companyForm"
+                        [key]="'address'"></app-textarea>
                     <!-- <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'address'"
                         [displayMsg]="'Address is required'"></app-input> -->
                 </div>
                 <div class="col-sm-6">
-                    <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="true"
-                    [className]="'bottom_error_msg'" [displayMsg]="'Details is required'" [form]="companyForm" [key]="'details'"></app-textarea>
+                    <app-textarea [disabled]="true" label="Details" [(value)]="details" [className]="'bottom_error_msg'"
+                        [displayMsg]="'Details is required'" [form]="companyForm" [key]="'details'"></app-textarea>
                     <!-- <app-input [isDateField]="false" label="Details" [(value)]="details" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="companyForm" [key]="'details'"
                         [displayMsg]="'Details is required'"></app-input> -->
@@ -108,7 +110,8 @@
                         <label class="m-0">Company Main Logo</label>
                         <app-fileupload [form]="companyForm" class="fileupload_image_fullwidth"
                             [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="companyForm.value['main_logo']"
-                            [uploadType]="'fullwidth'" [imageCaption]="''" [formcontrolname]="'main_logo'" formControlName="main_logo" name="main_logo"
+                            [uploadType]="'fullwidth'" [imageCaption]="''" [formcontrolname]="'main_logo'"
+                            formControlName="main_logo" name="main_logo"
                             (fileChange)="mainlogoChange($event)"></app-fileupload>
                         <!-- <app-fileupload class="fileupload" formControlName="main_logo" name="main_logo"
                             (fileChange)="mainlogoChange($event)"></app-fileupload> -->
@@ -119,8 +122,9 @@
                         <label class="m-0">Company Sidebar Logo</label>
                         <app-fileupload [form]="companyForm" class="fileupload_image_fullwidth"
                             [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="companyForm.value['sidebar_logo']"
-                            [uploadType]="'fullwidth'" [imageCaption]="''" [formcontrolname]="'sidebar_logo'" formControlName="sidebar_logo"
-                            name="sidebar_logo" (fileChange)="sidebarChange($event)"></app-fileupload>
+                            [uploadType]="'fullwidth'" [imageCaption]="''" [formcontrolname]="'sidebar_logo'"
+                            formControlName="sidebar_logo" name="sidebar_logo"
+                            (fileChange)="sidebarChange($event)"></app-fileupload>
                         <!-- <app-fileupload class="fileupload" formControlName="sidebar_logo" name="sidebar_logo"
                             (fileChange)="onFileChange2($event)"></app-fileupload> -->
                     </div>
@@ -130,8 +134,9 @@
                         <label class="m-0">Company Favicon Icon</label>
                         <app-fileupload [form]="companyForm" class="fileupload_image_fullwidth"
                             [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="companyForm.value['favicon_icon']"
-                            [uploadType]="'fullwidth'" [imageCaption]="''" [formcontrolname]="'favicon_icon'" formControlName="favicon_icon"
-                            name="favicon_icon" (fileChange)="feviconChange($event)"></app-fileupload>
+                            [uploadType]="'fullwidth'" [imageCaption]="''" [formcontrolname]="'favicon_icon'"
+                            formControlName="favicon_icon" name="favicon_icon"
+                            (fileChange)="feviconChange($event)"></app-fileupload>
                         <!-- <app-fileupload class="fileupload" formControlName="favicon_icon" name="favicon_icon"
                             (fileChange)="feviconChange($event)"></app-fileupload> -->
                     </div>
@@ -141,10 +146,31 @@
                         <label class="m-0">Company Owner Image</label>
                         <app-fileupload [form]="companyForm" class="fileupload_image_fullwidth"
                             [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="companyForm.value['owner_image']"
-                            [uploadType]="'fullwidth'" [imageCaption]="''" [formcontrolname]="'owner_image'" formControlName="owner_image"
-                            name="owner_image" (fileChange)="ownerImageChange($event)"></app-fileupload>
+                            [uploadType]="'fullwidth'" [imageCaption]="''" [formcontrolname]="'owner_image'"
+                            formControlName="owner_image" name="owner_image"
+                            (fileChange)="ownerImageChange($event)"></app-fileupload>
                         <!-- <app-fileupload class="fileupload" formControlName="owner_image" name="owner_image"
                             (fileChange)="onFileChange4($event)"></app-fileupload> -->
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="file_upload_block global_textbox_block">
+                        <label class="m-0">Aadhar Front Image</label>
+                        <app-fileupload [form]="companyForm" class="fileupload_image_fullwidth"
+                            [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="companyForm.value['adhar_front']"
+                            [uploadType]="'fullwidth'" [imageCaption]="'Please upload aadhar front side photo.'"
+                            [formcontrolname]="'adhar_front'" formControlName="adhar_front" name="adhar_front"
+                            (fileChange)="aadharFrontImageChange($event)"></app-fileupload>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6 col-xs-12">
+                    <div class="file_upload_block global_textbox_block">
+                        <label class="m-0">Aadhar Back Image</label>
+                        <app-fileupload [form]="companyForm" class="fileupload_image_fullwidth"
+                            [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="companyForm.value['adhar_back']"
+                            [uploadType]="'fullwidth'" [imageCaption]="'Please upload aadhar back side photo.'"
+                            [formcontrolname]="'adhar_back'" formControlName="adhar_back" name="adhar_back"
+                            (fileChange)="aadharBackImageChange($event)"></app-fileupload>
                     </div>
                 </div>
             </div>

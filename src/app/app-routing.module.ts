@@ -106,6 +106,10 @@ const routes: Routes = [
     path: 'vc_management',
     loadChildren: () => import('./components/vc-management/vc-management.module').then(m => m.VcManagementModule)
   },
+  {
+    path: 'request_money',
+    loadChildren: () => import('./components/request-money/request-money.module').then(m => m.RequestMoneyModule)
+  },
   { path: '**', component: LoginComponent }
 ]
 

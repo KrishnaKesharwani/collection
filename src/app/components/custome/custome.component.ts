@@ -15,6 +15,8 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { ApplyLoanComponent } from './apply-loan/apply-loan.component';
 import { NewDepositComponent } from './new-deposit/new-deposit.component';
+import { error } from 'jquery';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-custome',
   templateUrl: './custome.component.html',
@@ -43,7 +45,11 @@ export class CustomeComponent {
   loader = false;
   user_type: any;
 
-  constructor(public _customActionService: CustomActionsService, public _service: CustomerService, private actionService: ActionService) { }
+  constructor(public _customActionService: CustomActionsService,
+    public _service: CustomerService,
+    private actionService: ActionService,
+    public toaster: ToastrService
+  ) { }
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
@@ -66,6 +72,9 @@ export class CustomeComponent {
         this.filteredDataarray = this.customerData;
         this.loader = false;
       }
+    }, error => {
+      this.loader = false;
+      this.toaster.error(error.error.message, 'Error');
     })
   }
 

@@ -17,10 +17,11 @@ export class CommonComponentService {
   public getmemberdata: any[] = [];
   loanstatus = ['approved', 'paid', 'pending', 'cancelled'];
   provideloanstatus = ['approved', 'paid'];
-  downloadloanreport = ['approved', 'paid', 'all'];
+  downloadloanreport = ['paid', 'approved', 'pending', 'cancelled', 'completed', 'all'];
   downloadstatus = ['active', 'inactive', 'all'];
   actionForLoanStatus = ['approved', 'running', 'pending', 'cancelled'];
   loanliststatus = ['completed', 'paid', 'approved', 'pending', 'cancelled'];
+  depositrequest = ['pending', 'response'];
   status = ['active', 'inactive'];
   debit_type = ['monthly', 'money back'];
   plan = ['monthly', 'quarterly', 'half yerly', 'yearly', 'demo'];

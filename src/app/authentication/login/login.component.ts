@@ -74,7 +74,6 @@ export class LoginComponent {
   }
 
   updateLoginImage(newImagePath: string): void {
-    debugger;
     this.sessionService.setImagePath(newImagePath);
   }
 

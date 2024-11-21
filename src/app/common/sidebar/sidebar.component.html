@@ -112,8 +112,13 @@
                         Reports
                     </a>
                 </li>
+                <li class="nav-item" *ngIf="user_type == 3">
+                    <a routerLink="/request_money" routerLinkActive="active" class="nav-link"> <i class="mdi mdi-currency-inr"></i>
+                        Request Money
+                    </a>
+                </li>
                 <li class="nav-item">
-                    <a routerLink="/profile_details" routerLinkActive="active" class="nav-link"> <i class="mdi mdi-account-edit"></i>
+                    <a routerLink="/profile_details" routerLinkActive="active" class="nav-link"> <i class="mdi mdi-account-edit-outline"></i>
                         Edit Profile
                     </a>
                 </li>

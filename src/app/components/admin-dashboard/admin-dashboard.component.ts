@@ -5,6 +5,7 @@ import { ActionForLoanComponent } from './action-for-loan/action-for-loan.compon
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { LoanService } from 'src/app/services/loan/loan.service';
 import { InstallmentHistoryComponent } from '../loan-list/installment-history/installment-history.component';
+import { ActionForDepositComponent } from './action-for-deposit/action-for-deposit.component';
 
 export interface DialogData {
   animal: string;
@@ -27,6 +28,7 @@ export class AdminDashboardComponent {
   newLoanDashboardData: any;
   loader: boolean = false;
   constructor(public dialog: MatDialog, public _service: LoanService) { }
+
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
     if (data) {
@@ -58,9 +60,6 @@ export class AdminDashboardComponent {
 
   }
 
-
-
-  // start view details
   readonly dialog2 = inject(MatDialog);
   openDialogViewDetails(data?: any) {
     const dialogRef = this.dialog2.open(ViewDetailsComponent, {
@@ -77,10 +76,19 @@ export class AdminDashboardComponent {
   readonly dialog3 = inject(MatDialog);
   openDialogActionForLoan(data?: any) {
     const dialogRef = this.dialog3.open(ActionForLoanComponent, {
-
-
+      panelClass: 'medium_popup',
       data: {
         title: 'Message For Applier',
+        data: data
+      },
+    });
+  }
+
+  openDialogActionForDeposit(data?: any) {
+    const dialogRef = this.dialog3.open(ActionForDepositComponent, {
+      panelClass: 'medium_popup',
+      data: {
+        title: 'Message For Deposit',
         data: data
       },
     });
