@@ -37,7 +37,6 @@ export class MoneyReceivedComponent {
   }
 
   getCollectionList() {
-    debugger;
     this.loader = true;
     let obj = {
       company_id: this.company_id,
@@ -49,7 +48,6 @@ export class MoneyReceivedComponent {
       this.filteredDataarray = this.collectionData;
       this.loader = false;
     }, error => {
-      // debugger;
       this.loader = false;
       this.toaster.error(error.error.message, 'Error');
     });

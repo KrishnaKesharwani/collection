@@ -28,6 +28,7 @@
                 <table class="table align-items-center table-flush mydata-table">
                     <thead class="thead-light">
                         <tr>
+                            <th class="col profile_col">Profile</th>
                             <th class="col sorting_apply">
                                 <span>Member Name</span>
                                 <div class="sorting_arrow">
@@ -36,7 +37,6 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col profile_col">Profile</th>
                             <th class="col sorting_apply date_col">
                                 <span>Collect Date</span>
                                 <div class="sorting_arrow">
@@ -72,7 +72,6 @@
                         </tr>
                         <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
                             <tr class="received_row" *ngFor="let item of filteredDataarray">
-                                <td class="col" data-name="Member Name"> {{item.member.name}}</td>
                                 <td class="col " data-name="Image">
                                     <div class="list_image_block" *ngIf="item.member.image == null">
                                         <img src="assets/imgs/default-pic.png" />
@@ -81,6 +80,7 @@
                                         <img src="{{item.member.image}}" />
                                     </div>
                                 </td>
+                                <td class="col" data-name="Member Name"> {{item.member.name}}</td>
                                 <td class="col" data-name="Collect Date">
                                     {{item.collect_date}}
                                 </td>
