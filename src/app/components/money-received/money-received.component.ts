@@ -7,6 +7,7 @@ import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MoneyReceivedService } from 'src/app/services/moneyReceived/money-received.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-money-received',
@@ -22,28 +23,39 @@ export class MoneyReceivedComponent {
   filter_date!: string | Date | null;
   filterDateForm!: FormGroup;
   date: any;
-  // collectionData: any[] = [];
-  constructor(public _service: MoneyReceivedService, public _customActionService: CustomActionsService, private actionService: ActionService, public fb: FormBuilder) { }
+  // collectionData: any[] = []; 
+  constructor(public toaster: ToastrService, public _service: MoneyReceivedService, public _customActionService: CustomActionsService, private actionService: ActionService, public fb: FormBuilder) { }
 
   ngOnInit() {
-    const data = localStorage.getItem('CurrentUser');
-    if (data) {
-      const userData = JSON.parse(data);
-      this.company_id = userData.company_id;
-
-    }
-
+    const data: any = localStorage.getItem('CurrentUser');
+    const userData = JSON.parse(data);
+    this.company_id = userData.company_id;
     this.filterDateForm = this.fb.group({
       date: ['']
-    })
-
+    });
     this.getCollectionList();
   }
 
-
+  getCollectionList() {
+    debugger;
+    this.loader = true;
+    let obj = {
+      company_id: this.company_id,
+      date: this.filterDateForm.value.date
+    }
+    this._service.getCollection(obj).subscribe((data: any) => {
+      console.log('Collection Data: ', data.data);
+      this.collectionData = data.data;
+      this.filteredDataarray = this.collectionData;
+      this.loader = false;
+    }, error => {
+      // debugger;
+      this.loader = false;
+      this.toaster.error(error.error.message, 'Error');
+    });
+  }
 
   readonly dialog = inject(MatDialog);
-
   openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
       disableClose: false,
@@ -53,14 +65,11 @@ export class MoneyReceivedComponent {
         title: 'Money Collection Details',
       },
     });
-    dialogRef.afterClosed().subscribe(result => {
-    });
   }
 
   openDialogChangeStatus(data: any) {
     const dialogRef = this.dialog.open(VpdateStatusComponent, {
       disableClose: true,
-      panelClass: 'delete_popup',
       data: {
         id: data.id,
         title: 'Received Money Status',
@@ -68,7 +77,7 @@ export class MoneyReceivedComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-
+        this.getCollectionList();
       }
     });
   }
@@ -82,7 +91,9 @@ export class MoneyReceivedComponent {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
-
+      if (result) {
+        this.getCollectionList();
+      }
     });
   }
 
@@ -95,8 +106,7 @@ export class MoneyReceivedComponent {
     }
     this.filteredDataarray = this._customActionService.sortData(column, this.collectionData);
   }
-
-  searchColumns: any[] = ['name', 'status', 'mobile'];
+  searchColumns: any[] = ['name', 'customer_count', 'payment_status', 'balance'];
   searchTerm: string = '';
   searchTable(event: Event) {
 
@@ -107,19 +117,5 @@ export class MoneyReceivedComponent {
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
-  }
-
-  getCollectionList() {
-    this.loader = true;
-    let obj = {
-      company_id: this.company_id,
-      date: this.filterDateForm.value.date
-    }
-
-    this._service.getCollection(obj).subscribe((data: any) => {
-      console.log(data.data);
-      this.collectionData = data.data;
-      this.loader = false;
-    })
   }
 }

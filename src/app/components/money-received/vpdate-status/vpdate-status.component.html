@@ -1,17 +1,14 @@
 <div class="dialoge_header">
     <div class="left_text">{{dataa.title}}</div>
-    <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
+    <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container small_popup">
     <form focusInvalidInput [formGroup]="receivedAmountForm">
         <div class="global_form_row">
             <app-input [disabled]="true" [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"
-                [className]="'bottom_error_msg'" [form]="receivedAmountForm" [key]="'amount'"></app-input>
+                [className]="'bottom_error_msg'" [displayMsg]="'Amount is required'" [form]="receivedAmountForm"
+                [key]="'amount'"></app-input>
         </div>
-        <!-- <div class="global_form_row">
-            <app-dropdwon key="moneyStatus" field="Collect Money Status"></app-dropdwon>
-            <app-dropdwon key="moneyStatus" field="Collect Money Status" formControlName="moneystatus" name="moneystatus"></app-dropdwon>
-        </div> -->
         <div class="global_form_row">
             <mat-form-field class="global_textarea_block" appearance="outline">
                 <mat-label>Money Received Details</mat-label>
@@ -21,8 +18,8 @@
     </form>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button (click)="submit()">
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
+    <button class="global_submit_btn" mat-flat-button (click)="submitStatus()">
         <app-button-loader *ngIf="loading"></app-button-loader>
         <mat-icon *ngIf="!loading" class="submitbtn_icon">check</mat-icon>
         <span>Submit</span>

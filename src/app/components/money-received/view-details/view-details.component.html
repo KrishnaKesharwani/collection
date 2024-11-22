@@ -2,8 +2,8 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container small_popup">
-    <table class="table table-bordered table-responsive bg-white more_table mb-20">
+<div class="dialoge_middle_container small_popup table_details_scroll">
+    <table class="table table-responsive more_table mb-20">
         <tbody>
             <tr>
                 <td><b>Member Name :</b></td>
@@ -23,7 +23,14 @@
             </tr>
             <tr>
                 <td><b>Receive Status :</b></td>
-                <td>{{memberData.payment_status}}</td>
+                <td>
+                    <span class="badge bg-warning text-white"
+                        *ngIf="memberData.payment_status == 'working'">{{memberData.payment_status}}</span>
+                    <span class="badge bg-danger text-white "
+                        *ngIf="memberData.payment_status == 'unpaid'">{{memberData.payment_status}}</span>
+                    <span class="badge bg-success text-white "
+                        *ngIf="memberData.payment_status == 'paid'">{{memberData.payment_status}}</span>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -38,13 +45,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor=" let item of customerData">
-                    <td>{{item.customer?.name}}</td>
-                    <td>{{item.customer?.customer_no}}</td>
-                    <td><small>{{item.amount_date}}</small></td>
-                    <td class="text-right">{{item.amount}}</td>
+                <tr *ngIf="loader">
+                    <td colspan="7">
+                        <app-page-loader></app-page-loader>
+                    </td>
                 </tr>
-
+                <tr *ngIf="customerData.length == 0 && !loader">
+                    <td colspan="7">
+                        <app-no-record-found type="table" notext="No customer collection found."></app-no-record-found>
+                    </td>
+                </tr>
+                <ng-container *ngIf="customerData.length != 0 && !loader">
+                    <tr *ngFor="let item of customerData">
+                        <td>{{item.customer?.name}}</td>
+                        <td>{{item.customer?.customer_no}}</td>
+                        <td><small>{{item.amount_date}}</small></td>
+                        <td class="text-right">{{item.amount}}</td>
+                    </tr>
+                </ng-container>
             </tbody>
         </table>
     </div>

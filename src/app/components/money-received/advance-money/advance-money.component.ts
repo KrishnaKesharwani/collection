@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { MoneyReceivedService } from 'src/app/services/moneyReceived/money-received.service';
@@ -22,7 +22,7 @@ export class AdvanceMoneyComponent {
   memberUser: any;
   amount: any;
 
-  constructor(public _tostr: ToastrService, public _service: MoneyReceivedService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any },
+  constructor(public dialogRef: MatDialogRef<AdvanceMoneyComponent>, public _tostr: ToastrService, public _service: MoneyReceivedService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any },
   ) { }
 
   ngOnInit() {
@@ -43,28 +43,35 @@ export class AdvanceMoneyComponent {
       this.memberUser = member;
     }
     this.advanceAmountForm = this.fb.group({
-      amount: [''],
+      amount: ['', Validators.required],
       details: [''],
     });
     // this.dropdownService.setOptions('member', ['Allot Members', 'Roshan Kanojiya', 'Bhaijan']);
   }
 
-  save() {
-    let obj = {
-      company_id: this.company_id,
-      member_id: this.member_id,
-      ...this.advanceAmountForm.value
-    }
+  onClose() {
+    this.dialogRef.close();
+  }
 
+  payAdvanceMoney() {
     if (this.advanceAmountForm.valid) {
+      this.loading = true;
+      let obj = {
+        company_id: this.company_id,
+        member_id: this.member_id,
+        ...this.advanceAmountForm.value
+      }
       this._service.advancedMoney(obj).subscribe((data: any) => {
         this.advanceAmountForm.reset();
         this._tostr.success(data.message, 'Success');
-        this.dialog.closeAll();
+        this.dialogRef.close(true);
+        this.loading = false;
+      }, error => {
+        this.loading = false;
+        this._tostr.error(error.error.message, 'Error');
       })
     } else {
       this.advanceAmountForm.markAllAsTouched()
     }
-
   }
 }

@@ -10,7 +10,7 @@ import { MoneyReceivedService } from 'src/app/services/moneyReceived/money-recei
 })
 export class ViewDetailsComponent {
   @Input() title: any;
-  loading = false;
+  loader = false;
   company_id: any;
   collection_id: any;
   memberData: any;
@@ -20,15 +20,12 @@ export class ViewDetailsComponent {
   ) { }
 
   ngOnInit() {
-    const data = localStorage.getItem('CurrentUser');
-    if (data) {
-      const userData = JSON.parse(data);
-      this.company_id = userData.company_id;
-
-    }
-
-
-
+    // const data = localStorage.getItem('CurrentUser');
+    // if (data) {
+    //   const userData = JSON.parse(data);
+    //   this.company_id = userData.company_id;
+    // }
+    this.loader = true;
     this.getCollectionDetails();
   }
 
@@ -36,14 +33,14 @@ export class ViewDetailsComponent {
     let obj = {
       collection_id: this.dataa.id
     }
-
     this.memberData = this.dataa.data;
     console.log(this.memberData)
-
     this._service.viewDetails(obj).subscribe((data: any) => {
       console.log(data.data);
-
       this.customerData = data.data.details;
-    })
+      this.loader = false;
+    }, error => {      
+      this.loader = false;
+    });
   }
 }

@@ -9,9 +9,11 @@
                         </div>
                         <div class="col text-right pr-1 datewith_search_block calender_withsearch">
                             <div class="list_calender_filter">
-                                <app-input [isDateField]="true" label="Filter Date" [(value)]="date"
-                                    [className]="'bottom_error_msg'" [key]="'date'" [form]="filterDateForm"
-                                    (change)="getCollectionList()"></app-input>
+                                <form [formGroup]="filterDateForm">
+                                    <app-input [isDateField]="true" label="Filter Date" [(value)]="date"
+                                        [className]="'bottom_error_msg'" [key]="'date'" [form]="filterDateForm"
+                                        (valueChange)="getCollectionList()"></app-input>
+                                </form>
                             </div>
                             <div class="listsearch-topblock search_withaddbtn pr-0">
                                 <div class="search-box">
@@ -34,6 +36,7 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
+                            <th class="col profile_col">Profile</th>
                             <th class="col sorting_apply date_col">
                                 <span>Collect Date</span>
                                 <div class="sorting_arrow">
@@ -42,7 +45,7 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col">Customer Meet</th>
+                            <th class="col status_col">Customer Meet</th>
                             <th class="col amount_col">Collect Amount</th>
                             <th class="col status_col sorting_apply">
                                 <span>Receive Status</span>
@@ -57,12 +60,12 @@
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td colspan="6">
+                            <td colspan="7">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
                         <tr *ngIf="filteredDataarray.length == 0 && !loader">
-                            <td colspan="6">
+                            <td colspan="7">
                                 <app-no-record-found type="table"
                                     notext="No member collection found."></app-no-record-found>
                             </td>
@@ -70,16 +73,26 @@
                         <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
                             <tr class="received_row" *ngFor="let item of filteredDataarray">
                                 <td class="col" data-name="Member Name"> {{item.member.name}}</td>
+                                <td class="col " data-name="Image">
+                                    <div class="list_image_block" *ngIf="item.member.image == null">
+                                        <img src="assets/imgs/default-pic.png" />
+                                    </div>
+                                    <div class="list_image_block" *ngIf="item.member.image != null">
+                                        <img src="{{item.member.image}}" />
+                                    </div>
+                                </td>
                                 <td class="col" data-name="Collect Date">
                                     {{item.collect_date}}
                                 </td>
-                                <td class="col" data-name="Customer Meet">{{item.customer_count}}</td>
-                                <td class="col" data-name="Collect Amount">{{item.paid_amount}}</td>
+                                <td class="col text-center" data-name="Customer Meet">{{item.customer_count}}</td>
+                                <td class="col text-right" data-name="Collect Amount">{{item.balance}}</td>
                                 <td class="col text-center" data-name="Receive Status">
-                                    <span class="badge bg-success text-white"
+                                    <span class="badge bg-warning text-white"
                                         *ngIf="item.payment_status == 'working'">{{item.payment_status}}</span>
                                     <span class="badge bg-danger text-white "
-                                        *ngIf="item.payment_status == ''">{{item.payment_status}}</span>
+                                        *ngIf="item.payment_status == 'unpaid'">{{item.payment_status}}</span>
+                                    <span class="badge bg-success text-white "
+                                        *ngIf="item.payment_status == 'paid'">{{item.payment_status}}</span>
                                 </td>
                                 <td class="action_col" data-name="Action">
                                     <div placement="bottom-right">
@@ -93,20 +106,16 @@
                                                     <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
                                                 </button>
                                                 <button mat-menu-item (click)="openDialogChangeStatus(item)">
-                                                    <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                    <span>Status</span>
+                                                    <i class="mdi mdi-currency-inr mr-2"></i>
+                                                    <span>Received Money</span>
                                                 </button>
                                                 <button mat-menu-item (click)="openDialogAdvanceMoney(item)">
-                                                    <i class="mdi mdi-account-off-outline mr-2"></i>
+                                                    <i class="mdi mdi-currency-inr mr-2"></i>
                                                     <span>Advance Money</span>
                                                 </button>
                                             </div>
                                         </mat-menu>
-
                                     </div>
-
-
-
                                 </td>
                             </tr>
                         </ng-container>
