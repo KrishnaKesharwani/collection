@@ -52,6 +52,7 @@
                 </form>
             </div>
         </div>
+
         <ng-container *ngIf="userType == 3">
             <div class="entry_head">
                 <div class="col date">Date</div>
@@ -78,6 +79,32 @@
         </ng-container>
 
         <ng-container *ngIf="userType == 2">
+            <div class="entry_head">
+                <div class="col date">Date</div>
+                <div class="col balance">Balance</div>
+                <div class="col amount">Amount</div>
+            </div>
+            <div class="entry_row_container">
+                <div class="entry_row" *ngFor="let item of  depositData">
+                    <div class="col date">{{item.created_at}} </div>
+                    <div class="col balance">{{item.balance}}</div>
+                    <div class="col amount" *ngIf="item.action_type == 'credit'"><span
+                            class="color-green">{{item.amount}}</span>
+                    </div>
+                    <div class="col amount"><span class="color-red"
+                            *ngIf="item.action_type == 'debit'">{{item.amount}}</span>
+                    </div>
+                </div>
+                <div *ngIf="loading">
+                    <app-page-loader></app-page-loader>
+                </div>
+                <div *ngIf="depositData?.length == 0 && !loading">
+                    <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="userType == 2 && loanData?.length ==0">
             <div class="entry_head">
                 <div class="col date">Date</div>
                 <div class="col balance">Balance</div>

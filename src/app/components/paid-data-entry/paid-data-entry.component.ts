@@ -77,7 +77,25 @@ export class PaidDataEntryComponent {
   }
 
   debitAmount() {
+    if (this.receivedAmountForm.valid) {
+      this.loading = true;
+      let obj = {
+        deposit_id: this.deposit_id,
+        amount: this.receivedAmountForm.value.amount,
+        deposit_type: 'debit'
+      }
+      this._service.collectDepositMoney(obj).subscribe((data: any) => {
+        this._toastr.success(data.message, "Success");
 
+        this.receivedAmountForm.reset();
+        this.loading = false;
+      }, error => {
+        this._toastr.error(error.error.message, "Error");
+        this.loading = false;
+      })
+    } else {
+      this.receivedAmountForm.markAllAsTouched();
+    }
   }
 
   creditAmount() {
