@@ -48,7 +48,7 @@ export class PaidDataEntryComponent {
     this.depositDataSharre = depositDataResult.data;
     this.loanDataShare = loanDataResult.data;
     this.collection_type = depositDataResult.type;
-
+    debugger
     this.routes.params.subscribe(params => {
       if (!this.depositDataSharre || this.depositDataSharre.id !== params['id']
         && !this.loanDataShare || this.loanDataShare.id !== params['id']
@@ -88,6 +88,8 @@ export class PaidDataEntryComponent {
         this._toastr.success(data.message, "Success");
 
         this.receivedAmountForm.reset();
+        this.getCustomerLoanHistory();
+        this.getCustomerDepositHistory();
         this.loading = false;
       }, error => {
         this._toastr.error(error.error.message, "Error");
@@ -131,6 +133,8 @@ export class PaidDataEntryComponent {
           this._toastr.success(data.message, "Success");
 
           this.receivedAmountForm.reset();
+          this.getCustomerLoanHistory();
+          this.getCustomerDepositHistory();
           this.loading = false;
         }, error => {
           this._toastr.error(error.error.message, "Error");
@@ -143,6 +147,7 @@ export class PaidDataEntryComponent {
   }
 
   openDialogRequestMoney(data?: any) {
+    debugger
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(CustomerDepositRequestMoneyComponent, {
       disableClose: true,

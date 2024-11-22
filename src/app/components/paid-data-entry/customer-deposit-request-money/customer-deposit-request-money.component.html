@@ -4,9 +4,9 @@
 </div>
 <div class="dialoge_middle_container full_height_cover small_popup">
     <form focusInvalidInput [formGroup]="requestMoneyForm">
-        <app-input [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"
-            [className]="'bottom_error_msg'" [form]="requestMoneyForm" [key]="'amount'"
-            [displayMsg]="'amount is required.'"></app-input>
+        <app-input [isDateField]="false" label="Amount" [(value)]="request_amount" [isRequired]="true"
+            [className]="'bottom_error_msg'" [form]="requestMoneyForm" [key]="'request_amount'"
+            [displayMsg]="'Amount is required.'"></app-input>
 
         <div class="col-sm-12">
             <mat-form-field class="global_textarea_block" appearance="outline">

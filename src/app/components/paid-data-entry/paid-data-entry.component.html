@@ -1,38 +1,85 @@
 <div class="entry_container">
     <div class="entry_head_details">
-        <div class="entry_details">
-            <div class="entry_img" *ngIf='userType == 2'>
-                <img *ngIf="loanDataShare?.member?.image == null && 
-                loanDataShare?.member?.image == ''" src="../../../assets/imgs/default-pic.png" />
-                <img src="{{loanDataShare?.member?.image}}" />
-            </div>
-            <ul class="user_info list-unstyled" *ngIf='userType == 2'>
-                <li>{{loanDataShare?.member?.name}}</li>
-                <li>{{loanDataShare?.member?.mobile}}</li>
-                <!-- <li><b><i class="mdi mdi-currency-inr"></i>{{loanDataShare.total_paid}}</b></li> -->
-                <li>
-                    <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(depositData)">
-                        Request Money
-                    </button>
-                </li>
-            </ul>
-            <div class="entry_img" *ngIf='userType == 3'>
-                <img *ngIf="depositDataSharre?.customer?.image == null && 
-                            depositDataSharre?.customer?.image == ''" src="../../../assets/imgs/default-pic.png" />
-                <img src="{{depositDataSharre?.customer?.image}}" />
-            </div>
-            <ul class="user_info list-unstyled" *ngIf='userType == 3'>
-                <li>{{depositDataSharre?.customer?.name}}</li>
-                <li>{{depositDataSharre?.customer?.mobile}}</li>
-                <li><b><i class="mdi mdi-currency-inr"></i>{{depositDataSharre.total_paid}}</b></li>
-                <li>
-                    <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(depositData)">
-                        Request Money
-                    </button>
-                </li>
-            </ul>
+        <div class="entry_details" *ngIf='userType == 2'>
+            <ng-container *ngIf="loanDataShare && depositDataSharre == undefined">
+                <div class="entry_img">
+                    <img *ngIf="loanDataShare?.customer?.image == null && 
+                loanDataShare?.customer?.image == ''" src="../../../assets/imgs/default-pic.png" />
+                    <img src="{{loanDataShare?.customer?.image}}" />
+                </div>
+                <ul class="user_info list-unstyled">
+                    <li>{{loanDataShare?.customer?.name}}</li>
+                    <li>{{loanDataShare?.customer?.mobile}}</li>
+                    <li><b><i class="mdi mdi-currency-inr"></i>{{loanDataShare.remaining_amount}}</b></li>
+                    <li>
+                        <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(loanDataShare)">
+                            Request Money
+                        </button>
+                    </li>
+                </ul>
+            </ng-container>
+            <ng-container *ngIf="depositDataSharre">
+                <div class="entry_img">
+                    <img *ngIf="depositDataSharre?.customer?.image == null && 
+                                    depositDataSharre?.customer?.image == ''"
+                        src="../../../assets/imgs/default-pic.png" />
+                    <img src="{{depositDataSharre?.customer?.image}}" />
+                </div>
+                <ul class="user_info list-unstyled" *ngIf='userType == 2 && depositDataSharre !=undefined'>
+                    <li>{{depositDataSharre?.customer?.name}}</li>
+                    <li>{{depositDataSharre?.customer?.mobile}}</li>
+                    <li><b><i class="mdi mdi-currency-inr"></i>{{depositDataSharre.total_paid}}</b></li>
+                    <li>
+                        <button mat-raised-button class="btn btn-small"
+                            (click)="openDialogRequestMoney(depositDataSharre)">
+                            Request Money
+                        </button>
+                    </li>
+                </ul>
+            </ng-container>
+        </div>
+
+        <div class="entry_details" *ngIf='userType == 3'>
+            <ng-container *ngIf="loanDataShare && depositDataSharre == undefined">
+                <div class="entry_img">
+                    <img *ngIf="loanDataShare?.customer?.image == null && 
+                            loanDataShare?.customer?.image == ''" src="../../../assets/imgs/default-pic.png" />
+                    <img src="{{loanDataShare?.customer?.image}}" />
+                </div>
+                <ul class="user_info list-unstyled">
+                    <li>{{loanDataShare?.customer?.name}}</li>
+                    <li>{{loanDataShare?.customer?.mobile}}</li>
+                    <li><b><i class="mdi mdi-currency-inr"></i>{{loanDataShare.total_paid}}</b></li>
+                    <li>
+                        <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(loanDataShare)">
+                            Request Money
+                        </button>
+                    </li>
+                </ul>
+            </ng-container>
+            <ng-container *ngIf="depositDataSharre">
+                <div class="entry_img">
+                    <img *ngIf="depositDataSharre?.customer?.image == null && 
+                                                depositDataSharre?.customer?.image == ''"
+                        src="../../../assets/imgs/default-pic.png" />
+                    <img src="{{depositDataSharre?.customer?.image}}" />
+                </div>
+                <ul class="user_info list-unstyled" *ngIf='userType == 3 && depositDataSharre !=undefined'>
+                    <li>{{depositDataSharre?.customer?.name}}</li>
+                    <li>{{depositDataSharre?.customer?.mobile}}</li>
+                    <li><b><i class="mdi mdi-currency-inr"></i>{{depositDataSharre.total_paid}}</b></li>
+                    <li>
+                        <button mat-raised-button class="btn btn-small"
+                            (click)="openDialogRequestMoney(depositDataSharre)">
+                            Request Money
+                        </button>
+                    </li>
+                </ul>
+            </ng-container>
         </div>
     </div>
+
+
     <div class="entry_listing">
         <div class="entry_action" *ngIf='userType == 2'>
             <div class="addrow">

@@ -11,10 +11,11 @@ export class CommonComponentService {
   public getUnassignedData: any[] = [];
   constructor(private _service: CustomerService, public _memberService: MemberService) {
     this.getActiveMemberList();
-    // this.getUnassignedLoans();
+    this.getActiveCustomerList();
   }
   company_id: any;
   public getmemberdata: any[] = [];
+  public getCustomerData: any[] = [];
   loanstatus = ['approved', 'paid', 'pending', 'cancelled'];
   provideloanstatus = ['approved', 'paid'];
   downloadloanreport = ['paid', 'approved', 'pending', 'cancelled', 'completed', 'all'];
@@ -59,6 +60,23 @@ export class CommonComponentService {
     }
   }
 
-
+  getActiveCustomerList() {
+    const data = localStorage.getItem('CurrentUser');
+    if (data) {
+      const userData = JSON.parse(data);
+      this.company_id = userData.company_id;
+    }
+    let obj = {
+      company_id: this.company_id,
+      status: 'active'
+    }
+    if (this.company_id != '' && this.company_id != null) {
+      this._service.activeCustomer(obj).subscribe((memberDataAPi: any) => {
+        this.getCustomerData = memberDataAPi.data;
+      }, error => {
+        console.log('Customer error Found', error.massage);
+      });
+    }
+  }
 
 }
