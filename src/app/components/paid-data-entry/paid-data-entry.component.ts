@@ -58,7 +58,11 @@ export class PaidDataEntryComponent {
         this.loan_id = params['id'];
         this.deposit_id = params['id'];
 
-        ;
+        if (this.depositDataSharre) {
+          this.customer_id = this.depositDataSharre.customer_id
+        } else {
+          this.customer_id = this.loanDataShare.customer_id
+        }
         console.warn('Data not found in service. Fetching from server...');
         // Perform API call here to fetch data by ID if needed
       }
@@ -88,6 +92,8 @@ export class PaidDataEntryComponent {
           this._toastr.success(data.message, "Success");
           this.receivedAmountForm.reset();
           this.loading = false;
+          this.getCustomerLoanHistory();
+          this.getCustomerDepositHistory();
         }, error => {
           this._toastr.error(error.error.message, "Error");
           this.loading = false;

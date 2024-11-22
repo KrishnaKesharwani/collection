@@ -87,12 +87,9 @@
                 <div class="entry_row" *ngFor="let item of  loanData">
                     <div class="col date">{{item.created_at}} </div>
                     <div class="col balance">{{item.balance}}</div>
-                    <div class="col amount" *ngIf="item.action_type == 'credit'"><span
-                            class="color-green">{{item.amount}}</span>
+                    <div class="col amount"><span class="color-green">{{item.amount}}</span>
                     </div>
-                    <div class="col amount"><span class="color-red"
-                            *ngIf="item.action_type == 'debit'">{{item.amount}}</span>
-                    </div>
+
                 </div>
                 <div *ngIf="loading">
                     <app-page-loader></app-page-loader>
