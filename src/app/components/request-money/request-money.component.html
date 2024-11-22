@@ -9,14 +9,27 @@
                     <div class="list_calender_filter">
                         <app-input [isDateField]="true" label="Filter Date" [(value)]="date"
                             [className]="'bottom_error_msg'" formControlName="date" [key]="'date'"
-                            [form]="filterDateForm" (change)="getRequestDepsitOnClick()"></app-input>
+                            [form]="filterDateForm"></app-input>
 
-                        <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="filterDateForm"
-                            [key]="'customer_id'" [optionArray]="dropdownService.getCustomerData"
-                            *ngIf="dropdownService.getCustomerData?.length && filterDateForm"
-                            field="Active Customers"></app-dropdwon>
+
+                        <mat-form-field class="global_dropdown" appearance="outline">
+                            <mat-label>Customers</mat-label>
+                            <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+                            <mat-select [formControl]="selectControl">
+                                <mat-option *ngFor="let unassigndata of getCustomerData; let i =index"
+                                    [value]="unassigndata.id">
+                                    {{unassigndata.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
                     </div>
-
+                    <button type="submit" class="global_submit_btn" mat-flat-button (click)="getRequestDepsitOnClick()">
+                        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+                        <app-button-loader *ngIf="loading"></app-button-loader>
+                        <span>Serach</span>
+                    </button>
                 </form>
             </div>
         </div>

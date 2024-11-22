@@ -5,7 +5,7 @@ import { LoanService } from 'src/app/services/loan/loan.service';
 import { ToastrService } from 'ngx-toastr';
 import { BackupListService } from 'src/app/services/backupList/backup-list.service';
 import { DepositRequestService } from 'src/app/services/depositRequest/deposit-request.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
@@ -24,6 +24,8 @@ export class RequestMoneyComponent {
   filterDateForm!: FormGroup;
   date: string = '';
   getCustomerData: any[] = [];
+  loading: any;
+  selectControl = new FormControl('');
   constructor(public _backupService: BackupListService, public dialog: MatDialog, public _service: DepositRequestService, public _customerService: CustomerService, public _tostr: ToastrService, public fb: FormBuilder,
     public dropdownService: CommonComponentService
   ) { }
@@ -64,12 +66,14 @@ export class RequestMoneyComponent {
   }
 
   getRequestDepsitOnClick() {
+    let gatLoanid = this.selectControl.value;
     this.loader = true;
     let obj = {
       company_id: this.company_id,
-      customer_id: this.filterDateForm.value.customer_id,
+      customer_id: gatLoanid,
       request_date: this.filterDateForm.value.date
     }
+
     this._service.getRequestMoney(obj).subscribe((data: any) => {
       this.loader = false;
       console.log(data)
@@ -94,6 +98,8 @@ export class RequestMoneyComponent {
       this.dropdownService.setOptions('getCustomerData', memberData.data);
     })
   }
+
+
 
   openDialogViewDetail(data?: any): void {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
