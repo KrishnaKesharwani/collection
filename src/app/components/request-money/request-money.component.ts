@@ -61,19 +61,35 @@ export class RequestMoneyComponent {
     }, error => {
       this.loader = false;
       this._tostr.error(error.error.message, 'Error');
-
     })
   }
 
+  resetTable() {
+    this.filterDateForm = this.fb.group({
+      date: ['']
+    });
+    this.selectControl.reset();
+    this.getRequestLoanList();
+  }
+
+  getRequestClick(type: any) {
+    if (type == 'date') {
+      this.selectControl.reset();
+    } else {
+      this.filterDateForm = this.fb.group({
+        date: ['']
+      });
+    }
+    this.getRequestDepsitOnClick();
+  }
   getRequestDepsitOnClick() {
-    let gatLoanid = this.selectControl.value;
     this.loader = true;
+    let gatCustomerid = this.selectControl.value;
     let obj = {
       company_id: this.company_id,
-      customer_id: gatLoanid,
+      customer_id: gatCustomerid,
       request_date: this.filterDateForm.value.date
     }
-
     this._service.getRequestMoney(obj).subscribe((data: any) => {
       this.loader = false;
       console.log(data)
@@ -81,7 +97,6 @@ export class RequestMoneyComponent {
     }, error => {
       this.loader = false;
       this._tostr.error(error.error.message, 'Error');
-
     })
   }
 
@@ -93,13 +108,10 @@ export class RequestMoneyComponent {
     this._customerService.activeCustomer(obj).subscribe((memberData: any) => {
       console.log('customer Data: ', memberData.data);
       this.getCustomerData = memberData.data;
-
       const members = memberData.data.map((member: any) => member.name);
       this.dropdownService.setOptions('getCustomerData', memberData.data);
     })
   }
-
-
 
   openDialogViewDetail(data?: any): void {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
