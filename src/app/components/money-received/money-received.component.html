@@ -17,11 +17,14 @@
                             </div>
                             <div class="listsearch-topblock search_withaddbtn pr-0">
                                 <div class="search-box">
-                                    <input type="text" placeholder="Search" (keyup)="searchTable($event)"
+                                    <input type="text" placeholder="Search" id="search_textbox" (keyup)="searchTable($event)"
                                         class="searchtxt" />
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                             </div>
+                            <button class="global_reset_btn" mat-flat-button (click)="resetTable()">
+                                <mat-icon>refresh</mat-icon>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -50,7 +53,7 @@
                             <th class="col status_col sorting_apply">
                                 <span>Receive Status</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('status');">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('payment_status');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>

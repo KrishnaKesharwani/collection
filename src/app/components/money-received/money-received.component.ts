@@ -35,6 +35,15 @@ export class MoneyReceivedComponent {
     });
     this.getCollectionList();
   }
+  
+  resetTable() {
+    this.filterDateForm = this.fb.group({
+      date: ['']
+    });
+    let searchBox: any = document.getElementById('search_textbox');
+    searchBox.value = '';
+    this.getCollectionList();
+  }
 
   getCollectionList() {
     this.loader = true;
