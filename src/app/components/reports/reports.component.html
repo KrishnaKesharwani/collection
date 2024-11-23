@@ -1,87 +1,83 @@
 <div class="list-containner">
-    <div class="row">
-        <div class="col-xl-12 mb-xl-0">
-            <div class="card shadow dash-cardbox">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col col-sm-4 pl-1">
-                            <h3 class="mb-0">Backup List</h3>
-                        </div>
-                        <div class="col text-right pr-1 datewith_search_block">
-                            <div class="listsearch-topblock search_withaddbtn">
-                                <div class="search-box">
-                                    <input type="text" placeholder="Search" (keyup)="searchTable($event)"
-                                        class="searchtxt" />
-                                    <i class="mdi mdi-magnify"></i>
-                                </div>
-                            </div>
+    <div class="card shadow dash-cardbox">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col col-sm-4 pl-1">
+                    <h3 class="mb-0">Backup List</h3>
+                </div>
+                <div class="col text-right pr-1 datewith_search_block">
+                    <div class="listsearch-topblock search_withaddbtn">
+                        <div class="search-box">
+                            <input type="text" placeholder="Search" (keyup)="searchTable($event)" class="searchtxt" />
+                            <i class="mdi mdi-magnify"></i>
                         </div>
                     </div>
                 </div>
-                <table class="table align-items-center table-flush mydata-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="col s_no">Sno.</th>
-                            <th class="col sorting_apply">
-                                <span>Backup Name</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('name');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th>
-                            <th class="col sorting_apply days_time_slot_col text-center">
-                                <span>Total Active</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('active');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th>
-                            <th class="col sorting_apply days_time_slot_col text-center">
-                                <span>Total Inactive</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('inactive');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th>                       
-                            <th class="col days_time_slot_col sorting_apply">
-                                <span>Last Backup Date</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('last_backup_date');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th>
-                            <th class="col action_col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngIf="loader">
-                            <td colspan="6">
-                                <app-page-loader></app-page-loader>
-                            </td>
-                        </tr>
-                        <tr *ngIf="filteredDataarray.length == 0 && !loader">
-                            <td colspan="6">
-                                <app-no-record-found type="table"
-                                    notext="No Last Backup found."></app-no-record-found>
-                            </td>
-                        </tr>
-                        <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
-                            <ng-container *ngFor="let item of filteredDataarray; let i=index;">
-                                <tr class="received_row">
-                                    <td class="col s_no" data-name="Sno.">{{i+1}}</td>
-                                    <td class="col" data-name="Backup Name">{{item.name}}</td>
-                                    <td class="col text-center" data-name="Reasons">{{item.active}}</td>
-                                    <td class="col text-center" data-name="Total">{{item.inactive}}</td>
-                                    <td class="col text-center" data-name="Backup Date">{{item.last_backup_date}}</td>
-                                    <td class="col action_col" data-name="Action">
-                                        <button class="matmenu_tablebtn" mat-mini-fab (click)="openDialogBackupnow(item)">
-                                            <i class="mdi mdi-download"></i>
-                                        </button>
-                                        <!-- <div placement="bottom-right">
+            </div>
+        </div>
+        <table class="table align-items-center table-flush mydata-table">
+            <thead class="thead-light">
+                <tr>
+                    <th class="col s_no">Sno.</th>
+                    <th class="col sorting_apply">
+                        <span>Backup Name</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col sorting_apply days_time_slot_col text-center">
+                        <span>Total Active</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('active');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col sorting_apply days_time_slot_col text-center">
+                        <span>Total Inactive</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('inactive');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col days_time_slot_col sorting_apply">
+                        <span>Last Backup Date</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('last_backup_date');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col action_col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="loader">
+                    <td colspan="6">
+                        <app-page-loader></app-page-loader>
+                    </td>
+                </tr>
+                <tr *ngIf="filteredDataarray.length == 0 && !loader">
+                    <td colspan="6">
+                        <app-no-record-found type="table" notext="No Last Backup found."></app-no-record-found>
+                    </td>
+                </tr>
+                <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                    <ng-container *ngFor="let item of filteredDataarray; let i=index;">
+                        <tr class="received_row">
+                            <td class="col s_no" data-name="Sno.">{{i+1}}</td>
+                            <td class="col" data-name="Backup Name">{{item.name}}</td>
+                            <td class="col text-center" data-name="Reasons">{{item.active}}</td>
+                            <td class="col text-center" data-name="Total">{{item.inactive}}</td>
+                            <td class="col text-center" data-name="Backup Date">{{item.last_backup_date}}</td>
+                            <td class="col action_col" data-name="Action">
+                                <button class="matmenu_tablebtn" mat-mini-fab (click)="openDialogBackupnow(item)">
+                                    <i class="mdi mdi-download"></i>
+                                </button>
+                                <!-- <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
                                                 aria-label="Example icon-button with a menu">
                                                 <mat-icon>more_vert</mat-icon>
@@ -99,13 +95,11 @@
                                                 </div>
                                             </mat-menu>
                                         </div> -->
-                                    </td>
-                                </tr>
-                            </ng-container>
-                        </ng-container>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </ng-container>
+            </tbody>
+        </table>
     </div>
 </div>

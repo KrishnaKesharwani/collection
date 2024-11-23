@@ -46,17 +46,17 @@ export class SidebarComponent {
   ngOnChanges() {
     this.menuActionClass = this.menuAction;
   }
-  onLetfMenuClick($event: { target: any; srcElement: any; }) {
-    let clickedElement = $event.target || $event.srcElement;
-    if (clickedElement.nodeName === "A") {
-      let isCertainButtonAlreadyActive = clickedElement.parentElement.parentElement.querySelector(".active");
-      // if a Button already has Class: .active
-      if (isCertainButtonAlreadyActive) {
-        isCertainButtonAlreadyActive.classList.remove("active");
-      }
-      clickedElement.className += " active";
-    }
-  }
+  // onLetfMenuClick($event: { target: any; srcElement: any; }) {
+  //   let clickedElement = $event.target || $event.srcElement;
+  //   if (clickedElement.nodeName === "A") {
+  //     let isCertainButtonAlreadyActive = clickedElement.parentElement.parentElement.querySelector(".active");
+  //     // if a Button already has Class: .active
+  //     if (isCertainButtonAlreadyActive) {
+  //       isCertainButtonAlreadyActive.classList.remove("active");
+  //     }
+  //     clickedElement.className += " active";
+  //   }
+  // }
 
   logout() {
     this.router.navigate(['/']);

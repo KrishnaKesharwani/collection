@@ -76,14 +76,10 @@
                 </div>
                 <div class="inner_block">
                     <div *ngIf="loader">
-                        <td colspan="8">
                             <app-page-loader></app-page-loader>
-                        </td>
                     </div>
                     <div *ngIf="lastDaysAmount?.length == 0 && !loader">
-                        <td colspan="8">
-                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
-                        </td>
+                        <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
                     </div>
                     <div id="column_member_chart"></div>
                 </div>

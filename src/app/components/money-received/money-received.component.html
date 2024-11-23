@@ -1,130 +1,125 @@
 <div class="list-containner">
-    <div class="row">
-        <div class="col-xl-12 mb-xl-0">
-            <div class="card shadow dash-cardbox">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col col-sm-4 pl-0">
-                            <h3 class="mb-0">Collect Money List</h3>
-                        </div>
-                        <div class="col text-right pr-1 datewith_search_block calender_withsearch">
-                            <div class="list_calender_filter">
-                                <form [formGroup]="filterDateForm">
-                                    <app-input [isDateField]="true" label="Filter Date" [(value)]="date"
-                                        [className]="'bottom_error_msg'" [key]="'date'" [form]="filterDateForm"
-                                        (valueChange)="getCollectionList()"></app-input>
-                                </form>
-                            </div>
-                            <div class="listsearch-topblock search_withaddbtn pr-0">
-                                <div class="search-box">
-                                    <input type="text" placeholder="Search" id="search_textbox" (keyup)="searchTable($event)"
-                                        class="searchtxt" />
-                                    <i class="mdi mdi-magnify"></i>
-                                </div>
-                            </div>
-                            <button class="global_reset_btn" mat-flat-button (click)="resetTable()">
-                                <mat-icon>refresh</mat-icon>
-                            </button>
+    <div class="card shadow dash-cardbox">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col col-sm-4 pl-0">
+                    <h3 class="mb-0">Collect Money List</h3>
+                </div>
+                <div class="col text-right pr-1 datewith_search_block calender_withsearch">
+                    <div class="list_calender_filter">
+                        <form [formGroup]="filterDateForm">
+                            <app-input [isDateField]="true" label="Filter Date" [(value)]="date"
+                                [className]="'bottom_error_msg'" [key]="'date'" [form]="filterDateForm"
+                                (valueChange)="getCollectionList()"></app-input>
+                        </form>
+                    </div>
+                    <div class="listsearch-topblock search_withaddbtn pr-0">
+                        <div class="search-box">
+                            <input type="text" placeholder="Search" id="search_textbox" (keyup)="searchTable($event)"
+                                class="searchtxt" />
+                            <i class="mdi mdi-magnify"></i>
                         </div>
                     </div>
+                    <button class="global_reset_btn" mat-flat-button (click)="resetTable()">
+                        <mat-icon>refresh</mat-icon>
+                    </button>
                 </div>
-                <table class="table align-items-center table-flush mydata-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="col profile_col">Profile</th>
-                            <th class="col sorting_apply">
-                                <span>Member Name</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('name');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th>
-                            <th class="col sorting_apply date_col">
-                                <span>Collect Date</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('collect_date');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th>
-                            <th class="col status_col">Customer Meet</th>
-                            <th class="col amount_col">Collect Amount</th>
-                            <th class="col status_col sorting_apply">
-                                <span>Receive Status</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('payment_status');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th>
-                            <th class="col action_col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngIf="loader">
-                            <td colspan="7">
-                                <app-page-loader></app-page-loader>
-                            </td>
-                        </tr>
-                        <tr *ngIf="filteredDataarray.length == 0 && !loader">
-                            <td colspan="7">
-                                <app-no-record-found type="table"
-                                    notext="No member collection found."></app-no-record-found>
-                            </td>
-                        </tr>
-                        <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
-                            <tr class="received_row" *ngFor="let item of filteredDataarray">
-                                <td class="col " data-name="Image">
-                                    <div class="list_image_block" *ngIf="item.member.image == null">
-                                        <img src="assets/imgs/default-pic.png" />
-                                    </div>
-                                    <div class="list_image_block" *ngIf="item.member.image != null">
-                                        <img src="{{item.member.image}}" />
-                                    </div>
-                                </td>
-                                <td class="col" data-name="Member Name"> {{item.member.name}}</td>
-                                <td class="col" data-name="Collect Date">
-                                    {{item.collect_date}}
-                                </td>
-                                <td class="col text-center" data-name="Customer Meet">{{item.customer_count}}</td>
-                                <td class="col text-right" data-name="Collect Amount">{{item.balance}}</td>
-                                <td class="col text-center" data-name="Receive Status">
-                                    <span class="badge bg-warning text-white"
-                                        *ngIf="item.payment_status == 'working'">{{item.payment_status}}</span>
-                                    <span class="badge bg-danger text-white "
-                                        *ngIf="item.payment_status == 'unpaid'">{{item.payment_status}}</span>
-                                    <span class="badge bg-success text-white "
-                                        *ngIf="item.payment_status == 'paid'">{{item.payment_status}}</span>
-                                </td>
-                                <td class="action_col" data-name="Action">
-                                    <div placement="bottom-right">
-                                        <button mat-icon-button [matMenuTriggerFor]="menu"
-                                            aria-label="Example icon-button with a menu">
-                                            <mat-icon>more_vert</mat-icon>
-                                        </button>
-                                        <mat-menu #menu="matMenu">
-                                            <div class="table_actionmenu">
-                                                <button mat-menu-item (click)="openDialogViewDetail(item)">
-                                                    <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
-                                                </button>
-                                                <button mat-menu-item (click)="openDialogChangeStatus(item)">
-                                                    <i class="mdi mdi-currency-inr mr-2"></i>
-                                                    <span>Received Money</span>
-                                                </button>
-                                                <button mat-menu-item (click)="openDialogAdvanceMoney(item)">
-                                                    <i class="mdi mdi-currency-inr mr-2"></i>
-                                                    <span>Advance Money</span>
-                                                </button>
-                                            </div>
-                                        </mat-menu>
-                                    </div>
-                                </td>
-                            </tr>
-                        </ng-container>
-                    </tbody>
-                </table>
             </div>
         </div>
+        <table class="table align-items-center table-flush mydata-table">
+            <thead class="thead-light">
+                <tr>
+                    <th class="col profile_col">Profile</th>
+                    <th class="col sorting_apply">
+                        <span>Member Name</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col sorting_apply date_col">
+                        <span>Collect Date</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('collect_date');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col status_col">Customer Meet</th>
+                    <th class="col amount_col">Collect Amount</th>
+                    <th class="col status_col sorting_apply">
+                        <span>Receive Status</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('payment_status');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col action_col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="loader">
+                    <td colspan="7">
+                        <app-page-loader></app-page-loader>
+                    </td>
+                </tr>
+                <tr *ngIf="filteredDataarray.length == 0 && !loader">
+                    <td colspan="7">
+                        <app-no-record-found type="table" notext="No member collection found."></app-no-record-found>
+                    </td>
+                </tr>
+                <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                    <tr class="received_row" *ngFor="let item of filteredDataarray">
+                        <td class="col " data-name="Image">
+                            <div class="list_image_block" *ngIf="item.member.image == null">
+                                <img src="assets/imgs/default-pic.png" />
+                            </div>
+                            <div class="list_image_block" *ngIf="item.member.image != null">
+                                <img src="{{item.member.image}}" />
+                            </div>
+                        </td>
+                        <td class="col" data-name="Member Name"> {{item.member.name}}</td>
+                        <td class="col" data-name="Collect Date">
+                            {{item.collect_date}}
+                        </td>
+                        <td class="col text-center" data-name="Customer Meet">{{item.customer_count}}</td>
+                        <td class="col text-right" data-name="Collect Amount">{{item.balance}}</td>
+                        <td class="col text-center" data-name="Receive Status">
+                            <span class="badge bg-warning text-white"
+                                *ngIf="item.payment_status == 'working'">{{item.payment_status}}</span>
+                            <span class="badge bg-danger text-white "
+                                *ngIf="item.payment_status == 'unpaid'">{{item.payment_status}}</span>
+                            <span class="badge bg-success text-white "
+                                *ngIf="item.payment_status == 'paid'">{{item.payment_status}}</span>
+                        </td>
+                        <td class="action_col" data-name="Action">
+                            <div placement="bottom-right">
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <div class="table_actionmenu">
+                                        <button mat-menu-item (click)="openDialogViewDetail(item)">
+                                            <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialogChangeStatus(item)">
+                                            <i class="mdi mdi-currency-inr mr-2"></i>
+                                            <span>Received Money</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialogAdvanceMoney(item)">
+                                            <i class="mdi mdi-currency-inr mr-2"></i>
+                                            <span>Advance Money</span>
+                                        </button>
+                                    </div>
+                                </mat-menu>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
     </div>
 </div>

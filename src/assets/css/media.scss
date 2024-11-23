@@ -2,23 +2,28 @@
     .header_mainlogo {
         display: flex !important;
         margin: 0px 15px 0px 5px;
+
         img {
             max-height: 45px;
         }
     }
+
     .middle_dialoge {
         width: 100%;
     }
+
     .right_addbtn {
         button {
             .button-text {
                 display: none !important;
             }
-            i{
+
+            i {
                 margin: 0px !important;
             }
         }
     }
+
     .main-content {
         .overall-containblock {
             padding: 70px 15px 15px 15px !important;
@@ -55,7 +60,28 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 767px) {    
+@media (min-width: 320px) and (max-width: 767px) {
+    app-member-dashboard {
+        margin-bottom: 0px !important;
+    }
+
+    .chart_container {
+        .card {
+            padding: 0px !important;
+            margin-bottom: 10px !important;
+            .chart_innercontainer {
+                .inner_block {
+                    background: #ffffff;
+                    margin: 10px 0px 0px 0px;
+                    border-radius: 5px;
+                    border: solid thin #e1e1e1;
+                    overflow: hidden;
+                    box-shadow: var(--app-brand-card-shadow) !important;
+                }
+            }
+        }
+    }
+
     .dash-cardbox {
         .card-header .row {
             .col {
@@ -63,33 +89,43 @@
             }
         }
     }
-    .update_dialoge, .view_details_popup, .view_details_small_popup {
+
+    .update_dialoge,
+    .view_details_popup,
+    .view_details_small_popup {
         max-width: 100vw !important;
         max-height: 100vh !important;
         width: 100vw !important;
         height: 100vh !important;
+
         .mat-mdc-dialog-surface {
             background-color: #f5f5ff !important;
         }
+
         .dialoge_button_container {
             background: #ffffff;
         }
     }
+
     .mydata-table {
         padding: 10px 0px !important;
+
         tbody {
             background: transparent !important;
+
             tr {
                 background: #ffffff;
             }
         }
     }
+
     .list-containner {
         .card {
             box-shadow: none !important;
             background: transparent;
         }
     }
+
     .dash-cardbox {
         .card-header {
             padding: 10px;
@@ -100,26 +136,31 @@
             background: #ffffff;
         }
     }
+
     .action_col {
         button {
             padding: 0px !important;
             height: 30px !important;
             width: 30px !important;
+            margin: 0px !important;
             display: flex;
             align-items: center;
             justify-content: center;
         }
     }
-    .res_display_none{
+
+    .res_display_none {
         display: none !important;
     }
+
     .res_display_show {
         display: flex !important;
     }
-    
+
     .profile_navblock {
         margin-right: 0px !important;
     }
+
     // New responisve used upeer side
     .main-content-without-nav {
         padding-bottom: 20px;
@@ -357,6 +398,7 @@
                         font-weight: 500;
                         top: 0px;
                         line-height: 33px;
+                        text-align: left;
                     }
 
                     .list_image_block {
@@ -382,16 +424,18 @@
         display: inline-block;
         width: 100%;
     }
-    .dialoge_middle_container  {
-        .popup_table  {
+
+    .dialoge_middle_container {
+        .popup_table {
             padding: 0px !important;
             border: none !important;
         }
     }
+
     .view_details_small_popup {
-        .dialoge_middle_container  {
-        }
+        .dialoge_middle_container {}
     }
+
     // .small_texttable {
     //     tbody, th, td, tr {
     //         font-size: 10px;

@@ -100,13 +100,13 @@
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td colspan="6">
+                            <td colspan="9">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
                         <tr *ngIf="filteredDataarray.length == 0 && !loader">
-                            <td colspan="6">
-                                <app-no-record-found type="table" notext="No Last Backup found."></app-no-record-found>
+                            <td colspan="9">
+                                <app-no-record-found type="table" notext="No vc availbale."></app-no-record-found>
                             </td>
                         </tr>
                         <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
