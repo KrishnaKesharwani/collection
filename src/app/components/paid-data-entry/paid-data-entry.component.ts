@@ -51,8 +51,7 @@ export class PaidDataEntryComponent {
       if (!this.depositDataSharre || this.depositDataSharre.id !== params['id']
         && !this.loanDataShare || this.loanDataShare.id !== params['id']
       ) {
-        // debugger;
-        console.log(this.depositDataSharre, this.loanDataShare)
+
         this.loan_id = params['id'];
         this.deposit_id = params['id'];
         if (this.depositDataSharre) {
@@ -78,7 +77,7 @@ export class PaidDataEntryComponent {
   redirectPage() {
     this.router.navigate(['/daily_collection']);
   }
-  
+
   debitAmount() {
     if (this.receivedAmountForm.valid) {
       this.loading = true;

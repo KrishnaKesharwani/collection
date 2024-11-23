@@ -69,7 +69,7 @@ export class AddCompanyComponent {
     if (this.company_id) {
       this.companyForm.patchValue({
         ...this.dataa.data,
-        company_login_id: this.dataa.data.user.email,        
+        company_login_id: this.dataa.data.user.email,
       });
       this.removeControl('password');
       this.removeControl('plan');
@@ -97,45 +97,15 @@ export class AddCompanyComponent {
   submitCompanyDetails() {
     if (this.company_id) {
       this.removeControl('company_login_id');
-      // const invalidFields = this.getInvalidControls();
-      // console.log('Invalid Controls:', invalidFields);
       if (this.companyForm.valid) {
         this.loading = true;
         const formData = new FormData();
-        // const files = [
-        //   { name: 'main_logo', file: this.companyForm.get('main_logo')?.value },
-        //   { name: 'sidebar_logo', file: this.companyForm.get('sidebar_logo')?.value },
-        //   { name: 'favicon_icon', file: this.companyForm.get('favicon_icon')?.value },
-        //   { name: 'owner_image', file: this.companyForm.get('owner_image')?.value },
-        // ];
-        // Convert files to base64 strings
-        // files.map(({ name, file }) => {
-        //   return new Promise((resolve, reject) => {
-        //     if (file) {
-        //       const reader = new FileReader();
-        //       reader.onloadend = () => {
-        //         const base64String = reader.result as string; // Base64-encoded string
-        //         formData.append(name, base64String); // Append base64 string to FormData
-        //         resolve(true);
-        //       };
-        //       reader.onerror = () => reject(new Error(`Failed to read ${name}`));
-        //       reader.readAsDataURL(file); // Read the file as a base64 string
-        //     } else {
-        //       resolve(true); // Resolve if no file
-        //     }
-        //   });
-        // });
 
         // Append other form values to FormData
         Object.keys(this.companyForm.value).forEach(key => {
-          // if (!['main_logo', 'sidebar_logo', 'favicon_icon', 'owner_image'].includes(key)) {
           formData.append(key, this.companyForm.value[key]);
-          // }
+
         });
-        // alert(this.companyForm.value['main_logo']);
-        // alert(this.companyForm.value['sidebar_logo']);
-        // alert(this.companyForm.value['favicon_icon']);
-        // alert(this.companyForm.value['owner_image']);
         if (!this.selectedFile) {
           formData.delete('main_logo');
         }

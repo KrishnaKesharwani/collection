@@ -29,15 +29,6 @@ export class CustomeComponent {
   tableData: any[] = [];
   readonly dialog = inject(MatDialog);
 
-  columns = [
-    // { prop: 'company_name', name: 'Customer No.', orderable: true },
-    { prop: 'name', name: 'Name', orderable: true },
-    { prop: 'mobile', name: 'Mobile', orderable: false },
-    { prop: 'aadhar_no', name: 'Aadhar No.', orderable: false },
-    { prop: 'loan_amount', name: 'Loan Amount', orderable: false },
-    { prop: 'pending_amount', name: 'Pending Amount', orderable: false },
-    { prop: 'status', name: 'Status', orderable: false }
-  ];
 
   company_id: any;
   customerData: any[] = [];
@@ -74,7 +65,7 @@ export class CustomeComponent {
       }
     }, error => {
       this.loader = false;
-      this.toaster.error(error.error.message, 'Error');
+
     })
   }
 

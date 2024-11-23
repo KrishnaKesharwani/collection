@@ -76,7 +76,6 @@ export class AddFixedDepositComponent {
       }
 
       this._fixedDepositService.update(obj).subscribe((data: any) => {
-        console.log(data);
 
         this.loading = false;
         this.dialogRef.close(true);
@@ -93,12 +92,8 @@ export class AddFixedDepositComponent {
         }
 
         this._fixedDepositService.create(obj).subscribe((data: any) => {
-          console.log(data);
           this.loading = false;
           this.dialogRef.close(true);
-          // this._tostr.success(data.message, "Success");
-          // this._router.navigate(['/fixed_deposit']);
-
         })
       } else {
         this.fixedDepositForm.markAllAsTouched()
@@ -118,7 +113,6 @@ export class AddFixedDepositComponent {
     this._service.getList(obj).subscribe((response: any) => {
       if (response && Array.isArray(response.data)) {
         this.customerListData = response.data;
-        console.log('Customer Data', this.customerListData);
         this.loader = false;
       }
     })

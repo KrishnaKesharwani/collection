@@ -45,12 +45,12 @@ export class LoginComponent {
   customer_id: any;
   member_id: any;
   // private lastLoginImagePath: string = '';
-  public lastLoginImagePath: string= './assets/imgs/login-default-image.png';
+  public lastLoginImagePath: string = './assets/imgs/login-default-image.png';
   constructor(private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     // public api: ApiService,
-    private router: Router, 
+    private router: Router,
     private authService: AuthService,
     // private share: SharedataService,
     private snackBar: MatSnackBar,
@@ -85,8 +85,6 @@ export class LoginComponent {
       this.loading = true;
       this.authService.login(this.loginForm.value).subscribe(
         (data) => {
-          // console.log('After Login Data: ', data)
-          // debugger;
           const userLoginDetails: AdminFromBackend = {
             company_id: data.data.company?.id,
             customer_id: data.data.customer?.id,
@@ -97,7 +95,6 @@ export class LoginComponent {
             token: data.token,
             image: data.data.company?.sidebar_logo
           }
-
           if (data.data.user_type == 1) {
             let comapnyData = {
               aadhar_no: data.data.company?.aadhar_no,
@@ -159,8 +156,8 @@ export class LoginComponent {
 
             localStorage.setItem('CustomerData', JSON.stringify(customerData));
           }
-          localStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));   
-          localStorage.setItem('AfterLoginData', JSON.stringify(data));   
+          localStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
+          localStorage.setItem('AfterLoginData', JSON.stringify(data));
           // this.lastLoginImagePath = data.company?.main_logo;
           this.updateLoginImage(data.data.company?.main_logo);
           // localStorage.setItem('lastLoginImagePath', data.company?.main_logo);

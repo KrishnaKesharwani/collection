@@ -89,7 +89,6 @@ export class AddOfferComponent {
         //   ...this.offerForm.value
         // }
         this._service.update(formData).subscribe((data: any) => {
-          console.log(data)
           this._tostr.success(data.message, "Success");
           this.loading = false;
           this.dialogRef.close(true);
@@ -111,7 +110,6 @@ export class AddOfferComponent {
         }
         formData.append('company_id', this.company_id);
         this._service.create(formData).subscribe((data: any) => {
-          console.log(data);
           this._tostr.success(data.message, "Success");
           this.loading = false;
           this.dialogRef.close(true);

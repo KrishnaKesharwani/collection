@@ -76,7 +76,7 @@ export class ActionForLoanComponent {
   }
 
   onStatusChange(value: string) {
-    // console.log('Status changed manually:', value);
+
     this.selectedStatus = value;
   }
 
@@ -103,7 +103,6 @@ export class ActionForLoanComponent {
       status: 'active'
     }
     this._service.activeMembers(obj).subscribe((memberData: any) => {
-      console.log('member Data: ', memberData.data);
       this.memberdata = memberData.data;
       const members = memberData.data.map((member: any) => member.name);
       this.dropdownService.setOptions('assingmember', memberData.data);
@@ -151,9 +150,7 @@ export class ActionForLoanComponent {
     if (this.selectedStatus == 'Approved') {
 
     }
-    console.log(this.providerLoanForm.value)
 
-    console.log(this.providerLoanFormForCancelled.value)
     if (this.providerLoanForm.valid) {
       if (this.providerLoanForm.valid) {
         this.loading = true
@@ -174,22 +171,7 @@ export class ActionForLoanComponent {
 
         formData.append('company_id', this.company_id)
         formData.append('customer_id', this.dataa.data.id)
-        // let obj = {
-        //   company_id: this.company_id,
-        //   customer_id: this.dataa.data.id,
-        //   status: this.selectedStatus,
-        //   // customername: this.providerLoanForm.value.customername,
-        //   loan_amount: this.providerLoanForm.value.loan_amount,
-        //   installment_amount: this.providerLoanForm.value.installment_amount,
-        //   assigned_member_id: this.providerLoanForm.value.assigned_member_id,
-        //   no_of_days: this.providerLoanForm.value.no_of_days,
-        //   start_date: this.providerLoanForm.value.start_date,
-        //   end_date: this.providerLoanForm.value.end_date,
-        //   details: this.providerLoanForm.value.details,
-        //   loan_status: this.providerLoanForm.value.loan_status,
-        // }
         this._service.provideLoan(formData).subscribe((data: any) => {
-          console.log(data)
           this.providerLoanForm.reset();
           this._tostr.success(data.message, 'Success');
 

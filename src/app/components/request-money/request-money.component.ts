@@ -67,7 +67,7 @@ export class RequestMoneyComponent {
     }
     this._service.getRequestMoney(obj).subscribe((data: any) => {
       this.loader = false;
-      console.log(data)
+
       this.requestList = data.data;
     }, error => {
       this.loader = false;
@@ -103,7 +103,7 @@ export class RequestMoneyComponent {
     }
     this._service.getRequestMoney(obj).subscribe((data: any) => {
       this.loader = false;
-      console.log(data)
+
       this.requestList = data.data;
     }, error => {
       this.loader = false;
@@ -121,7 +121,7 @@ export class RequestMoneyComponent {
     }
     this._service.getRequestMoneyForCustomer(obj).subscribe((data: any) => {
       this.loader = false;
-      console.log(data)
+
       this.customerRequestList = data.data;
     }, error => {
       this.loader = false;
@@ -135,7 +135,6 @@ export class RequestMoneyComponent {
       status: 'active'
     }
     this._customerService.activeCustomer(obj).subscribe((memberData: any) => {
-      console.log('customer Data: ', memberData.data);
       this.getCustomerData = memberData.data;
       const members = memberData.data.map((member: any) => member.name);
       this.dropdownService.setOptions('getCustomerData', memberData.data);

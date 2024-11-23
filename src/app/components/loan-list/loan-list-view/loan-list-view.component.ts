@@ -26,8 +26,6 @@ export class LoanListViewComponent {
   constructor(public _customActionService: CustomActionsService, private actionService: ActionService, public _loanService: LoanService) { }
 
   ngOnChanges() {
-    console.log('listLoadType in child component:', this.listLoadType);
-    // Perform any logic based on the listLoadType value here
   }
 
   ngOnInit() {

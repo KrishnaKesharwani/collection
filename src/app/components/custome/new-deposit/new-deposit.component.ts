@@ -52,7 +52,6 @@ export class NewDepositComponent {
       status: 'active'
     }
     this._service.activeMembers(obj).subscribe((memberData: any) => {
-      console.log('member Data: ', memberData.data);
       this.memberdata = memberData.data;
       const members = memberData.data.map((member: any) => member.name);
       this.dropdownService.setOptions('assingmember', memberData.data);
@@ -60,7 +59,6 @@ export class NewDepositComponent {
   }
 
   submitDeposit() {
-    console.log(this.depositFrom.value)
     if (this.depositFrom.valid) {
       this.loading = true
       let obj = {
@@ -69,7 +67,6 @@ export class NewDepositComponent {
         ...this.depositFrom.value
       }
       this._fixedDepositService.customerNewDeposit(obj).subscribe((data: any) => {
-        console.log(data);
         this._tostr.success(data.message, 'Success');
         this.loading = false;
         this.depositFrom.reset();

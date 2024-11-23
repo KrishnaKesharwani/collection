@@ -60,7 +60,7 @@ export class AddMemberComponent {
       password: [''],
       address: ['', Validators.required],
       status: ['Active'],
-      image: [null]
+      image: ['']
     });
     this.company_id = this.company_id
     this.member_id = this.dataa.data.id;
@@ -74,14 +74,6 @@ export class AddMemberComponent {
   onFileChange(file: File | null): void {
     this.selectedFile = file;
   }
-  // onFileChange(imgbase64: string | ArrayBuffer | null): void {
-  //   // if(imgbase64.length){
-  //     // this.image_base16 =imgbase64;
-  //   // }
-  //   console.log('Received base64 string:', imgbase64);
-  //   // Process the base64 string as needed
-  // }
-
   saveMemberData() {
     if (this.member_id) {
       if (this.memberForm.valid) {
@@ -143,6 +135,18 @@ export class AddMemberComponent {
               this.loading = false;
               this._toastr.error(data.message, 'Error');
             }
+          }, error => {
+            debugger
+            if (error.error.error?.member_login_id && error.error.message) {
+              this._toastr.error(error.error.error.member_login_id, "Error");
+            } else if (error.error.error?.mobile && error.error.message) {
+              this._toastr.error(error.error.error.mobile, "Error");
+            } else if (error.error.error?.email && error.error.message) {
+              this._toastr.error(error.error.error.email, "Error");
+            } else {
+              this._toastr.error(error.error.message, "Error");
+            }
+
           });
 
         }
@@ -157,35 +161,8 @@ export class AddMemberComponent {
   }
 
   memberView() {
-    // if (this.dataa?.data) {
-    console.log(this.dataa?.data)
     this.memberForm.patchValue({
       ...this.dataa.data,
-
-      // member_login_id: this.dataa.data.member_no,
-      // status: this.dataa?.data?.status, 
-      // password: this.dataa.data.user?.password_hint
-
     });
-
-    // this.memberForm.controls['status'].setValue('Active');
-    // console.log('FormPatch Value', this.memberForm, this.dataa.data);
-    // const status = this.dataa?.data.status;
-
-    // if (status == 'active') {
-    //   this.memberForm.controls['status'].setValue('Active');
-    //   // this.memberForm.controls['status'].setValue('Active');
-
-    //   // this.dropdownService.setOptions('status', [status, 'inactive']);
-    // } else {
-    //   this.memberForm.controls['status'].setValue('Inactive');
-    //   // this.dropdownService.setOptions('status', [status, 'active']);
-    // }
-
-    // this.cdr.detectChanges();
-
-    // }
-
-
   }
 }

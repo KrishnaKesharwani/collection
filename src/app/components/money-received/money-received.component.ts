@@ -35,7 +35,7 @@ export class MoneyReceivedComponent {
     });
     this.getCollectionList();
   }
-  
+
   resetTable() {
     this.filterDateForm = this.fb.group({
       date: ['']
@@ -52,7 +52,6 @@ export class MoneyReceivedComponent {
       date: this.filterDateForm.value.date
     }
     this._service.getCollection(obj).subscribe((data: any) => {
-      console.log('Collection Data: ', data.data);
       this.collectionData = data.data;
       this.filteredDataarray = this.collectionData;
       this.loader = false;

@@ -57,7 +57,6 @@ export class ChangeStatusComponent {
   }
 
   getViewDeposit() {
-    console.log(this.dataa.data)
     this.data = this.dataa.data;
   }
 }

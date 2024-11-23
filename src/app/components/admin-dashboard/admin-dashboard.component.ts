@@ -143,7 +143,6 @@ export class AdminDashboardComponent {
     }
     this._requestservice.getRequestMoney(obj).subscribe((data: any) => {
       this.loader = false;
-      console.log(data)
       this.requestList = data.data;
     }, error => {
       this.loader = false;

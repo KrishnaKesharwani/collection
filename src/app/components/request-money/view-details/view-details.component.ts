@@ -27,7 +27,6 @@ export class ViewDetailsComponent {
   }
 
   viewwDepositRequestDetails() {
-    console.log(this.dataa.data);
     this.data = this.dataa.data;
   }
 }

@@ -37,7 +37,6 @@ export class LoanHistoryComponent {
     }
 
     this._service.loanList(obj).subscribe((data: any) => {
-      console.log('Customer Loan List', data.data.loans);
       this.data = data.data.loans;
       this.loader = false;
     }, error => {

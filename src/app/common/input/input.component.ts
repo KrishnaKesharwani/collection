@@ -77,31 +77,16 @@ export class InputComponent {
       const newDate = new Date(this.date);
       const selectedDate = new Date(this.date);
       this.formattedDate = selectedDate.toLocaleDateString('en-US');
-      // this.form.controls['image'].setValue(reader.result);
-      console.log('Formated Date : ', this.formattedDate);
-      // this.formattedDate = this.getApidateFormatSet(this.formattedDate);  
       const m = newDate.getMonth() + 1;
       let year = this.date.getFullYear();
       let day = this.date.getDate();
       this.formattedDate = day + '/' + m + '/' + year;
       this.valueChange.emit(this.formattedDate);
-      // this.control.value(this.formattedDate);
-      // return new Date(newDate.getFullYear() + '-' + m + '-' + newDate.getDate() + ' 00:00:00');
-      // this.valueChange.emit(newDate.getFullYear() + '-' + m + '-' + newDate.getDate() + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' + newDate.getSeconds());
-      // this.valueChange.emit(this.date);  // Emit the Date object when a date is picked
     } else {
       this.valueChange.emit('');  // Emit null if the date is cleared
     }
   }
-  // onDateFormatChange(dis: any) {
-  //   setTimeout(() => {
 
-  //     // this.date = event?.value;
-  //     var getDate = dis['start_date'].value;
-  //     this.formattedDate = getDate.toLocaleDateString('en-US');
-  //   }, 1000);
-
-  // }
   getApidateFormatSet(date: any) {
     const newDate = new Date(this.date);
 
@@ -109,8 +94,6 @@ export class InputComponent {
     let year = date.getFullYear();
     let day = date.getDate();
     return (day + '/' + month + '/' + year);
-    // return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) + ' ' +
-    // ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2) + ':' + ('0' + d.getSeconds()).slice(-2);
   }
   formatDate(date: Date): string {
     const year = date.getFullYear();

@@ -38,7 +38,6 @@ export class ReportsComponent {
       company_id: this.company_id
     }
     this._service.getbackupList(obj).subscribe((data: any) => {
-      console.log(data.message);
       this.backupListData = data.message;
       this.filteredDataarray = this.backupListData;
       this.loader = false;
@@ -71,7 +70,7 @@ export class ReportsComponent {
     this.filteredDataarray = this._customActionService.sortData(column, this.backupListData);
   }
 
-  searchColumns: any[] = ['name','active', 'inactive', 'last_backup_date'];
+  searchColumns: any[] = ['name', 'active', 'inactive', 'last_backup_date'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;

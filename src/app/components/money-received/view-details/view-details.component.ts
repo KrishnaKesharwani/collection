@@ -34,12 +34,10 @@ export class ViewDetailsComponent {
       collection_id: this.dataa.id
     }
     this.memberData = this.dataa.data;
-    console.log(this.memberData)
     this._service.viewDetails(obj).subscribe((data: any) => {
-      console.log(data.data);
       this.customerData = data.data.details;
       this.loader = false;
-    }, error => {      
+    }, error => {
       this.loader = false;
     });
   }

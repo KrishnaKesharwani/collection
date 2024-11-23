@@ -80,7 +80,6 @@ export class UserloanListComponent {
     }
     this._service.getCustomerLoanList(obj).subscribe((data: any) => {
       this.loader = false;
-      console.log(data)
       this.loanList = data.data.loans;
     }, error => {
       this.loader = false;
@@ -100,7 +99,6 @@ export class UserloanListComponent {
     }
     this._service.getMemberLoanList(obj).subscribe((data: any) => {
       this.loader = false;
-      console.log(data)
       this.loanList = data.data;
     }, error => {
       this.loader = false;

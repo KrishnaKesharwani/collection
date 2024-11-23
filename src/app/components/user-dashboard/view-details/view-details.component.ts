@@ -17,6 +17,5 @@ export class ViewDetailsComponent {
 
   getViewDetails() {
     this.data = this.dataa.data;
-    console.log(this.data)
   }
 }

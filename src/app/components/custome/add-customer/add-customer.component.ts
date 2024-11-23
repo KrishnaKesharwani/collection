@@ -42,10 +42,9 @@ export class AddCustomerComponent {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
       this.user_type = userData.user_type;
-      console.log('Customer Data: ', data);
     }
     this.customerForm = this.fb.group({
-      // customerNo: ['', Validators.required],
+
       name: ['', Validators.required],
       mobile: ['', Validators.required],
       aadhar_no: ['', Validators.required],
@@ -81,37 +80,10 @@ export class AddCustomerComponent {
   saveCustomerData() {
     if (this.customer_id) {
       const formData = new FormData();
-      // for (const field in this.customerForm.controls) {
-      //   if (this.customerForm.controls[field].invalid) {
-      //     console.log(`Field ${field} is invalid`);
-      //     console.log(this.customerForm.controls[field].errors); // This will log the errors for the specific field
-      //   }
-      // }
       formData.delete('customer_login_id');
       formData.delete('password');
       if (this.customerForm.valid) {
         this.loading = true;
-        // const files = [
-        //   { name: 'image', file: this.customerForm.get('image')?.value },
-        // ];
-        // Convert files to base64 strings
-        // files.map(({ name, file }) => {
-        //   return new Promise((resolve, reject) => {
-        //     if (file) {
-        //       const reader = new FileReader();
-        //       reader.onloadend = () => {
-        //         const base64String = reader.result as string; // Base64-encoded string
-        //         formData.append(name, base64String); // Append base64 string to FormData
-        //         resolve(true);
-        //       };
-        //       reader.onerror = () => reject(new Error(`Failed to read ${name}`));
-        //       reader.readAsDataURL(file); // Read the file as a base64 string
-        //     } else {
-        //       resolve(true); // Resolve if no file
-        //     }
-        //   });
-        // });
-        // Append other form values to FormData
         Object.keys(this.customerForm.value).forEach(key => {
           // if (!['main_logo', 'sidebar_logo', 'favicon_icon', 'owner_image'].includes(key)) {
           formData.append(key, this.customerForm.value[key]);

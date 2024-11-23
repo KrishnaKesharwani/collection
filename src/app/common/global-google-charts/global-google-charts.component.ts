@@ -44,9 +44,6 @@ export class GlobalGoogleChartsComponent {
   constructor(public _service: GraphService) { }
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
-    // const companyData = localStorage.getItem('CompanyData');
-    // const memberData = localStorage.getItem('MemberData');
-    // const customerData = localStorage.getItem('CustomerData');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
@@ -64,27 +61,20 @@ export class GlobalGoogleChartsComponent {
       this.getLastSixMonthDepositForCustomer();
       this.getCustomerLoanStatus();
     }
-
-
-
   }
 
-  drawMastercharts() {
-
-  }
+  drawMastercharts() { }
 
   drawCompanycharts() {
     if (!this.depositStatus.length && !this.loanStatus.length) {
       console.error("Deposit status is empty, cannot draw chart.");
       return;
     }
-
-    // Create the data structure for the chart, expecting the first column to be a label (string) and the second column to be a value (number)
     const chartData: any[][] = [['Days', 'Amount']];
 
     this.depositStatus.forEach((entry: any) => {
-      const dayLabel = entry.month; // Adjust this to match the actual label in your data, e.g., entry.day or entry.label
-      const amountValue = Number(entry.deposit_amount); // Ensure amount is a number
+      const dayLabel = entry.month;
+      const amountValue = Number(entry.deposit_amount);
       chartData.push([dayLabel, amountValue]);
     });
 
@@ -101,17 +91,15 @@ export class GlobalGoogleChartsComponent {
     columnUserChart.draw(dataTable, options2);
 
     // logic for pie chart
-    const totalAmount = Number(this.loanStatus.total_loan_amount); // Make sure these fields match your API response
+    const totalAmount = Number(this.loanStatus.total_loan_amount);
     const pendingAmount = Number(this.loanStatus.total_remaining_amount);
-    const completedAmount = totalAmount - pendingAmount; // Calculate completed amount
+    const completedAmount = totalAmount - pendingAmount;
 
-    // Create pie chart data
     const pieChartData = google.visualization.arrayToDataTable([
       ['Amount Type', 'Amount'],
       ['Pending Amount', pendingAmount],
       ['Completed Amount', completedAmount],
     ]);
-
     const pieOptions = {
       is3D: true,
       pieHole: 0.4,
@@ -123,18 +111,16 @@ export class GlobalGoogleChartsComponent {
   }
 
   drawMembercharts() {
-
     if (!this.lastDaysAmount.length && !this.memberLoanStatus.length) {
       console.error("Deposit status is empty, cannot draw chart.");
       return;
     }
 
-    // Create the data structure for the chart, expecting the first column to be a label (string) and the second column to be a value (number)
     const chartData: any[][] = [['Days', 'Amount']];
 
     this.lastDaysAmount.forEach((entry: any) => {
-      const dayLabel = entry.date; // Adjust this to match the actual label in your data, e.g., entry.day or entry.label
-      const amountValue = Number(entry.received_amount); // Ensure amount is a number
+      const dayLabel = entry.date;
+      const amountValue = Number(entry.received_amount);
       chartData.push([dayLabel, amountValue]);
     });
 
@@ -151,22 +137,19 @@ export class GlobalGoogleChartsComponent {
     columnUserChart.draw(dataTable, options2);
 
     // logic for pie chart
-    const totalAmount = Number(this.memberLoanStatus.total_loan_amount); // Make sure these fields match your API response
+    const totalAmount = Number(this.memberLoanStatus.total_loan_amount);
     const pendingAmount = Number(this.memberLoanStatus.total_remaining_amount);
-    const completedAmount = totalAmount - pendingAmount; // Calculate completed amount
+    const completedAmount = totalAmount - pendingAmount;
 
-    // Create pie chart data
     const pieChartData = google.visualization.arrayToDataTable([
       ['Amount Type', 'Amount'],
       ['Pending Amount', pendingAmount],
       ['Completed Amount', completedAmount],
     ]);
-
     const pieOptions = {
       is3D: true,
       pieHole: 0.4,
     };
-
     const pieUserElement = document.getElementById('pie_member_chart') as HTMLElement;
     const pieUserChart = new google.visualization.PieChart(pieUserElement);
     pieUserChart.draw(pieChartData, pieOptions);
@@ -180,9 +163,9 @@ export class GlobalGoogleChartsComponent {
     }
     const chartData: any[][] = [['Days', 'Debit', 'Credit']];
     this.customerDepositStatus.forEach((entry: any) => {
-      const dayLabel = entry.month; // Adjust this to match the actual label in your data, e.g., entry.day or entry.label
-      const debitValue = Number(entry.deposit_amount); // Ensure amount is a number
-      const creditValue = Number(entry.withdraw_amount); // Ensure amount is a number
+      const dayLabel = entry.month;
+      const debitValue = Number(entry.deposit_amount);
+      const creditValue = Number(entry.withdraw_amount);
       chartData.push([dayLabel, debitValue, creditValue]);
     });
     const dataTable = google.visualization.arrayToDataTable(chartData);
@@ -221,13 +204,10 @@ export class GlobalGoogleChartsComponent {
     this.loader = true;
     let obj = {
       company_id: this.company_id,
-      // customer_id: '2'
     }
     this._service.lastDepositStatus(obj).subscribe((data: any) => {
-      console.log(data.data);
       this.depositStatus = data.data.graphdata || [];
       this.depositTotalCustomer = data.data;
-      console.log("Deposit Status:", this.depositStatus);  // Check if data is available
       this.loader = false;
       if (this.depositStatus.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
@@ -245,22 +225,19 @@ export class GlobalGoogleChartsComponent {
       } else {
         console.error("No deposit status data available to draw charts.");
       }
+    }, error => {
+      this.loader = false;
     });
-
   }
 
   getLoanStatus() {
     this.loader = true;
     let obj = {
       company_id: this.company_id,
-      // member_id: '2'
     }
     this._service.loanStatus(obj).subscribe((data: any) => {
-      console.log(data.data);
       this.loanStatus = data.data || [];
-      console.log("Deposit Status:", this.loanStatus);  // Check if data is available
       this.loader = false;
-
       if (this.loanStatus.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(() => {
@@ -277,6 +254,8 @@ export class GlobalGoogleChartsComponent {
       } else {
         console.error("No deposit status data available to draw charts.");
       }
+    }, error => {
+      this.loader = false;
     });
   }
 
@@ -290,10 +269,7 @@ export class GlobalGoogleChartsComponent {
       customer_id: this.customer_id
     }
     this._service.customerLoanStatus(obj).subscribe((data: any) => {
-      console.log(data.data);
       this.customerLoanStatus = data.data.loans || [];
-      console.log("Deposit Status:", this.customerLoanStatus);  // Check if data is available
-
       this.loader = false;
       if (this.customerLoanStatus.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
@@ -321,9 +297,7 @@ export class GlobalGoogleChartsComponent {
       customer_id: this.customer_id
     }
     this._service.customerLastDepositStatus(obj).subscribe((data: any) => {
-      console.log(data.data);
       this.customerDepositStatus = data.data.graphdata || [];
-      console.log("Deposit Status:", this.customerDepositStatus);  // Check if data is available
       this.loader = false;
       if (this.customerDepositStatus.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
@@ -355,9 +329,7 @@ export class GlobalGoogleChartsComponent {
       member_id: this.member_id
     }
     this._service.lastDaysAmount(obj).subscribe((data: any) => {
-      console.log(data.data);
       this.lastDaysAmount = data.data || [];
-      console.log("Last Days Amount:", this.lastDaysAmount);  // Check if data is available
       this.loader = false;
 
       if (this.lastDaysAmount.length > 0) {
@@ -386,9 +358,7 @@ export class GlobalGoogleChartsComponent {
       member_id: this.member_id
     }
     this._service.assingReceivedAmoutn(obj).subscribe((data: any) => {
-      console.log(data.data);
       this.memberLoanStatus = data.data || [];
-      console.log("Deposit Status:", this.memberLoanStatus);  // Check if data is available
 
       this.loader = false;
       if (this.memberLoanStatus.length > 0) {

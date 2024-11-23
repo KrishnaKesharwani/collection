@@ -208,7 +208,6 @@ export class OffersComponent {
       company_id: this.company_id
     }
     this._service.getOfferList(obj).subscribe((data: any) => {
-      // console.log(data.data);
       this.offerListData = data.data;
       this.filteredDataarray = this.offerListData;
       this.loader = false;

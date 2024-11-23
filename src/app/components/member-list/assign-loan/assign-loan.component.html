@@ -5,11 +5,8 @@
 <div class="dialoge_middle_container full_height_cover middle_dialoge">
     <div class="flex_header res_flex_colum">
         <div class="assign_text res_full_width">Total Assign : {{total_assignlength}}</div>
-        <div class="global_form_row res_full_width load_list_ddl" *ngIf="getUnassignedData?.length">           
+        <div class="global_form_row res_full_width load_list_ddl" *ngIf="getUnassignedData?.length">
             <form form="unassignedForm" class="main_form">
-                <!-- <app-dropdwon [jsonKey]="'unassingmember'" [arrayType]="'KEY_TYPE'" [form]="unassignedForm"
-                [key]="'unassigned_member_id'" [optionArray]="getUnassignedData"
-                field="Not Assign Loan List"></app-dropdwon> -->
                 <mat-form-field class="global_dropdown" appearance="outline">
                     <mat-label>Not Assign Loan List - {{getUnassignedData.length}}</mat-label>
                     <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
@@ -29,10 +26,10 @@
             </button>
         </div>
     </div>
-    <div class="page_center_loader" *ngIf="mainpageloader">
+    <div class="page_center_loader" *ngIf="loading">
         <app-page-loader></app-page-loader>
     </div>
-    <ng-container *ngIf="loanList?.length && !mainpageloader">
+    <ng-container *ngIf="loanList?.length==0 && !loading">
         <div class="main_table_head">Assign Loan</div>
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
@@ -68,7 +65,7 @@
         </table>
         <br>
     </ng-container>
-    <ng-container *ngIf="assignDepositData?.length && !mainpageloader">
+    <ng-container *ngIf="assignDepositData?.length==0 && !loading">
         <div class="main_table_head">Assign Deposit</div>
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
@@ -98,7 +95,7 @@
             </tbody>
         </table>
     </ng-container>
-    <ng-container *ngIf="assignDepositData?.length == 0 && loanList?.length == 0 && !mainpageloader">
+    <ng-container *ngIf="assignDepositData?.length == 0 || loanList?.length == 0 && !loading">
         <app-no-record-found type="page" notext="No assign found"></app-no-record-found>
     </ng-container>
 

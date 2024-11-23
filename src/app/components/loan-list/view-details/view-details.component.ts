@@ -23,7 +23,6 @@ export class ViewDetailsComponent {
   viewMoreDetail() {
     this.loanApply = this.dataa.loantype;
     this.data = this.dataa.data;
-    console.log(this.data)
 
   }
 }

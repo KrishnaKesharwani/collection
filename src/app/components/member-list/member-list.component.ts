@@ -51,6 +51,8 @@ export class MemberListComponent {
         this.filteredDataarray = this.memberListData;
         this.loader = false;
       }
+    }, error => {
+      this.loader = false;
     })
 
   }

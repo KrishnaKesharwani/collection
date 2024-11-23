@@ -28,28 +28,10 @@ export class AssignLoanComponent {
   selectedValue: string | undefined;
   selectedCar: string | undefined;
   total_assignlength = 0;
-  // foods: Food[] = [
-  //   { value: 'steak-0', viewValue: 'Steak' },
-  //   { value: 'pizza-1', viewValue: 'Pizza' },
-  //   { value: 'tacos-2', viewValue: 'Tacos' },
-  // ];
-
-  // cars: Car[] = [
-  //   { value: 'volvo', viewValue: 'Volvo' },
-  //   { value: 'saab', viewValue: 'Saab' },
-  //   { value: 'mercedes', viewValue: 'Mercedes' },
-  // ];
-
-  // displayedColumns: string[] = ['cno', 'customer_name', 'contact', 'amount', 'pending', 'installment', 'status', 'remove'];
-  // data: { cno: number; customer_name: string; contact: string; amount: number; pending: boolean; installment: string; status: string }[] = [
-  //   { cno: 1, customer_name: 'Alice', contact: '12345', amount: 100, pending: false, installment: 'Monthly', status: 'Active' },
-  //   { cno: 2, customer_name: 'Bob', contact: '67890', amount: 200, pending: true, installment: 'Yearly', status: 'Pending' },
-  //   // Add more data as necessary
-  // ];
 
   @Input() title: any;
   loading: boolean = false;
-  mainpageloader: boolean = false;
+  // loading: boolean = false;
   company_id: any;
   unassignedForm!: FormGroup;
 
@@ -68,17 +50,12 @@ export class AssignLoanComponent {
   ngOnInit() {
 
     const data = localStorage.getItem('CurrentUser');
-    this.mainpageloader = true;
-    console.log('Return data :', this.dataa)
+    this.loading = true;
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
       this.member_id = this.dataa?.data.id;
     }
-
-    // this.unassignedForm = this.fb.group({
-    //   unassigned_member_id: ['', Validators.required]
-    // })
     this.getAssignDeposit();
     this.getAssignLoan();
     this.getUnassignedLoans();
@@ -94,23 +71,23 @@ export class AssignLoanComponent {
         this.total_assignlength = this.total_assignlength + this.assignDepositData?.length;
       }
       // this.total_assignlength = this.assignDepositData?.length + this.loanList?.length;
-      this.mainpageloader = false;
+      this.loading = false;
     }, 3000);
   }
 
   getUnassignedLoans() {
+    this.loading = true;
     let obj = {
       company_id: this.company_id
     }
     this._service.unassignedLoans(obj).subscribe((data: any) => {
       if (data.success) {
         this.getUnassignedData = data.data.loans;
-        console.log('Unassign Loan Data inner Call: ', this.getUnassignedData);
-        // this.dropdownService.setOptions('unassingmember', data.data);
+        this.loading = false;
       }
     }, error => {
       this.getUnassignedData = [];
-      // this._toaster.error(error.error.message, 'Error');
+      this.loading = false;
     });
   }
 
@@ -140,7 +117,7 @@ export class AssignLoanComponent {
             timer: 1000
           });
           this.loading = false;
-          this.mainpageloader = true;
+          this.loading = true;
           this.total_assignlength = 0;
           this.getUnassignedData = [];
           this.loanList = [];
@@ -161,6 +138,7 @@ export class AssignLoanComponent {
   }
 
   getAssignDeposit() {
+    this.loading = true;
     let obj = {
       company_id: this.company_id,
       loan_status: 'Pending',
@@ -168,11 +146,14 @@ export class AssignLoanComponent {
     }
     this._dailyService.getDepositListForCustomer(obj).subscribe((data: any) => {
       this.assignDepositData = data.data.deposits;
-      // this.assignDepositDataStatus = data.data.deposits;
+      this.loading = false;
+    }, error => {
+      this.loading = false;
     })
   }
 
   getAssignLoan() {
+    this.loading = true;
     let obj = {
       company_id: this.company_id,
       loan_status: 'approved',
@@ -183,10 +164,13 @@ export class AssignLoanComponent {
       if (data.success) {
         this.loanList = data.data.loans;
         this.loanListData = data.data;
+        this.loading = false;
       } else {
         this.loanList = 0;
         // this._toaster.error(data.message, 'Error')
       }
+    }, error => {
+      this.loading = false;
     });
   }
 
@@ -205,12 +189,11 @@ export class AssignLoanComponent {
   }
 
   removeLoanMember(data: any) {
-    this.mainpageloader = true;
+    this.loading = true;
     let obj = {
       loan_id: data.id,
       member_id: data.member?.id
     }
-    // console.log(obj);
     this._service.removeAssignLoan(obj).subscribe((data: any) => {
       if (data) {
         Swal.fire({
@@ -229,7 +212,7 @@ export class AssignLoanComponent {
         this.getAssignDeposit();
         this.getUnassignedLoans();
         this.getAssignCount();
-        this.mainpageloader = false;
+        this.loading = false;
       }
     }, error => {
       this._toaster.error(error.error.error.member_id, 'Error');
@@ -237,50 +220,6 @@ export class AssignLoanComponent {
 
   }
 
-  // openDialogDepositRemove(data: any) {
-  //   const dialogRef = this.dialog.open(DeleteComponent, {
-  //     panelClass: 'delete_popup',
-  //     data: {
-  //       title: 'Are you sure?',
-  //       subTitle:
-  //         'You want to remove!'
-  //     }
-  //   });
-  //   dialogRef.componentInstance.deleteAction.subscribe(() => {
-  //     this.deleteDeposit(data);
-  //   });
-  // }
-
-  // deleteDeposit(data: any) {
-
-  //   let obj = {
-  //     deposit_id: data.id,
-  //     member_id: data.member?.id
-
-  //   }
-  //   console.log(obj);
-
-  //   this._service.removeAssignDeposit(obj).subscribe((data: any) => {
-  //     if (data) {
-  //       Swal.fire({
-  //         position: "center",
-  //         icon: "success",
-  //         title: 'Removed',
-  //         text: 'Assign Deposit Removed!',
-  //         showConfirmButton: true,
-  //         timer: 1500
-  //       });
-  //     }
-
-  //   }, error => {
-  //     this.loading = false;
-  //     this._toaster.error(error.error.error.member_id, 'Error');
-
-  //   });
-  //   this.getAssignLoan();
-  //   this.getAssignDeposit();
-  //   this.dialog.closeAll()
-  // }
 
 }
 

@@ -41,14 +41,13 @@ export class VcManagementComponent {
       company_id: this.company_id
     }
     this._service.getOfferList(obj).subscribe((data: any) => {
-      console.log(data.data);
       this.offerListData = data.data;
       this.filteredDataarray = this.offerListData;
       this.loader = false;
     })
   }
 
-  openDialogChangeMember(data: any){
+  openDialogChangeMember(data: any) {
     const dialogRef = this.dialog.open(ChangeMemberComponent, {
       disableClose: true,
       data: {
@@ -64,7 +63,7 @@ export class VcManagementComponent {
     });
   }
 
-  openDialogReceivedAmount(data: any){
+  openDialogReceivedAmount(data: any) {
     const dialogRef = this.dialog.open(ReceivedAmountComponent, {
       disableClose: true,
       data: {
@@ -79,7 +78,7 @@ export class VcManagementComponent {
       }
     });
   }
-  openDialogEditDetails(data: any){
+  openDialogEditDetails(data: any) {
     const dialogRef = this.dialog.open(AddVcComponent, {
       disableClose: true,
       data: {
@@ -94,8 +93,8 @@ export class VcManagementComponent {
       }
     });
   }
-  
-  openDialogViewDetail(data: any){
+
+  openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(AddVcComponent, {
       disableClose: true,
       data: {

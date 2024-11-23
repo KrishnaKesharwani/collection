@@ -55,7 +55,6 @@ export class DailyCollectListComponent {
       status: "Active"
     }
     this._service.getMemberLoanList(obj).subscribe((data: any) => {
-      console.log('Member Loan assign Data: ', data.data);
       this.memberLoanData = data.data.loans;
     })
   }
@@ -66,7 +65,6 @@ export class DailyCollectListComponent {
       status: "Active"
     }
     this._service.getDepositListForMember(obj).subscribe((data: any) => {
-      console.log('Deposit List For Member', data.data);
       this.memberDepositData = data.data.deposits;
       this.loading = false;
     })
@@ -86,7 +84,6 @@ export class DailyCollectListComponent {
       status: "Active"
     }
     this._service.getCustomerLoanList(obj).subscribe((data: any) => {
-      console.log('Get Customer Active Loan List', data.data);
       this.loanData = data.data.loans;
       this.loanDataNotFound = data.success;
     })
@@ -98,7 +95,6 @@ export class DailyCollectListComponent {
       status: "Active"
     }
     this._service.getDepositListForCustomer(obj).subscribe((data: any) => {
-      console.log('Get Customer Deposit List', data.data);
       this.customerDepositData = data.data.deposits;
       this.loading = false;
     })

@@ -39,7 +39,6 @@ export class ViewDetailsComponent {
     this.getViewDeposit();
   }
   getViewDeposit() {
-    console.log(this.dataa.data)
     this.data = this.dataa.data;
 
   }

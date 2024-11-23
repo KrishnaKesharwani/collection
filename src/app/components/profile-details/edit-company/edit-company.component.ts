@@ -44,17 +44,12 @@ export class EditCompanyComponent {
     const currentUserDataParse = JSON.parse(data2);
     this.user_type = userData;
     this.company_id = currentUserDataParse?.company_id;
-    // this.user_type = currentUserDataParse?.user_type;
-    // this.company_id = currentUserDataParse?.company_id;
-
-    console.log('Edit Company Data:', this.user_type);
     this.editForm = this.fb.group({
       company_name: [this.user_type.company_name, Validators.required],
       owner_name: [this.user_type.owner_name, Validators.required],
       mobile: [this.user_type.mobile, Validators.required],
       primary_color: [this.user_type.primary_color, Validators.required],
       secondary_color: [this.user_type.secondary_color, Validators.required],
-      // aadhar_no: [, Validators.required],
       prefix: [this.user_type.prefix],
       address: [this.user_type.address, Validators.required],
       owner_image: [this.user_type.owner_image],
@@ -124,7 +119,7 @@ export class EditCompanyComponent {
       this.logout();
     });
   }
-  
+
   logout() {
     localStorage.removeItem('CurrentUser');
     this.router.navigate(['/login']);

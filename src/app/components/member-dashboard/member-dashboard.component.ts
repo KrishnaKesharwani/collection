@@ -38,7 +38,6 @@ export class MemberDashboardComponent {
 
     this._service.getMemberCollection(obj).subscribe((data: any) => {
 
-      console.log(data.data)
       this.attended_customer = data.data.attended_customer
       this.total_customer = data.data.total_customer
       this.collectionData = data.data.collection
@@ -56,7 +55,6 @@ export class MemberDashboardComponent {
       status: "Active"
     }
     this._memberService.getDepositListForMember(obj).subscribe((data: any) => {
-      console.log(data.data);
       this.memberDepositData = data.data.deposits;
       this.loader = false;
     })

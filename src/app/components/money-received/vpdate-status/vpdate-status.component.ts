@@ -32,7 +32,7 @@ export class VpdateStatusComponent {
     });
     // this.dropdownService.setOptions('moneyStatus', ['Working', 'Received', 'Cancelled']);
   }
-  
+
   onClose() {
     this.dialogRef.close();
   }
@@ -45,7 +45,6 @@ export class VpdateStatusComponent {
         ...this.receivedAmountForm.value
       }
       this._service.changeStatus(obj).subscribe((data: any) => {
-        console.log(data.data);
         this.receivedAmountForm.reset();
         this._tostr.success(data.message, 'Success');
         this.dialogRef.close(true);

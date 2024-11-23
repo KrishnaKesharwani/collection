@@ -55,7 +55,6 @@ export class CommonComponentService {
       this._service.activeMembers(obj).subscribe((memberDataAPi: any) => {
         this.getmemberdata = memberDataAPi.data;
       }, error => {
-        console.log('Member error Found', error.massage);
       });
     }
   }
@@ -74,7 +73,6 @@ export class CommonComponentService {
       this._service.activeCustomer(obj).subscribe((memberDataAPi: any) => {
         this.getCustomerData = memberDataAPi.data;
       }, error => {
-        console.log('Customer error Found', error.massage);
       });
     }
   }

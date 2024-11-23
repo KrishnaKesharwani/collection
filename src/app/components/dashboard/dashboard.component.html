@@ -19,24 +19,26 @@
             <div class="count">{{companyDashboardtData?.runnigDemo}}</div>
         </div>
     </div>
+
     <div *ngIf="userType == 1" class="row brics_row">
         <div class="tile_stats_count blue_tiles"><span class="count_top"><i class="mdi mdi-cash-multiple"></i> Today
                 collect money</span>
-            <div class="count"><i class="mdi mdi-currency-inr"></i>1500</div>
+            <div class="count"><i class="mdi mdi-currency-inr"></i>{{companyDashboardtData}}</div>
         </div>
         <div class="tile_stats_count orange_tiles"><span class="count_top"><i class="mdi mdi-cash-100"></i> Current
                 Month Collect</span>
-            <div class="count"><i class="mdi mdi-currency-inr"></i>11500</div>
+            <div class="count"><i class="mdi mdi-currency-inr"></i>{{companyDashboardtData}}</div>
         </div>
         <div class="tile_stats_count purple_tiles"><span class="count_top"><i class="mdi mdi-account-group-outline"></i>
                 Total Coustomer</span>
-            <div class="count res_txtsmall">10 Coustomer</div>
+            <div class="count res_txtsmall">{{companyDashboardtData}}</div>
         </div>
         <div class="tile_stats_count green_tiles"><span class="count_top"><i
                     class="mdi mdi-account-multiple-plus-outline"></i> Recent Month Coustomer</span>
-            <div class="count">10 New Join</div>
+            <div class="count">{{companyDashboardtData}}</div>
         </div>
     </div>
+
     <div *ngIf="userType == 2" class="row brics_row">
         <div class="tile_stats_count blue_tiles"><span class="count_top"><i class="mdi mdi-cash-multiple"></i> Today
                 collect money</span>
@@ -55,6 +57,7 @@
             <div class="count">20,000.00</div>
         </div>
     </div>
+
     <div *ngIf="userType == 3" class="row brics_row">
         <div class="tile_stats_count blue_tiles">
             <span class="count_top"><i class="mdi mdi-cash-multiple"></i>
@@ -73,10 +76,15 @@
             <span class="count_top"><i class="mdi mdi-cash"></i>Daily Account Balance</span>
             <div class="count">12,800.00</div>
         </div>
-    </div>    
+    </div>
+
     <app-superadmin-dashboard *ngIf="userType == 0"></app-superadmin-dashboard>
+
     <app-admin-dashboard *ngIf="userType == 1"></app-admin-dashboard>
+
     <app-member-dashboard *ngIf="userType == 2"></app-member-dashboard>
+
     <app-user-dashboard *ngIf="userType == 3"></app-user-dashboard>
+
     <app-global-google-charts [currentuserType]="userType"></app-global-google-charts>
 </div>
