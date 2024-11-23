@@ -2,10 +2,12 @@ import { Component, inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MassageForApplierComponent } from './massage-for-applier/massage-for-applier.component';
 import { ActionForLoanComponent } from './action-for-loan/action-for-loan.component';
-import { ViewDetailsComponent } from './view-details/view-details.component';
+// import { ViewDetailsComponent } from './view-details/view-details.component';
 import { LoanService } from 'src/app/services/loan/loan.service';
 import { InstallmentHistoryComponent } from '../loan-list/installment-history/installment-history.component';
 import { ActionForDepositComponent } from './action-for-deposit/action-for-deposit.component';
+import { DepositRequestService } from 'src/app/services/depositRequest/deposit-request.service';
+import { ViewDetailsComponent } from '../request-money/view-details/view-details.component';
 
 export interface DialogData {
   animal: string;
@@ -27,7 +29,8 @@ export class AdminDashboardComponent {
   newLoanData: any[] = [];
   newLoanDashboardData: any;
   loader: boolean = false;
-  constructor(public dialog: MatDialog, public _service: LoanService) { }
+  requestList: any[] = [];
+  constructor(public dialog: MatDialog, public _service: LoanService, public _requestservice: DepositRequestService) { }
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
@@ -41,6 +44,7 @@ export class AdminDashboardComponent {
 
     this.getCompletedLoanList();
     this.getApplyNewLoanList();
+    this.getRequestLoanList();
   }
 
   openDialogLoanHistory(data?: any): void {
@@ -67,7 +71,7 @@ export class AdminDashboardComponent {
 
       data: {
         data: data,
-        title: 'Apply Loan Coustomer Details',
+        title: 'Request Details',
 
       },
     });
@@ -120,6 +124,23 @@ export class AdminDashboardComponent {
       this.newLoanDashboardData = data.data;
       this.loader = false;
 
+    })
+  }
+
+  getRequestLoanList() {
+    this.loader = true;
+    let obj = {
+      company_id: this.company_id,
+      // loan_status: 'Approved',
+      // status: 'Active'
+    }
+    this._requestservice.getRequestMoney(obj).subscribe((data: any) => {
+      this.loader = false;
+      console.log(data)
+      this.requestList = data.data;
+    }, error => {
+      this.loader = false;
+      // this._tostr.error(error.error.message, 'Error');
     })
   }
 }

@@ -7,44 +7,44 @@
         <tbody>
             <tr>
                 <td><b>Customer Name :</b></td>
-                <td>{{data?.customer?.name}}</td>
+                <td>{{data?.customer_name}}</td>
             </tr>
+
             <tr>
-                <td><b>Mobile :</b></td>
-                <td>{{data?.remaining_amount}}</td>
-            </tr>
-            <tr>
-                <td><b>Deposit No.:</b></td>
-                <td>{{data?.loan_no}}</td>
+                <td><b>Request No.:</b></td>
+                <td>{{data?.deposit_no}}</td>
             </tr>
             <tr>
                 <td><b>Request Amount:</b></td>
-                <td>{{data?.loan_amount}}</td>
+                <td>{{data?.request_amount}}</td>
             </tr>
             <tr>
                 <td><b>Request Date:</b></td>
-                <td>{{data?.loan_amount}}</td>
+                <td>{{data?.request_date}}</td>
             </tr>
             <tr>
                 <td><b>Request By :</b></td>
-                <td>{{data?.member.name}}</td>
+                <td>{{data?.requested_by}}</td>
             </tr>
             <tr>
                 <td><b>Request Massage :</b></td>
-                <td>{{data?.member.name}}</td>
+                <td>{{data?.reason}}</td>
             </tr>
         </tbody>
     </table>
+    <br>
     <form focusInvalidInput form="changeRequestStatusForm" class="main_form">
-        <app-dropdwon [optionArray]="dropdownService.depositrequest" *ngIf="changeRequestStatusForm" field="Request Deposit Status"
-            [form]="changeRequestStatusForm" [key]="'deposit_request_status'"></app-dropdwon>
-        <app-textarea label="Massage For Request" [(value)]="deposit_request_reason" [isRequired]="false"
-            [className]="'bottom_error_msg'" [form]="changeRequestStatusForm" [key]="'deposit_request_reason'"></app-textarea>
+        <app-dropdwon [optionArray]="dropdownService.depositrequest" *ngIf="changeRequestStatusForm"
+            field="Request Deposit Status" [form]="changeRequestStatusForm" [key]="'status'"></app-dropdwon>
+
+        <app-textarea label="Massage For Request" [(value)]="replied_message" [isRequired]="false"
+            [className]="'bottom_error_msg'" [form]="changeRequestStatusForm" [key]="'replied_message'"
+            [displayMsg]="'Message is required'"></app-textarea>
     </form>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn"  (click)="onClose()" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" mat-flat-button (click)="updateReponseStatus()">
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
+    <button class="global_submit_btn" mat-flat-button (click)="updateReponseStatus(data)">
         <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
         <app-button-loader *ngIf="loading"></app-button-loader>
         <span>Submit</span>

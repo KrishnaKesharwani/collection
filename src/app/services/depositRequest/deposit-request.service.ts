@@ -23,4 +23,13 @@ export class DepositRequestService {
     const url = `${this.apiUrl}/deposit-request-list`;
     return this.httpClient.post(url, obj)
   }
+  getRequestMoneyForCustomer(obj: object) {
+    const url = `${this.apiUrl}/customer-request-list`;
+    return this.httpClient.post(url, obj)
+  }
+
+  updateDepositRequest(obj: object) {
+    const url = `${this.apiUrl}/update-deposit-request-status`;
+    return this.httpClient.put(url, obj)
+  }
 }

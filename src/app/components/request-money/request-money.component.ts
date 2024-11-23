@@ -8,6 +8,7 @@ import { DepositRequestService } from 'src/app/services/depositRequest/deposit-r
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { ActionForDepositComponent } from '../admin-dashboard/action-for-deposit/action-for-deposit.component';
 
 @Component({
   selector: 'app-request-money',
@@ -26,6 +27,8 @@ export class RequestMoneyComponent {
   getCustomerData: any[] = [];
   loading: any;
   selectControl = new FormControl('');
+  user_type: any;
+  customerRequestList: any[] = [];
   constructor(public _backupService: BackupListService, public dialog: MatDialog, public _service: DepositRequestService, public _customerService: CustomerService, public _tostr: ToastrService, public fb: FormBuilder,
     public dropdownService: CommonComponentService
   ) { }
@@ -36,15 +39,23 @@ export class RequestMoneyComponent {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
       this.customer_id = userData.customer_id;
+      this.user_type = userData.user_type
+
     }
-    this.getRequestLoanList();
+
 
     this.filterDateForm = this.fb.group({
-      date: ['', Validators.required],
-      customer_id: ['', Validators.required]
+      date: [''],
+      customer_id: ['']
     })
 
-    this.getActiveCustomerList();
+
+    if (this.customer_id) {
+      this.getRequestDepsitForCustomer();
+    } else {
+      this.getActiveCustomerList();
+      this.getRequestLoanList();
+    }
   }
 
   getRequestLoanList() {
@@ -100,6 +111,24 @@ export class RequestMoneyComponent {
     })
   }
 
+  getRequestDepsitForCustomer() {
+    this.loader = true;
+    // let gatCustomerid = this.selectControl.value;
+    let obj = {
+      company_id: this.company_id,
+      customer_id: this.customer_id,
+      // request_date: this.filterDateForm.value.date
+    }
+    this._service.getRequestMoneyForCustomer(obj).subscribe((data: any) => {
+      this.loader = false;
+      console.log(data)
+      this.customerRequestList = data.data;
+    }, error => {
+      this.loader = false;
+      this._tostr.error(error.error.message, 'Error');
+    })
+  }
+
   getActiveCustomerList() {
     let obj = {
       company_id: this.company_id,
@@ -113,7 +142,8 @@ export class RequestMoneyComponent {
     })
   }
 
-  openDialogViewDetail(data?: any): void {
+  openDialogViewDetail(data: any): void {
+
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
       data: {
         title: 'Request Details',
@@ -122,6 +152,16 @@ export class RequestMoneyComponent {
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       // this.isDialogOpen = false;
+    });
+  }
+
+  openDialogActionForDeposit(data?: any) {
+    const dialogRef = this.dialog.open(ActionForDepositComponent, {
+      panelClass: 'medium_popup',
+      data: {
+        title: 'Message For Deposit',
+        data: data
+      },
     });
   }
 

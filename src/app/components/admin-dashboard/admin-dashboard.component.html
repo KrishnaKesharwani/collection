@@ -148,37 +148,37 @@
     <table class="table align-items-center table-flush mydata-table">
         <thead class="thead-light">
             <tr>
-                <th class="col id_col">CNo.</th>
-                <th class="col">Customer Name</th>
-                <th class="col">Apply By</th>
-                <th class="col mobile_col">Mobile</th>
-                <th class="col date_col">Apply Date</th>
-                <th class="col amount_col">Amount</th>
+                <th class="col id_col">Request No.</th>
+                <th class="col">Request Date</th>
+                <th class="col">Request By</th>
+                <th class="col mobile_col">Name</th>
+                <th class="col date_col">Amount</th>
+
                 <th class="col status_col">Status</th>
                 <th class="col action_col">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngIf="loader">
-                <td colspan="8">
+                <td colspan="7">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
-            <tr *ngIf="newLoanData.length == 0 && !loader">
-                <td colspan="8">
+            <tr *ngIf="requestList.length == 0 && !loader">
+                <td colspan="7">
                     <app-no-record-found type="table" notext="No Deposit Request Found."></app-no-record-found>
                 </td>
             </tr>
-            <tr *ngFor="let loan of newLoanData">
-                <td class="col text-center" data-name="CNo.">{{loan.customer?.customer_no}}</td>
-                <td class="col" data-name="Customer">{{loan.customer?.name}}</td>
-                <td class="col" data-name="Apply By">{{loan.customer?.apply_by}}</td>
-                <td class="col" data-name="Mobile">{{loan.customer?.mobile}}</td>
-                <td class="col" data-name="Apply Date"><small>{{loan.customer?.apply_date}}</small></td>
+            <tr *ngFor="let request of requestList">
+                <td class="col text-center" data-name="Request No.">{{request.deposit_no}}</td>
+                <td class="col" data-name="Request Date">{{request.request_date}}</td>
+                <td class="col" data-name="Request By">{{request.requested_by}}</td>
+                <td class="col" data-name="Name">{{request.customer_name}}</td>
+
                 <td class="col text-right" data-name="Amount"><i
-                        class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}</td>
+                        class="mdi mdi-currency-inr mr-1"></i>{{request.request_amount}}</td>
                 <td class="col text-center" data-name="Status">
-                    <div class="badge bg-warning text-white">{{loan.loan_status}}</div>
+                    <div class="badge bg-warning text-white">{{request.status}}</div>
                 </td>
                 <td class="action_col" data-name="Action">
                     <div placement="bottom-right">
@@ -187,11 +187,11 @@
                         </button>
                         <mat-menu #menu="matMenu">
                             <div class="table_actionmenu">
-                                <button mat-menu-item (click)="openDialogActionForDeposit(loan)">
+                                <button mat-menu-item (click)="openDialogActionForDeposit(request)">
                                     <i class="mdi mdi-message-outline mr-2"></i>
                                     <span>Action For Request</span>
                                 </button>
-                                <button mat-menu-item (click)="openDialogViewDetails(loan)">
+                                <button mat-menu-item (click)="openDialogViewDetails(request)">
                                     <i class="mdi mdi-eye mr-2"></i>
                                     <span>View Details</span>
                                 </button>
