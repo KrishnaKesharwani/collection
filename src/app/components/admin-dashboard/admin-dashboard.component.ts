@@ -86,6 +86,8 @@ export class AdminDashboardComponent {
         data: data
       },
     });
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   openDialogActionForDeposit(data?: any) {
@@ -95,6 +97,11 @@ export class AdminDashboardComponent {
         title: 'Message For Deposit',
         data: data
       },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getRequestLoanList();
+      }
     });
   }
 

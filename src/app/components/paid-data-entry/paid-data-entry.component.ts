@@ -33,10 +33,10 @@ export class PaidDataEntryComponent {
   ) { }
 
   ngOnInit() {
+    // debugger;
     const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
-
       this.userType = userData.user_type;
       this.customer_id = userData.customer_id;
     } else {
@@ -44,20 +44,17 @@ export class PaidDataEntryComponent {
     }
     const depositDataResult = this._dataSharingService.getDepositData();
     const loanDataResult = this._dataSharingService.getLoanData();
-
     this.depositDataSharre = depositDataResult.data;
     this.loanDataShare = loanDataResult.data;
     this.collection_type = depositDataResult.type;
-
     this.routes.params.subscribe(params => {
       if (!this.depositDataSharre || this.depositDataSharre.id !== params['id']
         && !this.loanDataShare || this.loanDataShare.id !== params['id']
       ) {
-
+        // debugger;
         console.log(this.depositDataSharre, this.loanDataShare)
         this.loan_id = params['id'];
         this.deposit_id = params['id'];
-
         if (this.depositDataSharre) {
           this.customer_id = this.depositDataSharre.customer_id
         } else {
@@ -67,15 +64,21 @@ export class PaidDataEntryComponent {
         // Perform API call here to fetch data by ID if needed
       }
     });
-
-    this.receivedAmountForm = this.fb.group({
-      amount: ['', Validators.required]
-    });
-
-    this.getCustomerDepositHistory();
-    this.getCustomerLoanHistory();
+    if (this.depositDataSharre || this.loanDataShare) {
+      this.receivedAmountForm = this.fb.group({
+        amount: ['', Validators.required]
+      });
+      this.getCustomerDepositHistory();
+      this.getCustomerLoanHistory();
+    } else {
+      this.redirectPage();
+    }
   }
 
+  redirectPage() {
+    this.router.navigate(['/daily_collection']);
+  }
+  
   debitAmount() {
     if (this.receivedAmountForm.valid) {
       this.loading = true;

@@ -143,15 +143,11 @@ export class RequestMoneyComponent {
   }
 
   openDialogViewDetail(data: any): void {
-
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
       data: {
         title: 'Request Details',
         data: data
       },
-    });
-    dialogRef.afterClosed().subscribe((result: any) => {
-      // this.isDialogOpen = false;
     });
   }
 

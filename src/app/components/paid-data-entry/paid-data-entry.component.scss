@@ -43,12 +43,18 @@
                 display: flex;
                 padding: 10px 0px;
                 flex-flow: column;
+
                 form {
                     width: 100%;
+
                     .button_block {
                         display: flex;
                         justify-content: space-between;
                         width: 100%;
+                    }
+
+                    .flex-right {
+                        justify-content: center;
                     }
                 }
 
@@ -106,6 +112,7 @@
         }
     }
 }
+
 .btn-small {
     padding: 3px 10px;
     font-size: 12px;
@@ -114,6 +121,7 @@
     background: #673AB7 !important;
     color: #ffffff !important;
 }
+
 .button_block {
     .btn {
         margin: 0px !important;

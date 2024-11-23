@@ -2,7 +2,7 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container full_height_cover small_popup">
+<div class="dialoge_middle_container small_popup">
     <form focusInvalidInput [formGroup]="requestMoneyForm">
         <app-input [isDateField]="false" label="Amount" [(value)]="request_amount" [isRequired]="true"
             [className]="'bottom_error_msg'" [form]="requestMoneyForm" [key]="'request_amount'"

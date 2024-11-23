@@ -37,7 +37,7 @@
                 <th class="col id_col">Request No.</th>
                 <th class="col">Request Date</th>
                 <th class="col">Request By</th>
-                <th class="col">Name</th>
+                <th class="col">Customer Name</th>
                 <th class="col amount_col">Amount</th>
                 <th class="col status_col">Status</th>
                 <th class="col action_col">Action</th>
@@ -51,7 +51,7 @@
             </tr>
             <tr *ngIf="requestList.length == 0 && !loader">
                 <td colspan="7">
-                    <app-no-record-found type="table" notext="No member found"></app-no-record-found>
+                    <app-no-record-found type="table" notext="No Request Found."></app-no-record-found>
                 </td>
             </tr>
             <ng-container *ngIf="requestList?.length != 0 && !loader">
@@ -110,7 +110,7 @@
             </tr>
             <tr *ngIf="customerRequestList.length == 0 && !loader">
                 <td colspan="7">
-                    <app-no-record-found type="table" notext="No member found"></app-no-record-found>
+                    <app-no-record-found type="table" notext="No Request Found."></app-no-record-found>
                 </td>
             </tr>
             <ng-container *ngIf="customerRequestList?.length != 0 && !loader">
