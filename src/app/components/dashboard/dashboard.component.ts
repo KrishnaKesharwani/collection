@@ -11,6 +11,7 @@ import { SuperAdminDashboardService } from 'src/app/services/dashboard/super-adm
 export class DashboardComponent {
   userType: any;
   companyDashboardtData: any;
+  basecompanyDashboardtData: any;
   memberDashboardtData: any;
   customerDashboardtData: any;
   constructor(private router: Router, public toaster: ToastrService, public _service: SuperAdminDashboardService) { }
@@ -22,17 +23,17 @@ export class DashboardComponent {
       const userData = JSON.parse(data);
       this.userType = userData.user_type
       if (this.userType == 0) {
-        this.getDashboardData();
+        // this.getDashboardData();
+        this.getDashboardBricsData('companydashboard');
         // this.router.navigate(['/superadmin_dashboard']);
       }
-       else if (this.userType == 1) {
-
+      else if (this.userType == 1) {
+        this.getDashboardBricsData('basecompany-dashboard');
         // this.router.navigate(['/admin_dashboard']);
       } else if (this.userType == 2) {
-        this.getMemberDashboardData();
-        // this.router.navigate(['/member_dashboard']);
+        this.getDashboardBricsData('member-dashboard');
       } else if (this.userType == 3) {
-        this.getCustomerDashboardData();
+        this.getDashboardBricsData('customer-dashboard');
         // this.router.navigate(['/user_dashboard']);
       } else {
         // this.router.navigate(['/dashboard']);
@@ -42,33 +43,53 @@ export class DashboardComponent {
     }
   }
 
-  getDashboardData() {
-    this._service.dashboard().subscribe((response: any) => {
+  getDashboardBricsData(api_name: any) {
+    this._service.getDashboardBricsData(api_name).subscribe((response: any) => {
       if (response) {
-        this.companyDashboardtData = response.data;
+        if (api_name == 'companydashboard') {
+          this.companyDashboardtData = response.data;
+        } else if (api_name == 'basecompany-dashboard') {
+          this.basecompanyDashboardtData = response.data;
+        } else if (api_name == 'member-dashboard') {
+          this.memberDashboardtData = response.data;
+        } else if (api_name == 'customer-dashboard') {
+          this.customerDashboardtData = response.data;
+        }
       }
     }, error => {
       this.toaster.error(error.massage, 'Error')
     });
   }
 
-  getMemberDashboardData() {
-    this._service.dashboardMember().subscribe((response: any) => {
-      if (response) {
-        this.memberDashboardtData = response.data;
-      }
-    }, error => {
-      this.toaster.error(error.massage, 'Error')
-    });
-  }
+  // getDashboardData() {
+  //   this._service.dashboard().subscribe((response: any) => {
+  //     if (response) {
+  //       this.companyDashboardtData = response.data;
+  //     }
+  //   }, error => {
+  //     this.toaster.error(error.massage, 'Error')
+  //   });
+  // }
 
-  getCustomerDashboardData() {
-    this._service.dashboardCustomer().subscribe((response: any) => {
-      if (response) {
-        this.customerDashboardtData = response.data;
-      }
-    }, error => {
-      this.toaster.error(error.massage, 'Error')
-    });
-  }
+  // getMemberDashboardData() {
+  //   this._service.dashboardMember().subscribe((response: any) => {
+  //     if (response) {
+  //       this.memberDashboardtData = response.data;
+  //     }
+  //   }, error => {
+  //     this.toaster.error(error.massage, 'Error')
+  //   });
+  // }
+
+  // getCustomerDashboardData() {
+  //   this._service.dashboardCustomer().subscribe((response: any) => {
+  //     if (response) {
+  //       this.customerDashboardtData = response.data;
+  //     }
+  //   }, error => {
+  //     this.toaster.error(error.massage, 'Error')
+  //   });
+  // }
+
+
 }
