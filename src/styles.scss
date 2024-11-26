@@ -747,6 +747,16 @@ mat-option {
 
     .action_col {
         text-align: center;
+        button {
+            width: 30px !important;
+            height: 30px !important;
+            padding: 0px !important;
+            line-height: 30px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0px auto;
+        }
     }
 
     .col {
@@ -762,7 +772,9 @@ mat-option {
         width: 110px;
         text-align: center !important;
     }
-
+    .capatalise_col {
+        text-transform: capitalize;
+    }
     .mobile_col {
         width: 85px;
     }

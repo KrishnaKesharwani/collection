@@ -110,6 +110,7 @@ export class UserloanListComponent {
   openDialogViewDetail(data?: any): void {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
+      panelClass: 'medium_popup',
       data: {
         title: 'Loan Details',
         data: data

@@ -17,6 +17,8 @@ export class PaidDataEntryComponent {
   amount: string = '';
   receivedAmountForm!: FormGroup;
   loading: any;
+  loadingMinus: any;
+  loadingPlus: any;
   loan_id: any;
   collection_type: any;
   customer_id: any;
@@ -80,6 +82,7 @@ export class PaidDataEntryComponent {
 
   debitAmount() {
     if (this.receivedAmountForm.valid) {
+      this.loadingMinus = true;
       this.loading = true;
       let obj = {
         deposit_id: this.deposit_id,
@@ -93,9 +96,11 @@ export class PaidDataEntryComponent {
         this.getCustomerLoanHistory();
         this.getCustomerDepositHistory();
         this.loading = false;
+        this.loadingMinus = false;
       }, error => {
         this._toastr.error(error.error.message, "Error");
         this.loading = false;
+        this.loadingMinus = false;
       })
     } else {
       this.receivedAmountForm.markAllAsTouched();
@@ -106,6 +111,7 @@ export class PaidDataEntryComponent {
     if (this.collection_type == 'loan') {
       if (this.receivedAmountForm.valid) {
         this.loading = true;
+        this.loadingPlus = true;
         let obj = {
           loan_id: this.loan_id,
           amount: this.receivedAmountForm.value.amount
@@ -114,11 +120,13 @@ export class PaidDataEntryComponent {
           this._toastr.success(data.message, "Success");
           this.receivedAmountForm.reset();
           this.loading = false;
+          this.loadingPlus = false;
           this.getCustomerLoanHistory();
           this.getCustomerDepositHistory();
         }, error => {
           this._toastr.error(error.error.message, "Error");
           this.loading = false;
+          this.loadingPlus = false;
         })
       } else {
         this.receivedAmountForm.markAllAsTouched();
@@ -126,6 +134,7 @@ export class PaidDataEntryComponent {
     } else {
       if (this.receivedAmountForm.valid) {
         this.loading = true;
+        this.loadingPlus = true;
         let obj = {
           deposit_id: this.deposit_id,
           amount: this.receivedAmountForm.value.amount,
@@ -138,9 +147,11 @@ export class PaidDataEntryComponent {
           this.getCustomerLoanHistory();
           this.getCustomerDepositHistory();
           this.loading = false;
+          this.loadingPlus = false;
         }, error => {
           this._toastr.error(error.error.message, "Error");
           this.loading = false;
+          this.loadingPlus = false;
         })
       } else {
         this.receivedAmountForm.markAllAsTouched();
@@ -163,7 +174,7 @@ export class PaidDataEntryComponent {
       this.isDialogOpen = false;
     });
   }
-
+  totalDepositAmount = 0;
   getCustomerDepositHistory() {
     this.loading = true;
     let obj = {
@@ -174,7 +185,7 @@ export class PaidDataEntryComponent {
     this._service.depositDetails(obj).subscribe((data: any) => {
       this.depositData = data.data.collection;
       this.loading = false;
-
+      this.totalDepositAmount = data.data.total_balance;
     }, error => {
       this.loading = false
     });

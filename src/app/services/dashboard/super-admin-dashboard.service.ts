@@ -12,4 +12,12 @@ export class SuperAdminDashboardService {
     const url = `${this.apiUrl}/companydashboard`;
     return this.httpClient.get(url)
   }
+  dashboardMember() {
+    const url = `${this.apiUrl}/member-dashboard`;
+    return this.httpClient.get(url)
+  }
+  dashboardCustomer() {
+    const url = `${this.apiUrl}/customer-dashboard`;
+    return this.httpClient.get(url)
+  }
 }

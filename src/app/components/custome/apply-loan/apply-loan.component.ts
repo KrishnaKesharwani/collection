@@ -18,7 +18,7 @@ export class ApplyLoanComponent {
   loanamount: any;
   loandetails: string = '';
   deleteAction: any;
-  detail: string = '';
+  details: string = '';
   loan_amount: string = '';
   customer_id: any;
   company_id: any;
@@ -45,7 +45,7 @@ export class ApplyLoanComponent {
     this.applyLoanForm = this.fb.group({
       customername: this.customer_name,
       loan_amount: ['', Validators.required],
-      detail: ['', Validators.required]
+      details: ['', Validators.required]
     });
     this.customer_id = this.customer_id;
     this.company_id = this.company_id;
@@ -57,7 +57,7 @@ export class ApplyLoanComponent {
       let obj = {
         company_id: this.company_id,
         customer_id: this.customer_id == null ? this.dataa.data.id : this.customer_id,
-        detail: this.applyLoanForm.value.detail,
+        details: this.applyLoanForm.value.details,
         loan_amount: this.applyLoanForm.value.loan_amount
       }
       this._service.applyLoan(obj).subscribe((data: any) => {

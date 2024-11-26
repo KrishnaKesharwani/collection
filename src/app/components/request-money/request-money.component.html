@@ -58,9 +58,9 @@
                 <tr *ngFor="let request of requestList">
                     <td class="col" data-name="Request No.">{{request.deposit_no}}</td>
                     <td class="col" data-name="Request Date">{{request.request_date}}</td>
-                    <td class="col" data-name="Request By">{{request.requested_by}}</td>
+                    <td class="col capatalise_col" data-name="Request By">{{request.requested_by}}</td>
                     <td class="col" data-name="Customer Name">{{request.customer_name}}</td>
-                    <td class="col" data-name="Amount"><i
+                    <td class="col text-right" data-name="Amount"><i
                             class="mdi mdi-currency-inr mr-1"></i>{{request.request_amount}}
                     </td>
                     <td class="col text-center" data-name="Status">
@@ -92,11 +92,10 @@
 
         <thead class="thead-light" *ngIf="user_type == 3">
             <tr>
-                <th class="col id_col">Request No.</th>
-
-                <th class="col">Request By</th>
-                <th class="col">Request Type</th>
-                <th class="col">Name</th>
+                <th class="col id_col">Request Date</th>
+                <th class="col action_colbtn">Request By</th>
+                <th class="col ">Reason</th>
+                <th class="col id_col">Request Type</th>
                 <th class="col amount_col">Amount</th>
                 <th class="col status_col">Status</th>
                 <th class="col action_col">Action</th>
@@ -115,10 +114,10 @@
             </tr>
             <ng-container *ngIf="customerRequestList?.length != 0 && !loader">
                 <tr *ngFor="let request of customerRequestList">
-                    <td class="col" data-name="Request No.">{{request.request_no}}</td>
-                    <td class="col" data-name="Request By">{{request.requested_by}}</td>
-                    <td class="col" data-name="Request Type">{{request.request_type}}</td>
-                    <td class="col" data-name="Customer Name">{{request.customer_name}}</td>
+                    <td class="col" data-name="Request Date">{{request.request_date}}</td>
+                    <td class="col capatalise_col" data-name="Request By">{{request.requested_by}}</td>
+                    <td class="col" data-name="Reason">{{request.reason}}</td>
+                    <td class="col capatalise_col text-center" data-name="Request Type">{{request.request_type}}</td>
                     <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{request.amount}}
                     </td>
                     <td class="col text-center" data-name="Status">

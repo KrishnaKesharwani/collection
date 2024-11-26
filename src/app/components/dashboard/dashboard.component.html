@@ -41,20 +41,23 @@
 
     <div *ngIf="userType == 2" class="row brics_row">
         <div class="tile_stats_count blue_tiles"><span class="count_top"><i class="mdi mdi-cash-multiple"></i> Today
-                collect money</span>
-            <div class="count"><i class="mdi mdi-currency-inr"></i>1500</div>
+                Collect Money</span>
+            <div class="count"><i
+                    class="mdi mdi-currency-inr"></i><span>{{memberDashboardtData?.today_collection}}</span></div>
         </div>
         <div class="tile_stats_count orange_tiles"><span class="count_top"><i class="mdi mdi-cash-100"></i> Monthly
                 Collect Money</span>
-            <div class="count"><i class="mdi mdi-currency-inr"></i>11500</div>
+            <div class="count"><i
+                    class="mdi mdi-currency-inr"></i><span>{{memberDashboardtData?.monthly_collection}}</span></div>
         </div>
-        <div class="tile_stats_count purple_tiles"><span class="count_top"><i class="mdi mdi-account-group-outline"></i>
+        <div class="tile_stats_count purple_tiles"><span class="count_top">
+                <i class="mdi mdi-account-group-outline"></i>
                 Assign Members</span>
-            <div class="count res_txtsmall">10 Coustomer</div>
+            <div class="count res_txtsmall">{{memberDashboardtData?.assigned_customers}} Coustomer</div>
         </div>
-        <div class="tile_stats_count green_tiles"><span class="count_top"><i class="mdi mdi-cash"></i>Assign New
-                money</span>
-            <div class="count">20,000.00</div>
+        <div class="tile_stats_count green_tiles"><span class="count_top"><i class="mdi mdi-cash"></i>
+                Available Balance</span>
+            <div class="count">{{memberDashboardtData?.member_balance}}</div>
         </div>
     </div>
 
@@ -62,19 +65,19 @@
         <div class="tile_stats_count blue_tiles">
             <span class="count_top"><i class="mdi mdi-cash-multiple"></i>
                 Loan Amount</span>
-            <div class="count"><i class="mdi mdi-currency-inr"></i>25000.00</div>
+            <div class="count"><i class="mdi mdi-currency-inr"></i>{{customerDashboardtData?.loan_amount}}</div>
         </div>
         <div class="tile_stats_count orange_tiles">
             <span class="count_top"><i class="mdi mdi-cash-100"></i>Pending Loan Amount</span>
-            <div class="count"><i class="mdi mdi-currency-inr"></i>11,500.00</div>
+            <div class="count"><i class="mdi mdi-currency-inr"></i>{{customerDashboardtData?.remaining_amount}}</div>
         </div>
         <div class="tile_stats_count purple_tiles">
             <span class="count_top"><i class="mdi mdi-account-group-outline"></i>Running Loan</span>
-            <div class="count">02 Loans</div>
+            <div class="count">{{customerDashboardtData?.running_loans}} Loans</div>
         </div>
         <div class="tile_stats_count green_tiles">
             <span class="count_top"><i class="mdi mdi-cash"></i>Daily Account Balance</span>
-            <div class="count">12,800.00</div>
+            <div class="count"><i class="mdi mdi-cash"></i> {{customerDashboardtData?.daily_amount_balance}}</div>
         </div>
     </div>
 

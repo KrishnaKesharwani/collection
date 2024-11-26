@@ -15,6 +15,56 @@
         }
     }
 }
+.offer_main_section {
+    position: fixed;
+    background: #ffffff;
+    box-shadow: var(--app-brand-card-shadow);
+    z-index: 15;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 20px);
+    margin: 10px;
+    transition: 0.5s all;
+    transform: scale(0);
+    transform-origin: 100% 99%;
+    max-width: 400px;
+    right: 0px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: solid thin #e1e1e1;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column;
+    .close_row {
+        display: flex;
+        align-items: flex-end;
+        width: 100%;
+        justify-content: end;
+        padding: 5px 5px 0px 0px;
+        opacity: .8;
+        transition: .5s all;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    .more_table {
+        border: none;
+        overflow: auto;
+        max-height: calc(100% - 100px);
+    }
+    .bottom_default_block {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        background: #f5f5ff;
+        border-top: solid thin #e1e1e1;
+    }
+}
+.showOffer {
+    transform: scale(1);
+}
 .subscription_row {
     display: flex;
     align-items: center;

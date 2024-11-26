@@ -4,9 +4,9 @@
         <form class="navbar-search navbar-search-light form-inline mr-sm-3">
             <div class="menu_icons" (click)="onMenuClick()">
                 <mat-icon>menu</mat-icon>
-            </div>  
+            </div>
             <div class="res_display_show header_mainlogo">
-                <img src="../../../assets/imgs/rk-group-logo-inner.png" >
+                <img src="../../../assets/imgs/rk-group-logo-inner.png">
             </div>
             <div class="search-box" *ngIf="userType == 0">
                 <input type="text" class="searchtxt" placeholder="Search">
@@ -50,7 +50,7 @@
                 <i class="mdi mdi-account-outline mdi-18px"></i>
                 <span>My Profile</span>
             </a>
-            <a  routerLink="/change_password" (click)="changePassword()" class="dropdown-item">
+            <a routerLink="/change_password" (click)="changePassword()" class="dropdown-item">
                 <i class="mdi mdi-lock-alert mdi-18px"></i>
                 <span>Change Password</span>
             </a>
@@ -63,3 +63,39 @@
         <div class="outline_block" (click)="showhideMenu()" [ngClass]="{'showMenu_outline': showMenuAction }"></div>
     </div>
 </nav>
+<div class="offer_main_section" [ngClass]="{'showOffer': offerShow == 1}">
+    <div class="close_row"><mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon></div>
+    <table class="table table-bordered table-responsive bg-white more_table">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="offer_image" *ngIf="offerData.image == null ">
+                        <img src="assets/imgs/default-pic.png">
+                    </div>
+                    <div class="offer_image" *ngIf="offerData.image != null ">
+                        <img src="{{offerData.image}}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>{{offerData.name}}</td>
+            </tr>
+            <tr>
+                <td>{{offerData.type}}</td>
+            </tr>
+            <tr>
+                <td>{{offerData.details}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="bottom_default_block">
+        <mat-checkbox class="left_checkbox"><span class="check_text">Not Show Again</span></mat-checkbox>
+        <div class="right_action">
+            <button type="submit" class="global_submit_btn" mat-flat-button (click)="checkDefaultOffer()">
+                <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+                <app-button-loader *ngIf="loading"></app-button-loader>
+                <span>Submit</span>
+            </button>
+        </div>
+    </div>
+</div>

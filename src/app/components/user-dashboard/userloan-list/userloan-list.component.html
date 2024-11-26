@@ -45,7 +45,7 @@
                     <td class="col" data-name="Loan No.">{{loan.loan_no}}</td>
                     <td class="col" data-name="Start / Apply Date"><small>{{loan.start_date}} To
                             {{loan.end_date}}</small></td>
-                    <td class="col" data-name="Receiver">Not Assigned</td>
+                    <td class="col" data-name="Receiver">{{loan.member?.name}}</td>
                     <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}
                     </td>
                     <td class="col" data-name="Balance"><i

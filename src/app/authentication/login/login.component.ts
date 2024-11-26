@@ -151,10 +151,11 @@ export class LoginComponent {
               status: data.data.customer?.status,
               email: data.data.customer?.email,
               image: data.data.customer?.image,
-
+              // offer: data.data.offer,
             }
 
             localStorage.setItem('CustomerData', JSON.stringify(customerData));
+            localStorage.setItem('OfferData', JSON.stringify(data.data.offer));
           }
           localStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
           localStorage.setItem('AfterLoginData', JSON.stringify(data));

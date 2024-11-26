@@ -263,6 +263,7 @@ export class GlobalGoogleChartsComponent {
 
   // customer dashboardgraph api's
   getCustomerLoanStatus() {
+    // debugger;
     this.loader = true;
     let obj = {
       company_id: this.company_id,
@@ -287,10 +288,13 @@ export class GlobalGoogleChartsComponent {
       } else {
         console.error("No deposit status data available to draw charts.");
       }
+    }, error =>{
+      
     });
   }
 
   getLastSixMonthDepositForCustomer() {
+    // debugger;
     this.loader = true;
     let obj = {
       company_id: this.company_id,
@@ -315,8 +319,9 @@ export class GlobalGoogleChartsComponent {
       } else {
         console.error("No deposit status data available to draw charts.");
       }
+    }, error =>{
+      
     });
-
   }
 
   // =========================
@@ -348,6 +353,8 @@ export class GlobalGoogleChartsComponent {
       } else {
         console.error("No deposit status data available to draw charts.");
       }
+    }, error =>{
+      
     });
   }
 
@@ -377,6 +384,8 @@ export class GlobalGoogleChartsComponent {
       } else {
         console.error("No deposit status data available to draw charts.");
       }
+    }, error =>{
+      
     });
   }
 

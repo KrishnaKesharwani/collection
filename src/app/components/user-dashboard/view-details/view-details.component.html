@@ -22,8 +22,12 @@
                 <td><i class="mdi mdi-currency-inr mr-1"></i>{{data.remaining_amount}}</td>
             </tr>
             <tr>
+                <td><b>Instalment :</b></td>
+                <td><i class="mdi mdi-currency-inr mr-1"></i>{{data.installment_amount}}</td>
+            </tr>
+            <tr>
                 <td><b>Receiver :</b></td>
-                <td></td>
+                <td>{{data.member?.name}}</td>
             </tr>
             <tr>
                 <td><b>Status :</b></td>
@@ -35,7 +39,7 @@
                 <td><b>Loan Details :</b></td>
                 <td>{{data.details}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="data.loan_status_message != null">
                 <td><b>Reply For Loan :</b></td>
                 <td>{{data.loan_status_message}}</td>
             </tr>

@@ -10,7 +10,7 @@
                 <ul class="user_info list-unstyled">
                     <li>{{loanDataShare?.customer?.name}}</li>
                     <li>{{loanDataShare?.customer?.mobile}}</li>
-                    <li><b><i class="mdi mdi-currency-inr"></i>{{loanDataShare.remaining_amount}}</b></li>
+                    <li><b><i class="mdi mdi-currency-inr"></i>{{totalDepositAmount}}</b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(loanDataShare)">
                             Request Money
@@ -28,7 +28,9 @@
                 <ul class="user_info list-unstyled" *ngIf='userType == 2 && depositDataSharre !=undefined'>
                     <li>{{depositDataSharre?.customer?.name}}</li>
                     <li>{{depositDataSharre?.customer?.mobile}}</li>
-                    <li><b><i class="mdi mdi-currency-inr"></i>{{depositDataSharre.total_paid}}</b></li>
+                    <li><b><i class="mdi mdi-currency-inr"></i>
+                        {{totalDepositAmount}}<!-- {{depositDataSharre.total_paid}} -->
+                    </b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small"
                             (click)="openDialogRequestMoney(depositDataSharre)">
@@ -48,7 +50,9 @@
                 <ul class="user_info list-unstyled">
                     <li>{{loanDataShare?.customer?.name}}</li>
                     <li>{{loanDataShare?.customer?.mobile}}</li>
-                    <li><b><i class="mdi mdi-currency-inr"></i>{{loanDataShare.total_paid}}</b></li>
+                    <li><b><i class="mdi mdi-currency-inr"></i>
+                        {{totalDepositAmount}}<!-- {{loanDataShare.total_paid}} -->
+                    </b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(loanDataShare)">
                             Request Money
@@ -66,7 +70,7 @@
                 <ul class="user_info list-unstyled" *ngIf='userType == 3 && depositDataSharre !=undefined'>
                     <li>{{depositDataSharre?.customer?.name}}</li>
                     <li>{{depositDataSharre?.customer?.mobile}}</li>
-                    <li><b><i class="mdi mdi-currency-inr"></i>{{depositDataSharre.total_paid}}</b></li>
+                    <li><b><i class="mdi mdi-currency-inr"></i> {{totalDepositAmount}}</b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small"
                             (click)="openDialogRequestMoney(depositDataSharre)">
@@ -87,10 +91,14 @@
                     <div class="button_block" [ngClass]="{'flex-right': collection_type == 'loan'}">
                         <button *ngIf="collection_type != 'loan'" mat-raised-button
                             class="btn bg-secondary global_submit_btn" (click)="debitAmount()">
-                            <i class="mdi mdi-minus mr-2"></i><span>Debit</span>
+                            <app-button-loader *ngIf="loadingMinus"></app-button-loader>
+                            <i class="mdi mdi-minus mr-2" *ngIf="!loadingMinus"></i>
+                            <span>Debit</span>
                         </button>
                         <button mat-raised-button class="btn btn-danger global_submit_btn" (click)="creditAmount()">
-                            <i class="mdi mdi-plus mr-2"></i><span>Credit</span>
+                            <app-button-loader *ngIf="loadingPlus"></app-button-loader>
+                            <i class="mdi mdi-plus mr-2" *ngIf="!loadingPlus"></i>
+                            <span>Credit</span>
                         </button>
                     </div>
                 </form>
