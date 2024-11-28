@@ -25,25 +25,15 @@ export class HeaderComponent {
   isExpanded: any = [];
   showMenuAction = false;
   currentUrl: string = '';
-  companyRoughts = ['user', 'admin'];
   offerData: any = [];
   offerShow = 0;
+  masterRoughts = ['/dashboard', '/company_list', '/profile_details','/change_password'];
+  companyRoughts = ['/dashboard', '/member_list', '/customer_list', '/loan_list', '/daily_collect_list', '/money_received', '/offers', '/fixed_deposit', '/vc_management', '/reports', '/request_money', '/profile_details','/change_password'];
+  memberRoughts = ['/dashboard', '/customer_list', '/daily_collection', '/offers', '/profile_details','/change_password'];
   customerRoughts = ['/dashboard', '/my_loan_list', '/daily_collection', '/offers', '/request_money', '/change_password', '/profile_details'];
   ngOnInit() {
     const data: any = localStorage.getItem('CurrentUser');
     const userData = JSON.parse(data);
-    // this.activatedRoute.url.subscribe((urlSegments) => {
-    //   debugger;
-    //   const currentRoute = this.router.url;
-    //   alert(currentRoute);
-    //   console.log('URL has changed:', currentRoute);
-
-    //   // if (this.customerRoutes.includes(currentRoute)) {
-    //   //   console.log('Route exists in customerRoutes:', currentRoute);
-    //   // } else {
-    //   //   console.log('Route does not exist in customerRoutes.');
-    //   // }
-    // });
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.url;
@@ -58,10 +48,22 @@ export class HeaderComponent {
         const currentAllData: any = localStorage.getItem('CompanyData');
         const currentCompanyDataParse = JSON.parse(currentAllData);
         this.userImage = currentCompanyDataParse.owner_image;
+        this.expiredDate = currentCompanyDataParse.end_date;
+        this.planType = currentCompanyDataParse.plan;
+        setTimeout(() => {
+          if (!this.companyRoughts.includes(this.currentUrl)) {
+            this.router.navigate(['/dashboard']);
+          }
+        }, 1000);
       } else if (this.userType == 2) {
         const currentAllData: any = localStorage.getItem('MemberData');
         const currentMemberDataParse = JSON.parse(currentAllData);
         this.userImage = currentMemberDataParse.image;
+        setTimeout(() => {
+          if (!this.memberRoughts.includes(this.currentUrl)) {
+            this.router.navigate(['/dashboard']);
+          }
+        }, 1000);
       } else if (this.userType == 3) {
         const currentAllData: any = localStorage.getItem('CustomerData');
         const currentCustomerDataParse = JSON.parse(currentAllData);
@@ -95,7 +97,7 @@ export class HeaderComponent {
   onClose() {
     this.offerShow = 0;
   }
-  checkDefaultOffer(){
+  checkDefaultOffer() {
 
   }
   logout() {

@@ -76,6 +76,9 @@
         font-weight: 600;
         display: flex;
     }
+    span {
+        text-transform: capitalize;
+    }
 }
 .dropdown-menu {
     display: flex;

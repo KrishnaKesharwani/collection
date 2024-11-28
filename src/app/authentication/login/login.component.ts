@@ -119,6 +119,7 @@ export class LoginComponent {
               primary_color: data.data.company?.primary_color,
               secondary_color: data.data.company?.secondary_color,
               prefix: data.data.company?.prefix,
+              plan: data.data.company?.plan,
             }
             localStorage.setItem('CompanyData', JSON.stringify(comapnyData));
           } else if (data.data.user_type == 2) {

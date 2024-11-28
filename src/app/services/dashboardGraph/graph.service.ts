@@ -8,7 +8,7 @@ export class GraphService {
 
   private apiUrl = 'https://pinku.tech/moneyCollectionBackend/api';
   private token: string | null = null;
-  constructor(public httpClient: HttpClient) { }
+constructor(public httpClient: HttpClient) { }
 
   // company api
   lastDepositStatus(form: object) {

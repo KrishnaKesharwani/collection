@@ -5,11 +5,11 @@
                 <h3 class="mb-0">Collection List</h3>
             </div>
             <div class="col p-0 head_details">
-                <div class="total_block bg-success mr-2"><span>Collect Amount</span><b>-</b>
+                <div class="total_block bg-success mr-2"><span>Collect Amount</span><b>{{collect_amount}}</b>
                 </div>
                 <div class="total_block bg-warning mr-2"><span>Attend Customer</span><b>{{attended_customer}}</b>
                 </div>
-                <div class="total_block bg-primary"><span>Total Customer</span><b>{{total_customer}}</b></div>
+                <!-- <div class="total_block bg-primary"><span>Total Customer</span><b>{{total_customer}}</b></div> -->
             </div>
         </div>
     </div>
@@ -18,33 +18,33 @@
             <tr>
                 <th class="col">Customer Name</th>
                 <th class="col">Mobile</th>
-                <!-- <th class="col">Balance</th> -->
                 <th class="col">Amount</th>
-                <th class="col">Last Received</th>
-                <th class="col status_col">Status</th>
+                <th class="col">Date & Time</th>
+                <th class="col status_col">Type</th>
+                <th class="col status_col">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngIf="loader">
-                <td colspan="5">
+                <td colspan="6">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
-            <tr *ngIf="memberDepositData.length == 0 && !loader">
-                <td colspan="5">
+            <tr *ngIf="collectionData.length == 0 && !loader">
+                <td colspan="6">
                     <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
                 </td>
             </tr>
-            <tr *ngFor="let item of memberDepositData">
-                <td class="col" data-name="Customer Name">{{item.customer?.name}}</td>
-                <td class="col" data-name="Mobile">{{item.customer?.mobile}}</td>
-                <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{item.deposit_history[0]?.amount}}</td>
-                <td class="col" data-name="Last Received"><small>{{item.deposit_history[0]?.action_date}}</small></td>
-                <td class="col text-center" data-name="Status">
-                    <div class="badge bg-success text-white">Paid</div>
+            <tr *ngFor="let item of collectionData">
+                <td class="col" data-name="Customer Name">{{item?.customer_name}}</td>
+                <td class="col" data-name="Mobile">{{item?.customer_mobile}}</td>
+                <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{item?.amount}}</td>
+                <td class="col" data-name="Last Received">{{item?.receive_date}}</td>
+                <td class="col text-center capatalise_col" data-name="Type">{{item?.collection_type}}</td>
+                <td class="col text-center" data-name="Received Type">
+                    <div class="badge text-white capatalise_col" [ngClass]="{'bg-danger': item?.received_type == 'debit', 'bg-success': item?.received_type == 'credit'}">{{item?.received_type}}</div>
                 </td>
             </tr>
-
         </tbody>
     </table>
 </div>

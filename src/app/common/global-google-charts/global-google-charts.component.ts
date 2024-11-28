@@ -43,6 +43,7 @@ export class GlobalGoogleChartsComponent {
 
   constructor(public _service: GraphService) { }
   ngOnInit() {
+    // debugger;
     const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
@@ -55,8 +56,8 @@ export class GlobalGoogleChartsComponent {
       this.getLastSixMonthDeposit();
       this.getLoanStatus();
     } else if (this.currentuserType == 2) {
-      this.getLastTenDaysAmount();
       this.getAssignReceivedAmount();
+      // this.getLastTenDaysAmount();
     } else {
       this.getLastSixMonthDepositForCustomer();
       this.getCustomerLoanStatus();
@@ -111,13 +112,13 @@ export class GlobalGoogleChartsComponent {
   }
 
   drawMembercharts() {
+    // debugger;
     if (!this.lastDaysAmount.length && !this.memberLoanStatus.length) {
       console.error("Deposit status is empty, cannot draw chart.");
       return;
     }
 
     const chartData: any[][] = [['Days', 'Amount']];
-
     this.lastDaysAmount.forEach((entry: any) => {
       const dayLabel = entry.date;
       const amountValue = Number(entry.received_amount);
@@ -229,7 +230,6 @@ export class GlobalGoogleChartsComponent {
       this.loader = false;
     });
   }
-
   getLoanStatus() {
     this.loader = true;
     let obj = {
@@ -258,9 +258,6 @@ export class GlobalGoogleChartsComponent {
       this.loader = false;
     });
   }
-
-  // ============================
-
   // customer dashboardgraph api's
   getCustomerLoanStatus() {
     // debugger;
@@ -288,11 +285,10 @@ export class GlobalGoogleChartsComponent {
       } else {
         console.error("No deposit status data available to draw charts.");
       }
-    }, error =>{
-      
+    }, error => {
+
     });
   }
-
   getLastSixMonthDepositForCustomer() {
     // debugger;
     this.loader = true;
@@ -319,13 +315,10 @@ export class GlobalGoogleChartsComponent {
       } else {
         console.error("No deposit status data available to draw charts.");
       }
-    }, error =>{
-      
+    }, error => {
+
     });
   }
-
-  // =========================
-
   // member dashboard graph api's
   getLastTenDaysAmount() {
     this.loader = true;
@@ -353,11 +346,10 @@ export class GlobalGoogleChartsComponent {
       } else {
         console.error("No deposit status data available to draw charts.");
       }
-    }, error =>{
-      
+    }, error => {
+
     });
   }
-
   getAssignReceivedAmount() {
     this.loader = true;
     let obj = {
@@ -366,27 +358,54 @@ export class GlobalGoogleChartsComponent {
     }
     this._service.assingReceivedAmoutn(obj).subscribe((data: any) => {
       this.memberLoanStatus = data.data || [];
+      // google.charts.load('current', { packages: ['corechart'] });
+      google.charts.setOnLoadCallback(() => {
+        debugger;
+        const chartData: any[][] = [['Days', 'Amount']];
+        const totalAmount = Number(this.memberLoanStatus.total_loan_amount);
+        const pendingAmount = Number(this.memberLoanStatus.total_remaining_amount);
+        const completedAmount = totalAmount - pendingAmount;
+        const pieChartData = google.visualization.arrayToDataTable([
+          ['Amount Type', 'Amount'],
+          ['Pending Amount', pendingAmount],
+          ['Completed Amount', completedAmount],
+        ]);
+        const pieOptions = {
+          is3D: true,
+          pieHole: 0.4,
+        };
+        const pieUserElement = document.getElementById('pie_member_chart') as HTMLElement;
+        const pieUserChart = new google.visualization.PieChart(pieUserElement);
+        pieUserChart.draw(pieChartData, pieOptions);
+        this.loader =false;
+      });
+      // if (this.memberLoanStatus.length > 0) {
+      //   // debugger;
 
-      this.loader = false;
-      if (this.memberLoanStatus.length > 0) {
-        google.charts.load('current', { packages: ['corechart'] });
-        google.charts.setOnLoadCallback(() => {
-          if (this.currentuserType === 0) {
-            this.drawMastercharts();
-          } else if (this.currentuserType === 1) {
-            this.drawCompanycharts();
-          } else if (this.currentuserType === 2) {
-            this.drawMembercharts();
-          } else if (this.currentuserType === 3) {
-            this.drawUsercharts();
-          }
-        });
-      } else {
-        console.error("No deposit status data available to draw charts.");
-      }
-    }, error =>{
-      
+
+      //   google.charts.setOnLoadCallback(() => {
+
+
+
+      //     // if (this.currentuserType === 0) {
+      //     //   this.drawMastercharts();
+      //     // } else if (this.currentuserType === 1) {
+      //     //   this.drawCompanycharts();
+      //     // } else if (this.currentuserType === 2) {
+      //     //   this.drawMembercharts();
+      //     // } else if (this.currentuserType === 3) {
+      //     //   this.drawUsercharts();
+      //     // }
+      //   });
+      //   this.loader = false;
+      // } else {
+      //   console.log("No deposit status data available to draw charts.");
+      // }
+    }, error => {
+      console.log('Member Graph Error', error);
+      this.loader =false;
     });
+    this.loader =false;
   }
 
   loan(data: any, loan: any) {

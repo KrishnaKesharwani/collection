@@ -91,10 +91,6 @@ export class AssignLoanComponent {
     });
   }
 
-  getSelectedValue() {
-    // alert(this.selectControl.value);
-  }
-
   assignLoan() {
     let gatLoanid = this.selectControl.value;
     if (gatLoanid != "") {
@@ -141,8 +137,8 @@ export class AssignLoanComponent {
     this.loading = true;
     let obj = {
       company_id: this.company_id,
-      loan_status: 'Pending',
-      status: 'active'
+      status: 'active',
+      member_id: this.member_id,
     }
     this._dailyService.getDepositListForCustomer(obj).subscribe((data: any) => {
       this.assignDepositData = data.data.deposits;

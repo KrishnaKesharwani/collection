@@ -23,6 +23,12 @@ export class DailyCollectionService {
     const url = `${this.apiUrl}/company-customer-deposits`;
     return this.httpClient.post(url, obj)
   }
+  
+  getTodayCollection(obj: object) {
+    const url = `${this.apiUrl}/today-collection`;
+    return this.httpClient.post(url, obj)
+  }
+
   getDepositListForMember(obj: object) {
     const url = `${this.apiUrl}/company-customer-deposits`;
     return this.httpClient.post(url, obj)
