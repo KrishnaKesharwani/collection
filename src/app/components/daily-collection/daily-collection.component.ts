@@ -23,17 +23,14 @@ export class DailyCollectionComponent {
   filteredDataarray: any[] = [];
   loader = false;
 
-  actions = [
-
-
-    { action: 'collection_history', label: 'Collection History', icon: 'mdi mdi-history mr-2' },
-    { action: 'assign_member', label: 'Assign Member', icon: 'mdi mdi-account-check-outline mr-2' },
-    { action: 'change_member', label: 'Change Member', icon: 'mdi mdi-account-switch-outline mr-2' },
-    { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
-    { action: 'status', label: 'Change Status', icon: 'mdi mdi-account-off-outline mr-2' },
-  ];
+  // actions = [
+  //   { action: 'collection_history', label: 'Collection History', icon: 'mdi mdi-history mr-2' },
+  //   { action: 'assign_member', label: 'Assign Member', icon: 'mdi mdi-account-check-outline mr-2' },
+  //   { action: 'change_member', label: 'Change Member', icon: 'mdi mdi-account-switch-outline mr-2' },
+  //   { action: 'view_details', label: 'View Details', icon: 'mdi mdi-eye mr-2' },
+  //   { action: 'status', label: 'Change Status', icon: 'mdi mdi-account-off-outline mr-2' },
+  // ];
   depositDetail: any;
-
 
   constructor(public _serivce: DailyCollectionService, public _customActionService: CustomActionsService, private actionService: ActionService, public dropdownService: CommonComponentService) { }
 
@@ -51,6 +48,8 @@ export class DailyCollectionComponent {
 
 
   getDepositList() {
+    this.depositData = [];
+    this.filteredDataarray = [];
     this.loader = true;
     let obj = {
       company_id: this.company_id,
@@ -58,25 +57,21 @@ export class DailyCollectionComponent {
       status: 'Active'
     }
     this._serivce.getDepositListForCustomer(obj).subscribe((data: any) => {
-
       this.depositData = data.data.deposits;
       this.filteredDataarray = this.depositData;
       this.depositDetail = data.data;
       this.loader = false;
+    }, error => {
+      this.loader = false;
     });
-
   }
-
 
   loanAssignMember(action: number) {
     this.loanassign_action = action;
   }
 
-
-
   openDialogCollectionHistory(data?: any) {
     const dialogRef = this.dialog.open(CollectionHistoryComponent, {
-
       disableClose: true,
       data: {
         title: 'Recent Collection History',
@@ -87,7 +82,6 @@ export class DailyCollectionComponent {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
 
   openDialogAssignMember() {
     const dialogRef = this.dialog.open(AssignMemberComponent, {
@@ -101,8 +95,6 @@ export class DailyCollectionComponent {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
-
   openDialogChangeMember(data?: any) {
     const dialogRef = this.dialog.open(ChangeMemberComponent, {
       disableClose: true,
@@ -115,8 +107,6 @@ export class DailyCollectionComponent {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
-
   openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
 
@@ -129,8 +119,6 @@ export class DailyCollectionComponent {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
-
   openDialogChangeStatus(data: any) {
     const dialogRef = this.dialog.open(ChangeStatusComponent, {
       disableClose: true,
@@ -144,7 +132,6 @@ export class DailyCollectionComponent {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
   isAsc: boolean = true;
   sortTableData(column: string) {
     if (this.isAsc) {
@@ -154,7 +141,6 @@ export class DailyCollectionComponent {
     }
     this.filteredDataarray = this._customActionService.sortData(column, this.depositData);
   }
-
   searchColumns: any[] = ['deposit_no', 'name', 'status', 'remaining_amount'];
   searchTerm: string = '';
   searchTable(event: Event) {

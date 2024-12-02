@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <table class="table align-items-center table-flush mydata-table">
+        <table class="table align-items-center table-flush mydata-table" *ngIf="usertype == 1 || usertype == 2">
             <thead class="thead-light">
                 <tr>
                     <th class="col s_no">Sno.</th>
@@ -131,6 +131,62 @@
                                 </div>
                             </td>
                         </tr>
+                    </ng-container>
+                </ng-container>
+            </tbody>
+        </table>
+        <table class="table align-items-center table-flush mydata-table" *ngIf="usertype == 3">
+            <thead class="thead-light">
+                <tr>
+                    <th class="col s_no">Sno.</th>
+                    <th class="col profile_col">Image</th>
+                    <th class="col sorting_apply">
+                        <span>Offer Name</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col">
+                        <span>Details</span>
+                    </th>
+                    <th class="col action_col">View</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="loader">
+                    <td colspan="5">
+                        <app-page-loader></app-page-loader>
+                    </td>
+                </tr>
+                <tr *ngIf="filteredDataarray.length == 0 && !loader">
+                    <td colspan="5">
+                        <app-no-record-found type="table" notext="No offer / schema found."></app-no-record-found>
+                    </td>
+                </tr>
+                <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                    <ng-container *ngFor="let item of filteredDataarray; let i=index;">
+                        <ng-container *ngIf="item.status == 'active'">
+                            <tr class="received_row">
+                                <td class="col s_no" data-name="Sno.">{{i+1}}</td>
+                                <td class="col" data-name="Profile">
+                                    <div class="list_image_block" *ngIf="item.image == null">
+                                        <img src="assets/imgs/default-pic.png" />
+                                    </div>
+                                    <div class="list_image_block" *ngIf="item.image != null">
+                                        <img onerror="this.src='assets/imgs/default-pic.png';" src="{{item.image}}" />
+                                    </div>
+                                </td>
+                                <td class="col" data-name="Name">{{item.name}}</td>
+                                <td class="col" data-name="Details">{{item.details}}</td>
+                                <td class="action_col" data-name="Action">
+                                    <button mat-menu-item class="btn bg-primary single_btn" (click)="openDialogViewDetail(item)">
+                                        <i class="mdi mdi-eye mr-2"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </ng-container>
                     </ng-container>
                 </ng-container>
             </tbody>

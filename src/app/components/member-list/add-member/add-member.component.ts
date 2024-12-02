@@ -137,6 +137,7 @@ export class AddMemberComponent {
             }
           }, error => {
             // debugger
+            this.loading = false;
             if (error.error.error?.member_login_id && error.error.message) {
               this._toastr.error(error.error.error.member_login_id, "Error");
             } else if (error.error.error?.mobile && error.error.message) {

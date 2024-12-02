@@ -37,10 +37,10 @@
             </tr>
             <tr *ngIf="loanList.length == 0 && !loader">
                 <td colspan="7">
-                    <app-no-record-found type="table" notext="No member found"></app-no-record-found>
+                    <app-no-record-found type="table" notext="You have not any loan"></app-no-record-found>
                 </td>
             </tr>
-            <ng-container *ngIf="loanList.length != 0 && !loader">
+            <ng-container *ngIf="loanList.length !== 0 && !loader">
                 <tr *ngFor="let loan of loanList">
                     <td class="col" data-name="Loan No.">{{loan.loan_no}}</td>
                     <td class="col" data-name="Start / Apply Date"><small>{{loan.start_date}} To
@@ -78,7 +78,6 @@
                         </div>
                     </td>
                 </tr>
-
             </ng-container>
         </tbody>
     </table>

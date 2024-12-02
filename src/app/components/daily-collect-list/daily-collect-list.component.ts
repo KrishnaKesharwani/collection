@@ -6,6 +6,7 @@ import { InstallmentHistoryComponent } from '../loan-list/installment-history/in
 import { MatDialog } from '@angular/material/dialog';
 import { DataSharingService } from 'src/app/services/data-sharing.service';
 import { Router } from '@angular/router';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-daily-collect-list',
@@ -20,11 +21,16 @@ export class DailyCollectListComponent {
   customer_id: any;
   loanData: any[] = [];
   loanDataNotFound: any;
-  memberDepositData: any;
-  customerDepositData: any;
+  memberDepositData: any = [];
+  customerDepositData: any = [];
   collection_type: any;
   loading = true;
-  constructor(public dialog: MatDialog, public _customActionService: CustomActionsService, public _service: DailyCollectionService, private actionService: ActionService, private _dataSharingService: DataSharingService, private _router: Router) {
+  constructor(public dialog: MatDialog,
+    public _customActionService: CustomActionsService,
+    public _service: DailyCollectionService,
+    private actionService: ActionService,
+    private _dataSharingService: DataSharingService,
+    private _router: Router) {
 
   }
   ngOnInit() {
@@ -56,7 +62,10 @@ export class DailyCollectListComponent {
     }
     this._service.getMemberLoanList(obj).subscribe((data: any) => {
       this.memberLoanData = data.data.loans;
-    })
+      this.filteredDataarray = this.memberLoanData;
+    }, error => {
+
+    });
   }
   getDepsitForMember() {
     let obj = {
@@ -67,7 +76,9 @@ export class DailyCollectListComponent {
     this._service.getDepositListForMember(obj).subscribe((data: any) => {
       this.memberDepositData = data.data.deposits;
       this.loading = false;
-    })
+    }, error => {
+      this.loading = false;
+    });
   }
 
   collectTypeClick: any;
@@ -86,7 +97,9 @@ export class DailyCollectListComponent {
     this._service.getCustomerLoanList(obj).subscribe((data: any) => {
       this.loanData = data.data.loans;
       this.loanDataNotFound = data.success;
-    })
+    }, error => {
+      this.loading = false;
+    });
   }
   getDepsitForCustomer() {
     let obj = {
@@ -97,7 +110,9 @@ export class DailyCollectListComponent {
     this._service.getDepositListForCustomer(obj).subscribe((data: any) => {
       this.customerDepositData = data.data.deposits;
       this.loading = false;
-    })
+    }, error => {
+      this.loading = false;
+    });
   }
 
   viewDetails(deposit: any, collectTypeClick: any): void {
@@ -128,6 +143,27 @@ export class DailyCollectListComponent {
     this.collection_type = data;
   }
 
+  filteredDataarray: any[] = [];
+  isAsc: boolean = true;
+  sortTableData(column: string) {
+    if (this.isAsc) {
+      this.isAsc = false;
+    } else {
+      this.isAsc = true;
+    }
+    this.filteredDataarray = this._customActionService.sortData(column, this.memberLoanData);
+  }
 
+  searchColumns: any[] = ['loan_no', 'name', 'mobile'];
+  searchTerm: string = '';
+  searchTable(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.searchTerm = inputValue;
+    if (this.searchTerm == null || this.searchTerm == '') {
+      this.filteredDataarray = this.memberLoanData;
+    } else {
+      this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
+    }
+  }
 
 }

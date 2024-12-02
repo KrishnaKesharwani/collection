@@ -39,7 +39,7 @@
                 <td class="col" data-name="Customer Name">{{item?.customer_name}}</td>
                 <td class="col" data-name="Mobile">{{item?.customer_mobile}}</td>
                 <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{item?.amount}}</td>
-                <td class="col" data-name="Last Received">{{item?.receive_date}}</td>
+                <td class="col" data-name="Last Received">{{item?.receive_date}} {{item?.receive_time}}</td>
                 <td class="col text-center capatalise_col" data-name="Type">{{item?.collection_type}}</td>
                 <td class="col text-center" data-name="Received Type">
                     <div class="badge text-white capatalise_col" [ngClass]="{'bg-danger': item?.received_type == 'debit', 'bg-success': item?.received_type == 'credit'}">{{item?.received_type}}</div>

@@ -80,7 +80,7 @@
                 <div class="col text-right pr-1 datewith_search_block">
                     <div class="listsearch-topblock search_withaddbtn pr-0">
                         <div class="search-box">
-                            <input type="search" placeholder="Search" class="searchtxt" />
+                            <input type="text" placeholder="Search" class="searchtxt" />
                             <i class="mdi mdi-magnify"></i>
                         </div>
                     </div>
@@ -92,13 +92,14 @@
                 <app-page-loader></app-page-loader>
             </div>
         </div>
-        <div class="assign_customer_container" *ngIf="!loading">
-            <ng-container *ngIf="!memberLoanData.length && !memberDepositData.length">
-                <app-no-record-found type="page"
-                    notext="Admin not assign any loan & collection..."></app-no-record-found>
+        <!-- <app-no-record-found [type]="'page'" [notext]="'Admin not assign any loan & collection...'"></app-no-record-found> -->
+        <div class="assign_customer_container" *ngIf="!loading">            
+            <ng-container
+                *ngIf="!filteredDataarray.length && !memberDepositData.length || filteredDataarray == undefined">
+                <app-no-record-found [type]="'page'" [notext]="'Admin not assign any loan & collection...'"></app-no-record-found>
             </ng-container>
-            <ng-container *ngIf="memberLoanData.length">
-                <div class="assign_customer_block" *ngFor="let loan of memberLoanData">
+            <ng-container *ngIf="filteredDataarray.length">
+                <div class="assign_customer_block" *ngFor="let loan of filteredDataarray">
                     <ul class="list-unstyled dynamic_card_data">
                         <li class="data_head">Loan No.</li>
                         <li class="data_val">{{loan.loan_no}}</li>

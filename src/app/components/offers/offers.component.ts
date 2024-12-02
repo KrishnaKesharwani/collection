@@ -35,6 +35,22 @@ export class OffersComponent {
     this.getOfferList();
   }
 
+  getOfferList() {
+    this.offerListData = [];
+    this.filteredDataarray = [];
+    this.loader = true;
+    let obj = {
+      company_id: this.company_id
+    }
+    this._service.getOfferList(obj).subscribe((data: any) => {
+      this.offerListData = data.data;
+      this.filteredDataarray = this.offerListData;
+      this.loader = false;
+    }, error => {
+      this.loader = false;
+    })
+  }
+
   openDialogAddOffers() {
     const dialogRef = this.dialog.open(AddOfferComponent, {
       disableClose: true,
@@ -140,6 +156,7 @@ export class OffersComponent {
     let offerid = data?.id;
     this._service.deleteOffer(offerid).subscribe((data: any) => {
       if (data) {
+        this.getOfferList();
         Swal.fire({
           position: "center",
           icon: "success",
@@ -149,7 +166,6 @@ export class OffersComponent {
           timer: 1500
         });
       }
-      this.getOfferList();
     });
   }
 
@@ -200,18 +216,6 @@ export class OffersComponent {
       }
       this.getOfferList();
     });
-  }
-
-  getOfferList() {
-    this.loader = true;
-    let obj = {
-      company_id: this.company_id
-    }
-    this._service.getOfferList(obj).subscribe((data: any) => {
-      this.offerListData = data.data;
-      this.filteredDataarray = this.offerListData;
-      this.loader = false;
-    })
   }
 
   isAsc: boolean = true;

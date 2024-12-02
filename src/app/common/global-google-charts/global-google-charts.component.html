@@ -1,25 +1,25 @@
-<ng-container *ngIf="currentuserType == 0">
+<!-- <ng-container *ngIf="currentuserType == 0">
     <div class="card dash-cardbox">
         <div class=""></div>
     </div>
-</ng-container>
+</ng-container> -->
 <ng-container *ngIf="currentuserType == 1">
     <div class="chart_container">
         <div class="card dash-cardbox">
             <div class="chart_innercontainer">
                 <div class="chart_heading">
                     <div class="left_data">Loan Status</div>
-                    <div class="loan_no_conainer">
+                    <div class="loan_no_conainer" *ngIf="loanStatus?.total_cusotomer !== null">
                         <b>Total Loan Customer :</b>
                         <span>{{loanStatus?.total_cusotomer}}</span>
-                        <span *ngIf="loanStatus?.total_cusotomer == null">N/A</span>
+                        <!-- <span *ngIf="loanStatus?.total_cusotomer == null">N/A</span> -->
                     </div>
                 </div>
                 <div class="inner_block">
-                    <div *ngIf="loader">
+                    <div *ngIf="companyloader">
                         <app-page-loader></app-page-loader>
                     </div>
-                    <div *ngIf="loanStatus?.length == 0 && !loader">
+                    <div *ngIf="!loanStatus && !companyloader">
                         <app-no-record-found type="table" notext="No chart found"></app-no-record-found>
                     </div>
                     <div id="pie_company_chart"></div>
@@ -37,13 +37,11 @@
                     </div>
                 </div>
                 <div class="inner_block">
-                    <div *ngIf="loader">
+                    <div *ngIf="companyloader">
                         <app-page-loader></app-page-loader>
                     </div>
-                    <div *ngIf="depositStatus?.length == 0 && !loader">
-                        <td colspan="8">
-                            <app-no-record-found type="table" notext="No Deposit chart found."></app-no-record-found>
-                        </td>
+                    <div *ngIf="depositStatus?.length == 0 && !companyloader">
+                        <app-no-record-found type="table" notext="No Deposit chart found."></app-no-record-found>
                     </div>
                     <div id="column_company_chart"></div>
                 </div>
@@ -59,12 +57,14 @@
                     <div class="left_data">Assign / Received Amount</div>
                 </div>
                 <div class="inner_block">
-                    <div *ngIf="loader">
+                    <div *ngIf="memberloader">
                         <app-page-loader></app-page-loader>
                     </div>
-                    <div *ngIf="memberLoanStatus?.length == 0 && !loader">
-                        <app-no-record-found type="table" notext="No chart found"></app-no-record-found>
-                    </div>
+                    <ng-container *ngIf="!memberloader">
+                        <div *ngIf="memberLoanStatus?.length == 0 || memberLoanStatus == undefined">
+                            <app-no-record-found type="table" notext="No chart found"></app-no-record-found>
+                        </div>
+                    </ng-container>
                     <div id="pie_member_chart"></div>
                 </div>
             </div>
@@ -75,12 +75,14 @@
                     <div class="left_data">Last 10 Days Amount Received</div>
                 </div>
                 <div class="inner_block">
-                    <div *ngIf="loader">
-                            <app-page-loader></app-page-loader>
+                    <div *ngIf="memberloader">
+                        <app-page-loader></app-page-loader>
                     </div>
-                    <div *ngIf="lastDaysAmount?.length == 0 && !loader">
-                        <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
-                    </div>
+                    <ng-container *ngIf="!memberloader">
+                        <div *ngIf="lastDaysAmount?.length == 0 || lastDaysAmount == undefined">
+                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
+                        </div>
+                    </ng-container>
                     <div id="column_member_chart"></div>
                 </div>
             </div>
@@ -89,13 +91,12 @@
 </ng-container>
 <ng-container *ngIf="currentuserType == 3">
     <div class="chart_container">
-        <div class="card dash-cardbox">
+        <!-- <div class="card dash-cardbox" style="display: none;">
             <div class="chart_innercontainer">
                 <div class="chart_heading">
                     <div class="left_data">Current Loan Status</div>
                     <div class="loan_no_conainer">
                         <b>Selectd Loan Status :</b>
-                        <!-- <span>{{item.loan_no}}</span> -->
                         <span class="selected_loan" *ngFor="let item of customerLoanStatus"
                             (click)="loan(item,item.loan_no)">{{item.loan_no}}</span>
                         <span class="selected_loan" *ngIf="customerLoanStatus?.length == 0">N/A</span>
@@ -103,28 +104,30 @@
                 </div>
                 <div class="inner_block">
                     {{customerLoanStatus?.length}}
-                    <div *ngIf="loader">
+                    <div *ngIf="customerloader">
                         <app-page-loader></app-page-loader>
                     </div>
-                    <div *ngIf="customerLoanStatus?.length == 0 && !loader">
+                    <div *ngIf="customerLoanStatus?.length == 0 && !customerloader">
                         <app-no-record-found type="table" notext="No chart found"></app-no-record-found>
                     </div>
                     <div id="pie_user_chart"></div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="card dash-cardbox">
             <div class="chart_innercontainer">
                 <div class="chart_heading">
                     <div class="left_data">Last 6 Month Deposit Status</div>
                 </div>
                 <div class="inner_block">
-                    <div *ngIf="loader">
+                    <div *ngIf="customerloader">
                         <app-page-loader></app-page-loader>
                     </div>
-                    <div *ngIf="customerDepositStatus?.length == 0 && !loader">
-                        <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
-                    </div>
+                    <ng-container *ngIf="!customerloader">
+                        <div *ngIf="customerDepositStatus?.length == 0 || customerDepositStatus == undefined">
+                            <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
+                        </div>
+                    </ng-container>
                     <div id="column_user_chart"></div>
                 </div>
             </div>

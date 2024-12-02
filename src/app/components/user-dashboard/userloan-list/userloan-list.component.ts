@@ -32,11 +32,8 @@ export class UserloanListComponent {
       this.customer_id = userData.customer_id;
       this.member_id = userData.member_id;
     }
-
     if (this.customer_id) {
       this.getCustomerLoanList();
-    } else {
-      this.getMemberLoanList();
     }
   }
   openDialogDownloadReport(data: any) {
@@ -70,42 +67,41 @@ export class UserloanListComponent {
   }
 
   getCustomerLoanList() {
-
     this.loader = true;
     let obj = {
       company_id: this.company_id,
       customer_id: this.customer_id,
-      loan_status: 'Approved',
-      status: 'Active'
+      loan_status: 'approved',
+      status: 'active'
     }
     this._service.getCustomerLoanList(obj).subscribe((data: any) => {
       this.loader = false;
       this.loanList = data.data.loans;
     }, error => {
+
       this.loader = false;
       this._tostr.error(error.error.message, 'Error');
-
     })
   }
 
-  getMemberLoanList() {
+  // getMemberLoanList() {
 
-    this.loader = true;
-    let obj = {
-      company_id: this.company_id,
-      member_id: this.member_id,
-      loan_status: 'Approved',
-      status: 'Active'
-    }
-    this._service.getMemberLoanList(obj).subscribe((data: any) => {
-      this.loader = false;
-      this.loanList = data.data;
-    }, error => {
-      this.loader = false;
-      this._tostr.error(error.error.message, 'Error');
+  //   this.loader = true;
+  //   let obj = {
+  //     company_id: this.company_id,
+  //     member_id: this.member_id,
+  //     loan_status: 'Approved',
+  //     status: 'Active'
+  //   }
+  //   this._service.getMemberLoanList(obj).subscribe((data: any) => {
+  //     this.loader = false;
+  //     this.loanList = data.data;
+  //   }, error => {
+  //     this.loader = false;
+  //     this._tostr.error(error.error.message, 'Error');
 
-    })
-  }
+  //   })
+  // }
 
   openDialogViewDetail(data?: any): void {
     if (this.isDialogOpen) return;

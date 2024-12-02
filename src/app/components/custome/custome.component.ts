@@ -210,7 +210,9 @@ export class CustomeComponent {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.isDialogOpen = false;
+      if (result) {
+        this.getCustomerList();
+      }
     });
   }
 
@@ -222,8 +224,12 @@ export class CustomeComponent {
         title: 'Import Customers'
       },
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getCustomerList();
+      }
+    });
   }
-
 
   isAsc: boolean = true;
   sortTableData(column: string) {
@@ -245,7 +251,6 @@ export class CustomeComponent {
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }
-
   }
 
 }

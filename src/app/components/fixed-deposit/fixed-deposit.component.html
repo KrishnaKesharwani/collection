@@ -7,7 +7,7 @@
                         <div class="col col-sm-3 pl-1">
                             <h3 class="mb-0">Fixed Deposit List</h3>
                         </div>
-                        <div class="col p-0 head_details">
+                        <div class="col p-0 head_details" *ngIf="filteredDataarray?.length != 0 && !loader">
                             <div class="total_block bg-warning mr-2"><span>Total
                                     Deposit</span><b>{{getTotaldata.total_deposit_amount}}</b>
                             </div>
@@ -19,7 +19,7 @@
                         </div>
                         <div class="col text-right pr-1 datewith_search_block">
                             <div class="listsearch-topblock search_withaddbtn">
-                                <div class="search-box">
+                                <div class="search-box" *ngIf="filteredDataarray?.length != 0 && !loader">
                                     <input type="text" placeholder="Search" (keyup)="searchTable($event)"
                                         class="searchtxt" />
 

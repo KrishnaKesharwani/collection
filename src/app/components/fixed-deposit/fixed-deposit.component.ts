@@ -25,7 +25,7 @@ export class FixedDepositComponent {
 
   fixedDepositListData: any[] = [];
   loader: boolean = false;
-  filteredDataarray: any;
+  filteredDataarray: any[] = [];
   depositListData: any;
   company_id: any;
   constructor(public _toaster: ToastrService, public _service: FixedDepositService, private actionService: ActionService, public _customActionService: CustomActionsService,) { }
@@ -40,6 +40,7 @@ export class FixedDepositComponent {
     this.getDepositList();
   }
   getTotaldata: any = "";
+
   getDepositList() {
     this.loader = true;
     let obj = {
@@ -52,7 +53,8 @@ export class FixedDepositComponent {
       this.filteredDataarray = this.fixedDepositListData;
       this.loader = false;
     }, error => {
-      this._toaster.error(error.massage);
+      // console.log('Fixed Deposit data', this.filteredDataarray);
+      // this._toaster.error(error.message);
       this.loader = false;
     });
   }

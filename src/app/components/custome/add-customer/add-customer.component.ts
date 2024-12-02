@@ -155,7 +155,7 @@ export class AddCustomerComponent {
               this.loading = false;
               this.dialogRef.close(true);
               this._toastr.success(data.message, 'Success');
-              this._router.navigate(['/customer_list']);
+              // this._router.navigate(['/customer_list']);
               this.customerForm.reset();
             }
           }, error => {

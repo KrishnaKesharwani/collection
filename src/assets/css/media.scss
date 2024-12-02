@@ -61,6 +61,17 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
+    .cdk-overlay-container {
+        .cdk-overlay-pane {
+            max-width: 100vw !important;
+            mat-dialog-container{
+
+            }
+        }
+    }
+    .more_table{
+        
+    }
     app-member-dashboard {
         margin-bottom: 0px !important;
     }
@@ -86,6 +97,7 @@
         .card-header .row {
             .col {
                 width: 100% !important;
+                justify-content: space-between;
             }
         }
     }
@@ -97,6 +109,7 @@
         max-height: 100vh !important;
         width: 100vw !important;
         height: 100vh !important;
+        padding: 10px !important;
 
         .mat-mdc-dialog-surface {
             background-color: #f5f5ff !important;
@@ -128,7 +141,7 @@
 
     .dash-cardbox {
         .card-header {
-            padding: 10px;
+            padding: 10px !important;
             border: solid thin #e1e1e1;
             border-radius: 5px;
             overflow: hidden;
