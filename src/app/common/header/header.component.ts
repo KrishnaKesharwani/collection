@@ -31,6 +31,7 @@ export class HeaderComponent {
   companyRoughts = ['/dashboard', '/member_list', '/customer_list', '/loan_list', '/daily_collect_list', '/money_received', '/offers', '/fixed_deposit', '/vc_management', '/reports', '/request_money', '/profile_details','/change_password'];
   memberRoughts = ['/dashboard', '/customer_list', '/daily_collection', '/offers', '/profile_details','/change_password'];
   customerRoughts = ['/dashboard', '/my_loan_list', '/daily_collection', '/offers', '/request_money', '/change_password', '/profile_details'];
+  
   ngOnInit() {
     const data: any = localStorage.getItem('CurrentUser');
     const userData = JSON.parse(data);
@@ -41,15 +42,15 @@ export class HeaderComponent {
       }
     });
     if (userData != null) {
-      this.userType = userData.user_type;
+      this.userType = userData?.user_type;
       if (this.userType == 0) {
 
       } else if (this.userType == 1) {
         const currentAllData: any = localStorage.getItem('CompanyData');
         const currentCompanyDataParse = JSON.parse(currentAllData);
-        this.userImage = currentCompanyDataParse.owner_image;
-        this.expiredDate = currentCompanyDataParse.end_date;
-        this.planType = currentCompanyDataParse.plan;
+        this.userImage = currentCompanyDataParse?.owner_image;
+        this.expiredDate = currentCompanyDataParse?.end_date;
+        this.planType = currentCompanyDataParse?.plan;
         setTimeout(() => {
           if (!this.companyRoughts.includes(this.currentUrl)) {
             this.router.navigate(['/dashboard']);
@@ -67,7 +68,7 @@ export class HeaderComponent {
       } else if (this.userType == 3) {
         const currentAllData: any = localStorage.getItem('CustomerData');
         const currentCustomerDataParse = JSON.parse(currentAllData);
-        this.userImage = currentCustomerDataParse.image;
+        this.userImage = currentCustomerDataParse?.image;
         setTimeout(() => {
           if (!this.customerRoughts.includes(this.currentUrl)) {
             this.router.navigate(['/dashboard']);
@@ -75,7 +76,7 @@ export class HeaderComponent {
           const currentOfferData: any = localStorage.getItem('OfferData');
           const customerOfferDataParse = JSON.parse(currentOfferData);
           this.offerData = customerOfferDataParse;
-          this.offerShow = this.offerData.default_offer;
+          this.offerShow = this.offerData?.default_offer;
         }, 1000);
       }
 
@@ -94,6 +95,7 @@ export class HeaderComponent {
     //   this.userType = null;
     // }
   }
+
   onClose() {
     this.offerShow = 0;
   }

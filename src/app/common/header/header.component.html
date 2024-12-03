@@ -63,39 +63,41 @@
         <div class="outline_block" (click)="showhideMenu()" [ngClass]="{'showMenu_outline': showMenuAction }"></div>
     </div>
 </nav>
-<div class="offer_main_section" [ngClass]="{'showOffer': offerShow == 1}">
-    <div class="close_row"><mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon></div>
-    <table class="table table-bordered table-responsive bg-white more_table">
-        <tbody>
-            <tr>
-                <td>
-                    <div class="offer_image" *ngIf="offerData.image == null ">
-                        <img src="assets/imgs/default-pic.png">
-                    </div>
-                    <div class="offer_image" *ngIf="offerData.image != null ">
-                        <img src="{{offerData.image}}">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>{{offerData.name}}</td>
-            </tr>
-            <tr>
-                <td>{{offerData.type}}</td>
-            </tr>
-            <tr>
-                <td>{{offerData.details}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="bottom_default_block">
-        <mat-checkbox class="left_checkbox"><span class="check_text">Not Show Again</span></mat-checkbox>
-        <div class="right_action">
-            <button type="submit" class="global_submit_btn" mat-flat-button (click)="checkDefaultOffer()">
-                <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
-                <app-button-loader *ngIf="loading"></app-button-loader>
-                <span>Submit</span>
-            </button>
+<ng-container *ngIf="offerShow == 1">
+    <div class="offer_main_section" [ngClass]="{'showOffer': offerShow == 1}">
+        <div class="close_row"><mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon></div>
+        <table class="table table-bordered table-responsive bg-white more_table">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="offer_image" *ngIf="offerData.image == null ">
+                            <img src="assets/imgs/default-pic.png">
+                        </div>
+                        <div class="offer_image" *ngIf="offerData.image != null ">
+                            <img src="{{offerData.image}}">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{offerData.name}}</td>
+                </tr>
+                <tr>
+                    <td>{{offerData.type}}</td>
+                </tr>
+                <tr>
+                    <td>{{offerData.details}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="bottom_default_block">
+            <mat-checkbox class="left_checkbox"><span class="check_text">Not Show Again</span></mat-checkbox>
+            <div class="right_action">
+                <button type="submit" class="global_submit_btn" mat-flat-button (click)="checkDefaultOffer()">
+                    <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+                    <app-button-loader *ngIf="loading"></app-button-loader>
+                    <span>Submit</span>
+                </button>
+            </div>
         </div>
     </div>
-</div>
+</ng-container>
