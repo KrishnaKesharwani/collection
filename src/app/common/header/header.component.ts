@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,7 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService) {
+    this.translate.setDefaultLang('en');
     const data = localStorage.getItem('CurrentUser');
   }
   @Output() menuClick: EventEmitter<string> = new EventEmitter<string>();
@@ -95,10 +97,8 @@ export class HeaderComponent {
     //   this.userType = null;
     // }
   }
-  language = 'english';
-  changeLanguage(lang: any) {
-    this.language = lang;
-  }
+  language = 'en';
+
   onClose() {
     this.offerShow = 0;
   }
@@ -136,4 +136,9 @@ export class HeaderComponent {
     }
   }
 
+
+  changeLanguage(lang: string) {
+    this.language = lang;
+    this.translate.use(lang);
+  }
 }

@@ -65,6 +65,13 @@ import { ProfileDetailsModule } from './components/profile-details/profile-detai
 import { ReportsModule } from './components/reports/reports.module';
 import { VcManagementModule } from './components/vc-management/vc-management.module';
 // import { LayoutComponent } from './layout/layout.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -100,9 +107,13 @@ import { VcManagementModule } from './components/vc-management/vc-management.mod
     ChangePasswordModule,
     ReportsModule,
     VcManagementModule,
-    // MaterialModule,
-    // AdminDashboardModule,
-    // FixedDepositModule
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
