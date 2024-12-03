@@ -717,9 +717,31 @@ mat-option {
         }
     }
 }
+
 app-no-record-found {
     width: 100%;
 }
+
+.global_popup_small {
+    button {
+        padding: 5px 10px !important;
+        min-height: 30px;
+        transition: .5s all;
+
+        .mat-mdc-menu-item-text {
+            font-size: 13px !important;
+            opacity: .7;
+        }
+
+        &:hover {
+            padding-left: 20px !important;
+            .mat-mdc-menu-item-text {
+                opacity: 1;
+            }
+        }
+    }
+}
+
 .mydata-table {
     table-layout: fixed;
     position: relative;
@@ -767,6 +789,7 @@ app-no-record-found {
             border-radius: 5px;
             box-shadow: var(--app-brand-shadow);
             cursor: pointer;
+
             i {
                 line-height: 30px;
             }

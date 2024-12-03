@@ -2,6 +2,7 @@
     display: inline-flex;
     align-items: center;
     margin: 0px 15px 0px 20px;
+
     .avatar {
         height: 40px;
         width: 40px;
@@ -9,12 +10,14 @@
         display: flex;
         align-items: center;
         border-radius: 50%;
+
         img {
             width: 100%;
             height: 100%;
         }
     }
 }
+
 .offer_main_section {
     position: fixed;
     background: #ffffff;
@@ -34,6 +37,7 @@
     display: flex;
     justify-content: space-between;
     flex-flow: column;
+
     .close_row {
         display: flex;
         align-items: flex-end;
@@ -43,15 +47,18 @@
         opacity: .8;
         transition: .5s all;
         cursor: pointer;
+
         &:hover {
             opacity: 1;
         }
     }
+
     .more_table {
         border: none;
         overflow: auto;
         max-height: calc(100% - 100px);
     }
+
     .bottom_default_block {
         display: flex;
         width: 100%;
@@ -62,24 +69,46 @@
         border-top: solid thin #e1e1e1;
     }
 }
+
 .showOffer {
     transform: scale(1);
 }
+
 .subscription_row {
     display: flex;
     align-items: center;
     line-height: 20px;
     color: #858585;
     font-size: 12px;
+
     b {
         margin-right: 10px;
         font-weight: 600;
         display: flex;
     }
+
     span {
         text-transform: capitalize;
     }
 }
+
+.language_block {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: .5s all;
+    opacity: .7;
+    .hindi_english_ing {
+        width: 30px;
+        margin-right: 10px;
+    }
+    &:hover {
+        opacity: 1;
+    }
+}
+
 .dropdown-menu {
     display: flex;
     flex-flow: column;
@@ -94,6 +123,7 @@
     transition: .5s all;
     transform: scale(0);
     overflow: hidden;
+
     .dropdown-item {
         list-style: none;
         text-decoration: none;
@@ -104,9 +134,11 @@
         cursor: pointer;
         color: #666666;
         transition: .5s all;
+
         i {
             margin-right: 10px;
         }
+
         &:hover {
             background: #f5f5ff;
             padding-left: 20px;

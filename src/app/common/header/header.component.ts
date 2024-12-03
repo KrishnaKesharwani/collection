@@ -27,11 +27,11 @@ export class HeaderComponent {
   currentUrl: string = '';
   offerData: any = [];
   offerShow = 0;
-  masterRoughts = ['/dashboard', '/company_list', '/profile_details','/change_password'];
-  companyRoughts = ['/dashboard', '/member_list', '/customer_list', '/loan_list', '/daily_collect_list', '/money_received', '/offers', '/fixed_deposit', '/vc_management', '/reports', '/request_money', '/profile_details','/change_password'];
-  memberRoughts = ['/dashboard', '/customer_list', '/daily_collection', '/offers', '/profile_details','/change_password'];
+  masterRoughts = ['/dashboard', '/company_list', '/profile_details', '/change_password'];
+  companyRoughts = ['/dashboard', '/member_list', '/customer_list', '/loan_list', '/daily_collect_list', '/money_received', '/offers', '/fixed_deposit', '/vc_management', '/reports', '/request_money', '/profile_details', '/change_password'];
+  memberRoughts = ['/dashboard', '/customer_list', '/daily_collection', '/offers', '/profile_details', '/change_password'];
   customerRoughts = ['/dashboard', '/my_loan_list', '/daily_collection', '/offers', '/request_money', '/change_password', '/profile_details'];
-  
+
   ngOnInit() {
     const data: any = localStorage.getItem('CurrentUser');
     const userData = JSON.parse(data);
@@ -95,7 +95,10 @@ export class HeaderComponent {
     //   this.userType = null;
     // }
   }
-
+  language = 'english';
+  changeLanguage(lang: any) {
+    this.language = lang;
+  }
   onClose() {
     this.offerShow = 0;
   }

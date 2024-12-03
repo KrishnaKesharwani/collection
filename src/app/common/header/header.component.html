@@ -18,6 +18,20 @@
             </div>
         </form>
         <ul class="navbar-nav align-items-center d-md-flex">
+            <li class="">
+                <div class="language_container">
+                    <div class="language_block" [matMenuTriggerFor]="languageMenu">
+                        <img src="../../../assets/imgs/hindi-english.png" class="hindi_english_ing" />
+                        <span class="res_display_none" *ngIf="language=='english'">English</span>
+                        <span class="res_display_none" *ngIf="language=='hindi'">हिन्दी</span>
+                        <mat-icon class="res_display_none">keyboard_arrow_down</mat-icon>
+                    </div>
+                    <mat-menu #languageMenu="matMenu" class="global_popup_small">  
+                        <button (click)="changeLanguage('english')" mat-menu-item>English</button>
+                        <button (click)="changeLanguage('hindi')" mat-menu-item>हिन्दी</button>
+                    </mat-menu>
+                </div>
+            </li>
             <li class="nav-item dropdown notification-liblock">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
