@@ -67,12 +67,9 @@ export class AdminDashboardComponent {
   readonly dialog2 = inject(MatDialog);
   openDialogViewDetails(data?: any) {
     const dialogRef = this.dialog2.open(ViewDetailsComponent, {
-
-
       data: {
         data: data,
         title: 'Request Details',
-
       },
     });
   }
@@ -80,7 +77,6 @@ export class AdminDashboardComponent {
   readonly dialog3 = inject(MatDialog);
   openDialogActionForLoan(data?: any) {
     const dialogRef = this.dialog3.open(ActionForLoanComponent, {
-      panelClass: 'medium_popup',
       data: {
         title: 'Message For Applier',
         data: data

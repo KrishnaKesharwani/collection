@@ -39,7 +39,7 @@ cmd: npm i file-saver
 - Google Chart
 cmd: npm install angular-google-charts
 
-- Language Translation
+- Language Translation 03-12-2024
 cmd: npm install @ngx-translate/core
      npm install @ngx-translate/http-loader
 

@@ -93,13 +93,18 @@ export class RequestMoneyComponent {
     }
     this.getRequestDepsitOnClick();
   }
+  formattedDate: string = '';
   getRequestDepsitOnClick() {
     this.loader = true;
     let gatCustomerid = this.selectControl.value;
+    this.formattedDate = new Date(this.filterDateForm.value.date).toString();
+    if (this.formattedDate == 'Invalid Date') {
+      this.formattedDate = '';
+    }
     let obj = {
       company_id: this.company_id,
       customer_id: gatCustomerid,
-      request_date: this.filterDateForm.value.date
+      request_date: this.formattedDate
     }
     this._service.getRequestMoney(obj).subscribe((data: any) => {
       this.loader = false;
@@ -157,6 +162,11 @@ export class RequestMoneyComponent {
         title: 'Message For Deposit',
         data: data
       },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getRequestDepsitOnClick();
+      }
     });
   }
 

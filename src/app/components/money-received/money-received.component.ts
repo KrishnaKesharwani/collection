@@ -44,12 +44,17 @@ export class MoneyReceivedComponent {
     searchBox.value = '';
     this.getCollectionList();
   }
-
+  formattedDate: string | null = null;
   getCollectionList() {
     this.loader = true;
+    this.formattedDate = new Date(this.filterDateForm.value.date).toString(); 
+    if (this.formattedDate == 'Invalid Date') {
+      this.formattedDate = '';
+    }
     let obj = {
       company_id: this.company_id,
-      date: this.filterDateForm.value.date
+      date: this.formattedDate,
+      // date: 'Wed Dec 4 2024 00:00:00 GMT+0530 (India Standard Time)'
     }
     this._service.getCollection(obj).subscribe((data: any) => {
       this.collectionData = data.data;

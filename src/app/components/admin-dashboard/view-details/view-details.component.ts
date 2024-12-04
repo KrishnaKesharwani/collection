@@ -13,10 +13,8 @@ export class ViewDetailsComponent {
   constructor(public dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }) { }
 
   ngOnInit() {
-    this.getCompletedLoanDetail();
-  }
-
-  getCompletedLoanDetail() {
+    debugger;
     this.data = this.dataa.data;
   }
+  
 }

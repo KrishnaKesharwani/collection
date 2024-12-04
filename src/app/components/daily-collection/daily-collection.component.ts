@@ -9,6 +9,7 @@ import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { DailyCollectionService } from 'src/app/services/dailyCollection/daily-collection.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-daily-collection',
@@ -43,18 +44,17 @@ export class DailyCollectionComponent {
     }
     // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
 
-    this.getDepositList();
+    this.getDepositList('active');
   }
 
-
-  getDepositList() {
+  selectedStatus = new FormControl('active');
+  getDepositList(statuscall: any) {
     this.depositData = [];
     this.filteredDataarray = [];
     this.loader = true;
     let obj = {
       company_id: this.company_id,
-      loan_status: 'Pending',
-      status: 'Active'
+      status: statuscall
     }
     this._serivce.getDepositListForCustomer(obj).subscribe((data: any) => {
       this.depositData = data.data.deposits;
@@ -64,6 +64,11 @@ export class DailyCollectionComponent {
     }, error => {
       this.loader = false;
     });
+  }
+
+  onStatusChange(event: any): void {
+    const selectedValue = event.value;
+    this.getDepositList(selectedValue);
   }
 
   loanAssignMember(action: number) {

@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </ng-container>
-            <div class="assign_customer_block" *ngIf="!customerDepositData.length && loanData.length">
+            <div class="assign_customer_block" *ngIf="!customerDepositData.length && !loanData.length">
                 <app-no-record-found type="page" notext="No Deposit and Loan account available."></app-no-record-found>
             </div>
         </div>

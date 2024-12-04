@@ -17,14 +17,19 @@
                             <div class="total_block bg-success" (click)="openDialogChangeMember()"><span>Total
                                     Customer</span><b>{{depositDetail?.total_cusotomer}}</b></div>
                         </div>
-                        <div class="col text-right pr-1">
-                            <div class="listsearch-topblock mr-0">
-                                <div class="search-box">
-                                    <input type="text" placeholder="Search" (keyup)="searchTable($event)"
-                                        class="searchtxt" />
-
-                                    <i class="mdi mdi-magnify"></i>
-                                </div>
+                        <div class="listsearchwith_ddl_topblock">
+                            <mat-form-field class="global_dropdown global_ddl_m_p_0" appearance="outline">
+                                <mat-label>Filter By Status</mat-label>
+                                <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+                                <mat-select [formControl]="selectedStatus" (selectionChange)="onStatusChange($event)">
+                                    <mat-option [value]="'active'">Active</mat-option>
+                                    <mat-option [value]="'inactive'">Inactive</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div class="search-box">
+                                <input type="text" placeholder="Search" (keyup)="searchTable($event)"
+                                    class="searchtxt" />
+                                <i class="mdi mdi-magnify"></i>
                             </div>
                         </div>
                     </div>

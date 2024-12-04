@@ -70,13 +70,19 @@ export class AddOfferComponent {
 
   saveDetails() {
     if (this.offer_id) {
-
       if (this.offerForm.valid) {
-
         this.loading = true;
         const formData = new FormData();
         Object.keys(this.offerForm.value).forEach(key => {
-          formData.append(key, this.offerForm.value[key]);
+          if (key === 'default_offer') {
+            if (this.offerForm.value['default_offer']) {
+              formData.append(key, '1');
+            } else {
+              formData.append(key, '0');
+            }
+          } else {
+            formData.append(key, this.offerForm.value[key]);
+          }
         });
         if (!this.selectedFile) {
           formData.delete('image');
@@ -103,7 +109,16 @@ export class AddOfferComponent {
         this.loading = true;
         const formData = new FormData();
         Object.keys(this.offerForm.value).forEach(key => {
-          formData.append(key, this.offerForm.value[key]);
+          if (key === 'default_offer') {
+            if (this.offerForm.value['default_offer']) {
+              formData.append(key, '1');
+            } else {
+              formData.append(key, '0');
+            }
+          } else {
+            formData.append(key, this.offerForm.value[key]);
+          }
+          // formData.append(key, this.offerForm.value[key]);
         });
         if (!this.selectedFile) {
           formData.delete('image');

@@ -91,7 +91,7 @@ export class DailyCollectListComponent {
     let obj = {
       company_id: this.company_id,
       customer_id: this.customer_id,
-      loan_status: 'Approved',
+      loan_status: 'paid',
       status: "Active"
     }
     this._service.getCustomerLoanList(obj).subscribe((data: any) => {

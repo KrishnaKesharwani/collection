@@ -14,10 +14,12 @@
                 justify-content: space-between;
                 width: 100%;
                 color: var(--theme-primary-color);
+                flex-flow: wrap;
                 .loan_no_conainer {
                     display: flex;
                     align-items: center;
-                    font-size: 12px;
+                    font-size: 14px;
+                    color: #666666;
                     span {
                         padding: 4px 13px;
                         border-radius: 5px;
@@ -25,6 +27,8 @@
                         cursor: pointer;
                         transition: .5s all;
                         margin-left: 5px;
+                        background: var(--theme-primary-color);
+                        color: #ffffff;
                         &:hover {
                             background: var(--theme-primary-color);
                             color: #ffffff;
@@ -33,7 +37,6 @@
                     b {
                         color: #666666;
                         font-weight: 500;
-                        font-size: 14px;
                     }
                     .selected_loan {
                         background: var(--theme-primary-color);

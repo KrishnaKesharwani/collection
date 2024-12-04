@@ -71,7 +71,7 @@ export class UserloanListComponent {
     let obj = {
       company_id: this.company_id,
       customer_id: this.customer_id,
-      loan_status: 'approved',
+      loan_status: 'paid',
       status: 'active'
     }
     this._service.getCustomerLoanList(obj).subscribe((data: any) => {
