@@ -23,12 +23,10 @@ import { ViewDetailsComponent } from './view-details/view-details.component';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActionForDepositComponent } from './action-for-deposit/action-for-deposit.component';
-import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [AdminDashboardComponent, MassageForApplierComponent, ActionForLoanComponent, ViewDetailsComponent, ActionForDepositComponent],
   imports: [
     CommonModule,
-    TranslateModule,
     AdminDashboardRoutingModule,
 
     MaterialModule,
