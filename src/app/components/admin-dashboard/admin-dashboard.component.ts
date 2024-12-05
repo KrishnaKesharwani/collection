@@ -8,6 +8,7 @@ import { InstallmentHistoryComponent } from '../loan-list/installment-history/in
 import { ActionForDepositComponent } from './action-for-deposit/action-for-deposit.component';
 import { DepositRequestService } from 'src/app/services/depositRequest/deposit-request.service';
 import { ViewDetailsComponent } from '../request-money/view-details/view-details.component';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface DialogData {
   animal: string;
@@ -30,7 +31,10 @@ export class AdminDashboardComponent {
   newLoanDashboardData: any;
   loader: boolean = false;
   requestList: any[] = [];
-  constructor(public dialog: MatDialog, public _service: LoanService, public _requestservice: DepositRequestService) { }
+  constructor(public dialog: MatDialog, public _service: LoanService, public _requestservice: DepositRequestService, public translate: TranslateService) {
+    this.translate.setDefaultLang('en');
+    const data = localStorage.getItem('CurrentUser');
+  }
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
