@@ -41,7 +41,7 @@ export class LoanHistoryComponent {
       this.loader = false;
     }, error => {
       this.loader = false;
-      this._tostr.error(error.message, 'Error');
+      // this._tostr.error(error.message, 'Error');
     });
   }
 

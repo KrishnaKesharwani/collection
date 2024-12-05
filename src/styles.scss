@@ -190,6 +190,12 @@ app-member-dashboard {
     overflow: auto;
     flex-flow: column;
 }
+.full_height_coverwithout_bottom {
+    height: calc(100vh - 140px);
+    display: flex;
+    overflow: auto;
+    flex-flow: column;
+}
 
 .fullwidth_model {
     width: 99vw;
@@ -816,10 +822,6 @@ app-no-record-found {
         text-align: center !important;
     }
 
-    .capatalise_col {
-        text-transform: capitalize;
-    }
-
     .mobile_col {
         width: 90px;
     }
@@ -886,7 +888,9 @@ app-no-record-found {
         }
     }
 }
-
+.capatalise_col {
+    text-transform: capitalize;
+}
 .payment_type_block {
     margin-bottom: 20px;
 

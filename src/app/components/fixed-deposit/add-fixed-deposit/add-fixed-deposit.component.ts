@@ -30,6 +30,7 @@ export class AddFixedDepositComponent {
   refund_amount: string = '';
   details: string = '';
   loading: boolean = false;
+  loader = false;
 
   constructor(public _router: Router, public _tostr: ToastrService, public _fixedDepositService: FixedDepositService, public dialogRef: MatDialogRef<AddFixedDepositComponent>, public _customActionService: CustomActionsService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
@@ -76,12 +77,10 @@ export class AddFixedDepositComponent {
       }
 
       this._fixedDepositService.update(obj).subscribe((data: any) => {
-
         this.loading = false;
         this.dialogRef.close(true);
         this._tostr.success(data.message, "Success");
-        this._router.navigate(['/fixed_deposit']);
-
+        // this._router.navigate(['/fixed_deposit']);
       })
     } else {
       if (this.fixedDepositForm.valid) {
@@ -90,21 +89,16 @@ export class AddFixedDepositComponent {
           // deposit_id: this.fixedDepositId,
           ...this.fixedDepositForm.value
         }
-
         this._fixedDepositService.create(obj).subscribe((data: any) => {
           this.loading = false;
           this.dialogRef.close(true);
+          this._tostr.success(data.message, "Success");
         })
       } else {
         this.fixedDepositForm.markAllAsTouched()
       }
     }
-
-
-
   }
-
-  loader = false;
   getCustomerList() {
     this.loader = true;
     let obj = {

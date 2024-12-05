@@ -82,11 +82,12 @@ export class RequestMoneyComponent {
     this.selectControl.reset();
     this.getRequestLoanList();
   }
-
-  getRequestClick(type: any) {
+  gatCustomerid: any;
+  getRequestClick(event: any, type: any) {
     if (type == 'date') {
       this.selectControl.reset();
     } else {
+      this.gatCustomerid = event;
       this.filterDateForm = this.fb.group({
         date: ['']
       });
@@ -96,14 +97,14 @@ export class RequestMoneyComponent {
   formattedDate: string = '';
   getRequestDepsitOnClick() {
     this.loader = true;
-    let gatCustomerid = this.selectControl.value;
+    // let gatCustomerid = this.selectControl.value;
     this.formattedDate = new Date(this.filterDateForm.value.date).toString();
     if (this.formattedDate == 'Invalid Date') {
       this.formattedDate = '';
     }
     let obj = {
       company_id: this.company_id,
-      customer_id: gatCustomerid,
+      customer_id: this.gatCustomerid,
       request_date: this.formattedDate
     }
     this._service.getRequestMoney(obj).subscribe((data: any) => {
@@ -143,6 +144,8 @@ export class RequestMoneyComponent {
       this.getCustomerData = memberData.data;
       const members = memberData.data.map((member: any) => member.name);
       this.dropdownService.setOptions('getCustomerData', memberData.data);
+    }, error =>{
+      this._tostr.error(error.message, 'Error');
     })
   }
 

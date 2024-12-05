@@ -2,13 +2,14 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container view_details_small_popup">
+<div class="dialoge_middle_container view_details_small_popup full_height_coverwithout_bottom">
+    <!-- {{data | json}} -->
     <table class="table table-bordered table-responsive bg-white more_table">
         <tbody>
-            <!-- <tr>
+            <tr>
                 <td><b>Customer No.:</b></td>
-                <td>RK-101</td>
-            </tr> -->
+                <td>{{data.customer_no}}</td>
+            </tr>
             <tr>
                 <td><b>Profile Image :</b></td>
                 <td>
@@ -54,6 +55,26 @@
                 <td><span class="badge bg-success text-white" *ngIf="data.status == 'active'">{{data.status}}</span>
                     <span class="badge bg-danger text-white " *ngIf="data.status == 'inactive'">{{data.status}}</span>
                 </td>
+            </tr>
+            <tr>
+                <td><b>Total Active Loan :</b></td>
+                <td>{{data.loan_count}}</td>
+            </tr>
+            <tr>
+                <td><b>Total Completed Loan :</b></td>
+                <td>{{data.loan_count_completed}}</td>
+            </tr>
+            <tr>
+                <td><b>Total Cancelled Loan :</b></td>
+                <td>{{data.loan_count_cancelled}}</td>
+            </tr>
+            <tr>
+                <td><b>Total Fixed Deposit :</b></td>
+                <td>{{data.loan_count_fixeddeposit}}</td>
+            </tr>
+            <tr>
+                <td><b>Total Active Deposit:</b></td>
+                <td>{{data.deposit_count}}</td>
             </tr>
             <tr>
                 <td><b>Address :</b></td>

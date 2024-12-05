@@ -4,13 +4,23 @@
 </div>
 <div class="dialoge_middle_container small_popup">
     <form focusInvalidInput [formGroup]="reportDownloadFrom">
+        <div class="main_popuptitle">Download Report For
+            <b>=> {{dataa.data.name}}</b>
+        </div>
+        <div class="main_popuptitle"><b>
+                [ Active: {{dataa.data.active}} ]
+                [ Inactive: {{dataa.data.inactive }} ]
+                [ Total: {{dataa.data.total}} ]
+            </b>
+        </div>
         <div class="modal_insert">
             <app-dropdwon [optionArray]="dropdownService.downloadstatus" [form]="reportDownloadFrom" [key]="'status'"
                 formControlName="status" name="status" field="Status"></app-dropdwon>
         </div>
         <div class="modal_insert" *ngIf="dataa.data.name === 'Loan List'">
-            <app-dropdwon [optionArray]="dropdownService.downloadloanreport" [form]="reportDownloadFrom" [key]="'loan_status'"
-                formControlName="loan_status" name="loan_status" field="Loan Status"></app-dropdwon>
+            <app-dropdwon [optionArray]="dropdownService.downloadloanreport" [form]="reportDownloadFrom"
+                [key]="'loan_status'" formControlName="loan_status" name="loan_status"
+                field="Loan Status"></app-dropdwon>
         </div>
     </form>
 </div>

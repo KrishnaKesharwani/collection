@@ -2,8 +2,9 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container full_height_cover">
+<div class="dialoge_middle_container full_height_coverwithout_bottom">
     <div class="row">
+        <!-- {{ data | json }} -->
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
                 <tr>
@@ -26,24 +27,28 @@
                 </tr>
                 <tr *ngIf="data.length == 0 && !loader">
                     <td colspan="9">
-                        <app-no-record-found type="table" notext="No loan history found for this customer."></app-no-record-found>
+                        <app-no-record-found type="table"
+                            notext="No loan history found for this customer."></app-no-record-found>
                     </td>
                 </tr>
                 <ng-container *ngIf="data.length != 0 && !loader">
-                    <tr class="received_row" *ngFor="let data of data">
-                        <td class="col" data-name="Loan Id">{{data.loan_no}}</td>
-                        <td class="col" data-name="Start Date">{{data.start_date}}</td>
-                        <td class="col" data-name="End Date">{{data.end_date}}</td>
-                        <td class="col" data-name="Days">{{data.no_of_days}}</td>
-                        <td class="text-right col" data-name="Amount">{{data.loan_amount}}</td>
-                        <td class="text-right col" data-name="Pending">{{data.remaining_amount}}</td>
-                        <td class="text-right col" data-name="Assign Member">{{data.member.name}}</td>
-                        <td class="text-center col" data-name="Status">
-                            <span class="badge text-white" [ngClass]="{'bg-warning': data.status == 'pending', 'bg-success': data.status == 'active', 'bg-danger': data.status == 'inactive'}">{{data.status}}</span>
-                        </td>
-                        <!-- <td class="text-center col" data-name="Remove"><span
+                    <ng-container *ngFor="let data of data">
+                        <tr class="received_row" *ngIf="data.loan_status !== 'pending'">
+                            <td class="col" data-name="Loan Id">{{data.loan_no}}</td>
+                            <td class="col" data-name="Start Date">{{data.start_date}}</td>
+                            <td class="col" data-name="End Date">{{data.end_date}}</td>
+                            <td class="col" data-name="Days">{{data.no_of_days}}</td>
+                            <td class="text-right col" data-name="Amount">{{data.loan_amount}}</td>
+                            <td class="text-right col" data-name="Pending">{{data.remaining_amount}}</td>
+                            <td class="text-right col" data-name="Assign Member">{{data.member.name}}</td>
+                            <td class="text-center col" data-name="Status">
+                                <span class="badge text-white"
+                                    [ngClass]="{'bg-warning': data.status == 'pending', 'bg-success': data.status == 'active', 'bg-danger': data.status == 'inactive'}">{{data.status}}</span>
+                            </td>
+                            <!-- <td class="text-center col" data-name="Remove"><span
                                 class="btn btn-sm btn-primary btn_download"><i class="mdi mdi-download"></i></span></td> -->
-                    </tr>
+                        </tr>
+                    </ng-container>
                 </ng-container>
 
             </tbody>

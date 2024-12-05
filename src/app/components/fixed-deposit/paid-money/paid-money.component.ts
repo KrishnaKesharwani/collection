@@ -57,6 +57,9 @@ export class PaidMoneyComponent {
         this.dialogRef.close(true);
         this._tostr.success(data.message, "Success");
         // this._router.navigate(['/fixed_deposit']);
+      }, error=>{
+        this.loading=false;
+        this._tostr.error(error.message, 'Error');
       })
     } else {
       this.moneyPaidForm.markAllAsTouched()

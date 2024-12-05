@@ -63,6 +63,22 @@
                                 }}</mat-icon>
                         </div>
                     </th>
+                    <th class="col mobile_col sorting_apply text-center">
+                        <span>Loans</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('loan_count');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col mobile_col sorting_apply text-center">
+                        <span>Deposit</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('deposit_count');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
                     <th class="col mobile_col">Mobile</th>
                     <th class="col sorting_apply date_col">
                         <span>Join Date</span>
@@ -85,12 +101,12 @@
             </thead>
             <tbody>
                 <tr *ngIf="loader">
-                    <td colspan="8">
+                    <td colspan="10">
                         <app-page-loader></app-page-loader>
                     </td>
                 </tr>
                 <tr *ngIf="filteredDataarray.length == 0 && !loader">
-                    <td colspan="8">
+                    <td colspan="10">
                         <app-no-record-found type="table" notext="No customer found"></app-no-record-found>
                     </td>
                 </tr>
@@ -107,6 +123,8 @@
                         </td>
                         <td class="col" data-name="Name">{{item.name}}</td>
                         <td class="col" data-name="Email">{{item.email}}</td>
+                        <td class="col text-center" data-name="Total Loans">{{item.loan_count}}</td>
+                        <td class="col text-center" data-name="Total Deposit">{{item.deposit_count}}</td>
                         <td class="col" data-name="Mobile">{{item.mobile}}</td>
                         <td class="col" data-name="Join Date">{{item.join_date}}</td>
                         <!-- <td class="col" data-name="End Date">{{item.loan_amount}}</td>

@@ -9,16 +9,16 @@
                     <div class="list_calender_filter">
                         <app-input [isDateField]="true" label="Filter Date" [(value)]="date"
                             [className]="'bottom_error_msg'" formControlName="date" [key]="'date'"
-                            [form]="filterDateForm" (valueChange)="getRequestClick('date')"></app-input>
+                            [form]="filterDateForm" (valueChange)="getRequestClick($event ,'date')"></app-input>
                         <div class="listsearch-topblock search_withaddbtn pr-0">
                             <mat-form-field class="global_dropdown global_ddl_m_p_0" appearance="outline">
                                 <mat-label>Request by Customer</mat-label>
                                 <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
-                                <mat-select [formControl]="selectControl" (valueChange)="getRequestClick('customer')"
-                                    (onChange)="getRequestDepsitOnClick()">
+                                <mat-select [formControl]="selectControl" (valueChange)="getRequestClick($event, 'customer')"
+                                    >
                                     <mat-option *ngFor="let unassigndata of getCustomerData; let i =index"
                                         [value]="unassigndata.id">
-                                        {{unassigndata.name}}
+                                        {{unassigndata.name}}  {{unassigndata.id}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -64,7 +64,7 @@
                             class="mdi mdi-currency-inr mr-1"></i>{{request.request_amount}}
                     </td>
                     <td class="col text-center" data-name="Status">
-                        <div class="badge bg-warning text-white">{{request.status}}</div>
+                        <div class="badge text-white" [ngClass]="request.status == 'pending' ? 'bg-warning' : 'bg-success'">{{request.status}}</div>
                     </td>
                     <td class="action_col" data-name="Action">
                         <div placement="bottom-right">

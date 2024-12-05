@@ -14,18 +14,17 @@
             </tr>
         </thead>
         <tbody>
-
             <tr *ngIf="data.length == 0">
                 <td colspan="5">
                     <app-no-record-found type="table"
-                        notext="No deposit paid history not found."></app-no-record-found>
+                        notext="No deposit paid history found."></app-no-record-found>
                 </td>
             </tr>
             <ng-container *ngIf="data.length != 0">
                 <tr class="received_row" *ngFor="let datainner of data; let i=index">
                     <td class="col text-center">{{i+1}}</td>
                     <td class="col">{{datainner?.action_date}}</td>
-                    <td class="col text-center">{{datainner?.debit_type}}</td>
+                    <td class="col text-center capatalise_col">{{datainner?.debit_type}}</td>
                     <td class="col text-right">{{datainner?.amount}}</td>
                     <td class="col">{{datainner?.details}}</td>
                 </tr>

@@ -24,8 +24,14 @@ export class DownloadReportComponent {
   company_id: any;
   details: string = '';
   getListtype: any;
-  constructor(public dialogRef: MatDialogRef<DownloadReportComponent>, public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public _fixedDepositService: FixedDepositService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _backupService: BackupListService, public _httpClient: HttpClient
 
+  constructor(public dialogRef: MatDialogRef<DownloadReportComponent>, 
+    public _tostr: ToastrService, public _service: CustomerService, 
+    public dropdownService: CommonComponentService, 
+    public _fixedDepositService: FixedDepositService, 
+    public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) 
+    public dataa: { title: string; subTitle: string, data: any }, 
+    public _backupService: BackupListService, public _httpClient: HttpClient
   ) { }
 
   ngOnInit() {
