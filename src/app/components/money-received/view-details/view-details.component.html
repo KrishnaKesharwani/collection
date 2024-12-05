@@ -2,7 +2,7 @@
     <div class="left_text">{{dataa.title}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container small_popup table_details_scroll">
+<div class="dialoge_middle_container table_details_scroll">
     <!-- <p>{{memberData | json}}</p> -->
     <table class="table table-responsive more_table mb-20">
         <tbody>
@@ -52,33 +52,52 @@
         </tbody>
     </table>
     <div class="popup_tablescroll">
-        {{memberLatestData | json}}
-        <table class="table table-bordered table-responsive small_texttable bg-white more_table">
+        <!-- {{memberLatestData | json}} -->
+        <table class="table mydata-table table-responsive more_table">
             <thead>
                 <tr>
                     <th>Customer Name</th>
-                    <th>Customer No.</th>
-                    <th>Time</th>
+                    <th>Amount By</th>
+                    <th>Amount Type</th>
+                    <th class="date_time_col">Date Time</th>
                     <th>Amount</th>
+                    <th class="action_col pr-0">Details</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngIf="loader">
-                    <td colspan="7">
+                    <td colspan="6">
                         <app-page-loader></app-page-loader>
                     </td>
                 </tr>
                 <tr *ngIf="memberLatestData.length == 0 && !loader">
-                    <td colspan="7">
+                    <td colspan="6">
                         <app-no-record-found type="table" notext="No customer collection found."></app-no-record-found>
                     </td>
                 </tr>
-                <ng-container *ngIf="memberLatestData.length != 0 && !loader">                  
-                    <tr *ngFor="let item of memberLatestData">
-                        <td>{{item.customer?.name}}</td>
-                        <td>{{item.customer?.customer_no}}</td>
-                        <td><small>{{item.amount_date}}</small></td>
-                        <td class="text-right">{{item.amount}}</td>
+                <ng-container *ngIf="memberLatestData.length != 0 && !loader">
+                    <tr *ngFor="let item of memberLatestData; let i=index;">
+                        <td *ngIf="item.amount_by != 'advance'">{{item.customer?.name}}</td>
+                        <td *ngIf="item.amount_by == 'advance'">Company Advance</td>
+                        <td class="capatalise_col">{{item.amount_by}}</td>
+                        <td>{{item.amount_type}}</td>
+                        <td><small>{{item.created_at}}</small></td>
+                        <td class="text-right"
+                            [ngClass]="{'color-green': item.amount_type == 'credit', 'color-red': item.amount_type == 'debit'}"
+                            >{{item.amount}}</td>
+                        <td class="action_col">
+                            <button mat-icon-button [matMenuTriggerFor]="menu" class="btn bg-primary single_btn">
+                                <i class="mdi mdi-eye"></i>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                <div class="menu_popup">
+                                    <span *ngIf="item?.details !== null">{{item.details}}</span>
+                                    <span *ngIf="item?.details == null">
+                                        No Details Availble for this actions
+                                    </span>
+                                </div>
+                            </mat-menu>
+                        </td>
                     </tr>
                 </ng-container>
             </tbody>

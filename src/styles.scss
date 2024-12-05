@@ -742,7 +742,11 @@ app-no-record-found {
         }
     }
 }
-
+.menu_popup {
+    padding: 15px;
+    font-size: 12px;
+    color: #666666;
+}
 .mydata-table {
     table-layout: fixed;
     position: relative;
@@ -776,6 +780,7 @@ app-no-record-found {
 
         button {
             width: 30px !important;
+            min-height: 30px !important;
             height: 30px !important;
             padding: 0px !important;
             line-height: 30px !important;
@@ -868,7 +873,9 @@ app-no-record-found {
     .action_colbtn {
         width: 150px;
     }
-
+    .date_time_col {
+        width: 180px;
+    }
     .action_col {
         text-align: center;
         width: 55px;
@@ -4046,7 +4053,12 @@ mark {
     background-color: #ffc107;
     color: #fff;
 }
-
+.color-green{
+    color: #4caf50;
+}
+.color-red{
+    color: #dd0000;
+}
 .snackbar-info {
     background-color: rgba(44, 168, 255, 0.8);
     color: #fff;

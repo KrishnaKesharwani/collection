@@ -8,13 +8,13 @@
                             <h3 class="mb-0">Deposit List</h3>
                         </div>
                         <div class="col p-0 head_details" *ngIf="filteredDataarray.length != 0">
-                            <div class="total_block bg-warning mr-2" (click)="openDialogCollectionHistory()"><span>Daily
+                            <div class="total_block bg-warning mr-2"><span>Daily
                                     Amount</span><b>{{depositDetail?.last_date_total_credit}}</b>
                             </div>
-                            <div class="total_block bg-primary mr-2" (click)="openDialogChangeStatus('data')">
+                            <div class="total_block bg-primary mr-2">
                                 <span>Total Amount</span><b>{{depositDetail?.total_paid_amount}}</b>
                             </div>
-                            <div class="total_block bg-success" (click)="openDialogChangeMember()"><span>Total
+                            <div class="total_block bg-success"><span>Total
                                     Customer</span><b>{{depositDetail?.total_cusotomer}}</b></div>
                         </div>
                         <div class="listsearchwith_ddl_topblock">

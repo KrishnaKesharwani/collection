@@ -32,7 +32,7 @@
                     <td class="col">{{innerdata?.action_date}}</td>
                     <td class="col">{{innerdata?.recieved_member?.name}}</td>
                     <td class="col">{{innerdata?.action_type}}</td>
-                    <td class="col text-right">{{innerdata?.amount}}</td>
+                    <td class="col text-right" [ngClass]="{'color-green': innerdata?.action_type == 'credit', 'color-red': innerdata?.action_type == 'debit'}">{{innerdata?.amount}}</td>
                 </tr>
             </ng-container>
         </tbody>

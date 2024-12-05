@@ -83,9 +83,6 @@ export class DailyCollectionComponent {
         data: data
       },
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
   }
 
   openDialogAssignMember() {
@@ -98,6 +95,10 @@ export class DailyCollectionComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.selectedStatus.setValue('active');
+        this.getDepositList('active');
+      }
     });
   }
   openDialogChangeMember(data?: any) {
@@ -110,6 +111,10 @@ export class DailyCollectionComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.selectedStatus.setValue('active');
+        this.getDepositList('active');
+      }
     });
   }
   openDialogViewDetail(data: any) {
@@ -137,6 +142,10 @@ export class DailyCollectionComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.selectedStatus.setValue('active');
+        this.getDepositList('active');
+      }
     });
   }
   isAsc: boolean = true;

@@ -45,7 +45,7 @@ export class ChangeStatusComponent {
       this._service.changeStatus(obj).subscribe((data: any) => {
         this._tostr.success(data.message, "Success");
         this.loading = false;
-        this.dialogRef.close();
+        this.dialogRef.close('true');
       });
     } else {
       this.changeDepositStatusForm.markAllAsTouched();

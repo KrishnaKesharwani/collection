@@ -70,6 +70,7 @@ export class MoneyReceivedComponent {
   openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
       disableClose: false,
+      panelClass: 'medium_popup',
       data: {
         data: data,
         id: data.id,
