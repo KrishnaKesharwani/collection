@@ -4,9 +4,12 @@
 </div>
 <div class="dialoge_middle_container small_popup">
     <form focusInvalidInput [formGroup]="advanceAmountForm">
+        <!-- <p>{{dataa.id}}, {{dataa.data | json }}</p> -->
+        <div class="main_popuptitle">Advance Amount Paid To <b>[ {{dataa.data.member.name}} ]</b></div>
         <div class="global_form_row">
             <app-input [disabled]="false" [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"
-                [className]="'bottom_error_msg'" [displayMsg]="'Amount is required'" [form]="advanceAmountForm" [key]="'amount'"></app-input>
+                [className]="'bottom_error_msg'" [displayMsg]="'Amount is required'" [form]="advanceAmountForm"
+                [key]="'amount'"></app-input>
         </div>
         <div class="global_form_row">
             <mat-form-field class="global_textarea_block" appearance="outline">

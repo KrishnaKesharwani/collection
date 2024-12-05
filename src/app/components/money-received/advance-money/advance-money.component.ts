@@ -22,26 +22,25 @@ export class AdvanceMoneyComponent {
   memberUser: any;
   amount: any;
 
-  constructor(public dialogRef: MatDialogRef<AdvanceMoneyComponent>, public _tostr: ToastrService, public _service: MoneyReceivedService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any },
+  constructor(public dialogRef: MatDialogRef<AdvanceMoneyComponent>, public _tostr: ToastrService, public _service: MoneyReceivedService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) 
+  public dataa: { title: string; subTitle: string, id: any; data: any; },
   ) { }
 
   ngOnInit() {
-    const companyData = localStorage.getItem('CompanyData');
-
-    const currentUserData = localStorage.getItem('CurrentUser');
-
-    if (companyData && currentUserData) {
-      const member = JSON.parse(companyData);
-      const memberUser = JSON.parse(companyData);
-
-
-      const userData = JSON.parse(currentUserData);
-
-      this.user_type = userData.user_type;
-      this.company_id = userData.company_id;
-      this.member_id = member.id;
-      this.memberUser = member;
-    }
+    // const companyData = localStorage.getItem('CompanyData');
+    // const currentUserData: any = localStorage.getItem('CurrentUser');
+    // debugger;
+    // const userData = JSON.parse(currentUserData);
+    // this.company_id = userData.company_id;
+    // if (companyData && currentUserData) {
+    //   const member = JSON.parse(companyData);
+    //   const memberUser = JSON.parse(companyData);
+    //   const userData = JSON.parse(currentUserData);
+    //   this.user_type = userData.user_type;
+    //   this.company_id = userData.company_id;
+    //   this.member_id = member.id;
+    //   this.memberUser = member;
+    // }
     this.advanceAmountForm = this.fb.group({
       amount: ['', Validators.required],
       details: [''],
@@ -57,8 +56,8 @@ export class AdvanceMoneyComponent {
     if (this.advanceAmountForm.valid) {
       this.loading = true;
       let obj = {
-        company_id: this.company_id,
-        member_id: this.member_id,
+        company_id: this.dataa.data.company_id,
+        member_id: this.dataa.data.member_id,
         ...this.advanceAmountForm.value
       }
       this._service.advancedMoney(obj).subscribe((data: any) => {

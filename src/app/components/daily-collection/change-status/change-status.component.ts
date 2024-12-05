@@ -16,35 +16,25 @@ interface Transaction {
 })
 export class ChangeStatusComponent {
   loading = false;
-  displayedColumns: string[] = ['item', 'cost'];
   statusForm!: FormGroup;
-  transactions: Transaction[] = [
-    { item: 'Fixed Deposit Name', cost: 4 },
-
-    { item: 'Start Date', cost: 15 },
-    { item: 'End Date', cost: 15 },
-    { item: 'Days / Time Slot', cost: 15 },
-    { item: 'Start Amount', cost: 15 },
-    { item: 'End  Amount', cost: 15 }
-  ];
 
   changeDepositStatusForm!: FormGroup;
-  constructor(public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any }, public fb: FormBuilder, public _service: DailyCollectionService, public _tostr: ToastrService, public dialogRef: MatDialogRef<ChangeStatusComponent>,
+  constructor(public dropdownService: CommonComponentService, 
+    public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) 
+    public dataa: { title: string; subTitle: string, id: any; data: any; }, public fb: FormBuilder, public _service: DailyCollectionService, public _tostr: ToastrService, public dialogRef: MatDialogRef<ChangeStatusComponent>,
   ) { }
 
-
-
-  ngOnInit() {
+  ngOnInit() {    
     this.changeDepositStatusForm = this.fb.group({
-      status: ['', Validators.required],
+      status: [this.dataa?.data.status, Validators.required],
       status_changed_reason: ['', Validators.required]
     });
-    // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
   }
 
   onClose() {
     this.dialogRef.close();
   }
+
   changeStatus() {
     if (this.changeDepositStatusForm.valid) {
       this.loading = true;
@@ -52,7 +42,6 @@ export class ChangeStatusComponent {
         deposit_id: this.dataa.id,
         ...this.changeDepositStatusForm.value
       }
-
       this._service.changeStatus(obj).subscribe((data: any) => {
         this._tostr.success(data.message, "Success");
         this.loading = false;
@@ -63,4 +52,5 @@ export class ChangeStatusComponent {
     }
 
   }
+
 }

@@ -14,7 +14,7 @@ export class ViewDetailsComponent {
   company_id: any;
   collection_id: any;
   memberData: any;
-  customerData: any[] = [];
+  memberLatestData: any[] = [];
 
   constructor(public _service: MoneyReceivedService, public routes: ActivatedRoute, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any, data: any },
   ) { }
@@ -26,16 +26,16 @@ export class ViewDetailsComponent {
     //   this.company_id = userData.company_id;
     // }
     this.loader = true;
+    this.memberData = this.dataa.data;
     this.getCollectionDetails();
   }
 
   getCollectionDetails() {
     let obj = {
       collection_id: this.dataa.id
-    }
-    this.memberData = this.dataa.data;
+    }    
     this._service.viewDetails(obj).subscribe((data: any) => {
-      this.customerData = data.data.details;
+      this.memberLatestData = data.data.details;
       this.loader = false;
     }, error => {
       this.loader = false;

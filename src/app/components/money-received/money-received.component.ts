@@ -99,6 +99,7 @@ export class MoneyReceivedComponent {
       data: {
         id: data.id,
         title: 'Add Advance Money',
+        data: data,
       },
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -117,7 +118,7 @@ export class MoneyReceivedComponent {
     }
     this.filteredDataarray = this._customActionService.sortData(column, this.collectionData);
   }
-  searchColumns: any[] = ['name', 'customer_count', 'payment_status', 'balance'];
+  searchColumns: any[] = ['name', 'customer_count', 'payment_status', 'remaining_amount'];
   searchTerm: string = '';
   searchTable(event: Event) {
 

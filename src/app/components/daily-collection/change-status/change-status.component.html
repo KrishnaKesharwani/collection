@@ -6,6 +6,7 @@
     <form focusInvalidInput [formGroup]="changeDepositStatusForm">
         <div class="row">
             <div class="col-sm-12">
+                <!-- <p>{{dataa | json}}</p> -->
                 <app-dropdwon [optionArray]="dropdownService.status" [form]="changeDepositStatusForm" [key]="'status'"
                     field="Status" formControlName="status" name="status"></app-dropdwon>
             </div>

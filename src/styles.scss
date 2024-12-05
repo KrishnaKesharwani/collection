@@ -816,7 +816,7 @@ app-no-record-found {
     }
 
     .mobile_col {
-        width: 85px;
+        width: 90px;
     }
 
     .aadhar_col {
@@ -1998,6 +1998,17 @@ mark {
 
     .bill_amt {
         font-size: 16px;
+    }
+}
+
+.main_popuptitle {
+    color: #7c7878;
+    margin-bottom: 15px;
+    font-size: 14px;
+
+    b {
+        margin-left: 5px;
+        font-weight: 500;
     }
 }
 
@@ -4063,30 +4074,30 @@ mark {
     width: 140px;
 }
 
-.card {
-    .mydata-table {
-        .s_no {
-            width: 50px;
-            text-align: center;
-        }
+.mydata-table {
+    .s_no {
+        width: 50px;
+        text-align: center;
+    }
 
-        .total_col {
-            text-align: right;
-        }
+    .total_col {
+        text-align: right;
+    }
 
-        .col {
-            padding: 5px 6px;
-        }
+    .col {
+        padding: 5px 6px;
     }
 }
 
 .listsearchwith_ddl_topblock {
     display: flex;
     align-items: center;
+
     .global_dropdown {
         margin-right: 10px;
         max-width: 140px;
     }
+
     .search-box {
         width: auto;
     }

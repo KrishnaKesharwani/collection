@@ -3,6 +3,7 @@
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container small_popup table_details_scroll">
+    <!-- <p>{{memberData | json}}</p> -->
     <table class="table table-responsive more_table mb-20">
         <tbody>
             <tr>
@@ -44,9 +45,14 @@
                         *ngIf="memberData.payment_status == 'paid'">{{memberData.payment_status}}</span>
                 </td>
             </tr>
+            <tr>
+                <td><b>Details :</b></td>
+                <td>{{memberData.details}}</td>
+            </tr>
         </tbody>
     </table>
     <div class="popup_tablescroll">
+        {{memberLatestData | json}}
         <table class="table table-bordered table-responsive small_texttable bg-white more_table">
             <thead>
                 <tr>
@@ -62,13 +68,13 @@
                         <app-page-loader></app-page-loader>
                     </td>
                 </tr>
-                <tr *ngIf="customerData.length == 0 && !loader">
+                <tr *ngIf="memberLatestData.length == 0 && !loader">
                     <td colspan="7">
                         <app-no-record-found type="table" notext="No customer collection found."></app-no-record-found>
                     </td>
                 </tr>
-                <ng-container *ngIf="customerData.length != 0 && !loader">
-                    <tr *ngFor="let item of customerData">
+                <ng-container *ngIf="memberLatestData.length != 0 && !loader">                  
+                    <tr *ngFor="let item of memberLatestData">
                         <td>{{item.customer?.name}}</td>
                         <td>{{item.customer?.customer_no}}</td>
                         <td><small>{{item.amount_date}}</small></td>

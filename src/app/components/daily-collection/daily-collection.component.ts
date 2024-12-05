@@ -77,7 +77,7 @@ export class DailyCollectionComponent {
 
   openDialogCollectionHistory(data?: any) {
     const dialogRef = this.dialog.open(CollectionHistoryComponent, {
-      disableClose: true,
+      disableClose: false,
       data: {
         title: 'Recent Collection History',
         data: data
@@ -114,9 +114,10 @@ export class DailyCollectionComponent {
   }
   openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
-
+      disableClose: false,
+      panelClass: 'medium_popup',
       data: {
-        title: 'Customer Details',
+        title: 'Deposit Details',
         data: data
       },
     });
@@ -130,7 +131,8 @@ export class DailyCollectionComponent {
       panelClass: 'delete_popup',
       data: {
         title: 'Change Deposit Status',
-        id: data.id
+        id: data.id,
+        data: data
       },
     });
 
