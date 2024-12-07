@@ -10,7 +10,7 @@ import { MaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputFieldValidationComponent } from './input-field-validation/input-field-validation.component';
 import { GlobalDatatableComponent } from './global-datatable/global-datatable.component';
-import { DataTablesModule } from 'angular-datatables';
+// import { DataTablesModule } from 'angular-datatables';
 import { HeaderComponent } from './header/header.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { ButtonLoaderComponent } from './button-loader/button-loader.component';

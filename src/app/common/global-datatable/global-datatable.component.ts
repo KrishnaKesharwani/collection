@@ -1,8 +1,8 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import DataTable from 'datatables.net'; // Import the DataTable functionality
-import DataTables from 'datatables.net';
+// import DataTable from 'datatables.net'; // Import the DataTable functionality
+// import DataTables from 'datatables.net';
 import { ActionData, ActionService } from 'src/app/services/action/action.service';
-import { DataTableDirective } from 'angular-datatables';
+// import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 
 @Component({

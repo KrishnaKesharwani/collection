@@ -57,7 +57,7 @@ import { LoginModule } from './authentication/login/login.module';
 import { CommonComponentsModule } from './common/common-components.module';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './authentication/token.interceptor';
-import { DataTablesModule } from 'angular-datatables';
+// import { DataTablesModule } from 'angular-datatables';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { ChangePasswordModule } from './components/change-password/change-password.module';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
@@ -103,7 +103,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PaidDataEntryModule,
     LoginModule,
     CommonComponentsModule,
-    DataTablesModule,
+    // DataTablesModule,
     ChangePasswordModule,
     ReportsModule,
     VcManagementModule,

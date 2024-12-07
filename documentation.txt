@@ -18,6 +18,10 @@ cmd: ng add @angular/material
 ========================
 2. Thrid Party Packages:
 ========================
+-jquery
+npm install jquery
+npm install --save-dev @types/jquery
+
 - Tostr:
 cmd: npm i ngx-toastr
 
@@ -32,9 +36,9 @@ cmd: ng add angular-datatables
 - XLSX
 cmd: npm i xlsx
 
-- File Saver
+- File Saver [01-10-2024]
 cmd: npm i file-saver   
-     npm i --save-dev @types/file-saver[01-10-2024]
+     npm i --save-dev @types/file-saver
 
 - Google Chart
 cmd: npm install angular-google-charts
