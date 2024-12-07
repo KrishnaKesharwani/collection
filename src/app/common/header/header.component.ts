@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ActionService } from 'src/app/services/action/action.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,12 +11,18 @@ import { ActionService } from 'src/app/services/action/action.service';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService, public _actionServcie: ActionService) {
+  constructor(private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private translate: TranslateService,
+    public toaster: ToastrService,
+    public _actionServcie: ActionService) {
     this.translate.setDefaultLang('en');
     const data = localStorage.getItem('CurrentUser');
+
   }
   @Output() menuClick: EventEmitter<string> = new EventEmitter<string>();
-
+  baseUrl = 'https://pinku.tech/latestSoftware';
+  currentLogingImage: any = 'assets/imgs/master-logo.png';
   apic_sync_success = false;
   loading = false;
   staff_detail: any;
@@ -30,6 +37,7 @@ export class HeaderComponent {
   currentUrl: string = '';
   offerData: any = [];
   offerShow = 0;
+  language = 'en';
   masterRoughts = ['/dashboard', '/company_list', '/profile_details', '/change_password'];
   companyRoughts = ['/dashboard', '/member_list', '/customer_list', '/loan_list', '/daily_collect_list', '/money_received', '/offers', '/fixed_deposit', '/vc_management', '/reports', '/request_money', '/profile_details', '/change_password'];
   memberRoughts = ['/dashboard', '/customer_list', '/daily_collection', '/offers', '/profile_details', '/change_password'];
@@ -38,6 +46,12 @@ export class HeaderComponent {
   ngOnInit() {
     const data: any = localStorage.getItem('CurrentUser');
     const userData = JSON.parse(data);
+
+    const imageData = userData.image;
+    if (imageData) {
+      this.currentLogingImage = imageData;
+    }
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.url;
@@ -46,6 +60,8 @@ export class HeaderComponent {
     });
     if (userData != null) {
       this.userType = userData?.user_type;
+      this.language = userData?.language;
+      this.translate.use(this.language);
       if (this.userType == 0) {
 
       } else if (this.userType == 1) {
@@ -98,7 +114,6 @@ export class HeaderComponent {
     //   this.userType = null;
     // }
   }
-  language = 'en';
 
   onClose() {
     this.offerShow = 0;
@@ -137,17 +152,17 @@ export class HeaderComponent {
     }
   }
 
-
   changeLanguage(lang: string) {
     this.language = lang;
-    this.translate.use(lang);
-    localStorage.setItem('defaultLanguage', this.language);
-
     let obj = {
       language: this.language
     }
     this._actionServcie.setLanguage(obj).subscribe((data: any) => {
-      // localStorage.setItem('defaultLanguage', data);
+      this.translate.use(lang);
+      localStorage.setItem('defaultLanguage', this.language);
+      this.toaster.success('Default language set in all application', 'Success');
+    }, error => {
+      this.toaster.error(error.massage, 'Error');
     })
   }
 }

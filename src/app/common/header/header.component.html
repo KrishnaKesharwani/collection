@@ -6,7 +6,10 @@
                 <mat-icon>menu</mat-icon>
             </div>
             <div class="res_display_show header_mainlogo">
-                <img src="../../../assets/imgs/rk-group-logo-inner.png">
+                <img *ngIf="currentLogingImage == null && currentLogingImage == ''"
+                    src="./assets/imgs/rk-group-logo-inner.png" class="navbar-brand-img" />
+                <img *ngIf="currentLogingImage" src="{{currentLogingImage}}" class="navbar-brand-img" />
+                <!-- <img src="../../../assets/imgs/rk-group-logo-inner.png"> -->
             </div>
             <div class="search-box" *ngIf="userType == 0">
                 <input type="text" class="searchtxt" placeholder="Search">
@@ -22,7 +25,7 @@
             <li class="">
                 <div class="language_container">
                     <div class="language_block" [matMenuTriggerFor]="languageMenu">
-                        <img src="../../../assets/imgs/hindi-english.png" class="hindi_english_ing" />
+                        <img src="{{baseUrl}}/assets/imgs/hindi-english.png" class="hindi_english_ing" />
                         <span class="res_display_none" *ngIf="language=='en'"
                             (click)="changeLanguage('en')">English</span>
                         <span class="res_display_none" *ngIf="language=='hn'"

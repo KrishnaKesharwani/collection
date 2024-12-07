@@ -152,7 +152,7 @@ export class AssignLoanComponent {
     this.loading = true;
     let obj = {
       company_id: this.company_id,
-      loan_status: 'approved',
+      loan_status: 'paid',
       status: 'active',
       member_id: this.member_id
     }
@@ -161,12 +161,14 @@ export class AssignLoanComponent {
         this.loanList = data.data.loans;
         this.loanListData = data.data;
         this.loading = false;
+        console.log('Availble Loan List', this.loanList);
       } else {
         this.loanList = 0;
         // this._toaster.error(data.message, 'Error')
       }
     }, error => {
       this.loading = false;
+      console.log('Availble Loan List', this.loanList);
     });
   }
 

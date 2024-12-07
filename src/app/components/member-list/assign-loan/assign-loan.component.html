@@ -29,7 +29,8 @@
     <div class="page_center_loader" *ngIf="loading">
         <app-page-loader></app-page-loader>
     </div>
-    <ng-container *ngIf="loanList?.length !== 0 && !loading">
+    <ng-container *ngIf="loanList && loanList.length > 0 && !loading">
+        <!-- <p>{{loanList | json}} {{loanList?.length}}</p> -->
         <div class="main_table_head">{{"Assign Loan"|translate}}</div>
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
@@ -65,7 +66,7 @@
         </table>
         <br>
     </ng-container>
-    <ng-container *ngIf="assignDepositData?.length !== 0 && !loading">
+    <ng-container *ngIf="assignDepositData && assignDepositData.length > 0 && !loading">
         <div class="main_table_head">{{"Assign Deposit"|translate}}</div>
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
@@ -95,7 +96,7 @@
             </tbody>
         </table>
     </ng-container>
-    <ng-container *ngIf="assignDepositData?.length == 0 && loanList?.length == 0 && !loading">
+    <ng-container *ngIf="total_assignlength == 0 && !loading">
         <app-no-record-found type="page" notext="This Member not assign any Deposit and Loan."></app-no-record-found>
     </ng-container>
 

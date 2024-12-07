@@ -423,14 +423,16 @@ export class GlobalGoogleChartsComponent {
       // google.charts.load('current', { packages: ['corechart'] });
       google.charts.setOnLoadCallback(() => {
         // debugger;
-        const chartData: any[][] = [['Days', 'Amount']];
-        const totalAmount = Number(this.memberLoanStatus.total_loan_amount);
-        const pendingAmount = Number(this.memberLoanStatus.total_remaining_amount);
-        const completedAmount = totalAmount - pendingAmount;
+        // const chartData: any[][] = [['Days', 'Amount']];
+        // const totalAmount = Number(this.memberLoanStatus.total_customers);
+        // const pendingAmount = Number(this.memberLoanStatus.attended_customers);
+        // const completedAmount = totalAmount - pendingAmount;
+        const totalCustomer =Number(this.memberLoanStatus.total_customers);
+        const pendingCustomer = Number(this.memberLoanStatus.remaining_customers);
         const pieChartData = google.visualization.arrayToDataTable([
-          ['Amount Type', 'Amount'],
-          ['Pending Amount', pendingAmount],
-          ['Received Amount', completedAmount],
+          ['Collection', 'Amount'],
+          ['Pending Customer', pendingCustomer],
+          ['Assign Customer', totalCustomer],
         ]);
         const pieOptions = {
           is3D: true,
