@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { ActionService } from 'src/app/services/action/action.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private translate: TranslateService, public _actionServcie: ActionService) {
     this.translate.setDefaultLang('en');
     const data = localStorage.getItem('CurrentUser');
   }
@@ -141,5 +142,12 @@ export class HeaderComponent {
     this.language = lang;
     this.translate.use(lang);
     localStorage.setItem('defaultLanguage', this.language);
+
+    let obj = {
+      language: this.language
+    }
+    this._actionServcie.setLanguage(obj).subscribe((data: any) => {
+      // localStorage.setItem('defaultLanguage', data);
+    })
   }
 }
