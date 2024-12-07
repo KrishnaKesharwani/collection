@@ -140,5 +140,6 @@ export class HeaderComponent {
   changeLanguage(lang: string) {
     this.language = lang;
     this.translate.use(lang);
+    localStorage.setItem('defaultLanguage', this.language);
   }
 }
