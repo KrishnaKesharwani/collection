@@ -1,5 +1,5 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container">
@@ -15,14 +15,14 @@
     <table class="table table-bordered table-responsive bg-white more_table">
         <thead>
             <tr>
-                <th>Plan</th>
-                <th>Start Date</th>
-                <th>End Date </th>
-                <th>Total Amount</th>
-                <th>Paid Amount</th>
-                <th>Pending</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th>{{"Plan"|translate}}</th>
+                <th>{{"Start Date"|translate}}</th>
+                <th>{{"End Date"|translate}} </th>
+                <th>{{"Total Amount"|translate}}</th>
+                <th>{{"Paid Amount"|translate}}</th>
+                <th>{{"Pending"|translate}}</th>
+                <th>{{"Status"|translate}}</th>
+                <th>{{"Action"|translate}}</th>
             </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@
                 <td colspan="8">
                     <app-no-record-found type="table" notext="Company not paid any amount."></app-no-record-found>
                 </td>
-            </tr>  
+            </tr>
             <tr *ngFor="let item of companyHistoryListData">
                 <td>{{item.plan}}</td>
                 <td>{{item.start_date}}</td>
@@ -48,9 +48,9 @@
                             <table class="table table-responsive matpopup_table more_table">
                                 <thead>
                                     <tr>
-                                        <th>Date</th>
-                                        <th>Amount</th>
-                                        <th>Details</th>
+                                        <th>{{"Date"|translate}}</th>
+                                        <th>{{"Amount"|translate}}</th>
+                                        <th>{{"Details"|translate}}</th>
                                     </tr>
                                 </thead>
                                 <tbody *ngFor="let subItem of item.company_plan_history">
@@ -78,14 +78,15 @@
                     <!-- <span class="badge bg-success text-white">{{item.status}}</span> -->
                 </td>
                 <td>
-                    <button mat-button class="global_table_smallbtn" (click)="addReceiveMoney(item.id)" *ngIf="item.full_paid == 0">
+                    <button mat-button class="global_table_smallbtn" (click)="addReceiveMoney(item.id)"
+                        *ngIf="item.full_paid == 0">
                         <i class="mdi mdi-currency-inr"></i>
-                    </button>                    
+                    </button>
                     <button mat-button class="global_table_smallbtn" *ngIf="item.full_paid != 0">
                         <i class="mdi mdi-check"></i>
                     </button>
                 </td>
-            </tr>                     
+            </tr>
         </tbody>
     </table>
 </div>

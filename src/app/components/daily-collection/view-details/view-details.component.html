@@ -1,16 +1,16 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container">
     <table class="table table-bordered table-responsive bg-white more_table">
         <tbody>
             <tr>
-                <td><b>Customer No.:</b></td>
+                <td><b>{{"Customer No."|translate}}:</b></td>
                 <td>{{data.customer?.customer_no}}</td>
             </tr>
             <tr>
-                <td><b>Profile Image :</b></td>
+                <td><b>{{"Profile"|translate}} :</b></td>
                 <td>
                     <div class="list_image_block float-left">
                         <img *ngIf="data.customer.image == null && data.customer.image == ''"
@@ -20,12 +20,12 @@
                 </td>
             </tr>
             <tr>
-                <td><b>Customer Name :</b></td>
+                <td><b>{{"Customer Name"|translate}} :</b></td>
                 <td>{{data.customer?.name}}</td>
             </tr>
 
             <tr>
-                <td><b>Mobile :</b></td>
+                <td><b>{{"Mobile"|translate}} :</b></td>
                 <td>{{data.customer?.mobile}}</td>
             </tr>
             <!-- <tr>
@@ -33,24 +33,24 @@
                 <td>{{data.customer?.adhar_no}}</td>
             </tr> -->
             <tr>
-                <td><b>Assign Member :</b></td>
+                <td><b>{{"Assign Member"|translate}} :</b></td>
                 <td>{{data.member?.name}}</td>
             </tr>
 
             <tr>
-                <td><b>Available Amount :</b></td>
+                <td><b>{{"Available Amount"|translate}} :</b></td>
                 <td>{{data.remaining_amount}}</td>
             </tr>
 
             <tr>
-                <td><b>Status :</b></td>
+                <td><b>{{"Status"|translate}} :</b></td>
                 <td>
                     <span class="badge bg-success text-white" *ngIf="data.status=='active'">{{data.status}}</span>
                     <span class="badge bg-warning text-white" *ngIf="data.status=='inactive'">{{data.status}}</span>
                 </td>
             </tr>
             <tr>
-                <td><b>Details :</b></td>
+                <td><b>{{"Details"|translate}} :</b></td>
                 <td>{{data.details}}</td>
             </tr>
         </tbody>

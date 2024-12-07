@@ -1,5 +1,5 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container table_details_scroll">
@@ -7,35 +7,35 @@
     <table class="table table-responsive more_table mb-20">
         <tbody>
             <tr>
-                <td><b>Member Name :</b></td>
+                <td><b>{{"Member Name"|translate}} :</b></td>
                 <td>{{memberData.member.name}}</td>
             </tr>
             <tr>
-                <td><b>Collect Date :</b></td>
+                <td><b>{{"Collect Date"|translate}} :</b></td>
                 <td>{{memberData.collect_date}}</td>
             </tr>
             <tr>
-                <td><b>Customer Meet :</b></td>
+                <td><b>{{"Customer Meet"|translate}} :</b></td>
                 <td>{{memberData.customer_count}}</td>
             </tr>
             <tr>
-                <td><b>Collect Balance :</b></td>
+                <td><b>{{"Collect Balance"|translate}} :</b></td>
                 <td>{{memberData.balance}}</td>
             </tr>
             <tr>
-                <td><b>Company Paid Amount :</b></td>
+                <td><b>{{"Company Paid Amount"|translate}} :</b></td>
                 <td>{{memberData.paid_amount}}</td>
             </tr>
             <tr>
-                <td><b>Remaining Amount :</b></td>
+                <td><b>{{"Remaining Amount"|translate}} :</b></td>
                 <td>{{memberData.remaining_amount}}</td>
             </tr>
             <tr>
-                <td><b>Previous Balance :</b></td>
+                <td><b>{{"Previous Balance"|translate}} :</b></td>
                 <td>{{memberData.previous_balance}}</td>
             </tr>
             <tr>
-                <td><b>Receive Status :</b></td>
+                <td><b>{{"Receive Status"|translate}} :</b></td>
                 <td>
                     <span class="badge bg-warning text-white"
                         *ngIf="memberData.payment_status == 'working'">{{memberData.payment_status}}</span>
@@ -46,7 +46,7 @@
                 </td>
             </tr>
             <tr>
-                <td><b>Details :</b></td>
+                <td><b>{{"Details"|translate}} :</b></td>
                 <td>{{memberData.details}}</td>
             </tr>
         </tbody>
@@ -56,12 +56,12 @@
         <table class="table mydata-table table-responsive more_table">
             <thead>
                 <tr>
-                    <th>Customer Name</th>
-                    <th>Amount By</th>
-                    <th>Amount Type</th>
-                    <th class="date_time_col">Date Time</th>
-                    <th>Amount</th>
-                    <th class="action_col pr-0">Details</th>
+                    <th>{{"Customer Name"|translate}}</th>
+                    <th>{{"Amount By"|translate}}</th>
+                    <th>{{"Amount Type"|translate}}</th>
+                    <th class="date_time_col">{{"Date Time"|translate}}</th>
+                    <th>{{"Amount"|translate}}</th>
+                    <th class="action_col pr-0">{{"Details"|translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,8 +83,8 @@
                         <td>{{item.amount_type}}</td>
                         <td><small>{{item.created_at}}</small></td>
                         <td class="text-right"
-                            [ngClass]="{'color-green': item.amount_type == 'credit', 'color-red': item.amount_type == 'debit'}"
-                            >{{item.amount}}</td>
+                            [ngClass]="{'color-green': item.amount_type == 'credit', 'color-red': item.amount_type == 'debit'}">
+                            {{item.amount}}</td>
                         <td class="action_col">
                             <button mat-icon-button [matMenuTriggerFor]="menu" class="btn bg-primary single_btn">
                                 <i class="mdi mdi-eye"></i>

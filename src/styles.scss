@@ -190,6 +190,7 @@ app-member-dashboard {
     overflow: auto;
     flex-flow: column;
 }
+
 .full_height_coverwithout_bottom {
     height: calc(100vh - 140px);
     display: flex;
@@ -748,11 +749,13 @@ app-no-record-found {
         }
     }
 }
+
 .menu_popup {
     padding: 15px;
     font-size: 12px;
     color: #666666;
 }
+
 .mydata-table {
     table-layout: fixed;
     position: relative;
@@ -875,9 +878,11 @@ app-no-record-found {
     .action_colbtn {
         width: 150px;
     }
+
     .date_time_col {
         width: 180px;
     }
+
     .action_col {
         text-align: center;
         width: 55px;
@@ -888,9 +893,11 @@ app-no-record-found {
         }
     }
 }
+
 .capatalise_col {
     text-transform: capitalize;
 }
+
 .payment_type_block {
     margin-bottom: 20px;
 
@@ -4057,12 +4064,15 @@ mark {
     background-color: #ffc107;
     color: #fff;
 }
-.color-green{
+
+.color-green {
     color: #4caf50;
 }
-.color-red{
+
+.color-red {
     color: #dd0000;
 }
+
 .snackbar-info {
     background-color: rgba(44, 168, 255, 0.8);
     color: #fff;

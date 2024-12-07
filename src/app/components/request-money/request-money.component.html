@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="row align-items-center">
             <div class="col col-sm-4 pl-1">
-                <h3 class="mb-0">Request Loan / Money List</h3>
+                <h3 class="mb-0">{{"Request Loan / Money List"|translate}}</h3>
             </div>
             <div class="col text-right pr-1 datewith_search_block calender_withsearch" *ngIf="user_type == 1">
                 <form focusInvalidInput [formGroup]="filterDateForm">
@@ -14,11 +14,11 @@
                             <mat-form-field class="global_dropdown global_ddl_m_p_0" appearance="outline">
                                 <mat-label>Request by Customer</mat-label>
                                 <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
-                                <mat-select [formControl]="selectControl" (valueChange)="getRequestClick($event, 'customer')"
-                                    >
+                                <mat-select [formControl]="selectControl"
+                                    (valueChange)="getRequestClick($event, 'customer')">
                                     <mat-option *ngFor="let unassigndata of getCustomerData; let i =index"
                                         [value]="unassigndata.id">
-                                        {{unassigndata.name}}  {{unassigndata.id}}
+                                        {{unassigndata.name}} {{unassigndata.id}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -34,13 +34,13 @@
     <table class="table align-items-center table-flush mydata-table">
         <thead class="thead-light" *ngIf="user_type == 1">
             <tr>
-                <th class="col id_col">Request No.</th>
-                <th class="col">Request Date</th>
-                <th class="col">Request By</th>
-                <th class="col">Customer Name</th>
-                <th class="col amount_col">Amount</th>
-                <th class="col status_col">Status</th>
-                <th class="col action_col">Action</th>
+                <th class="col id_col">{{"Request No."|translate}}</th>
+                <th class="col">{{"Request Date"|translate}}</th>
+                <th class="col">{{"Request By"|translate}}</th>
+                <th class="col">{{"Customer Name"|translate}}</th>
+                <th class="col amount_col">{{"Amount"|translate}}</th>
+                <th class="col status_col">{{"Status"|translate}}</th>
+                <th class="col action_col">{{"Action"|translate}}</th>
             </tr>
         </thead>
         <tbody *ngIf="user_type == 1">
@@ -64,7 +64,9 @@
                             class="mdi mdi-currency-inr mr-1"></i>{{request.request_amount}}
                     </td>
                     <td class="col text-center" data-name="Status">
-                        <div class="badge text-white" [ngClass]="request.status == 'pending' ? 'bg-warning' : 'bg-success'">{{request.status}}</div>
+                        <div class="badge text-white"
+                            [ngClass]="request.status == 'pending' ? 'bg-warning' : 'bg-success'">{{request.status}}
+                        </div>
                     </td>
                     <td class="action_col" data-name="Action">
                         <div placement="bottom-right">
@@ -77,10 +79,10 @@
                                     <button mat-menu-item (click)="openDialogActionForDeposit(request)"
                                         *ngIf="user_type == 1">
                                         <i class="mdi mdi-message-outline mr-2"></i>
-                                        <span>Action For Request</span>
+                                        <span>{{"Action For Request"|translate}}</span>
                                     </button>
                                     <button mat-menu-item (click)="openDialogViewDetail(request)">
-                                        <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                        <i class="mdi mdi-eye mr-2"></i> <span>{{"View Details"|translate}}</span>
                                     </button>
                                 </div>
                             </mat-menu>
@@ -92,13 +94,13 @@
 
         <thead class="thead-light" *ngIf="user_type == 3">
             <tr>
-                <th class="col id_col">Request Date</th>
-                <th class="col action_colbtn">Request By</th>
-                <th class="col ">Reason</th>
-                <th class="col id_col">Request Type</th>
-                <th class="col amount_col">Amount</th>
-                <th class="col status_col">Status</th>
-                <th class="col action_col">Action</th>
+                <th class="col id_col">{{"Request Date"|translate}}</th>
+                <th class="col action_colbtn">{{"Request By"|translate}}</th>
+                <th class="col ">{{"Reason"|translate}}</th>
+                <th class="col id_col">{{"Request Type"|translate}}</th>
+                <th class="col amount_col">{{"Amount"|translate}}</th>
+                <th class="col status_col">{{"Status"|translate}}</th>
+                <th class="col action_col">{{"Action"|translate}}</th>
             </tr>
         </thead>
         <tbody *ngIf="user_type == 3">
@@ -136,7 +138,7 @@
                                 <div class="table_actionmenu">
 
                                     <button mat-menu-item (click)="openDialogViewDetail(request)">
-                                        <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                        <i class="mdi mdi-eye mr-2"></i> <span>{{"View Details"|translate}}</span>
                                     </button>
                                 </div>
                             </mat-menu>

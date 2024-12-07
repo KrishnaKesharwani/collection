@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col col-sm-4 pl-1">
-                            <h3 class="mb-0">Company List</h3>
+                            <h3 class="mb-0">{{"Company List"|translate}}</h3>
                         </div>
                         <div class="col text-right pr-1 datewith_search_block">
                             <div class="listsearch-topblock search_withaddbtn">
@@ -30,24 +30,24 @@
                 <table class="table align-items-center table-flush mydata-table">
                     <thead class="thead-light">
                         <tr>
-                            <th class="col">Name</th>
-                            <th class="col profile_col">Logo</th>
+                            <th class="col">{{"Name"|translate}}</th>
+                            <th class="col profile_col">{{"Logo"|translate}}</th>
                             <th class="col sorting_apply">
-                                <span>Owner Name</span>
+                                <span>{{"Owner Name"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('owner_name',filteredDataarray);">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col">Mobile</th>
-                            <th class="col">Start Date</th>
-                            <th class="col">End Date</th>
-                            <th class="col">Plan</th>
-                            <th class="col">Amount</th>
-                            <th class="col">Pending</th>
-                            <th class="col status_col">Status</th>
-                            <th class="col action_col">Action</th>
+                            <th class="col">{{"Mobile"|translate}}</th>
+                            <th class="col">{{"Start Date"|translate}}</th>
+                            <th class="col">{{"End Date"|translate}}</th>
+                            <th class="col">{{"Plan"|translate}}</th>
+                            <th class="col">{{"Amount"|translate}}</th>
+                            <th class="col">{{"Pending"|translate}}</th>
+                            <th class="col status_col">{{"Status"|translate}}</th>
+                            <th class="col action_col">{{"Action"|translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,7 +66,8 @@
                                 <td class="col" data-name="Name">{{item.company_name}}</td>
                                 <td class="col" data-name="Logo">
                                     <div class="list_image_block" *ngIf="item.main_logo == null">
-                                        <img src="assets/imgs/rk-group-logo.png" onerror="this.src='assets/imgs/no-images.png';"  />
+                                        <img src="assets/imgs/rk-group-logo.png"
+                                            onerror="this.src='assets/imgs/no-images.png';" />
                                     </div>
                                     <div class="list_image_block" *ngIf="item.main_logo != null">
                                         <img src="{{item.main_logo}}" />
@@ -95,17 +96,19 @@
                                             <div class="table_actionmenu">
                                                 <button mat-menu-item (click)="openDialogCompanyPlan(item)">
                                                     <i class="mdi mdi-history mr-2"></i>
-                                                    <span>Company History</span>
+                                                    <span>{{"Company History"|translate}}</span>
                                                 </button>
                                                 <button mat-menu-item (click)="openDialogViewDetails(item)">
-                                                    <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                                    <i class="mdi mdi-eye mr-2"></i> <span>{{"View
+                                                        Details"|translate}}</span>
                                                 </button>
                                                 <button mat-menu-item (click)="openDialogEditDetails(item)">
-                                                    <i class="mdi mdi-pencil mr-2"></i> <span>Edit Company</span>
+                                                    <i class="mdi mdi-pencil mr-2"></i> <span>{{"Edit
+                                                        Company"|translate}}</span>
                                                 </button>
                                                 <button mat-menu-item (click)="openDialogStatus('1ms', '5ms', item)">
                                                     <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                    <span>Status</span>
+                                                    <span>{{"Status"|translate}}</span>
                                                 </button>
                                             </div>
                                         </mat-menu>

@@ -2,12 +2,14 @@
     <div class="card-header">
         <div class="row align-items-center">
             <div class="col col-sm-3 pl-1">
-                <h3 class="mb-0">Collection List</h3>
+                <h3 class="mb-0">{{"Collection List"|translate}}</h3>
             </div>
             <div class="col p-0 head_details">
-                <div class="total_block bg-success mr-2"><span>Collect Amount</span><b>{{collect_amount}}</b>
+                <div class="total_block bg-success mr-2"><span>{{"Collect
+                        Amount"|translate}}</span><b>{{collect_amount}}</b>
                 </div>
-                <div class="total_block bg-warning mr-2"><span>Attend Customer</span><b>{{attended_customer}}</b>
+                <div class="total_block bg-warning mr-2"><span>{{"Attend
+                        Customer"|translate}}</span><b>{{attended_customer}}</b>
                 </div>
                 <!-- <div class="total_block bg-primary"><span>Total Customer</span><b>{{total_customer}}</b></div> -->
             </div>
@@ -16,12 +18,12 @@
     <table class="table align-items-center table-flush mydata-table">
         <thead class="thead-light">
             <tr>
-                <th class="col">Customer Name</th>
-                <th class="col">Mobile</th>
-                <th class="col">Amount</th>
-                <th class="col">Date & Time</th>
-                <th class="col status_col">Type</th>
-                <th class="col status_col">Action</th>
+                <th class="col">{{"Customer Name"|translate}}</th>
+                <th class="col">{{"Mobile"|translate}}</th>
+                <th class="col">{{"Amount"|translate}}</th>
+                <th class="col">{{"Date & Time"|translate}}</th>
+                <th class="col status_col">{{"Type"|translate}}</th>
+                <th class="col status_col">{{"Action"|translate}}</th>
             </tr>
         </thead>
         <tbody>
@@ -42,7 +44,9 @@
                 <td class="col" data-name="Last Received">{{item?.receive_date}} {{item?.receive_time}}</td>
                 <td class="col text-center capatalise_col" data-name="Type">{{item?.collection_type}}</td>
                 <td class="col text-center" data-name="Received Type">
-                    <div class="badge text-white capatalise_col" [ngClass]="{'bg-danger': item?.received_type == 'debit', 'bg-success': item?.received_type == 'credit'}">{{item?.received_type}}</div>
+                    <div class="badge text-white capatalise_col"
+                        [ngClass]="{'bg-danger': item?.received_type == 'debit', 'bg-success': item?.received_type == 'credit'}">
+                        {{item?.received_type}}</div>
                 </td>
             </tr>
         </tbody>

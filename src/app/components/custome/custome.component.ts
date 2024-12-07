@@ -241,7 +241,7 @@ export class CustomeComponent {
     this.filteredDataarray = this._customActionService.sortData(column, this.customerData);
   }
 
-  searchColumns: any[] = ['name', 'status', 'mobile', 'email', 'customer_no', 'loan_count', 'deposit_count'];
+  searchColumns: any[] = ['name', 'status', 'mobile', 'email', 'customer_no', 'running_loan_count', 'deposit_count'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;

@@ -1,10 +1,10 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container full_height_cover middle_dialoge">
     <div class="flex_header res_flex_colum">
-        <div class="assign_text res_full_width">Total Assign : {{total_assignlength}}</div>
+        <div class="assign_text res_full_width">{{"Total Assign"|translate}} : {{total_assignlength}}</div>
         <div class="global_form_row res_full_width load_list_ddl" *ngIf="getUnassignedData?.length">
             <form form="unassignedForm" class="main_form">
                 <mat-form-field class="global_dropdown" appearance="outline">
@@ -30,18 +30,18 @@
         <app-page-loader></app-page-loader>
     </div>
     <ng-container *ngIf="loanList?.length !== 0 && !loading">
-        <div class="main_table_head">Assign Loan</div>
+        <div class="main_table_head">{{"Assign Loan"|translate}}</div>
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
                 <tr>
-                    <th>Customer No.</th>
-                    <th>Customer Name</th>
-                    <th>Contact</th>
-                    <th>Amount</th>
-                    <th>Pending</th>
-                    <th>Instalment</th>
-                    <th>Status</th>
-                    <th class="text-center">Remove</th>
+                    <th>{{"Customer No."|translate}}</th>
+                    <th>{{"Customer Name"|translate}}</th>
+                    <th>{{"Contact"|translate}}</th>
+                    <th>{{"Amount"|translate}}</th>
+                    <th>{{"Pending"|translate}}</th>
+                    <th>{{"Instalment"|translate}}</th>
+                    <th>{{"Status"|translate}}</th>
+                    <th class="text-center">{{"Remove"|translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,16 +66,16 @@
         <br>
     </ng-container>
     <ng-container *ngIf="assignDepositData?.length !== 0 && !loading">
-        <div class="main_table_head">Assign Deposit</div>
+        <div class="main_table_head">{{"Assign Deposit"|translate}}</div>
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
                 <tr>
-                    <th>Customer No.</th>
-                    <th>Customer Name</th>
-                    <th>Contact</th>
-                    <th>Balance</th>
+                    <th>{{"Customer No."|translate}}</th>
+                    <th>{{"Customer Name"|translate}}</th>
+                    <th>{{"Contact"|translate}}</th>
+                    <th>{{"Balance"|translate}}</th>
 
-                    <th>Status</th>
+                    <th>{{"Status"|translate}}</th>
                 </tr>
             </thead>
             <tbody>

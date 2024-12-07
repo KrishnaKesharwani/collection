@@ -1,33 +1,33 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container">
     <table class="table table-responsive bg-white more_table">
         <tbody>
             <tr>
-                <td><b>Customer Name :</b></td>
+                <td><b>{{"Customer Name"|translate}} :</b></td>
                 <td>{{data?.customer_name}}</td>
             </tr>
 
             <tr>
-                <td><b>Request No.:</b></td>
+                <td><b>{{"Request No."|translate}}:</b></td>
                 <td>{{data?.deposit_no}}</td>
             </tr>
             <tr>
-                <td><b>Request Amount:</b></td>
+                <td><b>{{"Request Amount"|translate}}:</b></td>
                 <td>{{data?.request_amount}}</td>
             </tr>
             <tr>
-                <td><b>Request Date:</b></td>
+                <td><b>{{"Request Date"|translate}}:</b></td>
                 <td>{{data?.request_date}}</td>
             </tr>
             <tr>
-                <td><b>Request By :</b></td>
+                <td><b>{{"Request By"|translate}} :</b></td>
                 <td>{{data?.requested_by}}</td>
             </tr>
             <tr>
-                <td><b>Request Massage :</b></td>
+                <td><b>{{"Request Massage"|translate}} :</b></td>
                 <td>{{data?.reason}}</td>
             </tr>
         </tbody>

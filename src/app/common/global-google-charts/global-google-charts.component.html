@@ -8,9 +8,9 @@
         <div class="card dash-cardbox">
             <div class="chart_innercontainer">
                 <div class="chart_heading">
-                    <div class="left_data">Loan Status</div>
+                    <div class="left_data">{{"Loan Status"|translate}}</div>
                     <div class="loan_no_conainer" *ngIf="loanStatus?.total_cusotomer !== null">
-                        <b>Total Loan Customer :</b>
+                        <b>{{"Total Loan Customer"|translate}} :</b>
                         <span>{{loanStatus?.total_cusotomer}}</span>
                         <!-- <span *ngIf="loanStatus?.total_cusotomer == null">N/A</span> -->
                     </div>
@@ -29,9 +29,9 @@
         <div class="card dash-cardbox">
             <div class="chart_innercontainer">
                 <div class="chart_heading">
-                    <div class="left_data">Last 6 Month Deposit Status</div>
+                    <div class="left_data">{{"Last 6 Month Deposit Status"|translate}}</div>
                     <div class="loan_no_conainer">
-                        <b>Total Customer :</b>
+                        <b>{{"Total Customer"|translate}} :</b>
                         <span>{{depositTotalCustomer?.total_customer}}</span>
                         <span *ngIf="depositTotalCustomer?.total_customer == null">N/A</span>
                     </div>
@@ -54,7 +54,7 @@
         <div class="card dash-cardbox">
             <div class="chart_innercontainer">
                 <div class="chart_heading">
-                    <div class="left_data">Assign / Received Amount</div>
+                    <div class="left_data">{{"Assign / Received Amount"|translate}}</div>
                 </div>
                 <div class="inner_block">
                     <div *ngIf="memberloader">
@@ -72,7 +72,7 @@
         <div class="card dash-cardbox">
             <div class="chart_innercontainer">
                 <div class="chart_heading">
-                    <div class="left_data">Last 10 Days Amount Received</div>
+                    <div class="left_data">{{"Last 10 Days Amount Received"|translate}}</div>
                 </div>
                 <div class="inner_block">
                     <div *ngIf="memberloader">
@@ -117,7 +117,7 @@
         <div class="card dash-cardbox">
             <div class="chart_innercontainer">
                 <div class="chart_heading">
-                    <div class="left_data">Last 6 Month Deposit Status</div>
+                    <div class="left_data">{{"Last 6 Month Deposit Status"|translate}}</div>
                 </div>
                 <div class="inner_block">
                     <div *ngIf="customerloader">

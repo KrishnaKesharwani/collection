@@ -1,6 +1,6 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
-    <!-- <div class="left_text" *ngIf="customer_id">{{dataa.title}}</div> -->
+    <div class="left_text">{{dataa.title |translate}}</div>
+    <!-- <div class="left_text" *ngIf="customer_id">{{dataa.title |translate}}</div> -->
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container full_height_cover">
@@ -53,9 +53,9 @@
                             [displayMsg]="'Login Id is required'"></app-input>
                     </div>
                     <div class="col-sm-4 col-lg-4 col-xs-12" *ngIf="!customer_id">
-                        <app-input [disabled]=true [isDateField]="false" label="Password"
-                            [(value)]="password" [className]="'bottom_error_msg'" [form]="customerForm"
-                            [key]="'password'" [displayMsg]="'Password is required'"></app-input>
+                        <app-input [disabled]=true [isDateField]="false" label="Password" [(value)]="password"
+                            [className]="'bottom_error_msg'" [form]="customerForm" [key]="'password'"
+                            [displayMsg]="'Password is required'"></app-input>
                     </div>
                     <div class="col-sm-4 col-lg-4 col-xs-12" *ngIf="user_type == 1">
                         <app-input *ngIf="customer_id" [isDateField]="false" label="Password" [(value)]="password"

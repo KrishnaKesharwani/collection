@@ -1,5 +1,5 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container view_details_small_popup full_height_coverwithout_bottom">
@@ -7,11 +7,11 @@
     <table class="table table-bordered table-responsive bg-white more_table">
         <tbody>
             <tr>
-                <td><b>Customer No.:</b></td>
+                <td><b>{{"Customer No."|translate}}:</b></td>
                 <td>{{data.customer_no}}</td>
             </tr>
             <tr>
-                <td><b>Profile Image :</b></td>
+                <td><b>{{"Profile"|translate}} :</b></td>
                 <td>
                     <div class="list_image_block float-left" *ngIf="data.image == null">
                         <img src="assets/imgs/default-pic.png">
@@ -22,62 +22,62 @@
                 </td>
             </tr>
             <tr>
-                <td><b>Customer Name :</b></td>
+                <td><b>{{"Customer Name"|translate}} :</b></td>
                 <td>{{data.name}}</td>
             </tr>
 
             <tr>
-                <td><b>Mobile :</b></td>
+                <td><b>{{"Mobile"|translate}} :</b></td>
                 <td>{{data.mobile}}</td>
             </tr>
             <tr>
-                <td><b>Email Id :</b></td>
+                <td><b>{{"Email"|translate}} :</b></td>
                 <td>{{data.email}}</td>
             </tr>
             <tr>
-                <td><b>Aadhar No. :</b></td>
+                <td><b>{{"Aadhar No."|translate}} :</b></td>
                 <td>{{data.aadhar_no}}</td>
             </tr>
             <tr>
-                <td><b>Join Date :</b></td>
+                <td><b>{{"Join Date"|translate}} :</b></td>
                 <td>{{data.join_date}}</td>
             </tr>
             <tr>
-                <td><b>Loan Amount :</b></td>
+                <td><b>{{"Loan Amount"|translate}} :</b></td>
                 <td>{{data.loan_amount}}</td>
             </tr>
             <tr>
-                <td><b>Pending Amount :</b></td>
+                <td><b>{{"Pending Amount"|translate}} :</b></td>
                 <td>{{data.pending_amount}}</td>
             </tr>
             <tr>
-                <td><b>Status :</b></td>
+                <td><b>{{"Status"|translate}} :</b></td>
                 <td><span class="badge bg-success text-white" *ngIf="data.status == 'active'">{{data.status}}</span>
                     <span class="badge bg-danger text-white " *ngIf="data.status == 'inactive'">{{data.status}}</span>
                 </td>
             </tr>
             <tr>
-                <td><b>Total Active Loan :</b></td>
+                <td><b>{{"Total Active Loan"|translate}} :</b></td>
                 <td>{{data.loan_count}}</td>
             </tr>
             <tr>
-                <td><b>Total Completed Loan :</b></td>
+                <td><b>{{"Total Completed Loan"|translate}} :</b></td>
                 <td>{{data.loan_count_completed}}</td>
             </tr>
             <tr>
-                <td><b>Total Cancelled Loan :</b></td>
+                <td><b>{{"Total Cancelled Loan"|translate}} :</b></td>
                 <td>{{data.loan_count_cancelled}}</td>
             </tr>
             <tr>
-                <td><b>Total Fixed Deposit :</b></td>
+                <td><b>{{"Total Fixed Deposit"|translate}} :</b></td>
                 <td>{{data.fixeddeposit_count}}</td>
             </tr>
             <tr>
-                <td><b>Total Active Deposit:</b></td>
+                <td><b>{{"Total Active Deposit"|translate}}:</b></td>
                 <td>{{data.deposit_count}}</td>
             </tr>
             <tr>
-                <td><b>Address :</b></td>
+                <td><b>{{"Address"|translate}} :</b></td>
                 <td>{{data.address}}</td>
             </tr>
         </tbody>

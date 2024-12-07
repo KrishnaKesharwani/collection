@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col col-sm-4 pl-1">
-                            <h3 class="mb-0">VC List</h3>
+                            <h3 class="mb-0">{{"VC List"|translate}}</h3>
                         </div>
                         <div class="col text-right pr-1 datewith_search_block">
                             <div class="head_details">
@@ -13,10 +13,10 @@
                                         Amount</span><b>1000</b>
                                 </div> -->
                                 <div class="total_block bg-primary mr-2">
-                                    <span>Total VC</span><b>1000</b>
+                                    <span>{{"Total VC"|translate}}</span><b>1000</b>
                                 </div>
-                                <div class="total_block bg-success"><span>Total
-                                        Customer</span><b>1000</b></div>
+                                <div class="total_block bg-success"><span>{{"Total
+                                        Customer"|translate}}</span><b>1000</b></div>
                             </div>
                             <div class="listsearch-topblock search_withaddbtn">
                                 <div class="search-box">
@@ -38,9 +38,9 @@
                 <table class="table align-items-center table-flush mydata-table">
                     <thead class="thead-light">
                         <tr>
-                            <th class="col s_no">Sno.</th>
+                            <th class="col s_no">{{"S.No."|translate}}</th>
                             <th class="col sorting_apply">
-                                <span>VC Name</span>
+                                <span>{{"VC Name"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                         'north' : 'south'
@@ -48,7 +48,7 @@
                                 </div>
                             </th>
                             <th class="col sorting_apply">
-                                <span>Type</span>
+                                <span>{{"Type"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('type');">{{ isAsc ?
                                         'north' : 'south'
@@ -56,7 +56,7 @@
                                 </div>
                             </th>
                             <th class="col sorting_apply days_time_slot_col text-center">
-                                <span>End Amount</span>
+                                <span>{{"End Amount"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('end_amount');">{{ isAsc ?
                                         'north' : 'south'
@@ -64,7 +64,7 @@
                                 </div>
                             </th>
                             <th class="col sorting_apply days_time_slot_col text-center">
-                                <span>Start Date</span>
+                                <span>{{"Start Date"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('total_customer');">{{ isAsc ?
                                         'north' : 'south'
@@ -72,7 +72,7 @@
                                 </div>
                             </th>
                             <th class="col sorting_apply days_time_slot_col text-center">
-                                <span>Total Customer</span>
+                                <span>{{"Total Customer"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('total_customer');">{{ isAsc ?
                                         'north' : 'south'
@@ -80,7 +80,7 @@
                                 </div>
                             </th>
                             <th class="col days_time_slot_col sorting_apply">
-                                <span>Paid Customer</span>
+                                <span>{{"Paid Customer"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('paid_customer');">{{ isAsc ?
                                         'north' : 'south'
@@ -88,14 +88,14 @@
                                 </div>
                             </th>
                             <th class="col sorting_apply days_time_slot_col text-center">
-                                <span>Pending Coustomer</span>
+                                <span>{{"Pending Coustomer"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('pending_customer');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col action_col">Action</th>
+                            <th class="col action_col">{{"Action"|translate}}</th>
                         </tr>
                     </thead>
                     <tbody>

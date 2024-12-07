@@ -3,7 +3,7 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col col-sm-4 pl-0">
-                    <h3 class="mb-0">Collect Money List</h3>
+                    <h3 class="mb-0">{{"Collect Money List"|translate}}</h3>
                 </div>
                 <div class="col text-right pr-1 datewith_search_block calender_withsearch">
                     <div class="list_calender_filter">
@@ -29,9 +29,9 @@
         <table class="table align-items-center table-flush mydata-table">
             <thead class="thead-light">
                 <tr>
-                    <th class="col profile_col">Profile</th>
+                    <th class="col profile_col">{{"Profile"|translate}}</th>
                     <th class="col sorting_apply">
-                        <span>Member Name</span>
+                        <span>{{"Member Name"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                 'north' : 'south'
@@ -39,24 +39,24 @@
                         </div>
                     </th>
                     <th class="col sorting_apply date_col">
-                        <span>Collect Date</span>
+                        <span>{{"Collect Date"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('collect_date');">{{ isAsc ?
                                 'north' : 'south'
                                 }}</mat-icon>
                         </div>
                     </th>
-                    <th class="col status_col">Customer Meet</th>
-                    <th class="col amount_col">Collect Amount</th>
+                    <th class="col status_col">{{"Customer Meet"|translate}}</th>
+                    <th class="col amount_col">{{"Collect Amount"|translate}}</th>
                     <th class="col status_col sorting_apply">
-                        <span>Receive Status</span>
+                        <span>{{"Receive Status"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('payment_status');">{{ isAsc ?
                                 'north' : 'south'
                                 }}</mat-icon>
                         </div>
                     </th>
-                    <th class="col action_col">Action</th>
+                    <th class="col action_col">{{"Action"|translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,15 +103,15 @@
                                 <mat-menu #menu="matMenu">
                                     <div class="table_actionmenu">
                                         <button mat-menu-item (click)="openDialogViewDetail(item)">
-                                            <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                            <i class="mdi mdi-eye mr-2"></i> <span>{{"View Details"|translate}}</span>
                                         </button>
                                         <button mat-menu-item (click)="openDialogChangeStatus(item)">
                                             <i class="mdi mdi-currency-inr mr-2"></i>
-                                            <span>Received Money</span>
+                                            <span>{{"Received Money"|translate}}</span>
                                         </button>
                                         <button mat-menu-item (click)="openDialogAdvanceMoney(item)">
                                             <i class="mdi mdi-currency-inr mr-2"></i>
-                                            <span>Advance Money</span>
+                                            <span>{{"Advance Money"|translate}}</span>
                                         </button>
                                     </div>
                                 </mat-menu>

@@ -1,5 +1,5 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container">
@@ -10,7 +10,7 @@
                 <td>RK-101</td>
             </tr> -->
             <tr>
-                <td><b>Profile Image :</b></td>
+                <td><b>{{"Profile"|translate}} :</b></td>
                 <td>
                     <div class="list_image_block float-left" *ngIf="data.image == null ">
                         <img src="assets/imgs/default-pic.png">
@@ -21,35 +21,35 @@
                 </td>
             </tr>
             <tr>
-                <td><b>Member Name :</b></td>
+                <td><b>{{"Member Name"|translate}} :</b></td>
                 <td>{{data.name}}</td>
             </tr>
 
             <tr>
-                <td><b>Mobile :</b></td>
+                <td><b>{{"Mobile"|translate}} :</b></td>
                 <td>{{data.mobile}}</td>
             </tr>
             <tr>
-                <td><b>Email Id :</b></td>
+                <td><b>{{"Email"|translate}} :</b></td>
                 <td>{{data.email}}</td>
             </tr>
             <tr>
-                <td><b>Aadhar No. :</b></td>
+                <td><b>{{"Aadhar No."|translate}} :</b></td>
                 <td>{{data.aadhar_no}}</td>
             </tr>
             <tr>
-                <td><b>Join Date :</b></td>
+                <td><b>{{"Join Date"|translate}} :</b></td>
                 <td>{{data.join_date}}</td>
             </tr>
             <tr>
-                <td><b>Status :</b></td>
+                <td><b>{{"Status"|translate}} :</b></td>
                 <td>
                     <span class="badge bg-success text-white" *ngIf="data.status == 'active'">{{data.status}}</span>
                     <span class="badge bg-danger text-white " *ngIf="data.status == 'inactive'">{{data.status}}</span>
 
             </tr>
             <tr>
-                <td><b>Address :</b></td>
+                <td><b>{{"Address"|translate}} :</b></td>
                 <td>{{data.address}}</td>
             </tr>
         </tbody>

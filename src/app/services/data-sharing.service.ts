@@ -8,7 +8,8 @@ export class DataSharingService {
   private depositData: any;
   private loanData: any;
   private collection_type: any;
-
+  private actionCardData: any;
+  private collectType: any;
   setDepositData(data: any, type: any): void {
     this.depositData = data;
     this.collection_type = type;
@@ -22,7 +23,13 @@ export class DataSharingService {
     this.loanData = data;
     this.collection_type = type;
   }
-
+  setActionData(data: any, type: any) {
+    this.actionCardData = data;
+    this.collectType = type;
+  }
+  getActionData(): { data: any, collectType: any } {
+    return { data: this.actionCardData, collectType: this.collectType };
+  }
   getLoanData(): { data: any; type: any } {
     return { data: this.loanData, type: this.collection_type };
   }

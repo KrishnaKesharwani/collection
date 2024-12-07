@@ -1,7 +1,7 @@
 <div class="entry_container">
     <div class="entry_head_details">
         <div class="entry_details" *ngIf='userType == 2'>
-            <ng-container *ngIf="loanDataShare && depositDataSharre == undefined">
+            <ng-container *ngIf="loanDataShare">
                 <div class="entry_img">
                     <img *ngIf="loanDataShare?.customer?.image == null && 
                 loanDataShare?.customer?.image == ''" src="../../../assets/imgs/default-pic.png" />
@@ -10,12 +10,13 @@
                 <ul class="user_info list-unstyled">
                     <li>{{loanDataShare?.customer?.name}}</li>
                     <li>{{loanDataShare?.customer?.mobile}}</li>
-                    <li><b><i class="mdi mdi-currency-inr"></i>{{totalDepositAmount}}</b></li>
-                    <li>
+                    <li>{{loanDataShare?.loan_amount}}</li>
+                    <li><b><i class="mdi mdi-currency-inr"></i>{{loanRemainingAmount}}</b></li>
+                    <!-- <li>
                         <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(loanDataShare)">
                             Request Money
                         </button>
-                    </li>
+                    </li> -->
                 </ul>
             </ng-container>
             <ng-container *ngIf="depositDataSharre">
@@ -29,8 +30,8 @@
                     <li>{{depositDataSharre?.customer?.name}}</li>
                     <li>{{depositDataSharre?.customer?.mobile}}</li>
                     <li><b><i class="mdi mdi-currency-inr"></i>
-                        {{totalDepositAmount}}<!-- {{depositDataSharre.total_paid}} -->
-                    </b></li>
+                            {{totalDepositAmount}}<!-- {{depositDataSharre.total_paid}} -->
+                        </b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small"
                             (click)="openDialogRequestMoney(depositDataSharre)">
@@ -51,8 +52,8 @@
                     <li>{{loanDataShare?.customer?.name}}</li>
                     <li>{{loanDataShare?.customer?.mobile}}</li>
                     <li><b><i class="mdi mdi-currency-inr"></i>
-                        {{totalDepositAmount}}<!-- {{loanDataShare.total_paid}} -->
-                    </b></li>
+                            {{totalDepositAmount}}<!-- {{loanDataShare.total_paid}} -->
+                        </b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(loanDataShare)">
                             Request Money
@@ -88,9 +89,9 @@
                     <app-input [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="receivedAmountForm" [key]="'amount'"
                         [displayMsg]="'Amount is required.'"></app-input>
-                    <div class="button_block" [ngClass]="{'flex-right': collection_type == 'loan'}">
-                        <button *ngIf="collection_type != 'loan'" mat-raised-button
-                            class="btn bg-secondary global_submit_btn" (click)="debitAmount()">
+                    <div class="button_block" [ngClass]="{'flex-right': checkType == 'loan'}">
+                        <button *ngIf="checkType != 'loan'" mat-raised-button class="btn bg-secondary global_submit_btn"
+                            (click)="debitAmount()">
                             <app-button-loader *ngIf="loadingMinus"></app-button-loader>
                             <i class="mdi mdi-minus mr-2" *ngIf="!loadingMinus"></i>
                             <span>Debit</span>
@@ -107,9 +108,9 @@
 
         <ng-container *ngIf="userType == 3">
             <div class="entry_head">
-                <div class="col date">Date</div>
-                <div class="col balance">Balance</div>
-                <div class="col amount">Amount</div>
+                <div class="col date">{{"Date"|translate}}</div>
+                <div class="col balance">{{"Balance"|translate}}</div>
+                <div class="col amount">{{"Amount"|translate}}</div>
             </div>
             <div class="entry_row_container">
                 <div *ngIf="depositData?.length && !loading">
@@ -132,11 +133,11 @@
             </div>
         </ng-container>
 
-        <ng-container *ngIf="userType == 2">
+        <ng-container *ngIf="userType == 2 && depositDataSharre">
             <div class="entry_head">
-                <div class="col date">Date</div>
-                <div class="col balance">Balance</div>
-                <div class="col amount">Amount</div>
+                <div class="col date">{{"Date"|translate}}</div>
+                <div class="col balance">{{"Balance"|translate}}</div>
+                <div class="col amount">{{"Amount"|translate}}</div>
             </div>
             <div class="entry_row_container">
                 <div *ngIf="loading">
@@ -159,29 +160,30 @@
                 </div>
             </div>
         </ng-container>
-        <ng-container *ngIf="userType == 2 && loanData?.length ==0">
+        <ng-container *ngIf="userType == 2 && loanDataShare">
             <div class="entry_head">
-                <div class="col date">Date</div>
-                <div class="col balance">Balance</div>
-                <div class="col amount">Amount</div>
+                <div class="col date">{{"Date"|translate}}</div>
+                <div class="col balance">{{"Balance"|translate}}</div>
+                <div class="col amount">{{"Amount"|translate}}</div>
             </div>
             <div class="entry_row_container">
                 <div *ngIf="loading">
                     <app-page-loader></app-page-loader>
                 </div>
-                <ng-container *ngIf="!loading">
+                <ng-container *ngIf="!loading && loanData?.length">
+                    <!-- {{loanData | json}} -->
                     <div class="entry_row" *ngFor="let item of  loanData">
                         <div class="col date">{{item.created_at}} </div>
                         <div class="col balance">{{item.balance}}</div>
-                        <div class="col amount" *ngIf="item.action_type == 'credit'">
+                        <!-- <div class="col amount" *ngIf="item.action_type == 'credit'">
                             <span class="color-green">{{item.amount}}</span>
                         </div>
                         <div class="col amount" *ngIf="item.action_type == 'debit'">
                             <span class="color-red">{{item.amount}}</span>
+                        </div> -->
+                        <div class="col amount">
+                            <span class="color-green">{{item.amount}}</span>
                         </div>
-                        <!-- <div class="col amount">
-                        <span class="color-green">{{item.amount}}</span>
-                    </div> -->
                     </div>
                 </ng-container>
                 <div *ngIf="loanData?.length == 0 && !loading">

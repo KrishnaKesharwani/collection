@@ -1,33 +1,33 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container full_height_cover ">
     <table class="table table-bordered table-responsive bg-white more_table mb-30">
         <tbody>
             <tr>
-                <td><b>Fixed Deposit Name:</b></td>
+                <td><b>{{"Fixed Deposit Name"|translate}}:</b></td>
                 <td>{{data.name}}</td>
             </tr>
             <tr>
-                <td><b>Start Date :</b></td>
+                <td><b>{{"Start Date"|translate}} :</b></td>
                 <td>{{data.start_date}}</td>
             </tr>
             <tr>
-                <td><b>End Date :</b></td>
+                <td><b>{{"End Date"|translate}} :</b></td>
                 <td>{{data.end_date}}</td>
             </tr>
 
             <tr>
-                <td><b>Deposit Amount :</b></td>
+                <td><b>{{"Deposit Amount"|translate}} :</b></td>
                 <td>{{data.deposit_amount}}</td>
             </tr>
             <tr>
-                <td><b>End Amount :</b></td>
+                <td><b>{{"End Amount"|translate}} :</b></td>
                 <td>{{data.refund_amount}}</td>
             </tr>
             <tr>
-                <td><b>Customer Name :</b></td>
+                <td><b>{{"Customer Name"|translate}} :</b></td>
                 <td>{{data.customer?.name}}</td>
             </tr>
         </tbody>
@@ -36,8 +36,8 @@
         <div class="modal_insert">
             <app-input label="Paid Amount" [(value)]="amount" [isRequired]="true" [className]="'bottom_error_msg'"
                 [form]="moneyPaidForm" [key]="'amount'" [displayMsg]="'Paid amount is required'"></app-input>
-            <app-dropdwon [optionArray]="dropdownService.debit_type" required="true" [form]="moneyPaidForm" [key]="'status'"
-                formControlName="debit_type" field="Money Paid Type"></app-dropdwon>
+            <app-dropdwon [optionArray]="dropdownService.debit_type" required="true" [form]="moneyPaidForm"
+                [key]="'status'" formControlName="debit_type" field="Money Paid Type"></app-dropdwon>
             <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
                 [className]="'bottom_error_msg'" [form]="moneyPaidForm" [key]="'details'"></app-textarea>
         </div>

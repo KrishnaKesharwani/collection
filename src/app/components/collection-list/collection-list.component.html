@@ -5,12 +5,14 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col col-sm-3 pl-1">
-                            <h3 class="mb-0">Collection List</h3>
+                            <h3 class="mb-0">{{"Collection List"|translate}}</h3>
                         </div>
                         <div class="col p-0 head_details">
-                            <div class="total_block bg-primary mr-2"><span>Available Amount</span><b>5,30,100.00</b>
+                            <div class="total_block bg-primary mr-2"><span>{{"Available
+                                    Amount"|translate}}</span><b>5,30,100.00</b>
                             </div>
-                            <div class="total_block bg-success"><span>Total Customer</span><b>150</b></div>
+                            <div class="total_block bg-success"><span>{{"Total Customer"|translate}}</span><b>150</b>
+                            </div>
                         </div>
                         <div class="col text-right pr-1 datewith_search_block">
                             <div class="listsearch-topblock mr-0">
@@ -25,14 +27,14 @@
                 <table class="table align-items-center table-flush mydata-table">
                     <thead class="thead-light">
                         <tr>
-                            <th class="col">Customer No.</th>
-                            <th class="col text-center">Image</th>
-                            <th class="col">Name</th>
-                            <th class="col">Mobile</th>
-                            <th class="col assign_col">Assign</th>
-                            <th class="col">Available Amt</th>
-                            <th class="col text-center">Status</th>
-                            <th class="col action_col">Action</th>
+                            <th class="col">{{"Customer No."|translate}}</th>
+                            <th class="col text-center">{{"Image"|translate}}</th>
+                            <th class="col">{{"Name"|translate}}</th>
+                            <th class="col">{{"Mobile"|translate}}</th>
+                            <th class="col assign_col">{{"Assign"|translate}}</th>
+                            <th class="col">{{"Available Amt"|translate}}</th>
+                            <th class="col text-center">{{"Status"|translate}}</th>
+                            <th class="col action_col">{{"Action"|translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,18 +59,21 @@
                                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                                         <a class="dropdown-item" data-target="#collectionhistory_modal"
                                             data-toggle="modal">
-                                            <i class="mdi mdi-history mr-2"></i>Collection History</a>
+                                            <i class="mdi mdi-history mr-2"></i>{{"Collection History"|translate}}</a>
                                         <a class="dropdown-item" (click)="loanAssignMember(0)"
                                             data-target="#change_member_modal" data-toggle="modal">
-                                            <i class="mdi mdi-account-check-outline mr-2"></i>Assign Member</a>
+                                            <i class="mdi mdi-account-check-outline mr-2"></i>{{"Assign
+                                            Member"|translate}}</a>
                                         <a class="dropdown-item" (click)="loanAssignMember(1)"
                                             data-target="#change_member_modal" data-toggle="modal">
-                                            <i class="mdi mdi-account-switch-outline mr-2"></i>Change Member</a>
+                                            <i class="mdi mdi-account-switch-outline mr-2"></i>{{"Change
+                                            Member"|translate}}</a>
                                         <a class="dropdown-item" data-target="#member_view_modal" data-toggle="modal">
-                                            <i class="mdi mdi-eye mr-2"></i>View Details</a>
+                                            <i class="mdi mdi-eye mr-2"></i>{{"View Details"|translate}}</a>
                                         <a class="dropdown-item" data-toggle="modal"
                                             data-target="#changeloan_status_modal">
-                                            <i class="mdi mdi-account-question-outline mr-2"></i>Change Status</a>
+                                            <i class="mdi mdi-account-question-outline mr-2"></i>{{"Change
+                                            Status"|translate}}</a>
                                     </div>
                                 </div>
                             </td>
@@ -91,7 +96,7 @@
         <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Member Details</h4>
+                    <h4 class="modal-title">{{"Member Details"|translate}}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body p-0 bg-secondary">
@@ -99,11 +104,11 @@
                         <table class="table table-bordered table-responsive bg-white more_table">
                             <tbody>
                                 <tr>
-                                    <td><b>Customer No. :</b></td>
+                                    <td><b>{{"Customer No."|translate}} :</b></td>
                                     <td>Rk-Cus101</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Profile Image :</b></td>
+                                    <td><b>{{"Profile"|translate}} :</b></td>
                                     <td>
                                         <div class="list_image_block float-left">
                                             <img src="assets/imgs/default-pic.png">
@@ -111,31 +116,31 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><b>Customer Name :</b></td>
+                                    <td><b>{{"Customer Name"|translate}} :</b></td>
                                     <td>Sandeep Kushwaha</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Mobile :</b></td>
+                                    <td><b>{{"Mobile"|translate}} :</b></td>
                                     <td>6263626505</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Aadhar No. :</b></td>
+                                    <td><b>{{"Aadhar No."|translate}} :</b></td>
                                     <td>626362650548</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Assign Member :</b></td>
+                                    <td><b>{{"Assign Member"|translate}} :</b></td>
                                     <td>Roshan</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Available Amount :</b></td>
+                                    <td><b>{{"Available Amount"|translate}} :</b></td>
                                     <td>72,000.00</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Status :</b></td>
+                                    <td><b>{{"Status"|translate}} :</b></td>
                                     <td><span class="badge bg-success text-white">Active</span></td>
                                 </tr>
                                 <tr>
-                                    <td><b>Address :</b></td>
+                                    <td><b>{{"Address"|translate}} :</b></td>
                                     <td>Home no. 72, bajrang nagar jabalpur </td>
                                 </tr>
                             </tbody>
@@ -151,8 +156,8 @@
         <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" *ngIf="loanassign_action == 1">Update Collection Member</h4>
-                    <h4 class="modal-title" *ngIf="loanassign_action != 1">Assign Collection Member</h4>
+                    <h4 class="modal-title" *ngIf="loanassign_action == 1">{{"Update Collection Member"|translate}}</h4>
+                    <h4 class="modal-title" *ngIf="loanassign_action != 1">{{"Assign Collection Member"|translate}}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body p-0 bg-secondary">
@@ -191,7 +196,7 @@
         <div class="modal-dialog modal- modal-dialog-centered modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Change Member Status</h4>
+                    <h4 class="modal-title">{{"Change Member Status"|translate}}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body p-0 bg-secondary">
@@ -222,13 +227,13 @@
         <div class="modal-dialog modal- modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Collection History</h4>
+                    <h4 class="modal-title">{{"Collection History"|translate}}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body p-0 bg-secondary">
                     <div class="card-body apic-lb-form-box">
                         <div class="d-flex title_withbtn">
-                            <h5 class="m-0"><small>Recent 10 Collection Details</small></h5>
+                            <h5 class="m-0"><small>{{"Recent 10 Collection Details"|translate}}</small></h5>
                             <button class="btn btn-sm btn-danger mb-3 pull-right mr-0"><i
                                     class="mr-2 mdi mdi-cloud-download-outline mr-1"></i>Download</button>
                         </div>
@@ -236,9 +241,9 @@
                             <table class="table table-bordered table-responsive bg-white more_table">
                                 <thead>
                                     <tr>
-                                        <th>Date</th>
-                                        <th>Receiver</th>
-                                        <th>Amount</th>
+                                        <th>{{"Date"|translate}}</th>
+                                        <th>{{"Receiver"|translate}}</th>
+                                        <th>{{"Amount"|translate}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

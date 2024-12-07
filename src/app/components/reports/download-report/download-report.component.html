@@ -1,10 +1,10 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container small_popup">
     <form focusInvalidInput [formGroup]="reportDownloadFrom">
-        <div class="main_popuptitle">Download Report For
+        <div class="main_popuptitle">{{"Download Report For"|translate}}
             <b>=> {{dataa.data.name}}</b>
         </div>
         <div class="main_popuptitle"><b>

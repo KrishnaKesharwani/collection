@@ -1,29 +1,29 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container full_height_cover ">
     <table class="table table-bordered table-responsive bg-white more_table mb-30">
         <tbody>
             <tr>
-                <td><b>Fixed Deposit Name:</b></td>
+                <td><b>{{"Fixed Deposit Name"|translate}}:</b></td>
                 <td>{{data.name}}</td>
             </tr>
             <tr>
-                <td><b>Start Date :</b></td>
+                <td><b>{{"Start Date"|translate}} :</b></td>
                 <td>{{data.start_date}}</td>
             </tr>
             <tr>
-                <td><b>End Date :</b></td>
+                <td><b>{{"End Date"|translate}} :</b></td>
                 <td>{{data.end_date}}</td>
             </tr>
 
             <tr>
-                <td><b>Start Amount :</b></td>
+                <td><b>{{"Start Amount"|translate}} :</b></td>
                 <td>{{data.deposit_amount}}</td>
             </tr>
             <tr>
-                <td><b>End Amount :</b></td>
+                <td><b>{{"End Amount"|translate}} :</b></td>
                 <td>{{data.refund_amount}}</td>
             </tr>
 

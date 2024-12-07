@@ -3,7 +3,7 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col col-sm-4 pl-1">
-                    <h3 class="mb-0">Backup List</h3>
+                    <h3 class="mb-0">{{"Backup List"|translate}}</h3>
                 </div>
                 <div class="col text-right pr-1 datewith_search_block">
                     <div class="listsearch-topblock search_withaddbtn">
@@ -18,9 +18,9 @@
         <table class="table align-items-center table-flush mydata-table">
             <thead class="thead-light">
                 <tr>
-                    <th class="col s_no">Sno.</th>
+                    <th class="col s_no">{{"S.No."|translate}}</th>
                     <th class="col sorting_apply">
-                        <span>Backup Name</span>
+                        <span>{{"Backup Name"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                 'north' : 'south'
@@ -28,7 +28,7 @@
                         </div>
                     </th>
                     <th class="col sorting_apply days_time_slot_col text-center">
-                        <span>Total Active</span>
+                        <span>{{"Total Active"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('active');">{{ isAsc ?
                                 'north' : 'south'
@@ -36,7 +36,7 @@
                         </div>
                     </th>
                     <th class="col sorting_apply days_time_slot_col text-center">
-                        <span>Total Inactive</span>
+                        <span>{{"Total Inactive"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('inactive');">{{ isAsc ?
                                 'north' : 'south'
@@ -44,14 +44,14 @@
                         </div>
                     </th>
                     <th class="col days_time_slot_col sorting_apply">
-                        <span>Last Backup Date</span>
+                        <span>{{"Last Backup Date"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('last_backup_date');">{{ isAsc ?
                                 'north' : 'south'
                                 }}</mat-icon>
                         </div>
                     </th>
-                    <th class="col action_col">Action</th>
+                    <th class="col action_col">{{"Action"|translate}}</th>
                 </tr>
             </thead>
             <tbody>

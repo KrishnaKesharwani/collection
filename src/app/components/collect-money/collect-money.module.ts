@@ -5,7 +5,7 @@ import { CollectMoneyRoutingModule } from './collect-money-routing.module';
 import { CollectMoneyComponent } from './collect-money.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { ChangeStatusComponent } from './change-status/change-status.component';
-
+import { CommonComponentsModule } from 'src/app/common/common-components.module';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { ChangeStatusComponent } from './change-status/change-status.component';
   imports: [
     CommonModule,
     MaterialModule,
-    CollectMoneyRoutingModule
+    CollectMoneyRoutingModule,
+    CommonComponentsModule
   ]
 })
 export class CollectMoneyModule { }

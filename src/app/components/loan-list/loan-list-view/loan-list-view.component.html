@@ -2,7 +2,7 @@
     <thead class="thead-light">
         <tr>
             <th class="col sorting_apply id_col">
-                <span>Loan No.</span>
+                <span>{{"Loan No."|translate}}</span>
                 <div class="sorting_arrow">
                     <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
                         'north' : 'south'
@@ -10,28 +10,28 @@
                 </div>
             </th>
             <th class="col sorting_apply id_col">
-                <span>Customer No.</span>
+                <span>{{"Customer No."|translate}}</span>
                 <div class="sorting_arrow">
                     <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
                         'north' : 'south'
                         }}</mat-icon>
                 </div>
             </th>
-            <th class="col profile_col">Profile</th>
+            <th class="col profile_col">{{"Profile"|translate}}</th>
             <th class="col sorting_apply">
-                <span>Name</span>
+                <span>{{"Name"|translate}}</span>
                 <div class="sorting_arrow">
                     <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                         'north' : 'south'
                         }}</mat-icon>
                 </div>
             </th>
-            <th class="col">Assign</th>
-            <th class="col mobile_col">Mobile</th>
-            <th class="col amount_col">Loan Amt</th>
-            <th class="col amount_col">Pending Amt
+            <th class="col">{{"Assign"|translate}}</th>
+            <th class="col mobile_col">{{"Mobile"|translate}}</th>
+            <th class="col amount_col">{{"Loan Amt"|translate}}</th>
+            <th class="col amount_col">{{"Pending Amt"|translate}}
             </th>
-            <th class="col action_col">Action</th>
+            <th class="col action_col">{{"Action"|translate}}</th>
         </tr>
     </thead>
     <tbody>

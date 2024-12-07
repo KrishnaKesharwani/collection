@@ -1,28 +1,28 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container">
     <table class="table table-bordered table-responsive bg-white more_table">
         <tbody>
             <tr>
-                <td><b>Customer Name :</b></td>
+                <td><b>{{"Customer Name"|translate}} :</b></td>
                 <td>{{data?.customer?.name}}</td>
             </tr>
             <tr>
-                <td><b>Loan No.:</b></td>
+                <td><b>{{"Loan No."|translate}}:</b></td>
                 <td>{{data?.loan_no}}</td>
             </tr>
             <tr>
-                <td><b>Loan Amount:</b></td>
+                <td><b>{{"Loan Amount"|translate}}:</b></td>
                 <td>{{data?.loan_amount}}</td>
             </tr>
             <tr>
-                <td><b>Pending Amount :</b></td>
+                <td><b>{{"Pending Amount"|translate}} :</b></td>
                 <td>{{data?.remaining_amount}}</td>
             </tr>
             <tr>
-                <td><b>Assign Member :</b></td>
+                <td><b>{{"Assign Member"|translate}} :</b></td>
                 <td>{{data?.member.name}}</td>
             </tr>
         </tbody>
@@ -35,7 +35,7 @@
     </form>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn"  (click)="onClose()" mat-stroked-button>Close</button>
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
     <button class="global_submit_btn" mat-flat-button (click)="updateLoanStatus()">
         <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
         <app-button-loader *ngIf="loading"></app-button-loader>

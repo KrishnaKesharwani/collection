@@ -129,6 +129,11 @@ export class DailyCollectListComponent {
     this._router.navigate(['/paid_data_entry', loan.id]);
   }
 
+  actionAssignItems(data: any, actionType: any) {
+    this._dataSharingService.setActionData(data, actionType);
+    this._router.navigate(['/paid_data_entry', data.id]);
+  }
+
   openDialogInstallmentHistory(data: any) {
 
     const dialogRef = this.dialog.open(InstallmentHistoryComponent, {

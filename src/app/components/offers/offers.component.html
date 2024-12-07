@@ -3,7 +3,7 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col col-sm-4 pl-1">
-                    <h3 class="mb-0">Offers / Schems List</h3>
+                    <h3 class="mb-0">{{"Offers / Schems List"|translate}}</h3>
                 </div>
                 <div class="col text-right pr-1 datewith_search_block">
                     <div class="listsearch-topblock search_withaddbtn">
@@ -27,10 +27,10 @@
         <table class="table align-items-center table-flush mydata-table" *ngIf="usertype == 1 || usertype == 2">
             <thead class="thead-light">
                 <tr>
-                    <th class="col s_no">Sno.</th>
-                    <th class="col profile_col">Image</th>
+                    <th class="col s_no">{{"S.No."|translate}}</th>
+                    <th class="col profile_col">{{"Image"|translate}}</th>
                     <th class="col sorting_apply">
-                        <span>Offer Name</span>
+                        <span>{{"Offer Name"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                 'north' : 'south'
@@ -39,10 +39,10 @@
                     </th>
 
                     <th class="col">
-                        <span>Details</span>
+                        <span>{{"Details"|translate}}</span>
                     </th>
                     <th class="col status_col sorting_apply">
-                        <span>Type</span>
+                        <span>{{"Type"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('type');">{{ isAsc ?
                                 'north' : 'south'
@@ -50,14 +50,14 @@
                         </div>
                     </th>
                     <th class="col status_col sorting_apply">
-                        <span>Status</span>
+                        <span>{{"Status"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('type');">{{ isAsc ?
                                 'north' : 'south'
                                 }}</mat-icon>
                         </div>
                     </th>
-                    <th class="col action_col">Action</th>
+                    <th class="col action_col">{{"Action"|translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,27 +103,28 @@
                                     <mat-menu #menu="matMenu">
                                         <div class="table_actionmenu">
                                             <button mat-menu-item (click)="openDialogViewDetail(item)">
-                                                <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                                <i class="mdi mdi-eye mr-2"></i> <span>{{"View
+                                                    Details"|translate}}</span>
                                             </button>
                                             <ng-container *ngIf="usertype == 1">
                                                 <button mat-menu-item (click)="openDialogEditOffer(item)">
-                                                    <i class="mdi mdi-pencil mr-2"></i> <span>Edit
-                                                        Details</span>
+                                                    <i class="mdi mdi-pencil mr-2"></i> <span>
+                                                        {{"Edit Details"|translate}}</span>
                                                 </button>
                                                 <button mat-menu-item (click)="openDialogDelete(item)">
-                                                    <i class="mdi mdi-delete mr-2"></i> <span>Delete
-                                                        Details</span>
+                                                    <i class="mdi mdi-delete mr-2"></i> <span>{{"Delete
+                                                        Details"|translate}}</span>
                                                 </button>
                                                 <button mat-menu-item
                                                     (click)="openDialogChangeStatus('1ms', '5ms',item)">
                                                     <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                    <span>Status</span>
+                                                    <span>{{"Status"|translate}}</span>
                                                 </button>
                                                 <button mat-menu-item
                                                     *ngIf="item.status == 'active' && item.default_offer != 1"
                                                     (click)="openDialogSetDefault('1ms', '5ms',item)">
                                                     <i class="mdi mdi-checkbox-marked-circle-outline mr-2"></i>
-                                                    <span>Set Default</span>
+                                                    <span>{{"Set Default"|translate}}</span>
                                                 </button>
                                             </ng-container>
                                         </div>
@@ -138,10 +139,10 @@
         <table class="table align-items-center table-flush mydata-table" *ngIf="usertype == 3">
             <thead class="thead-light">
                 <tr>
-                    <th class="col s_no">Sno.</th>
-                    <th class="col profile_col">Image</th>
+                    <th class="col s_no">{{"S.No."|translate}}</th>
+                    <th class="col profile_col">{{"Image"|translate}}</th>
                     <th class="col sorting_apply">
-                        <span>Offer Name</span>
+                        <span>{{"Offer Name"|translate}}</span>
                         <div class="sorting_arrow">
                             <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                 'north' : 'south'
@@ -149,9 +150,9 @@
                         </div>
                     </th>
                     <th class="col">
-                        <span>Details</span>
+                        <span>{{"Details"|translate}}</span>
                     </th>
-                    <th class="col action_col">View</th>
+                    <th class="col action_col">{{"View"|translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -181,7 +182,8 @@
                                 <td class="col" data-name="Name">{{item.name}}</td>
                                 <td class="col" data-name="Details">{{item.details}}</td>
                                 <td class="action_col" data-name="Action">
-                                    <button mat-menu-item class="btn bg-primary single_btn" (click)="openDialogViewDetail(item)">
+                                    <button mat-menu-item class="btn bg-primary single_btn"
+                                        (click)="openDialogViewDetail(item)">
                                         <i class="mdi mdi-eye mr-2"></i>
                                     </button>
                                 </td>

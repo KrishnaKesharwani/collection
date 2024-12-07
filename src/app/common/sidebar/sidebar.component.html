@@ -53,94 +53,95 @@
                 <li class="nav-item" *ngIf="user_type == 0">
                     <a routerLink="/company_list" routerLinkActive="active" class="nav-link "> <i
                             class="mdi mdi-account-group-outline"></i>
-                        Company List
+                        {{"Company List"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/member_list" routerLinkActive="active" class="nav-link"> <i
-                            class="mdi mdi-account-tie"></i> Members List
+                            class="mdi mdi-account-tie"></i> {{"Members List"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1 || user_type == 2">
                     <a routerLink="/customer_list" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-account-group-outline"></i>
-                        Customer List
+                        {{"Customer List"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/loan_list" routerLinkActive="active" class="nav-link"> <i
-                            class="mdi mdi-account-switch-outline"></i> Loan
-                        List
+                            class="mdi mdi-account-switch-outline"></i>
+                        {{"Loan List"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 3">
                     <a routerLink="/my_loan_list" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-account-switch-outline"></i> My
-                        Loan List
+                        {{"Loan List"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 2 || user_type == 3">
                     <a routerLink="/daily_collection" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-account-alert-outline"></i>
-                        Daily Collection
+                        {{"Daily Collection"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/daily_collect_list" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-account-alert-outline"></i>
-                        Deposit List
+                        {{"Deposit List"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/money_received" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-account-cash-outline"></i>
-                        Money Receive
+                        {{"Money Receive"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="usertype == 2 || usertype == 3">
                     <a routerLink="/collect_money" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-account-cash-outline"></i>
-                        Collect Money
+                        {{"Collect Money"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type != 0">
                     <a routerLink="/offers" routerLinkActive="active" class="nav-link"> <i
-                            class="mdi mdi-tag-multiple-outline"></i>Offers
-                        List</a>
+                            class="mdi mdi-tag-multiple-outline"></i>
+                        {{"Offers List"|translate}}</a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/fixed_deposit" routerLinkActive="active" class="nav-link"> <i
-                            class="mdi mdi-card-account-details-star-outline"></i> Fixed Deposit
+                            class="mdi mdi-card-account-details-star-outline"></i>
+                        {{"Fixed Deposit"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/vc_management" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-cash-multiple"></i>
-                        VC Management
+                        {{"VC Management"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/reports" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-chart-bar"></i>
-                        Reports
+                        {{"Reports"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 3 || user_type == 1">
                     <a routerLink="/request_money" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-currency-inr"></i>
-                        Request Money
+                        {{"Request Money"|translate}}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a routerLink="/profile_details" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-account-edit-outline"></i>
-                        Edit Profile
+                        {{"Edit Profile"|translate}}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a routerLink="/change_password" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-textbox-password"></i>
-                        Change Password
+                        {{"Change Password"|translate}}
                     </a>
                 </li>
             </ul>

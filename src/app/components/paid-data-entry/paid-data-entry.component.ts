@@ -29,51 +29,79 @@ export class PaidDataEntryComponent {
   loanDataShare: any;
   loanData: any;
   // customer_id: any;
+  loanRemainingAmount = 0;
+  totalDepositAmount = 0;
+  checkType = "";
 
-  constructor(public routes: ActivatedRoute, public _toastr: ToastrService, public router: Router, public fb: FormBuilder, public dialog: MatDialog, private _dataSharingService: DataSharingService,
+  constructor(public routes: ActivatedRoute,
+    public _toastr: ToastrService,
+    public router: Router,
+    public fb: FormBuilder,
+    public dialog: MatDialog,
+    private _dataSharingService: DataSharingService,
     public _service: PaidDataEntryService
   ) { }
 
   ngOnInit() {
-    // debugger;
-    const data = localStorage.getItem('CurrentUser');
-    if (data) {
+    const getActionMaindata = this._dataSharingService.getActionData();
+    if (getActionMaindata.collectType != undefined) {
+      this.checkType = getActionMaindata?.collectType;
+      this.customer_id = getActionMaindata.data.customer_id;
+      const data: any = localStorage.getItem('CurrentUser');
       const userData = JSON.parse(data);
       this.userType = userData.user_type;
-      this.customer_id = userData.customer_id;
-    } else {
-      this.userType = null;
-    }
-    const depositDataResult = this._dataSharingService.getDepositData();
-    const loanDataResult = this._dataSharingService.getLoanData();
-    this.depositDataSharre = depositDataResult.data;
-    this.loanDataShare = loanDataResult.data;
-    this.collection_type = depositDataResult.type;
-    this.routes.params.subscribe(params => {
-      if (!this.depositDataSharre || this.depositDataSharre.id !== params['id']
-        && !this.loanDataShare || this.loanDataShare.id !== params['id']
-      ) {
-
-        this.loan_id = params['id'];
-        this.deposit_id = params['id'];
-        if (this.depositDataSharre) {
-          this.customer_id = this.depositDataSharre.customer_id
-        } else {
-          this.customer_id = this.loanDataShare.customer_id
-        }
-        console.warn('Data not found in service. Fetching from server...');
-        // Perform API call here to fetch data by ID if needed
+      if (this.userType == 2) {
+        this.receivedAmountForm = this.fb.group({
+          amount: ['', Validators.required]
+        });
       }
-    });
-    if (this.depositDataSharre || this.loanDataShare) {
-      this.receivedAmountForm = this.fb.group({
-        amount: ['', Validators.required]
-      });
-      this.getCustomerDepositHistory();
-      this.getCustomerLoanHistory();
+      if (this.checkType == 'loan') {
+        this.loanDataShare = getActionMaindata.data;
+        this.loan_id = this.loanDataShare.id;
+        this.loanRemainingAmount = this.loanDataShare.remaining_amount;
+        this.getCustomerLoanHistory();
+      } else {
+        this.depositDataSharre = getActionMaindata.data;
+        this.deposit_id = this.depositDataSharre.id;
+        this.getCustomerDepositHistory();
+      }
     } else {
       this.redirectPage();
     }
+
+
+    // const depositDataResult = this._dataSharingService.getDepositData();
+    // const loanDataResult = this._dataSharingService.getLoanData();
+    // this.depositDataSharre = depositDataResult.data;
+    // this.loanDataShare = loanDataResult.data;
+
+
+    // this.collection_type = depositDataResult.type;
+    // this.routes.params.subscribe(params => {
+    //   if (!this.depositDataSharre || this.depositDataSharre.id !== params['id']
+    //     && !this.loanDataShare || this.loanDataShare.id !== params['id']
+    //   ) {
+
+    //     this.loan_id = params['id'];
+    //     this.deposit_id = params['id'];
+    //     if (this.depositDataSharre) {
+    //       this.customer_id = this.depositDataSharre.customer_id
+    //     } else {
+    //       this.customer_id = this.loanDataShare.customer_id
+    //     }
+    //     console.warn('Data not found in service. Fetching from server...');
+    //     // Perform API call here to fetch data by ID if needed
+    //   }
+    // });
+    // if (this.depositDataSharre || this.loanDataShare) {
+    //   this.receivedAmountForm = this.fb.group({
+    //     amount: ['', Validators.required]
+    //   });
+    //   this.getCustomerDepositHistory();
+    //   this.getCustomerLoanHistory();
+    // } else {
+    //   this.redirectPage();
+    // }
   }
 
   redirectPage() {
@@ -93,8 +121,8 @@ export class PaidDataEntryComponent {
         this._toastr.success(data.message, "Success");
 
         this.receivedAmountForm.reset();
-        this.getCustomerLoanHistory();
         this.getCustomerDepositHistory();
+        // this.getCustomerLoanHistory();
         this.loading = false;
         this.loadingMinus = false;
       }, error => {
@@ -108,7 +136,7 @@ export class PaidDataEntryComponent {
   }
 
   creditAmount() {
-    if (this.collection_type == 'loan') {
+    if (this.checkType == 'loan') {
       if (this.receivedAmountForm.valid) {
         this.loading = true;
         this.loadingPlus = true;
@@ -122,7 +150,7 @@ export class PaidDataEntryComponent {
           this.loading = false;
           this.loadingPlus = false;
           this.getCustomerLoanHistory();
-          this.getCustomerDepositHistory();
+          // this.getCustomerDepositHistory();
         }, error => {
           this._toastr.error(error.error.message, "Error");
           this.loading = false;
@@ -144,7 +172,7 @@ export class PaidDataEntryComponent {
           this._toastr.success(data.message, "Success");
 
           this.receivedAmountForm.reset();
-          this.getCustomerLoanHistory();
+          // this.getCustomerLoanHistory();
           this.getCustomerDepositHistory();
           this.loading = false;
           this.loadingPlus = false;
@@ -160,7 +188,6 @@ export class PaidDataEntryComponent {
   }
 
   openDialogRequestMoney(data?: any) {
-
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(CustomerDepositRequestMoneyComponent, {
       disableClose: true,
@@ -174,7 +201,6 @@ export class PaidDataEntryComponent {
       this.isDialogOpen = false;
     });
   }
-  totalDepositAmount = 0;
   getCustomerDepositHistory() {
     this.loading = true;
     let obj = {
@@ -202,11 +228,9 @@ export class PaidDataEntryComponent {
     this._service.loanDetails(obj).subscribe((data: any) => {
       this.loanData = data.data.collection;
       this.loading = false;
-
+      this.loanRemainingAmount = data.data.remaining_amount;
     }, error => {
       this.loading = false
     });
-
-
   }
 }

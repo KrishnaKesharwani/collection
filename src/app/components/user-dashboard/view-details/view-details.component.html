@@ -1,42 +1,42 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container">
     <table class="table table-bordered table-responsive bg-white more_table">
         <tbody>
             <tr>
-                <td><b>Loan No. :</b></td>
+                <td><b>{{"Loan No."|translate}} :</b></td>
                 <td>{{data.loan_no}}</td>
             </tr>
             <tr>
-                <td><b>Start/Apply Date :</b></td>
+                <td><b>{{"Start/Apply Date"|translate}} :</b></td>
                 <td>{{data.start_date}} To {{data.end_date}}</td>
             </tr>
             <tr>
-                <td><b>Loan Amount :</b></td>
+                <td><b>{{"Loan Amount"|translate}} :</b></td>
                 <td><i class="mdi mdi-currency-inr mr-1"></i>{{data.loan_amount}}</td>
             </tr>
             <tr>
-                <td><b>Remaining Amount :</b></td>
+                <td><b>{{"Remaining Amount"|translate}} :</b></td>
                 <td><i class="mdi mdi-currency-inr mr-1"></i>{{data.remaining_amount}}</td>
             </tr>
             <tr>
-                <td><b>Instalment :</b></td>
+                <td><b>{{"Instalment"|translate}} :</b></td>
                 <td><i class="mdi mdi-currency-inr mr-1"></i>{{data.installment_amount}}</td>
             </tr>
             <tr>
-                <td><b>Receiver :</b></td>
+                <td><b>{{"Receiver"|translate}} :</b></td>
                 <td>{{data.member?.name}}</td>
             </tr>
             <tr>
-                <td><b>Status :</b></td>
+                <td><b>{{"Status"|translate}} :</b></td>
                 <td>
                     <div class="badge bg-success text-white">{{data.loan_status}}</div>
                 </td>
             </tr>
             <tr>
-                <td><b>Loan Details :</b></td>
+                <td><b>{{"Loan Details"|translate}} :</b></td>
                 <td>{{data.details}}</td>
             </tr>
             <tr *ngIf="data.loan_status_message != null">

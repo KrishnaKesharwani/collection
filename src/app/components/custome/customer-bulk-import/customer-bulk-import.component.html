@@ -1,15 +1,17 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <div class="right_actions">
-        <div class="upload_btn" (click)="downloadExcel()">            
+        <div class="upload_btn" (click)="downloadExcel()">
             <i class="mdi mdi-cloud-download-outline"></i>
         </div>
         <div class="upload_btn">
             <form focusInvalidInput [formGroup]="customerImportForm">
-           <i class="mdi mdi-cloud-upload-outline"></i>
-           <app-fileupload accept="'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel'" formControlName="customer" name="customer" class="fileupload_transparent"
-           (change)="handleFileInput($event)"></app-fileupload>
-           </form>
+                <i class="mdi mdi-cloud-upload-outline"></i>
+                <app-fileupload
+                    accept="'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel'"
+                    formControlName="customer" name="customer" class="fileupload_transparent"
+                    (change)="handleFileInput($event)"></app-fileupload>
+            </form>
         </div>
         <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
     </div>

@@ -1,11 +1,11 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container small_popup">
     <form focusInvalidInput [formGroup]="advanceAmountForm">
         <!-- <p>{{dataa.id}}, {{dataa.data | json }}</p> -->
-        <div class="main_popuptitle">Advance Amount Paid To <b>[ {{dataa.data.member.name}} ]</b></div>
+        <div class="main_popuptitle">{{"Advance Amount Paid To"|translate}} <b>[ {{dataa.data.member.name}} ]</b></div>
         <div class="global_form_row">
             <app-input [disabled]="false" [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"
                 [className]="'bottom_error_msg'" [displayMsg]="'Amount is required'" [form]="advanceAmountForm"

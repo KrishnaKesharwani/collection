@@ -1,5 +1,5 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container view_details_small_popup table_details_scroll">
@@ -7,11 +7,11 @@
     <table class="table table-responsive more_table">
         <thead>
             <tr>
-                <th class="text-center s_no"><b>S.no</b></th>
-                <th><b>Date </b></th>
-                <th><b>Receiver </b></th>
-                <th><b>Type </b></th>
-                <th><b>Amount </b></th>
+                <th class="text-center s_no"><b>{{"S.No."|translate}}</b></th>
+                <th><b>{{"Date"|translate}} </b></th>
+                <th><b>{{"Receiver"|translate}} </b></th>
+                <th><b>{{"Type"|translate}} </b></th>
+                <th><b>{{"Amount"|translate}} </b></th>
             </tr>
         </thead>
         <tbody>
@@ -32,7 +32,9 @@
                     <td class="col">{{innerdata?.action_date}}</td>
                     <td class="col">{{innerdata?.recieved_member?.name}}</td>
                     <td class="col">{{innerdata?.action_type}}</td>
-                    <td class="col text-right" [ngClass]="{'color-green': innerdata?.action_type == 'credit', 'color-red': innerdata?.action_type == 'debit'}">{{innerdata?.amount}}</td>
+                    <td class="col text-right"
+                        [ngClass]="{'color-green': innerdata?.action_type == 'credit', 'color-red': innerdata?.action_type == 'debit'}">
+                        {{innerdata?.amount}}</td>
                 </tr>
             </ng-container>
         </tbody>

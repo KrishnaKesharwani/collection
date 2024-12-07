@@ -13,8 +13,9 @@
                 <i class="mdi mdi-magnify"></i>
             </div>
             <div class="subscription_block res_display_none" *ngIf="userType == 1">
-                <div class="subscription_row"><b>Subscription Date :</b><span>{{expiredDate}}</span></div>
-                <div class="subscription_row"><b>Plan Type :</b><span>{{planType}}</span></div>
+                <div class="subscription_row"><b>{{"Subscription Date"|translate}} :</b><span>{{expiredDate}}</span>
+                </div>
+                <div class="subscription_row"><b>{{"Plan Type"|translate}} :</b><span>{{planType}}</span></div>
             </div>
         </form>
         <ul class="navbar-nav align-items-center d-md-flex">
@@ -64,16 +65,16 @@
         <div class="dropdown-menu" [ngClass]="{'showMenu': showMenuAction }">
             <a (click)="editProfile()" class="dropdown-item">
                 <i class="mdi mdi-account-outline mdi-18px"></i>
-                <span>My Profile</span>
+                <span>{{"My Profile"|translate}}</span>
             </a>
             <a routerLink="/change_password" (click)="changePassword()" class="dropdown-item">
                 <i class="mdi mdi-lock-alert mdi-18px"></i>
-                <span>Change Password</span>
+                <span>{{"Change Password"|translate}}</span>
             </a>
             <div class="dropdown-divider"></div>
             <a (click)="logout()" class="dropdown-item">
                 <i class="mdi mdi-logout mdi-18px"></i>
-                <span>Logout</span>
+                <span>{{"Logout"|translate}}</span>
             </a>
         </div>
         <div class="outline_block" (click)="showhideMenu()" [ngClass]="{'showMenu_outline': showMenuAction }"></div>
@@ -106,7 +107,8 @@
             </tbody>
         </table>
         <div class="bottom_default_block">
-            <mat-checkbox class="left_checkbox"><span class="check_text">Not Show Again</span></mat-checkbox>
+            <mat-checkbox class="left_checkbox"><span class="check_text">{{"Not Show
+                    Again"|translate}}</span></mat-checkbox>
             <div class="right_action">
                 <button type="submit" class="global_submit_btn" mat-flat-button (click)="checkDefaultOffer()">
                     <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>

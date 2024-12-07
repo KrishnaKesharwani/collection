@@ -1,60 +1,60 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container">
-    <p>{{data | json}}</p>
+
     <table class="table table-bordered table-responsive bg-white more_table">
         <tbody>
 
             <tr>
-                <td><b>Fixed Deposit Name :</b></td>
+                <td><b>{{"Fixed Deposit Name"|translate}} :</b></td>
                 <td>{{data.name}}</td>
             </tr>
             <tr>
-                <td><b>Customer Name : </b></td>
+                <td><b>{{"Customer Name"|translate}} : </b></td>
                 <td>{{data.customer?.name}}</td>
             </tr>
             <tr>
-                <td><b>Customer Mobile :</b></td>
+                <td><b>{{"Customer Mobile"|translate}} :</b></td>
                 <td>{{data.customer?.mobile}}</td>
             </tr>
             <tr>
-                <td><b>Customer Email :</b></td>
+                <td><b>{{"Customer Email"|translate}} :</b></td>
                 <td>{{data.customer?.email}}</td>
             </tr>
 
             <tr>
-                <td><b>Start Date :</b></td>
+                <td><b>{{"Start Date"|translate}} :</b></td>
                 <td>{{data.start_date}}</td>
             </tr>
             <tr>
-                <td><b>End Date:</b></td>
+                <td><b>{{"End Date"|translate}}:</b></td>
                 <td>{{data.end_date}}</td>
             </tr>
 
 
             <tr>
-                <td><b>Start Amount :</b></td>
+                <td><b>{{"Start Amount"|translate}} :</b></td>
                 <td>{{data.deposit_amount}}</td>
             </tr>
 
             <tr>
-                <td><b>End Amount :</b></td>
+                <td><b>{{"End Amount"|translate}} :</b></td>
                 <td>{{data.refund_amount}}</td>
             </tr>
 
 
 
             <tr>
-                <td><b>Status :</b></td>
+                <td><b>{{"Status"|translate}} :</b></td>
 
                 <td><span class="badge bg-success text-white" *ngIf="data.status == 'active'">{{data.status}}</span>
                     <span class="badge bg-danger text-white " *ngIf="data.status == 'inactive'">{{data.status}}</span>
                 </td>
             </tr>
             <tr>
-                <td><b>Details :</b></td>
+                <td><b>{{"Details"|translate}} :</b></td>
                 <td>{{data.details}}</td>
             </tr>
         </tbody>

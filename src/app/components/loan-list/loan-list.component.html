@@ -3,15 +3,16 @@
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col col-sm-4 pl-1">
-                    <h3 class="mb-0">Loan List For Status</h3>
+                    <h3 class="mb-0">{{"Loan List For Status"|translate}}</h3>
                 </div>
                 <div class="col p-0 head_details">
                     <div class="total_block bg-primary mr-2">
-                        <span>{{listLoadType}} Amount</span>
+                        <span>{{listLoadType |translate}} {{"Amount"|translate}}</span>
                         <b>{{total_remaining_amount}}.00</b>
                     </div>
-                    <div class="total_block bg-success"><span>Total
-                            Customer</span><b>{{total_cusotomer}}</b></div>
+                    <div class="total_block bg-success"><span>{{"Total
+                            Customer"|translate}}</span><b>{{total_cusotomer}}</b>
+                    </div>
                 </div>
                 <div class="col text-right pr-1 datewith_search_block">
                     <div class="listsearch-topblock search_withaddbtn">
@@ -31,8 +32,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th class="col sorting_apply id_col">
-                                    <span>Loan
-                                        No.</span>
+                                    <span>{{"Loan No."|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('loan_no');">{{ isAsc ?
                                             'north' : 'south'
@@ -40,16 +40,16 @@
                                     </div>
                                 </th>
                                 <th class="col sorting_apply id_col">
-                                    <span>Customer No.</span>
+                                    <span>{{"Customer No."|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col profile_col">Profile</th>
+                                <th class="col profile_col">{{"Profile"|translate}}</th>
                                 <th class="col sorting_apply">
-                                    <span>Name</span>
+                                    <span>{{"Name"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('customer?.name');">{{ isAsc ?
                                             'north' : 'south'
@@ -57,7 +57,7 @@
                                     </div>
                                 </th>
                                 <th class="col sorting_apply">
-                                    <span>Assign</span>
+                                    <span>{{"Assign"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('member?.name');">{{ isAsc ?
                                             'north' : 'south'
@@ -65,7 +65,7 @@
                                     </div>
                                 </th>
                                 <th class="col amount_col sorting_apply">
-                                    <span>Loan Amt</span>
+                                    <span>{{"Loan Amt"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('loan_amount');">{{ isAsc ?
                                             'north' : 'south'
@@ -73,14 +73,14 @@
                                     </div>
                                 </th>
                                 <th class="col amount_col sorting_apply">
-                                    <span>Pending Amt</span>
+                                    <span>{{"Pending Amt"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('remaining_amount');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col action_col">Action</th>
+                                <th class="col action_col">{{"Action"|translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -121,25 +121,25 @@
                                                 <div class="table_actionmenu">
                                                     <button mat-menu-item (click)="openDialogInstallmentHistory(item)">
                                                         <i class="mdi mdi-history mr-2"></i> <span>
-                                                            Installment History</span>
+                                                            {{"Installment History"|translate}}</span>
                                                     </button>
                                                     <!-- <button mat-menu-item (click)="openDialogAssignMember(item)">
                                                         <i class="mdi mdi-account-check-outline mr-2"></i>
                                                         <span>
-                                                            Assign Member</span>
+                                                            {{"Assign Member"|translate}}</span>
                                                     </button> -->
                                                     <button mat-menu-item (click)="openDialogChangeMember(item)">
                                                         <i class="mdi mdi-account-switch-outline mr-2"></i>
                                                         <span>
-                                                            Change Member</span>
+                                                            {{"Change Member"|translate}}</span>
                                                     </button>
                                                     <button mat-menu-item (click)="openDialogMoreDetail(item, false)">
-                                                        <i class="mdi mdi-eye mr-2"></i> <span>View
-                                                            Details</span>
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>{{"View
+                                                            Details"|translate}}</span>
                                                     </button>
                                                     <button mat-menu-item (click)="openDialogChangeStatus(item)">
                                                         <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                        <span>Change Status</span>
+                                                        <span>{{"Change Status"|translate}}</span>
                                                     </button>
                                                 </div>
                                             </mat-menu>
@@ -161,8 +161,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th class="col sorting_apply id_col">
-                                    <span>Loan
-                                        No.</span>
+                                    <span>{{"Loan No."|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('loan_no');">{{ isAsc ?
                                             'north' : 'south'
@@ -170,16 +169,16 @@
                                     </div>
                                 </th>
                                 <th class="col sorting_apply id_col">
-                                    <span>Customer No.</span>
+                                    <span>{{"Customer No."|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col profile_col">Profile</th>
+                                <th class="col profile_col">{{"Profile"|translate}}</th>
                                 <th class="col sorting_apply">
-                                    <span>Name</span>
+                                    <span>{{"Name"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                             'north' : 'south'
@@ -187,7 +186,7 @@
                                     </div>
                                 </th>
                                 <th class="col sorting_apply">
-                                    <span>Assign</span>
+                                    <span>{{"Assign"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                             'north' : 'south'
@@ -195,7 +194,7 @@
                                     </div>
                                 </th>
                                 <th class="col amount_col sorting_apply">
-                                    <span>Loan Amt</span>
+                                    <span>{{"Loan Amt"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('loan_amount');">{{ isAsc ?
                                             'north' : 'south'
@@ -203,14 +202,14 @@
                                     </div>
                                 </th>
                                 <th class="col amount_col sorting_apply">
-                                    <span>Pending Amt</span>
+                                    <span>{{"Pending Amt"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('remaining_amount');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col action_col">Action</th>
+                                <th class="col action_col">{{"Action"|translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -251,20 +250,20 @@
                                                 <div class="table_actionmenu">
                                                     <button mat-menu-item (click)="openDialogInstallmentHistory(item)">
                                                         <i class="mdi mdi-history mr-2"></i> <span>
-                                                            Installment History</span>
+                                                            {{"Installment History"|translate}}</span>
                                                     </button>
                                                     <button mat-menu-item (click)="openDialogChangeMember(item)">
                                                         <i class="mdi mdi-account-switch-outline mr-2"></i>
                                                         <span>
-                                                            Change Member</span>
+                                                            {{"Change Member"|translate}}</span>
                                                     </button>
                                                     <button mat-menu-item (click)="openDialogMoreDetail(item, false)">
-                                                        <i class="mdi mdi-eye mr-2"></i> <span>View
-                                                            Details</span>
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>{{"View
+                                                            Details"|translate}}</span>
                                                     </button>
                                                     <button mat-menu-item (click)="openDialogChangeStatus(item)">
                                                         <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                        <span>Change Status</span>
+                                                        <span>{{"Change Status"|translate}}</span>
                                                     </button>
                                                 </div>
                                             </mat-menu>
@@ -286,16 +285,16 @@
                         <thead class="thead-light">
                             <tr>
                                 <th class="col sorting_apply id_col">
-                                    <span>Customer No.</span>
+                                    <span>{{"Customer No."|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col profile_col">Profile</th>
+                                <th class="col profile_col">{{"Profile"|translate}}</th>
                                 <th class="col sorting_apply">
-                                    <span>Name</span>
+                                    <span>{{"Name"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                             'north' : 'south'
@@ -303,7 +302,7 @@
                                     </div>
                                 </th>
                                 <th class="col sorting_apply">
-                                    <span>Apply Type</span>
+                                    <span>{{"Apply Type"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('applied_user_name');">{{ isAsc ?
                                             'north' : 'south'
@@ -311,7 +310,7 @@
                                     </div>
                                 </th>
                                 <th class="col apply_date_col sorting_apply">
-                                    <span>Apply Date</span>
+                                    <span>{{"Apply Date"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('apply_date');">{{ isAsc ?
                                             'north' : 'south'
@@ -319,14 +318,14 @@
                                     </div>
                                 </th>
                                 <th class="col amount_col sorting_apply">
-                                    <span>Amount</span>
+                                    <span>{{"Amount"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('remaining_amount');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col action_col">Action</th>
+                                <th class="col action_col">{{"Action"|translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -364,11 +363,13 @@
                                             </button>
                                             <mat-menu #menu="matMenu">
                                                 <div class="table_actionmenu">
-                                                    <button mat-menu-item  (click)="openDialogPendingLoan(item)">
-                                                        <i class="mdi mdi-message-outline mr-2"></i> <span>Action For Loan</span>
+                                                    <button mat-menu-item (click)="openDialogPendingLoan(item)">
+                                                        <i class="mdi mdi-message-outline mr-2"></i> <span>{{"Action For
+                                                            Loan"|translate}}</span>
                                                     </button>
-                                                    <button mat-menu-item  (click)="openDialogMoreDetail(item, true)">
-                                                        <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
+                                                    <button mat-menu-item (click)="openDialogMoreDetail(item, true)">
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>{{"More
+                                                            Details"|translate}}</span>
                                                     </button>
                                                 </div>
                                             </mat-menu>
@@ -386,16 +387,16 @@
                         <thead class="thead-light">
                             <tr>
                                 <th class="col sorting_apply id_col">
-                                    <span>Customer No.</span>
+                                    <span>{{"Customer No."|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col profile_col">Profile</th>
+                                <th class="col profile_col">{{"Profile"|translate}}</th>
                                 <th class="col sorting_apply">
-                                    <span>Name</span>
+                                    <span>{{"Name"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                             'north' : 'south'
@@ -403,7 +404,7 @@
                                     </div>
                                 </th>
                                 <th class="col sorting_apply">
-                                    <span>Apply Type</span>
+                                    <span>{{"Apply Type"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('applied_user_name');">{{ isAsc ?
                                             'north' : 'south'
@@ -411,7 +412,7 @@
                                     </div>
                                 </th>
                                 <th class="col apply_date_col sorting_apply">
-                                    <span>Apply Date</span>
+                                    <span>{{"Apply Date"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('apply_date');">{{ isAsc ?
                                             'north' : 'south'
@@ -419,14 +420,14 @@
                                     </div>
                                 </th>
                                 <th class="col amount_col sorting_apply">
-                                    <span>Amount</span>
+                                    <span>{{"Amount"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('remaining_amount');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col action_col">Action</th>
+                                <th class="col action_col">{{"Action"|translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -470,8 +471,9 @@
                                             </button>
                                             <mat-menu #menu="matMenu">
                                                 <div class="table_actionmenu">
-                                                    <button mat-menu-item  (click)="openDialogMoreDetail(item, true)">
-                                                        <i class="mdi mdi-eye mr-2"></i> <span>More Details</span>
+                                                    <button mat-menu-item (click)="openDialogMoreDetail(item, true)">
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>{{"More
+                                                            Details"|translate}}</span>
                                                     </button>
                                                 </div>
 
@@ -495,8 +497,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th class="col sorting_apply id_col">
-                                    <span>Loan
-                                        No.</span>
+                                    <span>{{"Loan No."|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('loan_no');">{{ isAsc ?
                                             'north' : 'south'
@@ -504,16 +505,16 @@
                                     </div>
                                 </th>
                                 <th class="col sorting_apply id_col">
-                                    <span>Customer No.</span>
+                                    <span>{{"Customer No."|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('customer_no');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col profile_col">Profile</th>
+                                <th class="col profile_col">{{"Profile"|translate}}</th>
                                 <th class="col sorting_apply">
-                                    <span>Name</span>
+                                    <span>{{"Name"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                             'north' : 'south'
@@ -521,7 +522,7 @@
                                     </div>
                                 </th>
                                 <th class="col sorting_apply">
-                                    <span>Assign</span>
+                                    <span>{{"Assign"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                             'north' : 'south'
@@ -529,7 +530,7 @@
                                     </div>
                                 </th>
                                 <th class="col amount_col sorting_apply">
-                                    <span>Loan Amt</span>
+                                    <span>{{"Loan Amt"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('loan_amount');">{{ isAsc ?
                                             'north' : 'south'
@@ -537,14 +538,14 @@
                                     </div>
                                 </th>
                                 <th class="col amount_col sorting_apply">
-                                    <span>Pending Amt</span>
+                                    <span>{{"Pending Amt"|translate}}</span>
                                     <div class="sorting_arrow">
                                         <mat-icon (click)="sortTableData('remaining_amount');">{{ isAsc ?
                                             'north' : 'south'
                                             }}</mat-icon>
                                     </div>
                                 </th>
-                                <th class="col action_col">Action</th>
+                                <th class="col action_col">{{"Action"|translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -585,11 +586,11 @@
                                                 <div class="table_actionmenu">
                                                     <button mat-menu-item (click)="openDialogInstallmentHistory(item)">
                                                         <i class="mdi mdi-history mr-2"></i> <span>
-                                                            Installment History</span>
+                                                            {{"Installment History"|translate}}</span>
                                                     </button>
                                                     <button mat-menu-item (click)="openDialogMoreDetail(item, false)">
-                                                        <i class="mdi mdi-eye mr-2"></i> <span>View
-                                                            Details</span>
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>{{"View
+                                                            Details"|translate}}</span>
                                                     </button>
                                                 </div>
                                             </mat-menu>

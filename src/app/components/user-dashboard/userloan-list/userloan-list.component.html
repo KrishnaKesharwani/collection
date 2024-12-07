@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="row align-items-center">
             <div class="col col-sm-4 pl-1">
-                <h3 class="mb-0">Loan List</h3>
+                <h3 class="mb-0">{{"Loan List"|translate}}</h3>
             </div>
             <div class="col text-right pr-1 datewith_search_block">
                 <div class="listsearch-topblock search_withaddbtn">
@@ -20,13 +20,13 @@
     <table class="table align-items-center table-flush mydata-table">
         <thead class="thead-light">
             <tr>
-                <th class="col id_col">Loan No.</th>
-                <th class="col">Start / Apply Date</th>
-                <th class="col">Receiver</th>
-                <th class="col amount_col">Amount</th>
-                <th class="col amount_col">Balance</th>
-                <th class="col status_col">Status</th>
-                <th class="col action_col">Action</th>
+                <th class="col id_col">{{"Loan No."|translate}}</th>
+                <th class="col">{{"Start/Apply Date"|translate}}</th>
+                <th class="col">{{"Receiver"|translate}}</th>
+                <th class="col amount_col">{{"Amount"|translate}}</th>
+                <th class="col amount_col">{{"Balance"|translate}}</th>
+                <th class="col status_col">{{"Status"|translate}}</th>
+                <th class="col action_col">{{"Action"|translate}}</th>
             </tr>
         </thead>
         <tbody>
@@ -63,14 +63,14 @@
                                 <div class="table_actionmenu">
                                     <button mat-menu-item (click)="openDialogInstallmentHistory(loan)">
                                         <i class="mdi mdi-history"></i> <span>
-                                            Loan History</span>
+                                            {{"Loan History"|translate}}</span>
                                     </button>
                                     <button mat-menu-item (click)="openDialogDownloadReport(loan)">
                                         <i class="mdi mdi-chart-bar"></i> <span>
-                                            Downloan Report</span>
+                                            {{"Downloan Report"|translate}}</span>
                                     </button>
                                     <button mat-menu-item (click)="openDialogViewDetail(loan)">
-                                        <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                        <i class="mdi mdi-eye mr-2"></i> <span>{{"View Details"|translate}}</span>
                                     </button>
                                 </div>
                             </mat-menu>

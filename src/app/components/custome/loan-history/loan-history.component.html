@@ -1,5 +1,5 @@
 <div class="dialoge_header">
-    <div class="left_text">{{dataa.title}}</div>
+    <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container full_height_coverwithout_bottom">
@@ -8,14 +8,14 @@
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
                 <tr>
-                    <th>Loan Id</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Days</th>
-                    <th>Amount</th>
-                    <th>Pending</th>
-                    <th>Assign Member</th>
-                    <th>Status</th>
+                    <th>{{"Loan Id"|translate}}</th>
+                    <th>{{"Start Date"|translate}}</th>
+                    <th>{{"End Date"|translate}}</th>
+                    <th>{{"Days"|translate}}</th>
+                    <th>{{"Amount"|translate}}</th>
+                    <th>{{"Pending"|translate}}</th>
+                    <th>{{"Assign Member"|translate}}</th>
+                    <th>{{"Status"|translate}}</th>
                     <!-- <th class="text-center">Downloads</th> -->
                 </tr>
             </thead>

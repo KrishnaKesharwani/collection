@@ -5,17 +5,17 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col col-sm-3 pl-1">
-                            <h3 class="mb-0">Deposit List</h3>
+                            <h3 class="mb-0">{{"Deposit List" |translate}}</h3>
                         </div>
                         <div class="col p-0 head_details" *ngIf="filteredDataarray.length != 0">
-                            <div class="total_block bg-warning mr-2"><span>Daily
-                                    Amount</span><b>{{depositDetail?.last_date_total_credit}}</b>
+                            <div class="total_block bg-warning mr-2"><span>{{"Daily Amount"
+                                    |translate}}</span><b>{{depositDetail?.last_date_total_credit}}</b>
                             </div>
                             <div class="total_block bg-primary mr-2">
-                                <span>Total Amount</span><b>{{depositDetail?.total_paid_amount}}</b>
+                                <span>{{"Total Amount" |translate}}</span><b>{{depositDetail?.total_paid_amount}}</b>
                             </div>
-                            <div class="total_block bg-success"><span>Total
-                                    Customer</span><b>{{depositDetail?.total_cusotomer}}</b></div>
+                            <div class="total_block bg-success"><span>{{"Total
+                                    Customer" |translate}}</span><b>{{depositDetail?.total_cusotomer}}</b></div>
                         </div>
                         <div class="listsearchwith_ddl_topblock">
                             <mat-form-field class="global_dropdown global_ddl_m_p_0" appearance="outline">
@@ -39,27 +39,27 @@
                     <thead class="thead-light">
                         <tr>
                             <th class="col sorting_apply id_col">
-                                <span>Deposit No.</span>
+                                <span>{{"Deposit No." |translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('deposit_no');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col profile_col">Profile</th>
+                            <th class="col profile_col">{{"Profile" |translate}}</th>
                             <th class="col sorting_apply">
-                                <span>Name</span>
+                                <span>{{"Name" |translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('name');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col">Assign Member</th>
-                            <th class="col mobile_col">Mobile</th>
-                            <th class="col amount_col">Available Amt</th>
+                            <th class="col">{{"Assign Member" |translate}}</th>
+                            <th class="col mobile_col">{{"Mobile" |translate}}</th>
+                            <th class="col amount_col">{{"Available Amt" |translate}}</th>
                             <th class="col status_col sorting_apply">
-                                <span>Status</span>
+                                <span>{{"Status" |translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('status');">{{ isAsc ?
                                         'north' : 'south'
@@ -67,7 +67,7 @@
                                 </div>
 
                             </th>
-                            <th class="col action_col">Action</th>
+                            <th class="col action_col">{{"Action" |translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,23 +113,24 @@
                                             <div class="table_actionmenu">
                                                 <button mat-menu-item (click)="openDialogCollectionHistory(item)">
                                                     <i class="mdi mdi-history mr-2"></i> <span>
-                                                        Collection History</span>
+                                                        {{"Collection History"|translate}}</span>
                                                 </button>
                                                 <!-- <button mat-menu-item (click)="openDialogAssignMember()">
                                                     <i class="mdi mdi-account-check-outline mr-2"></i> <span>
-                                                        Assign Member</span>
+                                                        {{"Assign Member"|translate}}</span>
                                                 </button> -->
                                                 <button mat-menu-item (click)="openDialogChangeMember(item)">
                                                     <i class="mdi mdi-account-switch-outline mr-2"></i> <span>
-                                                        Change Member</span>
+                                                        {{"Change Member"|translate}}</span>
                                                 </button>
                                                 <button mat-menu-item (click)="openDialogViewDetail(item)">
-                                                    <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                                    <i class="mdi mdi-eye mr-2"></i> <span>{{"View
+                                                        Details"|translate}}</span>
                                                 </button>
 
                                                 <button mat-menu-item (click)="openDialogChangeStatus(item)">
                                                     <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                    <span>Change Status</span>
+                                                    <span>{{"Change Status"|translate}}</span>
                                                 </button>
                                             </div>
                                         </mat-menu>
