@@ -27,7 +27,10 @@ export class AppComponent {
 
   currentAction: string = '';
   handleMenuClick(action: string) {
-    this.currentAction = action;
+    // debugger;
+    // setTimeout(() => {
+      this.currentAction = action;
+    // }, 100);    
   }
   ngOnInit(): void {
     const data = localStorage.getItem('CurrentUser');

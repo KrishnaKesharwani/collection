@@ -72,9 +72,26 @@
     .cdk-overlay-container {
         .cdk-overlay-pane {
             max-width: 100vw !important;
-
-            mat-dialog-container {}
+            min-width: 100%;
+            .mdc-dialog {
+                width: 100vw !important;
+                height: 100vh !important;
+            }
+            .dialoge_middle_container, .small_popup, .medium_popup, .view_details_small_popup {
+                height: calc(100vh - 115px);
+                overflow: auto;
+                width: 100%;
+                .modal_insert {
+                    padding: 0px !important;
+                    .col-sm-12 {
+                        padding: 0px !important;
+                    }
+                }
+            }
         }
+    }
+    .delete_popup {
+        width: 100% !important;
     }
 
     .more_table {}
@@ -116,9 +133,9 @@
         max-width: 100vw !important;
         max-height: 100vh !important;
         width: 100vw !important;
-        height: 100vh !important;
+        height: calc(100vh - 50px)!important;
         padding: 10px !important;
-
+        min-width: 100% ;
         .mat-mdc-dialog-surface {
             background-color: #f5f5ff !important;
         }

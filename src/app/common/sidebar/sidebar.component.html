@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div> (click)="onLetfMenuClick($event)"-->
-            <ul class="navbar-nav left-menu">
+            <ul class="navbar-nav left-menu" (click)="onLetfMenuClick($event)">
                 <!-- *ngIf="user_type == 0" -->
                 <li class="nav-item">
                     <a routerLink="/dashboard" routerLinkActive="active" class="nav-link"> <i

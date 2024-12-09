@@ -9,12 +9,12 @@ import { CommonComponentService } from 'src/app/common/common-component.service'
 })
 export class ViewDetailsComponent {
   data: any;
-
-  constructor(public dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }) { }
+  showDetails = '';
+  constructor(public dropdownService: CommonComponentService, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any; type: any; }) { }
 
   ngOnInit() {
-    debugger;
     this.data = this.dataa.data;
+    this.showDetails = this.dataa.type;
   }
-  
+
 }

@@ -2,10 +2,174 @@
     <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container">
-    <table class="table table-bordered table-responsive bg-white more_table">
-        <tbody>
-
+<div class="dialoge_middle_container full_height_coverwithout_bottom">
+    <!-- <p>{{showDetails}}</p>
+    <p>{{data | json}}</p> -->
+    <table class="table table-responsive more_table">
+        <tbody *ngIf="showDetails == 'current'">
+            <tr>
+                <td><b>{{"Loan No."|translate}}:</b></td>
+                <td>{{data.loan_no}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Customer No."|translate}}:</b></td>
+                <td>{{data.customer?.customer_no}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Profile"|translate}} :</b></td>
+                <td>
+                    <div class="list_image_block float-left" *ngIf="data.customer?.image == null">
+                        <img src="assets/imgs/default-pic.png">
+                    </div>
+                    <div class="list_image_block float-left" *ngIf="data.customer?.image != null">
+                        <img src="{{data.customer.image}}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><b>{{"Customer Name"|translate}} :</b></td>
+                <td>{{data.customer?.name}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Assign Member"|translate}} :</b></td>
+                <td>{{data.member?.name}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Apply Date"|translate}} :</b></td>
+                <td>{{data.apply_date}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Start Date"|translate}} :</b></td>
+                <td>{{data?.start_date}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"End Date"|translate}} :</b></td>
+                <td>{{data?.end_date}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Applied Name"|translate}} :</b></td>
+                <td>{{data?.applied_user_name}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Loan Amount"|translate}} :</b></td>
+                <td>{{data?.loan_amount}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Installment Amount"|translate}} :</b></td>
+                <td>{{data?.installment_amount}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Pending Amount"|translate}} :</b></td>
+                <td>{{data?.remaining_amount}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Loan Status Message"|translate}} :</b></td>
+                <td>{{data?.loan_status_message}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Loan Status"|translate}} :</b></td>
+                <td><span class="badge bg-success text-white"
+                        *ngIf="data?.loan_status == 'paid'">{{data?.loan_status}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td><b>{{"Status"|translate}} :</b></td>
+                <td><span class="badge bg-success text-white" *ngIf="data.status == 'active'">{{data.status}}</span>
+                    <span class="badge bg-danger text-white " *ngIf="data.status == 'inactive'">{{data.status}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td><b>{{"Details"|translate}} :</b></td>
+                <td>{{data?.details}}</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="showDetails == 'apply'">
+            <tr>
+                <td><b>{{"Customer No."|translate}}:</b></td>
+                <td>{{data.customer?.customer_no}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Profile"|translate}} :</b></td>
+                <td>
+                    <div class="list_image_block float-left" *ngIf="data.customer?.image == null">
+                        <img src="assets/imgs/default-pic.png">
+                    </div>
+                    <div class="list_image_block float-left" *ngIf="data.customer?.image != null">
+                        <img src="{{data.customer.image}}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><b>{{"Customer Name"|translate}} :</b></td>
+                <td>{{data.customer?.name}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Apply Date"|translate}} :</b></td>
+                <td>{{data.apply_date}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Applied Name"|translate}} :</b></td>
+                <td>{{data?.applied_user_name}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Loan Amount"|translate}} :</b></td>
+                <td>{{data?.loan_amount}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Status"|translate}} :</b></td>
+                <td>
+                    <span class="badge bg-warning text-white">{{data.status}}</span>
+                    <!-- <span class="badge bg-success text-white" *ngIf="data.status == 'active'">{{data.status}}</span>
+                    <span class="badge bg-danger text-white " *ngIf="data.status == 'inactive'">{{data.status}}</span> -->
+                </td>
+            </tr>
+            <tr>
+                <td><b>{{"Details"|translate}} :</b></td>
+                <td>{{data?.details}}</td>
+            </tr>
+        </tbody>      
+        <tbody *ngIf="showDetails == 'request'">
+            <tr>
+                <td><b>{{"Deposit No."|translate}} :</b></td>
+                <td>{{data.deposit_no}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Customer Name"|translate}} : </b></td>
+                <td>{{data.customer_name}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Request Date"|translate}} :</b></td>
+                <td>{{data.request_date}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Request By"|translate}} :</b></td>
+                <td>{{data?.requested_by}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Request Amount"|translate}} :</b></td>
+                <td>{{data?.request_amount}}</td>
+            </tr>
+            <tr>
+                <td><b>{{"Status"|translate}} :</b></td>
+                <td>
+                    <ng-container *ngIf="data.status == 'pending'">
+                        <span class="badge bg-warning text-white">{{data.status}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="data.status == 'approved'">
+                        <span class="badge bg-success text-white">{{data.status}}</span>
+                    </ng-container>
+                </td>
+            </tr>         
+            <tr>
+                <td><b>{{"Request Reason"|translate}} :</b></td>
+                <td>{{data.reason}}</td>
+            </tr>
+            <tr *ngIf="data.replied_message != ''">
+                <td><b>{{"Reply Massage"|translate}} :</b></td>
+                <td>{{data.replied_message}}</td>
+            </tr>
+        </tbody>
+        <!-- <tbody>
             <tr>
                 <td><b>{{"Coustomer No"|translate}} :</b></td>
                 <td>{{data.customer?.customer_no}}</td>
@@ -18,8 +182,6 @@
                 <td><b>{{"Mobile"|translate}} :</b></td>
                 <td>{{data.customer?.mobile}}</td>
             </tr>
-
-
             <tr>
                 <td><b>{{"Apply Date"|translate}} :</b></td>
                 <td>{{data?.apply_date}}</td>
@@ -32,10 +194,6 @@
                 <td><b>{{"Apply Amount"|translate}} :</b></td>
                 <td>{{data?.loan_amount}}</td>
             </tr>
-
-
-
-
             <tr>
                 <td><b>{{"Status"|translate}} :</b></td>
                 <td>
@@ -47,7 +205,6 @@
                     </ng-container>
                 </td>
             </tr>
-
             <tr>
                 <td><b>{{"Total Paid Amount"|translate}} :</b></td>
                 <td>{{data?.total_paid}}</td>
@@ -60,6 +217,13 @@
                 <td><b>{{"Address"|translate}} :</b></td>
                 <td>{{data.customer?.address}}</td>
             </tr>
-        </tbody>
+        </tbody> -->
     </table>
+    <ng-container *ngIf="showDetails == 'current'">
+        <div class="global_details_image_container" *ngIf="data?.document.length">
+            <div class="image_twopart card" *ngFor="let docdata of data?.document; let i=index">
+                <img [src]="docdata?.document_url" alt="Uploaded Image" />
+            </div>
+        </div>
+    </ng-container>
 </div>

@@ -2,12 +2,12 @@ import { Component, inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MassageForApplierComponent } from './massage-for-applier/massage-for-applier.component';
 import { ActionForLoanComponent } from './action-for-loan/action-for-loan.component';
-// import { ViewDetailsComponent } from './view-details/view-details.component';
+import { ViewDetailsComponent } from './view-details/view-details.component';
 import { LoanService } from 'src/app/services/loan/loan.service';
 import { InstallmentHistoryComponent } from '../loan-list/installment-history/installment-history.component';
 import { ActionForDepositComponent } from './action-for-deposit/action-for-deposit.component';
 import { DepositRequestService } from 'src/app/services/depositRequest/deposit-request.service';
-import { ViewDetailsComponent } from '../request-money/view-details/view-details.component';
+// import { ViewDetailsComponent } from '../request-money/view-details/view-details.component';
 import { TranslateService } from '@ngx-translate/core';
 
 export interface DialogData {
@@ -69,11 +69,13 @@ export class AdminDashboardComponent {
   }
 
   readonly dialog2 = inject(MatDialog);
-  openDialogViewDetails(data?: any) {
+  openDialogViewDetails(data?: any, detailstype?: any, title?: any) {
     const dialogRef = this.dialog2.open(ViewDetailsComponent, {
+      panelClass: 'medium_popup',
       data: {
         data: data,
-        title: 'Request Details',
+        title: title,
+        type: detailstype
       },
     });
   }

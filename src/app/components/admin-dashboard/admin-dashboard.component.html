@@ -22,12 +22,12 @@
         </thead>
         <tbody>
             <tr *ngIf="loader">
-                <td colspan="9">
+                <td class="col norecord_col" colspan="9">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
             <tr *ngIf="loanData.length == 0 && !loader">
-                <td colspan="9">
+                <td class="col norecord_col" colspan="9">
                     <app-no-record-found type="table" notext="No Loan Found."></app-no-record-found>
                 </td>
             </tr>
@@ -55,7 +55,7 @@
                                     <i class="mdi mdi-history mr-2"></i>
                                     <span>{{"Loan History"|translate}}</span>
                                 </button>
-                                <button mat-menu-item (click)="openDialogViewDetails(loan)">
+                                <button mat-menu-item (click)="openDialogViewDetails(loan, 'current', 'Loan Details')">
                                     <i class="mdi mdi-eye mr-2"></i>
                                     <span>{{"View Details"|translate}}</span>
                                 </button>
@@ -91,12 +91,12 @@
         </thead>
         <tbody>
             <tr *ngIf="loader">
-                <td colspan="8">
+                <td class="norecord_col" colspan="8">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
             <tr *ngIf="newLoanData.length == 0 && !loader">
-                <td colspan="8">
+                <td class="norecord_col" colspan="8">
                     <app-no-record-found type="table" notext="No Loan Found."></app-no-record-found>
                 </td>
             </tr>
@@ -122,7 +122,7 @@
                                     <i class="mdi mdi-message-outline mr-2"></i>
                                     <span>{{"Action For Loan"|translate}}</span>
                                 </button>
-                                <button mat-menu-item (click)="openDialogViewDetails(loan)">
+                                <button mat-menu-item (click)="openDialogViewDetails(loan, 'apply', 'Apply Loan Details')">
                                     <i class="mdi mdi-eye mr-2"></i>
                                     <span>{{"View Details"|translate}}</span>
                                 </button>
@@ -189,7 +189,7 @@
                                     <i class="mdi mdi-message-outline mr-2"></i>
                                     <span>{{"Action For Request"|translate}}</span>
                                 </button>
-                                <button mat-menu-item (click)="openDialogViewDetails(request)">
+                                <button mat-menu-item (click)="openDialogViewDetails(request, 'request', 'Request Money Details')">
                                     <i class="mdi mdi-eye mr-2"></i>
                                     <span>{{"View Details"|translate}}</span>
                                 </button>
