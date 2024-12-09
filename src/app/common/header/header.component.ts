@@ -61,7 +61,6 @@ export class HeaderComponent {
     if (userData != null) {
       this.userType = userData?.user_type;
       this.language = userData?.language;
-      this.translate.use(this.language);
       if (this.userType == 0) {
 
       } else if (this.userType == 1) {
@@ -98,7 +97,7 @@ export class HeaderComponent {
           this.offerShow = this.offerData?.default_offer;
         }, 1000);
       }
-
+      this.translate.use(this.language);
     }
     else {
       this.logout();

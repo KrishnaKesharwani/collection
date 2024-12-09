@@ -26,10 +26,8 @@
                 <div class="language_container">
                     <div class="language_block" [matMenuTriggerFor]="languageMenu">
                         <img src="{{baseUrl}}/assets/imgs/hindi-english.png" class="hindi_english_ing" />
-                        <span class="res_display_none" *ngIf="language=='en'"
-                            (click)="changeLanguage('en')">English</span>
-                        <span class="res_display_none" *ngIf="language=='hn'"
-                            (click)="changeLanguage('hn')">हिन्दी</span>
+                        <span class="res_display_none" *ngIf="language=='en'">English</span>
+                        <span class="res_display_none" *ngIf="language=='hn'">हिन्दी</span>
                         <mat-icon class="res_display_none">keyboard_arrow_down</mat-icon>
                     </div>
                     <mat-menu #languageMenu="matMenu" class="global_popup_small">
