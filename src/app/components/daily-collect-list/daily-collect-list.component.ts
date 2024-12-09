@@ -61,7 +61,7 @@ export class DailyCollectListComponent {
       status: "Active"
     }
     this._service.getMemberLoanList(obj).subscribe((data: any) => {
-      this.memberLoanData = data.data.loans;
+      this.memberLoanData = data.data?.loans;
       this.filteredDataarray = this.memberLoanData;
     }, error => {
 
@@ -74,7 +74,7 @@ export class DailyCollectListComponent {
       status: "Active"
     }
     this._service.getDepositListForMember(obj).subscribe((data: any) => {
-      this.memberDepositData = data.data.deposits;
+      this.memberDepositData = data.data?.deposits;
       this.loading = false;
     }, error => {
       this.loading = false;
@@ -95,7 +95,7 @@ export class DailyCollectListComponent {
       status: "Active"
     }
     this._service.getCustomerLoanList(obj).subscribe((data: any) => {
-      this.loanData = data.data.loans;
+      this.loanData = data.data?.loans;
       this.loanDataNotFound = data.success;
     }, error => {
       this.loading = false;
@@ -108,7 +108,7 @@ export class DailyCollectListComponent {
       status: "Active"
     }
     this._service.getDepositListForCustomer(obj).subscribe((data: any) => {
-      this.customerDepositData = data.data.deposits;
+      this.customerDepositData = data.data?.deposits;
       this.loading = false;
     }, error => {
       this.loading = false;
