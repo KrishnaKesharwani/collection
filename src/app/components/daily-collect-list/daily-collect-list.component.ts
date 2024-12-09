@@ -115,19 +115,19 @@ export class DailyCollectListComponent {
     });
   }
 
-  viewDetails(deposit: any, collectTypeClick: any): void {
+  // viewDetails(deposit: any, collectTypeClick: any): void {
 
-    // this.collectTypeClick = collectType;
-    this._dataSharingService.setDepositData(deposit, collectTypeClick);
-    this._router.navigate(['/paid_data_entry', deposit.id]);
-  }
+  //   // this.collectTypeClick = collectType;
+  //   this._dataSharingService.setDepositData(deposit, collectTypeClick);
+  //   this._router.navigate(['/paid_data_entry', deposit.id]);
+  // }
 
-  loanViewDetails(loan: any, collectTypeClick: any) {
+  // loanViewDetails(loan: any, collectTypeClick: any) {
 
-    // this.collectTypeClick = collectType;
-    this._dataSharingService.setLoanData(loan, collectTypeClick);
-    this._router.navigate(['/paid_data_entry', loan.id]);
-  }
+  //   // this.collectTypeClick = collectType;
+  //   this._dataSharingService.setLoanData(loan, collectTypeClick);
+  //   this._router.navigate(['/paid_data_entry', loan.id]);
+  // }
 
   actionAssignItems(data: any, actionType: any) {
     this._dataSharingService.setActionData(data, actionType);
