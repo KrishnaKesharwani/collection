@@ -2,7 +2,7 @@
     <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container full_height_coverwithout_bottom">
+<div class="dialoge_middle_container table_details_scroll view_details_small_popup">
     <div class="row">
         <!-- {{ data | json }} -->
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
@@ -21,12 +21,12 @@
             </thead>
             <tbody>
                 <tr *ngIf="loader">
-                    <td colspan="9">
+                    <td class="norecord_col" colspan="9">
                         <app-page-loader></app-page-loader>
                     </td>
                 </tr>
                 <tr *ngIf="data.length == 0 && !loader">
-                    <td colspan="9">
+                    <td class="norecord_col" colspan="9">
                         <app-no-record-found type="table"
                             notext="No loan history found for this customer."></app-no-record-found>
                     </td>
@@ -34,18 +34,20 @@
                 <ng-container *ngIf="data.length != 0 && !loader">
                     <ng-container *ngFor="let data of data">
                         <tr class="received_row" *ngIf="data.loan_status !== 'pending'">
-                            <td class="col" data-name="Loan Id">{{data.loan_no}}</td>
-                            <td class="col" data-name="Start Date">{{data.start_date}}</td>
-                            <td class="col" data-name="End Date">{{data.end_date}}</td>
-                            <td class="col" data-name="Days">{{data.no_of_days}}</td>
-                            <td class="text-right col" data-name="Amount">{{data.loan_amount}}</td>
-                            <td class="text-right col" data-name="Pending">{{data.remaining_amount}}</td>
-                            <td class="text-right col" data-name="Assign Member">{{data.member.name}}</td>
-                            <td class="text-center col" data-name="Status">
+                            <td class="col" [attr.data-name]="'Loan Id' | translate">{{data.loan_no}}</td>
+                            <td class="col" [attr.data-name]="'Start Date' | translate">{{data.start_date}}</td>
+                            <td class="col" [attr.data-name]="'End Date' | translate">{{data.end_date}}</td>
+                            <td class="col" [attr.data-name]="'Days' | translate">{{data.no_of_days}}</td>
+                            <td class="text-right col" [attr.data-name]="'Amount' | translate">{{data.loan_amount}}</td>
+                            <td class="text-right col" [attr.data-name]="'Pending' | translate">
+                                {{data.remaining_amount}}</td>
+                            <td class="text-right col" [attr.data-name]="'Assign Member' | translate">
+                                {{data.member.name}}</td>
+                            <td class="text-center col" [attr.data-name]="'Status' | translate">
                                 <span class="badge text-white"
                                     [ngClass]="{'bg-warning': data.status == 'pending', 'bg-success': data.status == 'active', 'bg-danger': data.status == 'inactive'}">{{data.status}}</span>
                             </td>
-                            <!-- <td class="text-center col" data-name="Remove"><span
+                            <!-- <td class="text-center col" [attr.data-name]="'Remove"><span
                                 class="btn btn-sm btn-primary btn_download"><i class="mdi mdi-download"></i></span></td> -->
                         </tr>
                     </ng-container>

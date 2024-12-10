@@ -188,6 +188,7 @@ export class CustomeComponent {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(AddCustomerComponent, {
       disableClose: true,
+      panelClass: 'full_width_popup',
       data: {
         title: 'Update Customer Details',
         data: data
@@ -205,6 +206,7 @@ export class CustomeComponent {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(AddCustomerComponent, {
       disableClose: true,
+      panelClass: 'full_width_popup',
       data: {
         title: 'Add New Customer'
       },

@@ -61,15 +61,26 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
+    .modal_insert {
+        .profile_with_block {
+            flex-flow: column;
+
+            .image_upload {
+                margin: 0px auto 15px auto !important;
+            }
+        }
+    }
+
     .profile_edit_container {
         .card_inner_block {
             padding: 10px 0px 0px 0px !important;
+
             .profile_with_block {
                 flex-flow: column;
 
                 .image_upload {
                     margin: 0px auto 15px auto !important;
-                }               
+                }
             }
         }
     }
@@ -117,9 +128,9 @@
                 .modal_insert {
                     padding: 0px !important;
 
-                    .col-sm-12 {
-                        padding: 0px !important;
-                    }
+                    // .col-sm-12 {
+                    //     padding: 0px !important;
+                    // }
                 }
             }
         }
@@ -543,12 +554,23 @@
             width: 100% !important;
         }
     }
+
+    .modal_insert {
+        .row {
+            .col-sm-4 {
+                padding: 0px !important;
+            }           
+        }
+    }
 }
 
 @media (min-width: 577px) and (max-width: 767px) {
     .row {
         .col-sm-4 {
-            width: 48% !important;
+            width: 50% !important;
+        }
+        .col-sm-12 { 
+            padding: 0px 10px !important
         }
     }
 }
@@ -556,6 +578,9 @@
 @media (min-width: 320px) and (max-width: 360px) {}
 
 @media (min-width: 768px) and (max-width: 992px) {
+    .full_width_popup{
+        max-width: 98vw !important;
+    }
     .main-content {
         .overall-containblock {
             .brics_row {
