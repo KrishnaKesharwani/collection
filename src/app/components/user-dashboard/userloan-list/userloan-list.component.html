@@ -1,20 +1,11 @@
 <div class="card shadow dash-cardbox">
     <div class="card-header">
-        <div class="row align-items-center">
-            <div class="col col-sm-4 pl-1">
-                <h3 class="mb-0">{{"Loan List"|translate}}</h3>
-            </div>
-            <div class="col text-right pr-1 datewith_search_block">
-                <div class="listsearch-topblock search_withaddbtn">
-                    <div class="right_addbtn">
-                        <button class="btn btn-success btn-sm create_header_btn" (click)="openDialogApplyLoan()"
-                            mat-raised-button>
-                            <i class="mdi mdi-currency-inr"></i>
-                            <span class="btn-txt button-text">Apply Loan</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="single_line_headwith_btn">
+            <div class="title_left">{{"Loan List" | translate}}</div>
+            <button class="btn global_submit_btn heading_btn" (click)="openDialogApplyLoan()" mat-raised-button>
+                <i class="mdi mdi-currency-inr"></i>
+                <span class="btn-txt">{{"Apply Loan" | translate}}</span>
+            </button>
         </div>
     </div>
     <table class="table align-items-center table-flush mydata-table">
@@ -42,18 +33,18 @@
             </tr>
             <ng-container *ngIf="loanList.length !== 0 && !loader">
                 <tr *ngFor="let loan of loanList">
-                    <td class="col" data-name="Loan No.">{{loan.loan_no}}</td>
-                    <td class="col" data-name="Start / Apply Date"><small>{{loan.start_date}} To
+                    <td class="col" [attr.data-name]="'Loan No.' | translate">{{loan.loan_no}}</td>
+                    <td class="col" [attr.data-name]="'Start / Apply Date' | translate"><small>{{loan.start_date}} To
                             {{loan.end_date}}</small></td>
-                    <td class="col" data-name="Receiver">{{loan.member?.name}}</td>
-                    <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}
+                    <td class="col" [attr.data-name]="'Receiver' | translate" data-name="Receiver">{{loan.member?.name}}</td>
+                    <td class="col" [attr.data-name]="'Amount' | translate" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}
                     </td>
-                    <td class="col" data-name="Balance"><i
+                    <td class="col" [attr.data-name]="'Balance' | translate" data-name="Balance"><i
                             class="mdi mdi-currency-inr mr-1"></i>{{loan.remaining_amount}}</td>
-                    <td class="col text-center" data-name="Status">
+                    <td class="col text-center" [attr.data-name]="'Status' | translate">
                         <div class="badge bg-success text-white">{{loan.loan_status}}</div>
                     </td>
-                    <td class="action_col" data-name="Action">
+                    <td class="action_col" [attr.data-name]="'Action' | translate">
                         <div placement="bottom-right">
                             <button mat-icon-button [matMenuTriggerFor]="menu"
                                 aria-label="Example icon-button with a menu">

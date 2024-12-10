@@ -2,29 +2,29 @@
     <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container view_details_small_popup table_details_scroll">
-    <table class="table table-responsive more_table">
+<div class="dialoge_middle_container table_details_scroll view_details_small_popup">
+    <table class="table table-responsive mydata-table more_table">
         <thead>
             <tr>
-                <th class="text-center"><b>{{"S.No."|translate}}</b></th>
-                <th><b>{{"Date"|translate}} </b></th>
-                <th><b>{{"Receiver"|translate}} </b></th>
-                <th><b>{{"Amount"|translate}} </b></th>
+                <th class="col text-center s_no"><b>{{"S.No."|translate}}</b></th>
+                <th class="col"><b>{{"Date"|translate}} </b></th>
+                <th class="col"><b>{{"Receiver"|translate}} </b></th>
+                <th class="col"><b>{{"Amount"|translate}} </b></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngIf="historyData.length == 0">
-                <td colspan="4">
+                <td class="col" colspan="4">
                     <app-no-record-found type="table"
                         notext="No loan history found for this customer."></app-no-record-found>
                 </td>
             </tr>
             <ng-container *ngIf="historyData.length != 0">
                 <tr class="received_row" *ngFor="let data of historyData; let i=index">
-                    <td class="col text-center">{{i+1}}</td>
-                    <td class="col">{{data?.receive_date}}</td>
-                    <td class="col">{{data.recieved_member?.name}}</td>
-                    <td class="col text-right">{{data.amount}}</td>
+                    <td class="col text-center" [attr.data-name]="'S.No.' | translate">{{i+1}}</td>
+                    <td class="col" [attr.data-name]="'Date' | translate">{{data?.receive_date}}</td>
+                    <td class="col" [attr.data-name]="'Receiver' | translate">{{data.recieved_member?.name}}</td>
+                    <td class="col text-right" [attr.data-name]="'Amount' | translate">{{data.amount}}</td>
                 </tr>
             </ng-container>
         </tbody>

@@ -32,7 +32,7 @@
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
-            <tr *ngIf="collectionData.length == 0 && !loader">
+            <tr *ngIf="collectionData?.length == 0 && !loader">
                 <td colspan="6">
                     <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
                 </td>

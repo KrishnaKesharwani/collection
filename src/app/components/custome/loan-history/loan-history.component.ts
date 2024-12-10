@@ -35,10 +35,13 @@ export class LoanHistoryComponent {
       // status: 'active',
       customer_id: this.dataa.data.id
     }
-
     this._service.loanList(obj).subscribe((data: any) => {
-      this.data = data.data.loans;
-      this.loader = false;
+      if (data.success) {
+        this.data = data.data.loans;
+        this.loader = false;
+      } else {
+        this.loader = false;
+      }
     }, error => {
       this.loader = false;
       // this._tostr.error(error.message, 'Error');

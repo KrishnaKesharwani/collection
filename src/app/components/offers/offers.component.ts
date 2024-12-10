@@ -54,6 +54,7 @@ export class OffersComponent {
   openDialogAddOffers() {
     const dialogRef = this.dialog.open(AddOfferComponent, {
       disableClose: true,
+      panelClass: 'view_details_small_popup',
       data: {
         title: 'Add New Offers / Schems',
       },
@@ -171,7 +172,6 @@ export class OffersComponent {
 
   openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(ViewOfferComponent, {
-      panelClass: 'view_details_small_popup',
       data: {
         data: data,
         title: 'Offers / Schems Details',

@@ -215,6 +215,14 @@ app-member-dashboard {
 .dialoge_middle_container {
     padding: 20px 15px;
     background: #f5f5ff;
+
+    .table {
+        border: solid thin #e1e1e1;
+        border-radius: 5px;
+        text-align: left;
+        display: inline-table;
+        margin: 0px;
+    }
 }
 
 .dialoge_button_container {
@@ -394,6 +402,19 @@ mat-option {
     i {
         font-size: 16px;
         margin-right: 5px;
+    }
+}
+
+.single_line_headwith_btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: var(--theme-primary-color);
+    flex-flow: wrap;
+
+    .heading_btn {
+        height: 30px !important;
     }
 }
 
@@ -878,7 +899,14 @@ app-no-record-found {
     .action_colbtn {
         width: 150px;
     }
+    .s_no {
+        width: 50px;
+        text-align: center;
+    }
 
+    .total_col {
+        text-align: right;
+    }
     .date_time_col {
         width: 180px;
     }
@@ -3189,6 +3217,7 @@ mark {
 
     img {
         max-height: 300px;
+        max-width: 100%;
     }
 }
 
@@ -4098,21 +4127,6 @@ mark {
 
 .action_3 {
     width: 140px;
-}
-
-.mydata-table {
-    .s_no {
-        width: 50px;
-        text-align: center;
-    }
-
-    .total_col {
-        text-align: right;
-    }
-
-    .col {
-        padding: 5px 6px;
-    }
 }
 
 .listsearchwith_ddl_topblock {

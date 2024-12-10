@@ -290,12 +290,12 @@ export class GlobalGoogleChartsComponent {
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(() => {
           const totalAmount = Number(this.loanStatus.total_loan_amount);
-          const pendingAmount = Number(this.loanStatus.total_remaining_amount);
-          const completedAmount = totalAmount - pendingAmount;
+          const pendingAmount = Number(this.loanStatus.total_remaining_loan_amount);
+          const finalPendingAmount = totalAmount - pendingAmount;
           const pieChartData = google.visualization.arrayToDataTable([
             ['Amount Type', 'Amount'],
-            ['Pending Amount', pendingAmount],
-            ['Completed Amount', completedAmount],
+            ['Pending Amount', finalPendingAmount],
+            ['Total Amount', totalAmount],
           ]);
           const pieOptions = {
             is3D: true,

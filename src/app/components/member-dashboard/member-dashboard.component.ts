@@ -38,12 +38,16 @@ export class MemberDashboardComponent {
       member_id: this.member_id
     }
     this._service.getMemberCollection(obj).subscribe((data: any) => {
-      this.attended_customer = data.attended_customer;
-      // this.total_customer = data.data?.total_customer;
-      this.collect_amount = data.collect_money;
-      this.collectionData = data?.collection;
-      this.loader = false;
-      // console.log('Collection Data :', this.collectionData);
+      if (data.success || data.collection) {
+        this.attended_customer = data.attended_customer;
+        // this.total_customer = data.data?.total_customer;
+        this.collect_amount = data.collect_money;
+        this.collectionData = data?.collection;
+        this.loader = false;
+        console.log('Collection Data :', this.collectionData);
+      } else {
+        this.loader = false;
+      }
     }, error => {
       this.toaster.error(error.massage, 'Error');
       this.loader = false;

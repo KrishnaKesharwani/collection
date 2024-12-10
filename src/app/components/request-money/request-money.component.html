@@ -45,12 +45,12 @@
         </thead>
         <tbody *ngIf="user_type == 1">
             <tr *ngIf="loader">
-                <td colspan="7">
+                <td  class="norecord_col" colspan="7">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
             <tr *ngIf="requestList.length == 0 && !loader">
-                <td colspan="7">
+                <td  class="norecord_col" colspan="7">
                     <app-no-record-found type="table" notext="No Request Found."></app-no-record-found>
                 </td>
             </tr>
@@ -105,12 +105,12 @@
         </thead>
         <tbody *ngIf="user_type == 3">
             <tr *ngIf="loader">
-                <td colspan="7">
+                <td class="norecord_col" colspan="7">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
             <tr *ngIf="customerRequestList.length == 0 && !loader">
-                <td colspan="7">
+                <td class="norecord_col" colspan="7">
                     <app-no-record-found type="table" notext="No Request Found."></app-no-record-found>
                 </td>
             </tr>
