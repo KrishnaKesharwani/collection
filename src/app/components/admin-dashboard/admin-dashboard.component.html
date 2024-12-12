@@ -159,12 +159,12 @@
         </thead>
         <tbody>
             <tr *ngIf="loader">
-                <td colspan="7">
+                <td class="norecord_col" colspan="7">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
             <tr *ngIf="requestList.length == 0 && !loader">
-                <td colspan="7">
+                <td class="norecord_col" colspan="7">
                     <app-no-record-found type="table" notext="No Deposit Request Found."></app-no-record-found>
                 </td>
             </tr>

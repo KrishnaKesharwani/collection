@@ -61,12 +61,12 @@
             </thead>
             <tbody>
                 <tr *ngIf="loader">
-                    <td colspan="7">
+                    <td class="norecord_col" colspan="7">
                         <app-page-loader></app-page-loader>
                     </td>
                 </tr>
                 <tr *ngIf="filteredDataarray.length == 0 && !loader">
-                    <td colspan="7">
+                    <td class="norecord_col" colspan="7">
                         <app-no-record-found type="table" notext="No member collection found."></app-no-record-found>
                     </td>
                 </tr>

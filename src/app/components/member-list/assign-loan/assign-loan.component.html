@@ -2,7 +2,7 @@
     <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container full_height_cover middle_dialoge">
+<div class="dialoge_middle_container full_height_coverwithout_bottom">
     <div class="flex_header res_flex_colum">
         <div class="assign_text res_full_width">{{"Total Assign"|translate}} : {{total_assignlength}}</div>
         <div class="global_form_row res_full_width load_list_ddl" *ngIf="getUnassignedData?.length">

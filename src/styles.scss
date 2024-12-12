@@ -2778,7 +2778,7 @@ mark {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    flex-flow: wrap;
     .assign_text {
         font-size: 16px;
     }

@@ -52,12 +52,12 @@
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td colspan="11">
+                            <td class="norecord_col" colspan="11">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
                         <tr *ngIf="filteredDataarray.length == 0 && !loader">
-                            <td colspan="11">
+                            <td class="norecord_col" colspan="11">
                                 <app-no-record-found type="table" notext="No company found"></app-no-record-found>
                             </td>
                         </tr>

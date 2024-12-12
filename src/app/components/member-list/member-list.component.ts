@@ -34,12 +34,10 @@ export class MemberListComponent {
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
-
     }
     this.getMemberList();
   }
-
-
+  
   getMemberList() {
     this.loader = true;
     let obj = {
@@ -56,7 +54,6 @@ export class MemberListComponent {
     })
 
   }
-
 
   openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string, data?: any): void {
     // this.dataForDelete = enterAnimationDuration
@@ -99,7 +96,7 @@ export class MemberListComponent {
   openDialogEditMember(data: any) {
     const dialogRef = this.dialog.open(AddMemberComponent, {
       disableClose: true,
-      panelClass: 'update_dialoge',
+      panelClass: 'full_width_popup',
       data: {
         title: 'Update Member',
         data: data
@@ -116,7 +113,7 @@ export class MemberListComponent {
   openDialogAddMember() {
     const dialogRef = this.dialog.open(AddMemberComponent, {
       disableClose: true,
-      panelClass: 'update_dialoge',
+      panelClass: 'full_width_popup',
       data: {
         title: 'Add New Member'
       },
@@ -145,7 +142,8 @@ export class MemberListComponent {
 
   openDialogMemberDetails(data: any) {
     const dialogRef = this.dialog.open(ViewMemberListComponent, {
-      panelClass: 'view_details_small_popup',
+      // panelClass: 'view_details_small_popup',
+
       data: {
         data: data,
         title: 'Member Details',
@@ -158,7 +156,7 @@ export class MemberListComponent {
   openDialogAssignLoan(data: any) {
     const dialogRef = this.dialog.open(AssignLoanComponent, {
       disableClose: true,
-      panelClass: 'view_details_popup',
+      panelClass: 'medium_popup',
       data: {
         data: data,
         title: 'Assign Loan History Details',
