@@ -3,7 +3,7 @@
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container view_details_small_popup">
-    <table class="table table-bordered table-responsive bg-white more_table instalment_details_container">
+    <table class="table mydata-table">
         <thead>
             <tr>
                 <th class="text-center"><b>{{"S.No." |translate}} </b></th>
@@ -21,11 +21,11 @@
             </tr>
             <ng-container *ngIf="data.length != 0">
                 <tr class="received_row" *ngFor="let datainner of data; let i=index">
-                    <td class="col text-center">{{i+1}}</td>
-                    <td class="col">{{datainner?.action_date}}</td>
-                    <td class="col text-center capatalise_col">{{datainner?.debit_type}}</td>
-                    <td class="col text-right">{{datainner?.amount}}</td>
-                    <td class="col">{{datainner?.details}}</td>
+                    <td class="col text-center" [attr.data-name]="'S. No.' | translate">{{i+1}}</td>
+                    <td class="col" [attr.data-name]="'Date' | translate">{{datainner?.action_date}}</td>
+                    <td class="col text-center capatalise_col" [attr.data-name]="'Type' | translate">{{datainner?.debit_type}}</td>
+                    <td class="col text-right" [attr.data-name]="'Amount' | translate">{{datainner?.amount}}</td>
+                    <td class="col" [attr.data-name]="'Details' | translate">{{datainner?.details}}</td>
                 </tr>
             </ng-container>
         </tbody>

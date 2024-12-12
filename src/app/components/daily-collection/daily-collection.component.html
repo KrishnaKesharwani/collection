@@ -84,7 +84,7 @@
                         </tr>
                         <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
                             <tr class="received_row" *ngFor="let item of filteredDataarray">
-                                <td class="col">{{item.deposit_no}}</td>
+                                <td class="col" data-name="Deposit No.">{{item.deposit_no}}</td>
                                 <td class="col" data-name="Profile">
                                     <div class="list_image_block" *ngIf="item.image == null">
                                         <img src="assets/imgs/default-pic.png" />

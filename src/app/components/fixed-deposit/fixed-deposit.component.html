@@ -8,14 +8,15 @@
                             <h3 class="mb-0">{{"Fixed Deposit List"|translate}}</h3>
                         </div>
                         <div class="col p-0 head_details" *ngIf="filteredDataarray?.length != 0 && !loader">
-                            <div class="total_block bg-warning mr-2"><span>{{"Total
-                                    Deposit"|translate}}</span><b>{{getTotaldata.total_deposit_amount}}</b>
+                            <div class="total_block internal_50 bg-warning mr-2"><span>
+                                    {{"Total Deposit"|translate}}</span><b>
+                                    {{getTotaldata.total_deposit_amount}}</b>
                             </div>
-                            <div class="total_block bg-primary mr-2">
+                            <div class="total_block internal_50 bg-primary mr-2">
                                 <span>{{"Total End Amount"|translate}}</span><b>{{getTotaldata?.total_end_amount}}</b>
                             </div>
-                            <div class="total_block bg-success"><span>{{"Total
-                                    Customer"|translate}}</span><b>{{getTotaldata?.total_cusotomer}}</b></div>
+                            <div class="total_block internal_50 bg-success"><span>
+                                    {{"Total Customer"|translate}}</span><b>{{getTotaldata?.total_cusotomer}}</b></div>
                         </div>
                         <div class="col text-right pr-1 datewith_search_block">
                             <div class="listsearch-topblock search_withaddbtn">

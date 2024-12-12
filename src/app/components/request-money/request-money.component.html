@@ -6,8 +6,8 @@
             </div>
             <div class="col text-right pr-1 datewith_search_block calender_withsearch" *ngIf="user_type == 1">
                 <form focusInvalidInput [formGroup]="filterDateForm">
-                    <div class="list_calender_filter">
-                        <app-input [isDateField]="true" label="Filter Date" [(value)]="date"
+                    <div class="list_calender_filter date_ddl_reset_block">
+                        <app-input class="date_block" [isDateField]="true" label="Filter Date" [(value)]="date"
                             [className]="'bottom_error_msg'" formControlName="date" [key]="'date'"
                             [form]="filterDateForm" (valueChange)="getRequestClick($event ,'date')"></app-input>
                         <div class="listsearch-topblock search_withaddbtn pr-0">

@@ -4,7 +4,7 @@
 </div>
 <div class="dialoge_middle_container view_details_small_popup table_details_scroll">
     <!-- <p>{{data | json}}</p> -->
-    <table class="table table-responsive more_table">
+    <table class="table table-responsive more_table mydata-table">
         <thead>
             <tr>
                 <th class="text-center s_no"><b>{{"S.No."|translate}}</b></th>
@@ -28,11 +28,11 @@
             </tr>
             <ng-container *ngIf="data.deposit_history != 0 && !loader">
                 <tr class="received_row" *ngFor="let innerdata of data.deposit_history;let i = index">
-                    <td class="col text-center">{{i+1}}</td>
-                    <td class="col">{{innerdata?.action_date}}</td>
-                    <td class="col">{{innerdata?.recieved_member?.name}}</td>
-                    <td class="col">{{innerdata?.action_type}}</td>
-                    <td class="col text-right"
+                    <td class="col text-center" [attr.data-name]="'S. No.' | translate">{{i+1}}</td>
+                    <td class="col" [attr.data-name]="'Date' | translate">{{innerdata?.action_date}}</td>
+                    <td class="col" [attr.data-name]="'Receiver' | translate">{{innerdata?.recieved_member?.name}}</td>
+                    <td class="col" [attr.data-name]="'Type' | translate">{{innerdata?.action_type}}</td>
+                    <td class="col text-right" [attr.data-name]="'Amount' | translate"
                         [ngClass]="{'color-green': innerdata?.action_type == 'credit', 'color-red': innerdata?.action_type == 'debit'}">
                         {{innerdata?.amount}}</td>
                 </tr>

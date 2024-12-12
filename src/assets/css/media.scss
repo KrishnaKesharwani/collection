@@ -61,6 +61,16 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
+    .table_actionbtn_block {
+        padding: 0px !important;
+        min-height: 20px !important;
+        height: 20px !important;
+    }
+
+    .btn_download {
+        margin: 0px !important;
+    }
+
     .modal_insert {
         .profile_with_block {
             flex-flow: column;
@@ -431,7 +441,6 @@
                                 }
                             }
                         }
-
                         .calender_withsearch {
                             display: block;
 
@@ -439,8 +448,17 @@
                                 width: 100%;
                                 margin: 5px 0px 10px 0px !important;
                                 max-width: 100%;
+                                form {
+                                    width: 100%;
+                                }
+                            }                           
+                            .search_withaddbtn {
+                                max-width: calc(100% - 75px);
+                                float: left;
                             }
                         }
+                        
+                        
                     }
                 }
             }
@@ -452,7 +470,6 @@
             }
         }
     }
-
     .mydata-table,
     .popup_table {
         padding: 10px;
@@ -516,7 +533,6 @@
         width: 100%;
         overflow: auto;
         display: inline-block;
-        width: 100%;
     }
 
     .dialoge_middle_container {
@@ -559,12 +575,46 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 576px) {
+@media (min-width: 320px) and (max-width: 576px) {    
+    .date_ddl_reset_block {
+        flex-flow: wrap !important;
+        margin-top: 5px;
+        .date_block {
+            width: 100% !important;
+        }
+        .search_withaddbtn  {
+            max-width: calc(100% - 75px);
+            float: left;
+            margin: 7px 0px 0px 0px;
+            .global_ddl_m_p_0 {
+                margin: 0px !important;
+            }
+        }
+    }
+    .head_details {
+        .total_block {
+            display: flex;
+            flex-flow: column;
+            padding: 10px 7px !important;
+            text-align: center;
+            margin: 2px 0px 5px 0px !important;
+            span {
+                margin: 0px !important;
+            }
+        }
+        .internal_50 {
+            width: 49%;
+        }
+    }
+    .listsearchwith_ddl_topblock {
+        margin-top: 20px;
+    }
     .flex_header {
         .load_list_ddl {
             margin: 0px !important;
         }
     }
+
     .row {
         .col-sm-4 {
             width: 100% !important;

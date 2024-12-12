@@ -444,6 +444,7 @@ mat-option {
 
     .list_calender_filter {
         display: flex;
+        flex-flow: wrap;
         width: 100%;
         max-width: 300px;
         align-items: center;
@@ -475,6 +476,9 @@ mat-option {
             outline: none !important;
             color: #666666;
         }
+    }
+    .date_ddl_reset_block {
+        flex-flow: initial;
     }
 }
 
@@ -1233,7 +1237,7 @@ app-no-record-found {
     display: flex;
     align-items: center;
     font-size: 12px;
-
+    flex-flow: wrap;
     .total_block {
         padding: 5px 10px;
         color: #ffffff;
