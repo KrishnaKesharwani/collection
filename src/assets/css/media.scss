@@ -120,7 +120,7 @@
     .cdk-overlay-container {
         .cdk-overlay-pane {
             max-width: 100vw !important;
-            min-width: 100%;
+            // min-width: 100%;
 
             .mdc-dialog {
                 width: 100vw !important;
@@ -141,9 +141,15 @@
                     // .col-sm-12 {
                     //     padding: 0px !important;
                     // }
-                }
+                }               
             }
-
+            .dialoge_button_container {
+                position: fixed;
+                width: 100%;
+                bottom: 0px;
+                left: 0px;
+                z-index: 2;
+            }
             .full_height_coverwithout_bottom {
                 height: calc(100vh - 70px);
             }
@@ -157,6 +163,12 @@
     .more_table {
         td:nth-of-type(odd) {
             width: 35%;
+        }
+        tbody{
+            background: transparent !important;
+            tr{
+                background: #ffffff;
+            }
         }
     }
 

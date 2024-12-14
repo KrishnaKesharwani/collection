@@ -26,8 +26,8 @@
                         </button>
                     </div>
                 </div>
-            </div> (click)="onLetfMenuClick($event)"-->
-            <ul class="navbar-nav left-menu" (click)="onLetfMenuClick($event)">
+            </div> (click)="onLeftMenuClick($event)"-->
+            <ul class="navbar-nav left-menu">
                 <!-- *ngIf="user_type == 0" -->
                 <li class="nav-item">
                     <a routerLink="/dashboard" routerLinkActive="active" class="nav-link"> <i
@@ -51,18 +51,18 @@
                     </a>
                 </li> -->
                 <li class="nav-item" *ngIf="user_type == 0">
-                    <a routerLink="/company_list" routerLinkActive="active" class="nav-link "> <i
+                    <a (click)="ngOnChanges()" routerLink="/company_list" routerLinkActive="active" class="nav-link "> <i
                             class="mdi mdi-account-group-outline"></i>
                         {{"Company List"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1">
-                    <a routerLink="/member_list" routerLinkActive="active" class="nav-link"> <i
+                    <a  (click)="ngOnChanges()" routerLink="/member_list" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-account-tie"></i> {{"Members List"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1 || user_type == 2">
-                    <a routerLink="/customer_list" routerLinkActive="active" class="nav-link"> <i
+                    <a  (click)="ngOnChanges()" routerLink="/customer_list" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-account-group-outline"></i>
                         {{"Customer List"|translate}}
                     </a>

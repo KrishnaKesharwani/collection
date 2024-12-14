@@ -49,7 +49,7 @@ export class SidebarComponent {
     // setTimeout(() => {
     // }, 1000);
   }
-  onLetfMenuClick($event: { target: any; srcElement: any; }) {
+  onLeftMenuClick($event: { target: any; srcElement: any; }) {
     // debugger;
     // this.menuActionClass = this.menuAction; 
     this.ngOnChanges();

@@ -1,9 +1,10 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ActionService } from 'src/app/services/action/action.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatMenuTrigger } from '@angular/material/menu';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -42,7 +43,7 @@ export class HeaderComponent {
   companyRoughts = ['/dashboard', '/member_list', '/customer_list', '/loan_list', '/daily_collect_list', '/money_received', '/offers', '/fixed_deposit', '/vc_management', '/reports', '/request_money', '/profile_details', '/change_password'];
   memberRoughts = ['/dashboard', '/customer_list', '/daily_collection', '/offers', '/profile_details', '/change_password'];
   customerRoughts = ['/dashboard', '/my_loan_list', '/daily_collection', '/offers', '/request_money', '/change_password', '/profile_details'];
-
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger | undefined;
   ngOnInit() {
     const data: any = localStorage.getItem('CurrentUser');
     const userData = JSON.parse(data);
@@ -113,7 +114,10 @@ export class HeaderComponent {
     //   this.userType = null;
     // }
   }
-
+  // ngAfterViewInit() {
+  //   this.trigger.xPosition = 'before';
+  //   this.trigger.yPosition = 'above';
+  // }
   onClose() {
     this.offerShow = 0;
   }

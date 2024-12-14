@@ -30,7 +30,7 @@
                         <span class="res_display_none" *ngIf="language=='hn'">हिन्दी</span>
                         <mat-icon class="res_display_none">keyboard_arrow_down</mat-icon>
                     </div>
-                    <mat-menu #languageMenu="matMenu" class="global_popup_small">
+                    <mat-menu #languageMenu="matMenu" xPosition="before" class="global_popup_small">
                         <button (click)="changeLanguage('en')" mat-menu-item>English</button>
                         <button (click)="changeLanguage('hn')" mat-menu-item>हिन्दी</button>
                     </mat-menu>
