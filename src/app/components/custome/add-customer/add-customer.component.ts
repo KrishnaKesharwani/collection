@@ -53,7 +53,7 @@ export class AddCustomerComponent {
       join_date: ['', Validators.required],
       email: ['', Validators.required],
       address: ['', Validators.required],
-      status: [''],
+      status: ['', Validators.required],
       image: [null],
       adhar_front: ['../../../assets/imgs/no-images.jpg'],
       adhar_back: ['../../../assets/imgs/no-images.jpg']
@@ -103,6 +103,12 @@ export class AddCustomerComponent {
         if (!this.selectedFile) {
           formData.delete('image');
         }
+        if (!this.selectedFile5) {
+          formData.delete('adhar_front');
+        }
+        if (!this.selectedFile6) {
+          formData.delete('adhar_back');
+        }
         formData.append('company_id', this.company_id)
         formData.append('customer_id', this.customer_id)
         if (formData) {
@@ -135,6 +141,12 @@ export class AddCustomerComponent {
         });
         if (!this.selectedFile) {
           formData.delete('image');
+        }
+        if (!this.selectedFile5) {
+          formData.delete('adhar_front');
+        }
+        if (!this.selectedFile6) {
+          formData.delete('adhar_back');
         }
         formData.append('company_id', this.company_id);
         if (formData) {

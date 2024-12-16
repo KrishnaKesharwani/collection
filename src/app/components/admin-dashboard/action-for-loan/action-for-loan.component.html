@@ -22,7 +22,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-sm-12" *ngIf="selectedStatus == 'approved' || selectedStatus == 'running'">
+        <div class="col-sm-12" *ngIf="selectedStatus == 'approved' || selectedStatus == 'paid'">
             <form focusInvalidInput [formGroup]="providerLoanForm">
                 <div class="modal_insert">
                     <!-- <app-input [isDateField]="false" label="Customer Name" [(value)]="customername" [isRequired]="true"
@@ -52,14 +52,12 @@
 
                     <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
                         [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'details'"></app-textarea>
-                    <div class="col-sm-12">
-                        <div class="fileupload file_upload_block">
-                            <input type="file" maxlength="6" multiple (change)="onFileSelected($event)" />
-                        </div>
-                        <div class="global_details_image_container" *ngIf="base64Images.length > 0">
-                            <div class="image_fourpart card" *ngFor="let image of base64Images">
-                                <img [src]="'data:image/png;base64,' + image" alt="Uploaded Image" />
-                            </div>
+                    <div class="fileupload file_upload_block">
+                        <input type="file" maxlength="6" multiple (change)="onFileSelected($event)" />
+                    </div>
+                    <div class="global_details_image_container" *ngIf="base64Images.length > 0">
+                        <div class="image_fourpart card" *ngFor="let image of base64Images">
+                            <img [src]="'data:image/png;base64,' + image" alt="Uploaded Image" />
                         </div>
                     </div>
                 </div>
