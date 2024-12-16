@@ -176,9 +176,6 @@ export class ActionForLoanComponent {
 
   submit() {
 
-    if (this.selectedStatus == 'Approved') {
-
-    }
 
     if (this.providerLoanForm.valid) {
       if (this.providerLoanForm.valid) {
@@ -197,18 +194,19 @@ export class ActionForLoanComponent {
             formData.append(key, this.providerLoanForm.value[key].toLocaleDateString('en-US'));
           }
         });
-        if (this.base64allString.length) {
+        if (this.base64allString?.length) {
           formData.append('document', this.base64allString);
         }
         formData.append('company_id', this.company_id)
         formData.append('customer_id', this.dataa.data.id)
         this._service.provideLoan(formData).subscribe((data: any) => {
           this.providerLoanForm.reset();
+          this.loading = false;
           this._tostr.success(data.message, 'Success');
 
 
         })
-        // this.dialog.closeAll();
+        this.dialog.closeAll();
       } else {
         this.providerLoanForm.markAllAsTouched()
       }

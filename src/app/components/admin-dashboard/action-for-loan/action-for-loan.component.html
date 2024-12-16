@@ -12,7 +12,7 @@
                 [form]="providerLoanForm" [key]="'loan_status'" field="Status"></app-dropdwon>
         </div>
 
-        <div class="col-sm-12" *ngIf="selectedStatus == 'cancelled'">
+        <div class="col-sm-12" *ngIf="selectedStatus == 'cancelled' || selectedStatus == 'pending'">
             <form focusInvalidInput [formGroup]="providerLoanFormForCancelled">
                 <div class="modal_insert">
                     <mat-form-field class="global_textarea_block" appearance="outline">

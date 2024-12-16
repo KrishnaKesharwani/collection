@@ -167,7 +167,7 @@ export class ProviderLoanComponent {
           formData.append(key, this.providerLoanForm.value[key].toLocaleDateString('en-US'));
         }
       });
-      if (this.base64allString.length) {
+      if (this.base64allString?.length) {
         formData.append('document', this.base64allString);
       }
       formData.append('company_id', this.company_id)
