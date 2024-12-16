@@ -71,8 +71,8 @@ export class AssignLoanComponent {
         this.total_assignlength = this.total_assignlength + this.assignDepositData?.length;
       }
       // this.total_assignlength = this.assignDepositData?.length + this.loanList?.length;
-      this.loading = false;
-    }, 3000);
+      this.loading = false; 
+    }, 1000);
   }
 
   getUnassignedLoans() {
