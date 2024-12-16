@@ -54,7 +54,9 @@ export class AddCustomerComponent {
       email: ['', Validators.required],
       address: ['', Validators.required],
       status: [''],
-      image: [null]
+      image: [null],
+      adhar_front: ['../../../assets/imgs/no-images.jpg'],
+      adhar_back: ['../../../assets/imgs/no-images.jpg']
     });
     // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
     this.company_id = this.company_id;
@@ -75,6 +77,15 @@ export class AddCustomerComponent {
 
   onClose() {
     this.dialogRef.close();
+  }
+
+  selectedFile5: File | null = null;
+  aadharFrontImageChange(file: File | null): void {
+    this.selectedFile5 = file;
+  }
+  selectedFile6: File | null = null;
+  aadharBackImageChange(file: File | null): void {
+    this.selectedFile6 = file;
   }
 
   saveCustomerData() {
@@ -117,29 +128,6 @@ export class AddCustomerComponent {
       if (this.customerForm.valid) {
         this.loading = true;
         const formData = new FormData();
-        // const files = [
-        //   { name: 'image', file: this.customerForm.get('image')?.value },
-
-        // ];
-
-        // // Convert files to base64 strings
-        // files.map(({ name, file }) => {
-        //   return new Promise((resolve, reject) => {
-        //     if (file) {
-        //       const reader = new FileReader();
-        //       reader.onloadend = () => {
-        //         const base64String = reader.result as string; // Base64-encoded string
-        //         formData.append(name, base64String); // Append base64 string to FormData
-        //         resolve(true);
-        //       };
-        //       reader.onerror = () => reject(new Error(`Failed to read ${name}`));
-        //       reader.readAsDataURL(file); // Read the file as a base64 string
-        //     } else {
-        //       resolve(true); // Resolve if no file
-        //     }
-        //   });
-        // });
-        // Append other form values to FormData
         Object.keys(this.customerForm.value).forEach(key => {
           // if (!['image'].includes(key)) {
           formData.append(key, this.customerForm.value[key]);

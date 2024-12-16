@@ -69,10 +69,32 @@
                         <app-dropdwon [optionArray]="dropdownService.status" *ngIf="customerForm" [form]="customerForm"
                             [key]="'status'" field="Status"></app-dropdwon>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-4">
                         <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"
                             [className]="'bottom_error_msg'" [form]="customerForm" [key]="'address'"
                             [displayMsg]="'Address is required'"></app-input>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-xs-12">
+                        <div class="file_upload_block global_textbox_block">
+                            <label class="m-0">Aadhar Front Image</label>
+                            <app-fileupload [form]="customerForm" class="fileupload_image_fullwidth"
+                                [accept]="'image/png, image/gif, image/jpeg'"
+                                [imageUrl]="customerForm.value['adhar_front']" [uploadType]="'fullwidth'"
+                                [imageCaption]="'Please upload aadhar front side photo.'"
+                                [formcontrolname]="'adhar_front'" formControlName="adhar_front" name="adhar_front"
+                                (fileChange)="aadharFrontImageChange($event)"></app-fileupload>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 col-xs-12">
+                        <div class="file_upload_block global_textbox_block">
+                            <label class="m-0">Aadhar Back Image</label>
+                            <app-fileupload [form]="customerForm" class="fileupload_image_fullwidth"
+                                [accept]="'image/png, image/gif, image/jpeg'"
+                                [imageUrl]="customerForm.value['adhar_back']" [uploadType]="'fullwidth'"
+                                [imageCaption]="'Please upload aadhar back side photo.'"
+                                [formcontrolname]="'adhar_back'" formControlName="adhar_back" name="adhar_back"
+                                (fileChange)="aadharBackImageChange($event)"></app-fileupload>
+                        </div>
                     </div>
                 </div>
             </div>
