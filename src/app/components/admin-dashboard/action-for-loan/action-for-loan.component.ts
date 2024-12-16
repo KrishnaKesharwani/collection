@@ -59,9 +59,9 @@ export class ActionForLoanComponent {
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
       details: [''],
-      loan_status: [''],
-      status: ['pending'],
-      document: this.fb.array([])
+      loan_status: ['pending'],
+      status: ['active'],
+      // document: this.fb.array([])
     });
 
     this.providerLoanFormForCancelled = this.fb.group({
@@ -94,7 +94,36 @@ export class ActionForLoanComponent {
   //     this.dropdownService.setOptions('assingmember', members);
   //   })
   // }
+  base64Images: string[] = []; // Array to store Base64 strings for images
+  base64allString: any;
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
 
+    if (!input.files) return;
+
+    const files = Array.from(input.files); // Convert FileList to Array
+    const base64Promises = files.map((file) => this.convertToBase64(file));
+
+    // Wait for all files to be converted and store them
+    Promise.all(base64Promises).then((base64Strings) => {
+      this.base64allString = base64Strings;
+      this.base64Images = base64Strings.map((base64) =>
+        base64.split(',')[1] // Remove the prefix
+      );
+    });
+
+  }
+  private convertToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => resolve(reader.result as string);
+
+      reader.onerror = (error) => reject(error);
+
+      reader.readAsDataURL(file); // Read file as Base64
+    });
+  }
 
   memberdata: [] = [];
   getActiveMemberList() {
@@ -156,9 +185,9 @@ export class ActionForLoanComponent {
         this.loading = true
 
         const formData = new FormData();
-        const files = [
-          { name: 'document', file: this.providerLoanForm.get('document')?.value },
-        ];
+        // const files = [
+        //   { name: 'document', file: this.providerLoanForm.get('document')?.value },
+        // ];
 
         Object.keys(this.providerLoanForm.value).forEach(key => {
           if (!['start_date'].includes(key) && !['end_date'].includes(key)) {
@@ -168,7 +197,9 @@ export class ActionForLoanComponent {
             formData.append(key, this.providerLoanForm.value[key].toLocaleDateString('en-US'));
           }
         });
-
+        if (this.base64allString.length) {
+          formData.append('document', this.base64allString);
+        }
         formData.append('company_id', this.company_id)
         formData.append('customer_id', this.dataa.data.id)
         this._service.provideLoan(formData).subscribe((data: any) => {

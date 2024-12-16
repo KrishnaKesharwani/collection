@@ -20,7 +20,7 @@ export class CommonComponentService {
   provideloanstatus = ['approved', 'paid'];
   downloadloanreport = ['paid', 'approved', 'pending', 'cancelled', 'completed', 'all'];
   downloadstatus = ['active', 'inactive', 'all'];
-  actionForLoanStatus = ['approved', 'running', 'pending', 'cancelled'];
+  actionForLoanStatus = ['approved', 'paid', 'pending', 'cancelled'];
   loanliststatus = ['completed', 'paid', 'approved', 'pending', 'cancelled'];
   depositrequest = ['pending', 'approved'];
   status = ['active', 'inactive'];
