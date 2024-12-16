@@ -27,6 +27,12 @@ export class EditCompanyComponent {
   address: string = '';
   loading = false;
   company_id: any;
+  name: string = '';
+  email: string = '';
+  status: string = '';
+  currentUserLogedIn: any;
+  companyData: any;
+  companyLogedInData: any;
   constructor(
     private actionService: ActionService,
     private cdr: ChangeDetectorRef,
@@ -38,32 +44,52 @@ export class EditCompanyComponent {
 
   ngOnInit() {
     // debugger;
-    const customerData: any = localStorage.getItem('CompanyData');
-    const data2: any = localStorage.getItem('CurrentUser');
-    const userData = JSON.parse(customerData);
-    const currentUserDataParse = JSON.parse(data2);
-    this.user_type = userData;
-    this.company_id = currentUserDataParse?.company_id;
-    this.editForm = this.fb.group({
-      company_name: [this.user_type.company_name, Validators.required],
-      owner_name: [this.user_type.owner_name, Validators.required],
-      mobile: [this.user_type.mobile, Validators.required],
-      primary_color: [this.user_type.primary_color, Validators.required],
-      secondary_color: [this.user_type.secondary_color, Validators.required],
-      prefix: [this.user_type.prefix],
-      address: [this.user_type.address, Validators.required],
-      owner_image: [this.user_type.owner_image],
-      main_logo: [this.user_type.main_logo],
-      sidebar_logo: [this.user_type.sidebar_logo],
-      favicon_icon: [this.user_type.favicon_icon],
-      status: ['active'],
-    });
+
+
+    const currentUser: any = localStorage.getItem('CurrentUser');
+    this.currentUserLogedIn = JSON.parse(currentUser);
+
+    this.user_type = this.currentUserLogedIn.user_type;
+
+    if (this.currentUserLogedIn.company != null || this.user_type == 1) {
+
+      const companyData: any = localStorage.getItem('CompanyData');
+      this.companyLogedInData = JSON.parse(companyData);
+      this.company_id = this.companyLogedInData?.id;
+    }
+
+
+
+    if (this.user_type == 1) {
+      this.editForm = this.fb.group({
+        company_name: [this.companyLogedInData.company_name, Validators.required],
+        owner_name: [this.companyLogedInData.owner_name, Validators.required],
+        mobile: [this.companyLogedInData.mobile, Validators.required],
+        primary_color: [this.companyLogedInData.primary_color, Validators.required],
+        secondary_color: [this.companyLogedInData.secondary_color, Validators.required],
+        prefix: [this.companyLogedInData.prefix],
+        address: [this.companyLogedInData.address, Validators.required],
+        owner_image: [this.companyLogedInData.owner_image],
+        main_logo: [this.companyLogedInData.main_logo],
+        sidebar_logo: [this.companyLogedInData.sidebar_logo],
+        favicon_icon: [this.companyLogedInData.favicon_icon],
+        status: ['active'],
+      });
+    } else {
+      this.editForm = this.fb.group({
+        name: [this.currentUserLogedIn.name, Validators.required],
+        email: [this.currentUserLogedIn.email],
+        mobile: [this.currentUserLogedIn.mobile, Validators.required],
+        status: ['active'],
+      });
+    }
+
 
   }
 
   updateDetails() {
     // if (this.company_id) {
-    if (this.editForm.valid) {
+    if (this.editForm.valid || this.user_type == 1) {
 
       this.loading = true;
       const formData = new FormData();
@@ -102,7 +128,27 @@ export class EditCompanyComponent {
           this._toastr.error(error.message, 'Error');
         });
       }
-    } else {
+    } else if (this.editForm.valid || this.user_type == 0) {
+
+
+      this._service.update(this.editForm.value).subscribe((data: any) => {
+        if (data) {
+          this.loading = false;
+          this._toastr.success(data.message, 'Success');
+          this.openDialogonfirmation();
+          // this.router.navigate(['/dashboard']);
+        } else {
+          this.loading = false;
+          this._toastr.error(data.message, 'Error');
+        }
+      }, error => {
+        this.loading = false;
+        this._toastr.error(error.message, 'Error');
+      });
+
+
+    }
+    else {
       this.editForm.markAllAsTouched();
     }
   }

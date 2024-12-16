@@ -1,5 +1,9 @@
+<!-- edit profile for super admin login -->
+<app-edit-company *ngIf="user_type == 0"></app-edit-company>
+
 <!-- edit profile for company login -->
 <app-edit-company *ngIf="user_type == 1"></app-edit-company>
+
 
 <!-- edit profile for customer login -->
 <app-edit-details *ngIf="user_type == 3"></app-edit-details>

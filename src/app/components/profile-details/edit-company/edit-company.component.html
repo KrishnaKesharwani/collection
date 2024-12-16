@@ -1,4 +1,4 @@
-<div class="list-containner profile_edit_container">
+<div class="list-containner profile_edit_container" *ngIf="user_type == 1">
     <form focusInvalidInput [formGroup]="editForm">
         <div class="card shadow dash-cardbox radius_none_bottom">
             <div class="card_inner_block">
@@ -82,6 +82,58 @@
                                     (fileChange)="feviconChange($event)"></app-fileupload> -->
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dialoge_button_container page_button">
+            <button type="submit" class="global_submit_btn" mat-flat-button (click)="updateDetails()">
+                <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+                <app-button-loader *ngIf="loading"></app-button-loader>
+                <span>Update</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="list-containner profile_edit_container" *ngIf="user_type == 0">
+    <form focusInvalidInput [formGroup]="editForm">
+        <div class="card shadow dash-cardbox radius_none_bottom">
+            <div class="card_inner_block">
+                <div class="profile_with_block">
+                    <div class="image_upload">
+                        <!-- <app-fileupload [form]="editForm" class="fileupload_image"
+                            [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="editForm.value['owner_image']"
+                            [imageSize]="'120'" [uploadType]="'profile'" formControlName="owner_image"
+                            [formcontrolname]="'owner_image'" name="owner_image"
+                            (fileChange)="profileChange($event)"></app-fileupload> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12">
+                            <app-input [disabled]="true" [isDateField]="false" label="Name" [(value)]="name"
+                                [isRequired]="true" [className]="'bottom_error_msg'" [form]="editForm" [key]="'name'"
+                                [displayMsg]="'Name is required'"></app-input>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <app-input [disabled]="false" [isDateField]="false" label="Email" [(value)]="email"
+                                [isRequired]="true" [className]="'bottom_error_msg'" [form]="editForm" [key]="'email'"
+                                [displayMsg]="'Email is required'"></app-input>
+                        </div>
+
+                        <div class="col-sm-4 col-xs-12">
+                            <app-input [disabled]='true' [isDateField]="false" label="Mobile" [(value)]="mobile"
+                                [isRequired]="true" [className]="'bottom_error_msg'" [form]="editForm" [key]="'mobile'"
+                                [displayMsg]="'Mobile is required'"></app-input>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <app-input [disabled]='true' [isDateField]="false" label="Status" [(value)]="status"
+                                [isRequired]="true" [className]="'bottom_error_msg'" [form]="editForm"
+                                [key]="'status'"></app-input>
+                        </div>
+
+
+
+
                     </div>
                 </div>
             </div>
