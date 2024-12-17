@@ -33,7 +33,7 @@ export class ActionForLoanComponent {
   start_date: any;
   end_date: any;
   no_of_days: string = '0';
-  selectedStatus: any;
+  selectedStatus: any = 'pending';
   statusOptions: string[] = [];
   customer_id: any;
 
@@ -65,7 +65,7 @@ export class ActionForLoanComponent {
     });
 
     this.providerLoanFormForCancelled = this.fb.group({
-      details: ['']
+      reason: ['', Validators.required]
     })
 
     this.getActiveMemberList();
@@ -175,17 +175,10 @@ export class ActionForLoanComponent {
   }
 
   submit() {
-
-
-    if (this.providerLoanForm.valid) {
+    if (this.selectedStatus == 'paid' || this.selectedStatus == 'approved') {
       if (this.providerLoanForm.valid) {
-        this.loading = true
-
+        this.loading = true;
         const formData = new FormData();
-        // const files = [
-        //   { name: 'document', file: this.providerLoanForm.get('document')?.value },
-        // ];
-
         Object.keys(this.providerLoanForm.value).forEach(key => {
           if (!['start_date'].includes(key) && !['end_date'].includes(key)) {
             formData.append(key, this.providerLoanForm.value[key]);
@@ -204,15 +197,27 @@ export class ActionForLoanComponent {
           this.loading = false;
           this._tostr.success(data.message, 'Success');
 
-
+          this.dialog.closeAll();
         })
-        this.dialog.closeAll();
+
       } else {
         this.providerLoanForm.markAllAsTouched()
       }
     } else {
-      let obj = {
-        details: this.providerLoanFormForCancelled.value.details
+
+      if (this.providerLoanFormForCancelled.valid) {
+        let obj = {
+          loan_id: this.dataa.data.id,
+          reason: this.providerLoanFormForCancelled.value.reason,
+          loan_status: this.providerLoanForm.value.loan_status
+        }
+        this._service.updateLoanStatus(obj).subscribe((data: any) => {
+          this._tostr.success(data.message, 'Success');
+          this.providerLoanFormForCancelled.reset();
+          this.dialog.closeAll();
+        })
+      } else {
+        this.providerLoanFormForCancelled.markAllAsTouched()
       }
     }
   }
