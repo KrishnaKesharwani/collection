@@ -133,7 +133,7 @@ export class DailyCollectionComponent {
   openDialogChangeStatus(data: any) {
     const dialogRef = this.dialog.open(ChangeStatusComponent, {
       disableClose: true,
-      panelClass: 'delete_popup',
+      // panelClass: 'delete_popup',
       data: {
         title: 'Change Deposit Status',
         id: data.id,

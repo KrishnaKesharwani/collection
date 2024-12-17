@@ -141,8 +141,9 @@
                     // .col-sm-12 {
                     //     padding: 0px !important;
                     // }
-                }               
+                }
             }
+
             .dialoge_button_container {
                 position: fixed;
                 width: 100%;
@@ -150,6 +151,7 @@
                 left: 0px;
                 z-index: 2;
             }
+
             .full_height_coverwithout_bottom {
                 height: calc(100vh - 70px);
             }
@@ -164,9 +166,11 @@
         td:nth-of-type(odd) {
             width: 35%;
         }
-        tbody{
+
+        tbody {
             background: transparent !important;
-            tr{
+
+            tr {
                 background: #ffffff;
             }
         }
@@ -453,6 +457,7 @@
                                 }
                             }
                         }
+
                         .calender_withsearch {
                             display: block;
 
@@ -460,17 +465,19 @@
                                 width: 100%;
                                 margin: 5px 0px 10px 0px !important;
                                 max-width: 100%;
+
                                 form {
                                     width: 100%;
                                 }
-                            }                           
+                            }
+
                             .search_withaddbtn {
                                 max-width: calc(100% - 75px);
                                 float: left;
                             }
                         }
-                        
-                        
+
+
                     }
                 }
             }
@@ -482,6 +489,7 @@
             }
         }
     }
+
     .mydata-table,
     .popup_table {
         padding: 10px;
@@ -587,22 +595,26 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 576px) {    
+@media (min-width: 320px) and (max-width: 576px) {
     .date_ddl_reset_block {
         flex-flow: wrap !important;
         margin-top: 5px;
+
         .date_block {
             width: 100% !important;
         }
-        .search_withaddbtn  {
+
+        .search_withaddbtn {
             max-width: calc(100% - 75px);
             float: left;
             margin: 7px 0px 0px 0px;
+
             .global_ddl_m_p_0 {
                 margin: 0px !important;
             }
         }
     }
+
     .head_details {
         .total_block {
             display: flex;
@@ -610,23 +622,33 @@
             padding: 10px 7px !important;
             text-align: center;
             margin: 2px 0px 5px 0px !important;
+
             span {
                 margin: 0px !important;
             }
         }
+
         .internal_50 {
             width: 49%;
         }
     }
-    
+
     .two_block_count {
         .total_block {
             width: 48% !important;
         }
     }
+
+    .three_block_count {
+        .total_block {
+            width: 31% !important;
+        }
+    }
+
     .listsearchwith_ddl_topblock {
         margin-top: 20px;
     }
+
     .flex_header {
         .load_list_ddl {
             margin: 0px !important;
