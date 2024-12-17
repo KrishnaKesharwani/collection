@@ -156,7 +156,7 @@ export class LoanListComponent {
   openDialogMoreDetail(data: any, loantype: boolean): void {
     if (this.isDialogOpen) return;
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
-      panelClass: 'view_details_small_popup',
+      // panelClass: 'view_details_small_popup',
       data: {
         title: 'Loan Details',
         data: data,
@@ -228,7 +228,7 @@ export class LoanListComponent {
   openDialogChangeStatus(data: any) {
     const dialogRef = this.dialog.open(ChangeStatusComponent, {
       disableClose: true,
-      panelClass: 'view_details_small_popup',
+      // panelClass: 'view_details_small_popup',
       data: {
         title: 'Change Loan Status',
         data: data,

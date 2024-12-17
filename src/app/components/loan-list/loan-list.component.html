@@ -5,7 +5,7 @@
                 <div class="col col-sm-4 pl-1">
                     <h3 class="mb-0">{{"Loan List For Status"|translate}}</h3>
                 </div>
-                <div class="col p-0 head_details">
+                <div class="col p-0 head_details two_block_count">
                     <div class="total_block bg-primary mr-2">
                         <span>{{listLoadType |translate}} {{"Amount"|translate}}</span>
                         <b>{{total_remaining_amount}}.00</b>
@@ -96,9 +96,9 @@
                             </tr>
                             <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
                                 <tr class="received_row" *ngFor="let item of filteredDataarray">
-                                    <td class="col">{{item.loan_no}}</td>
-                                    <td class="col">{{item.customer?.customer_no}}</td>
-                                    <td class="col" data-name="Profile">
+                                    <td class="col" [attr.data-name]="'Loan No.' | translate">{{item.loan_no}}</td>
+                                    <td class="col" [attr.data-name]="'Customer No.' | translate">{{item.customer?.customer_no}}</td>
+                                    <td class="col" [attr.data-name]="'Profile' | translate">
                                         <div class="list_image_block" *ngIf="item.customer?.image == null">
                                             <img src="assets/imgs/default-pic.png" />
                                         </div>
@@ -107,11 +107,11 @@
                                                 src="{{item.customer?.image}}" />
                                         </div>
                                     </td>
-                                    <td class="col" data-name="Name">{{item.customer?.name}}</td>
-                                    <td class="col" data-name="Assign">{{item.member?.name}}</td>
-                                    <td class="col" data-name="Loan Amt ">{{item.loan_amount}}</td>
-                                    <td class="col" data-name="Pending Amt">{{item.remaining_amount}}</td>
-                                    <td class="action_col" data-name="Action">
+                                    <td class="col" [attr.data-name]="'Name' | translate">{{item.customer?.name}}</td>
+                                    <td class="col" [attr.data-name]="'Assign' | translate">{{item.member?.name}}</td>
+                                    <td class="col" [attr.data-name]="'Loan Amt' | translate">{{item.loan_amount}}</td>
+                                    <td class="col" [attr.data-name]="'Pending Amt' | translate">{{item.remaining_amount}}</td>
+                                    <td class="action_col" [attr.data-name]="'Action' | translate">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
                                                 aria-label="Example icon-button with a menu">
@@ -225,9 +225,9 @@
                             </tr>
                             <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
                                 <tr class="received_row" *ngFor="let item of filteredDataarray">
-                                    <td class="col">{{item.loan_no}}</td>
-                                    <td class="col">{{item.customer?.customer_no}}</td>
-                                    <td class="col" data-name="Profile">
+                                    <td class="col" [attr.data-name]="'Loan No.' | translate">{{item.loan_no}}</td>
+                                    <td class="col" [attr.data-name]="'Customer No.' | translate">{{item.customer?.customer_no}}</td>
+                                    <td class="col" [attr.data-name]="'Profile' | translate">
                                         <div class="list_image_block" *ngIf="item.customer?.image == null">
                                             <img src="assets/imgs/default-pic.png" />
                                         </div>
@@ -236,11 +236,11 @@
                                                 src="{{item.customer?.image}}" />
                                         </div>
                                     </td>
-                                    <td class="col" data-name="Name">{{item.customer?.name}}</td>
-                                    <td class="col" data-name="Assign">{{item.member?.name}}</td>
-                                    <td class="col" data-name="Loan Amt ">{{item.loan_amount}}</td>
-                                    <td class="col" data-name="Pending Amt">{{item.remaining_amount}}</td>
-                                    <td class="action_col" data-name="Action">
+                                    <td class="col" [attr.data-name]="'Name' | translate">{{item.customer?.name}}</td>
+                                    <td class="col" [attr.data-name]="'Assign' | translate">{{item.member?.name}}</td>
+                                    <td class="col" [attr.data-name]="'Loan Amt' | translate">{{item.loan_amount}}</td>
+                                    <td class="col" [attr.data-name]="'Pending Amt' | translate">{{item.remaining_amount}}</td>
+                                    <td class="action_col" [attr.data-name]="'Action' | translate">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
                                                 aria-label="Example icon-button with a menu">
@@ -341,8 +341,8 @@
                             </tr>
                             <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
                                 <tr class="received_row" *ngFor="let item of filteredDataarray">
-                                    <td class="col">{{item.customer?.customer_no}}</td>
-                                    <td class="col" data-name="Profile">
+                                    <td class="col" [attr.data-name]="'Customer No.' | translate">{{item.customer?.customer_no}}</td>
+                                    <td class="col" [attr.data-name]="'Profile' | translate">
                                         <div class="list_image_block" *ngIf="item.customer?.image == null">
                                             <img src="assets/imgs/default-pic.png" />
                                         </div>
@@ -351,11 +351,11 @@
                                                 src="{{item.customer?.image}}" />
                                         </div>
                                     </td>
-                                    <td class="col" data-name="Name">{{item.customer?.name}}</td>
-                                    <td class="col" data-name="Apply Type">{{item?.applied_user_name}}</td>
-                                    <td class="col" data-name="Apply Date ">{{item?.apply_date}}</td>
-                                    <td class="col" data-name="Amount">{{item.remaining_amount}}</td>
-                                    <td class="action_col" data-name="Action">
+                                    <td class="col" [attr.data-name]="'Name' | translate">{{item.customer?.name}}</td>
+                                    <td class="col" [attr.data-name]="'Apply Type' | translate">{{item?.applied_user_name}}</td>
+                                    <td class="col" [attr.data-name]="'Apply Date' | translate">{{item?.apply_date}}</td>
+                                    <td class="col" [attr.data-name]="'Amount' | translate">{{item.remaining_amount}}</td>
+                                    <td class="action_col" [attr.data-name]="'Action' | translate">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
                                                 aria-label="Example icon-button with a menu">
@@ -443,9 +443,8 @@
                             </tr>
                             <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
                                 <tr class="received_row" *ngFor="let item of filteredDataarray">
-
-                                    <td class="col">{{item.customer?.customer_no}}</td>
-                                    <td class="col" data-name="Profile">
+                                    <td class="col" [attr.data-name]="'Customer No.' | translate">{{item.customer?.customer_no}}</td>
+                                    <td class="col" [attr.data-name]="'Profile' | translate">
                                         <div class="list_image_block" *ngIf="item.customer?.image == null">
                                             <img src="assets/imgs/default-pic.png" />
                                         </div>
@@ -454,16 +453,11 @@
                                                 src="{{item.customer?.image}}" />
                                         </div>
                                     </td>
-                                    <td class="col" data-name="Name">{{item.customer?.name}}</td>
-
-
-
-
-                                    <td class="col" data-name="Apply Date ">{{item?.apply_date}}</td>
-
-                                    <td class="col" data-name="Apply Type">{{item?.applied_user_name}}</td>
-                                    <td class="col" data-name="Amount">{{item.remaining_amount}}</td>
-                                    <td class="action_col" data-name="Action">
+                                    <td class="col" [attr.data-name]="'Name' | translate">{{item.customer?.name}}</td>
+                                    <td class="col" [attr.data-name]="'Apply Date' | translate">{{item?.apply_date}}</td>
+                                    <td class="col" [attr.data-name]="'Apply Type' | translate">{{item?.applied_user_name}}</td>
+                                    <td class="col" [attr.data-name]="'Amount' | translate">{{item.remaining_amount}}</td>
+                                    <td class="action_col" [attr.data-name]="'Action' | translate">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
                                                 aria-label="Example icon-button with a menu">
@@ -561,9 +555,9 @@
                             </tr>
                             <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
                                 <tr class="received_row" *ngFor="let item of filteredDataarray">
-                                    <td class="col">{{item.loan_no}}</td>
-                                    <td class="col">{{item.customer?.customer_no}}</td>
-                                    <td class="col" data-name="Profile">
+                                    <td class="col" [attr.data-name]="'Loan No.' | translate">{{item.loan_no}}</td>
+                                    <td class="col" [attr.data-name]="'Customer No.' | translate">{{item.customer?.customer_no}}</td>
+                                    <td class="col" [attr.data-name]="'Profile' | translate">
                                         <div class="list_image_block" *ngIf="item.customer?.image == null">
                                             <img src="assets/imgs/default-pic.png" />
                                         </div>
@@ -572,11 +566,11 @@
                                                 src="{{item.customer?.image}}" />
                                         </div>
                                     </td>
-                                    <td class="col" data-name="Name">{{item.customer?.name}}</td>
-                                    <td class="col" data-name="Assign">{{item.member?.name}}</td>
-                                    <td class="col" data-name="Loan Amt ">{{item.loan_amount}}</td>
-                                    <td class="col" data-name="Pending Amt">{{item.remaining_amount}}</td>
-                                    <td class="action_col" data-name="Action">
+                                    <td class="col" [attr.data-name]="'Name' | translate">{{item.customer?.name}}</td>
+                                    <td class="col" [attr.data-name]="'Assign' | translate">{{item.member?.name}}</td>
+                                    <td class="col" [attr.data-name]="'Loan Amt' | translate">{{item.loan_amount}}</td>
+                                    <td class="col" [attr.data-name]="'Pending Amt' | translate">{{item.remaining_amount}}</td>
+                                    <td class="action_col" [attr.data-name]="'Action' | translate">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
                                                 aria-label="Example icon-button with a menu">

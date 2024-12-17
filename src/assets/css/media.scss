@@ -131,7 +131,7 @@
             .small_popup,
             .medium_popup,
             .view_details_small_popup {
-                height: calc(100vh - 115px);
+                height: calc(100% - 115px);
                 overflow: auto;
                 width: 100%;
 
@@ -616,6 +616,12 @@
         }
         .internal_50 {
             width: 49%;
+        }
+    }
+    
+    .two_block_count {
+        .total_block {
+            width: 48% !important;
         }
     }
     .listsearchwith_ddl_topblock {
