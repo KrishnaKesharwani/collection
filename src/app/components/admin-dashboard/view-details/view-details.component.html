@@ -127,7 +127,7 @@
                 <td><b>{{"Details"|translate}} :</b></td>
                 <td>{{data?.details}}</td>
             </tr>
-        </tbody>      
+        </tbody>
         <tbody *ngIf="showDetails == 'request'">
             <tr>
                 <td><b>{{"Deposit No."|translate}} :</b></td>
@@ -159,13 +159,13 @@
                         <span class="badge bg-success text-white">{{data.status}}</span>
                     </ng-container>
                 </td>
-            </tr>         
+            </tr>
             <tr>
                 <td><b>{{"Request Reason"|translate}} :</b></td>
                 <td>{{data.reason}}</td>
             </tr>
             <tr *ngIf="data.replied_message != ''">
-                <td><b>{{"Reply Massage"|translate}} :</b></td>
+                <td><b>{{"Reply Message"|translate}} :</b></td>
                 <td>{{data.replied_message}}</td>
             </tr>
         </tbody>

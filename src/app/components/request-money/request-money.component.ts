@@ -144,7 +144,7 @@ export class RequestMoneyComponent {
       this.getCustomerData = memberData.data;
       const members = memberData.data.map((member: any) => member.name);
       this.dropdownService.setOptions('getCustomerData', memberData.data);
-    }, error =>{
+    }, error => {
       this._tostr.error(error.message, 'Error');
     })
   }
@@ -161,6 +161,7 @@ export class RequestMoneyComponent {
   openDialogActionForDeposit(data?: any) {
     const dialogRef = this.dialog.open(ActionForDepositComponent, {
       panelClass: 'medium_popup',
+      disableClose: true,
       data: {
         title: 'Message For Deposit',
         data: data
