@@ -53,6 +53,10 @@ export class CustomerBulkImportComponent {
     }
   }
 
+  updateData(event: Event, rowIndex: number, columnKey: string): void {
+    const target = event.target as HTMLTableCellElement;
+    this.data[rowIndex][columnKey] = target.innerText.trim();
+  }
   submit() {
 
     let obj = {
@@ -62,7 +66,9 @@ export class CustomerBulkImportComponent {
 
 
     this._service.importData(obj).subscribe((data: any) => {
-
+      // if (data.error.customers.mobile && data.error.customers.email) {
+      //   this._tostr.error(data.error.customers.email, 'Error');
+      // }
       this._tostr.success(data.message, 'Success');
       this.dialog.closeAll();
     })
@@ -71,7 +77,7 @@ export class CustomerBulkImportComponent {
 
   downloadExcel() {
     const data = [
-      { name: '', mobile: '', email: '', aadhar_no: '', join_date: '', customer_login_id: '', password: '', address: '', status: '' }
+      { name: '', mobile: '', email: '', aadhar_no: '', join_date: '', customer_login_id: '', password: '', status: '' }
     ];
     const worksheet = XLSX.utils.json_to_sheet(data);
     const workbook = XLSX.utils.book_new();

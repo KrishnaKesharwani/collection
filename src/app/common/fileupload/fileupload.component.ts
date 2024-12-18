@@ -45,7 +45,7 @@ export class FileuploadComponent {
       const reader = new FileReader();
       reader.onload = e => {
         this.image_base16String = reader.result; // Set imageSrc to the base64 data
-        this.form.controls[this.formcontrolname].setValue(reader.result);
+        this.form?.controls[this.formcontrolname].setValue(reader.result);
       };
       reader.readAsDataURL(file);
       // this.fileChange.emit(this.image_base16File);

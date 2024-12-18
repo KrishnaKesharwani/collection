@@ -27,8 +27,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of data">
-                <td *ngFor="let key of (item | keys)" contenteditable='true'>{{ item[key] }}</td>
+            <tr *ngFor="let item of data; let i = index">
+                <td *ngFor="let key of (item | keys)" contenteditable="true" (input)="updateData($event, i, key)">
+                    {{ item[key] }}
+                </td>
             </tr>
         </tbody>
     </table>
