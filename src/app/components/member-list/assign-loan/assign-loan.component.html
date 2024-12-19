@@ -4,7 +4,7 @@
 </div>
 <div class="dialoge_middle_container full_height_coverwithout_bottom">
     <div class="flex_header res_flex_colum">
-        <div class="assign_text res_full_width">{{"Total Assign"|translate}} : {{total_assignlength}}</div> 
+        <div class="assign_text res_full_width">{{"Total Assign"|translate}} : {{total_assignlength}}</div>
         <div class="global_form_row res_full_width load_list_ddl" *ngIf="getUnassignedData?.length">
             <form form="unassignedForm" class="main_form">
                 <mat-form-field class="global_dropdown" appearance="outline">
@@ -84,7 +84,7 @@
                     <td class="col" data-name="Cno.">{{deposit.customer.customer_no}}</td>
                     <td class="col" data-name="Customer Name">{{deposit.customer.name}}</td>
                     <td class="col" data-name="Contact">{{deposit.customer.mobile}}</td>
-                    <td class="text-right col" data-name="Amount">-</td>
+                    <td class="text-right col" data-name="Amount">{{deposit.remaining_amount}}</td>
 
                     <td class="text-center col" data-name="Status">
                         <span class="badge bg-success text-white"

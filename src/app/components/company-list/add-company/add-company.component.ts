@@ -54,12 +54,12 @@ export class AddCompanyComponent {
       primary_color: ['#e20813', Validators.required],
       secondary_color: ['#000000', Validators.required],
       prefix: [''],
-      main_logo: ['../../../assets/imgs/no-images.jpg'],
-      sidebar_logo: ['../../../assets/imgs/no-images.jpg'],
-      favicon_icon: ['../../../assets/imgs/no-images.jpg'],
-      adhar_front: ['../../../assets/imgs/no-images.jpg'],
-      adhar_back: ['../../../assets/imgs/no-images.jpg'],
-      owner_image: [null],
+      main_logo: [''],
+      sidebar_logo: [''],
+      favicon_icon: [''],
+      adhar_front: [''],
+      adhar_back: [''],
+      owner_image: [''],
       address: ['', Validators.required],
       details: ['']
     });
@@ -179,18 +179,18 @@ export class AddCompanyComponent {
 
           // }
         });
-        // if (!this.selectedFile) {
-        //   formData.delete('main_logo');
-        // }
-        // if (!this.selectedFile2) {
-        //   formData.delete('sidebar_logo');
-        // }
-        // if (!this.selectedFile3) {
-        //   formData.delete('favicon_icon');
-        // }
-        // if (!this.selectedFile4) {
-        //   formData.delete('owner_image');
-        // }
+        if (!this.selectedFile) {
+          formData.delete('main_logo');
+        }
+        if (!this.selectedFile2) {
+          formData.delete('sidebar_logo');
+        }
+        if (!this.selectedFile3) {
+          formData.delete('favicon_icon');
+        }
+        if (!this.selectedFile4) {
+          formData.delete('owner_image');
+        }
         if (formData) {
           this._service.create(formData).subscribe((data: any) => {
             if (data) {

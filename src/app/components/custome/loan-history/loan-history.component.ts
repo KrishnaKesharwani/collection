@@ -38,6 +38,7 @@ export class LoanHistoryComponent {
     this._service.loanList(obj).subscribe((data: any) => {
       if (data.success) {
         this.data = data.data.loans;
+
         this.loader = false;
       } else {
         this.loader = false;
