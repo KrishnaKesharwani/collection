@@ -6,7 +6,7 @@ import { tap } from 'rxjs';
   providedIn: 'root'
 })
 export class CompanyService {
-  private apiUrl = 'https://pinku.tech/moneyCollectionBackend/api';
+  private apiUrl = 'https://moneycollection.in/moneyCollectionBackend/api';
   private token: string | null = null;
 
 

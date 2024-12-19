@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class FixedDepositService {
 
-  private apiUrl = 'https://pinku.tech/moneyCollectionBackend/api';
+  private apiUrl = 'https://moneycollection.in/moneyCollectionBackend/api';
 
   constructor(public httpClient: HttpClient) { }
 

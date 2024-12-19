@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoanService {
 
-  private apiUrl = 'https://pinku.tech/moneyCollectionBackend/api';
+  private apiUrl = 'https://moneycollection.in/moneyCollectionBackend/api';
   private token: string | null = null;
 
 

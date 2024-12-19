@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class DailyCollectionService {
 
-  private apiUrl = 'https://pinku.tech/moneyCollectionBackend/api';
+  private apiUrl = 'https://moneycollection.in/moneyCollectionBackend/api';
   private token: string | null = null;
   constructor(public httpClient: HttpClient) { }
 

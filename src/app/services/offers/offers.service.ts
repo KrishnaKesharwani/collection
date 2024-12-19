@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class OffersService {
-  private apiUrl = 'https://pinku.tech/moneyCollectionBackend/api';
+  private apiUrl = 'https://moneycollection.in/moneyCollectionBackend/api';
   private token: string | null = null;
 
 

@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'https://pinku.tech/moneyCollectionBackend/api'; // Replace with your API URL
+  private apiUrl = 'https://moneycollection.in/moneyCollectionBackend/api'; // Replace with your API URL
   private token: string | null = null;
 
   constructor(private http: HttpClient, private router: Router) { }
