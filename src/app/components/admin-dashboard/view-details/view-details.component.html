@@ -220,7 +220,7 @@
         </tbody> -->
     </table>
     <ng-container *ngIf="showDetails == 'current'">
-        <div class="global_details_image_container" *ngIf="data?.document.length">
+        <div class="global_details_image_container" *ngIf="data?.document?.length">
             <div class="image_twopart card" *ngFor="let docdata of data?.document; let i=index">
                 <img [src]="docdata?.document_url" alt="Uploaded Image" />
             </div>

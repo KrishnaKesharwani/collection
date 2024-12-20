@@ -56,12 +56,12 @@
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
-                        <tr *ngIf="filteredDataarray.length == 0 && !loader">
+                        <tr *ngIf="filteredDataarray?.length == 0 && !loader">
                             <td class="norecord_col" colspan="11">
                                 <app-no-record-found type="table" notext="No company found"></app-no-record-found>
                             </td>
                         </tr>
-                        <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                        <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                             <tr class="received_row" *ngFor="let item of filteredDataarray">
                                 <td class="col" data-name="Name">{{item.company_name}}</td>
                                 <td class="col" data-name="Logo">

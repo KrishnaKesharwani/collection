@@ -159,8 +159,18 @@ export class AddCustomerComponent {
               this.customerForm.reset();
             }
           }, error => {
+            // debugger
             this.loading = false;
-            this._toastr.error(error.error.message, 'Error');
+            if (error.error.error?.customer_login_id && error.error.message) {
+              this._toastr.error(error.error.error.customer_login_id, "Error");
+            } else if (error.error.error?.mobile && error.error.message) {
+              this._toastr.error(error.error.error.mobile, "Error");
+            } else if (error.error.error?.email && error.error.message) {
+              this._toastr.error(error.error.error.email, "Error");
+            } else {
+              this._toastr.error(error.error.message, "Error");
+            }
+
           });
         }
       } else {

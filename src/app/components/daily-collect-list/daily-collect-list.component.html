@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </ng-container>
-            <div class="assign_customer_block" *ngIf="!customerDepositData.length && !loanData.length">
+            <div class="assign_customer_block" *ngIf="!customerDepositData?.length && !loanData?.length">
                 <app-no-record-found type="page" notext="No Deposit and Loan account available."></app-no-record-found>
             </div>
         </div>
@@ -95,11 +95,11 @@
         <!-- <app-no-record-found [type]="'page'" [notext]="'Admin not assign any loan & collection...'"></app-no-record-found> -->
         <div class="assign_customer_container" *ngIf="!loading">
             <ng-container
-                *ngIf="!filteredDataarray.length && !memberDepositData.length || filteredDataarray == undefined">
+                *ngIf="!filteredDataarray?.length && !memberDepositData?.length || filteredDataarray == undefined">
                 <app-no-record-found [type]="'page'"
                     [notext]="'Admin not assign any loan & collection...'"></app-no-record-found>
             </ng-container>
-            <ng-container *ngIf="filteredDataarray.length">
+            <ng-container *ngIf="filteredDataarray?.length">
                 <div class="assign_customer_block" *ngFor="let loan of filteredDataarray">
                     <ul class="list-unstyled dynamic_card_data">
                         <li class="data_head">{{"Loan No."|translate}}</li>
@@ -131,7 +131,7 @@
                     </div>
                 </div>
             </ng-container>
-            <ng-container *ngIf="memberDepositData.length">
+            <ng-container *ngIf="memberDepositData?.length">
                 <div class="assign_customer_block" *ngFor="let deposit of memberDepositData">
                     <ul class="list-unstyled dynamic_card_data">
                         <li class="data_head">{{"Deposit No."|translate}}</li>

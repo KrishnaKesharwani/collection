@@ -105,12 +105,12 @@
                         <app-page-loader></app-page-loader>
                     </td>
                 </tr>
-                <tr *ngIf="filteredDataarray.length == 0 && !loader">
+                <tr *ngIf="filteredDataarray?.length == 0 && !loader">
                     <td class="norecord_col" colspan="10">
                         <app-no-record-found type="table" notext="No customer found"></app-no-record-found>
                     </td>
                 </tr>
-                <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                     <tr class="received_row" *ngFor="let item of filteredDataarray">
                         <td class="col" [attr.data-name]="'Customer No.' | translate"> {{item.customer_no}}</td>
                         <td class="col" [attr.data-name]="'Profile' | translate" data-name="Profile">
@@ -123,8 +123,10 @@
                         </td>
                         <td class="col" [attr.data-name]="'Name' | translate">{{item.name}}</td>
                         <td class="col" [attr.data-name]="'Email' | translate">{{item.email}}</td>
-                        <td class="col text-center" [attr.data-name]="'Total Loans' | translate">{{item.loan_count}}</td>
-                        <td class="col text-center" [attr.data-name]="'Total Deposit' | translate">{{item.deposit_count}}</td>
+                        <td class="col text-center" [attr.data-name]="'Total Loans' | translate">{{item.loan_count}}
+                        </td>
+                        <td class="col text-center" [attr.data-name]="'Total Deposit' | translate">
+                            {{item.deposit_count}}</td>
                         <td class="col" [attr.data-name]="'Mobile' | translate">{{item.mobile}}</td>
                         <td class="col" [attr.data-name]="'Join Date' | translate">{{item.join_date}}</td>
                         <!-- <td class="col" data-name="End Date">{{item.loan_amount}}</td>

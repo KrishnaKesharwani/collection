@@ -13,13 +13,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngIf="historyData.length == 0">
+            <tr *ngIf="historyData?.length == 0">
                 <td class="norecord_col col" colspan="4">
                     <app-no-record-found type="table"
                         notext="No loan history found for this customer."></app-no-record-found>
                 </td>
             </tr>
-            <ng-container *ngIf="historyData.length != 0">
+            <ng-container *ngIf="historyData?.length != 0">
                 <tr class="received_row" *ngFor="let data of historyData; let i=index">
                     <td class="col text-center" [attr.data-name]="'S.No.' | translate">{{i+1}}</td>
                     <td class="col" [attr.data-name]="'Date' | translate">{{data?.receive_date}}</td>

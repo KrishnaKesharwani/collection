@@ -26,18 +26,20 @@
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
-            <tr *ngIf="loanList.length == 0 && !loader">
+            <tr *ngIf="loanList?.length == 0 && !loader">
                 <td class="norecord_col" colspan="7">
                     <app-no-record-found type="table" notext="You have not any loan"></app-no-record-found>
                 </td>
             </tr>
-            <ng-container *ngIf="loanList.length !== 0 && !loader">
+            <ng-container *ngIf="loanList?.length !== 0 && !loader">
                 <tr *ngFor="let loan of loanList">
                     <td class="col" [attr.data-name]="'Loan No.' | translate">{{loan.loan_no}}</td>
                     <td class="col" [attr.data-name]="'Start / Apply Date' | translate"><small>{{loan.start_date}} To
                             {{loan.end_date}}</small></td>
-                    <td class="col" [attr.data-name]="'Receiver' | translate" data-name="Receiver">{{loan.member?.name}}</td>
-                    <td class="col" [attr.data-name]="'Amount' | translate" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}
+                    <td class="col" [attr.data-name]="'Receiver' | translate" data-name="Receiver">{{loan.member?.name}}
+                    </td>
+                    <td class="col" [attr.data-name]="'Amount' | translate" data-name="Amount"><i
+                            class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}
                     </td>
                     <td class="col" [attr.data-name]="'Balance' | translate" data-name="Balance"><i
                             class="mdi mdi-currency-inr mr-1"></i>{{loan.remaining_amount}}</td>

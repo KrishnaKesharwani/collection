@@ -35,7 +35,7 @@ export class CustomActionsService {
 
   filteredData(responseData: any, searchTerm: string = '', filterColumnName: any[] = []) {
     this.filteredDataarrayForSearch = responseData.filter((item: any) => {
-      for (let i = 0; i < filterColumnName.length; i++) {
+      for (let i = 0; i < filterColumnName?.length; i++) {
         const columnName = filterColumnName[i];
         if (item[columnName] && typeof item[columnName] === 'string') {
           if (item[columnName].toLowerCase().includes(searchTerm.toLowerCase())) {

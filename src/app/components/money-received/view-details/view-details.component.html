@@ -64,19 +64,21 @@
         </thead>
         <tbody>
             <tr *ngIf="loader">
-                <td class="norecord_col"colspan="6">
+                <td class="norecord_col" colspan="6">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
-            <tr *ngIf="memberLatestData.length == 0 && !loader">
+            <tr *ngIf="memberLatestData?.length == 0 && !loader">
                 <td class="norecord_col" colspan="6">
                     <app-no-record-found type="table" notext="No customer collection found."></app-no-record-found>
                 </td>
             </tr>
-            <ng-container *ngIf="memberLatestData.length != 0 && !loader">
+            <ng-container *ngIf="memberLatestData?.length != 0 && !loader">
                 <tr *ngFor="let item of memberLatestData; let i=index;">
-                    <td [attr.data-name]="'Customer Name' | translate" *ngIf="item.amount_by != 'advance'">{{item.customer?.name}}</td>
-                    <td [attr.data-name]="'Amount By' | translate" *ngIf="item.amount_by == 'advance'">Company Advance</td>
+                    <td [attr.data-name]="'Customer Name' | translate" *ngIf="item.amount_by != 'advance'">
+                        {{item.customer?.name}}</td>
+                    <td [attr.data-name]="'Amount By' | translate" *ngIf="item.amount_by == 'advance'">Company Advance
+                    </td>
                     <td [attr.data-name]="'Amount By' | translate" class="capatalise_col">{{item.amount_by}}</td>
                     <td [attr.data-name]="'Amount Type' | translate">{{item.amount_type}}</td>
                     <td [attr.data-name]="'Date Time' | translate"><small>{{item.created_at}}</small></td>

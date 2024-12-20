@@ -67,12 +67,12 @@
                         <app-page-loader></app-page-loader>
                     </td>
                 </tr>
-                <tr *ngIf="filteredDataarray.length == 0 && !loader">
+                <tr *ngIf="filteredDataarray?.length == 0 && !loader">
                     <td class="norecord_col" colspan="9">
                         <app-no-record-found type="table" notext="No member found"></app-no-record-found>
                     </td>
                 </tr>
-                <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                     <tr class="received_row" *ngFor="let item of filteredDataarray">
                         <td class="col" data-name="Member No.">{{item.member_no}}</td>
                         <td class="col " data-name="Image">
@@ -96,7 +96,7 @@
                         </td>
                         <td class="col " data-name="Action">
                             <div placement="bottom-right">
-                                <button class="table_actionbtn_block"  mat-icon-button [matMenuTriggerFor]="menu"
+                                <button class="table_actionbtn_block" mat-icon-button [matMenuTriggerFor]="menu"
                                     aria-label="Example icon-button with a menu">
                                     <mat-icon>more_vert</mat-icon>
                                 </button>

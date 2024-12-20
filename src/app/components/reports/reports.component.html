@@ -60,12 +60,12 @@
                         <app-page-loader></app-page-loader>
                     </td>
                 </tr>
-                <tr *ngIf="filteredDataarray.length == 0 && !loader">
+                <tr *ngIf="filteredDataarray?.length == 0 && !loader">
                     <td class="norecord_col" colspan="6">
                         <app-no-record-found type="table" notext="No Last Backup found."></app-no-record-found>
                     </td>
                 </tr>
-                <ng-container *ngIf="filteredDataarray.length != 0 && !loader">
+                <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                     <ng-container *ngFor="let item of filteredDataarray; let i=index;">
                         <tr class="received_row">
                             <td class="col s_no" data-name="Sno.">{{i+1}}</td>

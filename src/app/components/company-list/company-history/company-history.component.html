@@ -31,7 +31,7 @@
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
-            <tr *ngIf="companyHistoryListData.length == 0 && !loader">
+            <tr *ngIf="companyHistoryListData?.length == 0 && !loader">
                 <td class="norecord_col" colspan="8">
                     <app-no-record-found type="table" notext="Company not paid any amount."></app-no-record-found>
                 </td>

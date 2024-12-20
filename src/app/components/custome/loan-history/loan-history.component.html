@@ -25,13 +25,13 @@
                         <app-page-loader></app-page-loader>
                     </td>
                 </tr>
-                <tr *ngIf="data.length == 0 && !loader">
+                <tr *ngIf="data?.length == 0 && !loader">
                     <td class="norecord_col" colspan="9">
                         <app-no-record-found type="table"
                             notext="No loan history found for this customer."></app-no-record-found>
                     </td>
                 </tr>
-                <ng-container *ngIf="data.length != 0 && !loader">
+                <ng-container *ngIf="data?.length != 0 && !loader">
                     <ng-container *ngFor="let data of data">
                         <tr class="received_row" *ngIf="data.loan_status !== 'pending'">
                             <td class="col" [attr.data-name]="'Loan Id' | translate">{{data.loan_no}}</td>

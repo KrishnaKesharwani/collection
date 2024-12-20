@@ -107,143 +107,6 @@ export class GlobalGoogleChartsComponent {
     }
   }
 
-  // drawMastercharts() { }
-
-  // drawCompanycharts() {
-  //   // if (!this.depositStatus.length && !this.loanStatus.length) {
-  //   //   console.error("Deposit status is empty, cannot draw chart.");
-  //   //   return;
-  //   // }
-  //   const chartData: any[][] = [['Days', 'Amount']];
-
-  //   this.depositStatus.forEach((entry: any) => {
-  //     const dayLabel = entry.month;
-  //     const amountValue = Number(entry.deposit_amount);
-  //     chartData.push([dayLabel, amountValue]);
-  //   });
-
-  //   const dataTable = google.visualization.arrayToDataTable(chartData);
-  //   const options2 = {
-  //     vAxis: { title: 'Amount' },
-  //     hAxis: { title: 'Days' },
-  //     is3D: true,
-  //     tooltip: { trigger: 'selection' },
-  //   };
-
-  //   const columnUserElement = document.getElementById('column_company_chart') as HTMLElement;
-  //   const columnUserChart = new google.visualization.ColumnChart(columnUserElement);
-  //   columnUserChart.draw(dataTable, options2);
-
-  //   // logic for pie chart
-  //   const totalAmount = Number(this.loanStatus.total_loan_amount);
-  //   const pendingAmount = Number(this.loanStatus.total_remaining_amount);
-  //   const completedAmount = totalAmount - pendingAmount;
-
-  //   const pieChartData = google.visualization.arrayToDataTable([
-  //     ['Amount Type', 'Amount'],
-  //     ['Pending Amount', pendingAmount],
-  //     ['Completed Amount', completedAmount],
-  //   ]);
-  //   const pieOptions = {
-  //     is3D: true,
-  //     pieHole: 0.4,
-  //   };
-
-  //   const pieUserElement = document.getElementById('pie_company_chart') as HTMLElement;
-  //   const pieUserChart = new google.visualization.PieChart(pieUserElement);
-  //   pieUserChart.draw(pieChartData, pieOptions);
-  // }
-
-  // drawMembercharts() {
-  //   // debugger;
-  //   // if (!this.lastDaysAmount.length && !this.memberLoanStatus.length) {
-  //   //   console.error("Deposit status is empty, cannot draw chart.");
-  //   //   return;
-  //   // }
-
-  //   const chartData: any[][] = [['Days', 'Amount']];
-  //   this.lastDaysAmount.forEach((entry: any) => {
-  //     const dayLabel = entry.date;
-  //     const amountValue = Number(entry.received_amount);
-  //     chartData.push([dayLabel, amountValue]);
-  //   });
-
-  //   const dataTable = google.visualization.arrayToDataTable(chartData);
-  //   const options2 = {
-  //     vAxis: { title: 'Amount' },
-  //     hAxis: { title: 'Days' },
-  //     is3D: true,
-  //     tooltip: { trigger: 'selection' },
-  //   };
-
-  //   const columnUserElement = document.getElementById('column_member_chart') as HTMLElement;
-  //   const columnUserChart = new google.visualization.ColumnChart(columnUserElement);
-  //   columnUserChart.draw(dataTable, options2);
-
-  //   // // logic for pie chart
-  //   // const totalAmount = Number(this.memberLoanStatus.total_loan_amount);
-  //   // const pendingAmount = Number(this.memberLoanStatus.total_remaining_amount);
-  //   // const completedAmount = totalAmount - pendingAmount;
-
-  //   // const pieChartData = google.visualization.arrayToDataTable([
-  //   //   ['Amount Type', 'Amount'],
-  //   //   ['Pending Amount', pendingAmount],
-  //   //   ['Completed Amount', completedAmount],
-  //   // ]);
-  //   // const pieOptions = {
-  //   //   is3D: true,
-  //   //   pieHole: 0.4,
-  //   // };
-  //   // const pieUserElement = document.getElementById('pie_member_chart') as HTMLElement;
-  //   // const pieUserChart = new google.visualization.PieChart(pieUserElement);
-  //   // pieUserChart.draw(pieChartData, pieOptions);
-
-  // }
-
-  // drawUsercharts() {
-  //   if (!this.customerDepositStatus.length && !this.customerLoanStatus.length) {
-  //     console.error("Deposit status is empty, cannot draw chart.");
-  //     return;
-  //   }
-  //   const chartData: any[][] = [['Days', 'Debit', 'Credit']];
-  //   this.customerDepositStatus.forEach((entry: any) => {
-  //     const dayLabel = entry.month;
-  //     const debitValue = Number(entry.deposit_amount);
-  //     const creditValue = Number(entry.withdraw_amount);
-  //     chartData.push([dayLabel, debitValue, creditValue]);
-  //   });
-  //   const dataTable = google.visualization.arrayToDataTable(chartData);
-  //   const options2 = {
-  //     vAxis: { title: 'Amount' },
-  //     hAxis: { title: 'Month' },
-  //     seriesType: 'bars',
-  //     is3D: true,
-  //     tooltip: { trigger: 'selection' },
-  //   };
-  //   const columnUserElement = document.getElementById('column_user_chart') as HTMLElement;
-  //   const columnUserChart = new google.visualization.ColumnChart(columnUserElement);
-  //   columnUserChart.draw(dataTable, options2);
-
-  //   // logic for pie chart
-  //   const totalAmount = Number(this.customerLoanStatus[0].total_paid);
-  //   const pendingAmount = Number(this.customerLoanStatus[0].remaining_amount);
-  //   const completedAmount = totalAmount - pendingAmount;
-  //   const pieChartData = google.visualization.arrayToDataTable([
-  //     ['Amount Type', 'Amount'],
-  //     ['Pending Amount', pendingAmount],
-  //     ['Completed Amount', completedAmount],
-  //   ]);
-  //   const pieOptions = {
-  //     is3D: true,
-  //     pieHole: 0.4,
-  //   };
-  //   const pieUserElement = document.getElementById('pie_user_chart') as HTMLElement;
-  //   const pieUserChart = new google.visualization.PieChart(pieUserElement);
-  //   pieUserChart.draw(pieChartData, pieOptions);
-
-  // }
-
-  // company dashboard graph api's
   getLastSixMonthDeposit() {
     // this.loader = true;
     let obj = {
@@ -253,7 +116,7 @@ export class GlobalGoogleChartsComponent {
       this.depositStatus = data.data.graphdata || [];
       this.depositTotalCustomer = data.data;
       // this.loader = false;
-      if (this.depositStatus.length > 0) {
+      if (this.depositStatus?.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(() => {
           const chartData: any[][] = [['Days', 'Amount']];
@@ -323,7 +186,7 @@ export class GlobalGoogleChartsComponent {
     this._service.customerLoanStatus(obj).subscribe((data: any) => {
       this.customerLoanStatus = data.data.loans || [];
       // this.loader = false;
-      if (this.customerLoanStatus.length > 0) {
+      if (this.customerLoanStatus?.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(() => {
           const totalAmount = Number(this.customerLoanStatus[0].total_paid);
@@ -386,7 +249,7 @@ export class GlobalGoogleChartsComponent {
     }
     this._service.lastDaysAmount(obj).subscribe((data: any) => {
       this.lastDaysAmount = data.data || [];
-      if (this.lastDaysAmount.length > 0) {
+      if (this.lastDaysAmount?.length > 0) {
         google.charts.load('current', { packages: ['corechart'] });
         google.charts.setOnLoadCallback(() => {
           const chartData: any[][] = [['Days', 'Amount']];
@@ -427,7 +290,7 @@ export class GlobalGoogleChartsComponent {
         // const totalAmount = Number(this.memberLoanStatus.total_customers);
         // const pendingAmount = Number(this.memberLoanStatus.attended_customers);
         // const completedAmount = totalAmount - pendingAmount;
-        const totalCustomer =Number(this.memberLoanStatus.total_customers);
+        const totalCustomer = Number(this.memberLoanStatus.total_customers);
         const pendingCustomer = Number(this.memberLoanStatus.remaining_customers);
         const pieChartData = google.visualization.arrayToDataTable([
           ['Collection', 'Amount'],
