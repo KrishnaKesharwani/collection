@@ -1,5 +1,4 @@
-<nav [ngClass]="menuActionClass"
-    class="{{menuActionClass}} navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white navleft-siderbar no-print"
+<nav class="{{menuActionClass}} navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white navleft-siderbar no-print"
     id="sidenav-main">
     <div class="container-fluid">
         <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
@@ -51,19 +50,19 @@
                     </a>
                 </li> -->
                 <li class="nav-item" *ngIf="user_type == 0">
-                    <a (click)="ngOnChanges()" routerLink="/company_list" routerLinkActive="active" class="nav-link "> <i
-                            class="mdi mdi-account-group-outline"></i>
+                    <a (click)="ngOnChanges()" routerLink="/company_list" routerLinkActive="active" class="nav-link ">
+                        <i class="mdi mdi-account-group-outline"></i>
                         {{"Company List"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1">
-                    <a  (click)="ngOnChanges()" routerLink="/member_list" routerLinkActive="active" class="nav-link"> <i
+                    <a (click)="ngOnChanges()" routerLink="/member_list" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-account-tie"></i> {{"Members List"|translate}}
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="user_type == 1 || user_type == 2">
-                    <a  (click)="ngOnChanges()" routerLink="/customer_list" routerLinkActive="active" class="nav-link"> <i
-                            class="mdi mdi-account-group-outline"></i>
+                    <a (click)="ngOnChanges()" routerLink="/customer_list" routerLinkActive="active" class="nav-link">
+                        <i class="mdi mdi-account-group-outline"></i>
                         {{"Customer List"|translate}}
                     </a>
                 </li>
@@ -114,12 +113,12 @@
                         {{"Fixed Deposit"|translate}}
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="user_type == 1">
+                <!-- <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/vc_management" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-cash-multiple"></i>
                         {{"VC Management"|translate}}
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item" *ngIf="user_type == 1">
                     <a routerLink="/reports" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-chart-bar"></i>

@@ -22,7 +22,7 @@ export class HeaderComponent {
 
   }
   @Output() menuClick: EventEmitter<string> = new EventEmitter<string>();
-  baseUrl = 'https://pinku.tech/latestSoftware';
+  baseUrl = 'https://moneycollection.in/';
   currentLogingImage: any = 'assets/imgs/master-logo.png';
   apic_sync_success = false;
   loading = false;

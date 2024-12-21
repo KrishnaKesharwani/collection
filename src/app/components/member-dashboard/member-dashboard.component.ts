@@ -39,12 +39,13 @@ export class MemberDashboardComponent {
     }
     this._service.getMemberCollection(obj).subscribe((data: any) => {
       if (data.success || data.collection) {
-        this.attended_customer = data.attended_customer;
+        const userData = data?.data;
+        this.attended_customer = userData.attended_customer;
         // this.total_customer = data.data?.total_customer;
-        this.collect_amount = data.collect_money;
-        this.collectionData = data?.collection;
+        this.collect_amount = userData.collect_money;
+        this.collectionData = userData?.collection;
         this.loader = false;
-        console.log('Collection Data :', this.collectionData);
+        // console.log('Collection Data :', this.collectionData);
       } else {
         this.loader = false;
       }

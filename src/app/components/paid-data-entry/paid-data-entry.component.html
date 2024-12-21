@@ -35,7 +35,7 @@
                     <li>
                         <button mat-raised-button class="btn btn-small"
                             (click)="openDialogRequestMoney(depositDataSharre)">
-                            Request Money
+                            {{"Request Money"|translate}}
                         </button>
                     </li>
                 </ul>
@@ -56,7 +56,7 @@
                         </b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(loanDataShare)">
-                            Request Money
+                            {{"Request Money"|translate}}
                         </button>
                     </li>
                 </ul>
@@ -75,7 +75,7 @@
                     <li>
                         <button mat-raised-button class="btn btn-small"
                             (click)="openDialogRequestMoney(depositDataSharre)">
-                            Request Money
+                            {{"Request Money"|translate}}
                         </button>
                     </li>
                 </ul>
@@ -94,12 +94,12 @@
                             (click)="debitAmount()">
                             <app-button-loader *ngIf="loadingMinus"></app-button-loader>
                             <i class="mdi mdi-minus mr-2" *ngIf="!loadingMinus"></i>
-                            <span>Debit</span>
+                            <span> {{"Debit"|translate}}</span>
                         </button>
                         <button mat-raised-button class="btn btn-danger global_submit_btn" (click)="creditAmount()">
                             <app-button-loader *ngIf="loadingPlus"></app-button-loader>
                             <i class="mdi mdi-plus mr-2" *ngIf="!loadingPlus"></i>
-                            <span>Credit</span>
+                            <span>{{"Credit"|translate }} </span>
                         </button>
                     </div>
                 </form>

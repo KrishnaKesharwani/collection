@@ -256,5 +256,7 @@
     "Update Fixed Deposit Details": "अपडेट सावधि जमा विवरण",
     "Update Status": "अपडेट स्थिति",
     "Message For Deposit": "जमा के लिए संदेश",
-    "Request Details": "अनुरोध विवरण"
+    "Request Details": "अनुरोध विवरण",
+    "Credit": "पैसा जमा",
+    "Debit": "पैसे निकले"
 }
