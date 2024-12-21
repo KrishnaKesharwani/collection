@@ -136,7 +136,7 @@ export class ActionService {
   }
 
   postapi(x: any, object: any): any {
-    debugger
+
     return this.httpClient.post(this.apiUrl + x, object).pipe(map((res: any) => res));
   }
 }

@@ -76,7 +76,7 @@ export class AddCustomerComponent {
   }
 
   getEmailValue(value: any) {
-    debugger
+
 
   }
   updateLoginId(newEmail: string): void {
@@ -101,7 +101,7 @@ export class AddCustomerComponent {
   }
 
   whatsappCall(rowCode: any = null) {
-    debugger
+
     this.deviceInfo.epicFunction('WHATSAPP', rowCode)
   }
 
