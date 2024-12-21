@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { FileuploadComponent } from 'src/app/common/fileupload/fileupload.component';
+import { ActionService } from 'src/app/services/action/action.service';
 import { MemberService } from 'src/app/services/member/member.service';
 
 @Component({
@@ -37,7 +38,7 @@ export class AddMemberComponent {
   image_base16: string = '';
   fileupload: any;
   // image_base16: string | ArrayBuffer | null = null; public fileupload: FileuploadComponent,
-  constructor(public dialogRef: MatDialogRef<AddMemberComponent>, private cdr: ChangeDetectorRef, public _toastr: ToastrService, public router: Router, public _service: MemberService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(public dialogRef: MatDialogRef<AddMemberComponent>, private cdr: ChangeDetectorRef, public _toastr: ToastrService, public router: Router, public _service: MemberService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public deviceInfo: ActionService
   ) { }
 
   ngOnInit() {
@@ -73,6 +74,12 @@ export class AddMemberComponent {
   selectedFile: File | null = null;
   onFileChange(file: File | null): void {
     this.selectedFile = file;
+  }
+
+
+  whatsappCall(rowCode: any = null) {
+
+    this.deviceInfo.epicFunction('WHATSAPP', rowCode)
   }
   saveMemberData() {
     if (this.member_id) {
