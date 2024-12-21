@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { error } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
+import { ActionService } from 'src/app/services/action/action.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
@@ -34,7 +35,7 @@ export class AddCustomerComponent {
   user_type: any;
 
   constructor(public dialogRef: MatDialogRef<AddCustomerComponent>, private cdr: ChangeDetectorRef, public _toastr: ToastrService, public _router: Router, public _service: CustomerService, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }
-    , public fb: FormBuilder) { }
+    , public fb: FormBuilder, public deviceInfo: ActionService) { }
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
@@ -58,6 +59,9 @@ export class AddCustomerComponent {
       adhar_front: ['../../../assets/imgs/no-images.jpg'],
       adhar_back: ['../../../assets/imgs/no-images.jpg']
     });
+
+
+
     // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
     this.company_id = this.company_id;
     this.customer_id = this.dataa.data.id;
@@ -71,6 +75,14 @@ export class AddCustomerComponent {
     }
   }
 
+  getEmailValue(value: any) {
+    debugger
+
+  }
+  updateLoginId(newEmail: string): void {
+    this.email = newEmail; // Update email value
+    this.customer_login_id = newEmail; // Autofill customer_login_id
+  }
   onFileChange(file: File | null): void {
     this.selectedFile = file;
   }
@@ -86,6 +98,11 @@ export class AddCustomerComponent {
   selectedFile6: File | null = null;
   aadharBackImageChange(file: File | null): void {
     this.selectedFile6 = file;
+  }
+
+  whatsappCall(rowCode: any = null) {
+    debugger
+    this.deviceInfo.epicFunction('WHATSAPP', rowCode)
   }
 
   saveCustomerData() {

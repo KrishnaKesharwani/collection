@@ -29,7 +29,7 @@ export class InputComponent {
   @Input() isRequired: boolean = false;
   @Input() disabled: boolean = false;
   @Input() value: Date | string | null = null;;
-  @Output() valueChange = new EventEmitter<string>();
+  @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
 
   @Input() form!: FormGroup;
   @Input() formType: any = true;
@@ -51,6 +51,11 @@ export class InputComponent {
   // @Output() dateChange = new EventEmitter<any>();
   minLength: any;
 
+  onInputChange(event: Event): void {
+    debugger
+    const inputValue = (event.target as HTMLInputElement).value;
+    this.valueChange.emit(inputValue);
+  }
   get displayValue(): string | undefined {
     if (this.value instanceof Date) {
       return this.formatDate(this.value);  // Format date if it's a Date object

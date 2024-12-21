@@ -477,6 +477,7 @@ mat-option {
             color: #666666;
         }
     }
+
     .date_ddl_reset_block {
         flex-flow: initial;
     }
@@ -756,6 +757,7 @@ app-no-record-found {
 
 .global_popup_small {
     margin-top: 15px;
+
     button {
         padding: 5px 10px !important;
         min-height: 30px;
@@ -904,6 +906,7 @@ app-no-record-found {
     .action_colbtn {
         width: 150px;
     }
+
     .s_no {
         width: 50px;
         text-align: center;
@@ -912,6 +915,7 @@ app-no-record-found {
     .total_col {
         text-align: right;
     }
+
     .date_time_col {
         width: 180px;
     }
@@ -1239,6 +1243,7 @@ app-no-record-found {
     align-items: center;
     font-size: 12px;
     flex-flow: wrap;
+
     .total_block {
         padding: 5px 10px;
         color: #ffffff;
@@ -2784,6 +2789,7 @@ mark {
     align-items: center;
     justify-content: space-between;
     flex-flow: wrap;
+
     .assign_text {
         font-size: 16px;
     }
@@ -4422,4 +4428,11 @@ mark {
 .bg-secondary {
     background: var(--theme-secondary-color) !important;
     color: #ffffff !important;
+}
+
+.imageWatspp {
+    width: 30px;
+    /* Set the width */
+    height: 30px;
+    /* Set the height */
 }

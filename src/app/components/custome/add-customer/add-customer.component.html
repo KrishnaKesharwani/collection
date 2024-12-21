@@ -1,6 +1,5 @@
 <div class="dialoge_header">
     <div class="left_text">{{dataa.title |translate}}</div>
-    <!-- <div class="left_text" *ngIf="customer_id">{{dataa.title |translate}}</div> -->
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container full_height_cover">
@@ -12,16 +11,8 @@
                         [accept]="'image/png, image/gif, image/jpeg'" [imageUrl]="customerForm.value['image']"
                         [imageSize]="'120'" [uploadType]="'profile'" [formcontrolname]="'image'" formControlName="image"
                         name="image" (fileChange)="onFileChange($event)"></app-fileupload>
-                    <!-- <app-fileupload class="fileupload_image" [accept]="'image/png, image/gif, image/jpeg'"
-                        [uploadType]="'profile'" (fileChange)="onFileChange($event)"></app-fileupload> -->
-
                 </div>
                 <div class="row">
-                    <!-- <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-input [isDateField]="false" label="Customer No." [(value)]="customerNo" [isRequired]="true"
-                        [className]="'bottom_error_msg'" [form]="customerForm" [key]="'customerNo'"
-                        [displayMsg]="'Customer number is required'"></app-input>
-                </div> -->
                     <div class="col-sm-4 col-lg-4 col-xs-12">
                         <app-input [isDateField]="false" label="Name" [(value)]="name" [isRequired]="true"
                             [className]="'bottom_error_msg'" [form]="customerForm" [key]="'name'"
@@ -35,8 +26,8 @@
                     <div class="col-sm-4 col-lg-4 col-xs-12">
                         <app-input [isDateField]="false" label="Email" [(value)]="email" [isRequired]="true"
                             [className]="'bottom_error_msg'" [form]="customerForm" [key]="'email'"
-                            [displayMsg]="'Email is required'"></app-input>
-                    </div>
+                            [displayMsg]="'Email is required'" (onInputChange)="getEmailValue($event)"></app-input>
+                    </div> {{email}}
                     <div class="col-sm-4 col-lg-4 col-xs-12">
                         <app-input [isDateField]="false" label="Aadhar No." [(value)]="aadhar_no" [isRequired]="true"
                             [className]="'bottom_error_msg'" [form]="customerForm" [key]="'aadhar_no'"
@@ -49,7 +40,7 @@
                     </div>
                     <div class="col-sm-4 col-lg-4 col-xs-12">
                         <app-input [isDateField]="false" label="Customer Login Id" [(value)]="customer_login_id"
-                            [isRequired]="true" [className]="'bottom_error_msg'" [form]="customerForm"
+                            #loginIdInput [isRequired]="true" [className]="'bottom_error_msg'" [form]="customerForm"
                             [key]="'customer_login_id'" [displayMsg]="'Login Id is required'"></app-input>
                     </div>
                     <div class="col-sm-4 col-lg-4 col-xs-12" *ngIf="!customer_id">
@@ -65,7 +56,6 @@
                         </div>
                     </ng-container>
                     <div class="col-sm-4 col-lg-4 col-xs-12">
-                        <!-- <app-dropdwon key="status" field="Status" formControlName="status" name="status"></app-dropdwon> -->
                         <app-dropdwon [optionArray]="dropdownService.status" *ngIf="customerForm" [form]="customerForm"
                             [key]="'status'" field="Status"></app-dropdwon>
                     </div>
@@ -103,11 +93,21 @@
     </form>
 </div>
 <div class="dialoge_button_container">
+
+
+
+    <br> <a (click)="whatsappCall(customerForm.value.mobile)" target="_blank" *ngIf="customer_id"
+        href="https://wa.me/{{customerForm.value.mobile}}/?text=I want to know about this tractor-&nbsp;{{ customerForm.value.name }}-{{customerForm.value.password}}">
+        <img class="imageWatspp" src="../../../../assets/imgs/whatsapp.png">
+    </a>
     <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
     <button type="submit" class="global_submit_btn" mat-flat-button (click)="saveCustomerData()">
         <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
         <app-button-loader *ngIf="loading"></app-button-loader>
         <span *ngIf="!customer_id">Submit</span>
+
         <span *ngIf="customer_id">Update</span>
+
     </button>
+
 </div>
