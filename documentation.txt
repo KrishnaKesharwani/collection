@@ -47,6 +47,9 @@ cmd: npm install angular-google-charts
 cmd: npm install @ngx-translate/core
      npm install @ngx-translate/http-loader
 
+- for whatspp 
+cmd: npm i ngx-device-detector
+
 > [!NOTE]
 >
 > - (✓) = Added
