@@ -56,7 +56,7 @@ export class AddMemberComponent {
       email: ['', Validators.required],
       aadhar_no: ['', Validators.required],
       join_date: ['', Validators.required],
-      member_login_id: ['', Validators.required],
+      member_login_id: [''],
       password: [''],
       address: ['', Validators.required],
       status: ['Active'],
