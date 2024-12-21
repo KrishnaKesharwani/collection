@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PaidDataEntryService } from 'src/app/services/paidDataEntry/paid-data-entry.service';
 import { CustomerDepositRequestMoneyComponent } from './customer-deposit-request-money/customer-deposit-request-money.component';
 import { DataSharingService } from 'src/app/services/data-sharing.service';
+import { validate } from 'uuid';
 
 @Component({
   selector: 'app-paid-data-entry',
@@ -32,6 +33,7 @@ export class PaidDataEntryComponent {
   loanRemainingAmount = 0;
   totalDepositAmount = 0;
   checkType = "";
+  select_date: string = '';
 
   constructor(public routes: ActivatedRoute,
     public _toastr: ToastrService,
@@ -52,7 +54,8 @@ export class PaidDataEntryComponent {
       this.userType = userData.user_type;
       if (this.userType == 2) {
         this.receivedAmountForm = this.fb.group({
-          amount: ['', Validators.required]
+          amount: ['', Validators.required],
+          select_date: [new Date(), Validators.required]
         });
       }
       if (this.checkType == 'loan') {
@@ -109,13 +112,15 @@ export class PaidDataEntryComponent {
   }
 
   debitAmount() {
+    console.log(this.receivedAmountForm.value);
     if (this.receivedAmountForm.valid) {
       this.loadingMinus = true;
       this.loading = true;
       let obj = {
         deposit_id: this.deposit_id,
-        amount: this.receivedAmountForm.value.amount,
-        deposit_type: 'debit'
+
+        deposit_type: 'debit',
+        ...this.receivedAmountForm.value
       }
       this._service.collectDepositMoney(obj).subscribe((data: any) => {
         this._toastr.success(data.message, "Success");
@@ -136,13 +141,15 @@ export class PaidDataEntryComponent {
   }
 
   creditAmount() {
+    console.log(this.receivedAmountForm.value);
+
     if (this.checkType == 'loan') {
       if (this.receivedAmountForm.valid) {
         this.loading = true;
         this.loadingPlus = true;
         let obj = {
           loan_id: this.loan_id,
-          amount: this.receivedAmountForm.value.amount
+          ...this.receivedAmountForm.value
         }
         this._service.collectMoney(obj).subscribe((data: any) => {
           this._toastr.success(data.message, "Success");
@@ -165,8 +172,9 @@ export class PaidDataEntryComponent {
         this.loadingPlus = true;
         let obj = {
           deposit_id: this.deposit_id,
-          amount: this.receivedAmountForm.value.amount,
-          deposit_type: 'credit'
+
+          deposit_type: 'credit',
+          ...this.receivedAmountForm.value
         }
         this._service.collectDepositMoney(obj).subscribe((data: any) => {
           this._toastr.success(data.message, "Success");

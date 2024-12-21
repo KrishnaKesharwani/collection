@@ -86,6 +86,11 @@
         <div class="entry_action" *ngIf='userType == 2'>
             <div class="addrow">
                 <form focusInvalidInput [formGroup]="receivedAmountForm">
+
+                    <app-input [isDateField]="true" label="Date" [(value)]="select_date" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="receivedAmountForm" [key]="'select_date'"
+                        [displayMsg]="'Date is required'"></app-input>
+
                     <app-input [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="receivedAmountForm" [key]="'amount'"
                         [displayMsg]="'Amount is required.'"></app-input>
