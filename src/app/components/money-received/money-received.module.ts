@@ -8,10 +8,11 @@ import { ViewDetailsComponent } from './view-details/view-details.component';
 import { VpdateStatusComponent } from './vpdate-status/vpdate-status.component';
 import { AdvanceMoneyComponent } from './advance-money/advance-money.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateMoneyComponent } from './update-money/update-money.component';
 
 
 @NgModule({
-  declarations: [MoneyReceivedComponent, ViewDetailsComponent, VpdateStatusComponent, AdvanceMoneyComponent],
+  declarations: [MoneyReceivedComponent, ViewDetailsComponent, VpdateStatusComponent, AdvanceMoneyComponent, UpdateMoneyComponent],
   imports: [
     CommonModule,
     MaterialModule,

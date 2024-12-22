@@ -100,10 +100,12 @@
     cursor: pointer;
     transition: .5s all;
     opacity: .7;
+
     .hindi_english_ing {
         width: 30px;
         margin-right: 10px;
     }
+
     &:hover {
         opacity: 1;
     }
@@ -123,6 +125,15 @@
     transition: .5s all;
     transform: scale(0);
     overflow: hidden;
+
+    .login_email {
+        padding: 10px 5px;
+        display: flex;
+        justify-content: center;
+        color: #666666;
+        border-bottom: solid thin #e1e1e1;
+        margin: 5px 0px;
+    }
 
     .dropdown-item {
         list-style: none;

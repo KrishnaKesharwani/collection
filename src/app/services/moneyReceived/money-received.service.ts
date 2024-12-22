@@ -31,4 +31,9 @@ export class MoneyReceivedService {
     const url = `${this.apiUrl}/pay-collection`;
     return this.httpClient.post(url, obj)
   }
+  
+  updateAmount(obj: object) {
+    const url = `${this.apiUrl}/update-deposit-money`;
+    return this.httpClient.post(url, obj)
+  }
 }

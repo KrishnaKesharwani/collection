@@ -837,6 +837,9 @@ app-no-record-found {
                 line-height: 30px;
             }
         }
+        .bg-secondary {
+            border: solid thin var(--theme-secondary-color);
+        }
     }
 
     .col {
@@ -4430,9 +4433,30 @@ mark {
     color: #ffffff !important;
 }
 
-.imageWatspp {
-    width: 30px;
-    /* Set the width */
-    height: 30px;
-    /* Set the height */
+.whatsapp_btn {
+    margin-right: 15px;
+    padding: 0px 5px 0px 0px;
+    transition: 0.5s all;
+    background: #1bd740;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 5px;
+    box-shadow: var(--app-brand-card-shadow);
+    min-width: 120px;
+    text-decoration: none !important;
+    img {
+        width: 36px;
+    }
+}
+.file_upload_block {
+    label {
+        color: #666666;
+        font-size: 12px;
+    }
+}
+mb-0{
+    margin-bottom: 0px !important;
 }

@@ -70,9 +70,10 @@
     </form>
 </div>
 <div class="dialoge_button_container">
-    <br> <a (click)="whatsappCall(memberForm.value.mobile)" target="_blank" *ngIf="member_id"
-        href="https://wa.me/{{memberForm.value.mobile}}/?text=I want to know about this tractor-&nbsp;{{ memberForm.value.name }}-{{memberForm.value.password}}">
+    <a (click)="whatsappCall('91{{memberForm.value.mobile}}')" target="_blank" class="whatsapp_btn" *ngIf="member_id"
+        href="https://wa.me/+91{{memberForm.value.mobile}}/?text=Your Login Details is -&nbsp;{{ memberForm.value.member_login_id }}-{{memberForm.value.password}}">
         <img class="imageWatspp" src="../../../../assets/imgs/whatsapp.png">
+        <span>{{"Share Login" | translate}}</span>
     </a>
     <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
     <button type="submit" class="global_submit_btn" mat-flat-button (click)="saveMemberData()">

@@ -39,6 +39,7 @@ export class HeaderComponent {
   offerData: any = [];
   offerShow = 0;
   language = 'en';
+  login_emailid: any;
   masterRoughts = ['/dashboard', '/company_list', '/profile_details', '/change_password'];
   companyRoughts = ['/dashboard', '/member_list', '/customer_list', '/loan_list', '/daily_collect_list', '/money_received', '/offers', '/fixed_deposit', '/vc_management', '/reports', '/request_money', '/profile_details', '/change_password'];
   memberRoughts = ['/dashboard', '/customer_list', '/daily_collection', '/offers', '/profile_details', '/change_password'];
@@ -49,6 +50,7 @@ export class HeaderComponent {
     const userData = JSON.parse(data);
 
     const imageData = userData.image;
+    this.login_emailid= userData?.email;
     if (imageData) {
       this.currentLogingImage = imageData;
     }

@@ -3,51 +3,51 @@
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container table_details_scroll full_height_coverwithout_bottom">
-    <!-- <p>{{memberData | json}}</p> -->
+    <!-- <p>{{collectionData | json}}</p> -->
     <table class="table table-responsive more_table mb-20">
         <tbody>
             <tr>
                 <td><b>{{"Member Name"|translate}} :</b></td>
-                <td>{{memberData.member.name}}</td>
+                <td>{{collectionData.member.name}}</td>
             </tr>
             <tr>
                 <td><b>{{"Collect Date"|translate}} :</b></td>
-                <td>{{memberData.collect_date}}</td>
+                <td>{{collectionData.collect_date}}</td>
             </tr>
             <tr>
                 <td><b>{{"Customer Meet"|translate}} :</b></td>
-                <td>{{memberData.customer_count}}</td>
+                <td>{{collectionData.customer_count}}</td>
             </tr>
             <tr>
                 <td><b>{{"Collect Balance"|translate}} :</b></td>
-                <td>{{memberData.balance}}</td>
+                <td>{{collectionData.balance}}</td>
             </tr>
             <tr>
                 <td><b>{{"Company Paid Amount"|translate}} :</b></td>
-                <td>{{memberData.paid_amount}}</td>
+                <td>{{collectionData.paid_amount}}</td>
             </tr>
             <tr>
                 <td><b>{{"Remaining Amount"|translate}} :</b></td>
-                <td>{{memberData.remaining_amount}}</td>
+                <td>{{collectionData.remaining_amount}}</td>
             </tr>
             <tr>
                 <td><b>{{"Previous Balance"|translate}} :</b></td>
-                <td>{{memberData.previous_balance}}</td>
+                <td>{{collectionData.previous_balance}}</td>
             </tr>
             <tr>
                 <td><b>{{"Receive Status"|translate}} :</b></td>
                 <td>
                     <span class="badge bg-warning text-white"
-                        *ngIf="memberData.payment_status == 'working'">{{memberData.payment_status}}</span>
+                        *ngIf="collectionData.payment_status == 'working'">{{collectionData.payment_status}}</span>
                     <span class="badge bg-danger text-white "
-                        *ngIf="memberData.payment_status == 'unpaid'">{{memberData.payment_status}}</span>
+                        *ngIf="collectionData.payment_status == 'unpaid'">{{collectionData.payment_status}}</span>
                     <span class="badge bg-success text-white "
-                        *ngIf="memberData.payment_status == 'paid'">{{memberData.payment_status}}</span>
+                        *ngIf="collectionData.payment_status == 'paid'">{{collectionData.payment_status}}</span>
                 </td>
             </tr>
             <tr>
                 <td><b>{{"Details"|translate}} :</b></td>
-                <td>{{memberData.details}}</td>
+                <td>{{collectionData.details}}</td>
             </tr>
         </tbody>
     </table>
@@ -60,16 +60,17 @@
                 <th class="date_time_col">{{"Date Time"|translate}}</th>
                 <th>{{"Amount"|translate}}</th>
                 <th class="action_col pr-0">{{"Details"|translate}}</th>
+                <th class="action_col pr-0">{{"Edit"|translate}}</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngIf="loader">
-                <td class="norecord_col" colspan="6">
+                <td class="norecord_col" colspan="7">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>
             <tr *ngIf="memberLatestData?.length == 0 && !loader">
-                <td class="norecord_col" colspan="6">
+                <td class="norecord_col" colspan="7">
                     <app-no-record-found type="table" notext="No customer collection found."></app-no-record-found>
                 </td>
             </tr>
@@ -97,6 +98,11 @@
                                 </span>
                             </div>
                         </mat-menu>
+                    </td>
+                    <td [attr.data-name]="'Edit' | translate" class="action_col">
+                        <button mat-icon-button (click)="editPaidAmount(item)" class="btn bg-secondary single_btn">
+                            <i class="mdi mdi-pencil"></i>
+                        </button>
                     </td>
                 </tr>
             </ng-container>

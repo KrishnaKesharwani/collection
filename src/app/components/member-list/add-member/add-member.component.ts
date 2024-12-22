@@ -42,14 +42,11 @@ export class AddMemberComponent {
   ) { }
 
   ngOnInit() {
-
     const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
-
     }
-
     this.memberForm = this.fb.group({
       // memberNo: [''],
       name: ['', Validators.required],

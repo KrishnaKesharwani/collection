@@ -22,7 +22,6 @@ export class ActionService {
   actions$ = this.actionSource.asObservable();
 
   setAction(actionData: ActionData) {
-
     this.actionSource.next(actionData);
   }
 
@@ -31,7 +30,7 @@ export class ActionService {
     return this.httpClient.put(url, form)
   }
 
-  epicFunction(page: any = null, tractorRawCode: any = null, blogRowCode: any = null) {
+  epicFunction(page: any = null, whatsappRawCode: any = null, blogRowCode: any = null) {
     console.log('hello `Home` component');
     let deviceInfo = this.deviceService.getDeviceInfo();
     let isMobile = this.deviceService.isMobile();
@@ -65,9 +64,8 @@ export class ActionService {
       lati: null,
       lang: null,
       page: page,
-      tractorRawCode: tractorRawCode,
+      whatsappRawCode: whatsappRawCode,
       newsPageId: blogRowCode,
-
     })
   }
 
@@ -77,7 +75,6 @@ export class ActionService {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position: any) => {
         //console.log("getLocation",position);
-
         if (position) {
           // console.log("Latitude: " + position.coords.latitude +
           //   "Longitude: " + position.coords.longitude);
@@ -93,8 +90,6 @@ export class ActionService {
           // const NodeGeocoder = require('node-geocoder');
           // const options = {
           //   provider: 'google',
-
-
           // }
           // const geocoder = NodeGeocoder(options);
           // const res =  geocoder.reverse({ lat: lat, lon: lng });
@@ -104,11 +99,9 @@ export class ActionService {
           //     lng: lng
           //   }
           // };
-
           // this.geocodingService.geocode(request).subscribe((response:any) => {
           //   let locationName = response.results[0].formatted_address;
           //   console.log("locationName",locationName);
-
           // });
         }
       },
@@ -122,21 +115,15 @@ export class ActionService {
   }
 
   webPing(body: any) {
-
-
-
     this.postapi('webPing', body).subscribe(
       (res: any) => {
-
       },
       (error: any) => {
-
       }
     );
   }
 
   postapi(x: any, object: any): any {
-
     return this.httpClient.post(this.apiUrl + x, object).pipe(map((res: any) => res));
   }
 }

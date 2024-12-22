@@ -64,6 +64,7 @@
             </li>
         </ul>
         <div class="dropdown-menu" [ngClass]="{'showMenu': showMenuAction }">
+            <span class="login_email">{{login_emailid}}</span>
             <a (click)="editProfile()" class="dropdown-item">
                 <i class="mdi mdi-account-outline mdi-18px"></i>
                 <span>{{"My Profile"|translate}}</span>

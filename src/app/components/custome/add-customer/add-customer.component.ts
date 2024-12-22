@@ -33,19 +33,21 @@ export class AddCustomerComponent {
   company_id: string = '';
   selectedFile: File | null = null;
   user_type: any;
-
+  getWhatsappno: any;
   constructor(public dialogRef: MatDialogRef<AddCustomerComponent>, private cdr: ChangeDetectorRef, public _toastr: ToastrService, public _router: Router, public _service: CustomerService, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }
     , public fb: FormBuilder, public deviceInfo: ActionService) { }
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
+    // const dataAfterLogin: any = localStorage.getItem('AfterLoginData');
+    // this.getWhatsappno =JSON.parse(dataAfterLogin);
+    // this.getWhatsappno = this.getWhatsappno.data?.mobile;
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
       this.user_type = userData.user_type;
     }
     this.customerForm = this.fb.group({
-
       name: ['', Validators.required],
       mobile: ['', Validators.required],
       aadhar_no: ['', Validators.required],
@@ -59,8 +61,6 @@ export class AddCustomerComponent {
       adhar_front: ['../../../assets/imgs/no-images.jpg'],
       adhar_back: ['../../../assets/imgs/no-images.jpg']
     });
-
-
 
     // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
     this.company_id = this.company_id;
@@ -101,7 +101,6 @@ export class AddCustomerComponent {
   }
 
   whatsappCall(rowCode: any = null) {
-
     this.deviceInfo.epicFunction('WHATSAPP', rowCode)
   }
 
