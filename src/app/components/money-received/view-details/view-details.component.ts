@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { MoneyReceivedService } from 'src/app/services/moneyReceived/money-received.service';
@@ -17,7 +17,7 @@ export class ViewDetailsComponent {
   collectionData: any;
   memberLatestData: any[] = [];
 
-  constructor(public _service: MoneyReceivedService, public routes: ActivatedRoute, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any, data: any },
+  constructor(public dialogRef: MatDialogRef<ViewDetailsComponent>,public _service: MoneyReceivedService, public routes: ActivatedRoute, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any, data: any },
   ) { }
 
   ngOnInit() {
@@ -26,12 +26,12 @@ export class ViewDetailsComponent {
     //   const userData = JSON.parse(data);
     //   this.company_id = userData.company_id;
     // }
-    this.loader = true;
     this.collectionData = this.dataa.data;
     this.getCollectionDetails();
   }
 
   getCollectionDetails() {
+    this.loader = true;
     let obj = {
       collection_id: this.dataa.id
     }    
@@ -56,5 +56,8 @@ export class ViewDetailsComponent {
         this.getCollectionDetails();
       }
     });
+  }
+  onClose() {
+    this.dialogRef.close(true);
   }
 }

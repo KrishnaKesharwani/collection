@@ -3,7 +3,7 @@
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container small_popup">
-    <p>{{dataa.data | json}}</p>
+    <!-- <p>{{dataa.data | json}}</p> -->
     <form focusInvalidInput [formGroup]="receivedAmountForm">
         <div class="global_form_row">
             <app-input [isDateField]="false" label="Amount" [(value)]="amount" [isRequired]="true"

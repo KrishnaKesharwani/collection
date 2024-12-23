@@ -69,13 +69,18 @@ export class MoneyReceivedComponent {
   readonly dialog = inject(MatDialog);
   openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
-      disableClose: false,
+      disableClose: true,
       panelClass: 'medium_popup',
       data: {
         data: data,
         id: data.id,
         title: 'Money Collection Details',
       },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getCollectionList();
+      }
     });
   }
 
