@@ -23,8 +23,10 @@ export class SidebarComponent {
   ngOnInit(): void {
     const data: any = localStorage.getItem('CurrentUser');
     const userData = JSON.parse(data);
+
     const allData: any = localStorage.getItem('AfterLoginData');
     const allLoginData = JSON.parse(allData);
+
     if (allLoginData.data.company?.primary_color != null) {
       document.documentElement.style.setProperty('--theme-bgcolor', allLoginData.data.company?.primary_color);
       document.documentElement.style.setProperty('--theme-primary-color', allLoginData.data.company?.primary_color);
@@ -32,11 +34,12 @@ export class SidebarComponent {
     }
     // const imageData = localStorage.getItem('image');
     const imageData = userData.image;
-    if (data) {
+    if (userData) {
       this.user_type = userData.user_type;
-      // this.currentLogingImage = userData.image;
+
     } else {
       this.user_type = null; // or set a default value
+
     }
     if (imageData) {
       this.currentLogingImage = imageData;
@@ -44,13 +47,13 @@ export class SidebarComponent {
   }
 
   ngOnChanges() {
-    // debugger;
-      this.menuActionClass = this.menuAction;
+    // ;
+    this.menuActionClass = this.menuAction;
     // setTimeout(() => {
     // }, 1000);
   }
   onLeftMenuClick($event: { target: any; srcElement: any; }) {
-    // debugger;
+    // ;
     // this.menuActionClass = this.menuAction; 
     this.ngOnChanges();
     // let clickedElement = $event.target || $event.srcElement;

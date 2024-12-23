@@ -13,35 +13,34 @@ export class AppComponent {
 
   showSidebar: boolean = true;
   user_type: any;
-
+  isLoggedIn: boolean = false;
   constructor(private router: Router, private translate: TranslateService) {
     const browserLang = translate.getBrowserLang() || '';
     translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event) => {
-        const navigationEndEvent = event as NavigationEnd; // Type assertion
-        this.showSidebar = !navigationEndEvent.url.includes('/login');
-      });
+
   }
 
   currentAction: string = '';
   handleMenuClick(action: string) {
     // debugger;
     // setTimeout(() => {
-      this.currentAction = action;
+    this.currentAction = action;
     // }, 100);    
   }
   ngOnInit(): void {
     const data = localStorage.getItem('CurrentUser');
-
+    this.isLoggedIn = !!data;
     if (data) {
       const userData = JSON.parse(data);
       this.user_type = userData.user_type
-    } else {
-      this.user_type = null; // or set a default value
     }
-
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        const navigationEndEvent = event as NavigationEnd; // Type assertion
+        // this.showSidebar = !navigationEndEvent.url.includes('/login');
+        this.isLoggedIn = !!localStorage.getItem('CurrentUser') && !navigationEndEvent.url.includes('/login');
+      });
   }
 
   changeLanguage(language: string) {

@@ -52,7 +52,7 @@ export class InputComponent {
   minLength: any;
 
   onInputChange(event: Event): void {
-    debugger
+
     const inputValue = (event.target as HTMLInputElement).value;
     this.valueChange.emit(inputValue);
   }

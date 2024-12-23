@@ -50,7 +50,7 @@ export class HeaderComponent {
     const userData = JSON.parse(data);
 
     const imageData = userData.image;
-    this.login_emailid= userData?.email;
+    this.login_emailid = userData?.email;
     if (imageData) {
       this.currentLogingImage = imageData;
     }
@@ -128,6 +128,15 @@ export class HeaderComponent {
   }
   logout() {
     localStorage.removeItem('CurrentUser');
+    localStorage.removeItem('token');
+    localStorage.removeItem('CustomerData');
+    localStorage.removeItem('OfferData');
+    localStorage.removeItem('AfterLoginData');
+    localStorage.removeItem('defaultLanguage');
+    localStorage.removeItem('CompanyData');
+    localStorage.removeItem('MemberData');
+    localStorage.removeItem('MemberData');
+    localStorage.removeItem('TEMP_DEVICE_ID');
     this.router.navigate(['/login']);
   }
   editProfile() {
