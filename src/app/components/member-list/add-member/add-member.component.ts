@@ -168,8 +168,14 @@ export class AddMemberComponent {
   }
 
   memberView() {
+    this.memberForm.value.password = this.dataa.data.user.password_hint;
+    this.memberForm.value.member_login_id = this.dataa.data.user.email;
+
+
     this.memberForm.patchValue({
-      ...this.dataa.data
+      ...this.dataa.data,
+      password: this.dataa.data.user.password_hint,
+      member_login_id: this.dataa.data.user.email
 
     });
 
