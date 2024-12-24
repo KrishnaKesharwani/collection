@@ -3,6 +3,7 @@ import { BehaviorSubject, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { v4 as uuidv4 } from 'uuid';
+import { environment } from 'src/environments/environment';
 
 export interface ActionData {
   action: string;
@@ -13,7 +14,7 @@ export interface ActionData {
   providedIn: 'root'
 })
 export class ActionService {
-  private apiUrl = 'https://moneycollection.in/moneyCollectionBackend/api';
+  // private apiUrl = 'https://moneycollection.in/moneyCollectionBackend/api';
   private token: string | null = null;
 
   constructor(private deviceService: DeviceDetectorService, public httpClient: HttpClient) { }
@@ -26,7 +27,7 @@ export class ActionService {
   }
 
   setLanguage(form: object) {
-    const url = `${this.apiUrl}/update-user-language`;
+    const url = `${environment.apiUrl}/update-user-language`;
     return this.httpClient.put(url, form)
   }
 
@@ -124,6 +125,6 @@ export class ActionService {
   }
 
   postapi(x: any, object: any): any {
-    return this.httpClient.post(this.apiUrl + x, object).pipe(map((res: any) => res));
+    return this.httpClient.post(environment.apiUrl + x, object).pipe(map((res: any) => res));
   }
 }

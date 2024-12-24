@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OffersService {
-  private apiUrl = 'https://moneycollection.in/moneyCollectionBackend/api';
+  // private apiUrl = 'https://moneycollection.in/moneyCollectionBackend/api';
   private token: string | null = null;
 
 
@@ -13,27 +14,27 @@ export class OffersService {
 
 
   getOfferList(obj: object) {
-    const url = `${this.apiUrl}/offers`;
+    const url = `${environment.apiUrl}/offers`;
     return this.httpClient.post(url, obj)
   }
   create(obj: object) {
-    const url = `${this.apiUrl}/create-offer`;
+    const url = `${environment.apiUrl}/create-offer`;
     return this.httpClient.post(url, obj)
   }
   update(obj: object) {
-    const url = `${this.apiUrl}/update-offer`;
+    const url = `${environment.apiUrl}/update-offer`;
     return this.httpClient.post(url, obj)
   }
   changeStatus(obj: object) {
-    const url = `${this.apiUrl}/update-offer-status`;
+    const url = `${environment.apiUrl}/update-offer-status`;
     return this.httpClient.put(url, obj)
   }
   defaultOffer(obj: object) {
-    const url = `${this.apiUrl}/update-default-offer`;
+    const url = `${environment.apiUrl}/update-default-offer`;
     return this.httpClient.put(url, obj)
   }
   deleteOffer(offerid: string) {
-    const url = `${this.apiUrl}/delete-offer/`+offerid;
+    const url = `${environment.apiUrl}/delete-offer/` + offerid;
     return this.httpClient.delete(url)
   }
 }
