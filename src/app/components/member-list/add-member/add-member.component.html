@@ -39,18 +39,18 @@
                             [className]="'bottom_error_msg'" [form]="memberForm" [key]="'join_date'"
                             [displayMsg]="'Join date is required'"></app-input>
                     </div>
-                    <ng-container *ngIf="!member_id">
-                        <div class="col-sm-4 col-lg-4 col-xs-12">
-                            <app-input [isDateField]="false" label="Member Login Id" [(value)]="member_login_id"
-                                [isRequired]="true" [className]="'bottom_error_msg'" [form]="memberForm"
-                                [key]="'member_login_id'" [displayMsg]="'Login id is required'"></app-input>
-                        </div>
-                        <div class="col-sm-4 col-lg-4 col-xs-12">
-                            <app-input [isDateField]="false" label="Password" [(value)]="password"
-                                [className]="'bottom_error_msg'" [form]="memberForm" [key]="'password'"
-                                [displayMsg]="'Password is required'"></app-input>
-                        </div>
-                    </ng-container>
+
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="false" label="Member Login Id" [(value)]="member_login_id"
+                            [isRequired]="true" [className]="'bottom_error_msg'" [form]="memberForm"
+                            [key]="'member_login_id'" [displayMsg]="'Login id is required'"></app-input>
+                    </div>
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
+                        <app-input [isDateField]="false" label="Password" [(value)]="password"
+                            [className]="'bottom_error_msg'" [form]="memberForm" [key]="'password'"
+                            [displayMsg]="'Password is required'"></app-input>
+                    </div>
+
                     <div class="col-sm-4 col-lg-4 col-xs-12">
                         <!-- <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="providerLoanForm"
                         [key]="'assigned_member_id'" [optionArray]="dropdownService.getmemberdata"
@@ -59,7 +59,7 @@
                         <app-dropdwon [optionArray]="dropdownService.status" *ngIf="memberForm" [form]="memberForm"
                             [key]="'status'" field="Status"></app-dropdwon>
                     </div>
-                    <div class="col-sm-12 col-lg-6 col-xs-12">
+                    <div class="col-sm-4 col-lg-4 col-xs-12">
                         <app-input [isDateField]="false" label="Address" [(value)]="address" [isRequired]="true"
                             [className]="'bottom_error_msg'" [form]="memberForm" [key]="'address'"
                             [displayMsg]="'Address is required'"></app-input>

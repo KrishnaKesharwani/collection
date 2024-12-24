@@ -54,8 +54,8 @@ export class AddMemberComponent {
       email: ['', Validators.required],
       aadhar_no: ['', Validators.required],
       join_date: ['', Validators.required],
-      member_login_id: [''],
-      password: [''],
+      member_login_id: ['', Validators.required],
+      password: ['', Validators.required],
       address: ['', Validators.required],
       status: ['Active'],
       image: ['']
@@ -79,6 +79,8 @@ export class AddMemberComponent {
     this.deviceInfo.epicFunction('WHATSAPP', rowCode)
   }
   saveMemberData() {
+    console.log(this.memberForm.value)
+
     if (this.member_id) {
       if (this.memberForm.valid) {
         this.loading = true;
@@ -90,8 +92,8 @@ export class AddMemberComponent {
           formData.delete('image');
         }
 
-        formData.delete('member_login_id');
-        formData.delete('password');
+        // formData.delete('member_login_id');
+        // formData.delete('password');
 
         formData.append('company_id', this.company_id);
         formData.append('member_id', this.member_id);
@@ -140,7 +142,7 @@ export class AddMemberComponent {
               this._toastr.error(data.message, 'Error');
             }
           }, error => {
-            // debugger
+            // 
             this.loading = false;
             if (error.error.error?.member_login_id && error.error.message) {
               this._toastr.error(error.error.error.member_login_id, "Error");
@@ -167,7 +169,9 @@ export class AddMemberComponent {
 
   memberView() {
     this.memberForm.patchValue({
-      ...this.dataa.data,
+      ...this.dataa.data
+
     });
+
   }
 }

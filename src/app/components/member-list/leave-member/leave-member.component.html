@@ -11,7 +11,7 @@
     <div class="page_center_loader" *ngIf="loading">
         <app-page-loader></app-page-loader>
     </div>
-    <div class="main_table_head">{{"Customers: "|translate}} - {{total_assignlength}}</div>
+    <div class="main_table_head">{{"Total Customers: "|translate}} - {{total_assignlength}}</div>
     <form>
         <div class="page_center_loader" *ngIf="loading">
             <app-page-loader></app-page-loader>
@@ -20,12 +20,13 @@
         <table class="table table-bordered table-responsive popup_table bg-white more_table">
             <thead>
                 <tr>
-                    <th>Select Customer</th>
+                    <th>{{"Select"|translate}}</th>
                     <th>{{"Customer No."|translate}}</th>
                     <th>{{"Customer Name"|translate}}</th>
                     <th>{{"Contact"|translate}}</th>
+                    <th>{{"Address"|translate}}</th>
 
-                    <th>{{"Status"|translate}}</th>
+                    <th>{{"Type"|translate}}</th>
 
                 </tr>
             </thead>
@@ -40,11 +41,10 @@
                     <td class="col" data-name="Cno.">{{loan.customer.customer_no}}</td>
                     <td class="col" data-name="Customer Name">{{loan.customer.name}}</td>
                     <td class="col" data-name="Contact">{{loan.customer.mobile}}</td>
+                    <td class="col" data-name="Contact">{{loan.customer.address}}</td>
 
-                    <td class="text-center col" data-name="Status"><span class="badge bg-success text-white"
-                            *ngIf="loan.status == 'active'">{{loan.status}}</span>
-                        <span class="badge bg-danger text-white "
-                            *ngIf="loan.status == 'inactive'">{{loan.status}}</span>
+                    <td class="text-center col" data-name="Type">
+                        Loan
                     </td>
 
                 </tr>
@@ -55,12 +55,10 @@
                     <td class="col" data-name="Cno.">{{deposit.customer.customer_no}}</td>
                     <td class="col" data-name="Customer Name">{{deposit.customer.name}}</td>
                     <td class="col" data-name="Contact">{{deposit.customer.mobile}}</td>
+                    <td class="col" data-name="Contact">{{deposit.customer.address}}</td>
 
-                    <td class="text-center col" data-name="Status">
-                        <span class="badge bg-success text-white"
-                            *ngIf="deposit.status == 'active'">{{deposit.status}}</span>
-                        <span class="badge bg-danger text-white "
-                            *ngIf="deposit.status == 'inactive'">{{deposit.status}}</span>
+                    <td class="text-center col" data-name="Type">
+                        Deposit
                     </td>
                 </tr>
             </tbody>
