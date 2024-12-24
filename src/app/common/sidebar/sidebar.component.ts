@@ -71,13 +71,9 @@ export class SidebarComponent {
     }
   }
   onOverlayClick() {
-    // debugger;
-    // this.menuActionClass = '';
-    // this.
     if (this.menuActionClass != '') {
       this.menuActionClass = '';
     }
-    // this.menuClick.emit(this.checkSideMenu);
   }
 
   ngOnChanges() {
