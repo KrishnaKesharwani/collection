@@ -10,11 +10,12 @@ import { InputFieldValidationComponent } from 'src/app/common/input-field-valida
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { AddMemberComponent } from './add-member/add-member.component';
+import { LeaveMemberComponent } from './leave-member/leave-member.component';
 
 
 
 @NgModule({
-  declarations: [MemberListComponent, ViewMemberListComponent, AssignLoanComponent, AddMemberComponent],
+  declarations: [MemberListComponent, ViewMemberListComponent, AssignLoanComponent, AddMemberComponent, LeaveMemberComponent],
   imports: [
     CommonModule,
     MemberListRoutingModule,

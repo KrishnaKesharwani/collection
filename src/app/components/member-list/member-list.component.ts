@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { MemberService } from 'src/app/services/member/member.service';
+import { LeaveMemberComponent } from './leave-member/leave-member.component';
 
 @Component({
 
@@ -37,7 +38,7 @@ export class MemberListComponent {
     }
     this.getMemberList();
   }
-  
+
   getMemberList() {
     this.loader = true;
     let obj = {
@@ -53,6 +54,23 @@ export class MemberListComponent {
       this.loader = false;
     })
 
+  }
+
+  openDialogLeaveMember(data: any) {
+    const dialogRef = this.dialog.open(LeaveMemberComponent, {
+      disableClose: true,
+      panelClass: 'full_width_popup',
+      data: {
+        title: 'Leave Member',
+        data: data
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // this.getMemberList();
+      }
+    });
   }
 
   openDialogStatus(enterAnimationDuration: string, exitAnimationDuration: string, data?: any): void {
