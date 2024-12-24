@@ -47,16 +47,17 @@
         }
     }
 
-    .remove_sidebar_width {
-        .overlay_popup_block {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            z-index: 19;
-            left: 0px;
-            top: 0px;
-            background: rgba(0, 0, 0, 0.5);
-        }
+    // .remove_sidebar_width {
+        
+    // }
+    .overlay_popup_block {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        z-index: 19;
+        left: 0px;
+        top: 0px;
+        background: rgba(0, 0, 0, 0.5);
     }
 }
 
@@ -603,12 +604,12 @@
 
         .date_block {
             width: 100% !important;
+            margin-bottom: 20px;
         }
 
         .search_withaddbtn {
             max-width: calc(100% - 75px);
             float: left;
-            margin: 7px 0px 0px 0px;
 
             .global_ddl_m_p_0 {
                 margin: 0px !important;

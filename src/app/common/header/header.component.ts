@@ -150,7 +150,6 @@ export class HeaderComponent {
   checkSideMenu = '';
 
   onMenuClick() {
-    // debugger;
     if (this.checkSideMenu == '') {
       this.checkSideMenu = 'hideSidebar';
     } else {

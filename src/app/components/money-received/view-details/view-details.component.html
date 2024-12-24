@@ -60,7 +60,7 @@
                 <th class="date_time_col">{{"Date Time"|translate}}</th>
                 <th>{{"Amount"|translate}}</th>
                 <th class="action_col pr-0">{{"Details"|translate}}</th>
-                <th class="action_col pr-0">{{"Edit"|translate}}</th>
+                <th class="action_col pr-0" *ngIf="collectionData.payment_status != 'paid'">{{"Edit"|translate}}</th>
             </tr>
         </thead>
         <tbody>
@@ -99,7 +99,7 @@
                             </div>
                         </mat-menu>
                     </td>
-                    <td [attr.data-name]="'Edit' | translate" class="action_col">
+                    <td [attr.data-name]="'Edit' | translate" *ngIf="collectionData.payment_status != 'paid'" class="action_col">
                         <button mat-icon-button (click)="editPaidAmount(item)" class="btn bg-secondary single_btn">
                             <i class="mdi mdi-pencil"></i>
                         </button>
