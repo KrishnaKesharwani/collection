@@ -18,6 +18,7 @@ export class FileuploadComponent {
   @Output() fileChange = new EventEmitter<File | null>();
   value: File | null = null;
   @Input() accept: any;
+  @Input() imageAadhar = false;
   @Input() uploadType: any = 'file';
   @Input() imageSize: any;
   @Input() imageCaption: any;
@@ -31,7 +32,11 @@ export class FileuploadComponent {
   onTouched = () => { };
 
   get imageSrc(): string {
-    return this.imageUrl || '../../../assets/imgs/default-pic.png';
+    if (this.imageAadhar) {
+      return this.imageUrl || '../../../assets/imgs/no-record-image.png';
+    } else {
+      return this.imageUrl || '../../../assets/imgs/default-pic.png';
+    }
   }
 
   onFileSelected(event: Event): void {

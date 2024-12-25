@@ -40,16 +40,11 @@ export class RequestMoneyComponent {
       this.company_id = userData.company_id;
       this.customer_id = userData.customer_id;
       this.user_type = userData.user_type
-
     }
-
-
     this.filterDateForm = this.fb.group({
       date: [''],
       customer_id: ['']
     })
-
-
     if (this.customer_id) {
       this.getRequestDepsitForCustomer();
     } else {
@@ -66,9 +61,11 @@ export class RequestMoneyComponent {
       // status: 'Active'
     }
     this._service.getRequestMoney(obj).subscribe((data: any) => {
-      this.loader = false;
-
-      this.requestList = data.data;
+      if (data.success) {
+        this.requestList = data.data;
+      } else {
+        this.loader = false;
+      }
     }, error => {
       this.loader = false;
       this._tostr.error(error.error.message, 'Error');
@@ -108,9 +105,12 @@ export class RequestMoneyComponent {
       request_date: this.formattedDate
     }
     this._service.getRequestMoney(obj).subscribe((data: any) => {
-      this.loader = false;
-
-      this.requestList = data.data;
+      if (data.success) {
+        this.requestList = data.data;
+        this.loader = false;
+      } else {
+        this.loader = false;
+      }
     }, error => {
       this.loader = false;
       this._tostr.error(error.error.message, 'Error');
@@ -126,9 +126,11 @@ export class RequestMoneyComponent {
       // request_date: this.filterDateForm.value.date
     }
     this._service.getRequestMoneyForCustomer(obj).subscribe((data: any) => {
-      this.loader = false;
-
-      this.customerRequestList = data.data;
+      if (data.success) {
+        this.customerRequestList = data.data;
+      } else {
+        this.loader = false;
+      }
     }, error => {
       this.loader = false;
       this._tostr.error(error.error.message, 'Error');

@@ -1,7 +1,8 @@
 {
   "PAGES": {
       "HOME": {
-          "TITLE": "App works !"
+          "TITLE": "App works !",
+          "last_collection": "Last Collection Today"
       }
   }
 }

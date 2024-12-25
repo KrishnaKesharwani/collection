@@ -59,9 +59,9 @@ export class MemberListComponent {
   openDialogLeaveMember(data: any) {
     const dialogRef = this.dialog.open(LeaveMemberComponent, {
       disableClose: true,
-      panelClass: 'full_width_popup',
+      panelClass: 'medium_popup',
       data: {
-        title: 'Leave Member',
+        title: 'Manage Leave',
         data: data
       },
     });

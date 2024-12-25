@@ -1,160 +1,151 @@
 <div class="list-containner">
-    <div class="row">
-        <div class="col-xl-12 mb-xl-0">
-            <div class="card shadow dash-cardbox">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col col-sm-3 pl-1">
-                            <h3 class="mb-0">{{"Fixed Deposit List"|translate}}</h3>
-                        </div>
-                        <div class="col p-0 head_details" *ngIf="filteredDataarray?.length != 0 && !loader">
-                            <div class="total_block internal_50 bg-warning mr-2"><span>
-                                    {{"Total Deposit"|translate}}</span><b>
-                                    {{getTotaldata.total_deposit_amount}}</b>
-                            </div>
-                            <div class="total_block internal_50 bg-primary mr-2">
-                                <span>{{"Total End Amount"|translate}}</span><b>{{getTotaldata?.total_end_amount}}</b>
-                            </div>
-                            <div class="total_block internal_50 bg-success"><span>
-                                    {{"Total Customer"|translate}}</span><b>{{getTotaldata?.total_cusotomer}}</b></div>
-                        </div>
-                        <div class="col text-right pr-1 datewith_search_block">
-                            <div class="listsearch-topblock search_withaddbtn">
-                                <div class="search-box" *ngIf="filteredDataarray?.length != 0 && !loader">
-                                    <input type="text" placeholder="Search" (keyup)="searchTable($event)"
-                                        class="searchtxt" />
+    <div class="card shadow dash-cardbox">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col col-sm-3 pl-1">
+                    <h3 class="mb-0">{{"Fixed Deposit List"|translate}}</h3>
+                </div>
+                <div class="col p-0 head_details" *ngIf="filteredDataarray?.length != 0 && !loader">
+                    <div class="total_block internal_50 bg-warning mr-2"><span>
+                            {{"Total Deposit"|translate}}</span><b>
+                            {{getTotaldata.total_deposit_amount}}</b>
+                    </div>
+                    <div class="total_block internal_50 bg-primary mr-2">
+                        <span>{{"Total End Amount"|translate}}</span><b>{{getTotaldata?.total_end_amount}}</b>
+                    </div>
+                    <div class="total_block internal_50 bg-success"><span>
+                            {{"Total Customer"|translate}}</span><b>{{getTotaldata?.total_cusotomer}}</b></div>
+                </div>
+                <div class="col text-right pr-1 datewith_search_block">
+                    <div class="listsearch-topblock search_withaddbtn">
+                        <div class="search-box" *ngIf="filteredDataarray?.length != 0 && !loader">
+                            <input type="text" placeholder="Search" (keyup)="searchTable($event)" class="searchtxt" />
 
-                                    <i class="mdi mdi-magnify"></i>
-                                </div>
-                                <div class="right_addbtn">
-                                    <button data-toggle="modal" (click)="openDialogAddFixedDeposit()"
-                                        data-target="#actionCustomer_modal"
-                                        class="btn btn-success btn-sm create_header_btn" mat-raised-button>
-                                        <i class="mdi mdi-account-plus-outline"></i>
-                                        <span class="btn-txt button-text">Add</span>
-                                    </button>
-
-                                </div>
-                            </div>
+                            <i class="mdi mdi-magnify"></i>
+                        </div>
+                        <div class="right_addbtn" *ngIf="!loader">
+                            <button data-toggle="modal" (click)="openDialogAddFixedDeposit()"
+                                data-target="#actionCustomer_modal" class="btn btn-success btn-sm create_header_btn"
+                                mat-raised-button>
+                                <i class="mdi mdi-account-plus-outline"></i>
+                                <span class="btn-txt button-text">Add</span>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <table class="table align-items-center table-flush mydata-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="col sorting_apply"><span>{{"Fixed Deposit Name"|translate}}</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('name');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th>
-                            <th class="col sorting_apply"><span>{{"Customer Name"|translate}}</span>
-                                <!-- <div class="sorting_arrow">
+            </div>
+        </div>
+        <table class="table align-items-center table-flush mydata-table">
+            <thead class="thead-light">
+                <tr>
+                    <th class="col sorting_apply"><span>{{"Fixed Deposit Name"|translate}}</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col sorting_apply"><span>{{"Customer Name"|translate}}</span>
+                        <!-- <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('cutomer_name');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div> -->
-                            </th>
-
-                            <th class="col sorting_apply date_col"><span>{{"Start Date"|translate}}</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('start_date');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th>
-                            <th class="col sorting_apply date_col"><span>{{"End Date"|translate}}</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('end_date');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th>
-
-                            <th class="col amount_col">{{"Start Amount"|translate}}</th>
-                            <th class="col amount_col">{{"End Amount"|translate}}</th>
-
-                            <th class="col status_col"><span>{{"Status"|translate}}</span>
-                                <!-- <div class="sorting_arrow">
+                    </th>
+                    <th class="col sorting_apply date_col"><span>{{"Start Date"|translate}}</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('start_date');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col sorting_apply date_col"><span>{{"End Date"|translate}}</span>
+                        <div class="sorting_arrow">
+                            <mat-icon (click)="sortTableData('end_date');">{{ isAsc ?
+                                'north' : 'south'
+                                }}</mat-icon>
+                        </div>
+                    </th>
+                    <th class="col amount_col">{{"Start Amount"|translate}}</th>
+                    <th class="col amount_col">{{"End Amount"|translate}}</th>
+                    <th class="col status_col"><span>{{"Status"|translate}}</span>
+                        <!-- <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('status');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div> -->
-                            </th>
-                            <th class="col action_col">{{"Action"|translate}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngIf="loader">
-                            <td class="norecord_col" colspan="8">
-                                <app-page-loader></app-page-loader>
-                            </td>
-                        </tr>
-                        <tr *ngIf="filteredDataarray?.length == 0 && !loader">
-                            <td class="norecord_col" colspan="8">
-                                <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
-                            </td>
-                        </tr>
-                        <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
-                            <tr class="received_row" *ngFor="let item of filteredDataarray">
-                                <td class="col" data-name="Name">{{item.name}}</td>
-                                <td class="col" data-name="Customer Name">{{item.customer?.name}}</td>
-                                <td class="col" data-name="Start Date">{{item.start_date}}</td>
-                                <td class="col" data-name="End Date">{{item.end_date}}</td>
-                                <td class="col" data-name="Start Amount">{{item.deposit_amount}}</td>
-                                <td class="col" data-name="End Amount">{{item.refund_amount}}</td>
-                                <td class="col text-center" data-name="Status">
-                                    <span class="badge bg-success text-white"
-                                        *ngIf="item.status == 'active'">{{item.status}}</span>
-                                    <span class="badge bg-danger text-white "
-                                        *ngIf="item.status == 'inactive'">{{item.status}}</span>
-                                </td>
-                                <td class="action_col" data-name="Action">
-                                    <div placement="bottom-right">
-                                        <button mat-icon-button [matMenuTriggerFor]="menu"
-                                            aria-label="Example icon-button with a menu">
-                                            <mat-icon>more_vert</mat-icon>
+                    </th>
+                    <th class="col action_col">{{"Action"|translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="loader">
+                    <td class="norecord_col" colspan="8">
+                        <app-page-loader></app-page-loader>
+                    </td>
+                </tr>
+                <tr *ngIf="filteredDataarray?.length == 0 && !loader">
+                    <td class="norecord_col" colspan="8">
+                        <app-no-record-found type="table" notext="No Fixed Deposit found"></app-no-record-found>
+                    </td>
+                </tr>
+                <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
+                    <tr class="received_row" *ngFor="let item of filteredDataarray">
+                        <td class="col" data-name="Name">{{item.name}}</td>
+                        <td class="col" data-name="Customer Name">{{item.customer?.name}}</td>
+                        <td class="col" data-name="Start Date">{{item.start_date}}</td>
+                        <td class="col" data-name="End Date">{{item.end_date}}</td>
+                        <td class="col" data-name="Start Amount">{{item.deposit_amount}}</td>
+                        <td class="col" data-name="End Amount">{{item.refund_amount}}</td>
+                        <td class="col text-center" data-name="Status">
+                            <span class="badge bg-success text-white"
+                                *ngIf="item.status == 'active'">{{item.status}}</span>
+                            <span class="badge bg-danger text-white "
+                                *ngIf="item.status == 'inactive'">{{item.status}}</span>
+                        </td>
+                        <td class="action_col" data-name="Action">
+                            <div placement="bottom-right">
+                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                    aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <div class="table_actionmenu">
+                                        <button mat-menu-item (click)="openDialogPaidhistory(item)">
+                                            <i class="mdi mdi-history mr-2"></i> <span>{{"Paid
+                                                History"|translate}}</span>
                                         </button>
-                                        <mat-menu #menu="matMenu">
-                                            <div class="table_actionmenu">
-                                                <button mat-menu-item (click)="openDialogPaidhistory(item)">
-                                                    <i class="mdi mdi-history mr-2"></i> <span>{{"Paid
-                                                        History"|translate}}</span>
-                                                </button>
-                                                <button mat-menu-item (click)="openDialogFixedDepositDetails(item)">
-                                                    <i class="mdi mdi-eye mr-2"></i> <span>{{"View
-                                                        Details"|translate}}</span>
-                                                </button>
-                                                <button mat-menu-item (click)="openDialogPaidMoney(item)">
-                                                    <i class="mdi mdi-currency-inr mr-2"></i> <span>{{"Paid
-                                                        Money"|translate}}</span>
-                                                </button>
-                                                <button mat-menu-item (click)="openDialogEditFixedDeposit(item)">
-                                                    <i class="mdi mdi-pencil mr-2"></i> <span>{{"Edit
-                                                        Deposit"|translate}}</span>
-                                                </button>
-                                                <button mat-menu-item (click)="openDialogStatus(item)">
-                                                    <i class="mdi mdi-account-off-outline mr-2"></i>
-                                                    <span>{{"Status Update"|translate}}</span>
-                                                </button>
-                                                <button mat-menu-item (click)="openDialogDelete(item)">
-                                                    <i class="mdi mdi-delete mr-2"></i>
-                                                    <span>{{"Delete"|translate}}</span>
-                                                </button>
-                                            </div>
-                                        </mat-menu>
-
+                                        <button mat-menu-item (click)="openDialogFixedDepositDetails(item)">
+                                            <i class="mdi mdi-eye mr-2"></i> <span>{{"View
+                                                Details"|translate}}</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialogPaidMoney(item)">
+                                            <i class="mdi mdi-currency-inr mr-2"></i> <span>{{"Paid
+                                                Money"|translate}}</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialogEditFixedDeposit(item)">
+                                            <i class="mdi mdi-pencil mr-2"></i> <span>{{"Edit
+                                                Deposit"|translate}}</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialogStatus(item)">
+                                            <i class="mdi mdi-account-off-outline mr-2"></i>
+                                            <span>{{"Status Update"|translate}}</span>
+                                        </button>
+                                        <button mat-menu-item (click)="openDialogDelete(item)">
+                                            <i class="mdi mdi-delete mr-2"></i>
+                                            <span>{{"Delete"|translate}}</span>
+                                        </button>
                                     </div>
+                                </mat-menu>
+
+                            </div>
 
 
 
-                                </td>
-                            </tr>
-                        </ng-container>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
     </div>
 </div>

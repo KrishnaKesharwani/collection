@@ -68,7 +68,7 @@
                         <div class="file_upload_block">
                             <label class="m-0">Aadhar Front Image</label>
                             <app-fileupload [form]="customerForm" class="fileupload_image_fullwidth mb-0"
-                                [accept]="'image/png, image/gif, image/jpeg'"
+                                [accept]="'image/png, image/gif, image/jpeg'" [imageAadhar]="true"
                                 [imageUrl]="customerForm.value['adhar_front']" [uploadType]="'fullwidth'"
                                 [imageCaption]="'Please upload aadhar front side photo.'"
                                 [formcontrolname]="'adhar_front'" formControlName="adhar_front" name="adhar_front"
@@ -79,7 +79,7 @@
                         <div class="file_upload_block">
                             <label class="m-0">Aadhar Back Image</label>
                             <app-fileupload [form]="customerForm" class="fileupload_image_fullwidth mb-0"
-                                [accept]="'image/png, image/gif, image/jpeg'"
+                                [accept]="'image/png, image/gif, image/jpeg'" [imageAadhar]="true"
                                 [imageUrl]="customerForm.value['adhar_back']" [uploadType]="'fullwidth'"
                                 [imageCaption]="'Please upload aadhar back side photo.'"
                                 [formcontrolname]="'adhar_back'" formControlName="adhar_back" name="adhar_back"

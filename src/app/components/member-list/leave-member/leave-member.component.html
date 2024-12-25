@@ -2,32 +2,24 @@
     <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container full_height_coverwithout_bottom">
-
+<div class="dialoge_middle_container full_height_cover">
     <div class="flex_header res_flex_colum">
-        <div class="assign_text res_full_width">{{"Name: "|translate}} : {{data.name}}</div>
-
+        <div class="assign_text res_full_width">{{data.name}}</div>
+        <div class="main_table_head" *ngIf="loading">{{"Assign Customers : "|translate}}{{total_assignlength}}</div>
     </div>
     <div class="page_center_loader" *ngIf="loading">
         <app-page-loader></app-page-loader>
     </div>
-    <div class="main_table_head">{{"Total Customers: "|translate}} - {{total_assignlength}}</div>
-    <form>
-        <div class="page_center_loader" *ngIf="loading">
-            <app-page-loader></app-page-loader>
-        </div>
-
-        <table class="table table-bordered table-responsive popup_table bg-white more_table">
+    <form *ngIf="!loading">
+        <table class="table mydata-table popup_table bg-white">
             <thead>
                 <tr>
-                    <th>{{"Select"|translate}}</th>
-                    <th>{{"Customer No."|translate}}</th>
-                    <th>{{"Customer Name"|translate}}</th>
-                    <th>{{"Contact"|translate}}</th>
-                    <th>{{"Address"|translate}}</th>
-
-                    <th>{{"Type"|translate}}</th>
-
+                    <th class="col s_no">{{"Select"|translate}}</th>
+                    <th class="col">{{"Customer No."|translate}}</th>
+                    <th class="col">{{"Customer Name"|translate}}</th>
+                    <th class="col">{{"Contact"|translate}}</th>
+                    <th class="col">{{"Address"|translate}}</th>
+                    <th class="col">{{"Type"|translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,11 +34,8 @@
                     <td class="col" data-name="Customer Name">{{loan.customer.name}}</td>
                     <td class="col" data-name="Contact">{{loan.customer.mobile}}</td>
                     <td class="col" data-name="Contact">{{loan.customer.address}}</td>
-
-                    <td class="text-center col" data-name="Type">
-                        Loan
+                    <td class="text-center col" data-name="Type"><span class="badge bg-primary text-white">Loan</span>
                     </td>
-
                 </tr>
                 <tr *ngFor="let deposit of assignDepositData">
                     <td class="col" data-name="Cno.">
@@ -56,42 +45,34 @@
                     <td class="col" data-name="Customer Name">{{deposit.customer.name}}</td>
                     <td class="col" data-name="Contact">{{deposit.customer.mobile}}</td>
                     <td class="col" data-name="Contact">{{deposit.customer.address}}</td>
-
                     <td class="text-center col" data-name="Type">
-                        Deposit
+                        <span class="badge bg-primary text-white">Deposit</span>
                     </td>
                 </tr>
             </tbody>
         </table>
         <ng-container *ngIf="total_assignlength == 0 && !loading">
-            <app-no-record-found type="page"
-                notext="This Member not assign any Deposit and Loan."></app-no-record-found>
+            <app-no-record-found type="page" notext="This Member not assign any Deposit or Loan."></app-no-record-found>
         </ng-container>
-        <div class="flex_header res_flex_colum pt-5">
-            <div class="col-sm-6 col-lg-6 col-xs-12">
+        <div class="flex_header res_flex_colum">
+            <div class="date_block">
                 <app-input [isDateField]="true" label="Date" [(value)]="date" [isRequired]="true"
                     [className]="'bottom_error_msg'" [form]="memberForm" [key]="'date'"
                     [displayMsg]="'Date is required'"></app-input>
             </div>
-            <div class="col-sm-6 col-lg-6 col-xs-12">
+            <div class="member_block">
                 <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="memberForm"
                     [key]="'assigned_member_id'" [optionArray]="memberdata" *ngIf="memberdata?.length && memberForm"
                     field="Assign Member"></app-dropdwon>
             </div>
-
         </div>
     </form>
-
-
 </div>
-
-
 <div class="dialoge_button_container">
     <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
-    <button type="submit" class="global_submit_btn" mat-flat-button (click)="submit()">
-        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
-        <app-button-loader *ngIf="loading"></app-button-loader>
-        <span *ngIf="!member_id">Submit</span>
-        <span *ngIf="member_id">Update</span>
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="submitAssignCustomer()">
+        <mat-icon class="submitbtn_icon" *ngIf="!btnloading">check</mat-icon>
+        <app-button-loader *ngIf="btnloading"></app-button-loader>
+        <span>Assing Member</span>
     </button>
 </div>

@@ -57,9 +57,13 @@ export class DailyCollectionComponent {
       status: statuscall
     }
     this._serivce.getDepositListForCustomer(obj).subscribe((data: any) => {
-      this.depositData = data.data.deposits;
-      this.filteredDataarray = this.depositData;
-      this.depositDetail = data.data;
+      if (data.success) {
+        this.depositData = data.data.deposits;
+        this.filteredDataarray = this.depositData;
+        this.depositDetail = data.data;
+      } else {
+
+      }
       this.loader = false;
     }, error => {
       this.loader = false;
@@ -95,7 +99,7 @@ export class DailyCollectionComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.selectedStatus.setValue('active');
         this.getDepositList('active');
       }
@@ -111,7 +115,7 @@ export class DailyCollectionComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.selectedStatus.setValue('active');
         this.getDepositList('active');
       }
@@ -142,7 +146,7 @@ export class DailyCollectionComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.selectedStatus.setValue('active');
         this.getDepositList('active');
       }

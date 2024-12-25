@@ -28,7 +28,7 @@ export class LeaveMemberComponent {
   loanList: any;
   loanListData: any;
   total_assignlength = 0;
-
+  btnloading = false;
   constructor(public dialogRef: MatDialogRef<LeaveMemberComponent>, private cdr: ChangeDetectorRef, public _toastr: ToastrService, public router: Router, public _service: MemberService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }, public _loanService: LoanService, public _dailyService: DailyCollectionService,
     public _customerService: CustomerService) { }
   ngOnInit() {
@@ -62,7 +62,7 @@ export class LeaveMemberComponent {
 
   }
 
-  submit() {
+  submitAssignCustomer() {
     this.loading = true;
     if (this.memberForm.valid) {
 
@@ -131,10 +131,9 @@ export class LeaveMemberComponent {
       }
       if (this.assignDepositData?.length) {
         this.total_assignlength = this.total_assignlength + this.assignDepositData?.length;
-
       }
       // this.total_assignlength = this.assignDepositData?.length + this.loanList?.length;
       this.loading = false;
-    }, 1000);
+    }, 2000);
   }
 }

@@ -62,10 +62,9 @@ export class FixedDepositComponent {
   openDialogAddFixedDeposit() {
     const dialogRef = this.dialog.open(AddFixedDepositComponent, {
       disableClose: true,
-
+      panelClass: 'medium_popup',
       data: {
         title: 'Add New Fixed Deposit Details',
-
       },
     });
 
@@ -117,7 +116,7 @@ export class FixedDepositComponent {
   openDialogStatus(data: any) {
     const dialogRef = this.dialog.open(ChangeStatusComponent, {
       disableClose: true,
-      panelClass: 'delete_popup',
+      panelClass: 'medium_popup',
       data: {
         data: data,
         title: 'Update Status',
@@ -140,7 +139,7 @@ export class FixedDepositComponent {
   openDialogPaidMoney(data: any) {
     const dialogRef = this.dialog.open(PaidMoneyComponent, {
       disableClose: true,
-      panelClass: 'delete_popup',
+      panelClass: 'medium_popup',
       data: {
         title: 'Deposit Paid Money',
         field_value: 'Status',

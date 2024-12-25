@@ -38,7 +38,7 @@ export class UpdateMoneyComponent {
       this.loading = true;
       // debugger;
       let obj = {
-        deposit_history_id: this.dataa.data.id,
+        deposit_history_id: this.dataa.data.history_id,
         amount: this.receivedAmountForm.value['amount']
         // ...this.receivedAmountForm.value
       }

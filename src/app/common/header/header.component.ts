@@ -45,7 +45,7 @@ export class HeaderComponent {
   memberRoughts = ['/dashboard', '/customer_list', '/daily_collection', '/offers', '/profile_details', '/change_password'];
   customerRoughts = ['/dashboard', '/my_loan_list', '/daily_collection', '/offers', '/request_money', '/change_password', '/profile_details'];
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger | undefined;
-  ngOnInit() {
+  ngOnInit(): void {
     const data: any = localStorage.getItem('CurrentUser');
     const userData = JSON.parse(data);
 
@@ -80,7 +80,9 @@ export class HeaderComponent {
       } else if (this.userType == 2) {
         const currentAllData: any = localStorage.getItem('MemberData');
         const currentMemberDataParse = JSON.parse(currentAllData);
-        this.userImage = currentMemberDataParse.image;
+        if (currentMemberDataParse.image == null && currentMemberDataParse.image == '') {
+          this.userImage = currentMemberDataParse.image;
+        }
         setTimeout(() => {
           if (!this.memberRoughts.includes(this.currentUrl)) {
             this.router.navigate(['/dashboard']);
@@ -97,8 +99,10 @@ export class HeaderComponent {
           const currentOfferData: any = localStorage.getItem('OfferData');
           const customerOfferDataParse = JSON.parse(currentOfferData);
           this.offerData = customerOfferDataParse;
-          this.offerShow = this.offerData?.default_offer;
         }, 1000);
+        setTimeout(() => {
+          this.offerShow = this.offerData?.default_offer;
+        }, 3000);
       }
       this.translate.use(this.language);
     }

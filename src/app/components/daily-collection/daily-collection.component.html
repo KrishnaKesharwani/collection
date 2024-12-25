@@ -8,14 +8,16 @@
                             <h3 class="mb-0">{{"Deposit List" |translate}}</h3>
                         </div>
                         <div class="col p-0 head_details three_block_count" *ngIf="filteredDataarray?.length != 0">
-                            <div class="total_block bg-warning mr-2"><span>{{"Daily Amount"
+                            <div class="total_block bg-warning mr-2">
+                                <span>{{"last_collection"
                                     |translate}}</span><b>{{depositDetail?.last_date_total_credit}}</b>
                             </div>
                             <div class="total_block bg-primary mr-2">
                                 <span>{{"Total Amount" |translate}}</span><b>{{depositDetail?.total_paid_amount}}</b>
                             </div>
-                            <div class="total_block bg-success"><span>{{"Total
-                                    Customer" |translate}}</span><b>{{depositDetail?.total_cusotomer}}</b></div>
+                            <div class="total_block bg-success">
+                                <span>{{"Total Customer" |translate}}</span><b>{{depositDetail?.total_cusotomer}}</b>
+                            </div>
                         </div>
                         <div class="listsearchwith_ddl_topblock">
                             <mat-form-field class="global_dropdown global_ddl_m_p_0" appearance="outline">
