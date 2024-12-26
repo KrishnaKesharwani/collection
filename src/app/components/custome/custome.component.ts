@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-// import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
 import { LoanHistoryComponent } from './loan-history/loan-history.component';
 import { ProviderLoanComponent } from './provider-loan/provider-loan.component';
@@ -8,28 +7,24 @@ import { ViewCustomerListComponent } from './view-customer-list/view-customer-li
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import Swal from 'sweetalert2';
 import { CustomerBulkImportComponent } from './customer-bulk-import/customer-bulk-import.component';
-// import * as XLSX from 'xlsx';
-// import { saveAs } from 'file-saver';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { ApplyLoanComponent } from './apply-loan/apply-loan.component';
 import { NewDepositComponent } from './new-deposit/new-deposit.component';
-import { error } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-custome',
   templateUrl: './custome.component.html',
   styleUrls: ['./custome.component.scss']
 })
-export class CustomeComponent {
 
+export class CustomeComponent {
   usertype: any;
   customer_action: any;
   tableData: any[] = [];
   readonly dialog = inject(MatDialog);
-
-
   company_id: any;
   customerData: any[] = [];
   filteredDataarray: any[] = [];
@@ -38,7 +33,6 @@ export class CustomeComponent {
 
   constructor(public _customActionService: CustomActionsService,
     public _service: CustomerService,
-    private actionService: ActionService,
     public toaster: ToastrService
   ) { }
 
@@ -122,7 +116,6 @@ export class CustomeComponent {
 
   openDialogProvideLoan(data: any): void {
     if (this.isDialogOpen) return;
-    // this.dataForDelete = enterAnimationDuration
     const dialogRef = this.dialog.open(ProviderLoanComponent, {
       disableClose: true,
       data: {
@@ -148,7 +141,6 @@ export class CustomeComponent {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
-      // this.isDialogOpen = false;
       if (result) {
         this.getCustomerList();
       }
@@ -165,7 +157,6 @@ export class CustomeComponent {
       },
     });
     dialogRef.componentInstance.deleteAction.subscribe(() => {
-      // this.delete();
       this.isDialogOpen = false;
     });
   }
@@ -195,7 +186,6 @@ export class CustomeComponent {
       },
     });
     dialogRef.afterClosed().subscribe(result => {
-      // this.isDialogOpen = false;
       if (result) {
         this.getCustomerList();
       }

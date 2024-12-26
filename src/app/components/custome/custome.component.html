@@ -24,12 +24,6 @@
                                 <i class="mdi mdi-import"></i>
                                 <span class="btn-txt button-text">Import</span>
                             </button>
-                            <!-- <button data-toggle="modal" (click)="openDialogDownload()"
-                                data-target="#actionCustomer_modal" class="btn btn-success btn-sm create_header_btn"
-                                mat-raised-button>
-                                <i class="mdi mdi-cloud-download-outline"></i>
-                                <span class="btn-txt button-text">Download</span>
-                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -129,8 +123,6 @@
                             {{item.deposit_count}}</td>
                         <td class="col" [attr.data-name]="'Mobile' | translate">{{item.mobile}}</td>
                         <td class="col" [attr.data-name]="'Join Date' | translate">{{item.join_date}}</td>
-                        <!-- <td class="col" data-name="End Date">{{item.loan_amount}}</td>
-                        <td class="col" data-name="End Date">{{item.pending_amount}}</td> -->
                         <td class="col text-center" [attr.data-name]="'Status' | translate">
                             <span class="badge bg-success text-white"
                                 *ngIf="item.status == 'active'">{{item.status}}</span>
