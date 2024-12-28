@@ -51,6 +51,14 @@ cmd: npm install @ngx-translate/core
 cmd: npm i ngx-device-detector
      npm i --save-dev @types/uuid
 
+
+Blank Database 
+TRUNCATE TABLE `pinku_moneycollectiondb`.`member_finance_history`
+DELETE FROM `pinku_moneycollectiondb`.`member_finance`
+UPDATE `members` SET `balance`=0
+TRUNCATE TABLE `pinku_moneycollectiondb`.`deposit_history`
+TRUNCATE TABLE `pinku_moneycollectiondb`.`loan_history`
+
 > [!NOTE]
 >
 > - (✓) = Added

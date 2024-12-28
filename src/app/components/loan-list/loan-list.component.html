@@ -8,11 +8,24 @@
                 <div class="col p-0 head_details two_block_count">
                     <div class="total_block bg-secondary mr-2">
                         <span>{{listLoadType |translate}} {{"Amount"|translate}}</span>
-                        <b><span appDigits>{{total_paid_amount}}</span></b>
+                        <b>
+                            <!-- <span appDigits>{{total_paid_amount}}</span> -->
+                            <span *ngIf="listLoadType == 'paid'">{{totalRunningLoanAmount}}</span>
+                            <span *ngIf="listLoadType == 'approved'">{{totalAppprovedLoanAmount}}</span>
+                            <span *ngIf="listLoadType == 'pending'">{{totalPendingLoanAmount}}</span>
+                            <span *ngIf="listLoadType == 'cancelled'">{{totalCancelledLoanAmount}}</span>
+                            <span *ngIf="listLoadType == 'completed'">{{totalCompletedLoanAmount}}</span>
+                        </b>
                     </div>
-                    <div class="total_block bg-primary mr-2">
-                        <span>{{listLoadType |translate}} {{"Amount"|translate}}</span>
-                        <b><span appDigits>{{total_remaining_amount}}</span></b>
+                    <div class="total_block bg-primary mr-2"
+                        *ngIf="listLoadType != 'pending' && listLoadType != 'cancelled'">
+                        <span>{{"Pending Amount"|translate}}</span>
+                        <b>
+                            <!-- <span appDigits>{{total_remaining_amount}}</span> -->
+                            <span *ngIf="listLoadType == 'paid'">{{totalRunningPendingAmount}}</span>
+                            <span *ngIf="listLoadType == 'approved'">{{totalApprovedPendingAmount}}</span>
+                            <span *ngIf="listLoadType == 'completed'">{{totalCompletedPendingAmount}}</span>
+                        </b>
                     </div>
                     <div class="total_block bg-success">
                         <span>{{"Total Customer"|translate}}</span><b>{{total_cusotomer}}</b>
@@ -30,9 +43,7 @@
         </div>
         <mat-tab-group class="global_tabs_group" [(selectedIndex)]="selectedTabIndex"
             (selectedIndexChange)="onTabChange($event)">
-            <mat-tab
-                label="Running (Count: {{runningLoanCount}} - Loan Amt: {{totalRunningLoanAmount}} - Pending Amt: {{totalRunningPendingAmount}})"
-                class="global_tabs">
+            <mat-tab label="Running {{runningLoanCount}}" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">
@@ -166,9 +177,7 @@
                     </table>
                 </div>
             </mat-tab>
-            <mat-tab
-                label="Approved ({{approvedLoanCount}} - Loan Amt: {{totalAppprovedLoanAmount}} - Pending Amt: {{totalApprovedPendingAmount}})"
-                class="global_tabs">
+            <mat-tab label="Approved {{approvedLoanCount}}" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">
@@ -298,9 +307,7 @@
                     </table>
                 </div>
             </mat-tab>
-            <mat-tab
-                label="Pending ({{pendingLoanCount}} - Loan Amt: {{totalPendingLoanAmount}} - Pending Amt: {{totalPendingPendingAmount}})"
-                class="global_tabs">
+            <mat-tab label="Pending {{pendingLoanCount}}" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">
@@ -407,9 +414,7 @@
                     </table>
                 </div>
             </mat-tab>
-            <mat-tab
-                label="Cancelled ({{canceledLoanCount}} - Loan Amt: {{totalCancelledLoanAmount}} - Pending Amt: {{totalCancelledPendingAmount}})"
-                class="global_tabs">
+            <mat-tab label="Cancelled {{canceledLoanCount}}" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">
@@ -518,9 +523,7 @@
                     </table>
                 </div>
             </mat-tab>
-            <mat-tab
-                label="Completed ({{completedLoanCount}} - Loan Amt: {{totalCompletedLoanAmount}} - Pending Amt: {{totalCompletedPendingAmount}})"
-                class="global_tabs">
+            <mat-tab label="Completed {{completedLoanCount}}" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">

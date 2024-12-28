@@ -25,7 +25,7 @@
                     <li>{{depositDataSharre?.customer?.name}}</li>
                     <li>{{depositDataSharre?.customer?.mobile}}</li>
                     <li><b><i class="mdi mdi-currency-inr"></i>
-                            <span appDigits>{{totalDepositAmount}}</span>
+                            <span>{{totalDepositAmount}}</span>
                         </b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small"
@@ -144,7 +144,6 @@
                     <app-page-loader></app-page-loader>
                 </div>
                 <ng-container *ngIf="!loading">
-
                     <div class="entry_row" *ngFor="let item of  loanData">
                         <div class="col date">{{item.created_at}} </div>
                         <div class="col balance">{{item.balance}}</div>
@@ -152,10 +151,10 @@
                             <span class="color-green">{{item.amount}}</span>
                         </div>
                     </div>
+                    <div *ngIf="loanData?.length == 0 || loanData?.length == null">
+                        <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
+                    </div>
                 </ng-container>
-                <div *ngIf="loanData?.length == 0 && !loading">
-                    <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
-                </div>
             </div>
         </ng-container>
 

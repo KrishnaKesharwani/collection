@@ -46,7 +46,6 @@ export class PaidDataEntryComponent {
 
   ngOnInit() {
     const getActionMaindata = this._dataSharingService.getActionData();
-    debugger
     if (getActionMaindata.collectType != undefined) {
       this.checkType = getActionMaindata?.collectType;
       this.customer_id = getActionMaindata.data.customer_id;
@@ -83,29 +82,33 @@ export class PaidDataEntryComponent {
   }
 
   debitAmount() {
-    console.log(this.receivedAmountForm.value);
+    // console.log(this.receivedAmountForm.value);
     if (this.receivedAmountForm.valid) {
-      this.loadingMinus = true;
-      this.loading = true;
-      let obj = {
-        deposit_id: this.deposit_id,
+      if (this.receivedAmountForm?.value['amount'] <= this.totalDepositAmount) {
+        this.loadingMinus = true;
+        this.loading = true;
+        let obj = {
+          deposit_id: this.deposit_id,
 
-        deposit_type: 'debit',
-        ...this.receivedAmountForm.value
+          deposit_type: 'debit',
+          ...this.receivedAmountForm.value
+        }
+        this._service.collectDepositMoney(obj).subscribe((data: any) => {
+          this._toastr.success(data.message, "Success");
+
+          this.receivedAmountForm.reset();
+          this.getCustomerDepositHistory();
+          // this.getCustomerLoanHistory();
+          this.loading = false;
+          this.loadingMinus = false;
+        }, error => {
+          this._toastr.error(error.error.message, "Error");
+          this.loading = false;
+          this.loadingMinus = false;
+        })
+      } else {
+        this._toastr.error("Balance not available your account", "Error");
       }
-      this._service.collectDepositMoney(obj).subscribe((data: any) => {
-        this._toastr.success(data.message, "Success");
-
-        this.receivedAmountForm.reset();
-        this.getCustomerDepositHistory();
-        // this.getCustomerLoanHistory();
-        this.loading = false;
-        this.loadingMinus = false;
-      }, error => {
-        this._toastr.error(error.error.message, "Error");
-        this.loading = false;
-        this.loadingMinus = false;
-      })
     } else {
       this.receivedAmountForm.markAllAsTouched();
     }
@@ -211,6 +214,7 @@ export class PaidDataEntryComponent {
       from_day: 30
     }
     this._service.loanDetails(obj).subscribe((data: any) => {
+      // debugger;
       if (data.success) {
         this.loanData = data.data.collection;
         this.loading = false;

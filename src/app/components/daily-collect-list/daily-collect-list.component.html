@@ -100,41 +100,43 @@
                     [notext]="'Admin not assign any loan & collection...'"></app-no-record-found>
             </ng-container>
             <ng-container *ngIf="filteredDataarray?.length">
+                <ng-container *ngFor="let loan of filteredDataarray">
+                    <div class="assign_customer_block member_block" [ngClass]="{'bg-paid': loan?.paid_today == 'yes'}">
+                        <ul class="list-unstyled dynamic_card_data">
+                            <li class="data_head">{{"Loan No."|translate}}</li>
+                            <li class="data_val">{{loan.loan_no}}</li>
+                            <li class="data_head">{{"Name"|translate}}</li>
+                            <li class="data_val">{{loan.customer.name}}</li>
+                            <li class="data_head">{{"Profile"|translate}}</li>
+                            <li class="data_val">
+                                <div class="list_image_block">
+                                    <img *ngIf="loan.customer.image != null" src="{{loan.customer.image}}" />
+                                    <img *ngIf="loan.customer.image == null" src="assets/imgs/default-pic.png" />
+                                </div>
+                            </li>
+                            <li class="data_head">{{"Mobile"|translate}}</li>
+                            <li class="data_val">{{loan.customer.mobile}}</li>
+                            <li class="data_head">{{"Collection Type"|translate}}</li>
+                            <li class="data_val">Loan</li>
+                            <li class="data_head">{{"Total Amt"|translate}}</li>
+                            <li class="data_val">{{loan.loan_amount}}</li>
+                            <li class="data_head">{{"Pending Amt"|translate}}</li>
+                            <li class="data_val">{{loan.remaining_amount}}</li>
+                            <li class="data_head">{{"Instalment"|translate}}</li>
+                            <li class="data_val">{{loan.installment_amount}}</li>
+                        </ul>
 
-                <div class="assign_customer_block" *ngFor="let loan of filteredDataarray">
-                    <ul class="list-unstyled dynamic_card_data" [ngClass]="{'bg-paid': loan?.paid_today == 'Yes'}">
-                        <li class="data_head">{{"Loan No."|translate}}</li>
-                        <li class="data_val">{{loan.loan_no}}</li>
-                        <li class="data_head">{{"Name"|translate}}</li>
-                        <li class="data_val">{{loan.customer.name}}</li>
-                        <li class="data_head">{{"Profile"|translate}}</li>
-                        <li class="data_val">
-                            <div class="list_image_block">
-                                <img *ngIf="loan.customer.image != null" src="{{loan.customer.image}}" />
-                                <img *ngIf="loan.customer.image == null" src="assets/imgs/default-pic.png" />
-                            </div>
-                        </li>
-                        <li class="data_head">{{"Mobile"|translate}}</li>
-                        <li class="data_val">{{loan.customer.mobile}}</li>
-                        <li class="data_head">{{"Collection Type"|translate}}</li>
-                        <li class="data_val">Loan</li>
-                        <li class="data_head">{{"Total Amt"|translate}}</li>
-                        <li class="data_val">{{loan.loan_amount}}</li>
-                        <li class="data_head">{{"Pending Amt"|translate}}</li>
-                        <li class="data_val">{{loan.remaining_amount}}</li>
-                        <li class="data_head">{{"Instalment"|translate}}</li>
-                        <li class="data_val">{{loan.installment_amount}}</li>
-                    </ul>
-
-                    <div class="action_block">
-                        <button mat-raised-button (click)="actionAssignItems(loan, 'loan')"
-                            class="btn btn-sm btn-success global_submit_btn">
-                            <i class="mdi mdi-currency-inr"></i>Collect Money</button>
+                        <div class="action_block">
+                            <button mat-raised-button (click)="actionAssignItems(loan, 'loan')"
+                                class="btn btn-sm btn-success global_submit_btn">
+                                <i class="mdi mdi-currency-inr"></i>Collect Money</button>
+                        </div>
                     </div>
-                </div>
+                </ng-container>
             </ng-container>
             <ng-container *ngIf="memberDepositData?.length">
-                <div class="assign_customer_block" *ngFor="let deposit of memberDepositData">
+                <ng-container *ngFor="let deposit of memberDepositData">
+                <div class="assign_customer_block member_block" [ngClass]="{'bg-paid': deposit?.paid_today == 'yes'}">
                     <ul class="list-unstyled dynamic_card_data">
                         <li class="data_head">{{"Deposit No."|translate}}</li>
                         <li class="data_val">{{deposit.deposit_no}}</li>
@@ -160,6 +162,7 @@
                             <i class="mdi mdi-currency-inr"></i>Collect Money</button>
                     </div>
                 </div>
+                </ng-container>
             </ng-container>
         </div>
     </div>

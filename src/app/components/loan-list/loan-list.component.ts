@@ -69,7 +69,11 @@ export class LoanListComponent {
   listLoadType: any = 'paid';  // Default to 'approved'
   tabLabels: string[] = ['paid', 'approved', 'pending', 'cancelled', 'completed'];
   listType: any;
-
+  initializeCounter() {
+    this.total_remaining_amount = this.loantype_count = this.total_paid_amount = this.total_cusotomer = this.approvedLoanCount = 0;
+    this.totalRunningPendingAmount = this.totalApprovedPendingAmount = this.totalCompletedPendingAmount = this.total_cusotomer = 0;
+    this.totalRunningLoanAmount = this.totalAppprovedLoanAmount = this.totalPendingLoanAmount = this.totalCancelledLoanAmount = this.totalCompletedLoanAmount = 0;
+  }
   onTabChange(index: any) {
     this.filteredDataarray = [];
     this.loader = true;
@@ -77,9 +81,7 @@ export class LoanListComponent {
       this.listType = this.tabLabels[index];
     }
     this.listLoadType = this.listType;
-    this.total_remaining_amount = 0;
-    this.loantype_count = 0;
-    this.total_paid_amount = 0;
+    this.initializeCounter();
     let obj = {
       company_id: this.company_id,
       loan_status: this.listLoadType,
@@ -90,13 +92,13 @@ export class LoanListComponent {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.runningLoanCount = data.data.loans.length;
-
+          this.total_cusotomer = data.data.total_cusotomer;
+          // this.updateLoanValues('paid', data.data);
           // this.runningLoanCount = 0;
           this.pendingLoanCount = 0;
           this.canceledLoanCount = 0;
           this.completedLoanCount = 0;
           this.approvedLoanCount = 0;
-          this.total_cusotomer = data.data.total_cusotomer;
           this.runningLoanListData = data.data.loans;
 
           this.totalRunningLoanAmount = this.runningLoanListData.reduce((sum, loan) => sum + parseFloat(loan.loan_amount), 0);
@@ -122,7 +124,7 @@ export class LoanListComponent {
       }, error => {
         this.filteredDataarray = [];
         this.total_remaining_amount = 0.00;
-        this.total_cusotomer = 0;
+        // this.total_cusotomer = 0;
         this.loader = false;
       });
     } else if (obj.loan_status == 'approved') {
@@ -130,6 +132,8 @@ export class LoanListComponent {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.approvedLoanCount = data.data.loans.length;
+          // this.updateLoanValues('approved', data.data);
+
           this.runningLoanCount = 0;
           this.pendingLoanCount = 0;
           this.canceledLoanCount = 0;
@@ -139,7 +143,7 @@ export class LoanListComponent {
           this.total_cusotomer = data.data.total_cusotomer;
           this.approvedLoanListData = data.data.loans;
           this.totalAppprovedLoanAmount = this.approvedLoanListData.reduce((sum, loan) => sum + parseFloat(loan.loan_amount), 0);
-          this.totalApprovedPendingAmount = this.runningLoanListData.reduce((sum, loan) => sum + parseFloat(loan.remaining_amount), 0);
+          this.totalApprovedPendingAmount = this.approvedLoanListData.reduce((sum, loan) => sum + parseFloat(loan.remaining_amount), 0);
           this.totalRunningLoanAmount = 0;
           // this.totalAppprovedLoanAmount = 0;
           this.totalPendingLoanAmount = 0;
@@ -171,6 +175,8 @@ export class LoanListComponent {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.total_cusotomer = data.data.total_cusotomer;
           this.pendingLoanCount = data.data.loans.length;
+          // this.updateLoanValues('pending', data.data);
+
           this.runningLoanCount = 0;
           // this.pendingLoanCount = 0;
           this.canceledLoanCount = 0;
@@ -210,6 +216,8 @@ export class LoanListComponent {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.total_cusotomer = data.data.total_cusotomer;
           this.canceledLoanCount = data.data.loans.length;
+          // this.updateLoanValues('cancelled',data.data);
+
           this.runningLoanCount = 0;
           this.pendingLoanCount = 0;
           // this.canceledLoanCount = 0;
@@ -250,6 +258,8 @@ export class LoanListComponent {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.total_cusotomer = data.data.total_cusotomer;
           this.completedLoanCount = data.data.loans.length;
+          // this.updateLoanValues('completed', data.data);
+
           this.runningLoanCount = 0;
           this.pendingLoanCount = 0;
           this.canceledLoanCount = 0;
@@ -286,6 +296,42 @@ export class LoanListComponent {
     }
   }
 
+  updateLoanValues(type: any, loanArray: any) {
+    debugger;
+    this.total_paid_amount = 0;
+    this.total_remaining_amount = 0;
+    this.runningLoanCount = 0;
+    this.approvedLoanCount = 0;
+    this.pendingLoanCount = 0;
+    this.canceledLoanCount = 0;
+    this.completedLoanCount = 0;
+    switch (type) {
+      case "paid":
+        if (loanArray.loans.length > 0) {
+          debugger;
+          this.runningLoanCount = loanArray.loans.length;
+          // this.total_paid_amount = loanArray?.loans.reduce((sum loan: { loan_amount: string; }) => sum + parseFloat(loanArray?.loans.loan_amount), 0);
+          // this.total_remaining_amount = loanArray?.loans.reduce((sum: number, loan: { remaining_amount: string; }) => sum + parseFloat(loanArray?.loans.remaining_amount), 0);
+        }
+        break;
+      case 'approved':
+        this.approvedLoanCount = loanArray.loans.length;
+        break;
+      case 'pending':
+        this.pendingLoanCount = loanArray.loans.length;
+        break;
+      case 'cancelled':
+        this.canceledLoanCount = loanArray.loans.length;
+        break;
+      case 'completed':
+        this.completedLoanCount = loanArray.loans.length;
+
+        break
+      default:
+
+        break;
+    }
+  }
   private isDialogOpen = false;
   openDialogMoreDetail(data: any, loantype: boolean): void {
     if (this.isDialogOpen) return;

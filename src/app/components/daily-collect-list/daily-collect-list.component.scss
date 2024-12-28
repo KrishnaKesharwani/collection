@@ -22,7 +22,6 @@
             font-size: 12px;
             padding: 10px;
             list-style: none;
-            background: #eb918b;
             li {
                 margin-bottom: 5px;
                 line-height: 20px;
@@ -56,6 +55,9 @@
             border-top: solid thin #e1e1e1;
             border-radius: 0px 0px 5px 5px;
         }
+    }
+    .member_block {        
+        background: #eb918b;
     }
 }
 .collect_money_card {
