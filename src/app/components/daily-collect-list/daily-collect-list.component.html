@@ -100,8 +100,9 @@
                     [notext]="'Admin not assign any loan & collection...'"></app-no-record-found>
             </ng-container>
             <ng-container *ngIf="filteredDataarray?.length">
+
                 <div class="assign_customer_block" *ngFor="let loan of filteredDataarray">
-                    <ul class="list-unstyled dynamic_card_data">
+                    <ul class="list-unstyled dynamic_card_data" [ngClass]="{'bg-paid': loan?.paid_today == 'Yes'}">
                         <li class="data_head">{{"Loan No."|translate}}</li>
                         <li class="data_val">{{loan.loan_no}}</li>
                         <li class="data_head">{{"Name"|translate}}</li>
@@ -124,6 +125,7 @@
                         <li class="data_head">{{"Instalment"|translate}}</li>
                         <li class="data_val">{{loan.installment_amount}}</li>
                     </ul>
+
                     <div class="action_block">
                         <button mat-raised-button (click)="actionAssignItems(loan, 'loan')"
                             class="btn btn-sm btn-success global_submit_btn">

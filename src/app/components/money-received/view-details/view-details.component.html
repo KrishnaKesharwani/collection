@@ -81,7 +81,7 @@
                     <td [attr.data-name]="'Amount By' | translate" *ngIf="item.amount_by == 'advance'">Company Advance
                     </td>
                     <td [attr.data-name]="'Amount By' | translate" class="capatalise_col">{{item.amount_by}}</td>
-                    <td [attr.data-name]="'Amount Type' | translate">{{item.amount_type}}</td>
+                    <td [attr.data-name]="'Amount Type' | translate" class="capatalise_col">{{item.amount_type}}</td>
                     <td [attr.data-name]="'Date Time' | translate"><small>{{item.created_at}}</small></td>
                     <td [attr.data-name]="'Amount' | translate" class="text-right"
                         [ngClass]="{'color-green': item.amount_type == 'credit', 'color-red': item.amount_type == 'debit'}">
@@ -100,7 +100,8 @@
                             </div>
                         </mat-menu>
                     </td>
-                    <td [attr.data-name]="'Edit' | translate" *ngIf="collectionData.payment_status != 'paid'"
+                    <td [attr.data-name]="'Edit' | translate"
+                        *ngIf="collectionData.payment_status != 'paid'  && item.amount_type == 'loan'"
                         class="action_col">
                         <button mat-icon-button (click)="editPaidAmount(item)" class="btn bg-secondary single_btn">
                             <i class="mdi mdi-pencil"></i>

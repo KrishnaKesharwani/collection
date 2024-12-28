@@ -21,12 +21,12 @@ export class VpdateStatusComponent {
   amount: string = '';
   moneystatus: string = '';
   details: string = '';
-  constructor(public dialogRef: MatDialogRef<VpdateStatusComponent>, public _service: MoneyReceivedService, public _tostr: ToastrService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any },
+  constructor(public dialogRef: MatDialogRef<VpdateStatusComponent>, public _service: MoneyReceivedService, public _tostr: ToastrService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any, data: any },
   ) { }
 
   ngOnInit() {
     this.receivedAmountForm = this.fb.group({
-      amount: ['', Validators.required],
+      amount: [this.dataa.data.balance, Validators.required],
       // moneystatus: [''],
       details: ['']
     });
@@ -38,24 +38,29 @@ export class VpdateStatusComponent {
   }
 
   submitStatus() {
-    if (this.receivedAmountForm.valid) {
-      this.loading = true;
-      let obj = {
-        collection_id: this.dataa.id,
-        ...this.receivedAmountForm.value
+    if (this.receivedAmountForm.value.amount <= this.dataa.data.balance) {
+      if (this.receivedAmountForm.valid) {
+        this.loading = true;
+        let obj = {
+          collection_id: this.dataa.id,
+          ...this.receivedAmountForm.value
+        }
+        this._service.changeStatus(obj).subscribe((data: any) => {
+          this.receivedAmountForm.reset();
+          this._tostr.success(data.message, 'Success');
+          this.dialogRef.close(true);
+          this.loading = false;
+        }, error => {
+          this.loading = false;
+          this._tostr.error(error.error.message, 'Error');
+        });
+      } else {
+        this.receivedAmountForm.markAllAsTouched()
       }
-      this._service.changeStatus(obj).subscribe((data: any) => {
-        this.receivedAmountForm.reset();
-        this._tostr.success(data.message, 'Success');
-        this.dialogRef.close(true);
-        this.loading = false;
-      }, error => {
-        this.loading = false;
-        this._tostr.error(error.error.message, 'Error');
-      });
     } else {
-      this.receivedAmountForm.markAllAsTouched()
+      this._tostr.error("Amount not exceed", "Error");
     }
+
   }
 
 }

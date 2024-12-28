@@ -47,7 +47,7 @@ export class MoneyReceivedComponent {
   formattedDate: string | null = null;
   getCollectionList() {
     this.loader = true;
-    this.formattedDate = new Date(this.filterDateForm.value.date).toString(); 
+    this.formattedDate = new Date(this.filterDateForm.value.date).toString();
     if (this.formattedDate == 'Invalid Date') {
       this.formattedDate = '';
     }
@@ -85,9 +85,11 @@ export class MoneyReceivedComponent {
   }
 
   openDialogChangeStatus(data: any) {
+    debugger
     const dialogRef = this.dialog.open(VpdateStatusComponent, {
       disableClose: true,
       data: {
+        data: data,
         id: data.id,
         title: 'Received Money Status',
       },

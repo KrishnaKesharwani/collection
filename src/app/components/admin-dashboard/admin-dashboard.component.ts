@@ -115,9 +115,14 @@ export class AdminDashboardComponent {
       status: 'active'
     };
     this._service.getLoanList(obj).subscribe((data: any) => {
-      this.loanData = data.data.loans;
-      this.dashboardData = data.data;
-      this.loader = false;
+      if (data.success) {
+        this.loanData = data.data?.loans;
+        this.dashboardData = data.data;
+        this.loader = false;
+      } else {
+        this.loader = false;
+      }
+
     })
   }
 
@@ -129,10 +134,14 @@ export class AdminDashboardComponent {
       status: 'active'
     };
     this._service.getLoanList(obj).subscribe((data: any) => {
-      this.newLoanData = data.data.loans;
-      this.newLoanDashboardData = data.data;
-      this.loader = false;
+      if (data.success) {
+        this.newLoanData = data.data?.loans;
+        this.newLoanDashboardData = data.data;
+        this.loader = false;
 
+      } else {
+        this.loader = false;
+      }
     })
   }
 
@@ -144,11 +153,13 @@ export class AdminDashboardComponent {
       // status: 'Active'
     }
     this._requestservice.getRequestMoney(obj).subscribe((data: any) => {
-      this.loader = false;
-      this.requestList = data.data;
-    }, error => {
-      this.loader = false;
-      // this._tostr.error(error.error.message, 'Error');
-    })
+
+      if (data.success) {
+        this.requestList = data.data;
+        this.loader = false;
+      } else {
+        this.loader = false;
+      }
+    });
   }
 }
