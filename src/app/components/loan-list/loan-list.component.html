@@ -6,12 +6,16 @@
                     <h3 class="mb-0">{{"Loan List For Status"|translate}}</h3>
                 </div>
                 <div class="col p-0 head_details two_block_count">
+                    <div class="total_block bg-secondary mr-2">
+                        <span>{{listLoadType |translate}} {{"Amount"|translate}}</span>
+                        <b><span appDigits>{{total_paid_amount}}</span></b>
+                    </div>
                     <div class="total_block bg-primary mr-2">
                         <span>{{listLoadType |translate}} {{"Amount"|translate}}</span>
                         <b><span appDigits>{{total_remaining_amount}}</span></b>
                     </div>
-                    <div class="total_block bg-success"><span>{{"Total
-                            Customer"|translate}}</span><b>{{total_cusotomer}}</b>
+                    <div class="total_block bg-success">
+                        <span>{{"Total Customer"|translate}}</span><b>{{total_cusotomer}}</b>
                     </div>
                 </div>
                 <div class="col text-right pr-1 datewith_search_block">
@@ -26,7 +30,7 @@
         </div>
         <mat-tab-group class="global_tabs_group" [(selectedIndex)]="selectedTabIndex"
             (selectedIndexChange)="onTabChange($event)">
-            <mat-tab label="Running" class="global_tabs">
+            <mat-tab label="Running {{loantype_count}}" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">
@@ -160,7 +164,7 @@
                     </table>
                 </div>
             </mat-tab>
-            <mat-tab label="Approved" class="global_tabs">
+            <mat-tab label="Approved {{loantype_count}}" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">
@@ -290,7 +294,7 @@
                     </table>
                 </div>
             </mat-tab>
-            <mat-tab label="Pending" class="global_tabs">
+            <mat-tab label="Pending {{loantype_count}}" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">
@@ -397,7 +401,7 @@
                     </table>
                 </div>
             </mat-tab>
-            <mat-tab label="Cancelled" class="global_tabs">
+            <mat-tab label="Cancelled {{loantype_count}}" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">
@@ -506,7 +510,7 @@
                     </table>
                 </div>
             </mat-tab>
-            <mat-tab label="Completed" class="global_tabs">
+            <mat-tab label="Completed {{loantype_count}}" class="global_tabs">
                 <div class="tabs_table_container">
                     <table class="table align-items-center table-flush mydata-table">
                         <thead class="thead-light">

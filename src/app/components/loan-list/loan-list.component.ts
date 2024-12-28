@@ -27,6 +27,8 @@ export class LoanListComponent {
   cancelledLoanListData: any[] = [];
   completedLoanListData: any[] = [];
   total_remaining_amount: any;
+  loantype_count: any;
+  total_paid_amount: any;
   total_cusotomer: any;
   searchColumnsLoan: any[] = ['loan_no', 'customer_no', 'customer?.name', 'member?.name', 'loan_amount', 'remaining_amount'];
   searchColumnsApply: any[] = ['customer_no', 'name', 'customer?.name', 'applied_user_name', 'apply_date', 'remaining_amount'];
@@ -59,6 +61,9 @@ export class LoanListComponent {
       this.listType = this.tabLabels[index];
     }
     this.listLoadType = this.listType;
+    this.total_remaining_amount = 0;
+    this.loantype_count = 0;
+    this.total_paid_amount = 0;
     let obj = {
       company_id: this.company_id,
       loan_status: this.listLoadType,
@@ -68,6 +73,8 @@ export class LoanListComponent {
       this._service.getLoanList(obj).subscribe((data: any) => {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
+          this.loantype_count = data.data.loans.length;
+          
           this.total_cusotomer = data.data.total_cusotomer;
           this.runningLoanListData = data.data.loans;
           this.filteredDataarray = this.runningLoanListData;
@@ -87,6 +94,7 @@ export class LoanListComponent {
       this._service.getLoanList(obj).subscribe((data: any) => {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
+          this.loantype_count = data.data.loans.length;
           this.total_cusotomer = data.data.total_cusotomer;
           this.approvedLoanListData = data.data.loans;
           this.filteredDataarray = this.approvedLoanListData;
@@ -107,6 +115,7 @@ export class LoanListComponent {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.total_cusotomer = data.data.total_cusotomer;
+          this.loantype_count = data.data.loans.length;
           this.pendingLoanListData = data.data.loans;
           this.filteredDataarray = this.pendingLoanListData;
           this.currentListFilterColoum = this.searchColumnsApply;
@@ -126,6 +135,7 @@ export class LoanListComponent {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.total_cusotomer = data.data.total_cusotomer;
+          this.loantype_count = data.data.loans.length;
           this.cancelledLoanListData = data.data.loans;
           this.filteredDataarray = this.cancelledLoanListData;
           this.currentListFilterColoum = this.searchColumnsApply;
@@ -146,6 +156,7 @@ export class LoanListComponent {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.total_cusotomer = data.data.total_cusotomer;
+          this.loantype_count = data.data.loans.length;
           this.completedLoanListData = data.data.loans;
           this.filteredDataarray = this.completedLoanListData;
           this.currentListFilterColoum = this.searchColumnsLoan;
