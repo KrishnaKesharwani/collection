@@ -34,6 +34,10 @@ export class AppComponent {
       const userData = JSON.parse(data);
       this.user_type = userData.user_type
     }
+
+    if (!this.isLoggedIn) {
+      this.router.navigate(['/login']);
+    }
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event) => {
