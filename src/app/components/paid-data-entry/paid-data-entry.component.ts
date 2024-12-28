@@ -46,6 +46,7 @@ export class PaidDataEntryComponent {
 
   ngOnInit() {
     const getActionMaindata = this._dataSharingService.getActionData();
+    debugger
     if (getActionMaindata.collectType != undefined) {
       this.checkType = getActionMaindata?.collectType;
       this.customer_id = getActionMaindata.data.customer_id;
@@ -54,7 +55,7 @@ export class PaidDataEntryComponent {
       this.userType = userData.user_type;
       if (this.userType == 2) {
         this.receivedAmountForm = this.fb.group({
-          amount: ['', Validators.required],
+          amount: [getActionMaindata.data.installment_amount, Validators.required],
           select_date: [new Date(), Validators.required]
         });
       }
