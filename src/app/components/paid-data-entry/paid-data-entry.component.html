@@ -12,11 +12,6 @@
                     <li>{{loanDataShare?.customer?.mobile}}</li>
                     <li>{{loanDataShare?.loan_amount}}</li>
                     <li><b><i class="mdi mdi-currency-inr"></i>{{loanRemainingAmount}}</b></li>
-                    <!-- <li>
-                        <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(loanDataShare)">
-                            Request Money
-                        </button>
-                    </li> -->
                 </ul>
             </ng-container>
             <ng-container *ngIf="depositDataSharre">
@@ -26,11 +21,11 @@
                         src="../../../assets/imgs/default-pic.png" />
                     <img src="{{depositDataSharre?.customer?.image}}" />
                 </div>
-                <ul class="user_info list-unstyled" *ngIf='userType == 2 && depositDataSharre !=undefined'>
+                <ul class="user_info list-unstyled">
                     <li>{{depositDataSharre?.customer?.name}}</li>
                     <li>{{depositDataSharre?.customer?.mobile}}</li>
                     <li><b><i class="mdi mdi-currency-inr"></i>
-                            <span appDigits>{{totalDepositAmount}}</span><!-- {{depositDataSharre.total_paid}} -->
+                            <span appDigits>{{totalDepositAmount}}</span>
                         </b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small"
@@ -52,7 +47,7 @@
                     <li>{{loanDataShare?.customer?.name}}</li>
                     <li>{{loanDataShare?.customer?.mobile}}</li>
                     <li><b><i class="mdi mdi-currency-inr"></i>
-                            {{totalDepositAmount}}<!-- {{loanDataShare.total_paid}} -->
+                            {{totalDepositAmount}}
                         </b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small" (click)="openDialogRequestMoney(loanDataShare)">
@@ -110,34 +105,6 @@
                 </form>
             </div>
         </div>
-
-        <ng-container *ngIf="userType == 3">
-            <div class="entry_head">
-                <div class="col date">{{"Date"|translate}}</div>
-                <div class="col balance">{{"Balance"|translate}}</div>
-                <div class="col amount">{{"Amount"|translate}}</div>
-            </div>
-            <div class="entry_row_container">
-                <div *ngIf="depositData?.length && !loading">
-                    <div class="entry_row" *ngFor="let item of  depositData">
-                        <div class="col date">{{item.created_at}} </div>
-                        <div class="col balance">{{item.balance}}</div>
-                        <div class="col amount" *ngIf="item.action_type == 'credit'"><span
-                                class="color-green">{{item.amount}}</span>
-                        </div>
-                        <div class="col amount" *ngIf="item.action_type == 'debit'"><span
-                                class="color-red">{{item.amount}}</span></div>
-                    </div>
-                </div>
-                <div *ngIf="loading">
-                    <app-page-loader></app-page-loader>
-                </div>
-                <div *ngIf="depositData?.length == 0 && !loading">
-                    <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
-                </div>
-            </div>
-        </ng-container>
-
         <ng-container *ngIf="userType == 2 && depositDataSharre">
             <div class="entry_head">
                 <div class="col date">{{"Date"|translate}}</div>
@@ -176,16 +143,10 @@
                     <app-page-loader></app-page-loader>
                 </div>
                 <ng-container *ngIf="!loading && loanData?.length">
-                    <!-- {{loanData | json}} -->
+
                     <div class="entry_row" *ngFor="let item of  loanData">
                         <div class="col date">{{item.created_at}} </div>
                         <div class="col balance">{{item.balance}}</div>
-                        <!-- <div class="col amount" *ngIf="item.action_type == 'credit'">
-                            <span class="color-green">{{item.amount}}</span>
-                        </div>
-                        <div class="col amount" *ngIf="item.action_type == 'debit'">
-                            <span class="color-red">{{item.amount}}</span>
-                        </div> -->
                         <div class="col amount">
                             <span class="color-green">{{item.amount}}</span>
                         </div>
@@ -196,5 +157,34 @@
                 </div>
             </div>
         </ng-container>
+
+        <ng-container *ngIf="userType == 3">
+            <div class="entry_head">
+                <div class="col date">{{"Date"|translate}}</div>
+                <div class="col balance">{{"Balance"|translate}}</div>
+                <div class="col amount">{{"Amount"|translate}}</div>
+            </div>
+            <div class="entry_row_container">
+                <div *ngIf="depositData?.length && !loading">
+                    <div class="entry_row" *ngFor="let item of  depositData">
+                        <div class="col date">{{item.created_at}} </div>
+                        <div class="col balance">{{item.balance}}</div>
+                        <div class="col amount" *ngIf="item.action_type == 'credit'"><span
+                                class="color-green">{{item.amount}}</span>
+                        </div>
+                        <div class="col amount" *ngIf="item.action_type == 'debit'"><span
+                                class="color-red">{{item.amount}}</span></div>
+                    </div>
+                </div>
+                <div *ngIf="loading">
+                    <app-page-loader></app-page-loader>
+                </div>
+                <div *ngIf="depositData?.length == 0 && !loading">
+                    <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
+                </div>
+            </div>
+        </ng-container>
+
+
     </div>
 </div>

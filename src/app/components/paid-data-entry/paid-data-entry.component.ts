@@ -60,51 +60,21 @@ export class PaidDataEntryComponent {
       }
       if (this.checkType == 'loan') {
         this.loanDataShare = getActionMaindata.data;
+
         this.loan_id = this.loanDataShare.id;
         this.loanRemainingAmount = this.loanDataShare.remaining_amount;
         this.getCustomerLoanHistory();
       } else {
         this.depositDataSharre = getActionMaindata.data;
+
         this.deposit_id = this.depositDataSharre.id;
+        this.totalDepositAmount = this.depositDataSharre.remaining_amount;
+
         this.getCustomerDepositHistory();
       }
     } else {
       this.redirectPage();
     }
-
-
-    // const depositDataResult = this._dataSharingService.getDepositData();
-    // const loanDataResult = this._dataSharingService.getLoanData();
-    // this.depositDataSharre = depositDataResult.data;
-    // this.loanDataShare = loanDataResult.data;
-
-
-    // this.collection_type = depositDataResult.type;
-    // this.routes.params.subscribe(params => {
-    //   if (!this.depositDataSharre || this.depositDataSharre.id !== params['id']
-    //     && !this.loanDataShare || this.loanDataShare.id !== params['id']
-    //   ) {
-
-    //     this.loan_id = params['id'];
-    //     this.deposit_id = params['id'];
-    //     if (this.depositDataSharre) {
-    //       this.customer_id = this.depositDataSharre.customer_id
-    //     } else {
-    //       this.customer_id = this.loanDataShare.customer_id
-    //     }
-    //     console.warn('Data not found in service. Fetching from server...');
-    //     // Perform API call here to fetch data by ID if needed
-    //   }
-    // });
-    // if (this.depositDataSharre || this.loanDataShare) {
-    //   this.receivedAmountForm = this.fb.group({
-    //     amount: ['', Validators.required]
-    //   });
-    //   this.getCustomerDepositHistory();
-    //   this.getCustomerLoanHistory();
-    // } else {
-    //   this.redirectPage();
-    // }
   }
 
   redirectPage() {
@@ -217,9 +187,15 @@ export class PaidDataEntryComponent {
       from_day: 30
     }
     this._service.depositDetails(obj).subscribe((data: any) => {
-      this.depositData = data.data.collection;
-      this.loading = false;
-      this.totalDepositAmount = data.data.total_balance;
+      if (data.success) {
+        this.depositData = data.data.collection;
+
+        this.loading = false;
+        this.totalDepositAmount = data.data.total_balance;
+      } else {
+        this.loading = false;
+      }
+
     }, error => {
       this.loading = false
     });
@@ -234,9 +210,13 @@ export class PaidDataEntryComponent {
       from_day: 30
     }
     this._service.loanDetails(obj).subscribe((data: any) => {
-      this.loanData = data.data.collection;
-      this.loading = false;
-      this.loanRemainingAmount = data.data.remaining_amount;
+      if (data.success) {
+        this.loanData = data.data.collection;
+        this.loading = false;
+        this.loanRemainingAmount = data.data.remaining_amount;
+      } else {
+        this.loading = false;
+      }
     }, error => {
       this.loading = false
     });
