@@ -60,8 +60,8 @@
                     <td class="col" data-name="Request Date">{{request.request_date}}</td>
                     <td class="col capatalise_col" data-name="Request By">{{request.requested_by}}</td>
                     <td class="col" data-name="Customer Name">{{request.customer_name}}</td>
-                    <td class="col text-right" data-name="Amount"><i
-                            class="mdi mdi-currency-inr mr-1"></i>{{request.request_amount}}
+                    <td class="col text-right" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i><span
+                            appDigits>{{request.request_amount}}</span>
                     </td>
                     <td class="col text-center" data-name="Status">
                         <div class="badge text-white"
@@ -120,7 +120,8 @@
                     <td class="col capatalise_col" data-name="Request By">{{request.requested_by}}</td>
                     <td class="col" data-name="Reason">{{request.reason}}</td>
                     <td class="col capatalise_col text-center" data-name="Request Type">{{request.request_type}}</td>
-                    <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i>{{request.amount}}
+                    <td class="col" data-name="Amount"><i class="mdi mdi-currency-inr mr-1"></i><span
+                            appDigits>{{request.amount}}</span>
                     </td>
                     <td class="col text-center" data-name="Status">
                         <div *ngIf="request.status == 'approved'" class="badge bg-success text-white">{{request.status}}

@@ -39,10 +39,10 @@
                     <td class="col" [attr.data-name]="'Receiver' | translate" data-name="Receiver">{{loan.member?.name}}
                     </td>
                     <td class="col" [attr.data-name]="'Amount' | translate" data-name="Amount"><i
-                            class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}
+                            class="mdi mdi-currency-inr mr-1"></i><span appDigits>{{loan.loan_amount}}</span>
                     </td>
                     <td class="col" [attr.data-name]="'Balance' | translate" data-name="Balance"><i
-                            class="mdi mdi-currency-inr mr-1"></i>{{loan.remaining_amount}}</td>
+                            class="mdi mdi-currency-inr mr-1"></i><span appDigits>{{loan.remaining_amount}}</span></td>
                     <td class="col text-center" [attr.data-name]="'Status' | translate">
                         <div class="badge bg-success text-white">{{loan.loan_status}}</div>
                     </td>

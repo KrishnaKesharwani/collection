@@ -78,8 +78,10 @@
                                 <td class="col" data-name="Start Date">{{item.start_date}}</td>
                                 <td class="col" data-name="End Date">{{item.end_date}}</td>
                                 <td class="col" data-name="Plan">Monthly</td>
-                                <td class="col text-right" data-name="Amount">{{item.advance_amount}}</td>
-                                <td class="col text-right" data-name="Pending">{{item.remaining_amount}}</td>
+                                <td class="col text-right" data-name="Amount"><span
+                                        appDigits>{{item.advance_amount}}</span></td>
+                                <td class="col text-right" data-name="Pending"><span
+                                        appDigits>{{item.remaining_amount}}</span></td>
                                 <td class="col text-center" data-name="Status">
                                     <span class="badge bg-success text-white"
                                         *ngIf="item.status == 'active'">{{item.status}}</span>

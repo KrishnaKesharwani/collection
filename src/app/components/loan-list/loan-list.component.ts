@@ -51,6 +51,7 @@ export class LoanListComponent {
   listLoadType: any = 'paid';  // Default to 'approved'
   tabLabels: string[] = ['paid', 'approved', 'pending', 'cancelled', 'completed'];
   listType: any;
+
   onTabChange(index: any) {
     this.filteredDataarray = [];
     this.loader = true;
@@ -73,6 +74,8 @@ export class LoanListComponent {
           this.currentListFilterColoum = this.searchColumnsLoan;
           this.currentlistFilterArray = this.runningLoanListData;
           this.loader = false;
+        } else {
+          this.loader = false;
         }
       }, error => {
         this.filteredDataarray = [];
@@ -89,6 +92,8 @@ export class LoanListComponent {
           this.filteredDataarray = this.approvedLoanListData;
           this.currentListFilterColoum = this.searchColumnsLoan;
           this.currentlistFilterArray = this.approvedLoanListData;
+          this.loader = false;
+        } else {
           this.loader = false;
         }
       }, error => {
@@ -107,6 +112,8 @@ export class LoanListComponent {
           this.currentListFilterColoum = this.searchColumnsApply;
           this.currentlistFilterArray = this.pendingLoanListData;
           this.loader = false;
+        } else {
+          this.loader = false;
         }
       }, error => {
         this.filteredDataarray = [];
@@ -123,6 +130,8 @@ export class LoanListComponent {
           this.filteredDataarray = this.cancelledLoanListData;
           this.currentListFilterColoum = this.searchColumnsApply;
           this.currentlistFilterArray = this.cancelledLoanListData;
+          this.loader = false;
+        } else {
           this.loader = false;
         }
       }, error => {
@@ -141,6 +150,8 @@ export class LoanListComponent {
           this.filteredDataarray = this.completedLoanListData;
           this.currentListFilterColoum = this.searchColumnsLoan;
           this.currentlistFilterArray = this.completedLoanListData;
+          this.loader = false;
+        } else {
           this.loader = false;
         }
       }, error => {

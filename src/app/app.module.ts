@@ -67,6 +67,7 @@ import { VcManagementModule } from './components/vc-management/vc-management.mod
 // import { LayoutComponent } from './layout/layout.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { DigitsDirective } from './directives/digits.directive';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -107,6 +108,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChangePasswordModule,
     ReportsModule,
     VcManagementModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

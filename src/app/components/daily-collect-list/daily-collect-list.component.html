@@ -47,7 +47,7 @@
                         <li class="data_head">{{"Status"|translate}}</li>
                         <li class="data_val">{{deposit.status}}</li>
                         <li class="data_head">{{"Available Amt"|translate}}</li>
-                        <li class="data_val">{{deposit.remaining_amount}}</li>
+                        <li class="data_val"><span appDigits>{{deposit.remaining_amount}}</span></li>
                         <li class="data_head">{{"Collector Image"|translate}}</li>
                         <li class="data_val">
                             <div class="list_image_block">
@@ -150,7 +150,7 @@
                         <li class="data_head">{{"Collection Type"|translate}}</li>
                         <li class="data_val">Deposit</li>
                         <li class="data_head">{{"Available Amt"|translate}}</li>
-                        <li class="data_val">{{deposit.remaining_amount}}</li>
+                        <li class="data_val"><span appDigits>{{deposit.remaining_amount}}</span></li>
                     </ul>
                     <div class="action_block">
                         <button mat-raised-button (click)="actionAssignItems(deposit, 'deposit')"

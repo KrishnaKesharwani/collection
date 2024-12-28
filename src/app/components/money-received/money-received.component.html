@@ -85,7 +85,8 @@
                             {{item.collect_date}}
                         </td>
                         <td class="col text-center" data-name="Customer Meet">{{item.customer_count}}</td>
-                        <td class="col text-right" data-name="Collect Amount">{{item.balance}}</td>
+                        <td class="col text-right" data-name="Collect Amount"><span appDigits>{{item.balance}}</span>
+                        </td>
                         <td class="col text-center" data-name="Receive Status">
                             <span class="badge bg-warning text-white"
                                 *ngIf="item.payment_status == 'working'">{{item.payment_status}}</span>

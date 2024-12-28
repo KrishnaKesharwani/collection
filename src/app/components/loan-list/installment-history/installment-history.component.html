@@ -24,7 +24,9 @@
                     <td class="col text-center" [attr.data-name]="'S.No.' | translate">{{i+1}}</td>
                     <td class="col" [attr.data-name]="'Date' | translate">{{data?.receive_date}}</td>
                     <td class="col" [attr.data-name]="'Receiver' | translate">{{data.recieved_member?.name}}</td>
-                    <td class="col text-right" [attr.data-name]="'Amount' | translate">{{data.amount}}</td>
+                    <td class="col text-right" [attr.data-name]="'Amount' | translate">
+                        <span appDigits>{{data.amount}}</span>
+                    </td>
                 </tr>
             </ng-container>
         </tbody>

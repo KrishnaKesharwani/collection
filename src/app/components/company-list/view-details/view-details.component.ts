@@ -23,26 +23,7 @@ interface Transaction2 {
 export class ViewDetailsComponent {
 
   companyDetails: any = [];
-  displayedColumns: string[] = ['item', 'cost', 'item2', 'cost2'];
-  displayedColumns2: string[] = ['item', 'cost'];
-  transactions: Transaction[] = [
-    { item: 'Company Name', cost: 4, item2: 'Owner Name', cost2: 4 },
-    { item: 'Mobile', cost: 5, item2: 'Start Date', cost2: 4 },
-    { item: 'End Date', cost: 2, item2: 'Adhar No.', cost2: 4 },
-    { item: 'Current Plan', cost: 4, item2: 'Total Amount', cost2: 4 },
-    { item: 'Pending Amount', cost: 25, item2: 'Status', cost2: 4 },
-    { item: 'Login Id', cost: 15, item2: 'Paswword', cost2: 4 },
-    { item: 'Address', cost: 15, item2: 'Details', cost2: 4 }
 
-  ];
-
-  transactions2: Transaction2[] = [
-    { item: 'Company Logo', cost: 4 },
-    { item: 'Company Sidebar Logo', cost: 5 },
-    { item: 'Company Fevicon Icon', cost: 2 },
-    { item: 'Company Owner Profile', cost: 4 }
-
-  ];
   company_id: any;
   data: any;
   constructor(public _service: CompanyService, public _tostr: ToastrService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },

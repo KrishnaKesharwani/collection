@@ -13,7 +13,8 @@
                                     |translate}}</span><b>{{depositDetail?.last_date_total_credit}}</b>
                             </div>
                             <div class="total_block bg-primary mr-2">
-                                <span>{{"Total Amount" |translate}}</span><b>{{depositDetail?.total_paid_amount}}</b>
+                                <span>{{"Total Amount" |translate}}</span><b><span
+                                        appDigits>{{depositDetail?.total_paid_amount}}</span></b>
                             </div>
                             <div class="total_block bg-success">
                                 <span>{{"Total Customer" |translate}}</span><b>{{depositDetail?.total_cusotomer}}</b>
@@ -99,7 +100,8 @@
                                 <td class="col" [attr.data-name]="'Assign' | translate">{{item.member?.name}}</td>
                                 <td class="col" [attr.data-name]="'Mobile' | translate">{{item.customer?.mobile}}</td>
                                 <td class="col text-right" [attr.data-name]="'Available Amt' | translate">
-                                    {{item.remaining_amount}}</td>
+                                    <span appDigits>{{item.remaining_amount}}</span>
+                                </td>
                                 <td class="col text-center" [attr.data-name]="'Status' | translate">
                                     <span class="badge bg-success text-white"
                                         *ngIf="item.status == 'active'">{{item.status}}</span>

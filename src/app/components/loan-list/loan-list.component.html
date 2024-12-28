@@ -8,7 +8,7 @@
                 <div class="col p-0 head_details two_block_count">
                     <div class="total_block bg-primary mr-2">
                         <span>{{listLoadType |translate}} {{"Amount"|translate}}</span>
-                        <b>{{total_remaining_amount}}.00</b>
+                        <b><span appDigits>{{total_remaining_amount}}</span></b>
                     </div>
                     <div class="total_block bg-success"><span>{{"Total
                             Customer"|translate}}</span><b>{{total_cusotomer}}</b>
@@ -110,9 +110,12 @@
                                     </td>
                                     <td class="col" [attr.data-name]="'Name' | translate">{{item.customer?.name}}</td>
                                     <td class="col" [attr.data-name]="'Assign' | translate">{{item.member?.name}}</td>
-                                    <td class="col" [attr.data-name]="'Loan Amt' | translate">{{item.loan_amount}}</td>
+                                    <td class="col" [attr.data-name]="'Loan Amt' | translate">
+                                        <span appDigits>{{item.loan_amount}}</span>
+                                    </td>
                                     <td class="col" [attr.data-name]="'Pending Amt' | translate">
-                                        {{item.remaining_amount}}</td>
+                                        <span appDigits>{{item.remaining_amount}}</span>
+                                    </td>
                                     <td class="action_col" [attr.data-name]="'Action' | translate">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
@@ -241,9 +244,13 @@
                                     </td>
                                     <td class="col" [attr.data-name]="'Name' | translate">{{item.customer?.name}}</td>
                                     <td class="col" [attr.data-name]="'Assign' | translate">{{item.member?.name}}</td>
-                                    <td class="col" [attr.data-name]="'Loan Amt' | translate">{{item.loan_amount}}</td>
+                                    <td class="col" [attr.data-name]="'Loan Amt' | translate">
+                                        <span appDigits>{{item.loan_amount}}</span>
+                                    </td>
                                     <td class="col" [attr.data-name]="'Pending Amt' | translate">
-                                        {{item.remaining_amount}}</td>
+                                        <span appDigits>{{item.remaining_amount}}</span>
+                                    </td>
+
                                     <td class="action_col" [attr.data-name]="'Action' | translate">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
@@ -361,7 +368,8 @@
                                         {{item?.applied_user_name}}</td>
                                     <td class="col" [attr.data-name]="'Apply Date' | translate">{{item?.apply_date}}
                                     </td>
-                                    <td class="col" [attr.data-name]="'Amount' | translate">{{item.remaining_amount}}
+                                    <td class="col" [attr.data-name]="'Amount' | translate">
+                                        <span appDigits>{{item.remaining_amount}}</span>
                                     </td>
                                     <td class="action_col" [attr.data-name]="'Action' | translate">
                                         <div placement="bottom-right">
@@ -467,7 +475,8 @@
                                     </td>
                                     <td class="col" [attr.data-name]="'Apply Type' | translate">
                                         {{item?.applied_user_name}}</td>
-                                    <td class="col" [attr.data-name]="'Amount' | translate">{{item.remaining_amount}}
+                                    <td class="col" [attr.data-name]="'Amount' | translate">
+                                        <span appDigits>{{item.remaining_amount}}</span>
                                     </td>
                                     <td class="action_col" [attr.data-name]="'Action' | translate">
                                         <div placement="bottom-right">
@@ -581,9 +590,12 @@
                                     </td>
                                     <td class="col" [attr.data-name]="'Name' | translate">{{item.customer?.name}}</td>
                                     <td class="col" [attr.data-name]="'Assign' | translate">{{item.member?.name}}</td>
-                                    <td class="col" [attr.data-name]="'Loan Amt' | translate">{{item.loan_amount}}</td>
+                                    <td class="col" [attr.data-name]="'Loan Amt' | translate">
+                                        <span appDigits>{{item.loan_amount}}</span>
+                                    </td>
                                     <td class="col" [attr.data-name]="'Pending Amt' | translate">
-                                        {{item.remaining_amount}}</td>
+                                        <span appDigits>{{item.remaining_amount}}</span>
+                                    </td>
                                     <td class="action_col" [attr.data-name]="'Action' | translate">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"

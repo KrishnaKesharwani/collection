@@ -34,7 +34,8 @@
                     <td class="col" [attr.data-name]="'Type' | translate">{{innerdata?.action_type}}</td>
                     <td class="col text-right" [attr.data-name]="'Amount' | translate"
                         [ngClass]="{'color-green': innerdata?.action_type == 'credit', 'color-red': innerdata?.action_type == 'debit'}">
-                        {{innerdata?.amount}}</td>
+                        <span appDigits>{{innerdata?.amount}}</span>
+                    </td>
                 </tr>
             </ng-container>
         </tbody>

@@ -51,8 +51,9 @@
                     <td class="col" data-name="Customer Name">{{loan.customer.name}}</td>
                     <td class="col" data-name="Contact">{{loan.customer.mobile}}</td>
                     <td class="text-right col" data-name="Amount">-</td>
-                    <td class="text-right col" data-name="Pending">{{loan.remaining_amount}}</td>
-                    <td class="text-right col" data-name="Instalment">{{loan.installment_amount}}</td>
+                    <td class="text-right col" data-name="Pending"><span appDigits>{{loan.remaining_amount}}</span></td>
+                    <td class="text-right col" data-name="Instalment"><span appDigits>{{loan.installment_amount}}</span>
+                    </td>
                     <td class="text-center col" data-name="Status"><span class="badge bg-success text-white"
                             *ngIf="loan.status == 'active'">{{loan.status}}</span>
                         <span class="badge bg-danger text-white "

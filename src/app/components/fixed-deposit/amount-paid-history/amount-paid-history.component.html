@@ -25,7 +25,9 @@
                     <td class="col" [attr.data-name]="'Date' | translate">{{datainner?.action_date}}</td>
                     <td class="col text-center capatalise_col" [attr.data-name]="'Type' | translate">
                         {{datainner?.debit_type}}</td>
-                    <td class="col text-right" [attr.data-name]="'Amount' | translate">{{datainner?.amount}}</td>
+                    <td class="col text-right" [attr.data-name]="'Amount' | translate">
+                        <span appDigits>{{datainner?.amount}}</span>
+                    </td>
                     <td class="col" [attr.data-name]="'Details' | translate">{{datainner?.details}}</td>
                 </tr>
             </ng-container>

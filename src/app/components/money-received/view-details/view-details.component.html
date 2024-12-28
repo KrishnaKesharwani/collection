@@ -20,19 +20,19 @@
             </tr>
             <tr>
                 <td><b>{{"Collect Balance"|translate}} :</b></td>
-                <td>{{collectionData.balance}}</td>
+                <td><span appDigits>{{collectionData.balance}}</span></td>
             </tr>
             <tr>
                 <td><b>{{"Company Paid Amount"|translate}} :</b></td>
-                <td>{{collectionData.paid_amount}}</td>
+                <td><span appDigits>{{collectionData.paid_amount}}</span></td>
             </tr>
             <tr>
                 <td><b>{{"Remaining Amount"|translate}} :</b></td>
-                <td>{{collectionData.remaining_amount}}</td>
+                <td><span appDigits>{{collectionData.remaining_amount}}</span></td>
             </tr>
             <tr>
                 <td><b>{{"Previous Balance"|translate}} :</b></td>
-                <td>{{collectionData.previous_balance}}</td>
+                <td><span appDigits>{{collectionData.previous_balance}}</span></td>
             </tr>
             <tr>
                 <td><b>{{"Receive Status"|translate}} :</b></td>
@@ -85,7 +85,8 @@
                     <td [attr.data-name]="'Date Time' | translate"><small>{{item.created_at}}</small></td>
                     <td [attr.data-name]="'Amount' | translate" class="text-right"
                         [ngClass]="{'color-green': item.amount_type == 'credit', 'color-red': item.amount_type == 'debit'}">
-                        {{item.amount}}</td>
+                        <span appDigits>{{item.amount}}</span>
+                    </td>
                     <td [attr.data-name]="'Details' | translate" class="action_col">
                         <button mat-icon-button [matMenuTriggerFor]="menu" class="btn bg-primary single_btn">
                             <i class="mdi mdi-eye"></i>
@@ -99,7 +100,8 @@
                             </div>
                         </mat-menu>
                     </td>
-                    <td [attr.data-name]="'Edit' | translate" *ngIf="collectionData.payment_status != 'paid'" class="action_col">
+                    <td [attr.data-name]="'Edit' | translate" *ngIf="collectionData.payment_status != 'paid'"
+                        class="action_col">
                         <button mat-icon-button (click)="editPaidAmount(item)" class="btn bg-secondary single_btn">
                             <i class="mdi mdi-pencil"></i>
                         </button>

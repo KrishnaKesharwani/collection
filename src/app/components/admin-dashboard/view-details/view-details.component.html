@@ -52,15 +52,15 @@
             </tr>
             <tr>
                 <td><b>{{"Loan Amount"|translate}} :</b></td>
-                <td>{{data?.loan_amount}}</td>
+                <td><span appDigits>{{data?.loan_amount}}</span></td>
             </tr>
             <tr>
                 <td><b>{{"Installment Amount"|translate}} :</b></td>
-                <td>{{data?.installment_amount}}</td>
+                <td><span appDigits>{{data?.installment_amount}}</span></td>
             </tr>
             <tr>
                 <td><b>{{"Pending Amount"|translate}} :</b></td>
-                <td>{{data?.remaining_amount}}</td>
+                <td><span appDigits>{{data?.remaining_amount}}</span></td>
             </tr>
             <tr>
                 <td><b>{{"Loan Status Message"|translate}} :</b></td>
@@ -113,7 +113,7 @@
             </tr>
             <tr>
                 <td><b>{{"Loan Amount"|translate}} :</b></td>
-                <td>{{data?.loan_amount}}</td>
+                <td><span appDigits>{{data?.loan_amount}}</span></td>
             </tr>
             <tr>
                 <td><b>{{"Status"|translate}} :</b></td>
@@ -147,7 +147,7 @@
             </tr>
             <tr>
                 <td><b>{{"Request Amount"|translate}} :</b></td>
-                <td>{{data?.request_amount}}</td>
+                <td><span appDigits>{{data?.request_amount}}</span></td>
             </tr>
             <tr>
                 <td><b>{{"Status"|translate}} :</b></td>

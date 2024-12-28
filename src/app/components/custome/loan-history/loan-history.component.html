@@ -38,9 +38,11 @@
                             <td class="col" [attr.data-name]="'Start Date' | translate">{{data.start_date}}</td>
                             <td class="col" [attr.data-name]="'End Date' | translate">{{data.end_date}}</td>
                             <td class="col" [attr.data-name]="'Days' | translate">{{data.no_of_days}}</td>
-                            <td class="text-right col" [attr.data-name]="'Amount' | translate">{{data.loan_amount}}</td>
+                            <td class="text-right col" [attr.data-name]="'Amount' | translate"><span
+                                    appDigits>{{data.loan_amount}}</span></td>
                             <td class="text-right col" [attr.data-name]="'Pending' | translate">
-                                {{data.remaining_amount}}</td>
+                                <span appDigits>{{data.remaining_amount}}</span>
+                            </td>
                             <td class="text-right col" [attr.data-name]="'Assign Member' | translate">
                                 {{data.member.name}}</td>
                             <td class="text-center col" [attr.data-name]="'Status' | translate">

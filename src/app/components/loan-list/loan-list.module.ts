@@ -11,6 +11,7 @@ import { ChangeStatusComponent } from './change-status/change-status.component';
 import { CommonComponentsModule } from "../../common/common-components.module";
 import { LoanListViewComponent } from './loan-list-view/loan-list-view.component';
 import { CompleteLoanHistoryComponent } from './complete-loan-history/complete-loan-history.component';
+import { DigitsDirective } from 'src/app/directives/digits.directive';
 
 
 
@@ -20,7 +21,8 @@ import { CompleteLoanHistoryComponent } from './complete-loan-history/complete-l
     CommonModule,
     MaterialModule,
     LoanListRoutingModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    DigitsDirective
   ]
 })
 export class LoanListModule { }

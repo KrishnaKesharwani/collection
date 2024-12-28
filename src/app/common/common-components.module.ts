@@ -21,6 +21,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { DynamicWidthDirective } from './directive/dynamic-width.directive';
 import { GraphService } from '../services/dashboardGraph/graph.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { DigitsDirective } from '../directives/digits.directive';
 
 @NgModule({
   declarations: [
@@ -44,11 +45,12 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     FormsModule,
     GoogleChartsModule,
-    TranslateModule
+    TranslateModule,
+    DigitsDirective
   ],
 
   exports: [GoogleChartsModule, InputFieldValidationComponent, TextareaComponent, DropdwonComponent,
-    InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent,TranslateModule,
-    ButtonLoaderComponent, NoRecordFoundComponent, PageLoaderComponent, GlobalGoogleChartsComponent, DynamicWidthDirective]
+    InputComponent, FileuploadComponent, GlobalDatatableComponent, HeaderComponent, TranslateModule,
+    ButtonLoaderComponent, NoRecordFoundComponent, PageLoaderComponent, GlobalGoogleChartsComponent, DynamicWidthDirective, DigitsDirective]
 })
 export class CommonComponentsModule { }

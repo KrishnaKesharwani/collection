@@ -30,7 +30,7 @@
                     <li>{{depositDataSharre?.customer?.name}}</li>
                     <li>{{depositDataSharre?.customer?.mobile}}</li>
                     <li><b><i class="mdi mdi-currency-inr"></i>
-                            {{totalDepositAmount}}<!-- {{depositDataSharre.total_paid}} -->
+                            <span appDigits>{{totalDepositAmount}}</span><!-- {{depositDataSharre.total_paid}} -->
                         </b></li>
                     <li>
                         <button mat-raised-button class="btn btn-small"
