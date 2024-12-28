@@ -85,7 +85,7 @@ export class MoneyReceivedComponent {
   }
 
   openDialogChangeStatus(data: any) {
-    debugger
+
     const dialogRef = this.dialog.open(VpdateStatusComponent, {
       disableClose: true,
       data: {

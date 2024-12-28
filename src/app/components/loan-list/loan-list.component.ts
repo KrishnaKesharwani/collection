@@ -36,6 +36,22 @@ export class LoanListComponent {
   currentlistFilterArray: any[] = [];
   currentListFilterColoum: any[] = [];
   readonly dialog = inject(MatDialog);
+  runningLoanCount: any = 0;
+  pendingLoanCount: any = 0;
+  approvedLoanCount: any = 0;
+  canceledLoanCount: any = 0;
+  completedLoanCount: any = 0;
+  sum: number = 0;
+  totalRunningLoanAmount: any = 0;
+  totalAppprovedLoanAmount: any = 0;
+  totalPendingLoanAmount: any = 0;
+  totalCancelledLoanAmount: any = 0;
+  totalCompletedLoanAmount: any = 0;
+  totalRunningPendingAmount: any = 0;
+  totalApprovedPendingAmount: any = 0;
+  totalPendingPendingAmount: any = 0;
+  totalCancelledPendingAmount: any = 0;
+  totalCompletedPendingAmount: any = 0;
 
   constructor(public _customActionService: CustomActionsService, public _service: LoanService, public _tostr: ToastrService) { }
 
@@ -73,10 +89,29 @@ export class LoanListComponent {
       this._service.getLoanList(obj).subscribe((data: any) => {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
-          this.loantype_count = data.data.loans.length;
-          
+          this.runningLoanCount = data.data.loans.length;
+
+          // this.runningLoanCount = 0;
+          this.pendingLoanCount = 0;
+          this.canceledLoanCount = 0;
+          this.completedLoanCount = 0;
+          this.approvedLoanCount = 0;
           this.total_cusotomer = data.data.total_cusotomer;
           this.runningLoanListData = data.data.loans;
+
+          this.totalRunningLoanAmount = this.runningLoanListData.reduce((sum, loan) => sum + parseFloat(loan.loan_amount), 0);
+          this.totalRunningPendingAmount = this.runningLoanListData.reduce((sum, loan) => sum + parseFloat(loan.remaining_amount), 0);
+          // this.totalRunningLoanAmount = 0;
+          this.totalAppprovedLoanAmount = 0;
+          this.totalPendingLoanAmount = 0;
+          this.totalCancelledLoanAmount = 0;
+          this.totalCompletedLoanAmount = 0;
+          // this.totalRunningPendingAmount = 0;
+          this.totalApprovedPendingAmount = 0;
+          this.totalPendingPendingAmount = 0;
+          this.totalCancelledPendingAmount = 0;
+          this.totalCompletedPendingAmount = 0;
+
           this.filteredDataarray = this.runningLoanListData;
           this.currentListFilterColoum = this.searchColumnsLoan;
           this.currentlistFilterArray = this.runningLoanListData;
@@ -94,9 +129,29 @@ export class LoanListComponent {
       this._service.getLoanList(obj).subscribe((data: any) => {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
-          this.loantype_count = data.data.loans.length;
+          this.approvedLoanCount = data.data.loans.length;
+          this.runningLoanCount = 0;
+          this.pendingLoanCount = 0;
+          this.canceledLoanCount = 0;
+          this.completedLoanCount = 0;
+          // this.approvedLoanCount = 0;
+
           this.total_cusotomer = data.data.total_cusotomer;
           this.approvedLoanListData = data.data.loans;
+          this.totalAppprovedLoanAmount = this.approvedLoanListData.reduce((sum, loan) => sum + parseFloat(loan.loan_amount), 0);
+          this.totalApprovedPendingAmount = this.runningLoanListData.reduce((sum, loan) => sum + parseFloat(loan.remaining_amount), 0);
+          this.totalRunningLoanAmount = 0;
+          // this.totalAppprovedLoanAmount = 0;
+          this.totalPendingLoanAmount = 0;
+          this.totalCancelledLoanAmount = 0;
+          this.totalCompletedLoanAmount = 0;
+
+          this.totalRunningPendingAmount = 0;
+          // this.totalApprovedPendingAmount = 0;
+          this.totalPendingPendingAmount = 0;
+          this.totalCancelledPendingAmount = 0;
+          this.totalCompletedPendingAmount = 0;
+
           this.filteredDataarray = this.approvedLoanListData;
           this.currentListFilterColoum = this.searchColumnsLoan;
           this.currentlistFilterArray = this.approvedLoanListData;
@@ -115,8 +170,27 @@ export class LoanListComponent {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.total_cusotomer = data.data.total_cusotomer;
-          this.loantype_count = data.data.loans.length;
+          this.pendingLoanCount = data.data.loans.length;
+          this.runningLoanCount = 0;
+          // this.pendingLoanCount = 0;
+          this.canceledLoanCount = 0;
+          this.completedLoanCount = 0;
+          this.approvedLoanCount = 0;
           this.pendingLoanListData = data.data.loans;
+          this.totalPendingLoanAmount = this.pendingLoanListData.reduce((sum, loan) => sum + parseFloat(loan.loan_amount), 0);
+          this.totalPendingPendingAmount = this.runningLoanListData.reduce((sum, loan) => sum + parseFloat(loan.remaining_amount), 0);
+          this.totalRunningLoanAmount = 0;
+          this.totalAppprovedLoanAmount = 0;
+          // this.totalPendingLoanAmount = 0;
+          this.totalCancelledLoanAmount = 0;
+          this.totalCompletedLoanAmount = 0;
+
+          this.totalRunningPendingAmount = 0;
+          this.totalApprovedPendingAmount = 0;
+          // this.totalPendingPendingAmount = 0;
+          this.totalCancelledPendingAmount = 0;
+          this.totalCompletedPendingAmount = 0;
+
           this.filteredDataarray = this.pendingLoanListData;
           this.currentListFilterColoum = this.searchColumnsApply;
           this.currentlistFilterArray = this.pendingLoanListData;
@@ -135,8 +209,27 @@ export class LoanListComponent {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.total_cusotomer = data.data.total_cusotomer;
-          this.loantype_count = data.data.loans.length;
+          this.canceledLoanCount = data.data.loans.length;
+          this.runningLoanCount = 0;
+          this.pendingLoanCount = 0;
+          // this.canceledLoanCount = 0;
+          this.completedLoanCount = 0;
+          this.approvedLoanCount = 0;
           this.cancelledLoanListData = data.data.loans;
+          this.totalCancelledLoanAmount = this.cancelledLoanListData.reduce((sum, loan) => sum + parseFloat(loan.loan_amount), 0);
+          this.totalCancelledPendingAmount = this.runningLoanListData.reduce((sum, loan) => sum + parseFloat(loan.remaining_amount), 0);
+          this.totalRunningLoanAmount = 0;
+          this.totalAppprovedLoanAmount = 0;
+          this.totalPendingLoanAmount = 0;
+          // this.totalCancelledLoanAmount = 0;
+          this.totalCompletedLoanAmount = 0;
+
+          this.totalRunningPendingAmount = 0;
+          this.totalApprovedPendingAmount = 0;
+          this.totalPendingPendingAmount = 0;
+          // this.totalCancelledPendingAmount = 0;
+          this.totalCompletedPendingAmount = 0;
+
           this.filteredDataarray = this.cancelledLoanListData;
           this.currentListFilterColoum = this.searchColumnsApply;
           this.currentlistFilterArray = this.cancelledLoanListData;
@@ -156,8 +249,27 @@ export class LoanListComponent {
         if (data.success) {
           this.total_remaining_amount = data.data.total_remaining_amount;
           this.total_cusotomer = data.data.total_cusotomer;
-          this.loantype_count = data.data.loans.length;
+          this.completedLoanCount = data.data.loans.length;
+          this.runningLoanCount = 0;
+          this.pendingLoanCount = 0;
+          this.canceledLoanCount = 0;
+          // this.completedLoanCount = 0;
+          this.approvedLoanCount = 0;
           this.completedLoanListData = data.data.loans;
+          this.totalCompletedLoanAmount = this.completedLoanListData.reduce((sum, loan) => sum + parseFloat(loan.loan_amount), 0);
+          this.totalCompletedPendingAmount = this.runningLoanListData.reduce((sum, loan) => sum + parseFloat(loan.remaining_amount), 0);
+          this.totalRunningLoanAmount = 0;
+          this.totalAppprovedLoanAmount = 0;
+          this.totalPendingLoanAmount = 0;
+          this.totalCancelledLoanAmount = 0;
+          // this.totalCompletedLoanAmount = 0;
+
+          this.totalRunningPendingAmount = 0;
+          this.totalApprovedPendingAmount = 0;
+          this.totalPendingPendingAmount = 0;
+          this.totalCancelledPendingAmount = 0;
+          // this.totalCompletedPendingAmount = 0;
+
           this.filteredDataarray = this.completedLoanListData;
           this.currentListFilterColoum = this.searchColumnsLoan;
           this.currentlistFilterArray = this.completedLoanListData;
