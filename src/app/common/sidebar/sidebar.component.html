@@ -5,7 +5,7 @@
             aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button> -->
-        <a class="navbar-brand p-0 text-left">
+        <a class="navbar-brand p-0 text-left" routerLink="/dashboard">
             <img *ngIf="currentLogingImage == null && currentLogingImage == ''"
                 src="./assets/imgs/rk-group-logo-inner.png" class="navbar-brand-img" />
             <img *ngIf="currentLogingImage" src="{{currentLogingImage}}" class="navbar-brand-img" />
@@ -145,6 +145,6 @@
                 </li>
             </ul>
         </div>
-    </div>   
+    </div>
 </nav>
 <div class="overlay_popup_block" *ngIf="menuActionClass != ''" (click)="onOverlayClick()"></div>
