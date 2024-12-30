@@ -101,7 +101,7 @@
                         </mat-menu>
                     </td>
                     <td [attr.data-name]="'Edit' | translate"
-                        *ngIf="collectionData.payment_status != 'paid'  && item.amount_type == 'loan'"
+                        *ngIf="collectionData.payment_status != 'paid'  && item.amount_type != 'loan'"
                         class="action_col">
                         <button mat-icon-button (click)="editPaidAmount(item)" class="btn bg-secondary single_btn">
                             <i class="mdi mdi-pencil"></i>

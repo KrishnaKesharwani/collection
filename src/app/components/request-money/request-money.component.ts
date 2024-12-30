@@ -63,6 +63,7 @@ export class RequestMoneyComponent {
     this._service.getRequestMoney(obj).subscribe((data: any) => {
       if (data.success) {
         this.requestList = data.data;
+        this.loader = false;
       } else {
         this.loader = false;
       }

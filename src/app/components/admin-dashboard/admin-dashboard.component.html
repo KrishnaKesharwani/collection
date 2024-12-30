@@ -109,7 +109,7 @@
                 <td class="col text-right" data-name="Amount"><i
                         class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}</td>
                 <td class="col text-center" data-name="Status">
-                    <div class="badge bg-warning text-white">{{loan.loan_status}}</div>
+                    <div class="badge text-white bg-warning" >{{loan.loan_status}}</div>
                 </td>
                 <td class="action_col" data-name="Action">
                     <div placement="bottom-right">
@@ -177,7 +177,7 @@
                 <td class="col text-right" data-name="Amount"><i
                         class="mdi mdi-currency-inr mr-1"></i>{{request.request_amount}}</td>
                 <td class="col text-center" data-name="Status">
-                    <div class="badge bg-warning text-white">{{request.status}}</div>
+                    <div class="badge text-white" [ngClass]="{'bg-success': request.status == 'approved', 'bg-warning': request.status == 'pending'}">{{request.status}}</div>
                 </td>
                 <td class="action_col" data-name="Action">
                     <div placement="bottom-right">

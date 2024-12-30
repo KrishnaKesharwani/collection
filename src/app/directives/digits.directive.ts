@@ -6,7 +6,7 @@ import { Directive, ElementRef, Input, OnChanges, AfterViewInit, Renderer2, Simp
 })
 export class DigitsDirective implements OnChanges, AfterViewInit {
   @Input('appDigits') value: any;
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(private e1: ElementRef, private renderer: Renderer2) {
     // console.log(this.elementRef.nativeElement.innerText == '.00');
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -22,11 +22,11 @@ export class DigitsDirective implements OnChanges, AfterViewInit {
   private formatValue(): void {
     // const formattedValue = this.formatDigits(this.value);
     // this.renderer.setProperty(this.elementRef.nativeElement, 'innerText', formattedValue);
-    const value = this.elementRef.nativeElement.innerText.trim();
+    const value = this.e1.nativeElement.innerText.trim();
     const numericValue = parseFloat(value);
     if (!isNaN(numericValue)) {
       const formattedValue = numericValue.toFixed(2);
-      this.renderer.setProperty(this.elementRef.nativeElement, 'innerText', formattedValue);
+      this.renderer.setProperty(this.e1.nativeElement, 'innerText', formattedValue);
     } else {
       // console.warn('Invalid numeric value for appAppendDecimal directive:', value);
     }

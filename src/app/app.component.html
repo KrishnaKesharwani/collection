@@ -1,8 +1,8 @@
-<app-header [ngClass]="{'remove_sidebar_width': currentAction}" (menuClick)="handleMenuClick($event)"
+<app-header [ngClass]="{'remove_sidebar_width': isVisible}" (menuClick)="handleMenuClick($event)"
     *ngIf="isLoggedIn"></app-header>
 <app-sidebar [menuAction]="currentAction" *ngIf="isLoggedIn"></app-sidebar>
 <div [ngClass]=" {'main-content': showSidebar}">
-    <div [ngClass]="{'overall-containblock': showSidebar, 'remove_sidebar': currentAction}">
+    <div [ngClass]="{'overall-containblock': showSidebar, 'remove_sidebar': isVisible}">
         <router-outlet></router-outlet>
     </div>
 </div>

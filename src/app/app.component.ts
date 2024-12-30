@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs/operators';
-
+import { SidebarService } from './services/sidebarService/sidebar.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,10 +14,11 @@ export class AppComponent {
   showSidebar: boolean = true;
   user_type: any;
   isLoggedIn: boolean = false;
-  constructor(private router: Router, private translate: TranslateService) {
+  isVisible: boolean = false;
+  constructor(private router: Router, private translate: TranslateService, 
+    private _sidebarService: SidebarService) {
     const browserLang = translate.getBrowserLang() || '';
     translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
-
   }
 
   currentAction: string = '';
@@ -38,6 +39,9 @@ export class AppComponent {
     if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
     }
+    this._sidebarService.sidebarVisibility$.subscribe((visible) => {
+      this.isVisible = visible;
+    });
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event) => {

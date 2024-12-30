@@ -2,8 +2,21 @@
     <div class="card shadow dash-cardbox">
         <div class="card-header">
             <div class="row align-items-center">
-                <div class="col col-sm-4 pl-0">
+                <div class="col pl-0">
                     <h3 class="mb-0">{{"Collect Money List"|translate}}</h3>
+                </div>
+                <div class="col p-0 head_details three_block_count" *ngIf="filteredDataarray?.length != 0">
+                    <div class="total_block bg-warning mr-2">
+                        <span>{{"Deposit Debit"
+                            |translate}}</span><b>{{collectionCount?.total_deposit_debit}}</b>
+                    </div>
+                    <div class="total_block bg-primary mr-2">
+                        <span>{{"Deposit Credit"
+                            |translate}}</span><b><span>{{collectionCount?.total_deposit_credit}}</span></b>
+                    </div>
+                    <div class="total_block bg-success">
+                        <span>{{"Loan Credit" |translate}}</span><b>{{collectionCount?.total_loan_credit}}</b>
+                    </div>
                 </div>
                 <div class="col text-right pr-1 datewith_search_block calender_withsearch">
                     <div class="list_calender_filter">

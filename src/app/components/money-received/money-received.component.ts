@@ -45,6 +45,7 @@ export class MoneyReceivedComponent {
     this.getCollectionList();
   }
   formattedDate: string | null = null;
+  collectionCount: any;
   getCollectionList() {
     this.loader = true;
     this.formattedDate = new Date(this.filterDateForm.value.date).toString();
@@ -57,9 +58,14 @@ export class MoneyReceivedComponent {
       // date: 'Wed Dec 4 2024 00:00:00 GMT+0530 (India Standard Time)'
     }
     this._service.getCollection(obj).subscribe((data: any) => {
-      this.collectionData = data.data;
-      this.filteredDataarray = this.collectionData;
-      this.loader = false;
+      if (data.success) {
+        this.collectionData = data.data.collections;
+        this.collectionCount = data.data;
+        this.filteredDataarray = this.collectionData;
+        this.loader = false;
+      } else {
+        this.loader = false;
+      }
     }, error => {
       this.loader = false;
       this.toaster.error(error.error.message, 'Error');

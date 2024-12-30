@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router, NavigationEnd } from '@angular/router';
-
+import { SidebarService } from 'src/app/services/sidebarService/sidebar.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -21,16 +21,12 @@ export class SidebarComponent {
   overlayActive: boolean = false;
   isActiveRoute: boolean = false;
   checkSideMenu = '';
+  isVisible: boolean = false;
   currentLogingImage: any = 'assets/imgs/master-logo.png';
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private _sidebarService: SidebarService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Check if the current route matches your condition
-        // debugger;
-        // this.isActiveRoute = this.checkActiveRoute();
-        // this.menuActionClass = "";
-        // this.menuClick.emit(this.checkSideMenu);
-        this.onOverlayClick();
+        this.onOverlayClick2();
       }
     });
   }
@@ -38,13 +34,16 @@ export class SidebarComponent {
     // Adjust this logic based on your route pattern
     return this.router.url !== '/'; // Example: Any route other than home activates the flag
   }
+
   ngOnInit(): void {
     const data: any = localStorage.getItem('CurrentUser');
     const userData = JSON.parse(data);
 
     const allData: any = localStorage.getItem('AfterLoginData');
     const allLoginData = JSON.parse(allData);
-
+    this._sidebarService.sidebarVisibility$.subscribe((visible) => {
+      this.isVisible = visible;
+    });
     if (allLoginData.data.company?.primary_color != null) {
       document.documentElement.style.setProperty(
         '--theme-bgcolor',
@@ -70,12 +69,14 @@ export class SidebarComponent {
       this.currentLogingImage = imageData;
     }
   }
-  onOverlayClick() {
-    if (this.menuActionClass != '') {
-      this.menuActionClass = '';
-    }
+  // onOverlayClick() {
+  //   if (this.menuActionClass != '') {
+  //     this.menuActionClass = '';
+  //   }
+  // }
+  onOverlayClick2() {
+    this._sidebarService.closeSidebar();
   }
-
   ngOnChanges() {
     // debugger;
     this.menuActionClass = this.menuAction;

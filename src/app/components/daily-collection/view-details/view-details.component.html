@@ -3,6 +3,7 @@
     <mat-icon class="close-icon" [mat-dialog-close]="true" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container full_height_coverwithout_bottom">
+    <!-- <h5>{{data | json}}</h5> -->
     <table class="table table-bordered table-responsive bg-white more_table">
         <tbody>
             <tr>
@@ -28,10 +29,10 @@
                 <td><b>{{"Mobile"|translate}} :</b></td>
                 <td>{{data.customer?.mobile}}</td>
             </tr>
-            <!-- <tr>
-                <td><b>Aadhar No. :</b></td>
-                <td>{{data.customer?.adhar_no}}</td>
-            </tr> -->
+            <tr>
+                <td><b>Creation Date :</b></td>
+                <td>{{data.created_at}}</td>
+            </tr>
             <tr>
                 <td><b>{{"Assign Member"|translate}} :</b></td>
                 <td>{{data.member?.name}}</td>

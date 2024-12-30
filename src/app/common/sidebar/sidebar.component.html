@@ -1,4 +1,4 @@
-<nav class="{{menuActionClass}} navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white navleft-siderbar no-print"
+<nav [class.hideSidebar]="isVisible" class="{{menuActionClass}} navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white navleft-siderbar no-print"
     id="sidenav-main">
     <div class="container-fluid">
         <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
@@ -147,4 +147,5 @@
         </div>
     </div>
 </nav>
-<div class="overlay_popup_block" *ngIf="menuActionClass != ''" (click)="onOverlayClick()"></div>
+<!-- <div class="overlay_popup_block" *ngIf="menuActionClass != ''" (click)="onOverlayClick()"></div> -->
+<div class="overlay_popup_block" *ngIf="isVisible" (click)="onOverlayClick2()"></div>

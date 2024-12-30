@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActionService } from 'src/app/services/action/action.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { SidebarService } from 'src/app/services/sidebarService/sidebar.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,6 +14,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 export class HeaderComponent {
 
   constructor(private router: Router,
+    private _sidebarService: SidebarService,
     private activatedRoute: ActivatedRoute,
     private translate: TranslateService,
     public toaster: ToastrService,
@@ -151,16 +153,23 @@ export class HeaderComponent {
     this.showMenuAction = false;
     this.router.navigate(['/change_password']);
   }
+  gotoHome(){
+    this.showMenuAction = false;
+    this.router.navigate(['/dashboard']);
+  }
+  onMenuClick() {
+    this._sidebarService.toggleSidebar();
+  }
   checkSideMenu = '';
 
-  onMenuClick() {
-    if (this.checkSideMenu == '') {
-      this.checkSideMenu = 'hideSidebar';
-    } else {
-      this.checkSideMenu = '';
-    }
-    this.menuClick.emit(this.checkSideMenu);
-  }
+  // onMenuClick() {
+  //   if (this.checkSideMenu == '') {
+  //     this.checkSideMenu = 'hideSidebar';
+  //   } else {
+  //     this.checkSideMenu = '';
+  //   }
+  //   this.menuClick.emit(this.checkSideMenu);
+  // }
 
   showhideMenu() {
     if (!this.showMenuAction) {
