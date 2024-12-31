@@ -158,9 +158,10 @@ export class HeaderComponent {
     this.router.navigate(['/dashboard']);
   }
   onMenuClick() {
+    this.showMenuAction = false;
     this._sidebarService.toggleSidebar();
   }
-  checkSideMenu = '';
+  // checkSideMenu = '';
 
   // onMenuClick() {
   //   if (this.checkSideMenu == '') {

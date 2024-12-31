@@ -74,8 +74,8 @@
                 <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                     <ng-container *ngFor="let item of filteredDataarray; let i=index;">
                         <tr class="received_row" [ngClass]="{'setdefault_color': item.default_offer == 1}">
-                            <td class="col s_no" data-name="Sno.">{{i+1}}</td>
-                            <td class="col" data-name="Profile">
+                            <td class="col s_no" [attr.data-name]="'Sno.' | translate">{{i+1}}</td>
+                            <td class="col" [attr.data-name]="'Profile' | translate">
                                 <div class="list_image_block" *ngIf="item.image == null">
                                     <img src="assets/imgs/default-pic.png" />
                                 </div>
@@ -83,17 +83,17 @@
                                     <img onerror="this.src='assets/imgs/default-pic.png';" src="{{item.image}}" />
                                 </div>
                             </td>
-                            <td class="col" data-name="Name">{{item.name}}</td>
+                            <td class="col" [attr.data-name]="'Name' | translate">{{item.name}}</td>
 
-                            <td class="col" data-name="Details">{{item.details}}</td>
-                            <td class="col text-center" data-name="Type">{{item.type}}</td>
-                            <td class="col " data-name="Status">
+                            <td class="col" [attr.data-name]="'Details' | translate">{{item.details}}</td>
+                            <td class="col text-center" [attr.data-name]="'Type' | translate">{{item.type}}</td>
+                            <td class="col " [attr.data-name]="'Status' | translate">
                                 <span class="badge bg-success text-white"
                                     *ngIf="item.status == 'active'">{{item.status}}</span>
                                 <span class="badge bg-danger text-white "
                                     *ngIf="item.status == 'inactive'">{{item.status}}</span>
                             </td>
-                            <td class="action_col" data-name="Action">
+                            <td class="action_col" [attr.data-name]="'Action' | translate">
 
                                 <div placement="bottom-right">
                                     <button mat-icon-button [matMenuTriggerFor]="menu"
@@ -103,8 +103,8 @@
                                     <mat-menu #menu="matMenu">
                                         <div class="table_actionmenu">
                                             <button mat-menu-item (click)="openDialogViewDetail(item)">
-                                                <i class="mdi mdi-eye mr-2"></i> <span>{{"View
-                                                    Details"|translate}}</span>
+                                                <i class="mdi mdi-eye mr-2"></i>
+                                                <span>{{"View Details"|translate}}</span>
                                             </button>
                                             <ng-container *ngIf="usertype == 1">
                                                 <button mat-menu-item (click)="openDialogEditOffer(item)">
@@ -170,8 +170,8 @@
                     <ng-container *ngFor="let item of filteredDataarray; let i=index;">
                         <ng-container *ngIf="item.status == 'active'">
                             <tr class="received_row">
-                                <td class="col s_no" data-name="Sno.">{{i+1}}</td>
-                                <td class="col" data-name="Profile">
+                                <td class="col s_no" [attr.data-name]="'Sno.' | translate">{{i+1}}</td>
+                                <td class="col" [attr.data-name]="'Profile' | translate">
                                     <div class="list_image_block" *ngIf="item.image == null">
                                         <img src="assets/imgs/default-pic.png" />
                                     </div>
@@ -179,9 +179,9 @@
                                         <img onerror="this.src='assets/imgs/default-pic.png';" src="{{item.image}}" />
                                     </div>
                                 </td>
-                                <td class="col" data-name="Name">{{item.name}}</td>
-                                <td class="col" data-name="Details">{{item.details}}</td>
-                                <td class="action_col" data-name="Action">
+                                <td class="col" [attr.data-name]="'Name' | translate">{{item.name}}</td>
+                                <td class="col" [attr.data-name]="'Details' | translate">{{item.details}}</td>
+                                <td class="action_col" [attr.data-name]="'Action' | translate">
                                     <button mat-menu-item class="btn bg-primary single_btn"
                                         (click)="openDialogViewDetail(item)">
                                         <i class="mdi mdi-eye mr-2"></i>
