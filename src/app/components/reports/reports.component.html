@@ -68,12 +68,13 @@
                 <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                     <ng-container *ngFor="let item of filteredDataarray; let i=index;">
                         <tr class="received_row">
-                            <td class="col s_no" data-name="Sno.">{{i+1}}</td>
-                            <td class="col" data-name="Backup Name">{{item.name}}</td>
-                            <td class="col text-center" data-name="Reasons">{{item.active}}</td>
-                            <td class="col text-center" data-name="Total">{{item.inactive}}</td>
-                            <td class="col text-center" data-name="Backup Date">{{item.last_backup_date}}</td>
-                            <td class="col action_col" data-name="Action">
+                            <td class="col s_no" [attr.data-name]="'S.No.' | translate">{{i+1}}</td>
+                            <td class="col" [attr.data-name]="'Backup Name' | translate">{{item.name}}</td>
+                            <td class="col text-center" [attr.data-name]="'Reasons' | translate">{{item.active}}</td>
+                            <td class="col text-center" [attr.data-name]="'Total' | translate">{{item.inactive}}</td>
+                            <td class="col text-center" [attr.data-name]="'Backup Date' | translate">
+                                {{item.last_backup_date}}</td>
+                            <td class="col action_col" [attr.data-name]="'Action' | translate">
                                 <button class="matmenu_tablebtn" mat-mini-fab (click)="openDialogBackupnow(item)">
                                     <i class="mdi mdi-download"></i>
                                 </button>

@@ -91,19 +91,21 @@
                 </tr>
                 <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                     <tr class="received_row" *ngFor="let item of filteredDataarray">
-                        <td class="col" data-name="Name">{{item.name}}</td>
-                        <td class="col" data-name="Customer Name">{{item.customer?.name}}</td>
-                        <td class="col" data-name="Start Date">{{item.start_date}}</td>
-                        <td class="col" data-name="End Date">{{item.end_date}}</td>
-                        <td class="col" data-name="Start Amount"><span appDigits>{{item.deposit_amount}}</span></td>
-                        <td class="col" data-name="End Amount"><span appDigits>{{item.refund_amount}}</span></td>
-                        <td class="col text-center" data-name="Status">
+                        <td class="col" [attr.data-name]="'Name' | translate">{{item.name}}</td>
+                        <td class="col" [attr.data-name]="'Customer Name' | translate">{{item.customer?.name}}</td>
+                        <td class="col" [attr.data-name]="'Start Date' | translate">{{item.start_date}}</td>
+                        <td class="col" [attr.data-name]="'End Date' | translate">{{item.end_date}}</td>
+                        <td class="col" [attr.data-name]="'Start Amount' | translate"><span
+                                appDigits>{{item.deposit_amount}}</span></td>
+                        <td class="col" [attr.data-name]="'End Amount' | translate"><span
+                                appDigits>{{item.refund_amount}}</span></td>
+                        <td class="col text-center" [attr.data-name]="'Status' | translate">
                             <span class="badge bg-success text-white"
                                 *ngIf="item.status == 'active'">{{item.status}}</span>
                             <span class="badge bg-danger text-white "
                                 *ngIf="item.status == 'inactive'">{{item.status}}</span>
                         </td>
-                        <td class="action_col" data-name="Action">
+                        <td class="action_col" [attr.data-name]="'Action' | translate">
                             <div placement="bottom-right">
                                 <button mat-icon-button [matMenuTriggerFor]="menu"
                                     aria-label="Example icon-button with a menu">

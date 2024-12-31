@@ -74,7 +74,7 @@
                 <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                     <ng-container *ngFor="let item of filteredDataarray; let i=index;">
                         <tr class="received_row" [ngClass]="{'setdefault_color': item.default_offer == 1}">
-                            <td class="col s_no" [attr.data-name]="'Sno.' | translate">{{i+1}}</td>
+                            <td class="col s_no" [attr.data-name]="'S.No.' | translate">{{i+1}}</td>
                             <td class="col" [attr.data-name]="'Profile' | translate">
                                 <div class="list_image_block" *ngIf="item.image == null">
                                     <img src="assets/imgs/default-pic.png" />
@@ -170,7 +170,7 @@
                     <ng-container *ngFor="let item of filteredDataarray; let i=index;">
                         <ng-container *ngIf="item.status == 'active'">
                             <tr class="received_row">
-                                <td class="col s_no" [attr.data-name]="'Sno.' | translate">{{i+1}}</td>
+                                <td class="col s_no" [attr.data-name]="'S.No.' | translate">{{i+1}}</td>
                                 <td class="col" [attr.data-name]="'Profile' | translate">
                                     <div class="list_image_block" *ngIf="item.image == null">
                                         <img src="assets/imgs/default-pic.png" />

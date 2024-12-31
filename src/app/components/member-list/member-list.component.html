@@ -55,7 +55,7 @@
                         </div>
                     </th>
                     <th class="col mobile_col">{{"Mobile"|translate}}</th>
-                    <th class="col aadhar_col">{{"Aadhar No."|translate}}</th>
+                    <th class="col aadhar_col">{{"Adhar No."|translate}}</th>
                     <th class="col date_col">{{"Join Date"|translate}}</th>
                     <th class="col status_col">{{"Status"|translate}}</th>
                     <th class="col action_col">{{"Action"|translate}}</th>
@@ -74,8 +74,8 @@
                 </tr>
                 <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                     <tr class="received_row" *ngFor="let item of filteredDataarray">
-                        <td class="col" data-name="Member No.">{{item.member_no}}</td>
-                        <td class="col " data-name="Image">
+                        <td class="col" [attr.data-name]="'Member No.' | translate">{{item.member_no}}</td>
+                        <td class="col " [attr.data-name]="'Image' | translate">
                             <div class="list_image_block" *ngIf="item.image == null">
                                 <img src="assets/imgs/default-pic.png" />
                             </div>
@@ -83,18 +83,18 @@
                                 <img src="{{item.image}}" />
                             </div>
                         </td>
-                        <td class="col" data-name="Name">{{item.name}}</td>
-                        <td class="col " data-name="Email">{{item.email}}</td>
-                        <td class="col " data-name="Mobile">{{item.mobile}}</td>
-                        <td class="col " data-name="Adhar No.">{{item.aadhar_no}}</td>
-                        <td class="col " data-name="Join Date">{{item.join_date}}</td>
-                        <td class="col " data-name="Status">
+                        <td class="col" [attr.data-name]="'Name' | translate">{{item.name}}</td>
+                        <td class="col " [attr.data-name]="'Email' | translate">{{item.email}}</td>
+                        <td class="col " [attr.data-name]="'Mobile' | translate">{{item.mobile}}</td>
+                        <td class="col " [attr.data-name]="'Adhar No.' | translate">{{item.aadhar_no}}</td>
+                        <td class="col " [attr.data-name]="'Join Date' | translate">{{item.join_date}}</td>
+                        <td class="col " [attr.data-name]="'Status' | translate">
                             <span class="badge bg-success text-white"
                                 *ngIf="item.status == 'active'">{{item.status}}</span>
                             <span class="badge bg-danger text-white "
                                 *ngIf="item.status == 'inactive'">{{item.status}}</span>
                         </td>
-                        <td class="col " data-name="Action">
+                        <td class="col " [attr.data-name]="'Action' | translate">
                             <div placement="bottom-right">
                                 <button class="table_actionbtn_block" mat-icon-button [matMenuTriggerFor]="menu"
                                     aria-label="Example icon-button with a menu">
