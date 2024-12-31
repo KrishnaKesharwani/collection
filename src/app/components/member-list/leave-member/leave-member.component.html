@@ -15,7 +15,7 @@
             <thead>
                 <tr>
                     <th class="col s_no">{{"Select"|translate}}</th>
-                    <th class="col">{{"Customer No."|translate}}</th>
+                    <th class="col">{{"C.No."|translate}}</th>
                     <th class="col">{{"Customer Name"|translate}}</th>
                     <th class="col">{{"Contact"|translate}}</th>
                     <th class="col">{{"Address"|translate}}</th>
@@ -24,28 +24,29 @@
             </thead>
             <tbody>
                 <tr *ngFor="let loan of loanList">
-                    <td class="col" data-name="Cno.">
+                    <td class="col" [attr.data-name]="'C.No.' | translate">
                         <button mat-menu-item>
                             <i class="mdi mdi-checkbox-marked-circle-outline mr-2"></i>
                             <span>{{"Set Default"|translate}}</span>
                         </button>
                     </td>
-                    <td class="col" data-name="Cno.">{{loan.customer.customer_no}}</td>
-                    <td class="col" data-name="Customer Name">{{loan.customer.name}}</td>
-                    <td class="col" data-name="Contact">{{loan.customer.mobile}}</td>
-                    <td class="col" data-name="Contact">{{loan.customer.address}}</td>
-                    <td class="text-center col" data-name="Type"><span class="badge bg-primary text-white">Loan</span>
+                    <td class="col" [attr.data-name]="'C.No.' | translate">{{loan.customer.customer_no}}</td>
+                    <td class="col" [attr.data-name]="'Customer Name' | translate">{{loan.customer.name}}</td>
+                    <td class="col" [attr.data-name]="'Contact' | translate">{{loan.customer.mobile}}</td>
+                    <td class="col" [attr.data-name]="'Contact' | translate">{{loan.customer.address}}</td>
+                    <td class="text-center col" [attr.data-name]="'Type' | translate"><span
+                            class="badge bg-primary text-white">Loan</span>
                     </td>
                 </tr>
                 <tr *ngFor="let deposit of assignDepositData">
-                    <td class="col" data-name="Cno.">
+                    <td class="col" [attr.data-name]="'C.No.' | translate">
                         <mat-checkbox class="left_checkbox"><span class="check_text"></span></mat-checkbox>
                     </td>
-                    <td class="col" data-name="Cno.">{{deposit.customer.customer_no}}</td>
-                    <td class="col" data-name="Customer Name">{{deposit.customer.name}}</td>
-                    <td class="col" data-name="Contact">{{deposit.customer.mobile}}</td>
-                    <td class="col" data-name="Contact">{{deposit.customer.address}}</td>
-                    <td class="text-center col" data-name="Type">
+                    <td class="col" [attr.data-name]="'C.No.' | translate">{{deposit.customer.customer_no}}</td>
+                    <td class="col" [attr.data-name]="'Customer Name' | translate">{{deposit.customer.name}}</td>
+                    <td class="col" [attr.data-name]="'Contact' | translate">{{deposit.customer.mobile}}</td>
+                    <td class="col" [attr.data-name]="'Contact' | translate">{{deposit.customer.address}}</td>
+                    <td class="text-center col" [attr.data-name]="'Type' | translate">
                         <span class="badge bg-primary text-white">Deposit</span>
                     </td>
                 </tr>

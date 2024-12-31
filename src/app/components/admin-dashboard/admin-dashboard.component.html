@@ -32,7 +32,7 @@
                 </td>
             </tr>
             <tr *ngFor="let loan of loanData">
-                <td class="col text-center" data-name="CNo.">{{loan.customer?.customer_no}}</td>
+                <td class="col text-center" data-name="C.No.">{{loan.customer?.customer_no}}</td>
                 <td class="col" data-name="Customer">{{loan.customer?.name}}</td>
                 <td class="col" data-name="Collect Member">{{loan.member?.name}}</td>
                 <td class="col" data-name="Mobile">{{loan.customer?.mobile}}</td>
@@ -101,7 +101,7 @@
                 </td>
             </tr>
             <tr *ngFor="let loan of newLoanData">
-                <td class="col text-center" data-name="CNo.">{{loan.customer?.customer_no}}</td>
+                <td class="col text-center" data-name="C.No.">{{loan.customer?.customer_no}}</td>
                 <td class="col" data-name="Customer">{{loan.customer?.name}}</td>
                 <td class="col" data-name="Apply By">{{loan.customer?.apply_by}}</td>
                 <td class="col" data-name="Mobile">{{loan.customer?.mobile}}</td>
@@ -109,7 +109,7 @@
                 <td class="col text-right" data-name="Amount"><i
                         class="mdi mdi-currency-inr mr-1"></i>{{loan.loan_amount}}</td>
                 <td class="col text-center" data-name="Status">
-                    <div class="badge text-white bg-warning" >{{loan.loan_status}}</div>
+                    <div class="badge text-white bg-warning">{{loan.loan_status}}</div>
                 </td>
                 <td class="action_col" data-name="Action">
                     <div placement="bottom-right">
@@ -177,7 +177,9 @@
                 <td class="col text-right" data-name="Amount"><i
                         class="mdi mdi-currency-inr mr-1"></i>{{request.request_amount}}</td>
                 <td class="col text-center" data-name="Status">
-                    <div class="badge text-white" [ngClass]="{'bg-success': request.status == 'approved', 'bg-warning': request.status == 'pending'}">{{request.status}}</div>
+                    <div class="badge text-white"
+                        [ngClass]="{'bg-success': request.status == 'approved', 'bg-warning': request.status == 'pending'}">
+                        {{request.status}}</div>
                 </td>
                 <td class="action_col" data-name="Action">
                     <div placement="bottom-right">

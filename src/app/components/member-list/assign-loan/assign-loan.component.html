@@ -47,20 +47,22 @@
             </thead>
             <tbody>
                 <tr *ngFor="let loan of loanList">
-                    <td class="col" data-name="Cno.">{{loan.customer.customer_no}}</td>
-                    <td class="col" data-name="Customer Name">{{loan.customer.name}}</td>
-                    <td class="col" data-name="Contact">{{loan.customer.mobile}}</td>
-                    <td class="text-right col" data-name="Amount">-</td>
-                    <td class="text-right col" data-name="Pending"><span appDigits>{{loan.remaining_amount}}</span></td>
-                    <td class="text-right col" data-name="Instalment"><span appDigits>{{loan.installment_amount}}</span>
+                    <td class="col" [attr.data-name]="'C.No.' | translate">{{loan.customer.customer_no}}</td>
+                    <td class="col" [attr.data-name]="'Customer Name' | translate">{{loan.customer.name}}</td>
+                    <td class="col" [attr.data-name]="'Contact' | translate">{{loan.customer.mobile}}</td>
+                    <td class="text-right col" [attr.data-name]="'Amount' | translate">-</td>
+                    <td class="text-right col" [attr.data-name]="'Pending' | translate"><span
+                            appDigits>{{loan.remaining_amount}}</span></td>
+                    <td class="text-right col" [attr.data-name]="'Instalment' | translate"><span
+                            appDigits>{{loan.installment_amount}}</span>
                     </td>
-                    <td class="text-center col" data-name="Status"><span class="badge bg-success text-white"
-                            *ngIf="loan.status == 'active'">{{loan.status}}</span>
+                    <td class="text-center col" [attr.data-name]="'Status' | translate"><span
+                            class="badge bg-success text-white" *ngIf="loan.status == 'active'">{{loan.status}}</span>
                         <span class="badge bg-danger text-white "
                             *ngIf="loan.status == 'inactive'">{{loan.status}}</span>
                     </td>
-                    <td class="text-center col" data-name="Remove" (click)="openDialogLoanRemove(loan)"><span
-                            class="btn btn-sm btn-danger btn_download"><i
+                    <td class="text-center col" [attr.data-name]="'Remove' | translate"
+                        (click)="openDialogLoanRemove(loan)"><span class="btn btn-sm btn-danger btn_download"><i
                                 class="mdi mdi-account-off-outline"></i></span></td>
                 </tr>
             </tbody>
@@ -82,12 +84,12 @@
             </thead>
             <tbody>
                 <tr *ngFor="let deposit of assignDepositData">
-                    <td class="col" data-name="Cno.">{{deposit.customer.customer_no}}</td>
-                    <td class="col" data-name="Customer Name">{{deposit.customer.name}}</td>
-                    <td class="col" data-name="Contact">{{deposit.customer.mobile}}</td>
-                    <td class="text-right col" data-name="Amount">{{deposit.remaining_amount}}</td>
+                    <td class="col" [attr.data-name]="'C.No.' | translate">{{deposit.customer.customer_no}}</td>
+                    <td class="col" [attr.data-name]="'Customer Name' | translate">{{deposit.customer.name}}</td>
+                    <td class="col" [attr.data-name]="'Contact' | translate">{{deposit.customer.mobile}}</td>
+                    <td class="text-right col" [attr.data-name]="'Amount' | translate">{{deposit.remaining_amount}}</td>
 
-                    <td class="text-center col" data-name="Status">
+                    <td class="text-center col" [attr.data-name]="'Status' | translate">
                         <span class="badge bg-success text-white"
                             *ngIf="deposit.status == 'active'">{{deposit.status}}</span>
                         <span class="badge bg-danger text-white "

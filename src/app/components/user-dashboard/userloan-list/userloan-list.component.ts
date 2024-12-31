@@ -125,7 +125,7 @@ export class UserloanListComponent {
         title: 'Apply New Loan',
       },
     });
-    dialogRef.componentInstance.deleteAction.subscribe(() => {
+    dialogRef.afterClosed().subscribe((result: any) => {
       // this.delete();
       this.isDialogOpen = false;
     });

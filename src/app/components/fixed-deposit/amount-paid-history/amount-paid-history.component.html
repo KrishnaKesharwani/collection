@@ -21,7 +21,7 @@
             </tr>
             <ng-container *ngIf="data?.length != 0">
                 <tr class="received_row" *ngFor="let datainner of data; let i=index">
-                    <td class="col text-center" [attr.data-name]="'S. No.' | translate">{{i+1}}</td>
+                    <td class="col text-center" [attr.data-name]="'S.No.' | translate">{{i+1}}</td>
                     <td class="col" [attr.data-name]="'Date' | translate">{{datainner?.action_date}}</td>
                     <td class="col text-center capatalise_col" [attr.data-name]="'Type' | translate">
                         {{datainner?.debit_type}}</td>
