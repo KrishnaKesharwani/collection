@@ -15,7 +15,7 @@ export class AppComponent {
   user_type: any;
   isLoggedIn: boolean = false;
   isVisible: boolean = false;
-  constructor(private router: Router, private translate: TranslateService, 
+  constructor(private router: Router, private translate: TranslateService,
     private _sidebarService: SidebarService) {
     const browserLang = translate.getBrowserLang() || '';
     translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
@@ -39,7 +39,7 @@ export class AppComponent {
     if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
     }
-    this._sidebarService.sidebarVisibility$.subscribe((visible) => {
+    this._sidebarService.sidebarVisibility$.subscribe((visible: any) => {
       this.isVisible = visible;
     });
     this.router.events

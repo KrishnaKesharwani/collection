@@ -178,11 +178,11 @@
     </form>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>{{"Close"|translate}}</button>
     <button type="submit" class="global_submit_btn" mat-flat-button (click)="submitCompanyDetails()">
         <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
         <app-button-loader *ngIf="loading"></app-button-loader>
-        <span *ngIf="!company_id">Submit</span>
-        <span *ngIf="company_id">Update</span>
+        <span *ngIf="!company_id">{{"Submit"|translate}}</span>
+        <span *ngIf="company_id">{{"Update"|translate}}</span>
     </button>
 </div>

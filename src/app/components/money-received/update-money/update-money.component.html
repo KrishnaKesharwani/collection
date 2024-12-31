@@ -13,10 +13,10 @@
     </form>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>{{"Close"|translate}}</button>
     <button class="global_submit_btn" mat-flat-button (click)="updateMoneyStatus()">
         <app-button-loader *ngIf="loading"></app-button-loader>
         <mat-icon *ngIf="!loading" class="submitbtn_icon">check</mat-icon>
-        <span>Update</span>
+        <span>{{"Update"|translate}}</span>
     </button>
 </div>

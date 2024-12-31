@@ -39,7 +39,7 @@ export class AssignLoanComponent {
   assignDepositData: any[] = [];
   assignDepositDataStatus: any;
   member_id: any;
-  loanList: any;
+  loanList: any = [];
   loanListData: any;
   unassigned_loan_id: string = "";
   selectControl = new FormControl('');
@@ -70,9 +70,10 @@ export class AssignLoanComponent {
       if (this.assignDepositData?.length) {
         this.total_assignlength = this.total_assignlength + this.assignDepositData?.length;
       }
+      console.log(this.total_assignlength)
       // this.total_assignlength = this.assignDepositData?.length + this.loanList?.length;
-      this.loading = false; 
-    }, 1000);
+      this.loading = false;
+    }, 2000);
   }
 
   getUnassignedLoans() {

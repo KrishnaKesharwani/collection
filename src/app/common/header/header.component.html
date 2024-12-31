@@ -84,7 +84,8 @@
 </nav>
 <ng-container *ngIf="offerShow == 1">
     <div class="offer_main_section" [ngClass]="{'showOffer': offerShow == 1}">
-        <div class="close_row"><mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon></div>
+        <div class="close_row"><mat-icon class="close-icon" (click)="onClose()"
+                color="warn">{{"Close"|translate}}</mat-icon></div>
         <table class="table table-bordered table-responsive bg-white more_table">
             <tbody>
                 <tr>
@@ -115,7 +116,7 @@
                 <button type="submit" class="global_submit_btn" mat-flat-button (click)="checkDefaultOffer()">
                     <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
                     <app-button-loader *ngIf="loading"></app-button-loader>
-                    <span>Submit</span>
+                    <span>{{"Submit"|translate}}</span>
                 </button>
             </div>
         </div>

@@ -36,8 +36,9 @@
     </table>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
-    <button class="global_submit_btn" *ngIf="data?.length" mat-flat-button (click)="submit()">Submit</button>
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>{{"Close"|translate}}</button>
+    <button class="global_submit_btn" *ngIf="data?.length" mat-flat-button
+        (click)="submit()">{{"Submit"|translate}}</button>
 </div>
 
 

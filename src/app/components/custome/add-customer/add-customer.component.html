@@ -93,16 +93,17 @@
     </form>
 </div>
 <div class="dialoge_button_container">
-    <a (click)="whatsappCall('+91{{customerForm.value.mobile}}')" target="_blank" class="whatsapp_btn" *ngIf="customer_id"
+    <a (click)="whatsappCall('+91{{customerForm.value.mobile}}')" target="_blank" class="whatsapp_btn"
+        *ngIf="customer_id"
         href="https://wa.me/+91{{customerForm.value.mobile}}/?text=Your Login Details is-&nbsp;{{ customerForm.value.customer_login_id }}-{{customerForm.value.password}}">
         <img class="imageWatspp" src="../../../../assets/imgs/whatsapp.png">
         <span>{{"Share Login" | translate}}</span>
     </a>
-    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>{{"Close"|translate}}</button>
     <button type="submit" class="global_submit_btn" mat-flat-button (click)="saveCustomerData()">
         <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
         <app-button-loader *ngIf="loading"></app-button-loader>
-        <span *ngIf="!customer_id">Submit</span>
-        <span *ngIf="customer_id">Update</span>
+        <span *ngIf="!customer_id">{{"Submit"|translate}}</span>
+        <span *ngIf="customer_id">{{"Update"|translate}}</span>
     </button>
 </div>

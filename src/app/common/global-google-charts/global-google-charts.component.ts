@@ -282,14 +282,9 @@ export class GlobalGoogleChartsComponent {
       member_id: this.member_id
     }
     this._service.assingReceivedAmoutn(obj).subscribe((data: any) => {
-      this.memberLoanStatus = data.data || [];
-      // google.charts.load('current', { packages: ['corechart'] });
+      this.memberLoanStatus = data.data;
+
       google.charts.setOnLoadCallback(() => {
-        // debugger;
-        // const chartData: any[][] = [['Days', 'Amount']];
-        // const totalAmount = Number(this.memberLoanStatus.total_customers);
-        // const pendingAmount = Number(this.memberLoanStatus.attended_customers);
-        // const completedAmount = totalAmount - pendingAmount;
         const totalCustomer = Number(this.memberLoanStatus.total_customers);
         const pendingCustomer = Number(this.memberLoanStatus.remaining_customers);
         const pieChartData = google.visualization.arrayToDataTable([

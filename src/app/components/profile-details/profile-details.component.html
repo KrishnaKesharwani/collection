@@ -50,7 +50,7 @@
             <button type="submit" class="global_submit_btn" mat-flat-button (click)="updateDetails()">
                 <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
                 <app-button-loader *ngIf="loading"></app-button-loader>
-                <span>Update</span>
+                <span>{{"Update"|translate}}</span>
             </button>
         </div>
     </form>

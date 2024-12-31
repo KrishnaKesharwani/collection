@@ -35,7 +35,7 @@
                     </ul>
                     <div class="action_block">
                         <button mat-raised-button (click)="openDialogInstallmentHistory(loan)"
-                            class="btn btn-sm btn-success global_submit_btn">Paid History</button>
+                            class="btn btn-sm btn-success global_submit_btn">{{"Paid History"|translate}}</button>
                     </div>
                 </div>
             </ng-container>
@@ -60,7 +60,7 @@
                     </ul>
                     <div class="action_block">
                         <button mat-raised-button class="btn btn-sm btn-success global_submit_btn"
-                            (click)="actionAssignItems(deposit,'deposit')">View Details</button>
+                            (click)="actionAssignItems(deposit,'deposit')">{{"View Details"|translate}}</button>
                     </div>
                 </div>
             </ng-container>
@@ -129,39 +129,40 @@
                         <div class="action_block">
                             <button mat-raised-button (click)="actionAssignItems(loan, 'loan')"
                                 class="btn btn-sm btn-success global_submit_btn">
-                                <i class="mdi mdi-currency-inr"></i>Collect Money</button>
+                                <i class="mdi mdi-currency-inr"></i>{{"Collect Money"|translate}}</button>
                         </div>
                     </div>
                 </ng-container>
             </ng-container>
             <ng-container *ngIf="memberDepositData?.length">
                 <ng-container *ngFor="let deposit of memberDepositData">
-                <div class="assign_customer_block member_block" [ngClass]="{'bg-paid': deposit?.paid_today == 'yes'}">
-                    <ul class="list-unstyled dynamic_card_data">
-                        <li class="data_head">{{"Deposit No."|translate}}</li>
-                        <li class="data_val">{{deposit.deposit_no}}</li>
-                        <li class="data_head">{{"Name"|translate}}</li>
-                        <li class="data_val">{{deposit.customer.name}}</li>
-                        <li class="data_head">{{"Profile"|translate}}</li>
-                        <li class="data_val">
-                            <div class="list_image_block">
-                                <img *ngIf="deposit.customer.image != null" src="{{deposit.customer.image}}" />
-                                <img *ngIf="deposit.customer.image == null" src="assets/imgs/default-pic.png" />
-                            </div>
-                        </li>
-                        <li class="data_head">{{"Mobile"|translate}}</li>
-                        <li class="data_val">{{deposit.customer.mobile}}</li>
-                        <li class="data_head">{{"Collection Type"|translate}}</li>
-                        <li class="data_val">Deposit</li>
-                        <li class="data_head">{{"Available Amt"|translate}}</li>
-                        <li class="data_val"><span appDigits>{{deposit.remaining_amount}}</span></li>
-                    </ul>
-                    <div class="action_block">
-                        <button mat-raised-button (click)="actionAssignItems(deposit, 'deposit')"
-                            class="btn btn-sm btn-success global_submit_btn">
-                            <i class="mdi mdi-currency-inr"></i>Collect Money</button>
+                    <div class="assign_customer_block member_block"
+                        [ngClass]="{'bg-paid': deposit?.paid_today == 'yes'}">
+                        <ul class="list-unstyled dynamic_card_data">
+                            <li class="data_head">{{"Deposit No."|translate}}</li>
+                            <li class="data_val">{{deposit.deposit_no}}</li>
+                            <li class="data_head">{{"Name"|translate}}</li>
+                            <li class="data_val">{{deposit.customer.name}}</li>
+                            <li class="data_head">{{"Profile"|translate}}</li>
+                            <li class="data_val">
+                                <div class="list_image_block">
+                                    <img *ngIf="deposit.customer.image != null" src="{{deposit.customer.image}}" />
+                                    <img *ngIf="deposit.customer.image == null" src="assets/imgs/default-pic.png" />
+                                </div>
+                            </li>
+                            <li class="data_head">{{"Mobile"|translate}}</li>
+                            <li class="data_val">{{deposit.customer.mobile}}</li>
+                            <li class="data_head">{{"Collection Type"|translate}}</li>
+                            <li class="data_val">Deposit</li>
+                            <li class="data_head">{{"Available Amt"|translate}}</li>
+                            <li class="data_val"><span appDigits>{{deposit.remaining_amount}}</span></li>
+                        </ul>
+                        <div class="action_block">
+                            <button mat-raised-button (click)="actionAssignItems(deposit, 'deposit')"
+                                class="btn btn-sm btn-success global_submit_btn">
+                                <i class="mdi mdi-currency-inr"></i>{{"Collect Money"|translate}}</button>
+                        </div>
                     </div>
-                </div>
                 </ng-container>
             </ng-container>
         </div>

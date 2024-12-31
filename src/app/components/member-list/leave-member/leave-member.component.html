@@ -5,7 +5,7 @@
 <div class="dialoge_middle_container full_height_cover">
     <div class="flex_header res_flex_colum">
         <div class="assign_text res_full_width">{{data.name}}</div>
-        <div class="main_table_head" *ngIf="loading">{{"Assign Customers : "|translate}}{{total_assignlength}}</div>
+        <div class="main_table_head" *ngIf="loading">{{"Assign Customers: "|translate}}{{total_assignlength}}</div>
     </div>
     <div class="page_center_loader" *ngIf="loading">
         <app-page-loader></app-page-loader>
@@ -69,10 +69,10 @@
     </form>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>Close</button>
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>{{"Close"|translate}}</button>
     <button type="submit" class="global_submit_btn" mat-flat-button (click)="submitAssignCustomer()">
         <mat-icon class="submitbtn_icon" *ngIf="!btnloading">check</mat-icon>
         <app-button-loader *ngIf="btnloading"></app-button-loader>
-        <span>Assing Member</span>
+        <span>{{"Assing Member"|translate}}</span>
     </button>
 </div>

@@ -22,7 +22,7 @@
             <button type="submit" class="global_submit_btn" mat-flat-button (click)="assignLoan()">
                 <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
                 <app-button-loader *ngIf="loading"></app-button-loader>
-                <span>Submit</span>
+                <span>{{"Submit"|translate}}</span>
             </button>
         </div>
     </div>

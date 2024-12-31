@@ -42,10 +42,10 @@
     </form>
 </div>
 <div class="dialoge_button_container">
-    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>Close</button>
+    <button class="global_close_btn" [mat-dialog-close]="true" mat-stroked-button>{{"Close"|translate}}</button>
     <button class="global_submit_btn" mat-flat-button (click)="addPlanDetails()">
         <app-button-loader *ngIf="loading"></app-button-loader>
         <mat-icon *ngIf="!loading" class="submitbtn_icon">check</mat-icon>
-        <span>Submit</span>
+        <span>{{"Submit"|translate}}</span>
     </button>
 </div>

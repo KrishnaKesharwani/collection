@@ -28,7 +28,7 @@
                                     <button data-toggle="modal" class="btn btn-success btn-sm create_header_btn"
                                         mat-raised-button>
                                         <i class="mdi mdi-account-plus-outline"></i>
-                                        <span class="btn-txt button-text">Add</span>
+                                        <span class="btn-txt button-text">{{"Add"|translate}}</span>
                                     </button>
                                 </div>
                             </div>
@@ -128,7 +128,8 @@
                                             <mat-menu #menu="matMenu">
                                                 <div class="table_actionmenu">
                                                     <button mat-menu-item (click)="openDialogViewDetail(item)">
-                                                        <i class="mdi mdi-eye mr-2"></i> <span>View Details</span>
+                                                        <i class="mdi mdi-eye mr-2"></i> <span>{{"View
+                                                            Details"|translate}}</span>
                                                     </button>
                                                     <button mat-menu-item (click)="openDialogChangeMember(item)">
                                                         <i class="mdi mdi-account-check-outline mr-2"></i>
