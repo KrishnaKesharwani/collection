@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs/operators';
@@ -29,6 +29,7 @@ export class AppComponent {
     // }, 100);    
   }
   ngOnInit(): void {
+    this.enterFullScreen();
     const data = localStorage.getItem('CurrentUser');
     this.isLoggedIn = !!data;
     if (data) {
@@ -51,7 +52,21 @@ export class AppComponent {
       });
   }
 
+  enterFullScreen() {
+    const elem = document.documentElement as any;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { 
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { 
+      elem.msRequestFullscreen();
+    }
+  }
+
   changeLanguage(language: string) {
     this.translate.use(language);
   }
+  
 }

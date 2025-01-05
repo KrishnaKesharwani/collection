@@ -5,12 +5,17 @@
     padding: 5px 0px;
     width: 100%;
     .image_block {
-        margin-right: 10px;
+        margin-right: 5px;
         padding: 2px;
         box-shadow: var(--app-brand-shadow);
-        display: flex;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 5px;
+        width: 50px;
         img {
-            width: 50px;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
         }
     }
     .other_details {

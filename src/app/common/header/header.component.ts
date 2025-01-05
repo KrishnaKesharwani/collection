@@ -6,6 +6,10 @@ import { ActionService } from 'src/app/services/action/action.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { SidebarService } from 'src/app/services/sidebarService/sidebar.service';
+import { DeleteComponent } from '../delete/delete.component';
+// import { CommonComponentService } from 'src/app/common/common-component.service';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,12 +17,16 @@ import { SidebarService } from 'src/app/services/sidebarService/sidebar.service'
 })
 export class HeaderComponent {
 
+
   constructor(private router: Router,
     private _sidebarService: SidebarService,
     private activatedRoute: ActivatedRoute,
     private translate: TranslateService,
+    public _actionServcie: ActionService,  
     public toaster: ToastrService,
-    public _actionServcie: ActionService) {
+    public confirmdialog: MatDialog,
+    // private dropdownService: CommonComponentService,
+  ) {
     this.translate.setDefaultLang('en');
     const data = localStorage.getItem('CurrentUser');
 
@@ -153,7 +161,7 @@ export class HeaderComponent {
     this.showMenuAction = false;
     this.router.navigate(['/change_password']);
   }
-  gotoHome(){
+  gotoHome() {
     this.showMenuAction = false;
     this.router.navigate(['/dashboard']);
   }
@@ -189,8 +197,22 @@ export class HeaderComponent {
       this.translate.use(lang);
       localStorage.setItem('defaultLanguage', this.language);
       this.toaster.success('Default language set in all application', 'Success');
+      // this.openDialogonfirmation();
     }, error => {
       this.toaster.error(error.massage, 'Error');
     })
+  }
+
+  openDialogonfirmation(): void {
+    // const dialogRef = this.confirmdialog.open(DeleteComponent, {
+    //   panelClass: 'delete_popup',
+    //   data: {
+    //     title: 'Are you sure to login again?',
+    //     subTitle: 'This changes will apply after login!....',
+    //   },
+    // });
+    // dialogRef.componentInstance.deleteAction.subscribe(() => {
+    //   this.logout();
+    // });
   }
 }

@@ -193,9 +193,11 @@ export class PaidDataEntryComponent {
     this._service.depositDetails(obj).subscribe((data: any) => {
       if (data.success) {
         this.depositData = data.data.collection;
-
         this.loading = false;
         this.totalDepositAmount = data.data.total_balance;
+        this.receivedAmountForm.patchValue({
+          select_date: new Date()
+        });
       } else {
         this.loading = false;
       }
@@ -214,16 +216,19 @@ export class PaidDataEntryComponent {
       from_day: 30
     }
     this._service.loanDetails(obj).subscribe((data: any) => {
-      // debugger;
       if (data.success) {
         this.loanData = data.data.collection;
         this.loading = false;
         this.loanRemainingAmount = data.data.remaining_amount;
+        this.receivedAmountForm.patchValue({
+          select_date: new Date()
+        });
       } else {
         this.loading = false;
       }
     }, error => {
       this.loading = false
     });
+  
   }
 }

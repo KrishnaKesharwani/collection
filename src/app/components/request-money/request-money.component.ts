@@ -129,6 +129,7 @@ export class RequestMoneyComponent {
     this._service.getRequestMoneyForCustomer(obj).subscribe((data: any) => {
       if (data.success) {
         this.customerRequestList = data.data;
+        this.loader = false;
       } else {
         this.loader = false;
       }

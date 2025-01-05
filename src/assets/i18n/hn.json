@@ -95,6 +95,8 @@
     "Deposit Debit": "खाता पैसा निकला ",
     "Deposit Credit": "खाता पैसा जमा",
     "Loan Credit": "ऋण पैसा जमा",
+    "Member Received Amount": "सदस्य जमा राशि",
+    "Member Pending Amount": "सदस्य बाकी राशि",
     "Approved": "अनुमत",
     "Pending": "बकाया",
     "Cancelled": "रद्द",

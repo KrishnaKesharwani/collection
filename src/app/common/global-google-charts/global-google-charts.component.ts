@@ -122,7 +122,7 @@ export class GlobalGoogleChartsComponent {
           const chartData: any[][] = [['Days', 'Amount']];
           this.depositStatus.forEach((entry: any) => {
             const dayLabel = entry.month;
-            const amountValue = Number(entry.deposit_amount);
+            const amountValue = Number(entry.remaining_amount);
             chartData.push([dayLabel, amountValue]);
           });
           const dataTable = google.visualization.arrayToDataTable(chartData);
@@ -219,7 +219,7 @@ export class GlobalGoogleChartsComponent {
     }
     this._service.customerLastDepositStatus(obj).subscribe((data: any) => {
       this.customerDepositStatus = data.data.graphdata || [];
-      const chartData: any[][] = [['Days', 'Debit', 'Credit']];
+      const chartData: any[][] = [['Days', 'Credit', 'Debit']];
       this.customerDepositStatus.forEach((entry: any) => {
         const dayLabel = entry.month;
         const debitValue = Number(entry.deposit_amount);
@@ -276,6 +276,8 @@ export class GlobalGoogleChartsComponent {
 
     });
   }
+  assign_customer: any;
+  received_customer: any;
   getAssignReceivedAmount() {
     let obj = {
       company_id: this.company_id,
@@ -286,15 +288,22 @@ export class GlobalGoogleChartsComponent {
 
       google.charts.setOnLoadCallback(() => {
         const totalCustomer = Number(this.memberLoanStatus.total_customers);
-        const pendingCustomer = Number(this.memberLoanStatus.remaining_customers);
+        this.assign_customer=totalCustomer;
+        const attendCustomer = Number(this.memberLoanStatus.attended_customers);
+        this.received_customer=attendCustomer;
+        const attendedPercentage = (attendCustomer / totalCustomer) * 100;
+        const remainingPercentage = 100 - attendedPercentage;
         const pieChartData = google.visualization.arrayToDataTable([
           ['Collection', 'Amount'],
-          ['Pending Customer', pendingCustomer],
-          ['Assign Customer', totalCustomer],
+          ['Pending Customer %', remainingPercentage],
+          ['Received Customer %', attendedPercentage],
+          
         ]);
         const pieOptions = {
           is3D: true,
           pieHole: 0.4,
+          colors: ['#FF9800', '#4CAF50'], // Orange for Pending, Green for Assigned
+          legend: { position: 'bottom' }
         };
         const pieUserElement = document.getElementById('pie_member_chart') as HTMLElement;
         const pieUserChart = new google.visualization.PieChart(pieUserElement);
