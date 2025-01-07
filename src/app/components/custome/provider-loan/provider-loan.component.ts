@@ -142,7 +142,7 @@ export class ProviderLoanComponent {
       if (this.base64allString?.length) {
         formData.append('document', JSON.stringify(this.base64allString));
       } else {
-        formData.append('document', 'null');
+        // formData.append('document', '');
       }
       formData.append('company_id', this.company_id)
       formData.append('customer_id', this.dataa.data.id)

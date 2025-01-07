@@ -1,6 +1,7 @@
 <input type="file" accept="{{accept}}" multiple (change)="onFileSelected($event)" *ngIf="uploadType== 'file'" />
 <div class="file_upload_user" [appDynamicWidth]="imageSize" *ngIf="uploadType== 'profile'">
-    <img [src]="imageSrc" *ngIf="!image_base16String" onerror="this.src='../../../assets/imgs/default-pic.png' ">
+    <img [src]="imageSrc" *ngIf="!image_base16String" >
+    <!-- onerror="this.src='../../../assets/imgs/default-pic.png'" -->
     <img *ngIf="image_base16String" [src]="image_base16String" alt="Image Preview" />
     <div class="upload_image_change">
         <!-- <mat-icon>edit</mat-icon> -->
@@ -8,7 +9,8 @@
     </div>
 </div>
 <div class="file_upload_full" *ngIf="uploadType== 'fullwidth'">
-    <img [src]="imageSrc" *ngIf="!image_base16String" onerror="this.src='../../../assets/imgs/no-images.jpg' ">
+    <!-- onerror="this.src='../../../assets/imgs/no-images.jpg'" -->
+    <img [src]="imageSrc" *ngIf="!image_base16String" />
     <img *ngIf="image_base16String" [src]="image_base16String" alt="Image Preview" />
     <div class="image_upload_caption" *ngIf="!image_base16String">{{imageCaption}}</div>
     <input type="file" class="fileupload_transparent" accept="{{accept}}" (change)="onFileSelected($event)" />
