@@ -32,6 +32,14 @@ export class LoanService {
   updateLoanStatus(obj: object) {
     const url = `${environment.apiUrl}/update-loan-status`;
     return this.httpClient.put(url, obj)
+  }  
+  updateLoanDetails(form: object) {
+    const url = `${environment.apiUrl}/updateappliedloan`;
+    return this.httpClient.post(url, form)
+  }
+  delete(id: string) {
+    const url = `${environment.apiUrl}/delete-loan-document/${id}`;
+    return this.httpClient.delete(url)
   }
 
 }

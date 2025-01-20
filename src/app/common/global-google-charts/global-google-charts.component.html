@@ -19,10 +19,12 @@
                     <div *ngIf="companyloader">
                         <app-page-loader></app-page-loader>
                     </div>
-                    <div *ngIf="!loanStatus && !companyloader">
-                        <app-no-record-found type="table" notext="No chart found"></app-no-record-found>
+                    <div *ngIf="loanStatus?.total_loan_customers == 0 && !companyloader">
+                        <app-no-record-found type="table" notext="Company not provide any loan."></app-no-record-found>
                     </div>
-                    <div id="pie_company_chart"></div>
+                    <div class="main_chart_block" [ngClass]="{'opacity_none': companyloader}">
+                        <div id="pie_company_chart"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,10 +32,10 @@
             <div class="chart_innercontainer">
                 <div class="chart_heading">
                     <div class="left_data">{{"Last 6 Month Deposit Status"|translate}}</div>
-                    <div class="loan_no_conainer">
+                    <div class="loan_no_conainer" *ngIf="depositTotalCustomer?.total_customer != null">
                         <b>{{"Total Customer"|translate}} :</b>
                         <span>{{depositTotalCustomer?.total_customer}}</span>
-                        <span *ngIf="depositTotalCustomer?.total_customer == null">N/A</span>
+                        <span>N/A</span>
                     </div>
                 </div>
                 <div class="inner_block">
@@ -54,7 +56,8 @@
         <div class="card dash-cardbox">
             <div class="chart_innercontainer">
                 <div class="chart_heading">
-                    <div class="left_data">{{"Assign Customer / Received Customer"|translate}}<span class="counter">[ {{assign_customer}} / {{received_customer}} ]</span></div>
+                    <div class="left_data">{{"Assign / Received Customer"|translate}}<span class="counter">[
+                            {{assign_customer}} / {{received_customer}} ]</span></div>
                 </div>
                 <div class="inner_block">
                     <div *ngIf="memberloader">
@@ -65,7 +68,9 @@
                             <app-no-record-found type="table" notext="No chart found"></app-no-record-found>
                         </div>
                     </ng-container>
-                    <div id="pie_member_chart"></div>
+                    <div class="main_chart_block" [ngClass]="{'opacity_none': memberloader}">
+                        <div id="pie_member_chart"></div>
+                    </div>
                 </div>
             </div>
         </div>

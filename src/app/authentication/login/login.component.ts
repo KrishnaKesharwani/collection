@@ -163,6 +163,7 @@ export class LoginComponent {
           localStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
           localStorage.setItem('AfterLoginData', JSON.stringify(data));
           localStorage.setItem('defaultLanguage', userLoginDetails.language);
+          localStorage.setItem('authToken', data.token);
           // this.lastLoginImagePath = data.company?.main_logo;
           this.updateLoginImage(data.data.company?.main_logo);
           // localStorage.setItem('lastLoginImagePath', data.company?.main_logo);

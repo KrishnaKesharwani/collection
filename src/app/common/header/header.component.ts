@@ -22,7 +22,7 @@ export class HeaderComponent {
     private _sidebarService: SidebarService,
     private activatedRoute: ActivatedRoute,
     private translate: TranslateService,
-    public _actionServcie: ActionService,  
+    public _actionServcie: ActionService,
     public toaster: ToastrService,
     public confirmdialog: MatDialog,
     // private dropdownService: CommonComponentService,
@@ -79,7 +79,9 @@ export class HeaderComponent {
       } else if (this.userType == 1) {
         const currentAllData: any = localStorage.getItem('CompanyData');
         const currentCompanyDataParse = JSON.parse(currentAllData);
-        this.userImage = currentCompanyDataParse?.owner_image;
+        if (currentCompanyDataParse.image != null && currentCompanyDataParse.image != '') {
+          this.userImage = currentCompanyDataParse?.owner_image;
+        }
         this.expiredDate = currentCompanyDataParse?.end_date;
         this.planType = currentCompanyDataParse?.plan;
         setTimeout(() => {
@@ -90,7 +92,7 @@ export class HeaderComponent {
       } else if (this.userType == 2) {
         const currentAllData: any = localStorage.getItem('MemberData');
         const currentMemberDataParse = JSON.parse(currentAllData);
-        if (currentMemberDataParse.image == null && currentMemberDataParse.image == '') {
+        if (currentMemberDataParse.image != null && currentMemberDataParse.image != '') {
           this.userImage = currentMemberDataParse.image;
         }
         setTimeout(() => {

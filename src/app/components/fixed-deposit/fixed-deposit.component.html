@@ -18,9 +18,9 @@
                 </div>
                 <div class="col text-right pr-1 datewith_search_block">
                     <div class="listsearch-topblock search_withaddbtn">
-                        <div class="search-box" *ngIf="filteredDataarray?.length != 0 && !loader">
+                        <!-- *ngIf="filteredDataarray?.length != 0 && !loader" -->
+                        <div class="search-box" >
                             <input type="text" placeholder="Search" (keyup)="searchTable($event)" class="searchtxt" />
-
                             <i class="mdi mdi-magnify"></i>
                         </div>
                         <div class="right_addbtn" *ngIf="!loader">

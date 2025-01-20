@@ -16,7 +16,7 @@
                     <div class="list_image_block float-left" *ngIf="data.image == null">
                         <img src="assets/imgs/default-pic.png">
                     </div>
-                    <div class="list_image_block float-left">
+                    <div class="list_image_block float-left" *ngIf="data.image != null">
                         <img src="{{data.image}}">
                     </div>
                 </td>

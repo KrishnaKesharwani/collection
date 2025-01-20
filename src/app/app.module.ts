@@ -68,7 +68,7 @@ import { VcManagementModule } from './components/vc-management/vc-management.mod
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DigitsDirective } from './directives/digits.directive';
-
+import { AuthInterceptorService } from './services/authInterceptor/auth-interceptor.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -119,8 +119,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
-
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
   ],
   bootstrap: [AppComponent]
 })

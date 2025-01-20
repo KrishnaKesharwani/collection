@@ -49,6 +49,8 @@ export class MemberListComponent {
         this.memberListData = response.data;
         this.filteredDataarray = this.memberListData;
         this.loader = false;
+      } else {
+        this.loader = false;
       }
     }, error => {
       this.loader = false;

@@ -43,9 +43,13 @@ export class OffersComponent {
       company_id: this.company_id
     }
     this._service.getOfferList(obj).subscribe((data: any) => {
-      this.offerListData = data.data;
-      this.filteredDataarray = this.offerListData;
-      this.loader = false;
+      if (data.success) {
+        this.offerListData = data.data;
+        this.filteredDataarray = this.offerListData;
+        this.loader = false;
+      } else {
+        this.loader = false;
+      }
     }, error => {
       this.loader = false;
     })

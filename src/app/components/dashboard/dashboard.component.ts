@@ -14,14 +14,18 @@ export class DashboardComponent {
   basecompanyDashboardtData: any;
   memberDashboardtData: any;
   customerDashboardtData: any;
+  localStorageData: any;
   constructor(private router: Router, public toaster: ToastrService, public _service: SuperAdminDashboardService) { }
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
-    // debugger;
+    this.localStorageData = data;
+    this.setApidata(this.localStorageData);
+  }
+  setApidata(data: any) {
     if (data) {
       const userData = JSON.parse(data);
-      this.userType = userData.user_type
+      this.userType = userData.user_type;
       if (this.userType == 0) {
         // this.getDashboardData();
         this.getDashboardBricsData('companydashboard');
@@ -42,7 +46,6 @@ export class DashboardComponent {
       this.userType = null; // or set a default value
     }
   }
-
   getDashboardBricsData(api_name: any) {
     this._service.getDashboardBricsData(api_name).subscribe((response: any) => {
       if (response) {

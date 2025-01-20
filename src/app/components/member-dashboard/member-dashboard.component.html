@@ -6,7 +6,7 @@
             </div>
             <div class="col p-0 head_details">
                 <div class="total_block bg-success mr-2"><span>{{"Collect
-                        Amount"|translate}}</span><b><span appDigits>{{collect_amount}}</span></b>
+                        Amount"|translate}}</span><b><span >{{collect_amount}}</span></b>
                 </div>
                 <div class="total_block bg-warning mr-2"><span>{{"Attend
                         Customer"|translate}}</span><b>{{attended_customer}}</b>
@@ -43,8 +43,10 @@
                 <td class="col" [attr.data-name]="'Amount' | translate"><i class="mdi mdi-currency-inr mr-1"></i>
                     <span appDigits>{{item?.amount}}</span>
                 </td>
-                <td class="col" [attr.data-name]="'Last Received' | translate">{{item?.receive_date}} {{item?.receive_time}}</td>
-                <td class="col text-center capatalise_col" [attr.data-name]="'Type' | translate">{{item?.collection_type}}</td>
+                <td class="col" [attr.data-name]="'Last Received' | translate">{{item?.receive_date}}
+                    {{item?.receive_time}}</td>
+                <td class="col text-center capatalise_col" [attr.data-name]="'Type' | translate">
+                    {{item?.collection_type}}</td>
                 <td class="col text-center" [attr.data-name]="'Received Type' | translate">
                     <div class="badge text-white capatalise_col"
                         [ngClass]="{'bg-danger': item?.received_type == 'debit', 'bg-success': item?.received_type == 'credit'}">

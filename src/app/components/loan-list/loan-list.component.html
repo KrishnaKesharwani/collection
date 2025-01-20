@@ -34,7 +34,7 @@
                 <div class="col text-right pr-1 datewith_search_block">
                     <div class="listsearch-topblock search_withaddbtn">
                         <div class="search-box">
-                            <input type="text" placeholder="Search" (keyup)="searchTable($event)" class="searchtxt" />
+                            <input type="text" placeholder="Search by loan no." (keyup)="searchTable($event)" class="searchtxt" />
                             <i class="mdi mdi-magnify"></i>
                         </div>
                     </div>
@@ -141,6 +141,10 @@
                                             </button>
                                             <mat-menu #menu="matMenu">
                                                 <div class="table_actionmenu">
+                                                    <button mat-menu-item (click)="openDialogUpdateLoan(item)">
+                                                        <i class="mdi mdi-pencil mr-2"></i> <span>
+                                                            {{"Edit Loan Details"|translate}}</span>
+                                                    </button>
                                                     <button mat-menu-item (click)="openDialogInstallmentHistory(item)">
                                                         <i class="mdi mdi-history mr-2"></i> <span>
                                                             {{"Installment History"|translate}}</span>
@@ -165,11 +169,7 @@
                                                     </button>
                                                 </div>
                                             </mat-menu>
-
                                         </div>
-
-
-
                                     </td>
                                 </tr>
                             </ng-container>
@@ -276,6 +276,10 @@
                                             </button>
                                             <mat-menu #menu="matMenu">
                                                 <div class="table_actionmenu">
+                                                    <button mat-menu-item (click)="openDialogUpdateLoan(item)">
+                                                        <i class="mdi mdi-pencil mr-2"></i> <span>
+                                                            {{"Edit Loan Details"|translate}}</span>
+                                                    </button>
                                                     <button mat-menu-item (click)="openDialogInstallmentHistory(item)">
                                                         <i class="mdi mdi-history mr-2"></i> <span>
                                                             {{"Installment History"|translate}}</span>

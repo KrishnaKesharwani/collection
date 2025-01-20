@@ -48,10 +48,14 @@ export class FixedDepositComponent {
       status: 'active'
     }
     this._service.getFixedDeposit(obj).subscribe((data: any) => {
-      this.getTotaldata = data.data;
-      this.fixedDepositListData = data.data.deposits;
-      this.filteredDataarray = this.fixedDepositListData;
-      this.loader = false;
+      if (data.success) {
+        this.getTotaldata = data.data;
+        this.fixedDepositListData = data.data.deposits;
+        this.filteredDataarray = this.fixedDepositListData;
+        this.loader = false;
+      } else {
+        this.loader = false;
+      }
     }, error => {
       // console.log('Fixed Deposit data', this.filteredDataarray);
       // this._toaster.error(error.message);

@@ -28,8 +28,10 @@
         </tbody>
     </table>
     <form focusInvalidInput form="changeLoanStatusForm" class="main_form">
-        <app-dropdwon [optionArray]="dropdownService.loanliststatus" *ngIf="changeLoanStatusForm" field="Loan Status"
-            [form]="changeLoanStatusForm" [key]="'loan_status'"></app-dropdwon>
+        <!-- <app-dropdwon [optionArray]="dropdownService.loanliststatus" *ngIf="changeLoanStatusForm" field="Loan Status"
+            [form]="changeLoanStatusForm" [key]="'loan_status'"></app-dropdwon> -->
+        <app-dropdwon [jsonKey]="'loan_status'" [form]="changeLoanStatusForm"
+            [key]="'loan_status'" [optionArray]="dropdownService.loanliststatus" field="Loan Status"></app-dropdwon>
         <app-textarea [disabled]="true" label="Reason" [(value)]="loanreason" [isRequired]="false"
             [className]="'bottom_error_msg'" [form]="changeLoanStatusForm" [key]="'loanreason'"></app-textarea>
     </form>

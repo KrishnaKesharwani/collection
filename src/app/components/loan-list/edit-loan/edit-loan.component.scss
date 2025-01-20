@@ -1,0 +1,18 @@
+.image_fourpart {
+    position: relative;
+    mat-icon{
+        color: var(--theme-danger-color);
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        opacity: .6;
+        transition: .5s all;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+.existing_block {
+    margin-bottom: 20px;
+}

@@ -25,12 +25,12 @@ export class ChangeStatusComponent {
   ) { }
 
   ngOnInit() {
-    this.dropdownService.setOptions('status', ['Pending', 'Running', 'Completed', 'Cancelled', 'Settlement']);
+    // this.dropdownService.setOptions('status', ['Pending', 'Running', 'Completed', 'Cancelled', 'Settlement']);
     this.data = this.dataa.data;
     this.gatLoanid = this.dataa.data.id;
     this.changeLoanStatusForm = this.fb.group({
       // customerNo: ['', Validators.required],
-      loan_status: [this.dataa?.data?.loans?.loan_status, Validators.required],
+      loan_status: [this.data?.loan_status, Validators.required],
       loanreason: ['', Validators.required]
     });
   }

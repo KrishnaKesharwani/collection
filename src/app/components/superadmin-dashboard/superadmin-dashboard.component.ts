@@ -43,6 +43,8 @@ export class SuperadminDashboardComponent {
         this.companyListData = response.data;
         this.filteredDataarray = this.companyListData;
         this.loader = false;
+      } else {
+        this.loader = false;
       }
     }, error => {
       this.loader = false;

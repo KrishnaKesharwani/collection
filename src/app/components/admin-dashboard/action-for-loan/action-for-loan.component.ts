@@ -37,10 +37,15 @@ export class ActionForLoanComponent {
   statusOptions: string[] = [];
   customer_id: any;
 
-  constructor(public dialogRef: MatDialogRef<ActionForLoanComponent>, public _tostr: ToastrService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(
+    public dialogRef: MatDialogRef<ActionForLoanComponent>, 
+    public _tostr: ToastrService, 
+    public _service: CustomerService, 
+    public dropdownService: CommonComponentService, 
+    public fb: FormBuilder, 
+    public dialog: MatDialog, 
+    @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
-
-
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
@@ -73,6 +78,7 @@ export class ActionForLoanComponent {
     // this.dropdownService.setOptions('status', ['Approved', 'Cancelled']);
     // this.dropdownService.setOptions('loanstatus', ['Approved', 'Running', 'Pending', 'Cancelled']);
 
+   
   }
 
   onStatusChange(value: string) {

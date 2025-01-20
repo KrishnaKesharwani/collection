@@ -1,0 +1,105 @@
+<div class="dialoge_header">
+    <div class="left_text">{{editableData?.loan_no}} {{dataa.title |translate}}</div>
+    <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container full_height_cover">
+    <form focusInvalidInput [formGroup]="providerLoanForm">
+        <div class="modal_insert">
+            <div class="row">
+                <!-- <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" [disabled]=true label="Loan No." [(value)]="loan_no"
+                        [readonly]="true" [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                        [key]="'loan_no'" [displayMsg]="'Customer Name is required'"></app-input>
+                </div> -->
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" [disabled]=true label="Customer Name" [(value)]="customername"
+                        [readonly]="true" [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                        [key]="'customername'" [displayMsg]="'Customer Name is required'"></app-input>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" [disabled]=true label="Loan Amount" [(value)]="loan_amount"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                        [key]="'loan_amount'" [displayMsg]="'Loan amount is required'"></app-input>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" label="Installment Amount" [(value)]="installment_amount"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                        [key]="'installment_amount'" [displayMsg]="'Installment is required'"></app-input>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'start_date'"
+                        [displayMsg]="'Start date is required'"></app-input>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="true" label="End date" [(value)]="end_date" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'end_date'"
+                        [displayMsg]="'End date is required'"></app-input>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-input [isDateField]="false" (valueChange)="onDateChange()" [disabled]=true label="No. Of Days"
+                        [(value)]="no_of_days" [isRequired]="true" [className]="'bottom_error_msg'"
+                        [form]="providerLoanForm" [key]="'no_of_days'"
+                        [displayMsg]="'No. of days is required'"></app-input>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12"
+                    *ngIf="dropdownService.getmemberdata?.length && providerLoanForm">
+                    <app-dropdwon [jsonKey]="'name'" [arrayType]="'KEY_TYPE'" [form]="providerLoanForm"
+                        [key]="'assigned_member_id'" [optionArray]="dropdownService.getmemberdata"
+                        field="Assign Member"></app-dropdwon>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-dropdwon [optionArray]="dropdownService.provideloanstatus" *ngIf="providerLoanForm"
+                        field="Loan Status" [form]="providerLoanForm" [key]="'loan_status'"></app-dropdwon>
+                </div>
+                <div class="col-sm-4 col-lg-4 col-xs-12">
+                    <app-dropdwon [optionArray]="dropdownService.status" *ngIf="providerLoanForm"
+                        [form]="providerLoanForm" [key]="'status'" field="Status"></app-dropdwon>
+                </div>
+                <div class="col-sm-6">
+                    <app-textarea label="Loan Status Massage" [(value)]="loan_status_message" [isRequired]="false"
+                        [className]="'bottom_error_msg'" [form]="providerLoanForm"
+                        [key]="'loan_status_message'"></app-textarea>
+                </div>
+                <div class="col-sm-6">
+                    <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
+                        [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'details'"></app-textarea>
+                </div>
+                <div class="col-sm-12">
+                    <div class="existing_block" *ngIf="editableData?.document.length">
+                        <div class="file_upload_header">
+                            <label class="m-0">Existing Documents</label>
+                        </div>
+                        <div class="global_details_image_container">
+                            <div class="image_fourpart card" *ngFor="let image of editableData?.document; let i=index">
+                                <img src="{{image.document_url}}" alt="Uploaded Image" />
+                                <mat-icon (click)="removeDocumentUploaded(image)">close</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="file_upload_header">
+                        <label class="m-0">Select New Documents</label>
+                    </div>
+                    <div class="fileupload file_upload_block">
+                        <input type="file" maxlength="6" accept="'image/png, image/jpeg'" multiple
+                            (change)="onFileSelected($event)" />
+                    </div>
+                    <div class="global_details_image_container" *ngIf="base64Images.length > 0">
+                        <div class="image_fourpart card" *ngFor="let image of base64Images">
+                            <img [src]="'data:image/png;base64,' + image" alt="Uploaded Image" />
+                        </div>
+                    </div>                 
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>{{"Close"|translate}}</button>
+    <button class="global_submit_btn" mat-flat-button (click)="submitProvideLoan()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span>{{"Submit"|translate}}</span>
+    </button>
+</div>

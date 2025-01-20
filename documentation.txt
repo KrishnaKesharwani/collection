@@ -65,6 +65,9 @@ https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html#foreground.t
 current android app folder
 D:\Latest-14-12-2024\client_collection_money\RKGroup
 
+Rk Group Workspace
+https://martian-capsule-483977.postman.co/workspace/RkGroup-workspace~ae74527e-1385-4c92-9f12-9af65dda997b/collection/3673793-4a1a4d31-445f-4b07-9085-c235525c1c6a
+
 apk file source command & Path
 Go to Build → Build Bundle(s) / APK(s) → Build APK(s).
 D:\Latest-14-12-2024\client_collection_money\RKGroup\app\build\outputs\apk\androidTest\debug

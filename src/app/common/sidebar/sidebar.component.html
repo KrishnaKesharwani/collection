@@ -102,7 +102,7 @@
                         {{"Collect Money"|translate}}
                     </a>
                 </li> -->
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="user_type != 0">
                     <a routerLink="/offers" routerLinkActive="active" class="nav-link"> <i
                             class="mdi mdi-tag-multiple-outline"></i>
                         {{"Offers List"|translate}}</a>

@@ -10,6 +10,7 @@ import { ChangeMemberComponent } from './change-member/change-member.component';
 import { AssignMemberComponent } from './assign-member/assign-member.component';
 import { InstallmentHistoryComponent } from './installment-history/installment-history.component';
 import { ActionForLoanComponent } from '../admin-dashboard/action-for-loan/action-for-loan.component';
+import { EditLoanComponent } from './edit-loan/edit-loan.component';
 
 @Component({
   selector: 'app-loan-list',
@@ -85,7 +86,7 @@ export class LoanListComponent {
     let obj = {
       company_id: this.company_id,
       loan_status: this.listLoadType,
-      status: 'active'
+      status: ''
     };
     if (obj.loan_status == 'paid') {
       this._service.getLoanList(obj).subscribe((data: any) => {
@@ -297,7 +298,6 @@ export class LoanListComponent {
   }
 
   updateLoanValues(type: any, loanArray: any) {
-    debugger;
     this.total_paid_amount = 0;
     this.total_remaining_amount = 0;
     this.runningLoanCount = 0;
@@ -411,6 +411,23 @@ export class LoanListComponent {
       // panelClass: 'view_details_small_popup',
       data: {
         title: 'Change Loan Status',
+        data: data,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onTabChange(this.listType);
+      }
+    });
+  }
+
+  openDialogUpdateLoan(data: any) {
+    const dialogRef = this.dialog.open(EditLoanComponent, {
+      disableClose: true,
+      // panelClass: 'view_details_small_popup',
+      data: {
+        title: 'Update Details',
         data: data,
       },
     });

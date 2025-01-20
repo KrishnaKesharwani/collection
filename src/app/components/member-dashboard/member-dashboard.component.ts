@@ -42,7 +42,7 @@ export class MemberDashboardComponent {
         const userData = data?.data;
         this.attended_customer = userData.attended_customer;
         // this.total_customer = data.data?.total_customer;
-        this.collect_amount = userData.collect_money;
+        this.collect_amount = userData?.collect_money;
         this.collectionData = userData?.collection;
         this.loader = false;
         // console.log('Collection Data :', this.collectionData);
