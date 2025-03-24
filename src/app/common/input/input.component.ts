@@ -42,6 +42,7 @@ export class InputComponent {
   @Input() customType!: string;
   @Input() readonly: boolean = false;
   @Input() isDateField: boolean = false;
+  @Input() upComing: boolean = false;
   @Input() matDatepicker: boolean = false;
   @Input() className: string = 'bottom_error_msg';
   @ViewChild('picker') picker!: MatDatepicker<any>; // Declare the datepicker reference
@@ -64,14 +65,30 @@ export class InputComponent {
   }
   formattedDate2: string = '';
 
-  onDateChange2(event: MatDatepickerInputEvent<Date>): void {
-    const selectedDate = event.value;
-
-    // let date=new date(dateGIven)
-    if (selectedDate) {
-      this.formattedDate = selectedDate.toLocaleDateString('en-US');
+  maxDate: Date | null = null;
+  ngOnInit() {
+    this.setMaxDate();
+  }
+  ngOnChanges() {
+    this.setMaxDate();
+  }
+  setMaxDate() {
+    // debugger;
+    if (this.upComing) {
+      this.maxDate = new Date();  // Restrict to today and future dates
+    } else {
+      this.maxDate = null;  // Allow all dates
     }
   }
+  // maxDate: Date = new Date();
+  // onDateChange2(event: MatDatepickerInputEvent<Date>): void {
+  //   const selectedDate = event.value;
+
+  //   // let date=new date(dateGIven)
+  //   if (selectedDate) {
+  //     this.formattedDate = selectedDate.toLocaleDateString('en-US');
+  //   }
+  // }
   onDateChange(event?: MatDatepickerInputEvent<Date>) {
 
     // const selectedDate = new Date(event?.value);
@@ -79,9 +96,11 @@ export class InputComponent {
 
     this.date = event?.value;
     if (this.date) {
+      // debugger;
       const newDate = new Date(this.date);
       const selectedDate = new Date(this.date);
-      this.formattedDate = selectedDate.toLocaleDateString('en-US');
+      // this.formattedDate = selectedDate.toLocaleDateString("en-US", { timeZone: "Asia/Kolkata" });
+      this.formattedDate = selectedDate.toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
       const m = newDate.getMonth() + 1;
       let year = this.date.getFullYear();
       let day = this.date.getDate();

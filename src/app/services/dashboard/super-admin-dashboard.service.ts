@@ -13,10 +13,10 @@ export class SuperAdminDashboardService {
   //   const url = `${environment.apiUrl}/companydashboard`;
   //   return this.httpClient.get(url)
   // }
-  // dashboardMember() {
-  //   const url = `${environment.apiUrl}/member-dashboard`;
-  //   return this.httpClient.get(url)
-  // }
+  dashboardMember() {
+    const url = `${environment.apiUrl}/member-dashboard`;
+    return this.httpClient.get(url)
+  }
   // dashboardCustomer() {
   //   const url = `${environment.apiUrl}/customer-dashboard`;
   //   return this.httpClient.get(url)

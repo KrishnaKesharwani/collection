@@ -73,7 +73,7 @@ export class EditLoanComponent {
       loan_status_message: [''],
       details: [''],
       loan_status: [''],
-      status: [''],
+      status: ['active'],
       document: ['']
     });
 

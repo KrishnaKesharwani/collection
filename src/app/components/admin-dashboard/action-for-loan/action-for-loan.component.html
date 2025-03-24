@@ -53,7 +53,7 @@
                     <app-textarea [disabled]="true" label="Details" [(value)]="details" [isRequired]="false"
                         [className]="'bottom_error_msg'" [form]="providerLoanForm" [key]="'details'"></app-textarea>
                     <div class="fileupload file_upload_block">
-                        <input type="file" maxlength="6" multiple (change)="onFileSelected($event)" />
+                        <input type="file" maxlength="6" multiple [accept]="'image/png, image/gif, image/jpeg'" (change)="onFileSelected($event)" />
                     </div>
                     <div class="global_details_image_container" *ngIf="base64Images.length > 0">
                         <div class="image_fourpart card" *ngFor="let image of base64Images">

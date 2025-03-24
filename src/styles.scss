@@ -1616,7 +1616,11 @@ app-no-record-found {
         max-height: 150px;
     }
 }
-
+.file_upload_header {
+    font-size: 12px;
+    color: #666666;
+    margin-bottom: 5px;
+}
 .alert_popup {
     position: fixed;
     left: 15px;

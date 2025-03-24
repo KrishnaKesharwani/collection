@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
+import { ActionService } from 'src/app/services/action/action.service';
 import { CompanyService } from 'src/app/services/company/company.service';
 
 @Component({
@@ -35,7 +36,7 @@ export class AddCompanyComponent {
   company_id: any;
   companyViewData: any;
   constructor(public dialogRef: MatDialogRef<AddCompanyComponent>, private cdr: ChangeDetectorRef, private router: Router, private _toastr: ToastrService, public _service: CompanyService, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any }
-    , public fb: FormBuilder) { }
+    , public fb: FormBuilder, public deviceInfo: ActionService) { }
 
   ngOnInit() {
     this.companyForm = this.fb.group({
@@ -83,6 +84,9 @@ export class AddCompanyComponent {
   }
   removeControl(controlName: string): void {
     this.companyForm.removeControl(controlName);
+  }
+  whatsappCall(rowCode: any = null) {
+    this.deviceInfo.epicFunction('WHATSAPP', rowCode)
   }
   getInvalidControls(): string[] {
     const invalidControls = [];

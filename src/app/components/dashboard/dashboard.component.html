@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div *ngIf="userType == 2" class="row brics_row">
+    <!-- <div *ngIf="userType == 2" class="row brics_row">
         <div class="tile_stats_count blue_tiles"><span class="count_top"><i class="mdi mdi-cash-multiple"></i>
                 {{"Today Collect Money"|translate}}</span>
             <div class="count"><i
@@ -59,7 +59,7 @@
                 {{"Available Balance"|translate}}</span>
             <div class="count">{{memberDashboardtData?.member_balance}}</div>
         </div>
-    </div>
+    </div> -->
 
     <div *ngIf="userType == 3" class="row brics_row">
         <div class="tile_stats_count blue_tiles">
@@ -84,8 +84,9 @@
     <app-superadmin-dashboard *ngIf="userType == 0"></app-superadmin-dashboard>
 
     <app-admin-dashboard *ngIf="userType == 1"></app-admin-dashboard>
-
-    <app-member-dashboard *ngIf="userType == 2"></app-member-dashboard>
+    <ng-container *ngIf="userType == 2">        
+        <app-member-dashboard></app-member-dashboard>
+    </ng-container>
 
     <app-user-dashboard *ngIf="userType == 3"></app-user-dashboard>
 

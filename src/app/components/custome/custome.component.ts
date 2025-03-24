@@ -30,7 +30,8 @@ export class CustomeComponent {
   filteredDataarray: any[] = [];
   loader = false;
   user_type: any;
-
+  company_plan: any;
+  isDemo = false;
   constructor(public _customActionService: CustomActionsService,
     public _service: CustomerService,
     public toaster: ToastrService
@@ -38,11 +39,16 @@ export class CustomeComponent {
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
+    const companydata: any = localStorage.getItem('AfterLoginData');
+    const loginData = JSON.parse(companydata);
+    this.company_plan = loginData?.data?.company?.plan;
+    // this.company_plan = "demo";
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
       this.user_type = userData.user_type;
     }
+
     this.getCustomerList();
   }
 
@@ -55,6 +61,11 @@ export class CustomeComponent {
       if (response && Array.isArray(response.data)) {
         this.customerData = response.data;
         this.filteredDataarray = this.customerData;
+        if (this.company_plan == 'demo' && this.customerData.length > 9) {
+          this.isDemo = true;
+        } else {
+          this.isDemo = false;
+        }
         this.loader = false;
       }
     }, error => {

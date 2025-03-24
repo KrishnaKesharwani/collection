@@ -93,6 +93,15 @@ export class PaidDataEntryComponent {
           deposit_type: 'debit',
           ...this.receivedAmountForm.value
         }
+        if (obj.select_date instanceof Date) {
+          const selectDate = obj.select_date;
+          obj.select_date = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'Asia/Kolkata',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          }).format(selectDate);
+        }
         this._service.collectDepositMoney(obj).subscribe((data: any) => {
           this._toastr.success(data.message, "Success");
 
@@ -125,6 +134,17 @@ export class PaidDataEntryComponent {
           loan_id: this.loan_id,
           ...this.receivedAmountForm.value
         }
+        if (obj.select_date instanceof Date) {
+          const selectDate = obj.select_date;
+          obj.select_date = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'Asia/Kolkata',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          }).format(selectDate);
+        }
+        // debugger;
+        console.log('Passign Object ',obj);
         this._service.collectMoney(obj).subscribe((data: any) => {
           this._toastr.success(data.message, "Success");
           this.receivedAmountForm.reset();
@@ -150,6 +170,17 @@ export class PaidDataEntryComponent {
           deposit_type: 'credit',
           ...this.receivedAmountForm.value
         }
+        if (obj.select_date instanceof Date) {
+          const selectDate = obj.select_date;
+          obj.select_date = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'Asia/Kolkata',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          }).format(selectDate);
+        }
+        // debugger;
+        // console.log('Passign Object Deposit',obj);
         this._service.collectDepositMoney(obj).subscribe((data: any) => {
           this._toastr.success(data.message, "Success");
 

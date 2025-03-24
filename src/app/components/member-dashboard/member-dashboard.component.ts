@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { DailyCollectionService } from 'src/app/services/dailyCollection/daily-collection.service';
+import { SuperAdminDashboardService } from 'src/app/services/dashboard/super-admin-dashboard.service';
 import { MemberDashboardService } from 'src/app/services/memberDashboard/member-dashboard.service';
 
 @Component({
@@ -18,8 +19,10 @@ export class MemberDashboardComponent {
   attended_customer = 0;
   memberDepositData: any[] = [];
   loading: boolean = false;
+  memberDashboardtBricsData: any;
   constructor(public _service: MemberDashboardService,
-    public _memberService: DailyCollectionService, public toaster: ToastrService) { }
+    public _memberService: DailyCollectionService, public toaster: ToastrService,
+    public _bricsService: SuperAdminDashboardService) { }
 
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
@@ -28,6 +31,7 @@ export class MemberDashboardComponent {
       this.company_id = userData.company_id;
       this.member_id = userData.member_id;
     }
+    this.getMemberDashboardData();
     this.getMemberCollection();
     // this.getDepsitForMember();
   }
@@ -54,7 +58,20 @@ export class MemberDashboardComponent {
       this.loader = false;
     });
   }
-
+  getMemberDashboardData() {
+    // alert('Function Call');
+    this._bricsService.dashboardMember().subscribe((response: any) => {
+      if (response) {
+        this.memberDashboardtBricsData = [];
+        this.memberDashboardtBricsData = response.data;
+        // alert(response.data?.today_collection);
+        // console.log('Member Response Data', response.data);
+        // console.log('Member Data', this.memberDashboardtData);
+      }
+    }, error => {
+      this.toaster.error(error.massage, 'Error')
+    });
+  }
 
   // getDepsitForMember() {
   //   this.loader = true;

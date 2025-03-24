@@ -48,7 +48,7 @@
                         field="Loan Status" [form]="providerLoanForm" [key]="'loan_status'"></app-dropdwon>
                 </div>
                 <div class="col-sm-4 col-lg-4 col-xs-12">
-                    <app-dropdwon [optionArray]="dropdownService.status" *ngIf="providerLoanForm"
+                    <app-dropdwon [optionArray]="dropdownService.statusFixed" *ngIf="providerLoanForm"
                         [form]="providerLoanForm" [key]="'status'" field="Status"></app-dropdwon>
                 </div>
                 <div class="col-sm-12">
@@ -60,7 +60,7 @@
                         <label class="m-0">Documents</label>
                     </div>
                     <div class="fileupload file_upload_block">
-                        <input type="file" maxlength="6" accept="'image/png, image/gif, image/jpeg'" multiple
+                        <input type="file" maxlength="6" [accept]="'image/png, image/gif, image/jpeg'" multiple
                             (change)="onFileSelected($event)" />
                     </div>
                     <div class="global_details_image_container" *ngIf="base64Images.length > 0">

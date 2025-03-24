@@ -57,7 +57,7 @@ export class ProviderLoanComponent {
       end_date: ['', Validators.required],
       details: [''],
       loan_status: [''],
-      status: [''],
+      status: ['active'],
       document: ['']
     });
 

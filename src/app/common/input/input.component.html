@@ -3,8 +3,16 @@
     <input matInput *ngIf="!isDateField" [disabled]="disabled" [required]="isRequired" [formControl]="control"
         [readonly]="readonly">
     <ng-container *ngIf="isDateField">
-        <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)" class="datepicker_text"
-            [disabled]="disabled" [required]="isRequired" [formControl]="control" />
+        <input [max]="maxDate" matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)"
+            class="datepicker_text" [disabled]="disabled" [required]="isRequired" [formControl]="control" />
+        <!-- 
+        <input matInput *ngIf="!upComing" [matDatepicker]="picker" (dateChange)="onDateChange($event)"
+            class="datepicker_text" [disabled]="disabled" [required]="isRequired" [formControl]="control" /> -->
+
+        <!-- <input *ngIf="upComing" [max]="maxDate" matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)"
+            class="datepicker_text" [disabled]="disabled" [required]="isRequired" [formControl]="control" />
+        <input *ngIf="!upComing" matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)"
+            class="datepicker_text" [disabled]="disabled" [required]="isRequired" [formControl]="control" /> -->
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </ng-container>

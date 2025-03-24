@@ -1,58 +1,83 @@
-<div class="card shadow dash-cardbox">
-    <div class="card-header">
-        <div class="row align-items-center">
-            <div class="col col-sm-3 pl-1">
-                <h3 class="mb-0">{{"Collection List"|translate}}</h3>
-            </div>
-            <div class="col p-0 head_details">
-                <div class="total_block bg-success mr-2"><span>{{"Collect
-                        Amount"|translate}}</span><b><span >{{collect_amount}}</span></b>
-                </div>
-                <div class="total_block bg-warning mr-2"><span>{{"Attend
-                        Customer"|translate}}</span><b>{{attended_customer}}</b>
-                </div>
-                <!-- <div class="total_block bg-primary"><span>Total Customer</span><b>{{total_customer}}</b></div> -->
+<div class="list-containner">
+    <div class="row brics_row">
+        <!-- <h2>{{memberDashboardtBricsData | json}}</h2> -->
+        <div class="tile_stats_count blue_tiles"><span class="count_top"><i class="mdi mdi-cash-multiple"></i>
+                {{"Today Collect Money"|translate}}</span>
+            <div class="count"><i
+                    class="mdi mdi-currency-inr"></i><span>{{memberDashboardtBricsData?.today_collection}}</span></div>
+        </div>
+        <div class="tile_stats_count orange_tiles"><span class="count_top"><i class="mdi mdi-cash-100"></i>
+                {{"Monthly Collect Money"|translate}}</span>
+            <div class="count"><i
+                    class="mdi mdi-currency-inr"></i><span>{{memberDashboardtBricsData?.monthly_collection}}</span>
             </div>
         </div>
+        <div class="tile_stats_count purple_tiles"><span class="count_top">
+                <i class="mdi mdi-account-group-outline"></i>
+                {{"Assign Customer"|translate}}</span>
+            <div class="count res_txtsmall">{{memberDashboardtBricsData?.assigned_customers}}</div>
+        </div>
+        <div class="tile_stats_count green_tiles"><span class="count_top"><i class="mdi mdi-cash"></i>
+                {{"Available Balance"|translate}}</span>
+            <div class="count">{{memberDashboardtBricsData?.member_balance}}</div>
+        </div>
     </div>
-    <table class="table align-items-center table-flush mydata-table">
-        <thead class="thead-light">
-            <tr>
-                <th class="col">{{"Customer Name"|translate}}</th>
-                <th class="col">{{"Mobile"|translate}}</th>
-                <th class="col">{{"Amount"|translate}}</th>
-                <th class="col">{{"Date & Time"|translate}}</th>
-                <th class="col status_col">{{"Type"|translate}}</th>
-                <th class="col status_col">{{"Action"|translate}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngIf="loader">
-                <td class="norecord_col" colspan="6">
-                    <app-page-loader></app-page-loader>
-                </td>
-            </tr>
-            <tr *ngIf="collectionData?.length == 0 && !loader">
-                <td class="norecord_col" colspan="6">
-                    <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
-                </td>
-            </tr>
-            <tr *ngFor="let item of collectionData">
-                <td class="col" [attr.data-name]="'Customer Name' | translate">{{item?.customer_name}}</td>
-                <td class="col" [attr.data-name]="'Mobile' | translate">{{item?.customer_mobile}}</td>
-                <td class="col" [attr.data-name]="'Amount' | translate"><i class="mdi mdi-currency-inr mr-1"></i>
-                    <span appDigits>{{item?.amount}}</span>
-                </td>
-                <td class="col" [attr.data-name]="'Last Received' | translate">{{item?.receive_date}}
-                    {{item?.receive_time}}</td>
-                <td class="col text-center capatalise_col" [attr.data-name]="'Type' | translate">
-                    {{item?.collection_type}}</td>
-                <td class="col text-center" [attr.data-name]="'Received Type' | translate">
-                    <div class="badge text-white capatalise_col"
-                        [ngClass]="{'bg-danger': item?.received_type == 'debit', 'bg-success': item?.received_type == 'credit'}">
-                        {{item?.received_type}}</div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="card shadow dash-cardbox">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col col-sm-3 pl-1">
+                    <h3 class="mb-0">{{"Collection List"|translate}}</h3>
+                </div>
+                <div class="col p-0 head_details">
+                    <div class="total_block bg-success mr-2"><span>{{"Collect
+                            Amount"|translate}}</span><b><span>{{collect_amount}}</span></b>
+                    </div>
+                    <div class="total_block bg-warning mr-2"><span>{{"Attend
+                            Customer"|translate}}</span><b>{{attended_customer}}</b>
+                    </div>
+                    <!-- <div class="total_block bg-primary"><span>Total Customer</span><b>{{total_customer}}</b></div> -->
+                </div>
+            </div>
+        </div>
+        <table class="table align-items-center table-flush mydata-table">
+            <thead class="thead-light">
+                <tr>
+                    <th class="col">{{"Customer Name"|translate}}</th>
+                    <th class="col">{{"Mobile"|translate}}</th>
+                    <th class="col">{{"Amount"|translate}}</th>
+                    <th class="col">{{"Date & Time"|translate}}</th>
+                    <th class="col status_col">{{"Type"|translate}}</th>
+                    <th class="col status_col">{{"Action"|translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="loader">
+                    <td class="norecord_col" colspan="6">
+                        <app-page-loader></app-page-loader>
+                    </td>
+                </tr>
+                <tr *ngIf="collectionData?.length == 0 && !loader">
+                    <td class="norecord_col" colspan="6">
+                        <app-no-record-found type="table" notext="No collection found"></app-no-record-found>
+                    </td>
+                </tr>
+                <tr *ngFor="let item of collectionData">
+                    <td class="col" [attr.data-name]="'Customer Name' | translate">{{item?.customer_name}}</td>
+                    <td class="col" [attr.data-name]="'Mobile' | translate">{{item?.customer_mobile}}</td>
+                    <td class="col" [attr.data-name]="'Amount' | translate"><i class="mdi mdi-currency-inr mr-1"></i>
+                        <span appDigits>{{item?.amount}}</span>
+                    </td>
+                    <td class="col" [attr.data-name]="'Last Received' | translate">{{item?.receive_date}}
+                        {{item?.receive_time}}</td>
+                    <td class="col text-center capatalise_col" [attr.data-name]="'Type' | translate">
+                        {{item?.collection_type}}</td>
+                    <td class="col text-center" [attr.data-name]="'Received Type' | translate">
+                        <div class="badge text-white capatalise_col"
+                            [ngClass]="{'bg-danger': item?.received_type == 'debit', 'bg-success': item?.received_type == 'credit'}">
+                            {{item?.received_type}}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

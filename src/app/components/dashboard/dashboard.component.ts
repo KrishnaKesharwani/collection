@@ -20,9 +20,11 @@ export class DashboardComponent {
   ngOnInit() {
     const data = localStorage.getItem('CurrentUser');
     this.localStorageData = data;
+    console.log('Call Oninit Page', this.localStorageData);
     this.setApidata(this.localStorageData);
   }
   setApidata(data: any) {
+    // debugger;
     if (data) {
       const userData = JSON.parse(data);
       this.userType = userData.user_type;
@@ -35,7 +37,9 @@ export class DashboardComponent {
         this.getDashboardBricsData('basecompany-dashboard');
         // this.router.navigate(['/admin_dashboard']);
       } else if (this.userType == 2) {
-        this.getDashboardBricsData('member-dashboard');
+        console.log('Call Member Page', this.userType);
+        // this.getMemberDashboardData();
+        // this.getDashboardBricsData('member-dashboard');
       } else if (this.userType == 3) {
         this.getDashboardBricsData('customer-dashboard');
         // this.router.navigate(['/user_dashboard']);
@@ -54,7 +58,7 @@ export class DashboardComponent {
         } else if (api_name == 'basecompany-dashboard') {
           this.basecompanyDashboardtData = response.data;
         } else if (api_name == 'member-dashboard') {
-          this.memberDashboardtData = response.data;
+          // this.memberDashboardtData = response.data;
         } else if (api_name == 'customer-dashboard') {
           this.customerDashboardtData = response.data;
         }
@@ -74,15 +78,17 @@ export class DashboardComponent {
   //   });
   // }
 
-  // getMemberDashboardData() {
-  //   this._service.dashboardMember().subscribe((response: any) => {
-  //     if (response) {
-  //       this.memberDashboardtData = response.data;
-  //     }
-  //   }, error => {
-  //     this.toaster.error(error.massage, 'Error')
-  //   });
-  // }
+  getMemberDashboardData() {
+    this._service.dashboardMember().subscribe((response: any) => {
+      if (response) {
+        this.memberDashboardtData = response.data;
+        console.log('Member Response Data', response.data);
+        console.log('Member Data', this.memberDashboardtData);
+      }
+    }, error => {
+      this.toaster.error(error.massage, 'Error')
+    });
+  }
 
   // getCustomerDashboardData() {
   //   this._service.dashboardCustomer().subscribe((response: any) => {

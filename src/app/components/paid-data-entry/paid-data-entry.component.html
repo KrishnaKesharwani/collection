@@ -82,7 +82,7 @@
             <div class="addrow">
                 <form focusInvalidInput [formGroup]="receivedAmountForm">
 
-                    <app-input [isDateField]="true" label="Date" [(value)]="select_date" [isRequired]="true"
+                    <app-input [isDateField]="true" [upComing]=true label="Date" [(value)]="select_date" [isRequired]="true"
                         [className]="'bottom_error_msg'" [form]="receivedAmountForm" [key]="'select_date'"
                         [displayMsg]="'Date is required'"></app-input>
 
@@ -99,7 +99,7 @@
                         <button mat-raised-button class="btn btn-danger global_submit_btn" (click)="creditAmount()">
                             <app-button-loader *ngIf="loadingPlus"></app-button-loader>
                             <i class="mdi mdi-plus mr-2" *ngIf="!loadingPlus"></i>
-                            <span>{{"Credit"|translate }} </span>
+                            <span>{{"Credit"|translate }}</span>
                         </button>
                     </div>
                 </form>
@@ -117,7 +117,7 @@
                 </div>
                 <ng-container *ngIf="!loading">
                     <div class="entry_row" *ngFor="let item of  depositData">
-                        <div class="col date">{{item.created_at}} </div>
+                        <div class="col date">{{item.action_date}} </div>
                         <div class="col balance">{{item.balance}}</div>
                         <div class="col amount" *ngIf="item.action_type == 'credit'">
                             <span class="color-green">{{item.amount}}</span>
@@ -145,7 +145,7 @@
                 </div>
                 <ng-container *ngIf="!loading">
                     <div class="entry_row" *ngFor="let item of  loanData">
-                        <div class="col date">{{item.created_at}} </div>
+                        <div class="col date">{{item.receive_date}} </div>
                         <div class="col balance">{{item.balance}}</div>
                         <div class="col amount">
                             <span class="color-green">{{item.amount}}</span>

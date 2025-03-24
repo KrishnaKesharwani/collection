@@ -24,6 +24,7 @@ export class CommonComponentService {
   loanliststatus = ['completed', 'paid', 'approved', 'pending', 'cancelled'];
   depositrequest = ['pending', 'approved'];
   status = ['active', 'inactive'];
+  statusFixed = ['active'];
   debit_type = ['monthly', 'money back'];
   plan = ['monthly', 'quarterly', 'half yerly', 'yearly', 'demo'];
   offerType = ['offers', 'schemes'];
