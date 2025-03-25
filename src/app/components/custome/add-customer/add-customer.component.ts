@@ -64,7 +64,7 @@ export class AddCustomerComponent {
 
     // this.dropdownService.setOptions('status', ['Active', 'Inactive']);
     this.company_id = this.company_id;
-    this.customer_id = this.dataa.data.id;
+    this.customer_id = this.dataa?.data?.id;
     if (this.dataa?.data) {
       this.customerForm.patchValue({
         ...this.dataa.data,

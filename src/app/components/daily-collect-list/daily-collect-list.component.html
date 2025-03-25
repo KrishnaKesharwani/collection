@@ -95,7 +95,7 @@
         <!-- <app-no-record-found [type]="'page'" [notext]="'Admin not assign any loan & collection...'"></app-no-record-found> -->
         <div class="assign_customer_container" *ngIf="!loading">
             <ng-container
-                *ngIf="!filteredDataarray?.length && !memberDepositData?.length || filteredDataarray == undefined">
+                *ngIf="!filteredDataarray?.length && !memberDepositData?.length && filteredDataarray == undefined">
                 <app-no-record-found [type]="'page'"
                     [notext]="'Admin not assign any loan & collection...'"></app-no-record-found>
             </ng-container>
