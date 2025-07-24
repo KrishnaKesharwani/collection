@@ -604,6 +604,11 @@ mat-option {
         width: 33.3%;
     }
 
+    .col-sm-2 {
+        padding: 0px 10px;
+        width: 16.66666667%;
+    }
+
     .col-sm-6 {
         width: 50%;
         padding: 0px 10px;
@@ -1616,11 +1621,13 @@ app-no-record-found {
         max-height: 150px;
     }
 }
+
 .file_upload_header {
     font-size: 12px;
     color: #666666;
     margin-bottom: 5px;
 }
+
 .alert_popup {
     position: fixed;
     left: 15px;
@@ -1904,6 +1911,47 @@ mark {
     //         display: inline-block;
     //     }
     // }
+}
+
+.headwith_add {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .right_addbtn_withsearch {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+
+        .search-box {
+            background: #ffffff;
+            border: solid thin #d7d1d1;
+            margin-right: 10px;
+        }
+
+        .create_header_btn {
+            margin: 0px;
+            background: var(--theme-primary-color);
+            color: #ffffff !important;
+
+            .mdc-button__label {
+                display: flex;
+                align-items: center;
+
+                i {
+                    font-size: 22px;
+                    margin-right: 5px;
+                }
+
+                .button-text {
+                    display: inline-table;
+                    align-items: center;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
 }
 
 .search_withaddbtn {

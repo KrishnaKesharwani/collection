@@ -1,3 +1,9 @@
+Basic command
+ng g c components/home
+ng g c components/home --skip-import 
+ng g m components/home --skip-import
+ng g m components/home/home-routing --flat
+
 Money Collection Setup Requirements:
 ====================================
 

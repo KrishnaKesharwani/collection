@@ -10,7 +10,6 @@ import { CommonComponentsModule } from 'src/app/common/common-components.module'
 import { ReactiveFormsModule } from '@angular/forms';
 
 
-
 @NgModule({
   declarations: [OffersComponent, AddOfferComponent, ViewOfferComponent],
   imports: [

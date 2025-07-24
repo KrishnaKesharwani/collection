@@ -8,25 +8,24 @@
                             <h3 class="mb-0">{{"VC List"|translate}}</h3>
                         </div>
                         <div class="col text-right pr-1 datewith_search_block">
-                            <div class="head_details">
-                                <!-- <div class="total_block bg-warning mr-2"><span>Daily
-                                        Amount</span><b>1000</b>
-                                </div> -->
-                                <div class="total_block bg-primary mr-2">
-                                    <span>{{"Total VC"|translate}}</span><b>1000</b>
-                                </div>
-                                <div class="total_block bg-success"><span>{{"Total
-                                        Customer"|translate}}</span><b>1000</b></div>
-                            </div>
-                            <div class="listsearch-topblock search_withaddbtn">
+                            <div class="listsearchwith_ddl_topblock search_withaddbtn">
+                                <mat-form-field class="global_dropdown global_ddl_m_p_0" appearance="outline">
+                                    <mat-label>Filter By Status</mat-label>
+                                    <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+                                    <mat-select [formControl]="selectedStatus"
+                                        (selectionChange)="onStatusChange($event)">
+                                        <mat-option [value]="'active'">Active</mat-option>
+                                        <mat-option [value]="'inactive'">Inactive</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
                                 <div class="search-box">
                                     <input type="text" placeholder="Search" (keyup)="searchTable($event)"
                                         class="searchtxt" />
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                                 <div class="right_addbtn">
-                                    <button data-toggle="modal" class="btn btn-success btn-sm create_header_btn"
-                                        mat-raised-button>
+                                    <button (click)="openDialogEditDetails('new')"
+                                        class="btn btn-success btn-sm create_header_btn" mat-raised-button>
                                         <i class="mdi mdi-account-plus-outline"></i>
                                         <span class="btn-txt button-text">{{"Add"|translate}}</span>
                                     </button>
@@ -34,12 +33,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="head_details">
+
+                        <div class="total_block bg-primary mr-2">
+                            <span>{{"Total VC"|translate}}</span><b>1000</b>
+                        </div>
+                        <div class="total_block bg-success"><span>{{"Total Customer"|translate}}</span><b>1000</b></div>
+                        <div class="total_block bg-warning mr-2"><span>Pending
+                                Amount</span><b>100000</b>
+                        </div>
+                        <div class="total_block bg-danger mr-2"><span>Pending Customer</span><b>20</b>
+                        </div>
+                    </div>
                 </div>
                 <table class="table align-items-center table-flush mydata-table">
                     <thead class="thead-light">
                         <tr>
                             <th class="col s_no">{{"S.No."|translate}}</th>
-                            <th class="col sorting_apply">
+                            <th class="col sorting_apply name_col">
                                 <span>{{"VC Name"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('name');">{{ isAsc ?
@@ -47,7 +58,7 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col sorting_apply">
+                            <th class="col sorting_apply type_col">
                                 <span>{{"Type"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('type');">{{ isAsc ?
@@ -55,7 +66,7 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col sorting_apply days_time_slot_col text-center">
+                            <th class="col sorting_apply endamt_col text-center">
                                 <span>{{"End Amount"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('end_amount');">{{ isAsc ?
@@ -63,7 +74,7 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col sorting_apply days_time_slot_col text-center">
+                            <th class="col sorting_apply date_col">
                                 <span>{{"Start Date"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('total_customer');">{{ isAsc ?
@@ -71,24 +82,32 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col sorting_apply days_time_slot_col text-center">
-                                <span>{{"Total Customer"|translate}}</span>
+                            <th class="col sorting_apply instalment_col text-center">
+                                <span>{{"Instalment"|translate}}</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('instalment');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col sorting_apply total_col text-center">
+                                <span>{{"Total"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('total_customer');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col days_time_slot_col sorting_apply">
-                                <span>{{"Paid Customer"|translate}}</span>
+                            <th class="col paid_col sorting_apply text-center">
+                                <span>{{"Paid"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('paid_customer');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col sorting_apply days_time_slot_col text-center">
-                                <span>{{"Pending Coustomer"|translate}}</span>
+                            <th class="col sorting_apply pending_col text-center">
+                                <span>{{"Pending"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('pending_customer');">{{ isAsc ?
                                         'north' : 'south'
@@ -100,25 +119,27 @@
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td class="norecord_col" colspan="9">
+                            <td class="norecord_col" colspan="10">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
                         <tr *ngIf="filteredDataarray?.length == 0 && !loader">
-                            <td class="norecord_col" colspan="9">
-                                <app-no-record-found type="table" notext="No vc availbale."></app-no-record-found>
+                            <td class="norecord_col" colspan="10">
+                                <app-no-record-found type="table" notext="No vc available."></app-no-record-found>
                             </td>
                         </tr>
                         <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                             <ng-container *ngFor="let item of filteredDataarray; let i=index;">
                                 <tr class="received_row">
                                     <td class="col s_no" data-name="S.No.">{{i+1}}</td>
-                                    <td class="col" data-name="Backup Type">
-                                        Customer List
-                                    </td>
-                                    <td class="col" data-name="Reasons">{{item.active}}</td>
-                                    <td class="col text-center" data-name="Total">{{item.inactive}}</td>
-                                    <td class="col text-center" data-name="Backup Date">{{item.date}}</td>
+                                    <td class="col" data-name="Vc Name"></td>
+                                    <td class="col" data-name="Type"></td>
+                                    <td class="col" data-name="End Amount">{{item.active}}</td>
+                                    <td class="col text-center" data-name="Start Date">{{item.inactive}}</td>
+                                    <td class="col text-center" data-name="Instalment">{{item.date}}</td>
+                                    <td class="col text-center" data-name="Total">{{item.date}}</td>
+                                    <td class="col text-center" data-name="Paid">{{item.date}}</td>
+                                    <td class="col text-center" data-name="Pending">{{item.date}}</td>
                                     <td class="col action_col" data-name="Action">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"

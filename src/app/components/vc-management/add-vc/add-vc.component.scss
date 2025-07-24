@@ -1,0 +1,28 @@
+.customer_data_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0px;
+    width: 100%;
+    .image_block {
+        margin-right: 5px;
+        padding: 2px;
+        box-shadow: var(--app-brand-shadow);
+        display: inline-flex;
+        align-items: center;
+        border-radius: 5px;
+        width: 50px;
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+        }
+    }
+    .other_details {
+        display: flex;
+        align-items: center;
+        line-height: 18px;
+        white-space: nowrap;
+        margin: 0px 10px;
+    }
+}

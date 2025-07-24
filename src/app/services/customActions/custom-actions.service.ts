@@ -48,4 +48,12 @@ export class CustomActionsService {
 
     return this.filteredDataarrayForSearch;
   }
+
+  // upcomig code
+  // removeVcMember(data: any) {
+  //   const index = this.filteredDataarray.findIndex(item => item.id === data.id);
+  //   if (index !== -1) {
+  //     this.filteredDataarray.splice(index, 1);
+  //   }
+  // }
 }

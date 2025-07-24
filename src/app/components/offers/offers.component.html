@@ -1,5 +1,23 @@
 <div class="list-containner">
     <div class="card shadow dash-cardbox">
+        <!-- <ng-container *ngFor="let item of getserverData; let i=index;">
+            <div class="card-body">
+                <p>{{item.title}}</p>
+            </div>
+        </ng-container>
+        <form focusInvalidInput [formGroup]="loginForm">
+            <app-input [isDateField]="false" label="User Name" [(value)]="username" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="loginForm" [key]="'username'"
+                [displayMsg]="'User name is required'"></app-input>
+            <app-input [isDateField]="false" label="Password" [(value)]="password" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="loginForm" [key]="'password'"
+                [displayMsg]="'Password is required'"></app-input>
+            <div class="form-group button_block">
+                <button type="submit" class="btn btn-primary global_submit_btn" mat-flat-button (click)="submitLogin()"
+                    [disabled]="loginForm.invalid">Submit</button>
+            </div>
+        </form> -->
+
         <div class="card-header">
             <div class="row align-items-center">
                 <div class="col col-sm-4 pl-1">

@@ -7,6 +7,9 @@ import Swal from 'sweetalert2';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { OffersService } from 'src/app/services/offers/offers.service';
+import { Form, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { InterviewService } from 'src/app/services/interview/interview.service';
 
 @Component({
   selector: 'app-offers',
@@ -14,6 +17,11 @@ import { OffersService } from 'src/app/services/offers/offers.service';
   styleUrls: ['./offers.component.scss']
 })
 export class OffersComponent {
+
+  loginForm!: FormGroup;
+  username: string = '';
+  password: string = '';
+
   offer_modalaction: any;
   usertype: any;
   company_id: any;
@@ -22,9 +30,15 @@ export class OffersComponent {
   loader = false;
   offerListData: any[] = [];
 
-  constructor(public _service: OffersService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
+  constructor(private interviewservice: InterviewService, public fb: FormBuilder, public _service: OffersService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
 
   ngOnInit() {
+
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
     const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
@@ -33,6 +47,21 @@ export class OffersComponent {
     }
 
     this.getOfferList();
+  }
+
+  getserverData: any;
+  submitLogin() {
+    this.loginForm.markAllAsTouched();
+    if (this.loginForm?.valid) {
+      this.interviewservice.getPosts().subscribe((data: any) => {
+        this.getserverData = data.slice(8, 10); 
+        console.log('Form submitted:', this.getserverData);
+      }, error => {
+        console.error('Error fetching posts:', error);
+      });
+    } else {
+      console.log('Form is invalid');
+    }
   }
 
   getOfferList() {

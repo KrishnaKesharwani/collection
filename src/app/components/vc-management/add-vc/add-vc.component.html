@@ -1,1 +1,176 @@
-<p>add-vc works!</p>
+<div class="dialoge_header">
+    <div class="left_text" *ngIf="!vcDetailsId">{{dataa.title |translate}}</div>
+    <div class="left_text" *ngIf="vcDetailsId">{{dataa.title |translate}}</div>
+    <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container full_height_cover">
+    <form focusInvalidInput [formGroup]="vcDetailsForm">
+        <div class="modal_insert">
+            <div class="row">
+                <div class="col-sm-4">
+                    <app-input [isDateField]="false" label="Vc Name" [(value)]="vcname" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="vcDetailsForm" [key]="'vcname'"
+                        [displayMsg]="'VC name is required'"></app-input>
+                </div>
+                <div class="col-sm-2">
+                    <app-dropdwon [optionArray]="dropdownService.vcType" *ngIf="vcDetailsForm" [form]="vcDetailsForm"
+                        [key]="'type'" field="Type"></app-dropdwon>
+                </div>
+                <div class="col-sm-2">
+                    <app-input [isDateField]="false" label="Total Month" [(value)]="total_month" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="vcDetailsForm" [key]="'total_month'"
+                        [displayMsg]="'Required'"></app-input>
+                </div>
+                <div class="col-sm-2">
+                    <app-input [isDateField]="false" label="Total Members" [(value)]="total_members" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="vcDetailsForm" [key]="'total_members'"
+                        [displayMsg]="'Required'"></app-input>
+                </div>
+                <div class="col-sm-2">
+                    <app-input [isDateField]="false" label="Final Amount" [(value)]="final_amount" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="vcDetailsForm" [key]="'final_amount'"
+                        [displayMsg]="'Required'"></app-input>
+                </div>
+                <div class="col-sm-3">
+                    <app-input [isDateField]="false" label="Instalment Amount" [(value)]="instalment_amount"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="vcDetailsForm"
+                        [key]="'instalment_amount'" [displayMsg]="'Required'"></app-input>
+                </div>
+                <div class="col-sm-3">
+                    <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="vcDetailsForm" [key]="'start_date'"
+                        [displayMsg]="'Start date is required'"></app-input>
+                </div>
+                <div class="col-sm-3">
+                    <app-input [isDateField]="true" label="End Date" [(value)]="end_date" [isRequired]="true"
+                        [className]="'bottom_error_msg'" [form]="vcDetailsForm" [key]="'end_date'"
+                        [displayMsg]="'End date is required'"></app-input>
+                </div>
+                <div class="col-sm-3 col-lg-4">
+                    <app-dropdwon [optionArray]="dropdownService.status" *ngIf="vcDetailsForm" [form]="vcDetailsForm"
+                        [key]="'status'" field="Status"></app-dropdwon>
+                </div>
+                <div class="col-sm-12">
+                    <app-textarea label="Details" [(value)]="details" [isRequired]="false"
+                        [className]="'bottom_error_msg'" [form]="vcDetailsForm" [key]="'details'"></app-textarea>
+                </div>
+                <div class="col-sm-12">
+                    <div class="file_upload_block">
+                        <label class="m-0">VC Banner Image</label>
+                        <app-fileupload [form]="vcDetailsForm" class="fileupload_image_fullwidth mb-0"
+                            [accept]="'image/png, image/gif, image/jpeg'" [imageAadhar]="true"
+                            [imageUrl]="vcDetailsForm.value['vc_image']" [uploadType]="'fullwidth'"
+                            [imageCaption]="'Please upload VC photo.'" [formcontrolname]="'vc_image'"
+                            formControlName="vc_image" name="vc_image"
+                            (fileChange)="VcImageChange($event)"></app-fileupload>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="popup_table_block">
+                        <div class="headwith_add">
+                            <div class="main_table_head">{{"Selected Vc Members"|translate}} {{customerListData.length}}
+                            </div>
+                            <div class="right_addbtn_withsearch">
+                                <div class="search-box">
+                                    <input type="text" placeholder="Search" (keyup)="searchTable($event)"
+                                        class="searchtxt" />
+                                    <i class="mdi mdi-magnify"></i>
+                                </div>
+                                <button (click)="openDialogAddCustomer()"
+                                    class="btn btn-success btn-sm create_header_btn" mat-raised-button>
+                                    <i class="mdi mdi-account-plus-outline"></i>
+                                    <span class="btn-txt button-text">{{"Add"|translate}}</span>
+                                </button>
+                            </div>
+                        </div>
+                        <table class="table table-bordered table-responsive popup_table bg-white more_table">
+                            <thead>
+                                <tr>
+                                    <th>{{"Profile"|translate}}</th>
+                                    <th>{{"Customer No."|translate}}</th>
+                                    <th>{{"Customer Name"|translate}}</th>
+                                    <th>{{"Contact"|translate}}</th>
+                                    <th>{{"Paid Amount"|translate}}</th>
+                                    <th>{{"Pending"|translate}}</th>
+                                    <th>{{"Instalment"|translate}}</th>
+                                    <th>{{"Status"|translate}}</th>
+                                    <th class="text-center">{{"Remove"|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let customerdata of filteredDataarray">
+                                    <td class="col" [attr.data-name]="'Profile' | translate">
+                                        <div class="list_image_block "><img src="{{customerdata.image}}"
+                                                onerror="this.src='assets/imgs/default-pic.png';">
+                                        </div>
+                                    </td>
+                                    <td class="col" [attr.data-name]="'C.No.' | translate">{{customerdata?.customer_no}}
+                                    </td>
+                                    <td class="col" [attr.data-name]="'Customer Name' | translate">
+                                        {{customerdata.name}}</td>
+                                    <td class="col" [attr.data-name]="'Contact' | translate">
+                                        {{customerdata.mobile}}
+                                    </td>
+                                    <td class="text-right col" [attr.data-name]="'Paid Amount' | translate">100000.00
+                                    </td>
+                                    <td class="text-right col" [attr.data-name]="'Pending' | translate">10000.00</td>
+                                    <td class="text-right col" [attr.data-name]="'Instalment' | translate">10000.00
+                                        <!-- <span appDigits></span> -->
+                                    </td>
+                                    <td class="text-center col" [attr.data-name]="'Status' | translate"><span
+                                            class="badge bg-success text-white"
+                                            *ngIf="customerdata?.status == 'active'">{{customerdata?.status}}</span>
+                                        <span class="badge bg-danger text-white "
+                                            *ngIf="customerdata?.status == 'inactive'">{{customerdata?.status}}</span>
+                                    </td>
+                                    <td class="text-center col" [attr.data-name]="'Remove' | translate"
+                                        (click)="openDialogVcRemove(customerdata)"><span
+                                            class="btn btn-sm btn-danger btn_download"><i
+                                                class="mdi mdi-account-off-outline"></i></span></td>
+                                </tr>
+                                <tr *ngIf="filteredDataarray?.length == 0">
+                                    <td class="norecord_col" colspan="9">
+                                        <app-no-record-found type="table"
+                                            notext="No member available."></app-no-record-found>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <mat-form-field class="global_dropdown" appearance="outline">
+                        <mat-label>Customer List - {{customerListData.length}}</mat-label>
+                        <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+                        <mat-select formControlName="customer_id">
+                            <mat-option *ngFor="let customerdata of customerListData; let i =index"
+                                [value]="customerdata.id">
+                                <div class="customer_data_row">
+                                    <span class="image_block">
+                                        <img src="{{customerdata.image}}"
+                                            onerror="this.src='assets/imgs/default-pic.png';">
+                                    </span>
+                                    <span class="other_details">
+                                        {{customerdata?.name}} - {{customerdata?.mobile}} -
+                                        {{customerdata?.customer_no}}
+                                    </span>
+                                    <span class="badge bg-success text-white"
+                                        [ngClass]="customerdata.status == 'active' ? 'bg-success' : 'bg-danger'">{{customerdata.status}}</span>
+
+                                </div>
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>{{"Close"|translate}}</button>
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="submitVcDetails()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span *ngIf="!vcDetailsId">{{"Submit"|translate}}</span>
+        <span *ngIf="vcDetailsId">{{"Update"|translate}}</span>
+    </button>
+</div>

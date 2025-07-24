@@ -10,6 +10,10 @@ const routes: Routes = [
     pathMatch: "full",
   },
   {
+    path: 'interview',
+    loadChildren: () => import('./components/interview/interview.module').then(m => m.InterviewModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./authentication/login/login.module').then(m => m.LoginModule)
   },

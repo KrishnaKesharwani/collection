@@ -8,6 +8,7 @@ import { OffersService } from 'src/app/services/offers/offers.service';
 import { ChangeMemberComponent } from './change-member/change-member.component';
 import { ReceivedAmountComponent } from './received-amount/received-amount.component';
 import { AddVcComponent } from './add-vc/add-vc.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-vc-management',
@@ -23,7 +24,8 @@ export class VcManagementComponent {
   filteredDataarray: any[] = [];
   loader = false;
   offerListData: any[] = [];
-
+  selectedStatus = new FormControl('active');
+  
   constructor(public _service: OffersService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
 
   ngOnInit() {
@@ -32,13 +34,17 @@ export class VcManagementComponent {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
     }
-    this.getReportList();
+    this.getVcList('active');
   }
-
-  getReportList() {
+  onStatusChange(event: any): void {
+    const selectedValue = event.value;
+    this.getVcList(selectedValue);
+  }
+  getVcList(statuscall: any) {
     this.loader = true;
     let obj = {
-      company_id: this.company_id
+      company_id: this.company_id,
+      status: statuscall
     }
     this._service.getOfferList(obj).subscribe((data: any) => {
       this.offerListData = data.data;
@@ -58,7 +64,7 @@ export class VcManagementComponent {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        this.getReportList();
+          this.getVcList('active');
       }
     });
   }
@@ -74,7 +80,7 @@ export class VcManagementComponent {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        this.getReportList();
+        this.getVcList('active');
       }
     });
   }
@@ -82,14 +88,14 @@ export class VcManagementComponent {
     const dialogRef = this.dialog.open(AddVcComponent, {
       disableClose: true,
       data: {
-        title: 'Edit Details',
+        title: 'Edit VC Details',
         data: data
       },
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        this.getReportList();
+       this.getVcList('active');
       }
     });
   }
