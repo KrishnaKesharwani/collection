@@ -1,1 +1,80 @@
-<p>received-amount works!</p>
+<div class="dialoge_header">
+    <div class="left_text">{{'Receive VC Amount' | translate}}</div>
+    <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container small_popup full_height_cover">
+    <form focusInvalidInput [formGroup]="amountReceivedForm">
+        <div class="modal_insert">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <!-- <mat-form-field class="global_textbox_block" appearance="outline">
+                        <mat-label>Instalment Amount</mat-label>
+                        <input matInput required [disabled]="true" formControlName="instalment_amount"
+                            name="instalment_amount">
+                    </mat-form-field> -->
+                    <app-input [isDateField]="false" [disabled]=true label="Instalment Amount"
+                        [(value)]="instalment_amount" [isRequired]="true" [className]="'bottom_error_msg'"
+                        [form]="amountReceivedForm" [key]="'received_amount'"
+                        [displayMsg]="'Amount is required'"></app-input>
+                </div>
+                 <div class="col-sm-12">
+                    <mat-form-field class="global_dropdown" appearance="outline">
+                        <mat-label>Pending Customer - {{customerListData.length}}</mat-label>
+                        <mat-icon class="arrow_icon">keyboard_arrow_down</mat-icon>
+                        <mat-select formControlName="customer_id">
+                            <mat-option *ngFor="let customerdata of customerListData; let i =index"
+                                [value]="customerdata.id">
+                                <div class="customer_data_row">
+                                    <span class="image_block">
+                                        <img src="{{customerdata.image}}"
+                                            onerror="this.src='assets/imgs/default-pic.png';">
+                                    </span>
+                                    <span class="other_details">
+                                        {{customerdata?.name}} - {{customerdata?.mobile}} -
+                                        {{customerdata?.customer_no}}
+                                    </span>
+                                    <span class="badge bg-success text-white"
+                                        [ngClass]="customerdata.status == 'active' ? 'bg-success' : 'bg-danger'">{{customerdata.status}}</span>                                    
+                                </div>
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <app-dropdwon [optionArray]="dropdownService.receivedAmountType" (selectionChange)="onStatusChange($event)" *ngIf="amountReceivedForm"
+                        [form]="amountReceivedForm" [key]="'paidtype'" field="Amount Received Type"></app-dropdwon>
+                </div>
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <app-input [isDateField]="false" [disabled]=true label="Received Amount" [(value)]="received_amount"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="amountReceivedForm"
+                        [key]="'received_amount'" [displayMsg]="'Amount is required'"></app-input>
+                </div>
+                <div class="col-sm-12" *ngIf="selectedStatus != 'cash'">
+                    <div class="file_upload_block">
+                        <label class="m-0">Screen Shot</label>
+                        <app-fileupload [form]="amountReceivedForm" class="fileupload_image_fullwidth mb-0"
+                            [accept]="'image/png, image/gif, image/jpeg'" [imageAadhar]="false"
+                            [imageUrl]="amountReceivedForm.value['screenshots']" [uploadType]="'fullwidth'"
+                            [imageCaption]="'Please upload screenshot'" [formcontrolname]="'screenshots'"
+                            formControlName="screenshots" name="screenshots"
+                            (fileChange)="paidAmountImageChange($event)"></app-fileupload>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <mat-form-field class="global_textarea_block" appearance="outline">
+                        <mat-label>Details</mat-label>
+                        <textarea matInput formControlName="details" name="details"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>{{"Close"|translate}}</button>
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="saveDetails()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span>{{"Submit"|translate}}</span>
+    </button>
+</div>

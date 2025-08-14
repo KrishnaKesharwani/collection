@@ -86,7 +86,7 @@ export class HeaderComponent {
         this.planType = currentCompanyDataParse?.plan;
         setTimeout(() => {
           if (!this.companyRoughts.includes(this.currentUrl)) {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/interview']);
           }
         }, 1000);
       } else if (this.userType == 2) {

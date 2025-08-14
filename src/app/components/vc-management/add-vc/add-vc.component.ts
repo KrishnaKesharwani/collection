@@ -34,7 +34,7 @@ export class AddVcComponent {
   final_amount: string = '';
   total_members: string = '';
   details: string = '';
-
+  selectedStatus = "";
   loading: boolean = false;
   // loader = false;
 
@@ -50,7 +50,8 @@ export class AddVcComponent {
       this.user_type = userData.user_type;
     }
     this.getCustomerList();
-
+    this.vcDetailsId = this.dataa.data.id;
+    
     this.vcDetailsForm = this.fb.group({
       vcname: ['', Validators.required],
       type: ['', Validators.required],
@@ -63,10 +64,12 @@ export class AddVcComponent {
       final_amount: ['', Validators.required],
       details: ['']
     });
-    this.vcDetailsId = this.dataa.data.id;
     this.depositView();
   }
 
+  onStatusChange(value: string) {
+    this.selectedStatus = value;
+  }
   depositView() {
     this.vcDetailsForm.patchValue({
       ...this.dataa.data,

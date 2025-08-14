@@ -1,0 +1,75 @@
+<div class="dialoge_header">
+    <div class="left_text">{{dataa.title |translate}}</div>
+    <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container table_details_scroll middle_dialoge">
+    <!-- <p>{{collectionData | json}}</p> -->
+    <table class="table table-responsive more_table mb-20">
+        <tbody>
+            <tr>
+                <td><b>{{"VC Name"|translate}} :</b></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>{{"VC Month"|translate}} :</b></td>
+                <td>07</td>
+            </tr>
+            <tr>
+                <td><b>{{"VC Amount"|translate}} :</b></td>
+                <td>5000.00</td>
+            </tr>
+            <tr>
+                <td><b>{{"VC Submit Date"|translate}} :</b></td>
+                <td>2021-07-10</td>
+            </tr>
+            <tr>
+                <td><b>{{"List Members"|translate}} :</b></td>
+                <td><span appDigits>10</span></td>
+            </tr>
+            <!-- <tr>
+                <td><b>{{"Details"|translate}} :</b></td>
+                <td>{{collectionData.details}}</td>
+            </tr> -->
+        </tbody>
+    </table>
+    <table class="table mydata-table table-responsive more_table">
+        <thead>
+            <tr>
+                <th>{{"Image"|translate}}</th>
+                <th>{{"Customer Name"|translate}}</th>
+                <th>{{"Contact No."|translate}}</th>
+                <th class="action_col pr-0">{{"Action"|translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="loader">
+                <td class="norecord_col" colspan="7">
+                    <app-page-loader></app-page-loader>
+                </td>
+            </tr>
+            <tr *ngIf="pendingUserData?.length == 0 && !loader">
+                <td class="norecord_col" colspan="4">
+                    <app-no-record-found type="table" notext="No Pending Member Found"></app-no-record-found>
+                </td>
+            </tr>
+            <ng-container *ngIf="pendingUserData?.length != 0 && !loader">
+                <tr *ngFor="let item of pendingUserData; let i=index;">
+                    <td [attr.data-name]="'Image' | translate" *ngIf="item.amount_by != 'advance'">
+                        {{item.customer?.name}}</td>
+                    <td [attr.data-name]="'Customer Name' | translate" *ngIf="item.amount_by == 'advance'">
+                        Company Advance
+                    </td>
+                    <td [attr.data-name]="'Contact No.' | translate" class="capatalise_col">{{item.mobile}}</td>
+                    <td class="action_col">
+                        <a href="tel:{{item.mobile}}" mat-icon-button class="btn bg-primary single_btn">
+                            <i class="mdi mdi-phone"></i>
+                        </a>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>{{"Close"|translate}}</button>
+</div>

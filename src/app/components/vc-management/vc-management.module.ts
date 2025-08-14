@@ -9,9 +9,10 @@ import { MaterialModule } from 'src/app/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { VcManagementRoutingModule } from './vc-management-routing.module';
+import { AddInstalmentComponent } from './add-instalment/add-instalment.component';
 
 @NgModule({
-  declarations: [VcManagementComponent, AddVcComponent, ChangeMemberComponent, ReceivedAmountComponent, ViewDetailsComponent],
+  declarations: [VcManagementComponent, AddVcComponent, ChangeMemberComponent, ReceivedAmountComponent, ViewDetailsComponent, AddInstalmentComponent],
   imports: [
     CommonModule,
     MaterialModule,

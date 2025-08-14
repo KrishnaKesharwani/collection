@@ -8,6 +8,8 @@ import { OffersService } from 'src/app/services/offers/offers.service';
 import { ChangeMemberComponent } from './change-member/change-member.component';
 import { ReceivedAmountComponent } from './received-amount/received-amount.component';
 import { AddVcComponent } from './add-vc/add-vc.component';
+import { AddInstalmentComponent } from './add-instalment/add-instalment.component';
+import { ViewDetailsComponent } from './view-details/view-details.component';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -25,7 +27,7 @@ export class VcManagementComponent {
   loader = false;
   offerListData: any[] = [];
   selectedStatus = new FormControl('active');
-  
+
   constructor(public _service: OffersService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ export class VcManagementComponent {
     this.getVcList(selectedValue);
   }
   getVcList(statuscall: any) {
-    this.loader = true;
+    // this.loader = true;
     let obj = {
       company_id: this.company_id,
       status: statuscall
@@ -64,7 +66,7 @@ export class VcManagementComponent {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-          this.getVcList('active');
+        this.getVcList('active');
       }
     });
   }
@@ -84,24 +86,52 @@ export class VcManagementComponent {
       }
     });
   }
-  openDialogEditDetails(data: any) {
+  openDialogEditDetails(data: any, isNew = false) {
     const dialogRef = this.dialog.open(AddVcComponent, {
       disableClose: true,
       data: {
-        title: 'Edit VC Details',
-        data: data
-      },
+        title: isNew ? 'Create VC Details' : 'Edit VC Details',
+        data: isNew ? {} : data
+      }
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-       this.getVcList('active');
+        this.getVcList('active');
       }
+    });
+  }
+  receivedAmount(data: any) {
+    const dialogRef = this.dialog.open(ReceivedAmountComponent, {
+      disableClose: true,
+      data: {
+        title: 'Received Amount',
+        data: data
+      },
+    });
+  }
+
+  instalmentAmount(data: any) {
+    const dialogRef = this.dialog.open(AddInstalmentComponent, {
+      disableClose: true,
+      data: {
+        title: 'Instalment Amount',
+        data: data
+      },
     });
   }
 
   openDialogViewDetail(data: any) {
     const dialogRef = this.dialog.open(AddVcComponent, {
+      disableClose: true,
+      data: {
+        title: 'View Details',
+        data: data
+      },
+    });
+  }
+  viewDetails(data: any, type: any) {
+    const dialogRef = this.dialog.open(ViewDetailsComponent, {
       disableClose: true,
       data: {
         title: 'View Details',

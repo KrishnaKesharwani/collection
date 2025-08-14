@@ -24,7 +24,7 @@
                                     <i class="mdi mdi-magnify"></i>
                                 </div>
                                 <div class="right_addbtn">
-                                    <button (click)="openDialogEditDetails('new')"
+                                    <button (click)="openDialogEditDetails(null, true)"
                                         class="btn btn-success btn-sm create_header_btn" mat-raised-button>
                                         <i class="mdi mdi-account-plus-outline"></i>
                                         <span class="btn-txt button-text">{{"Add"|translate}}</span>
@@ -34,15 +34,15 @@
                         </div>
                     </div>
                     <div class="head_details">
-
                         <div class="total_block bg-primary mr-2">
                             <span>{{"Total VC"|translate}}</span><b>1000</b>
                         </div>
                         <div class="total_block bg-success"><span>{{"Total Customer"|translate}}</span><b>1000</b></div>
-                        <div class="total_block bg-warning mr-2"><span>Pending
+                        <div class="total_block bg-warning mr-2" (click)="instalmentAmount('item')"><span>Pending
                                 Amount</span><b>100000</b>
                         </div>
-                        <div class="total_block bg-danger mr-2"><span>Pending Customer</span><b>20</b>
+                        <div class="total_block bg-danger mr-2" (click)="receivedAmount('item')"><span>Pending
+                                Customer</span><b>20</b>
                         </div>
                     </div>
                 </div>
@@ -90,14 +90,14 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <th class="col sorting_apply total_col text-center">
+                            <!-- <th class="col sorting_apply total_col text-center">
                                 <span>{{"Total"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('total_customer');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
-                            </th>
+                            </th> -->
                             <th class="col paid_col sorting_apply text-center">
                                 <span>{{"Paid"|translate}}</span>
                                 <div class="sorting_arrow">
@@ -119,13 +119,53 @@
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td class="norecord_col" colspan="10">
+                            <td class="norecord_col" colspan="9">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
-                        <tr *ngIf="filteredDataarray?.length == 0 && !loader">
-                            <td class="norecord_col" colspan="10">
+                        <tr *ngIf="filteredDataarray?.length == 0 && loader">
+                            <td class="norecord_col" colspan="9">
                                 <app-no-record-found type="table" notext="No vc available."></app-no-record-found>
+                            </td>
+                        </tr>
+                        <tr class="received_row">
+                            <td class="col s_no" data-name="S.No.">1</td>
+                            <td class="col" data-name="Vc Name">1.5 Lakh VC</td>
+                            <td class="col" data-name="Type">Fixed</td>
+                            <td class="col text-right" data-name="End Amount">150000.00</td>
+                            <td class="col text-center" data-name="Start Date">09-15-2025</td>
+                            <td class="col text-rigth" data-name="Instalment">10000.00</td>
+                            <td class="col text-center link_color" data-name="Paid"
+                                (click)="viewDetails('item', 'paid')">05</td>
+                            <td class="col text-center link_color" data-name="Pending"
+                                (click)="viewDetails('item', 'pending')">10</td>
+                            <td class="col action_col" data-name="Action">
+                                <div placement="bottom-right">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <div class="table_actionmenu">
+                                            <button mat-menu-item (click)="openDialogViewDetail('item')">
+                                                <i class="mdi mdi-eye mr-2"></i>
+                                                <span>{{"View Details"|translate}}</span>
+                                            </button>
+                                            <button mat-menu-item (click)="instalmentAmount('item')">
+                                                <i class="mdi mdi-currency-inr mr-2"></i>
+                                                <span>Add Installment</span>
+                                            </button>
+                                            <button mat-menu-item (click)="receivedAmount('item')">
+                                                <i class="mdi mdi-currency-inr mr-2"></i>
+                                                <span>Received Amount</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openDialogEditDetails('item', false)">
+                                                <i class="mdi mdi-pencil mr-2"></i>
+                                                <span>Edit Details</span>
+                                            </button>
+                                        </div>
+                                    </mat-menu>
+                                </div>
                             </td>
                         </tr>
                         <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">

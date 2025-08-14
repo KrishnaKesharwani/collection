@@ -13,7 +13,7 @@
                         [displayMsg]="'VC name is required'"></app-input>
                 </div>
                 <div class="col-sm-2">
-                    <app-dropdwon [optionArray]="dropdownService.vcType" *ngIf="vcDetailsForm" [form]="vcDetailsForm"
+                    <app-dropdwon (selectionChange)="onStatusChange($event)" [optionArray]="dropdownService.vcType" *ngIf="vcDetailsForm" [form]="vcDetailsForm"
                         [key]="'type'" field="Type"></app-dropdwon>
                 </div>
                 <div class="col-sm-2">
@@ -31,7 +31,7 @@
                         [className]="'bottom_error_msg'" [form]="vcDetailsForm" [key]="'final_amount'"
                         [displayMsg]="'Required'"></app-input>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3" *ngIf="selectedStatus == 'fixed'">
                     <app-input [isDateField]="false" label="Instalment Amount" [(value)]="instalment_amount"
                         [isRequired]="true" [className]="'bottom_error_msg'" [form]="vcDetailsForm"
                         [key]="'instalment_amount'" [displayMsg]="'Required'"></app-input>
@@ -68,7 +68,7 @@
                 <div class="col-sm-12">
                     <div class="popup_table_block">
                         <div class="headwith_add">
-                            <div class="main_table_head">{{"Selected Vc Members"|translate}} {{customerListData.length}}
+                            <div class="main_table_head">{{"Selected VC Members"|translate}} {{customerListData.length}}
                             </div>
                             <div class="right_addbtn_withsearch">
                                 <div class="search-box">

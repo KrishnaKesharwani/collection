@@ -25,7 +25,8 @@ export class CommonComponentService {
   depositrequest = ['pending', 'approved'];
   status = ['active', 'inactive'];
   statusFixed = ['active'];
-  vcType = ['Fixed', 'Boli'];
+  vcType = ['fixed', 'boli'];
+  receivedAmountType = ['cash', 'online'];
   debit_type = ['monthly', 'money back'];
   plan = ['monthly', 'quarterly', 'half yerly', 'yearly', 'demo'];
   offerType = ['offers', 'schemes'];
