@@ -160,6 +160,7 @@ export class LoginComponent {
             localStorage.setItem('CustomerData', JSON.stringify(customerData));
             localStorage.setItem('OfferData', JSON.stringify(data.data.offer));
           }
+          debugger;
           localStorage.setItem('CurrentUser', JSON.stringify(userLoginDetails));
           localStorage.setItem('AfterLoginData', JSON.stringify(data));
           localStorage.setItem('defaultLanguage', userLoginDetails.language);

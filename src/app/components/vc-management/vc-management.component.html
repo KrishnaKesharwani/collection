@@ -53,7 +53,7 @@
                             <th class="col sorting_apply name_col">
                                 <span>{{"VC Name"|translate}}</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('name');">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('vc_name');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
@@ -69,7 +69,7 @@
                             <th class="col sorting_apply endamt_col text-center">
                                 <span>{{"End Amount"|translate}}</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('end_amount');">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('final_amount');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
@@ -77,7 +77,23 @@
                             <th class="col sorting_apply date_col">
                                 <span>{{"Start Date"|translate}}</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('total_customer');">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('start_date');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col sorting_apply date_col">
+                                <span>{{"End Date"|translate}}</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('end_date');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col sorting_apply member_col text-center">
+                                <span>{{"Total Member"|translate}}</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('total_member');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
@@ -85,7 +101,7 @@
                             <th class="col sorting_apply instalment_col text-center">
                                 <span>{{"Instalment"|translate}}</span>
                                 <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('instalment');">{{ isAsc ?
+                                    <mat-icon (click)="sortTableData('instalment_amount');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
@@ -119,16 +135,16 @@
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td class="norecord_col" colspan="9">
+                            <td class="norecord_col" colspan="11">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
-                        <tr *ngIf="filteredDataarray?.length == 0 && loader">
-                            <td class="norecord_col" colspan="9">
+                        <tr *ngIf="filteredDataarray?.length == 0 && !loader">
+                            <td class="norecord_col" colspan="11">
                                 <app-no-record-found type="table" notext="No vc available."></app-no-record-found>
                             </td>
                         </tr>
-                        <tr class="received_row">
+                        <!-- <tr class="received_row">
                             <td class="col s_no" data-name="S.No.">1</td>
                             <td class="col" data-name="Vc Name">1.5 Lakh VC</td>
                             <td class="col" data-name="Type">Fixed</td>
@@ -167,10 +183,53 @@
                                     </mat-menu>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                         <ng-container *ngIf="filteredDataarray?.length != 0 && !loader">
                             <ng-container *ngFor="let item of filteredDataarray; let i=index;">
                                 <tr class="received_row">
+                                    <td class="col s_no" data-name="S.No.">{{i+1}}</td>
+                                    <td class="col" data-name="Vc Name">{{item.vc_name}}</td>
+                                    <td class="col" data-name="Type">{{item.type}}</td>
+                                    <td class="col text-right" data-name="End Amount">{{item.final_amount}}</td>
+                                    <td class="col text-center" data-name="Start Date">{{item.start_date}}</td>
+                                    <td class="col text-center" data-name="End Date">{{item.end_date}}</td>
+                                    <td class="col text-center" data-name="Total Member">{{item.total_member}}</td>
+                                    <td class="col text-rigth" data-name="Instalment">{{item.instalment_amount}}</td>
+                                    <td class="col text-center link_color" data-name="Paid"
+                                        (click)="viewDetails(item, 'paid')">
+                                        {{item.vc_name}}</td>
+                                    <td class="col text-center link_color" data-name="Pending"
+                                        (click)="viewDetails(item, 'pending')">{{item.vc_name}}</td>
+                                    <td class="col action_col" data-name="Action">
+                                        <div placement="bottom-right">
+                                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                                                aria-label="Example icon-button with a menu">
+                                                <mat-icon>more_vert</mat-icon>
+                                            </button>
+                                            <mat-menu #menu="matMenu">
+                                                <div class="table_actionmenu">
+                                                    <button mat-menu-item (click)="openDialogViewDetail(item)">
+                                                        <i class="mdi mdi-eye mr-2"></i>
+                                                        <span>{{"View Details"|translate}}</span>
+                                                    </button>
+                                                    <button mat-menu-item (click)="instalmentAmount(item)">
+                                                        <i class="mdi mdi-currency-inr mr-2"></i>
+                                                        <span>Add Installment</span>
+                                                    </button>
+                                                    <button mat-menu-item (click)="receivedAmount(item)">
+                                                        <i class="mdi mdi-currency-inr mr-2"></i>
+                                                        <span>Received Amount</span>
+                                                    </button>
+                                                    <button mat-menu-item (click)="openDialogEditDetails(item, false)">
+                                                        <i class="mdi mdi-pencil mr-2"></i>
+                                                        <span>Edit Details</span>
+                                                    </button>
+                                                </div>
+                                            </mat-menu>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- <tr class="received_row">
                                     <td class="col s_no" data-name="S.No.">{{i+1}}</td>
                                     <td class="col" data-name="Vc Name"></td>
                                     <td class="col" data-name="Type"></td>
@@ -208,7 +267,7 @@
                                             </mat-menu>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </ng-container>
                         </ng-container>
                     </tbody>

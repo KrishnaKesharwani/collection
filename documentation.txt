@@ -142,3 +142,6 @@ Step 2. Ex:
 
        
 
+ng g m components/interview/interview-routing --flat
+ng g m components/interview --routing --skip-import 
+npm g s services/download-page  

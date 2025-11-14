@@ -163,6 +163,7 @@ export class AddMemberComponent {
     }
   }
 
+
   onClose() {
     this.dialogRef.close();
   }
@@ -176,7 +177,6 @@ export class AddMemberComponent {
       ...this.dataa.data,
       password: this.dataa.data.user.password_hint,
       member_login_id: this.dataa.data.user.email
-
     });
 
   }

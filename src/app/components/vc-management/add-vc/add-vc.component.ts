@@ -6,7 +6,7 @@ import { ToastRef, ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
-import { FixedDepositService } from 'src/app/services/fixedDeposit/fixed-deposit.service';
+import { VcManagementService } from 'src/app/services/vcManagement/vc-management.service';
 import { ChangeMemberComponent } from '../change-member/change-member.component';
 import { DeleteComponent } from 'src/app/common/delete/delete.component';
 
@@ -26,23 +26,25 @@ export class AddVcComponent {
   customerListData: any[] = [];
   user_type: any;
 
-  vcname: string = '';
+  vc_name: string = '';
   total_month: string = '';
   start_date: string = '';
   end_date: string = '';
   instalment_amount: string = '';
   final_amount: string = '';
-  total_members: string = '';
+  total_member: string = '';
   details: string = '';
-  selectedStatus = "";
+  selectedStatus = "fixed";
   loading: boolean = false;
+  vc_image: any;
   // loader = false;
 
-  constructor(public _router: Router, public _tostr: ToastrService, public _fixedDepositService: FixedDepositService, public dialogRef: MatDialogRef<AddVcComponent>, public _customActionService: CustomActionsService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
+  constructor(public _router: Router, public _tostr: ToastrService, public _service_object: VcManagementService, public dialogRef: MatDialogRef<AddVcComponent>, public _customActionService: CustomActionsService, public _service: CustomerService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, data: any },
   ) { }
 
 
   ngOnInit() {
+    debugger;
     const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
@@ -51,26 +53,39 @@ export class AddVcComponent {
     }
     this.getCustomerList();
     this.vcDetailsId = this.dataa.data.id;
-    
     this.vcDetailsForm = this.fb.group({
-      vcname: ['', Validators.required],
-      type: ['', Validators.required],
+      vc_name: ['', Validators.required],
+      type: ['fixed', Validators.required],
       total_month: ['', Validators.required],
-      total_members: ['', Validators.required],
+      total_member: ['', Validators.required],
+      final_amount: ['', Validators.required],
       start_date: [''],
       end_date: [''],
-      status: ['Active', Validators.required],
-      instalment_amount: ['', Validators.required],
-      final_amount: ['', Validators.required],
+      status: ['active', Validators.required],
+      instalment_amount: [''],
+      vc_image: [''],
       details: ['']
     });
-    this.depositView();
+    if (this.vcDetailsId) {
+      this.vcDetailsView();
+    }
   }
 
-  onStatusChange(value: string) {
-    this.selectedStatus = value;
+  onStatusChange(status: string) {
+    // debugger;
+    this.selectedStatus = status;
+    const instalmentControl = this.vcDetailsForm.get('instalment_amount');
+    if (status === 'fixed') {
+      instalmentControl?.setValidators([Validators.required]);
+    } else {
+      instalmentControl?.clearValidators();   // Remove required
+      instalmentControl?.setValue(null);      // Clear value
+    }
+
+    instalmentControl?.updateValueAndValidity();
   }
-  depositView() {
+  vcDetailsView() {
+
     this.vcDetailsForm.patchValue({
       ...this.dataa.data,
 
@@ -144,13 +159,22 @@ export class AddVcComponent {
   submitVcDetails() {
     if (this.vcDetailsId) {
       this.loading = true;
-      let obj = {
-        company_id: this.company_id,
-        deposit_id: this.vcDetailsId,
-        ...this.vcDetailsForm.value
+      // let obj = {
+      //   company_id: this.company_id,
+      //   vc_id: this.vcDetailsId,
+      //   ...this.vcDetailsForm.value
+      // }
+      const formData = new FormData();
+      Object.keys(this.vcDetailsForm.value).forEach(key => {
+        formData.append(key, this.vcDetailsForm.value[key]);
+      });
+      if (!this.selectedFileVCImage) {
+        formData.delete('image');
       }
-
-      this._fixedDepositService.update(obj).subscribe((data: any) => {
+      formData.append('company_id', this.company_id);
+      formData.append('vc_id', this.dataa.data.id);
+      debugger;
+      this._service_object.update(formData).subscribe((data: any) => {
         this.loading = false;
         this.dialogRef.close(true);
         this._tostr.success(data.message, "Success");
@@ -163,7 +187,7 @@ export class AddVcComponent {
           // deposit_id: this.vcDetailsId,
           ...this.vcDetailsForm.value
         }
-        this._fixedDepositService.create(obj).subscribe((data: any) => {
+        this._service_object.create(obj).subscribe((data: any) => {
           this.loading = false;
           this.dialogRef.close(true);
           this._tostr.success(data.message, "Success");
@@ -192,8 +216,8 @@ export class AddVcComponent {
     this.dialogRef.close();
   }
 
-  selectedFile6: File | null = null;
+  selectedFileVCImage: File | null = null;
   VcImageChange(file: File | null): void {
-    this.selectedFile6 = file;
+    this.selectedFileVCImage = file;
   }
 }

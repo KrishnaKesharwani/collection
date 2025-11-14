@@ -15,7 +15,14 @@ export class InterviewComponent {
 
   constructor(private fb: FormBuilder, private interview: InterviewService) {
   }
-
+  user = {
+    name: '',
+    email: ''
+  }
+  onSubmit(formsubmit: any) {
+    formsubmit.reset();
+    console.log(formsubmit);
+  }
   items = [
     { price: 100, quantity: 2, name: 'Sachin' },
     { price: 200, quantity: 3, name: 'Rahul' },
@@ -65,20 +72,18 @@ export class InterviewComponent {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    
-    this.interview.getLoginDetails(this.loginForm).subscribe((response: any)=> {
-      if(response.data){
-        
+
+    this.interview.getLoginDetails(this.loginForm).subscribe((response: any) => {
+      if (response.data) {
+
       }
     })
-    
+
   }
 
   submitLogin() {
     if (this.loginForm?.valid) {
       this.loginForm.markAllAsTouched();
-
-
       console.log('Form submitted:', this.loginForm.value);
     } else {
       console.log('Form is invalid');

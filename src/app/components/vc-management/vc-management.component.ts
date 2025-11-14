@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { ActionService } from 'src/app/services/action/action.service';
 import { CustomActionsService } from 'src/app/services/customActions/custom-actions.service';
 import { OffersService } from 'src/app/services/offers/offers.service';
+import { VcManagementService } from 'src/app/services/vcManagement/vc-management.service';
 import { ChangeMemberComponent } from './change-member/change-member.component';
 import { ReceivedAmountComponent } from './received-amount/received-amount.component';
 import { AddVcComponent } from './add-vc/add-vc.component';
@@ -25,32 +26,48 @@ export class VcManagementComponent {
   // customerData: any[] = [];
   filteredDataarray: any[] = [];
   loader = false;
-  offerListData: any[] = [];
+  vcListData: any[] = [];
   selectedStatus = new FormControl('active');
 
-  constructor(public _service: OffersService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
+  constructor(public _service: OffersService, public _service_object: VcManagementService, public _customActionService: CustomActionsService, public dialog: MatDialog, private actionService: ActionService) { }
 
   ngOnInit() {
-    const data = sessionStorage.getItem('CurrentUser');
+    const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
       this.company_id = userData.company_id;
+      // this.company_id = '3';
     }
-    this.getVcList('active');
+    this.getVcList('all');
   }
   onStatusChange(event: any): void {
     const selectedValue = event.value;
     this.getVcList(selectedValue);
   }
   getVcList(statuscall: any) {
-    // this.loader = true;
-    let obj = {
-      company_id: this.company_id,
-      status: statuscall
+    // debugger;
+    this.filteredDataarray = [];
+    this.loader = true;
+    var obj: any;
+    if (statuscall == 'all') {
+      obj = {
+        company_id: this.company_id,
+      }
+    } else {
+      obj = {
+        company_id: this.company_id,
+        status: statuscall
+      }
     }
-    this._service.getOfferList(obj).subscribe((data: any) => {
-      this.offerListData = data.data;
-      this.filteredDataarray = this.offerListData;
+    this._service_object.getVcList(obj).subscribe((response: any) => {
+      if (response && Array.isArray(response.data)) {
+        this.vcListData = response.data;
+        this.filteredDataarray = this.vcListData;
+        this.loader = false;
+      } else {
+        this.loader = false;
+      }
+    }, error => {
       this.loader = false;
     })
   }
@@ -147,16 +164,15 @@ export class VcManagementComponent {
     } else {
       this.isAsc = true;
     }
-    this.filteredDataarray = this._customActionService.sortData(column, this.offerListData);
+    this.filteredDataarray = this._customActionService.sortData(column, this.vcListData);
   }
-
-  searchColumns: any[] = ['name', 'type', 'status', 'i'];
+  searchColumns: any[] = ['vc_name', 'type', 'status', 'total_month', 'total_member', 'final_amount', 'start_date', 'end_date','instalment_amount', 'i'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
     this.searchTerm = inputValue;
     if (this.searchTerm == null || this.searchTerm == '') {
-      this.filteredDataarray = this.offerListData;
+      this.filteredDataarray = this.vcListData;
     } else {
       this.filteredDataarray = this._customActionService.filteredData(this.filteredDataarray, this.searchTerm, this.searchColumns);
     }

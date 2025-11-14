@@ -6,7 +6,7 @@ const routes: Routes = [
 
   {
     path: "",
-    redirectTo: "interview",
+    redirectTo: "login",
     pathMatch: "full",
   },
   {

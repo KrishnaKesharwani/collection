@@ -1,14 +1,16 @@
 <div class="card shadow dash-cardbox radius_none_bottom">
     <div class="card_inner_block">
-      
-    </div>
-</div>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <input name="name" [(ngModel)]="user.name" required />
+            <input name="email" [(ngModel)]="user.email" />
+            <button type="submit">Submit</button>
+        </form>
 
-<!-- <form focusInvalidInput [formGroup]="loginForm">
+        <form focusInvalidInput [formGroup]="loginForm">
             <app-input [isDateField]="false" label="User Name" [(value)]="username" [isRequired]="true"
                 [className]="'bottom_error_msg'" [form]="loginForm" [key]="'username'"
                 [displayMsg]="'User name is required'"></app-input>
-
+            <!-- 
             <div class="global_textbox_block">
                 <mat-form-field class="global_textbox_block" appearance="fill">
                     <mat-label>Login Form</mat-label>
@@ -17,15 +19,15 @@
                 <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
                     Username is required.
                 </mat-error>
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" class="form-control" formControlName="username"
                     placeholder="Enter your username">
                 <mat-error *ngIf="loginForm?.get('username')?.hasError('required')">
                     Username is required.
                 </mat-error>
-            </div>
+            </div> -->
             <mat-form-field appearance="outline" class="global_textbox_block">
                 <label for="username">Username</label>
                 <input type="text" matInput id="username" class="form-control" formControlName="password"
@@ -38,4 +40,6 @@
                 <button type="submit" class="btn btn-primary global_submit_btn" mat-flat-button (click)="submitLogin()"
                     [disabled]="loginForm.invalid">Submit</button>
             </div>
-        </form> -->
+        </form>
+    </div>
+</div>
