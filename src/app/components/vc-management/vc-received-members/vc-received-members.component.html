@@ -1,0 +1,172 @@
+<div class="dialoge_header">
+    <div class="left_text">{{dataa.title |translate}}</div>
+    <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container full_height_cover">
+    <div class="basic_details_popup_block">
+        <div class="details_block">
+            <b>{{"VC Name"|translate}}:</b>
+            <span>{{data.vc_name}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Type"|translate}}</b>
+            <span>{{data.type}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Start Date"|translate}}</b>
+            <span>{{data.start_date}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"End Date"|translate}}</b>
+            <span>{{data.end_date}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"End Amount"|translate}}</b>
+            <span><span appDigits>{{data.final_amount}}</span></span>
+        </div>
+        <div class="details_block">
+            <b>{{"Total Members"|translate}}</b>
+            <span>{{data.total_member}}</span>
+        </div>
+    </div>
+    <div class="paid_members_container">
+        <table class="table mydata-table table-responsive more_table">
+            <thead>
+                <tr>
+                    <th class="col profile_col">{{"Image"|translate}}</th>
+                    <th class="col">{{"Customer Name"|translate}}</th>
+                    <th class="col text-center contact_col">{{"Contact No."|translate}}</th>
+                    <th class="col">{{"Paid Type"|translate}}</th>
+                    <th class="col">{{"Paid Date"|translate}}</th>
+                    <th class="col">{{"Paid Amount"|translate}}</th>
+                    <th class="col action_col pr-0">{{"View"|translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td [attr.data-name]="'Image' | translate">
+                        <div class="list_image_block">
+                            <img src="assets/imgs/default-pic.png" />
+                        </div>
+                    </td>
+                    <td [attr.data-name]="'Customer Name' | translate" class="capatalise_col">
+                        Santosh Sahu
+                    </td>
+                    <td [attr.data-name]="'Contact No.' | translate" class="text-center">6263626505</td>
+                    <td [attr.data-name]="'Type' | translate" class="text-center">Cash</td>
+                    <td [attr.data-name]="'Paid Date' | translate" class="text-center">20/12/2025</td>
+                    <td [attr.data-name]="'Paid Amount' | translate" class="text-center"><span
+                            appDigits>20000.00</span>
+                    </td>
+                    <td class="action_col">
+                        <a mat-icon-button class="btn bg-primary single_btn" [matMenuTriggerFor]="paidMemberDetails">
+                            <i class="mdi mdi-eye"></i>
+                        </a>
+                        <mat-menu #paidMemberDetails="matMenu" xPosition="before" class="small_details_matmenu">
+                            <div class="vc_popup_details">
+                                <img src="assets/imgs/default-pic.png">
+                                <span class="submit_details">paiment final clear kr di h... koi isuse nhi h</span>
+                            </div>
+                        </mat-menu>
+                    </td>
+                </tr>
+                <tr *ngIf="loader">
+                    <td class="norecord_col" colspan="4">
+                        <app-page-loader></app-page-loader>
+                    </td>
+                </tr>
+                <tr *ngIf="vcpaidmemberData?.length == 0 && !loader">
+                    <td class="norecord_col" colspan="4">
+                        <app-no-record-found type="table" notext="No VC Paid Member Found"></app-no-record-found>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="popup_table_block pending_members_container">
+        <div class="headwith_add">
+            <div class="main_table_head">{{"Pending Members"|translate}} {{filteredDataarrayOverall.length}}
+            </div>
+            <div class="right_addbtn_withsearch">
+                <div class="search-box">
+                    <input type="text" placeholder="Search" (keyup)="searchTable($event)" class="searchtxt" />
+                    <i class="mdi mdi-magnify"></i>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered table-responsive mydata-table bg-white more_table">
+            <thead>
+                <tr>
+                    <th class="col s_no text-center">{{"S. No"|translate}}</th>
+                    <th class="col profile_col">{{"Profile"|translate}}</th>
+                    <th>{{"Customer No."|translate}}</th>
+                    <th>{{"Customer Name"|translate}}</th>
+                    <th>{{"Contact"|translate}}</th>
+                    <th class="col text-center">{{"Status"|translate}}</th>
+                    <th class="action_col">{{"Paid"|translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col text-center" [attr.data-name]="'S.No.' | translate">1</td>
+                    <td class="col" [attr.data-name]="'Profile' | translate">
+                        <div class="list_image_block "><img src="assets/imgs/default-pic.png"
+                                onerror="this.src='assets/imgs/default-pic.png';">
+                        </div>
+                    </td>
+                    <td class="col" [attr.data-name]="'C.No.' | translate">RC -10225
+                    </td>
+                    <td class="col" [attr.data-name]="'Customer Name' | translate">
+                        Santosh Sahu</td>
+                    <td class="col" [attr.data-name]="'Contact' | translate">
+                        <a href="tel:9589883533"></a>9589883533
+                    </td>
+                    <td class="text-center col" [attr.data-name]="'Status' | translate"><span
+                            class="badge bg-success text-white">Active</span>
+                    </td>
+                    <td class="text-center col" [attr.data-name]="'Remove' | translate"
+                        (click)="openDialogeAmount(data)">
+                        <span class="btn btn-sm btn-danger btn_download">
+                            <i class="mdi mdi-account-check-outline"></i>
+                        </span>
+                    </td>
+                </tr>
+                <tr *ngFor="let customerdata of filteredDataarrayOverall; let i=index">
+                    <td class="col s_no" [attr.data-name]="'S.No.' | translate">{{i+1}}"></td>
+                    <td class="col" [attr.data-name]="'Profile' | translate">
+                        <div class="list_image_block "><img src="{{customerdata.image}}"
+                                onerror="this.src='assets/imgs/default-pic.png';">
+                        </div>
+                    </td>
+                    <td class="col" [attr.data-name]="'C.No.' | translate">{{customerdata?.customer_no}}
+                    </td>
+                    <td class="col" [attr.data-name]="'Customer Name' | translate">
+                        {{customerdata.name}}</td>
+                    <td class="col" [attr.data-name]="'Contact' | translate">
+                        {{customerdata.mobile}}
+                    </td>
+                    <td class="text-center col" [attr.data-name]="'Status' | translate"><span
+                            class="badge bg-success text-white"
+                            *ngIf="customerdata?.status == 'active'">{{customerdata?.status}}</span>
+                        <span class="badge bg-danger text-white "
+                            *ngIf="customerdata?.status == 'inactive'">{{customerdata?.status}}</span>
+                    </td>
+                    <td class="text-center col" [attr.data-name]="'Remove' | translate"
+                        (click)="openDialogeAmount(customerdata)">
+                        <span class="btn btn-sm btn-danger btn_download">
+                            <i class="mdi mdi-account-check-outline"></i>
+                        </span>
+                    </td>
+                </tr>
+                <tr *ngIf="filteredDataarrayOverall?.length == 0">
+                    <td class="norecord_col" colspan="7">
+                        <app-no-record-found type="table" notext="No member available."></app-no-record-found>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>{{"Close"|translate}}</button>
+</div>

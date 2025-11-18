@@ -26,10 +26,23 @@ export class VcManagementService {
     const url = `${environment.apiUrl}/updatevc`;
     return this.httpClient.post(url, obj)
   }
-  changeStatus(obj: object) {
-    const url = `${environment.apiUrl}/update-offer-status`;
+  statusChange(obj: object) {
+    const url = `${environment.apiUrl}/changeStatus`;
     return this.httpClient.put(url, obj)
   }
+  vcMembers(obj: object) {
+    const url = `${environment.apiUrl}/vcMembers`;
+    return this.httpClient.put(url, obj)
+  }
+  companyOverallMembers(obj: object) {
+    const url = `${environment.apiUrl}/companywiseMembers`;
+    return this.httpClient.put(url, obj)
+  }
+  addVcMember(obj: object) {
+    const url = `${environment.apiUrl}/addVcMember`;
+    return this.httpClient.post(url, obj)
+  }
+
   defaultOffer(obj: object) {
     const url = `${environment.apiUrl}/update-default-offer`;
     return this.httpClient.put(url, obj)

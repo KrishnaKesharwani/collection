@@ -16,6 +16,8 @@
                                         (selectionChange)="onStatusChange($event)">
                                         <mat-option [value]="'active'">Active</mat-option>
                                         <mat-option [value]="'inactive'">Inactive</mat-option>
+                                        <mat-option [value]="'completed'">Completed</mat-option>
+                                        <mat-option [value]="'deleted'">Deleted</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                                 <div class="search-box">
@@ -38,10 +40,10 @@
                             <span>{{"Total VC"|translate}}</span><b>1000</b>
                         </div>
                         <div class="total_block bg-success"><span>{{"Total Customer"|translate}}</span><b>1000</b></div>
-                        <div class="total_block bg-warning mr-2" (click)="instalmentAmount('item')"><span>Pending
+                        <div class="total_block bg-warning mr-2"><span>Pending
                                 Amount</span><b>100000</b>
                         </div>
-                        <div class="total_block bg-danger mr-2" (click)="receivedAmount('item')"><span>Pending
+                        <div class="total_block bg-danger mr-2"><span>Pending
                                 Customer</span><b>20</b>
                         </div>
                     </div>
@@ -91,9 +93,17 @@
                                 </div>
                             </th>
                             <th class="col sorting_apply member_col text-center">
-                                <span>{{"Total Member"|translate}}</span>
+                                <span>{{"Members"|translate}}</span>
                                 <div class="sorting_arrow">
                                     <mat-icon (click)="sortTableData('total_member');">{{ isAsc ?
+                                        'north' : 'south'
+                                        }}</mat-icon>
+                                </div>
+                            </th>
+                            <th class="col sorting_apply total_col text-center">
+                                <span>{{"Received VC"|translate}}</span>
+                                <div class="sorting_arrow">
+                                    <mat-icon (click)="sortTableData('total_received');">{{ isAsc ?
                                         'north' : 'south'
                                         }}</mat-icon>
                                 </div>
@@ -106,14 +116,6 @@
                                         }}</mat-icon>
                                 </div>
                             </th>
-                            <!-- <th class="col sorting_apply total_col text-center">
-                                <span>{{"Total"|translate}}</span>
-                                <div class="sorting_arrow">
-                                    <mat-icon (click)="sortTableData('total_customer');">{{ isAsc ?
-                                        'north' : 'south'
-                                        }}</mat-icon>
-                                </div>
-                            </th> -->
                             <th class="col paid_col sorting_apply text-center">
                                 <span>{{"Paid"|translate}}</span>
                                 <div class="sorting_arrow">
@@ -135,12 +137,12 @@
                     </thead>
                     <tbody>
                         <tr *ngIf="loader">
-                            <td class="norecord_col" colspan="11">
+                            <td class="norecord_col" colspan="12">
                                 <app-page-loader></app-page-loader>
                             </td>
                         </tr>
                         <tr *ngIf="filteredDataarray?.length == 0 && !loader">
-                            <td class="norecord_col" colspan="11">
+                            <td class="norecord_col" colspan="12">
                                 <app-no-record-found type="table" notext="No vc available."></app-no-record-found>
                             </td>
                         </tr>
@@ -189,17 +191,18 @@
                                 <tr class="received_row">
                                     <td class="col s_no" data-name="S.No.">{{i+1}}</td>
                                     <td class="col" data-name="Vc Name">{{item.vc_name}}</td>
-                                    <td class="col" data-name="Type">{{item.type}}</td>
+                                    <td class="col capatalise_col" data-name="Type">{{item.type}}</td>
                                     <td class="col text-right" data-name="End Amount">{{item.final_amount}}</td>
-                                    <td class="col text-center" data-name="Start Date">{{item.start_date}}</td>
-                                    <td class="col text-center" data-name="End Date">{{item.end_date}}</td>
-                                    <td class="col text-center" data-name="Total Member">{{item.total_member}}</td>
-                                    <td class="col text-rigth" data-name="Instalment">{{item.instalment_amount}}</td>
+                                    <td class="col " data-name="Start Date">{{item.start_date}}</td>
+                                    <td class="col " data-name="End Date">{{item.end_date}}</td>
+                                    <td class="col text-center" data-name="VC Members">{{item.total_member}}</td>
+                                    <td class="col text-center" data-name="VC Received" (click)="receivedMembers(item)">3</td>
+                                    <td class="col text-center" data-name="Instalment">{{item.instalment_amount}}</td>
                                     <td class="col text-center link_color" data-name="Paid"
-                                        (click)="viewDetails(item, 'paid')">
-                                        {{item.vc_name}}</td>
+                                        (click)="viewDetails(item, 'Paid')">
+                                        {{item.paid_customer}}</td>
                                     <td class="col text-center link_color" data-name="Pending"
-                                        (click)="viewDetails(item, 'pending')">{{item.vc_name}}</td>
+                                        (click)="viewDetails(item, 'Pending')">{{item.pending_customer}}</td>
                                     <td class="col action_col" data-name="Action">
                                         <div placement="bottom-right">
                                             <button mat-icon-button [matMenuTriggerFor]="menu"
@@ -216,13 +219,21 @@
                                                         <i class="mdi mdi-currency-inr mr-2"></i>
                                                         <span>Add Installment</span>
                                                     </button>
-                                                    <button mat-menu-item (click)="receivedAmount(item)">
+                                                    <!-- <button mat-menu-item (click)="receivedAmount(item)">
                                                         <i class="mdi mdi-currency-inr mr-2"></i>
                                                         <span>Received Amount</span>
-                                                    </button>
+                                                    </button> -->
                                                     <button mat-menu-item (click)="openDialogEditDetails(item, false)">
                                                         <i class="mdi mdi-pencil mr-2"></i>
-                                                        <span>Edit Details</span>
+                                                        <span>Edit VC Details</span>
+                                                    </button>
+                                                    <button mat-menu-item (click)="openDialogStatusChange(item)">
+                                                        <i class="mdi mdi-account-off-outline mr-2"></i>
+                                                        <span>Status Change</span>
+                                                    </button>
+                                                    <button mat-menu-item (click)="openDialogVCMembers(item)">
+                                                        <i class="mdi mdi-account-outline mr-2"></i>
+                                                        <span>VC Members</span>
                                                     </button>
                                                 </div>
                                             </mat-menu>

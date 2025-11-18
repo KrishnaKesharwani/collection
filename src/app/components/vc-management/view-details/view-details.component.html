@@ -3,47 +3,83 @@
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
 <div class="dialoge_middle_container table_details_scroll middle_dialoge">
-    <!-- <p>{{collectionData | json}}</p> -->
-    <table class="table table-responsive more_table mb-20">
-        <tbody>
-            <tr>
-                <td><b>{{"VC Name"|translate}} :</b></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><b>{{"VC Month"|translate}} :</b></td>
-                <td>07</td>
-            </tr>
-            <tr>
-                <td><b>{{"VC Amount"|translate}} :</b></td>
-                <td>5000.00</td>
-            </tr>
-            <tr>
-                <td><b>{{"VC Submit Date"|translate}} :</b></td>
-                <td>2021-07-10</td>
-            </tr>
-            <tr>
-                <td><b>{{"List Members"|translate}} :</b></td>
-                <td><span appDigits>10</span></td>
-            </tr>
-            <!-- <tr>
-                <td><b>{{"Details"|translate}} :</b></td>
-                <td>{{collectionData.details}}</td>
-            </tr> -->
-        </tbody>
-    </table>
+    <!-- <p>{{data | json}}</p> -->
+    <div class="basic_details_popup_block">
+        <div class="details_block">
+            <b>{{"VC Name"|translate}}:</b>
+            <span>{{data.vc_name}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Type"|translate}}</b>
+            <span>{{data.type}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Start Date"|translate}}</b>
+            <span>{{data.start_date}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"End Date"|translate}}</b>
+            <span>{{data.end_date}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"End Amount"|translate}}</b>
+            <span><span appDigits>{{data.final_amount}}</span></span>
+        </div>
+        <div class="details_block">
+            <b>{{"Total Members"|translate}}</b>
+            <span>{{data.total_member}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Instalment Month"|translate}}</b>
+            <span>{{data.total_month}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Instalment Start Date"|translate}}</b>
+            <span>{{data.start_date}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Instalment End Date"|translate}}</b>
+            <span>{{data.end_date}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Instalments Amount"|translate}}</b>
+            <span>{{data.instalment_amount}}</span>
+        </div>
+    </div>
     <table class="table mydata-table table-responsive more_table">
         <thead>
             <tr>
-                <th>{{"Image"|translate}}</th>
+                <th class="col profile_col">{{"Image"|translate}}</th>
                 <th>{{"Customer Name"|translate}}</th>
-                <th>{{"Contact No."|translate}}</th>
-                <th class="action_col pr-0">{{"Action"|translate}}</th>
+                <th class="col text-center contact_col">{{"Contact No."|translate}}</th>
+                <th class="col action_col pr-0">{{"Call"|translate}}</th>
+                <th class="col action_col pr-0">{{"Action"|translate}}</th>
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td [attr.data-name]="'Image' | translate">
+                    <div class="list_image_block">
+                        <img src="assets/imgs/default-pic.png" />
+                    </div>
+                </td>
+                <td [attr.data-name]="'Customer Name' | translate" class="capatalise_col">
+                    Santosh Sahu
+                </td>
+                <td [attr.data-name]="'Contact No.' | translate" class="text-center">6263626505</td>
+                <td class="action_col">
+                    <a href="tel:6263626505" mat-icon-button class="btn bg-primary single_btn">
+                        <i class="mdi mdi-phone"></i>
+                    </a>
+                </td>
+                <td class="action_col">
+                    <a (click)="paymentSubmit(data)" mat-icon-button class="btn bg-success single_btn">
+                        <i class="mdi mdi-currency-inr"></i>
+                    </a>
+                </td>
+            </tr>
             <tr *ngIf="loader">
-                <td class="norecord_col" colspan="7">
+                <td class="norecord_col" colspan="4">
                     <app-page-loader></app-page-loader>
                 </td>
             </tr>

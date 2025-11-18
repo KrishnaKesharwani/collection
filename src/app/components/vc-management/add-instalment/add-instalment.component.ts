@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonComponentService } from 'src/app/common/common-component.service';
 import { MoneyReceivedService } from 'src/app/services/moneyReceived/money-received.service';
 import { ToastrService } from 'ngx-toastr';
+import { ViewDetailsComponent } from '../view-details/view-details.component';
 
 @Component({
   selector: 'app-add-instalment',
@@ -14,15 +15,23 @@ export class AddInstalmentComponent {
   @Input() title: any;
   loading = false;
   InstalmentForm!: FormGroup;
-
+  currentData: any;
+  data: any;
   @Output() deleteAction = new EventEmitter();
   amount: string = '';
+  start_date: string = '';
+  end_date: string = '';
+
   constructor(public dialogRef: MatDialogRef<AddInstalmentComponent>, public _service: MoneyReceivedService, public _tostr: ToastrService, public fb: FormBuilder, public dropdownService: CommonComponentService, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; subTitle: string, id: any, data: any },
   ) { }
 
   ngOnInit() {
+    this.currentData = this.dataa.data.id;
+    this.data = this.dataa.data;
     this.InstalmentForm = this.fb.group({
-      amount: [this.dataa.data.balance, Validators.required],
+      amount: ['', Validators.required],
+      start_date: ['', Validators.required],
+      end_date: ['', Validators.required],
     });
     // this.dropdownService.setOptions('moneyStatus', ['Working', 'Received', 'Cancelled']);
   }
@@ -30,7 +39,18 @@ export class AddInstalmentComponent {
   onClose() {
     this.dialogRef.close();
   }
+  updateInstalemnt(insttalmentData: any) {
 
+  }
+  viewDetails(data: any, type: any) {
+    const dialogRef = this.dialog.open(ViewDetailsComponent, {
+      disableClose: true,
+      data: {
+        title: 'View Details',
+        data: data
+      },
+    });
+  }
   submitInstalment() {
     // if (this.InstalmentForm.value.amount <= this.dataa.data.balance) {
     //   if (this.InstalmentForm.valid) {

@@ -145,3 +145,7 @@ Step 2. Ex:
 ng g m components/interview/interview-routing --flat
 ng g m components/interview --routing --skip-import 
 npm g s services/download-page  
+
+backend Server Imp link Controler & Models
+/moneyCollectionBackend/app/Http/Controllers/Api
+/moneyCollectionBackend/app/Models

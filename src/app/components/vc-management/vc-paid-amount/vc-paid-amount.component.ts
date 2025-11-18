@@ -4,33 +4,29 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonComponentService } from 'src/app/common/common-component.service';
-import { CustomerService } from 'src/app/services/customer/customer.service';
-import { OffersService } from 'src/app/services/offers/offers.service';
 
 @Component({
-  selector: 'app-received-amount',
-  templateUrl: './received-amount.component.html',
-  styleUrls: ['./received-amount.component.scss']
+  selector: 'app-vc-paid-amount',
+  templateUrl: './vc-paid-amount.component.html',
+  styleUrls: ['./vc-paid-amount.component.scss']
 })
-export class ReceivedAmountComponent {
+export class VcPaidAmountComponent {
   @Input() title: any;
   @Input() data: any;
-  @Input() modal: any;
-
-  @Output() deleteAction = new EventEmitter();
-  amountReceivedForm!: FormGroup;
+  amountPaidForm!: FormGroup;
   company_id: any;
   loading: boolean = false;
-  selectedStatus = "cash";
+  // selectedStatus = "cash";
   // instalment_amount: any;
   paidtype: string = "";
-  received_amount: any;
+  paid_amount: any;
   screenshots: any;
+  bills: any;
   customerListData: any[] = [];
   vc_id: any;
   received_data: any;
-  constructor(public dialogRef: MatDialogRef<ReceivedAmountComponent>,
-     public customer_service: CustomerService, public router: Router, public _tostr: ToastrService, public _service: OffersService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; data: any },
+  constructor(public dialogRef: MatDialogRef<VcPaidAmountComponent>,
+    public router: Router, public _tostr: ToastrService, public dropdownService: CommonComponentService, public fb: FormBuilder, public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public dataa: { title: string; data: any },
   ) { }
 
   ngOnInit() {
@@ -40,10 +36,11 @@ export class ReceivedAmountComponent {
       this.company_id = userData.company_id;
     }
     this.received_data = this.dataa.data;
-    this.amountReceivedForm = this.fb.group({
+    this.amountPaidForm = this.fb.group({
       // instalment_amount: ['10000.00', Validators.required],
+      paid_amount: ['', Validators.required],
       paidtype: ['cash', Validators.required],
-      received_amount: ['', Validators.required],
+      bills: ['../../../assets/imgs/no-images.jpg'],
       screenshots: ['../../../assets/imgs/no-images.jpg'],
       details: [''],
     });
@@ -122,23 +119,16 @@ export class ReceivedAmountComponent {
     // }
   }
 
-  onStatusChange(value: string) {
-    this.selectedStatus = value;
-  }
+  // onStatusChange(value: string) {
+  //   this.selectedStatus = value;
+  // }
 
   selectedFile6: File | null = null;
   paidAmountImageChange(file: File | null): void {
     this.selectedFile6 = file;
   }
-
-  // getCustomerList() {
-  //   let obj = {
-  //     company_id: this.company_id
-  //   }
-  //   this.customer_service.getList(obj).subscribe((response: any) => {
-  //     if (response && Array.isArray(response.data)) {
-  //       this.customerListData = response.data;
-  //     }
-  //   })
-  // }
+  selectedFileScreenshot: File | null = null;
+  paidAmountScreenshotChange(file: File | null): void {
+    this.selectedFileScreenshot = file;
+  }
 }

@@ -12,6 +12,8 @@ import { AddVcComponent } from './add-vc/add-vc.component';
 import { AddInstalmentComponent } from './add-instalment/add-instalment.component';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { FormControl } from '@angular/forms';
+import { ChangeStatusComponent } from './change-status/change-status.component';
+import { VcReceivedMembersComponent } from './vc-received-members/vc-received-members.component';
 
 @Component({
   selector: 'app-vc-management',
@@ -131,6 +133,7 @@ export class VcManagementComponent {
   instalmentAmount(data: any) {
     const dialogRef = this.dialog.open(AddInstalmentComponent, {
       disableClose: true,
+      panelClass: 'medium_popup',
       data: {
         title: 'Instalment Amount',
         data: data
@@ -151,7 +154,37 @@ export class VcManagementComponent {
     const dialogRef = this.dialog.open(ViewDetailsComponent, {
       disableClose: true,
       data: {
-        title: 'View Details',
+        title: type+' Instalment Members',
+        data: data
+      },
+    });
+  }
+  receivedMembers(data: any) {
+    const dialogRef = this.dialog.open(VcReceivedMembersComponent, {
+      disableClose: true,
+      panelClass: 'medium_popup',
+      data: {
+        title: 'VC Members Received Amount List',
+        data: data
+      },
+    });
+  }
+  openDialogStatusChange(data: any) {
+    const dialogRef = this.dialog.open(ChangeStatusComponent, {
+      disableClose: true,
+      panelClass: 'medium_popup',
+      data: {
+        title: 'Change Status',
+        data: data
+      },
+    });
+  }
+  openDialogVCMembers(data: any) {
+    const dialogRef = this.dialog.open(ChangeMemberComponent, {
+      disableClose: true,
+      panelClass: 'medium_popup',
+      data: {
+        title: 'VC Members',
         data: data
       },
     });
@@ -166,7 +199,7 @@ export class VcManagementComponent {
     }
     this.filteredDataarray = this._customActionService.sortData(column, this.vcListData);
   }
-  searchColumns: any[] = ['vc_name', 'type', 'status', 'total_month', 'total_member', 'final_amount', 'start_date', 'end_date','instalment_amount', 'i'];
+  searchColumns: any[] = ['vc_name', 'type', 'status', 'total_month', 'total_member', 'final_amount', 'start_date', 'end_date', 'instalment_amount', 'i'];
   searchTerm: string = '';
   searchTable(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;

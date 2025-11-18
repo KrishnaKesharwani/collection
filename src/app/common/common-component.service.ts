@@ -25,13 +25,14 @@ export class CommonComponentService {
   depositrequest = ['pending', 'approved'];
   status = ['active', 'inactive'];
   statusFixed = ['active'];
-  vcType = ['fixed', 'boli'];
+  vcType = ['fixed', 'boli', 'Pay & Go'];
   receivedAmountType = ['cash', 'online'];
   debit_type = ['monthly', 'money back'];
   plan = ['monthly', 'quarterly', 'half yerly', 'yearly', 'demo'];
   offerType = ['offers', 'schemes'];
   moneyStatus = ['working', 'received', 'cancelled'];
   deposit_status = ['completed', 'cancelled'];
+  vc_status = ['active','inactive','completed','deleted'];
   private dropdownOptionsSubject = new BehaviorSubject<{ [key: string]: string[] }>({});
   dropdownOptions$ = this.dropdownOptionsSubject.asObservable();
 

@@ -2,12 +2,91 @@
     <div class="left_text">{{dataa.title |translate}}</div>
     <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
 </div>
-<div class="dialoge_middle_container small_popup">
-    <form focusInvalidInput [formGroup]="InstalmentForm">
-        <div class="global_form_row">
-            <app-input [disabled]="true" [isDateField]="false" label="Instalment Amount" [(value)]="amount" [isRequired]="true"
-                [className]="'bottom_error_msg'" [displayMsg]="'Amount is required'" [form]="InstalmentForm"
-                [key]="'amount'"></app-input>
+<div class="dialoge_middle_container full_height_cover">
+    <div class="basic_details_popup_block">
+        <div class="details_block">
+            <b>{{"VC Name"|translate}}:</b>
+            <span>{{data.vc_name}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Type"|translate}}</b>
+            <span>{{data.type}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Start Date"|translate}}</b>
+            <span>{{data.start_date}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"End Date"|translate}}</b>
+            <span>{{data.end_date}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"End Amount"|translate}}</b>
+            <span><span appDigits>{{data.final_amount}}</span></span>
+        </div>
+        <div class="details_block">
+            <b>{{"Total Members"|translate}}</b>
+            <span>{{data.total_member}}</span>
+        </div>
+    </div>
+    <table class="table table-bordered table-responsive bg-white more_table mydata-table">
+        <thead>
+            <tr>
+                <th class="col profile_col">{{"S.No."|translate}}</th>
+                <th class="col">{{"Instalment"|translate}}</th>
+                <th class="col">{{"Start Date"|translate}}</th>
+                <th class="col">{{"End Date"|translate}}</th>
+                <th class="col text-center">{{"Pending"|translate}}</th>
+                <th class="col text-center">{{"Paid"|translate}}</th>
+                <th class="col text-center action_col">{{"Action"|translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col s_no" [attr.data-name]="'S.No.' | translate">1</td>
+                <td class="col" [attr.data-name]="'Instalment' | translate">10000.00 </td>
+                <td class="col" [attr.data-name]="'Start Date' | translate">25/12/2025</td>
+                <td class="col" [attr.data-name]="'End Date' | translate">30/12/2025</td>
+                <td class="text-center col" (click)="viewDetails(data, 'pending')" [attr.data-name]="'Pending' | translate">2</td>
+                <td class="text-center col" (click)="viewDetails(data, 'paid')" [attr.data-name]="'Paid' | translate">8</td>
+                <td class="text-center col" [attr.data-name]="'Remove' | translate"><span
+                        class="btn btn-sm btn-danger btn_download"><i class="mdi mdi-pencil-circle-outline"></i></span>
+                </td>
+            </tr>
+            <tr *ngFor="let instalmentData of data.instalments; let i=index">
+                <td class="col s_no" [attr.data-name]="'S.No.' | translate">{{i+1}}</td>
+                <td class="col" [attr.data-name]="'Instalment' | translate">{{instalmentData?.instalment_amount}}
+                </td>
+                <td class="col" [attr.data-name]="'Start Date' | translate">
+                    {{instalmentData.start_date}}</td>
+                <td class="col" [attr.data-name]="'End Date' | translate">
+                    {{instalmentData.end_date}}
+                </td>
+                <td class="text-center col" [attr.data-name]="'Pending' | translate">2</td>
+                <td class="text-center col" [attr.data-name]="'Paid' | translate">10</td>
+                <td class="text-center col" [attr.data-name]="'Remove' | translate"
+                    (click)="updateInstalemnt(instalmentData)"><span class="btn btn-sm btn-danger btn_download"><i
+                            class="mdi mdi-pencil-circle-outline"></i></span></td>
+            </tr>
+        </tbody>
+        <tbody>
+    </table>
+    <form focusInvalidInput [formGroup]="InstalmentForm" class="row">
+        <h3 class="popu_inner_heading col-sm-12"><label>{{"Add / Update Instalment Amount"|translate}}</label></h3>
+        <div class="global_form_row col-sm-4">
+            <app-input [disabled]="true" [isDateField]="false" label="Instalment Amount" [(value)]="amount"
+                [isRequired]="true" [className]="'bottom_error_msg'" [displayMsg]="'Amount is required'"
+                [form]="InstalmentForm" [key]="'amount'"></app-input>
+        </div>
+        <div class="global_form_row col-sm-4">
+            <app-input [isDateField]="true" label="Start Date" [(value)]="start_date" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="InstalmentForm" [key]="'start_date'"
+                [displayMsg]="'Start date is required'"></app-input>
+        </div>
+        <div class="global_form_row col-sm-4">
+            <app-input [isDateField]="true" label="End Date" [(value)]="end_date" [isRequired]="true"
+                [className]="'bottom_error_msg'" [form]="InstalmentForm" [key]="'end_date'"
+                [displayMsg]="'End date is required'"></app-input>
         </div>
     </form>
 </div>
@@ -16,6 +95,6 @@
     <button class="global_submit_btn" mat-flat-button (click)="submitInstalment()">
         <app-button-loader *ngIf="loading"></app-button-loader>
         <mat-icon *ngIf="!loading" class="submitbtn_icon">check</mat-icon>
-        <span>{{"Submit"|translate}}</span>
+        <span>{{"Add New Instalment"|translate}}</span>
     </button>
 </div>

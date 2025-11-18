@@ -10,9 +10,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonComponentsModule } from 'src/app/common/common-components.module';
 import { VcManagementRoutingModule } from './vc-management-routing.module';
 import { AddInstalmentComponent } from './add-instalment/add-instalment.component';
+import { ChangeStatusComponent } from './change-status/change-status.component';
+import { VcReceivedMembersComponent } from './vc-received-members/vc-received-members.component';
+import { VcPaidAmountComponent } from './vc-paid-amount/vc-paid-amount.component';
 
 @NgModule({
-  declarations: [VcManagementComponent, AddVcComponent, ChangeMemberComponent, ReceivedAmountComponent, ViewDetailsComponent, AddInstalmentComponent],
+  declarations: [VcManagementComponent, AddVcComponent, ChangeMemberComponent, ReceivedAmountComponent, ViewDetailsComponent, AddInstalmentComponent, ChangeStatusComponent, VcReceivedMembersComponent, VcPaidAmountComponent],
   imports: [
     CommonModule,
     MaterialModule,

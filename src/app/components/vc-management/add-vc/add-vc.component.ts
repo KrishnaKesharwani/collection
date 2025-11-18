@@ -34,7 +34,7 @@ export class AddVcComponent {
   final_amount: string = '';
   total_member: string = '';
   details: string = '';
-  selectedStatus = "fixed";
+  // selectedStatus = "fixed";
   loading: boolean = false;
   vc_image: any;
   // loader = false;
@@ -44,7 +44,7 @@ export class AddVcComponent {
 
 
   ngOnInit() {
-    debugger;
+    // debugger;
     const data = localStorage.getItem('CurrentUser');
     if (data) {
       const userData = JSON.parse(data);
@@ -73,16 +73,15 @@ export class AddVcComponent {
 
   onStatusChange(status: string) {
     // debugger;
-    this.selectedStatus = status;
-    const instalmentControl = this.vcDetailsForm.get('instalment_amount');
-    if (status === 'fixed') {
-      instalmentControl?.setValidators([Validators.required]);
-    } else {
-      instalmentControl?.clearValidators();   // Remove required
-      instalmentControl?.setValue(null);      // Clear value
-    }
-
-    instalmentControl?.updateValueAndValidity();
+    // this.selectedStatus = status;
+    // const instalmentControl = this.vcDetailsForm.get('instalment_amount');
+    // if (status === 'fixed') {
+    //   instalmentControl?.setValidators([Validators.required]);
+    // } else {
+    //   instalmentControl?.clearValidators();   // Remove required
+    //   instalmentControl?.setValue(null);      // Clear value
+    // }
+    // instalmentControl?.updateValueAndValidity();
   }
   vcDetailsView() {
 

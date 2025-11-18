@@ -1,0 +1,93 @@
+<div class="dialoge_header">
+    <div class="left_text">{{ dataa.title | translate}}</div>
+    <mat-icon class="close-icon" (click)="onClose()" color="warn">close</mat-icon>
+</div>
+<div class="dialoge_middle_container small_popup full_height_cover">
+    <div class="basic_details_popup_block">
+        <div class="details_block">
+            <b>{{"VC Name"|translate}}:</b>
+            <span>{{received_data.vc_name}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Type"|translate}}</b>
+            <span>{{received_data.type}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Start Date"|translate}}</b>
+            <span>{{received_data.start_date}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"End Date"|translate}}</b>
+            <span>{{received_data.end_date}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"End Amount"|translate}}</b>
+            <span><span appDigits>{{received_data.final_amount}}</span></span>
+        </div>
+        <div class="details_block">
+            <b>{{"Total Members"|translate}}</b>
+            <span>{{received_data.total_member}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Member Name"|translate}}</b>
+            <span>{{received_data.member_name}}</span>
+        </div>
+        <div class="details_block">
+            <b>{{"Member Id"|translate}}</b>
+            <span>{{received_data.member_id}}</span>
+        </div>
+    </div>
+
+    <form focusInvalidInput [formGroup]="amountPaidForm">
+        <div class="modal_insert">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <app-input [isDateField]="false" label="Paid Amount" [(value)]="paid_amount"
+                        [isRequired]="true" [className]="'bottom_error_msg'" [form]="amountPaidForm"
+                        [key]="'received_amount'" [displayMsg]="'Amount is required'"></app-input>
+                </div>
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <!-- (selectionChange)="onStatusChange($event)" -->
+                    <app-dropdwon [optionArray]="dropdownService.receivedAmountType" *ngIf="amountPaidForm"
+                        [form]="amountPaidForm" [key]="'paidtype'" field="Amount Received Type"></app-dropdwon>
+                </div>
+                <div class="col-sm-12">
+                    <div class="file_upload_block">
+                        <label class="m-0">Documents / Bills</label>
+                        <app-fileupload [form]="amountPaidForm" class="fileupload_image_fullwidth mb-0"
+                            [accept]="'image/png, image/gif, image/jpeg'" [imageAadhar]="false"
+                            [imageUrl]="amountPaidForm.value['bills']" [uploadType]="'fullwidth'"
+                            [imageCaption]="'Please upload screenshot'" [formcontrolname]="'bills'"
+                            formControlName="bills" name="bills"
+                            (fileChange)="paidAmountImageChange($event)"></app-fileupload>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="file_upload_block">
+                        <label class="m-0">Screen Shots</label>
+                        <app-fileupload [form]="amountPaidForm" class="fileupload_image_fullwidth mb-0"
+                            [accept]="'image/png, image/gif, image/jpeg'" [imageAadhar]="false"
+                            [imageUrl]="amountPaidForm.value['screenshots']" [uploadType]="'fullwidth'"
+                            [imageCaption]="'Please upload screenshot'" [formcontrolname]="'screenshots'"
+                            formControlName="screenshots" name="screenshots"
+                            (fileChange)="paidAmountScreenshotChange($event)"></app-fileupload>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-12 col-xs-12">
+                    <mat-form-field class="global_textarea_block" appearance="outline">
+                        <mat-label>Details</mat-label>
+                        <textarea matInput formControlName="details" name="details"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="dialoge_button_container">
+    <button class="global_close_btn" (click)="onClose()" mat-stroked-button>{{"Close"|translate}}</button>
+    <button type="submit" class="global_submit_btn" mat-flat-button (click)="saveDetails()">
+        <mat-icon class="submitbtn_icon" *ngIf="!loading">check</mat-icon>
+        <app-button-loader *ngIf="loading"></app-button-loader>
+        <span>{{"Submit"|translate}}</span>
+    </button>
+</div>
